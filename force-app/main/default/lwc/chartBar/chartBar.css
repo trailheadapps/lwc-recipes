@@ -1,0 +1,10 @@
+.container {
+    overflow: hidden;
+    color: #F5B041;
+}
+
+.bar {
+    margin-left: 4px;
+    height: 36px;
+    background-color: #F5B041;
+}

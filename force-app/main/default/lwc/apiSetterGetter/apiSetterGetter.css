@@ -1,0 +1,22 @@
+c-todo-list {
+    position: relative;
+    border: solid 1px #ecebea;
+    border-radius: 4px;
+    display: block;
+    padding: 14px 8px 8px 8px;
+    margin-top: 12px;
+}
+
+c-todo-list:before {
+    content: "c-todo-list";
+    color: #dddbda;
+    position: absolute;
+    top: -10px;
+    left: 4px;
+    background-color: #ffffff;
+    padding: 0 4px;
+}
+
+lightning-button {
+    display: block;
+}

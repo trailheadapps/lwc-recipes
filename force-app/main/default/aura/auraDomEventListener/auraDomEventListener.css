@@ -1,0 +1,29 @@
+.THIS .slds-card__footer {
+    text-align: left;
+    color: #706e6b;
+}
+
+.THIS .aura {
+    background-color: #f39f75;
+    color: #ffffff;
+    padding: 1px 4px;
+    border-radius: 3px;
+}
+
+.THIS c-category-filter {
+    position: relative;
+    border: solid 1px #ecebea;
+    border-radius: 4px;
+    display: block;
+    padding: 6px 2px;
+}
+
+.THIS c-category-filter:before {
+    content: "c-category-filter (Lightning Web component)";
+    color: #dddbda;
+    position: absolute;
+    top: -9px;
+    left: 4px;
+    background-color: #ffffff;
+    padding: 0 4px;
+}

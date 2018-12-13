@@ -1,0 +1,29 @@
+<aura:component implements="flexipage:availableForAllPageTypes">
+
+    <aura:attribute name="message" type="String" default="No selection"/>
+
+    <lightning:card title="AuraDomEventListener" iconName="custom:custom30">
+
+        <aura:set attribute="actions">
+            <span class="aura">Aura Component</span>
+        </aura:set>
+
+        <div class="slds-m-around_medium">
+            <lightning:layout>
+                <lightning:layoutItem size="4">
+                    <!-- This is an LWC component -->
+                    <c:categoryFilter onfilterchange="{!c.handleFilterChange}"/>
+                </lightning:layoutItem>
+                <lightning:layoutItem size="8" class="slds-p-left_medium">
+                    {!v.message}
+                </lightning:layoutItem>
+            </lightning:layout>
+        </div>
+
+        <div class="slds-card__footer">
+            Listen to a Lightning Web component event in a parent Aura component
+            <p><a class="slds-text-link" href="https://github.com/trailheadapps/lwc-recipes/tree/master/force-app/main/default/aura/auraDomEventListener" target="source">View Source</a></p>
+        </div>
+    </lightning:card>
+
+</aura:component>

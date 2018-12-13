@@ -1,0 +1,17 @@
+<template>
+
+    <lightning-card title="ApiSetterGetter" icon-name="standard:product_consumed">
+        <div class="slds-m-around_medium">
+            <lightning-input label="Description" onchange={handleDescriptionChange} value={description}></lightning-input>
+            <lightning-input label="Priority" type="checkbox" onchange={handlePriorityChange} checked={priority}></lightning-input>
+            <lightning-button label="Add Todo" variant="brand" onclick={handleSave} class="slds-p-vertical_small"></lightning-button>
+            <c-todo-list todos={todos}></c-todo-list>
+        </div>
+
+        <c-view-source source="lwc/apiSetterGetter" slot="footer">
+            Parent-to-child communication. Pass data to a child component using a public (@api) property implemented with a setter and getter, and apply some logic to the data as the property is being set.
+        </c-view-source>
+
+    </lightning-card>
+
+</template>

@@ -1,0 +1,18 @@
+c-contact-tile {
+    position: relative;
+    border: solid 1px #ecebea;
+    border-radius: 4px;
+    display: block;
+    margin: 1px 0;
+    padding: 0 2px;
+}
+
+c-contact-tile:before {
+    content: "c-contact-tile";
+    color: #dddbda;
+    position: absolute;
+    top: -9px;
+    left: 4px;
+    background-color: #ffffff;
+    padding: 0 4px;
+}

@@ -1,0 +1,22 @@
+<template>
+
+    <lightning-card title="ApexWireMethodToProperty" icon-name="custom:custom63">
+
+        <div class="slds-m-around_medium">
+            <template if:true={contacts.data}>
+                <template for:each={contacts.data} for:item="contact">
+                    <p key={contact.Id}>{contact.Name}</p>
+                </template>
+            </template>
+            <template if:true={contacts.error}>
+                <c-error-panel errors={contacts.error}></c-error-panel>
+            </template>                
+        </div>
+
+        <c-view-source source="lwc/apexWireMethodToProperty" slot="footer">
+            Call an Apex method that retrieves a list of records using @wire. In this recipe, the Apex method is @wired to a component property.
+        </c-view-source>
+
+    </lightning-card>
+
+</template>

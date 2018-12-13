@@ -1,0 +1,21 @@
+.content {
+    text-align: center;
+}
+
+c-paginator {
+    position: relative;
+    border: solid 1px #ecebea;
+    border-radius: 4px;
+    display: block;
+    padding: 8px 2px 2px 2px;
+}
+
+c-paginator:before {
+    content: "c-paginator";
+    color: #dddbda;
+    position: absolute;
+    top: -10px;
+    left: 4px;
+    background-color: #ffffff;
+    padding: 0 4px;
+}

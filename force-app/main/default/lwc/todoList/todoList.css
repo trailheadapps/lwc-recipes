@@ -1,0 +1,3 @@
+li:not(:first-child) {
+    border-top: solid 1px #ecebea;
+}

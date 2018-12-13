@@ -1,0 +1,10 @@
+/* Use as specific selectors as possible. Eg svg.d3. */
+svg.d3 .links line {
+    stroke: rgb(221, 219, 218);
+}
+
+svg.d3 .nodes circle {
+    stroke: #fff;
+    stroke-width: 1.5px;
+}
+

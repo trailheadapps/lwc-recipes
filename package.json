@@ -1,0 +1,44 @@
+{
+    "name": "lwc-recipes",
+    "private": true,
+    "version": "0.1.0",
+    "description": "Lightning Web Components Recipes",
+    "scripts": {
+        "lint": "npm run lint:lwc && npm run lint:aura",
+        "lint:lwc": "eslint **/lwc/**",
+        "lint:aura": "sfdx force:lightning:lint force-app/main/default/aura --exit",
+        "prettier": "npm run prettier:lwc",
+        "prettier:lwc": "prettier --write 'force-app/main/default/lwc/**'",
+        "postinstall": "node bin/check-version.js"
+    },
+    "author": "salesforce.com",
+    "license": "Apache-2.0",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/trailheadapps/lwc-recipes"
+    },
+    "engines": {
+        "node": ">= 8.9.4",
+        "npm": ">= 5.7.1"
+    },
+    "devDependencies": {
+        "@salesforce/eslint-config-lwc": "^0.3.0",
+        "eslint": "^5.0.0",
+        "husky": "^1.2.0",
+        "lint-staged": "^8.1.0",
+        "prettier": "^1.15.3",
+        "semver": "^5.5.0"
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "lint-staged && npm run lint:aura"
+        }
+    },
+    "lint-staged": {
+        "**/lwc/**": [
+            "prettier --write",
+            "eslint",
+            "git add"
+        ]
+    }
+}

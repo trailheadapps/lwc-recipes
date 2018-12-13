@@ -1,0 +1,26 @@
+<template>
+
+    <lightning-card title="RecordEditFormDynamicContact" icon-name="standard:contact">
+
+        <div class="slds-m-around_medium">
+            <lightning-record-edit-form
+                object-api-name={objectApiName}
+                record-id={recordId}>
+                <lightning-messages></lightning-messages>
+                <lightning-input-field field-name='Name'></lightning-input-field>
+                <lightning-input-field field-name='Title'></lightning-input-field>
+                <lightning-input-field field-name='Phone'></lightning-input-field>
+                <lightning-input-field field-name='Email'></lightning-input-field>
+                <div class="slds-m-top_medium">
+                    <lightning-button variant="brand" type="submit" name="save" label="Save"></lightning-button>
+                </div>
+            </lightning-record-edit-form>
+        </div>
+
+        <c-view-source source="lwc/recordEditFormDynamicContact" slot="footer">
+            Create an edit-mode form for a specific record. This recipe uses a dynamic schema definition (fields are specified as string).
+        </c-view-source>
+
+    </lightning-card>
+
+</template>

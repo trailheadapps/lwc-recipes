@@ -1,0 +1,18 @@
+.THIS img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-bottom: 8px;
+}
+
+.THIS .slds-card__footer {
+    text-align: left;
+    color: #706e6b;
+}
+
+.THIS .aura {
+    background-color: #f39f75;
+    color: #ffffff;
+    padding: 1px 4px;
+    border-radius: 3px;
+}

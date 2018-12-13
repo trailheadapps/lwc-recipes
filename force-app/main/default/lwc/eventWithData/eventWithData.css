@@ -1,0 +1,25 @@
+img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-bottom: 8px;
+}
+
+c-contact-list-item {
+    position: relative;
+    border: solid 1px #ecebea;
+    border-radius: 4px;
+    display: block;
+    margin: 1px 0;
+    padding: 3px 2px 0 2px;
+}
+
+c-contact-list-item:before {
+    content: "c-contact-list-item";
+    color: #dddbda;
+    position: absolute;
+    top: -9px;
+    left: 4px;
+    background-color: #ffffff;
+    padding: 0 4px;
+}

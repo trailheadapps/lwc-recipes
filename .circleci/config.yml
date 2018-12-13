@@ -1,0 +1,168 @@
+version: 2
+
+# Defining default values for all jobs
+defaults: &defaults
+  docker:
+    - image: circleci/node:8.9.4-browsers
+
+jobs:
+  setup_dx:
+    # This command runs the preparation steps needed for the CI workflow:
+    #
+    # - Installation of the Salesforce CLI using npm
+    # - Install npm dependencies for LWC testing
+    # - Authentication of the DevHub
+    # - Creation of a scratch org
+    #
+    # While a scratch org isn't needed in all steps it's still part of the process. The reason for this is
+    # that we need to store the sfdx configuration files for it in the workspace, so that data can be shared
+    # across different workflow steps.
+    #
+    # Keep it simple!
+    <<: *defaults
+    steps:
+      - checkout
+      - run:
+          name: Install Salesforce DX and package dependencies
+          command: |
+              openssl enc -nosalt -aes-256-cbc -d -in .circleci/server.key.enc -out .circleci/server.key -base64 -K $DECRYPTION_KEY -iv $DECRYPTION_IV
+              export SFDX_USE_GENERIC_UNIX_KEYCHAIN=true
+              export SFDX_DOMAIN_RETRY=300
+              npm install
+              npm install sfdx-cli
+              node_modules/sfdx-cli/bin/run --version
+              node_modules/sfdx-cli/bin/run plugins --core
+      - run:
+          name: Authenticate DevHub
+          command: |
+              # if [[ $CIRCLE_BRANCH == prerelease* ]]; then
+              # Temporary using pre-release till R2b (Spring '19 GA Launch')
+              node_modules/sfdx-cli/bin/run force:auth:jwt:grant --clientid $CONSUMERKEY_PRERELEASE --jwtkeyfile .circleci/server.key --username $USERNAME_PRERELEASE --setdefaultdevhubusername -a HubOrg
+              # else
+              #   node_modules/sfdx-cli/bin/run force:auth:jwt:grant --clientid $CONSUMERKEY --jwtkeyfile .circleci/server.key --username $USERNAME --setdefaultdevhubusername -a HubOrg
+              # fi
+      - run:
+          name: Define CI Org
+          # We define the to be used CI org. Based on the branch we either create a new scratch org
+          # or we use a project variable to authenticate a UAT or full-copy sandbox as target org.
+          #
+          # You can get the sfdxurl via sfdx force:org:display -u yourOrg --json --verbose from your local machine.
+          command: |
+              echo $SFDX_AUTH_PACKAGING > ~/auth.url
+              node_modules/sfdx-cli/bin/run force:auth:sfdxurl:store -s -a packagingorg -f ~/auth.url
+              node_modules/sfdx-cli/bin/run force:org:create -v HubOrg -s -f config/project-scratch-def.json -a ciorg -d 1
+      - persist_to_workspace:
+          # This is an important step. If we don't store the project data (cloned GitHub source and node_modules from the CLI installation)
+          # we'd have to re-run installation for every workflow step.
+          #
+          # Also this step is crucial as we use it to share sfdx config parameters between steps.
+          root: ~/
+          paths:
+              - .sfdx/*
+              - project/*
+  lint_lwc:
+  # This lints Lightning Web Components.
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/
+      - run:
+          name: Lint Lightning Web Components
+          command: |
+              npm run lint:lwc
+  # unit_test_lwc:
+  # # This runs Jest unit tests for Lightning Web Components.
+  #   <<: *defaults
+  #   steps:
+  #     - attach_workspace:
+  #         at: ~/
+  #     - run:
+  #         name: Unit Test Lightning Web Components
+  #         command: |
+  #             npm run test:unit
+  deploy_source:
+  # This deploys the source to the ci scratch org.
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/
+      - run:
+          name: Push Source
+          command: |
+             node_modules/sfdx-cli/bin/run plugins:install salesforcedx@pre-release # Temporary using the pre-release plugin
+             node_modules/sfdx-cli/bin/run force:source:push -u ciorg
+  create_and_test_package:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/
+      - run:
+          name: Create and install package
+          command: |
+            if [[ $SFDX_TEST_PACKAGING == "true" ]]; then
+              scripts/packagingDeployment.sh
+            fi
+          no_output_timeout: 15m
+
+  run_apex_tests:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/
+      - run:
+          name: Run Apex Tests
+          command: |
+              node_modules/sfdx-cli/bin/run force:apex:test:run -u ciorg -c -r human
+  cleanup_scratch_org:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/
+      - run:
+          name: Clean Up
+          command: |
+              node_modules/sfdx-cli/bin/run force:org:delete -u ciorg -p
+
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - setup_dx
+      - lint_lwc:
+          requires:
+            - setup_dx
+          filters:
+            branches:
+              ignore: master
+      # - unit_test_lwc:
+      #     requires:
+      #       - lint_lwc
+      #     filters:
+      #       branches:
+      #         ignore: master
+      - deploy_source:
+          requires:
+            - lint_lwc
+          filters:
+            branches:
+              ignore: master
+      - create_and_test_package:
+          requires:
+            - setup_dx
+          filters:
+            branches:
+              only: master
+      - run_apex_tests:
+          requires:
+            - deploy_source
+          filters:
+            branches:
+              ignore: master
+      - cleanup_scratch_org:
+          requires:
+            - setup_dx
+            - deploy_source
+            - create_and_test_package
+            - run_apex_tests
+            - lint_lwc
+            # - unit_test_lwc

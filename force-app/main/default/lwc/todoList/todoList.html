@@ -1,0 +1,17 @@
+<template>
+
+    <div>
+        <lightning-input label="Priority Only" type="checkbox" onchange={handleCheckboxChange}></lightning-input>
+        <ul class="slds-m-top_x-small">
+            <template for:each={filteredTodos} for:item="todo">
+                <li key={todo.id}>
+                    <div class="slds-p-vertical_xx-small">
+                        <p>{todo.description}</p>
+                        <p>Priority: {todo.priority}</p>
+                    </div>
+                </li>    
+            </template>
+        </ul>
+    </div>
+
+</template>

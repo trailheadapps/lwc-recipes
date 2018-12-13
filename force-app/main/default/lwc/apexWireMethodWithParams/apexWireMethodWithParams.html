@@ -1,0 +1,23 @@
+<template>
+
+    <lightning-card title="ApexWireMethodWithParams" icon-name="custom:custom63">
+
+        <div class="slds-m-around_medium">
+            <lightning-input type="search" onchange={handleKeyChange} class="slds-m-bottom_small" label="Search" value={searchKey}></lightning-input>
+            <template if:true={contacts.data}>
+                <template for:each={contacts.data} for:item="contact">
+                    <p key={contact.Id}>{contact.Name}</p>
+                </template>
+            </template>
+            <template if:true={contacts.error}>
+                <c-error-panel errors={contacts.error}></c-error-panel>
+            </template>                
+        </div>
+
+        <c-view-source source="lwc/apexWireMethodWithParams" slot="footer">
+            Call an Apex method with parameters using @wire.
+        </c-view-source>
+
+    </lightning-card>
+
+</template>
