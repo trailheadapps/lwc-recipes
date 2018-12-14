@@ -15,6 +15,8 @@ There are two ways to install Lightning Web Components Recipes:
 
 ## Installing Recipes using Salesforce DX
 
+> **IMPORTANT**: Because of a current issue in pre-release, make sure your project path doesn't include any of the following folder names: **lwc**, **aura**, **wave**. For example, DO NOT clone this repository in a folder called **/Projects/lwc**.
+
 1. Set up your environment. Follow the steps in the [Quick Start: Lightning Web Components](https://trailhead.salesforce.com/content/learn/projects/quick-start-lightning-web-components/) Trailhead project. The steps include:
 
     - Sign up for a Spring '19 pre-release org and enable Dev Hub
