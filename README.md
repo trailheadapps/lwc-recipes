@@ -79,7 +79,7 @@ There are two ways to install Lightning Web Components Recipes:
 
 1. Import Account and Contacts data:
 
-    - Click [here](https://raw.githubusercontent.com/trailheadapps/lwc-recipes/master/data/Accounts-Contacts.csv?token=AAXcnCCCTzi051Ikp-xeywDIPKIL99xqks5cG4b2wA%3D%3D) to acccess the **Accounts-Contacts.csv** file. Right click in the browser window and save the file as **Accounts-Contacts.csv**.
+    - Click [here](https://raw.githubusercontent.com/trailheadapps/lwc-recipes/master/data/Accounts-Contacts.csv) to acccess the **Accounts-Contacts.csv** file. Right click in the browser window and save the file as **Accounts-Contacts.csv**.
     - In **Setup**, type **Data Import** in the Quick Find box and click **Data Import Wizard**.
     - Click **Launch Wizard**.
     - Click **Accounts and Contacts**, and click **Add New Records**.
