@@ -9,6 +9,7 @@
 .vscode/
 !.vscode/extensions.json
 !.vscode/settings.json
+jsconfig.json
 node_modules/
 selenium-client-jars/
 test/artifacts/
