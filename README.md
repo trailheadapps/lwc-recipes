@@ -67,7 +67,7 @@ There are two ways to install Lightning Web Components Recipes:
     sfdx force:org:open
     ```
 
-1. In **Setup**, under **Themes and Branding**, activate the **Recipes Lite** or **Recipes Blue** theme.
+1. In **Setup**, under **Themes and Branding**, activate the **Recipes Light** or **Recipes Blue** theme.
 
 1. In App Launcher, select the **LWC** app.
 
@@ -88,7 +88,7 @@ There are two ways to install Lightning Web Components Recipes:
     - Drag the **Accounts-Contacts.csv** file you just saved to the upload area.
     - Click **Next**, **Next**, and **Start Import**.
 
-1. In **Setup**, under **Themes and Branding**, activate the **Recipes Lite** or **Recipes Blue** theme.
+1. In **Setup**, under **Themes and Branding**, activate the **Recipes Light** or **Recipes Blue** theme.
 
 1. In App Launcher, select the **LWC** app.
 
