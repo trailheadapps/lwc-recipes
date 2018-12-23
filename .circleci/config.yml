@@ -190,5 +190,3 @@ workflows:
                       - deploy_source
                       - create_and_test_package
                       - run_apex_tests
-                      - lint_lwc
-                      # - unit_test_lwc
