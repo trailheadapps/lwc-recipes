@@ -12,7 +12,7 @@
         "test:unit:watch": "lwc-jest --watch",
         "test:unit:debug": "lwc-jest --debug",
         "prettier": "npm run prettier:lwc",
-        "prettier:lwc": "prettier --write 'force-app/main/default/lwc/**'",
+        "prettier:lwc": "prettier --write '**/lwc/**'",
         "postinstall": "node bin/check-version.js"
     },
     "author": "salesforce.com",
