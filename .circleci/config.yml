@@ -10,6 +10,7 @@ jobs:
         <<: *defaults
         steps:
             - checkout
+            # - Install npm dependencies for LWC linting and testing
             - run:
                   name: Install package dependencies
                   command: |
@@ -48,7 +49,6 @@ jobs:
         # This command runs the preparation steps needed for the CI workflow:
         #
         # - Installation of the Salesforce CLI using npm
-        # - Install npm dependencies for LWC testing
         # - Authentication of the DevHub
         # - Creation of a scratch org
         #
@@ -97,26 +97,6 @@ jobs:
                   paths:
                       - .sfdx/*
                       - project/*
-    lint_lwc:
-        # This lints Lightning Web Components.
-        <<: *defaults
-        steps:
-            - attach_workspace:
-                  at: ~/
-            - run:
-                  name: Lint Lightning Web Components
-                  command: |
-                      npm run lint:lwc
-    # unit_test_lwc:
-    # # This runs Jest unit tests for Lightning Web Components.
-    #   <<: *defaults
-    #   steps:
-    #     - attach_workspace:
-    #         at: ~/
-    #     - run:
-    #         name: Unit Test Lightning Web Components
-    #         command: |
-    #             npm run test:unit
     deploy_source:
         # This deploys the source to the ci scratch org.
         <<: *defaults
@@ -188,7 +168,7 @@ workflows:
                           ignore: master
             - deploy_source:
                   requires:
-                      - lint_lwc
+                      - setup_dx
                   filters:
                       branches:
                           ignore: master
