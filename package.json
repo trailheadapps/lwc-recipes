@@ -7,8 +7,12 @@
         "lint": "npm run lint:lwc && npm run lint:aura",
         "lint:lwc": "eslint **/lwc/**",
         "lint:aura": "sfdx force:lightning:lint force-app/main/default/aura --exit",
+        "test": "npm run lint && npm run test:unit",
+        "test:unit": "lwc-jest",
+        "test:unit:watch": "lwc-jest --watch",
+        "test:unit:debug": "lwc-jest --debug",
         "prettier": "npm run prettier:lwc",
-        "prettier:lwc": "prettier --write 'force-app/main/default/lwc/**'",
+        "prettier:lwc": "prettier --write '**/lwc/**'",
         "postinstall": "node bin/check-version.js"
     },
     "author": "salesforce.com",
@@ -23,6 +27,7 @@
     },
     "devDependencies": {
         "@salesforce/eslint-config-lwc": "^0.3.0",
+        "@salesforce/lwc-jest": "^0.4.4",
         "eslint": "^5.0.0",
         "husky": "^1.2.0",
         "lint-staged": "^8.1.0",
