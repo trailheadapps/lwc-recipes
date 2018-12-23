@@ -21,21 +21,17 @@ jobs:
                   root: ~/
                   paths:
                       - project/*
-    lint:
+    lint_lwc:
         # This lints Lightning Web Components.
         <<: *defaults
         steps:
             - attach_workspace:
                   at: ~/
             - run:
-                  name: Lint Aura Components
-                  command: |
-                      npm run lint:aura
-            - run:
                   name: Lint Lightning Web Components
                   command: |
                       npm run lint:lwc
-    unit_testing:
+    unit_test_lwc:
         # This unit tests Lightning Web Components.
         <<: *defaults
         steps:
@@ -45,12 +41,38 @@ jobs:
                   name: Unit test Lightning Web Components
                   command: |
                       npm run test:unit
-    setup_dx:
-        # This command runs the preparation steps needed for the CI workflow:
-        #
-        # - Installation of the Salesforce CLI using npm
-        # - Authentication of the DevHub
-        # - Creation of a scratch org
+    install_cli:
+        # This installs the Salesforce CLI.
+        <<: *defaults
+        steps:
+            - attach_workspace:
+                  at: ~/
+            - run:
+                  name: Install Salesforce CLI
+                  command: |
+                      export SFDX_USE_GENERIC_UNIX_KEYCHAIN=true
+                      export SFDX_DOMAIN_RETRY=300
+                      npm install sfdx-cli
+                      node_modules/sfdx-cli/bin/run --version
+                      node_modules/sfdx-cli/bin/run plugins --core
+            - persist_to_workspace:
+                  # This is an important step. If we don't store the project data (node_modules from the CLI installation)
+                  # we'd have to re-run installation for every workflow step.
+                  root: ~/
+                  paths:
+                      - project/*
+    lint_aura:
+        # This lints Aura components.
+        <<: *defaults
+        steps:
+            - attach_workspace:
+                  at: ~/
+            - run:
+                  name: Lint Aura Components
+                  command: |
+                      npm run lint:aura
+    setup_dx_orgs:
+        # This authenticates the Dev Hub, packaging org, and creates a scratch org.
         #
         # While a scratch org isn't needed in all steps it's still part of the process. The reason for this is
         # that we need to store the sfdx configuration files for it in the workspace, so that data can be shared
@@ -59,16 +81,12 @@ jobs:
         # Keep it simple!
         <<: *defaults
         steps:
-            - checkout
+            - attach_workspace:
+                  at: ~/
             - run:
-                  name: Install Salesforce DX and package dependencies
+                  name: Decrypt certificate
                   command: |
                       openssl enc -nosalt -aes-256-cbc -d -in .circleci/server.key.enc -out .circleci/server.key -base64 -K $DECRYPTION_KEY -iv $DECRYPTION_IV
-                      export SFDX_USE_GENERIC_UNIX_KEYCHAIN=true
-                      export SFDX_DOMAIN_RETRY=300
-                      npm install sfdx-cli
-                      node_modules/sfdx-cli/bin/run --version
-                      node_modules/sfdx-cli/bin/run plugins --core
             - run:
                   name: Authenticate DevHub
                   command: |
@@ -120,7 +138,6 @@ jobs:
                         scripts/packagingDeployment.sh
                       fi
                   no_output_timeout: 15m
-
     run_apex_tests:
         <<: *defaults
         steps:
@@ -148,33 +165,45 @@ workflows:
                   filters:
                       branches:
                           ignore: master
-            - lint:
+            - lint_lwc:
                   requires:
                       - setup_tooling
                   filters:
                       branches:
                           ignore: master
-            - unit_testing:
+            - unit_test_lwc:
                   requires:
-                      - lint
+                      - lint_lwc
                   filters:
                       branches:
                           ignore: master
-            - setup_dx:
+            - install_cli:
                   requires:
-                      - unit_testing
+                      - unit_test_lwc
+                  filters:
+                      branches:
+                          ignore: master
+            - lint_aura:
+                  requires:
+                      - install_cli
+                  filters:
+                      branches:
+                          ignore: master
+            - setup_dx_orgs:
+                  requires:
+                      - lint_aura
                   filters:
                       branches:
                           ignore: master
             - deploy_source:
                   requires:
-                      - setup_dx
+                      - setup_dx_orgs
                   filters:
                       branches:
                           ignore: master
             - create_and_test_package:
                   requires:
-                      - setup_dx
+                      - setup_dx_orgs
                   filters:
                       branches:
                           only: master
@@ -186,7 +215,7 @@ workflows:
                           ignore: master
             - cleanup_scratch_org:
                   requires:
-                      - setup_dx
+                      - setup_dx_orgs
                       - deploy_source
                       - create_and_test_package
                       - run_apex_tests
