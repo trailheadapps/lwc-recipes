@@ -28,15 +28,16 @@ describe('c-hello-for-each', () => {
                 is: HelloForEach
             });
             document.body.appendChild(element);
+            const contactListExpected = [
+                'Amy Taylor, VP of Engineering',
+                'Michael Jones, VP of Sales',
+                'Jennifer Wu, CEO'
+            ];
             // Select all list items for data check
-            const contactListItems = element.shadowRoot.querySelectorAll('li');
-            expect(contactListItems[0].textContent).toBe(
-                'Amy Taylor, VP of Engineering'
-            );
-            expect(contactListItems[1].textContent).toBe(
-                'Michael Jones, VP of Sales'
-            );
-            expect(contactListItems[2].textContent).toBe('Jennifer Wu, CEO');
+            const contactListItems = Array.from(
+                element.shadowRoot.querySelectorAll('li')
+            ).map(li => li.textContent);
+            expect(contactListItems).toEqual(contactListExpected);
         });
     });
 });
