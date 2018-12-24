@@ -2,11 +2,6 @@ import { createElement } from 'lwc';
 import HelloIterator from 'c/helloIterator';
 
 describe('c-hello-iterator', () => {
-    // Reset timer mocks
-    beforeEach(() => {
-        jest.useFakeTimers();
-    });
-
     afterEach(() => {
         // The jsdom instance is shared across test cases in a single file so reset the DOM
         while (document.body.firstChild) {
@@ -20,7 +15,7 @@ describe('c-hello-iterator', () => {
         it('with list of three contacts', () => {
             // Create initial element
             const element = createElement('c-hello-iterator', {
-                is: HelloIterator,
+                is: HelloIterator
             });
             document.body.appendChild(element);
             // Select all list items for length check
@@ -30,23 +25,23 @@ describe('c-hello-iterator', () => {
         it('with contacts in specific order', () => {
             // Create initial element
             const element = createElement('c-hello-iterator', {
-                is: HelloIterator,
+                is: HelloIterator
             });
             document.body.appendChild(element);
             // Select all list items for data check
             const contactListItems = element.shadowRoot.querySelectorAll('li');
             expect(contactListItems[0].textContent).toBe(
-                'Amy Taylor, VP of Engineering',
+                'Amy Taylor, VP of Engineering'
             );
             expect(contactListItems[1].textContent).toBe(
-                'Michael Jones, VP of Sales',
+                'Michael Jones, VP of Sales'
             );
             expect(contactListItems[2].textContent).toBe('Jennifer Wu, CEO');
         });
         it('with divs rendered for first and last element', () => {
             // Create initial element
             const element = createElement('c-hello-iterator', {
-                is: HelloIterator,
+                is: HelloIterator
             });
             document.body.appendChild(element);
             // Select all list items for div check

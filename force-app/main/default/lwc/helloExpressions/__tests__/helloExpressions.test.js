@@ -2,11 +2,6 @@ import { createElement } from 'lwc';
 import HelloExpressions from 'c/helloExpressions';
 
 describe('c-hello-expressions', () => {
-    // Reset timer mocks
-    beforeEach(() => {
-        jest.useFakeTimers();
-    });
-
     afterEach(() => {
         // The jsdom instance is shared across test cases in a single file so reset the DOM
         while (document.body.firstChild) {
@@ -20,7 +15,7 @@ describe('c-hello-expressions', () => {
         it('with default values', () => {
             // Create initial element
             const element = createElement('c-hello-expressions', {
-                is: HelloExpressions,
+                is: HelloExpressions
             });
             document.body.appendChild(element);
             // Select output for default value check
@@ -30,11 +25,11 @@ describe('c-hello-expressions', () => {
         it('with first name', () => {
             // Create initial element
             const element = createElement('c-hello-expressions', {
-                is: HelloExpressions,
+                is: HelloExpressions
             });
             document.body.appendChild(element);
             const inputFields = element.shadowRoot.querySelectorAll(
-                'lightning-input',
+                'lightning-input'
             );
             inputFields.forEach(inputField => {
                 // Select input field for first name
@@ -51,18 +46,18 @@ describe('c-hello-expressions', () => {
                 // Select output for first name value check
                 const fullName = element.shadowRoot.querySelector('p');
                 expect(fullName.textContent).toBe(
-                    'Uppercased Full Name: PETER ',
+                    'Uppercased Full Name: PETER '
                 );
             });
         });
         it('with last name', () => {
             // Create initial element
             const element = createElement('c-hello-expressions', {
-                is: HelloExpressions,
+                is: HelloExpressions
             });
             document.body.appendChild(element);
             const inputFields = element.shadowRoot.querySelectorAll(
-                'lightning-input',
+                'lightning-input'
             );
             inputFields.forEach(inputField => {
                 // Select input field for last name
@@ -84,11 +79,11 @@ describe('c-hello-expressions', () => {
         it('with first and last name', () => {
             // Create initial element
             const element = createElement('c-hello-expressions', {
-                is: HelloExpressions,
+                is: HelloExpressions
             });
             document.body.appendChild(element);
             const inputFields = element.shadowRoot.querySelectorAll(
-                'lightning-input',
+                'lightning-input'
             );
             inputFields.forEach(inputField => {
                 // Select input field for first name
@@ -109,7 +104,7 @@ describe('c-hello-expressions', () => {
                 // Select output for first and last name value check
                 const fullName = element.shadowRoot.querySelector('p');
                 expect(fullName.textContent).toBe(
-                    'Uppercased Full Name: PETER PAN',
+                    'Uppercased Full Name: PETER PAN'
                 );
             });
         });

@@ -2,11 +2,6 @@ import { createElement } from 'lwc';
 import HelloConditionalRendering from 'c/helloConditionalRendering';
 
 describe('c-hello-conditional-rendering', () => {
-    // Reset timer mocks
-    beforeEach(() => {
-        jest.useFakeTimers();
-    });
-
     afterEach(() => {
         // The jsdom instance is shared across test cases in a single file so reset the DOM
         while (document.body.firstChild) {
@@ -20,23 +15,23 @@ describe('c-hello-conditional-rendering', () => {
         it('with not showing the details', () => {
             // Create initial element
             const element = createElement('c-hello-conditional-rendering', {
-                is: HelloConditionalRendering,
+                is: HelloConditionalRendering
             });
             document.body.appendChild(element);
             // Select div for default message check
             const details = element.shadowRoot.querySelector(
-                '.slds-m-vertical_medium',
+                '.slds-m-vertical_medium'
             );
             expect(details.textContent).toBe('Not showing details.');
         });
         it('with showing the details', () => {
             // Create initial element
             const element = createElement('c-hello-conditional-rendering', {
-                is: HelloConditionalRendering,
+                is: HelloConditionalRendering
             });
             document.body.appendChild(element);
             const inputField = element.shadowRoot.querySelector(
-                'lightning-input',
+                'lightning-input'
             );
             inputField.checked = true;
             inputField.dispatchEvent(new CustomEvent('change'));
@@ -47,7 +42,7 @@ describe('c-hello-conditional-rendering', () => {
             return Promise.resolve().then(() => {
                 // Select div for conditionally changed text content
                 const details = element.shadowRoot.querySelector(
-                    '.slds-m-vertical_medium',
+                    '.slds-m-vertical_medium'
                 );
                 expect(details.textContent).toBe('These are the details!');
             });

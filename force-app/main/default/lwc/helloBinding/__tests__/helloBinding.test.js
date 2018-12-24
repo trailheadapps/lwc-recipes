@@ -2,11 +2,6 @@ import { createElement } from 'lwc';
 import HelloBinding from 'c/helloBinding';
 
 describe('c-hello-binding', () => {
-    // Reset timer mocks
-    beforeEach(() => {
-        jest.useFakeTimers();
-    });
-
     afterEach(() => {
         // The jsdom instance is shared across test cases in a single file so reset the DOM
         while (document.body.firstChild) {
@@ -20,7 +15,7 @@ describe('c-hello-binding', () => {
         it('with dynamic greeting', () => {
             // Create initial element
             const element = createElement('c-hello-binding', {
-                is: HelloBinding,
+                is: HelloBinding
             });
             document.body.appendChild(element);
             // Select div for default message check
@@ -28,7 +23,7 @@ describe('c-hello-binding', () => {
             expect(greeting.textContent).toBe('Hello, World!');
             // Select input field for value change
             const inputField = element.shadowRoot.querySelector(
-                'lightning-input',
+                'lightning-input'
             );
             inputField.value = 'Test';
             inputField.dispatchEvent(new CustomEvent('change'));
