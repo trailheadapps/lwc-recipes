@@ -1,0 +1,7 @@
+{
+  "recommendations": [
+    "salesforce.salesforcedx-vscode",
+    "salesforce.salesforcedx-vscode-lwc",
+    "EditorConfig.editorconfig",
+  ]
+}
