@@ -7,35 +7,32 @@ describe('c-hello-binding', () => {
         while (document.body.firstChild) {
             document.body.removeChild(document.body.firstChild);
         }
-        // Prevent data saved on mocks from leaking between tests
-        jest.clearAllMocks();
     });
 
-    describe('Render UI', () => {
-        it('with dynamic greeting', () => {
-            // Create initial element
-            const element = createElement('c-hello-binding', {
-                is: HelloBinding
-            });
-            document.body.appendChild(element);
-            // Select div for default message check
-            let greeting = element.shadowRoot.querySelector('div');
-            expect(greeting.textContent).toBe('Hello, World!');
-            // Select input field for value change
-            const inputField = element.shadowRoot.querySelector(
-                'lightning-input'
-            );
-            inputField.value = 'Test';
-            inputField.dispatchEvent(new CustomEvent('change'));
-            // Return a promise to wait for any asynchronous DOM updates. Jest
-            // will automatically wait for the Promise chain to complete before
-            // ending the test and fail the test if the promise ends in the
-            // rejected state
-            return Promise.resolve().then(() => {
-                // Select div for default message check
-                greeting = element.shadowRoot.querySelector('div');
-                expect(greeting.textContent).toBe('Hello, Test!');
-            });
+    it('displays greeting specified by change event target', () => {
+        const expected = 'Test';
+
+        // Create element
+        const element = createElement('c-hello-binding', {
+            is: HelloBinding,
+        });
+        document.body.appendChild(element);
+
+        // Verify default greeting
+        let div = element.shadowRoot.querySelector('div');
+        expect(div.textContent).not.toBe(`Hello, ${expected}!`);
+
+        // Trigger new greeting
+        const input = element.shadowRoot.querySelector('lightning-input');
+        input.value = expected;
+        input.dispatchEvent(new CustomEvent('change'));
+
+        // Return a promise to wait for any asynchronous DOM updates. Jest
+        // will automatically wait for the Promise chain to complete before
+        // ending the test and fail the test if the promise rejects.
+        return Promise.resolve().then(() => {
+            // Verify displayed greeting
+            expect(div.textContent).toBe(`Hello, ${expected}!`);
         });
     });
 });
