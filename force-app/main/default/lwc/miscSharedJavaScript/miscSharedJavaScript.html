@@ -13,7 +13,7 @@
             <lightning-input type="number" label="Rate" value={rate} onchange={rateChange}></lightning-input>
             <p class="slds-m-vertical_small"><lightning-button label="Calculate Monthly Payment" onclick={calculateMonthlyPayment}></lightning-button></p>
             <p>Monthly Payment</p>
-            <lightning-formatted-number style="currency" currency-code="USD" value={monthlyPayment}></lightning-formatted-number>
+            <lightning-formatted-number format-style="currency" currency-code="USD" value={monthlyPayment}></lightning-formatted-number>
         </div>
 
         <c-view-source source="lwc/miscSharedJavaScript" slot="footer">
