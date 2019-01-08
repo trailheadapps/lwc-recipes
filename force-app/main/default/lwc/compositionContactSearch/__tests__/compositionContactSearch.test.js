@@ -26,29 +26,37 @@ describe('c-composition-contact-search', () => {
             is: CompositionContactSearch
         });
         document.body.appendChild(element);
+
         // Query lightning-input field elements
         const inputFieldEls = element.shadowRoot.querySelectorAll(
             'lightning-input'
         );
+
         // Check length of rendered lightning-input elements
         expect(inputFieldEls.length).toBe(1);
+
         // Check label of lightning-input element
         expect(inputFieldEls[0].label).toBe('Search');
     });
 
     it('renders one contact tile based on user input', () => {
         mockFindContacts.mockResolvedValue = [{ Id: '99', Name: 'Amy Taylor' }];
+
         // Create initial element
         const element = createElement('c-composition-contact-search', {
             is: CompositionContactSearch
         });
         document.body.appendChild(element);
+
         // Query lightning-input field element
         const inputFieldEl = element.shadowRoot.querySelector(
             'lightning-input'
         );
         inputFieldEl.value = 'Amy';
         inputFieldEl.dispatchEvent(new CustomEvent('change'));
+
+        jest.runAllTimers();
+
         // Return a promise to wait for any asynchronous DOM updates. Jest
         // will automatically wait for the Promise chain to complete before
         // ending the test and fail the test if the promise ends in the
@@ -66,17 +74,22 @@ describe('c-composition-contact-search', () => {
 
     it('renders the error panel', () => {
         mockFindContacts.mockRejectedValue = { message: 'someError' };
+
         // Create initial element
         const element = createElement('c-composition-contact-search', {
             is: CompositionContactSearch
         });
         document.body.appendChild(element);
+
         // Query lightning-input field elements
         const inputFieldEl = element.shadowRoot.querySelector(
             'lightning-input'
         );
         inputFieldEl.value = 'invalid';
         inputFieldEl.dispatchEvent(new CustomEvent('change'));
+
+        jest.runAllTimers();
+
         // Return a promise to wait for any asynchronous DOM updates. Jest
         // will automatically wait for the Promise chain to complete before
         // ending the test and fail the test if the promise ends in the

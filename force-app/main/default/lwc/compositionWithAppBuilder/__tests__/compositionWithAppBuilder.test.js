@@ -18,6 +18,7 @@ describe('c-composition-with-app-builder', () => {
         element.stringValue = 'someString';
         element.numberValue = 99;
         document.body.appendChild(element);
+
         expect(element.picklistValue).toBe('somePicklist');
         expect(element.stringValue).toBe('someString');
         expect(element.numberValue).toBe(99);

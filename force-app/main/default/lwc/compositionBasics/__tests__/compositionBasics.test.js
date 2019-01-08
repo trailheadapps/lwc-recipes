@@ -15,6 +15,7 @@ describe('c-composition-basics', () => {
             is: CompositionBasics
         });
         document.body.appendChild(element);
+
         // Select rendered contact tile for length check
         const contactTileEls = element.shadowRoot.querySelectorAll(
             'c-contact-tile'
@@ -28,6 +29,7 @@ describe('c-composition-basics', () => {
             is: CompositionBasics
         });
         document.body.appendChild(element);
+
         // Select contact tile for public property check
         const contactTileEl = element.shadowRoot.querySelector(
             'c-contact-tile'

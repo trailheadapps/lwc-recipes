@@ -15,6 +15,7 @@ describe('c-composition-iteration', () => {
             is: CompositionIteration
         });
         document.body.appendChild(element);
+
         // Select rendered contact tile elements for length check
         const contactTileEls = element.shadowRoot.querySelectorAll(
             'c-contact-tile'
@@ -28,6 +29,7 @@ describe('c-composition-iteration', () => {
             is: CompositionIteration
         });
         document.body.appendChild(element);
+
         // Select contact tiles for public property check
         const contactListExpected = [
             'Amy Taylor',
