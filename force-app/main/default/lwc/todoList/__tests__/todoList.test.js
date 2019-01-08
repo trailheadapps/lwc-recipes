@@ -3,7 +3,7 @@ import TodoList from 'c/todoList';
 
 const todos = [
     { id: 1, description: 'Explore recipes', priority: true },
-    { id: 2, description: 'Install Ebikes sample app', priority: false },
+    { id: 2, description: 'Install Ebikes sample app', priority: false }
 ];
 
 describe('c-todo-list', () => {
@@ -17,13 +17,13 @@ describe('c-todo-list', () => {
     it('renders one lightning-input element and no list items as default', () => {
         // Create initial element
         const element = createElement('c-todo-list', {
-            is: TodoList,
+            is: TodoList
         });
         document.body.appendChild(element);
 
         // Query for lightning-input elemenst
         const lightningInputEl = element.shadowRoot.querySelector(
-            'lightning-input',
+            'lightning-input'
         );
         expect(lightningInputEl).not.toBeNull();
         expect(lightningInputEl.label).toBe('Priority Only');
@@ -45,7 +45,7 @@ describe('c-todo-list', () => {
     it('renders multiple list items and filters based on priority', () => {
         // Create initial element
         const element = createElement('c-todo-list', {
-            is: TodoList,
+            is: TodoList
         });
         element.todos = todos;
         document.body.appendChild(element);
@@ -54,11 +54,13 @@ describe('c-todo-list', () => {
         let listItemEls = element.shadowRoot.querySelectorAll('li');
         expect(listItemEls.length).toBe(2);
 
-        element.todos.push({
+        todos.push({
             id: 3,
             description: 'Test todo list',
-            priority: false,
+            priority: false
         });
+
+        element.todos = todos;
 
         // Return a promise to wait for any asynchronous DOM updates. Jest
         // will automatically wait for the Promise chain to complete before
@@ -71,7 +73,7 @@ describe('c-todo-list', () => {
                 expect(listItemEls.length).toBe(3);
 
                 const lightningInputEl = element.shadowRoot.querySelector(
-                    'lightning-input',
+                    'lightning-input'
                 );
                 lightningInputEl.checked = true;
                 lightningInputEl.dispatchEvent(new CustomEvent('change'));
@@ -86,15 +88,21 @@ describe('c-todo-list', () => {
     it('renders and filters list items', () => {
         // Create initial element
         const element = createElement('c-todo-list', {
-            is: TodoList,
+            is: TodoList
         });
         element.todos = todos;
         document.body.appendChild(element);
 
-        // Validate rendered output for first todo object
-        let outputEls = element.shadowRoot.querySelector('p');
-        expect(outputEls[0].textContent).toBe(todos[0].description);
-        const regex = new RegExp(`Priority: ${todos[0].priority}`);
-        expect(outputEls[1].textContent).toBe(regex);
+        // Return a promise to wait for any asynchronous DOM updates. Jest
+        // will automatically wait for the Promise chain to complete before
+        // ending the test and fail the test if the promise ends in the
+        // rejected state
+        return Promise.resolve().then(() => {
+            // Validate rendered output for first todo object
+            let outputEls = element.shadowRoot.querySelector('p');
+            expect(outputEls[0].textContent).toBe(todos[0].description);
+            const regex = new RegExp(`Priority: ${todos[0].priority}`);
+            expect(outputEls[1].textContent).toBe(regex);
+        });
     });
 });

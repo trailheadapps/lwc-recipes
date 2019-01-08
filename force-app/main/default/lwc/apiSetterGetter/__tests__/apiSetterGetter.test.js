@@ -13,17 +13,17 @@ describe('c-api-setter-getter', () => {
         const expectedLabels = ['Description', 'Priority'];
         // Create initial element
         const element = createElement('c-api-setter-getter', {
-            is: ApiSetterGetter,
+            is: ApiSetterGetter
         });
         document.body.appendChild(element);
         // Check for two existing lightning-input elements, and validate labels
         const lightningInputLabels = Array.from(
-            element.shadowRoot.querySelectorAll('lightning-input'),
+            element.shadowRoot.querySelectorAll('lightning-input')
         ).map(el => el.label);
         expect(expectedLabels).toEqual(lightningInputLabels);
         // Check lightning-button and label
         const lightningButtonEl = element.shadowRoot.querySelector(
-            'lightning-button',
+            'lightning-button'
         );
         expect(lightningButtonEl).not.toBeNull();
         expect(lightningButtonEl.label).toBe('Add Todo');
@@ -35,23 +35,23 @@ describe('c-api-setter-getter', () => {
     it('creates a new todo item', () => {
         // Create initial element
         const element = createElement('c-api-setter-getter', {
-            is: ApiSetterGetter,
+            is: ApiSetterGetter
         });
         document.body.appendChild(element);
-        // Query lightning-input element
-        // TODO rw - query lightning-input on label
-        const lightningInputDescriptionEl = element.shadowRoot.querySelector(
-            'lightning-input[label="Description"]',
+
+        // Query lightning-input elements
+        const lightningInputEls = element.shadowRoot.querySelectorAll(
+            'lightning-input[label="Description"]'
         );
-        lightningInputDescriptionEl.value = 'Some ToDo';
-        lightningInputDescriptionEl.dispatchEvent(new CustomEvent('change'));
-        // Query lightning-input element
-        // TODO rw - query lightning-input on label
-        const lightningInputPriorityEl = element.shadowRoot.querySelector(
-            'lightning-input[label="Priority"]',
-        );
-        lightningInputPriorityEl.checked = true;
-        lightningInputPriorityEl.dispatchEvent(new CustomEvent('change'));
+
+        lightningInputEls.forEach(el => {
+            if (el.label === 'Description') {
+                el.value = 'Some ToDo';
+            } else if (el.label === 'Priority') {
+                el.checked = true;
+            }
+            el.dispatchEvent(new CustomEvent('change'));
+        });
 
         // Return a promise to wait for any asynchronous DOM updates. Jest
         // will automatically wait for the Promise chain to complete before
