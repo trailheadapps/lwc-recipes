@@ -7,7 +7,7 @@ public with sharing class ContactController {
 
     @AuraEnabled(cacheable=true)
     public static List<Contact> findContacts(String searchKey) {
-        if (searchKey.equals('')) {
+        if (String.isBlank(searchKey)) {
             return new List<Contact>();
         }
         String key = '%' + searchKey + '%';
