@@ -15,23 +15,23 @@ describe('c-misc-notification', () => {
             { label: 'error', value: 'error' },
             { label: 'warning', value: 'warning' },
             { label: 'success', value: 'success' },
-            { label: 'info', value: 'info' },
+            { label: 'info', value: 'info' }
         ];
         // Create initial element
         const element = createElement('c-misc-notification', {
-            is: MiscNotification,
+            is: MiscNotification
         });
         document.body.appendChild(element);
 
         // Query lightning-input fields
         const inputFieldLabels = Array.from(
-            element.shadowRoot.querySelectorAll('lightning-input'),
+            element.shadowRoot.querySelectorAll('lightning-input')
         ).map(el => el.label);
         expect(inputFieldLabels).toEqual(expectedInputLabels);
 
         // Query lightning-combobox
         const comboboxEl = element.shadowRoot.querySelector(
-            'lightning-combobox',
+            'lightning-combobox'
         );
         expect(comboboxEl).not.toBeNull();
         expect(comboboxEl.label).toBe('Variant');
@@ -46,7 +46,7 @@ describe('c-misc-notification', () => {
     it('shows custom toast events based on user input', () => {
         // Create initial element
         const element = createElement('c-misc-notification', {
-            is: MiscNotification,
+            is: MiscNotification
         });
         document.body.appendChild(element);
 

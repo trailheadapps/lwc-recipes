@@ -12,13 +12,13 @@ describe('c-misc-dom-query', () => {
     it('renders lightning-input checkbox fields unchecked', () => {
         // Create initial element
         const element = createElement('c-misc-dom-query', {
-            is: MiscDomQuery,
+            is: MiscDomQuery
         });
         document.body.appendChild(element);
 
         // Query all lightning-input fields
         const lightningInputChecked = element.shadowRoot.querySelectorAll(
-            'lightning-input',
+            'lightning-input'
         );
         lightningInputChecked.forEach(input => {
             expect(input.checked).toBeFalsy();
@@ -28,20 +28,19 @@ describe('c-misc-dom-query', () => {
     it('displays labels of checked lightning-input fields as checked items', () => {
         // Create initial element
         const element = createElement('c-misc-dom-query', {
-            is: MiscDomQuery,
+            is: MiscDomQuery
         });
         document.body.appendChild(element);
 
         // Query all lightning-input fields
         const lightningInputEls = element.shadowRoot.querySelectorAll(
-            'lightning-input',
+            'lightning-input'
         );
         lightningInputEls[0].checked = true;
         lightningInputEls[0].dispatchEvent(new CustomEvent('change'));
 
         // Query p element
         const pEl = element.shadowRoot.querySelector('p');
-        expect(pEl.textContent).toBe('Checked items: ');
 
         // Return a promise to wait for any asynchronous DOM updates. Jest
         // will automatically wait for the Promise chain to complete before
@@ -58,7 +57,7 @@ describe('c-misc-dom-query', () => {
             .then(() => {
                 // Check if output text got newly rendered based on checked category lightning-input field
                 expect(pEl.textContent).toBe(
-                    'Checked items: Category 1, Category 2',
+                    'Checked items: Category 1, Category 2'
                 );
 
                 lightningInputEls[2].checked = true;
@@ -67,7 +66,7 @@ describe('c-misc-dom-query', () => {
             .then(() => {
                 // Check if output text got newly rendered based on checked category lightning-input field
                 expect(pEl.textContent).toBe(
-                    'Checked items: Category 1, Category 2, Category 3',
+                    'Checked items: Category 1, Category 2, Category 3'
                 );
             });
     });

@@ -5,7 +5,7 @@ import { calculateMonthlyPayment } from 'c/mortgage';
 jest.mock('c/mortgage', () => {
     return {
         getTermOptions: jest.fn(),
-        calculateMonthlyPayment: jest.fn(),
+        calculateMonthlyPayment: jest.fn()
     };
 });
 
@@ -32,12 +32,12 @@ describe('c-misc-shared-java-script', () => {
     it('calculates mortgage with default values', () => {
         // Create initial element
         const element = createElement('c-misc-shared-java-script', {
-            is: MiscSharedJavaScript,
+            is: MiscSharedJavaScript
         });
         document.body.appendChild(element);
 
         const lightningButtonEl = element.shadowRoot.querySelector(
-            'lightning-button',
+            'lightning-button'
         );
         lightningButtonEl.dispatchEvent(new CustomEvent('click'));
 
@@ -50,7 +50,7 @@ describe('c-misc-shared-java-script', () => {
             expect(calculateMonthlyPayment).toHaveBeenCalledWith(
                 principalDefault,
                 termDefault,
-                rateDefault,
+                rateDefault
             );
         });
     });
@@ -58,12 +58,12 @@ describe('c-misc-shared-java-script', () => {
     it('calculates mortgage with custom values', () => {
         // Create initial element
         const element = createElement('c-misc-shared-java-script', {
-            is: MiscSharedJavaScript,
+            is: MiscSharedJavaScript
         });
         document.body.appendChild(element);
 
         const lightningInputEls = element.shadowRoot.querySelectorAll(
-            'lightning-input',
+            'lightning-input'
         );
 
         lightningInputEls.forEach(el => {
@@ -76,13 +76,13 @@ describe('c-misc-shared-java-script', () => {
         });
 
         const lightningComboboxEl = element.shadowRoot.querySelector(
-            'lightning-combobox',
+            'lightning-combobox'
         );
         lightningComboboxEl.value = termCustom;
         lightningComboboxEl.dispatchEvent(new CustomEvent('change'));
 
         const lightningButtonEl = element.shadowRoot.querySelector(
-            'lightning-button',
+            'lightning-button'
         );
         lightningButtonEl.dispatchEvent(new CustomEvent('click'));
 
@@ -95,7 +95,7 @@ describe('c-misc-shared-java-script', () => {
             expect(calculateMonthlyPayment).toHaveBeenCalledWith(
                 principalCustom,
                 termCustom,
-                rateCustom,
+                rateCustom
             );
         });
     });
