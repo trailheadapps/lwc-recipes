@@ -1,6 +1,5 @@
 import { createElement } from 'lwc';
 import MiscNotification from 'c/miscNotification';
-import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 
 describe('c-misc-notification', () => {
     afterEach(() => {
@@ -51,6 +50,11 @@ describe('c-misc-notification', () => {
         });
         document.body.appendChild(element);
 
+        // Mock handler for toast event
+        const handler = jest.fn();
+        // Add event listener to catch toast event
+        element.addEventListener('lightning__showtoast', handler);
+
         // Query lightning-button
         const buttonEl = element.shadowRoot.querySelector('lightning-button');
         buttonEl.dispatchEvent(new CustomEvent('click'));
@@ -60,8 +64,8 @@ describe('c-misc-notification', () => {
         // ending the test and fail the test if the promise ends in the
         // rejected state
         return Promise.resolve().then(() => {
-            // Compare if tracked property has been assigned a new value.
-            expect(ShowToastEvent).toHaveBeenCalled();
+            // Check if toast event has been fired
+            expect(handler).toHaveBeenCalled();
         });
     });
 });
