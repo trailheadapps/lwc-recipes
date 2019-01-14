@@ -1,6 +1,6 @@
 import { createElement } from 'lwc';
 import MiscSharedJavaScript from 'c/miscSharedJavaScript';
-import { getTermOptions, calculateMonthlyPayment } from 'c/mortgage';
+import { calculateMonthlyPayment } from 'c/mortgage';
 
 jest.mock('c/mortgage', () => {
     return {
@@ -8,6 +8,16 @@ jest.mock('c/mortgage', () => {
         calculateMonthlyPayment: jest.fn(),
     };
 });
+
+// Default values for mortgage calculation
+const principalDefault = 200000;
+const termDefault = 30;
+const rateDefault = 4;
+
+// Custom values for mortgate calculation
+const principalCustom = 100000;
+const termCustom = 15;
+const rateCustom = 2;
 
 describe('c-misc-shared-java-script', () => {
     afterEach(() => {
@@ -26,8 +36,6 @@ describe('c-misc-shared-java-script', () => {
         });
         document.body.appendChild(element);
 
-        expect(getTermOptions).toHaveBeenCalled();
-
         const lightningButtonEl = element.shadowRoot.querySelector(
             'lightning-button',
         );
@@ -39,7 +47,11 @@ describe('c-misc-shared-java-script', () => {
         // rejected state
         return Promise.resolve().then(() => {
             // Check if default values for principal, term, and rate are used for mortgage calculcation
-            expect(calculateMonthlyPayment).toHaveBeenCalledWith(200000, 30, 4);
+            expect(calculateMonthlyPayment).toHaveBeenCalledWith(
+                principalDefault,
+                termDefault,
+                rateDefault,
+            );
         });
     });
 
@@ -50,17 +62,15 @@ describe('c-misc-shared-java-script', () => {
         });
         document.body.appendChild(element);
 
-        expect(getTermOptions).toHaveBeenCalled();
-
         const lightningInputEls = element.shadowRoot.querySelectorAll(
             'lightning-input',
         );
 
         lightningInputEls.forEach(el => {
             if (el.label === 'Rate') {
-                el.value = 2;
+                el.value = rateCustom;
             } else if (el.label === 'Principal') {
-                el.value = 100000;
+                el.value = principalCustom;
             }
             el.dispatchEvent(new CustomEvent('change'));
         });
@@ -68,7 +78,7 @@ describe('c-misc-shared-java-script', () => {
         const lightningComboboxEl = element.shadowRoot.querySelector(
             'lightning-combobox',
         );
-        lightningComboboxEl.value = 15;
+        lightningComboboxEl.value = termCustom;
         lightningComboboxEl.dispatchEvent(new CustomEvent('change'));
 
         const lightningButtonEl = element.shadowRoot.querySelector(
@@ -82,7 +92,11 @@ describe('c-misc-shared-java-script', () => {
         // rejected state
         return Promise.resolve().then(() => {
             // Check if default values for principal, term, and rate are used for mortgage calculcation
-            expect(calculateMonthlyPayment).toHaveBeenCalledWith(100000, 15, 2);
+            expect(calculateMonthlyPayment).toHaveBeenCalledWith(
+                principalCustom,
+                termCustom,
+                rateCustom,
+            );
         });
     });
 });
