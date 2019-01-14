@@ -9,8 +9,7 @@ describe('c-misc-dom-query', () => {
         }
     });
 
-    it('renders three unchecked lightning-input checkbox fields', () => {
-        const labelsExpected = ['Category 1', 'Category 2', 'Category 3'];
+    it('renders lightning-input checkbox fields unchecked', () => {
         // Create initial element
         const element = createElement('c-misc-dom-query', {
             is: MiscDomQuery,
@@ -18,16 +17,12 @@ describe('c-misc-dom-query', () => {
         document.body.appendChild(element);
 
         // Query all lightning-input fields
-        const lightningInputLabels = Array.from(
-            element.shadowRoot.querySelectorAll(
-                'lightning-input', // TODO rw - check property query [type="checkbox"]
-            ),
-        ).map(el => el.label);
-        expect(lightningInputLabels).toEqual(labelsExpected);
-
-        // Query p element
-        const pEl = element.shadowRoot.querySelector('p');
-        expect(pEl.textContent).toBe('Checked items: ');
+        const lightningInputChecked = element.shadowRoot.querySelectorAll(
+            'lightning-input',
+        );
+        lightningInputChecked.forEach(input => {
+            expect(input.checked).toBeFalsy();
+        });
     });
 
     it('displays labels of checked lightning-input fields as checked items', () => {
