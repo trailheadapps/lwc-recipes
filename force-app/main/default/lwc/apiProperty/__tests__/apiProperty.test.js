@@ -15,16 +15,9 @@ describe('c-api-property', () => {
     it('renders c-chart-bar component with a default percentage value', () => {
         // Create initial element
         const element = createElement('c-api-property', {
-            is: ApiProperty,
+            is: ApiProperty
         });
         document.body.appendChild(element);
-
-        // Query lightning-input element
-        const lightningInputEl = element.shadowRoot.querySelector(
-            'lightning-input',
-        );
-        expect(lightningInputEl).not.toBeNull();
-        expect(lightningInputEl.label).toBe('Percentage');
 
         // Query chart-bar component
         const chartBarEl = element.shadowRoot.querySelector('c-chart-bar');
@@ -37,11 +30,11 @@ describe('c-api-property', () => {
     it('changes the value of the c-chart-bar child component based on user input', () => {
         // Create initial element
         const element = createElement('c-api-property', {
-            is: ApiProperty,
+            is: ApiProperty
         });
         document.body.appendChild(element);
         const lightningInputEl = element.shadowRoot.querySelector(
-            'lightning-input',
+            'lightning-input'
         );
         lightningInputEl.value = PERCENTAGE_CUSTOM;
         lightningInputEl.dispatchEvent(new CustomEvent('change'));
