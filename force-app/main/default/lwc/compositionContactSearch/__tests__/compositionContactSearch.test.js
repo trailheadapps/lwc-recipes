@@ -2,7 +2,7 @@ import { createElement } from 'lwc';
 import CompositionContactSearch from 'c/compositionContactSearch';
 import findContacts from '@salesforce/apex/ContactController.findContacts';
 
-const mockFindContacts = jest.mock(
+jest.mock(
     '@salesforce/apex/ContactController.findContacts',
     () => {
         return {
@@ -12,7 +12,14 @@ const mockFindContacts = jest.mock(
     { virtual: true }
 );
 
+const APEX_CONTACTS_SUCCESS = [{ Id: '99', Name: 'Amy Taylor' }];
+const APEX_CONTACTS_ERROR = { message: 'someError' };
+
 describe('c-composition-contact-search', () => {
+    beforeAll(() => {
+        jest.useFakeTimers();
+    });
+
     afterEach(() => {
         // The jsdom instance is shared across test cases in a single file so reset the DOM
         while (document.body.firstChild) {
@@ -20,27 +27,8 @@ describe('c-composition-contact-search', () => {
         }
     });
 
-    it('renders one lightning-input field labelled "Search"', () => {
-        // Create initial element
-        const element = createElement('c-composition-contact-search', {
-            is: CompositionContactSearch
-        });
-        document.body.appendChild(element);
-
-        // Query lightning-input field elements
-        const inputFieldEls = element.shadowRoot.querySelectorAll(
-            'lightning-input'
-        );
-
-        // Check length of rendered lightning-input elements
-        expect(inputFieldEls.length).toBe(1);
-
-        // Check label of lightning-input element
-        expect(inputFieldEls[0].label).toBe('Search');
-    });
-
     it('renders one contact tile based on user input', () => {
-        mockFindContacts.mockResolvedValue = [{ Id: '99', Name: 'Amy Taylor' }];
+        findContacts.mockResolvedValue = APEX_CONTACTS_SUCCESS;
 
         // Create initial element
         const element = createElement('c-composition-contact-search', {
@@ -62,8 +50,7 @@ describe('c-composition-contact-search', () => {
         // ending the test and fail the test if the promise ends in the
         // rejected state
         return Promise.resolve().then(() => {
-            // TODO rw: check for method call of findContacts
-            // TODO rw: wait for imperative Apex to be called with timer in mind
+            expect(findContacts).toHaveBeenCalledWith(APEX_CONTACTS_SUCCESS);
             const contactTile = element.shadowRoot.querySelector(
                 'c-contact-tile'
             );
@@ -72,8 +59,8 @@ describe('c-composition-contact-search', () => {
         });
     });
 
-    it('renders the error panel', () => {
-        mockFindContacts.mockRejectedValue = { message: 'someError' };
+    it('renders the error panel when the Apex method returns an error', () => {
+        findContacts.mockRejectedValue = APEX_CONTACTS_ERROR;
 
         // Create initial element
         const element = createElement('c-composition-contact-search', {
@@ -97,6 +84,7 @@ describe('c-composition-contact-search', () => {
         return Promise.resolve().then(() => {
             // TODO rw: check for method call of findContacts
             // TODO rw: wait for imperative Apex to be called with timer in mind
+            expect(findContacts).toHaveBeenCalledWith(APEX_CONTACTS_SUCCESS);
             const errorPanel = element.shadowRoot.querySelector(
                 'c-error-panel'
             );
