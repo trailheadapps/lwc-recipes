@@ -8,7 +8,7 @@ export default class ContactListItemBubbling extends LightningElement {
         event.preventDefault();
         // 2. Create a custom event that bubbles. Read about event best practices at http://developer.salesforce.com/docs/component-library/documentation/lwc/lwc.events_best_practices
         const selectEvent = new CustomEvent('contactselect', {
-            bubbles: true,
+            bubbles: true
         });
         // 3. Fire the custom event
         this.dispatchEvent(selectEvent);

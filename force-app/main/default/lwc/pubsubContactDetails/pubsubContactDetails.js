@@ -21,7 +21,7 @@ const fields = [
     TITLE_FIELD,
     PHONE_FIELD,
     EMAIL_FIELD,
-    PICTURE_FIELD,
+    PICTURE_FIELD
 ];
 
 export default class PubsubContactDetails extends LightningElement {
@@ -42,8 +42,8 @@ export default class PubsubContactDetails extends LightningElement {
                 new ShowToastEvent({
                     title: 'Error loading contact',
                     message: error.message,
-                    variant: 'error',
-                }),
+                    variant: 'error'
+                })
             );
         } else if (data) {
             this.name = getFieldValue(data, NAME_FIELD);

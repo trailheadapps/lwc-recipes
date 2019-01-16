@@ -19,7 +19,7 @@ export default class TodoList extends LightningElement {
     filterTodos() {
         if (this.priorityFilter) {
             this.filteredTodos = this._todos.filter(
-                todo => todo.priority === true,
+                todo => todo.priority === true
             );
         } else {
             this.filteredTodos = this._todos;

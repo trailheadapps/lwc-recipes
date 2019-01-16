@@ -8,8 +8,8 @@ export default class NavToHome extends NavigationMixin(LightningElement) {
             // Pass in pageReference
             type: 'standard__namedPage',
             attributes: {
-                pageName: 'home',
-            },
+                pageName: 'home'
+            }
         });
     }
 }

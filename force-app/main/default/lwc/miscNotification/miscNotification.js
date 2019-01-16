@@ -9,7 +9,7 @@ export default class MiscNotification extends LightningElement {
         { label: 'error', value: 'error' },
         { label: 'warning', value: 'warning' },
         { label: 'success', value: 'success' },
-        { label: 'info', value: 'info' },
+        { label: 'info', value: 'info' }
     ];
 
     titleChange(event) {
@@ -28,7 +28,7 @@ export default class MiscNotification extends LightningElement {
         const evt = new ShowToastEvent({
             title: this.titleText,
             message: this.messageText,
-            variant: this.variant,
+            variant: this.variant
         });
         this.dispatchEvent(evt);
     }

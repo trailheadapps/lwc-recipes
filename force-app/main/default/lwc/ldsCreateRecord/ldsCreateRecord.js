@@ -25,8 +25,8 @@ export default class LdsCreateRecord extends LightningElement {
                     new ShowToastEvent({
                         title: 'Success',
                         message: 'Account created',
-                        variant: 'success',
-                    }),
+                        variant: 'success'
+                    })
                 );
             })
             .catch(error => {
@@ -34,8 +34,8 @@ export default class LdsCreateRecord extends LightningElement {
                     new ShowToastEvent({
                         title: 'Error creating record',
                         message: error.message,
-                        variant: 'error',
-                    }),
+                        variant: 'error'
+                    })
                 );
             });
     }

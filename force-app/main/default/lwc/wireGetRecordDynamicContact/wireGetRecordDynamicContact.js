@@ -5,7 +5,7 @@ const fields = [
     'Contact.Name',
     'Contact.Title',
     'Contact.Phone',
-    'Contact.Email',
+    'Contact.Email'
 ];
 
 export default class WireGetRecordDynamicContact extends LightningElement {

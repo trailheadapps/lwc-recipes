@@ -2,7 +2,7 @@ import { LightningElement } from 'lwc';
 import { NavigationMixin } from 'lightning/navigation';
 
 export default class NavToChatterHome extends NavigationMixin(
-    LightningElement,
+    LightningElement
 ) {
     navigateToChatter() {
         // Use the built-in 'Navigate' method
@@ -10,8 +10,8 @@ export default class NavToChatterHome extends NavigationMixin(
             // Pass in pageReference
             type: 'standard__namedPage',
             attributes: {
-                pageName: 'chatter',
-            },
+                pageName: 'chatter'
+            }
         });
     }
 }

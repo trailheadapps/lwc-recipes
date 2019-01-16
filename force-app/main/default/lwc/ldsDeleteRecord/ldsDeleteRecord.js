@@ -31,8 +31,8 @@ export default class LdsDeleteRecord extends LightningElement {
                     new ShowToastEvent({
                         title: 'Success',
                         message: 'Account deleted',
-                        variant: 'success',
-                    }),
+                        variant: 'success'
+                    })
                 );
                 return refreshApex(this.wiredAccountsResult);
             })
@@ -41,8 +41,8 @@ export default class LdsDeleteRecord extends LightningElement {
                     new ShowToastEvent({
                         title: 'Error deleting record',
                         message: error.message,
-                        variant: 'error',
-                    }),
+                        variant: 'error'
+                    })
                 );
             });
     }

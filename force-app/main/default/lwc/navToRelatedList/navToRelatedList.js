@@ -3,7 +3,7 @@ import { NavigationMixin } from 'lightning/navigation';
 import getSingleAccount from '@salesforce/apex/AccountController.getSingleAccount';
 
 export default class NavToRelatedList extends NavigationMixin(
-    LightningElement,
+    LightningElement
 ) {
     @wire(getSingleAccount) account;
 
@@ -14,8 +14,8 @@ export default class NavToRelatedList extends NavigationMixin(
                 recordId: this.account.data.Id,
                 objectApiName: 'Account',
                 relationshipApiName: 'Contacts',
-                actionName: 'view',
-            },
+                actionName: 'view'
+            }
         });
     }
 }

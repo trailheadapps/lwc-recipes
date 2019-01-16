@@ -11,8 +11,8 @@ export default class NavToRecord extends NavigationMixin(LightningElement) {
             attributes: {
                 recordId: this.contact.data.Id,
                 objectApiName: 'Contact',
-                actionName: 'view',
-            },
+                actionName: 'view'
+            }
         });
     }
 
@@ -22,8 +22,8 @@ export default class NavToRecord extends NavigationMixin(LightningElement) {
             attributes: {
                 recordId: this.contact.data.Id,
                 objectApiName: 'Contact',
-                actionName: 'edit',
-            },
+                actionName: 'edit'
+            }
         });
     }
 }

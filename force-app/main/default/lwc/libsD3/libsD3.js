@@ -19,7 +19,7 @@ export default class LibsD3 extends LightningElement {
 
         Promise.all([
             loadScript(this, D3 + '/d3.v5.min.js'),
-            loadStyle(this, D3 + '/style.css'),
+            loadStyle(this, D3 + '/style.css')
         ])
             .then(() => {
                 this.initializeD3();
@@ -29,8 +29,8 @@ export default class LibsD3 extends LightningElement {
                     new ShowToastEvent({
                         title: 'Error loading D3',
                         message: error.message,
-                        variant: 'error',
-                    }),
+                        variant: 'error'
+                    })
                 );
             });
     }
@@ -48,7 +48,7 @@ export default class LibsD3 extends LightningElement {
                 'link',
                 d3.forceLink().id(d => {
                     return d.id;
-                }),
+                })
             )
             .force('charge', d3.forceManyBody())
             .force('center', d3.forceCenter(width / 2, height / 2));
@@ -80,7 +80,7 @@ export default class LibsD3 extends LightningElement {
                     .drag()
                     .on('start', dragstarted)
                     .on('drag', dragged)
-                    .on('end', dragended),
+                    .on('end', dragended)
             );
 
         node.append('title').text(d => {

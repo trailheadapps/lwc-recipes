@@ -6,8 +6,8 @@ export default class NavToFilesHome extends NavigationMixin(LightningElement) {
             type: 'standard__objectPage',
             attributes: {
                 objectApiName: 'ContentDocument',
-                actionName: 'home',
-            },
+                actionName: 'home'
+            }
         });
     }
 }

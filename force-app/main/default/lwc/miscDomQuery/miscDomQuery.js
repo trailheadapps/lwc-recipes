@@ -6,7 +6,7 @@ export default class MiscDomQuery extends LightningElement {
     handleCheckboxChange() {
         // Query the DOM
         const checked = Array.from(
-            this.template.querySelectorAll('lightning-input'),
+            this.template.querySelectorAll('lightning-input')
         )
             // Filter to only checked items
             .filter(element => element.checked)

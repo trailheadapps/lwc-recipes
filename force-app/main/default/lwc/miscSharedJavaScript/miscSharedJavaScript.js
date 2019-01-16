@@ -25,7 +25,7 @@ export default class MiscSharedJavaScript extends LightningElement {
         this.monthlyPayment = calculateMonthlyPayment(
             this.principal,
             this.term,
-            this.rate,
+            this.rate
         );
     }
 }

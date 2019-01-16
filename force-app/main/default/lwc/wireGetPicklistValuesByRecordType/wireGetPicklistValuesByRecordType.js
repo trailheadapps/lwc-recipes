@@ -8,7 +8,7 @@ export default class WireGetPicklistValuesByRecordType extends LightningElement 
 
     @wire(getPicklistValuesByRecordType, {
         objectApiName: ACCOUNT_RECORD,
-        recordTypeId: '012000000000000AAA',
+        recordTypeId: '012000000000000AAA'
     })
     wiredValues({ error, data }) {
         if (data) {
@@ -27,8 +27,8 @@ export default class WireGetPicklistValuesByRecordType extends LightningElement 
                 label: picklist,
                 items: picklistValues[picklist].values.map(item => ({
                     label: item.label,
-                    name: item.value,
-                })),
+                    name: item.value
+                }))
             });
         });
         return treeNodes;
