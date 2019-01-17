@@ -13,7 +13,7 @@ jest.mock(
 );
 
 const APEX_CONTACTS_SUCCESS = [{ Id: '99', Name: 'Amy Taylor' }];
-const APEX_CONTACTS_ERROR = { message: 'someError' };
+const APEX_CONTACTS_ERROR = { error: 'someError' };
 
 describe('c-composition-contact-search', () => {
     beforeAll(() => {
@@ -28,7 +28,7 @@ describe('c-composition-contact-search', () => {
     });
 
     it('renders one contact tile based on user input', () => {
-        findContacts.mockResolvedValue = APEX_CONTACTS_SUCCESS;
+        findContacts.mockResolvedValue(APEX_CONTACTS_SUCCESS);
 
         // Create initial element
         const element = createElement('c-composition-contact-search', {
@@ -49,18 +49,21 @@ describe('c-composition-contact-search', () => {
         // will automatically wait for the Promise chain to complete before
         // ending the test and fail the test if the promise ends in the
         // rejected state
-        return Promise.resolve().then(() => {
-            expect(findContacts).toHaveBeenCalledWith(APEX_CONTACTS_SUCCESS);
-            const contactTile = element.shadowRoot.querySelector(
-                'c-contact-tile'
-            );
-            expect(contactTile).not.toBeNull();
-            expect(contactTile.contact.Name).toBe('Amy Taylor');
-        });
+        return Promise.resolve()
+            .then(() => {
+                expect(findContacts()).resolves.toBe(APEX_CONTACTS_SUCCESS);
+            })
+            .then(() => {
+                const contactTile = element.shadowRoot.querySelector(
+                    'c-contact-tile'
+                );
+                expect(contactTile).not.toBeNull();
+                expect(contactTile.contact.Name).toBe('Amy Taylor');
+            });
     });
 
     it('renders the error panel when the Apex method returns an error', () => {
-        findContacts.mockRejectedValue = APEX_CONTACTS_ERROR;
+        findContacts.mockRejectedValue(APEX_CONTACTS_ERROR);
 
         // Create initial element
         const element = createElement('c-composition-contact-search', {
@@ -81,14 +84,15 @@ describe('c-composition-contact-search', () => {
         // will automatically wait for the Promise chain to complete before
         // ending the test and fail the test if the promise ends in the
         // rejected state
-        return Promise.resolve().then(() => {
-            // TODO rw: check for method call of findContacts
-            // TODO rw: wait for imperative Apex to be called with timer in mind
-            expect(findContacts).toHaveBeenCalledWith(APEX_CONTACTS_SUCCESS);
-            const errorPanel = element.shadowRoot.querySelector(
-                'c-error-panel'
-            );
-            expect(errorPanel).not.toBeNull();
-        });
+        return Promise.resolve()
+            .then(() => {
+                expect(findContacts()).rejects.toBe(APEX_CONTACTS_ERROR);
+            })
+            .then(() => {
+                const errorPanelEl = element.shadowRoot.querySelector(
+                    'c-error-panel'
+                );
+                expect(errorPanelEl).not.toBeNull();
+            });
     });
 });
