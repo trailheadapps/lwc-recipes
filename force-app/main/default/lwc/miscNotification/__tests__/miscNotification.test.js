@@ -9,44 +9,10 @@ describe('c-misc-notification', () => {
         }
     });
 
-    it('renders two lightning-input fields, one lightning-combobox, and one lightning-button', () => {
-        const expectedInputLabels = ['Title', 'Message'];
-        const expectedVariantOptions = [
-            { label: 'error', value: 'error' },
-            { label: 'warning', value: 'warning' },
-            { label: 'success', value: 'success' },
-            { label: 'info', value: 'info' }
-        ];
-        // Create initial element
-        const element = createElement('c-misc-notification', {
-            is: MiscNotification
-        });
-        document.body.appendChild(element);
-
-        // Query lightning-input fields
-        const inputFieldLabels = Array.from(
-            element.shadowRoot.querySelectorAll('lightning-input')
-        ).map(el => el.label);
-        expect(inputFieldLabels).toEqual(expectedInputLabels);
-
-        // Query lightning-combobox
-        const comboboxEl = element.shadowRoot.querySelector(
-            'lightning-combobox'
-        );
-        expect(comboboxEl).not.toBeNull();
-        expect(comboboxEl.label).toBe('Variant');
-        expect(comboboxEl.options).toEqual(expectedVariantOptions);
-
-        // Query lightning-button
-        const buttonEl = element.shadowRoot.querySelector('lightning-button');
-        expect(buttonEl).not.toBeNull();
-        expect(buttonEl.label).toBe('Show Notification');
-    });
-
     it('shows custom toast events based on user input', () => {
         // Create initial element
         const element = createElement('c-misc-notification', {
-            is: MiscNotification
+            is: MiscNotification,
         });
         document.body.appendChild(element);
 
