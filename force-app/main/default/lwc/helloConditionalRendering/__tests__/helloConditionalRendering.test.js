@@ -7,45 +7,43 @@ describe('c-hello-conditional-rendering', () => {
         while (document.body.firstChild) {
             document.body.removeChild(document.body.firstChild);
         }
-        // Prevent data saved on mocks from leaking between tests
-        jest.clearAllMocks();
     });
 
-    describe('Render UI', () => {
-        it('with not showing the details', () => {
-            // Create initial element
-            const element = createElement('c-hello-conditional-rendering', {
-                is: HelloConditionalRendering
-            });
-            document.body.appendChild(element);
-            // Select div for default message check
+    it('does not show details by default', () => {
+        // Create element
+        const element = createElement('c-hello-conditional-rendering', {
+            is: HelloConditionalRendering
+        });
+        document.body.appendChild(element);
+
+        // Verify displayed message
+        const details = element.shadowRoot.querySelector(
+            '.slds-m-vertical_medium'
+        );
+        expect(details.textContent).toBe('Not showing details.');
+    });
+
+    it('shows details when checkbox toggled', () => {
+        // Create element
+        const element = createElement('c-hello-conditional-rendering', {
+            is: HelloConditionalRendering
+        });
+        document.body.appendChild(element);
+
+        // Toggle checkbox to show details
+        const input = element.shadowRoot.querySelector('lightning-input');
+        input.checked = true;
+        input.dispatchEvent(new CustomEvent('change'));
+
+        // Return a promise to wait for any asynchronous DOM updates. Jest
+        // will automatically wait for the Promise chain to complete before
+        // ending the test and fail the test if the promise rejects.
+        return Promise.resolve().then(() => {
+            // Verify displayed message
             const details = element.shadowRoot.querySelector(
                 '.slds-m-vertical_medium'
             );
-            expect(details.textContent).toBe('Not showing details.');
-        });
-        it('with showing the details', () => {
-            // Create initial element
-            const element = createElement('c-hello-conditional-rendering', {
-                is: HelloConditionalRendering
-            });
-            document.body.appendChild(element);
-            const inputField = element.shadowRoot.querySelector(
-                'lightning-input'
-            );
-            inputField.checked = true;
-            inputField.dispatchEvent(new CustomEvent('change'));
-            // Return a promise to wait for any asynchronous DOM updates. Jest
-            // will automatically wait for the Promise chain to complete before
-            // ending the test and fail the test if the promise ends in the
-            // rejected state
-            return Promise.resolve().then(() => {
-                // Select div for conditionally changed text content
-                const details = element.shadowRoot.querySelector(
-                    '.slds-m-vertical_medium'
-                );
-                expect(details.textContent).toBe('These are the details!');
-            });
+            expect(details.textContent).toBe('These are the details!');
         });
     });
 });

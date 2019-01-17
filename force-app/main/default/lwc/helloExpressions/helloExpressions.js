@@ -14,6 +14,6 @@ export default class HelloExpressions extends LightningElement {
     }
 
     get uppercasedFullName() {
-        return `${this.firstName} ${this.lastName}`.toUpperCase();
+        return `${this.firstName} ${this.lastName}`.trim().toUpperCase();
     }
 }
