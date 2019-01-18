@@ -10,85 +10,87 @@ A collection of easy-to-digest code examples for Lightning Web Components. Each 
 
 There are two ways to install Lightning Web Components Recipes:
 
--   [Using Salesforce DX](#installing-recipes-using-salesforce-dx): This is the recommended installation option. Use this option if you are a developer who wants to experience the app and the code.
--   [Using an Unlocked Package](#installing-recipes-using-an-unlocked-package): This option allows anybody to experience the sample app without installing a local development environment.
+- [Using Salesforce DX](#installing-recipes-using-salesforce-dx): This is the recommended installation option. Use this option if you are a developer who wants to experience the app and the code.
+- [Using an Unlocked Package](#installing-recipes-using-an-unlocked-package): This option allows anybody to experience the sample app without installing a local development environment.
 
 ## Installing Recipes using Salesforce DX
 
+> **IMPORTANT**: Because of a current issue in pre-release, make sure your project path doesn't include any of the following folder names: **lwc**, **aura**, **wave**. For example, DO NOT clone this repository in a folder called **/Projects/lwc**.
+
 1. Set up your environment. Follow the steps in the [Quick Start: Lightning Web Components](https://trailhead.salesforce.com/content/learn/projects/quick-start-lightning-web-components/) Trailhead project. The steps include:
 
-    - Sign up for a Spring '19 pre-release org and enable Dev Hub
-    - Install the pre-release version of the Salesforce CLI
-    - Install Visual Studio Code
-    - Install the Visual Studio Code Salesforce extensions, including the Lightning Web Components extension
+  - Sign up for a Spring '19 pre-release org and enable Dev Hub
+  - Install the pre-release version of the Salesforce CLI
+  - Install Visual Studio Code
+  - Install the Visual Studio Code Salesforce extensions, including the Lightning Web Components extension
 
-1. If you haven't already done so, authenticate with your Spring '19 hub org and provide it with an alias (spring19hub):
+2. If you haven't already done so, authenticate with your Spring '19 hub org and provide it with an alias (spring19hub):
 
-    ```
-    sfdx force:auth:web:login -d -a spring19hub
-    ```
+  ```
+  sfdx force:auth:web:login -d -a spring19hub
+  ```
 
-1. Clone the lwc-recipes repository:
+3. Clone the lwc-recipes repository:
 
-    ```
-    git clone https://github.com/trailheadapps/lwc-recipes
-    cd lwc-recipes
-    ```
+  ```
+  git clone https://github.com/trailheadapps/lwc-recipes
+   cd lwc-recipes
+  ```
 
-1. Create a scratch org and provide it with an alias (**lwc-recipes** in the command below):
+4. Create a scratch org and provide it with an alias (**lwc-recipes** in the command below):
 
-    ```
-    sfdx force:org:create -s -f config/project-scratch-def.json -a lwc-recipes
-    ```
+  ```
+  sfdx force:org:create -s -f config/project-scratch-def.json -a lwc-recipes
+  ```
 
-1. Push the app to your scratch org:
+5. Push the app to your scratch org:
 
-    ```
-    sfdx force:source:push
-    ```
+  ```
+  sfdx force:source:push
+  ```
 
-1. Assign the **recipes** permission set to the default user:
+6. Assign the **recipes** permission set to the default user:
 
-    ```
-    sfdx force:user:permset:assign -n recipes
-    ```
+  ```
+  sfdx force:user:permset:assign -n recipes
+  ```
 
-1. Load sample data:
+7. Load sample data:
 
-    ```
-    sfdx force:data:tree:import --plan ./data/data-plan.json
-    ```
+  ```
+  sfdx force:data:tree:import --plan ./data/data-plan.json
+  ```
 
-1. Open the scratch org:
+8. Open the scratch org:
 
-    ```
-    sfdx force:org:open
-    ```
+  ```
+  sfdx force:org:open
+  ```
 
-1. In **Setup**, under **Themes and Branding**, activate the **Recipes Lite** or **Recipes Blue** theme.
+9. In **Setup**, under **Themes and Branding**, activate the **Recipes Lite** or **Recipes Blue** theme.
 
-1. In App Launcher, select the **LWC** app.
+10. In App Launcher, select the **LWC** app.
 
 ## Installing Recipes using an Unlocked Package
 
 1. [Sign up](https://www.salesforce.com/form/signup/prerelease-spring19/) for a Spring '19 pre-release org, enable My Domain, and deploy it to all users.
 
-1. Click [this link](https://login.salesforce.com/packaging/installPackage.apexp?p0=04tB0000000cPFaIAM) to install the Recipes unlocked package in your Spring '19 org.
+2. Click [this link](https://login.salesforce.com/packaging/installPackage.apexp?p0=04tB0000000YGYOIA4) to install the Recipes unlocked package in your Spring '19 org.
 
-1. Select **Install for All Users**
+3. Select **Install for All Users**
 
-1. Import Account and Contacts data:
+4. Import Account and Contacts data:
 
-    - Click [here](https://raw.githubusercontent.com/trailheadapps/lwc-recipes/master/data/Accounts-Contacts.csv) to acccess the **Accounts-Contacts.csv** file. Right click in the browser window and save the file as **Accounts-Contacts.csv**.
-    - In **Setup**, type **Data Import** in the Quick Find box and click **Data Import Wizard**.
-    - Click **Launch Wizard**.
-    - Click **Accounts and Contacts**, and click **Add New Records**.
-    - Drag the **Accounts-Contacts.csv** file you just saved to the upload area.
-    - Click **Next**, **Next**, and **Start Import**.
+  - Click [here](https://raw.githubusercontent.com/trailheadapps/lwc-recipes/master/data/Accounts-Contacts.csv) to acccess the **Accounts-Contacts.csv** file. Right click in the browser window and save the file as **Accounts-Contacts.csv**.
+  - In **Setup**, type **Data Import** in the Quick Find box and click **Data Import Wizard**.
+  - Click **Launch Wizard**.
+  - Click **Accounts and Contacts**, and click **Add New Records**.
+  - Drag the **Accounts-Contacts.csv** file you just saved to the upload area.
+  - Click **Next**, **Next**, and **Start Import**.
 
-1. In **Setup**, under **Themes and Branding**, activate the **Recipes Lite** or **Recipes Blue** theme.
+5. In **Setup**, under **Themes and Branding**, activate the **Recipes Lite** or **Recipes Blue** theme.
 
-1. In App Launcher, select the **LWC** app.
+6. In App Launcher, select the **LWC** app.
 
 ## Optional Installation Instructions
 
@@ -104,14 +106,14 @@ This repository contains several files that are relevant if you want to integrat
 
 ### Pre-commit hook
 
-This repository also comes with a [package.json](package.json) file that makes it easy to set up a pre-commit hook that enforces code formatting and linting by running Prettier and ESLint every time you `git commit` changes.
+This repository also comes with a <package.json> file that makes it easy to set up a pre-commit hook that enforces code formatting and linting by running Prettier and ESLint every time you `git commit` changes.
 
 To set up the formatting and linting pre-commit hook:
 
 1. Install [Node.js](https://nodejs.org) if you haven't already done so
 2. Run `npm install` in your project's root folder to install the ESLint and Prettier modules (Note: Mac users should verify that Xcode command line tools are installed before running this command.)
 
-Prettier and ESLint will now run automatically every time you commit changes. The commit will fail if linting errors are detected. You can also run the formatting and linting from the command line using the following commands (check out [package.json](package.json) for the full list):
+Prettier and ESLint will now run automatically every time you commit changes. The commit will fail if linting errors are detected. You can also run the formatting and linting from the command line using the following commands (check out <package.json> for the full list):
 
 ```
 npm run lint:lwc
