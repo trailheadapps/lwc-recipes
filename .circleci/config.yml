@@ -40,7 +40,7 @@ jobs:
             - run:
                   name: Unit test Lightning Web Components
                   command: |
-                      npm run test:unit
+                      npm run test:unit -- -- --runInBand
     install_cli:
         # This installs the Salesforce CLI.
         <<: *defaults
