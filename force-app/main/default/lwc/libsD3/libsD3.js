@@ -37,7 +37,7 @@ export default class LibsD3 extends LightningElement {
 
     initializeD3() {
         // Example adopted from https://bl.ocks.org/mbostock/2675ff61ea5e063ede2b5d63c08020c7
-        const svg = d3.select('svg.d3');
+        const svg = d3.select(this.template.querySelector('svg.d3'));
         const width = this.svgWidth;
         const height = this.svgHeight;
         const color = d3.scaleOrdinal(d3.schemeDark2);
