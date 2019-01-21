@@ -7,11 +7,11 @@ export default class NavToListView extends NavigationMixin(LightningElement) {
             type: 'standard__objectPage',
             attributes: {
                 objectApiName: 'Contact',
-                actionName: 'list',
+                actionName: 'list'
             },
             state: {
-                filterName: 'Recent',
-            },
+                filterName: 'Recent'
+            }
         });
     }
 }

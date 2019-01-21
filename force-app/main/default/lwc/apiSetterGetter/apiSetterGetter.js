@@ -6,7 +6,7 @@ export default class ApiSetterGetter extends LightningElement {
     @track
     todos = [
         { id: 1, description: 'Explore recipes', priority: true },
-        { id: 2, description: 'Install Ebikes sample app', priority: false },
+        { id: 2, description: 'Install Ebikes sample app', priority: false }
     ];
 
     @track description;
@@ -29,8 +29,8 @@ export default class ApiSetterGetter extends LightningElement {
             {
                 id: this.lastTodoId,
                 description: this.description,
-                priority: this.priority,
-            },
+                priority: this.priority
+            }
         ];
     }
 }

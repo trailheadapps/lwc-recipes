@@ -7,8 +7,8 @@ export default class NavToNewRecord extends NavigationMixin(LightningElement) {
             type: 'standard__objectPage',
             attributes: {
                 objectApiName: 'Contact',
-                actionName: 'new',
-            },
+                actionName: 'new'
+            }
         });
     }
 }

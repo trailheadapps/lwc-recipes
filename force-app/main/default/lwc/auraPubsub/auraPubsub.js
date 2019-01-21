@@ -12,7 +12,7 @@ import {
     registerListener,
     unregisterListener,
     unregisterAllListeners,
-    fireEvent,
+    fireEvent
 } from 'c/pubsub';
 
 export default class AuraPubsub extends LightningElement {

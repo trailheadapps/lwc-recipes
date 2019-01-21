@@ -11,8 +11,8 @@ export default class Lds extends NavigationMixin(LightningElement) {
             attributes: {
                 recordId: this.contact.data.Id,
                 objectApiName: 'Contact',
-                actionName: 'view',
-            },
+                actionName: 'view'
+            }
         });
     }
 }

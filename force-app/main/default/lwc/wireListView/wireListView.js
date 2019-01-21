@@ -9,7 +9,7 @@ export default class WireListView extends LightningElement {
         objectApiName: CONTACT_OBJECT,
         listViewApiName: 'All_Recipes_Contacts',
         sortBy: NAME_FIELD,
-        pageSize: 10,
+        pageSize: 10
     })
     listView;
 
