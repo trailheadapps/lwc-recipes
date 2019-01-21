@@ -20,6 +20,6 @@ c-contact-list-item:before {
     position: absolute;
     top: -9px;
     left: 4px;
-    background-color: #ffffff;
+    /* background-color: #ffffff; */
     padding: 0 4px;
 }
