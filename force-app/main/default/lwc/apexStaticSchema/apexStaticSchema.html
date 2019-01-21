@@ -5,6 +5,7 @@
                 <p>{name}</p>
                 <p>{title}</p>
                 <p><lightning-formatted-email value={email}></lightning-formatted-email></p>
+                <p><lightning-formatted-phone value={phone}></lightning-formatted-phone></p>
             </div>
         </template>
         <template if:true={contact.error}>
