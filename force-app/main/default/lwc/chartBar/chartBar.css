@@ -5,7 +5,7 @@
 
 .bar {
     margin-left: 4px;
-    border-radius: 0px 18px 18px 0px;
+    border-radius: 0px -18px -18px 0px;
     height: 36px;
     background-color: #F5B041;
 }
