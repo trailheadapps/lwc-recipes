@@ -4,7 +4,7 @@ export default class TextEntry extends LightningElement {
     @track charsLeft = 160;
 
     inputChange(event){
-        var bodyInput = event.target.name;
+        const bodyInput = event.target.value;
         this.charsLeft = 160 - bodyInput.length;
     }
 }
