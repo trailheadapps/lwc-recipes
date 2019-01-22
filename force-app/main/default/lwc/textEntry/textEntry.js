@@ -10,6 +10,6 @@ export default class TextEntry extends LightningElement {
     }
     clearInput(){
         this.textInput = '';
+        this.charsLeft = 160;
     }
-
 }
