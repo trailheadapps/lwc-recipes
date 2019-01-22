@@ -9,8 +9,10 @@ export default class ApexWireMethodToFunction extends LightningElement {
     wiredContacts({ error, data }) {
         if (data) {
             this.contacts = data;
+            this.error = undefined;
         } else if (error) {
             this.error = error;
+            this.contacts = undefined;
         }
     }
 }
