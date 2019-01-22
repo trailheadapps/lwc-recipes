@@ -12,19 +12,19 @@ describe('c-chart-bar', () => {
     it('renders a lightning-layout with two lightning-layout-items', () => {
         // Create initial element
         const element = createElement('c-chart-bar', {
-            is: ChartBar,
+            is: ChartBar
         });
         document.body.appendChild(element);
 
         // Query lightning-layout element
         const lightningLayoutEl = element.shadowRoot.querySelector(
-            'lightning-layout',
+            'lightning-layout'
         );
         expect(lightningLayoutEl).not.toBeNull();
 
         // Query lightning-layout-item elements
         const lightningLayoutItemEls = element.shadowRoot.querySelectorAll(
-            'lightning-layout-item',
+            'lightning-layout-item'
         );
         expect(lightningLayoutItemEls.length).toBe(2);
     });
@@ -32,7 +32,7 @@ describe('c-chart-bar', () => {
     it('renders a div with the percentage value as style attribute', () => {
         // Create initial element
         const element = createElement('c-chart-bar', {
-            is: ChartBar,
+            is: ChartBar
         });
 
         // Set public property for style computation

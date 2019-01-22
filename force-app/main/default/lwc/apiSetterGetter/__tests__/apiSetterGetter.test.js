@@ -7,17 +7,17 @@ describe('c-api-setter-getter', () => {
 
         // Create initial element
         const element = createElement('c-api-setter-getter', {
-            is: ApiSetterGetter,
+            is: ApiSetterGetter
         });
         document.body.appendChild(element);
 
         // Query lightning-input elements
         const lightningInputEls = element.shadowRoot.querySelectorAll(
-            'lightning-input',
+            'lightning-input'
         );
 
         const todoCountPrevious = element.shadowRoot.querySelector(
-            'c-todo-list',
+            'c-todo-list'
         ).todos.length;
 
         lightningInputEls.forEach(el => {
@@ -30,7 +30,7 @@ describe('c-api-setter-getter', () => {
         });
 
         const lightningButtonEl = element.shadowRoot.querySelector(
-            'lightning-button',
+            'lightning-button'
         );
         lightningButtonEl.dispatchEvent(new CustomEvent('click'));
 

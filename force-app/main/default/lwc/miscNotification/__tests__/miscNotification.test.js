@@ -12,7 +12,7 @@ describe('c-misc-notification', () => {
     it('shows custom toast events based on user input', () => {
         // Create initial element
         const element = createElement('c-misc-notification', {
-            is: MiscNotification,
+            is: MiscNotification
         });
         document.body.appendChild(element);
 
