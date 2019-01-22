@@ -2,7 +2,7 @@ import { LightningElement, track } from 'lwc';
 
 export default class TextEntry extends LightningElement {
     @track textInput;
-    charsLeft = 160;
+    @track charsLeft = 160;
 
     inputChange(){
         // const bodyInput = event.target.value;
