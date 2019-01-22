@@ -1,4 +1,5 @@
 .right-side {
     float: right;
-    position: relative;
+    margin-top: -6px;
+
 }
