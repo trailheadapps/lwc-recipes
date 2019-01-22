@@ -3,7 +3,7 @@ import TodoList from 'c/todoList';
 
 let TODOS = [
     { id: 1, description: 'Explore recipes', priority: false },
-    { id: 2, description: 'Install Ebikes sample app', priority: false },
+    { id: 2, description: 'Install Ebikes sample app', priority: false }
 ];
 
 describe('c-todo-list', () => {
@@ -17,7 +17,7 @@ describe('c-todo-list', () => {
     it('renders without any list items as default', () => {
         // Create initial element
         const element = createElement('c-todo-list', {
-            is: TodoList,
+            is: TodoList
         });
         document.body.appendChild(element);
 
@@ -31,7 +31,7 @@ describe('c-todo-list', () => {
 
         // Create initial element
         const element = createElement('c-todo-list', {
-            is: TodoList,
+            is: TodoList
         });
         // Set initial todo items
         element.todos = TODOS;
@@ -45,7 +45,7 @@ describe('c-todo-list', () => {
     it('renders the content of the first todo item', () => {
         // Create initial element
         const element = createElement('c-todo-list', {
-            is: TodoList,
+            is: TodoList
         });
         element.todos = TODOS;
         document.body.appendChild(element);

@@ -5,7 +5,7 @@ describe('c-api-function', () => {
     it('calls the public function "refresh" on the c-clock component', () => {
         // Create initial element
         const element = createElement('c-api-function', {
-            is: ApiFunction,
+            is: ApiFunction
         });
         document.body.appendChild(element);
 
@@ -15,7 +15,7 @@ describe('c-api-function', () => {
 
         // Query lightning-button element
         const lightningButtonEl = element.shadowRoot.querySelector(
-            'lightning-button',
+            'lightning-button'
         );
         lightningButtonEl.dispatchEvent(new CustomEvent('click'));
 
