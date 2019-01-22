@@ -6,7 +6,7 @@ export default class TextEntry extends LightningElement {
 
     inputChange(){
         // const bodyInput = event.target.value;
-        this.charsLeft = 160 - this.textInput;
+        this.charsLeft = 160 - this.textInput.length;
     }
     clearInput(){
         this.textInput = '';
