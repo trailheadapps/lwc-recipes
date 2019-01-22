@@ -1,6 +1,8 @@
 <template>
     <lightning-card title="Text Entry Counter" icon-name="standard:textbox">
-        <lightning-input name='body' label="Enter Message" onchange={inputChange}></lightning-input>
-        <p>Characters available: {charsLeft}</p>
+        <div class="slds-m-around_medium">
+            <lightning-input name='body' label="Enter Message" onchange={inputChange}></lightning-input>
+            <p>Characters available: {charsLeft}</p>
+        </div>
     </lightning-card>
 </template>
