@@ -9,6 +9,7 @@ import { CurrentPageReference } from 'lightning/navigation';
 import { getRecord, getFieldValue } from 'lightning/uiRecordApi';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import { registerListener, unregisterAllListeners } from 'c/pubsub';
+import { reduceErrors } from 'c/ldsUtils';
 
 import NAME_FIELD from '@salesforce/schema/Contact.Name';
 import TITLE_FIELD from '@salesforce/schema/Contact.Title';
@@ -41,7 +42,7 @@ export default class PubsubContactDetails extends LightningElement {
             this.dispatchEvent(
                 new ShowToastEvent({
                     title: 'Error loading contact',
-                    message: error.message,
+                    message: reduceErrors(error).join(', '),
                     variant: 'error'
                 })
             );
