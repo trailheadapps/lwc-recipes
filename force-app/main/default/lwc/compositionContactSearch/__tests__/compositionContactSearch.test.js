@@ -13,7 +13,12 @@ jest.mock(
 );
 
 const APEX_CONTACTS_SUCCESS = [{ Id: '99', Name: 'Amy Taylor' }];
-const APEX_CONTACTS_ERROR = { error: 'someError' };
+const APEX_CONTACTS_ERROR = {
+    body: { message: 'An internal server error has occurred' },
+    ok: false,
+    status: 400,
+    statusText: 'Bad Request'
+};
 
 describe('c-composition-contact-search', () => {
     beforeAll(() => {
