@@ -1,3 +1,10 @@
+.THIS img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-bottom: 8px;
+}
+
 .THIS .slds-card__footer {
     text-align: left;
     color: #706e6b;
@@ -10,16 +17,16 @@
     border-radius: 3px;
 }
 
-.THIS c-category-filter {
+.THIS c-contact-list {
     position: relative;
     border: solid 1px #ecebea;
     border-radius: 4px;
     display: block;
-    padding: 6px 2px;
+    padding: 10px 2px 2px 2px;
 }
 
-.THIS c-category-filter:before {
-    content: "c-category-filter (Lightning Web component)";
+.THIS c-contact-list:before {
+    content: "c-contact-list (Lightning Web component)";
     color: #dddbda;
     position: absolute;
     top: -9px;
@@ -27,3 +34,4 @@
     background-color: #ffffff;
     padding: 0 4px;
 }
+
