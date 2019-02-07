@@ -7,7 +7,7 @@
         fields="['Name', 'Title', 'Phone', 'Email', 'Picture__c']"
         targetFields="{!v.selectedContact}"/>
 
-    <lightning:card title="AuraNestedLWC" iconName="custom:custom30">
+    <lightning:card title="AuraEmbeddedLWC" iconName="custom:custom30">
 
         <aura:set attribute="actions">
             <span class="aura">Aura Component</span>
@@ -33,7 +33,7 @@
 
         <div class="slds-card__footer">
             Embed a Lightning Web component in a parent Aura component and communicate with events
-            <p><a class="slds-text-link" href="https://github.com/trailheadapps/lwc-recipes/tree/master/force-app/main/default/aura/auraNestedLWC" target="source">View Source</a></p>
+            <p><a class="slds-text-link" href="https://github.com/trailheadapps/lwc-recipes/tree/master/force-app/main/default/aura/auraEmbeddedLWC" target="source">View Source</a></p>
         </div>
     </lightning:card>
 
