@@ -3,6 +3,8 @@
 #
 
 **/aura/**/*.design
+**/aura/**/*.evt
+**/aura/**/*.svg
 **/aura/**/*.xml
 **/lwc/**/*.html
 **/lwc/**/*.svg
