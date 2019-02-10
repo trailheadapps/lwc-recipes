@@ -42,7 +42,7 @@ jobs:
                   command: |
                       npm run test:unit -- -- --runInBand
     install_cli:
-        # This installs the Salesforce CLI.
+        # This installs Salesforce CLI.
         <<: *defaults
         steps:
             - attach_workspace:
@@ -90,12 +90,11 @@ jobs:
             - run:
                   name: Authenticate DevHub
                   command: |
-                      # if [[ $CIRCLE_BRANCH == prerelease* ]]; then
-                      # Temporary using pre-release till R2b (Spring '19 GA Launch')
-                      node_modules/sfdx-cli/bin/run force:auth:jwt:grant --clientid $CONSUMERKEY_PRERELEASE --jwtkeyfile .circleci/server.key --username $USERNAME_PRERELEASE --setdefaultdevhubusername -a HubOrg
-                      # else
-                      #   node_modules/sfdx-cli/bin/run force:auth:jwt:grant --clientid $CONSUMERKEY --jwtkeyfile .circleci/server.key --username $USERNAME --setdefaultdevhubusername -a HubOrg
-                      # fi
+                      if [[ $CIRCLE_BRANCH == prerelease* ]]; then
+                        node_modules/sfdx-cli/bin/run force:auth:jwt:grant --clientid $CONSUMERKEY_PRERELEASE --jwtkeyfile .circleci/server.key --username $USERNAME_PRERELEASE --setdefaultdevhubusername -a HubOrg
+                      else
+                        node_modules/sfdx-cli/bin/run force:auth:jwt:grant --clientid $CONSUMERKEY --jwtkeyfile .circleci/server.key --username $USERNAME --setdefaultdevhubusername -a HubOrg
+                      fi
             - run:
                   name: Define CI Org
                   # We define the to be used CI org. Based on the branch we either create a new scratch org
@@ -124,7 +123,6 @@ jobs:
             - run:
                   name: Push Source
                   command: |
-                      node_modules/sfdx-cli/bin/run plugins:install salesforcedx@pre-release # Temporary using the pre-release plugin
                       node_modules/sfdx-cli/bin/run force:source:push -u ciorg
     create_and_test_package:
         <<: *defaults
@@ -190,6 +188,7 @@ workflows:
                       branches:
                           ignore: master
             - setup_dx_orgs:
+                  context: trailhead-global
                   requires:
                       - lint_aura
                   filters:
