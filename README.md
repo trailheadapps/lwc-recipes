@@ -106,18 +106,14 @@ This repository contains several files that are relevant if you want to integrat
 
 ### Pre-commit hook
 
-This repository also comes with a
-
-<package.json> file that makes it easy to set up a pre-commit hook that enforces code formatting and linting by running Prettier and ESLint every time you <code>git commit</code> changes.</package.json>
+This repository also comes with a [package.json](./package.json) file that makes it easy to set up a pre-commit hook that enforces code formatting and linting by running Prettier and ESLint every time you `git commit` changes.
 
 To set up the formatting and linting pre-commit hook:
 
 1. Install [Node.js](https://nodejs.org) if you haven't already done so
 2. Run `npm install` in your project's root folder to install the ESLint and Prettier modules (Note: Mac users should verify that Xcode command line tools are installed before running this command.)
 
-Prettier and ESLint will now run automatically every time you commit changes. The commit will fail if linting errors are detected. You can also run the formatting and linting from the command line using the following commands (check out
-
-<package.json> for the full list):</package.json>
+Prettier and ESLint will now run automatically every time you commit changes. The commit will fail if linting errors are detected. You can also run the formatting and linting from the command line using the following commands (check out [package.json](./package.json) for the full list):
 
 ```
 npm run lint:lwc
