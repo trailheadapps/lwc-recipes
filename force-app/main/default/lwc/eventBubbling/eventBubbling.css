@@ -19,7 +19,7 @@ c-contact-list-item-bubbling {
 }
 
 c-contact-list-item-bubbling:before {
-    content: "c-contact-list-item-bubbling";
+    content: 'c-contact-list-item-bubbling';
     color: #dddbda;
     position: absolute;
     top: -9px;

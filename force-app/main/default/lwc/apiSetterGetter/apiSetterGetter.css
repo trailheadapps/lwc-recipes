@@ -8,7 +8,7 @@ c-todo-list {
 }
 
 c-todo-list:before {
-    content: "c-todo-list";
+    content: 'c-todo-list';
     color: #dddbda;
     position: absolute;
     top: -10px;
