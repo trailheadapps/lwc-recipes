@@ -1,5 +1,11 @@
 {
+    "trailingComma": "none",
     "singleQuote": true,
     "tabWidth": 4,
-    "trailingComma": "none"
+    "overrides": [
+        {
+            "files": "*.cmp",
+            "options": { "parser": "html" }
+        }
+    ]
 }

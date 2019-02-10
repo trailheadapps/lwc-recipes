@@ -21,6 +21,16 @@ jobs:
                   root: ~/
                   paths:
                       - project/*
+    prettier_verify:
+        # This verifies Prettier formatting
+        <<: *defaults
+        steps:
+            - attach_workspace:
+                  at: ~/
+            - run:
+                  name: Verify Prettier formatting
+                  command: |
+                      npm run prettier:verify
     lint_lwc:
         # This lints Lightning Web Components.
         <<: *defaults
@@ -163,9 +173,15 @@ workflows:
                   filters:
                       branches:
                           ignore: master
-            - lint_lwc:
+            - prettier_verify:
                   requires:
                       - setup_tooling
+                  filters:
+                      branches:
+                          ignore: master
+            - lint_lwc:
+                  requires:
+                      - prettier_verify
                   filters:
                       branches:
                           ignore: master
