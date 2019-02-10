@@ -40,9 +40,13 @@
         }
     },
     "lint-staged": {
-        "**/lwc/** **/aura/**": [
+        "**/lwc/**": [
             "prettier --write",
             "eslint",
+            "git add"
+        ],
+        "**/aura/**": [
+            "prettier --write",
             "git add"
         ]
     }
