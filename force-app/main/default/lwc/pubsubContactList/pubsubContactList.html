@@ -1,19 +1,25 @@
 <template>
-
     <lightning-card title="PubsubContactList" icon-name="custom:custom30">
-
         <div class="slds-m-around_medium" oncontactselect={handleContactSelect}>
             <template for:each={contacts.data} for:item="contact">
-                <c-contact-list-item-bubbling key={contact.Id} contact={contact}></c-contact-list-item-bubbling>
+                <c-contact-list-item-bubbling
+                    key={contact.Id}
+                    contact={contact}
+                ></c-contact-list-item-bubbling>
             </template>
         </div>
 
         <c-view-source source="lwc/pubsubContactList" slot="footer">
-            Subscribe to an event that another component publishes using the pubsub utility. <span class="alert">Only use this approach for intercomponent communication in App Builder.</span>&nbsp;
-            This component subscribes to the <strong>searchKeyChange</strong> event. Type a few characters in the search bar to see the recipe in action.
-            This component also publishes the <strong>contactSelected</strong> event when you click a contact in the list.
+            Subscribe to an event that another component publishes using the
+            pubsub utility.
+            <span class="alert"
+                >Only use this approach for intercomponent communication in App
+                Builder.</span
+            >&nbsp; This component subscribes to the
+            <strong>searchKeyChange</strong> event. Type a few characters in the
+            search bar to see the recipe in action. This component also
+            publishes the <strong>contactSelected</strong> event when you click
+            a contact in the list.
         </c-view-source>
-
     </lightning-card>
-
 </template>

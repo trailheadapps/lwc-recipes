@@ -1,15 +1,19 @@
 <template>
-
-    <lightning-card title="RecordFormStaticContact" icon-name="standard:contact">
-
+    <lightning-card
+        title="RecordFormStaticContact"
+        icon-name="standard:contact"
+    >
         <div class="slds-m-around_medium">
-            <lightning-record-form object-api-name={objectApiName} record-id={recordId} fields={fields}></lightning-record-form>
+            <lightning-record-form
+                object-api-name={objectApiName}
+                record-id={recordId}
+                fields={fields}
+            ></lightning-record-form>
         </div>
 
         <c-view-source source="lwc/recordFormStaticContact" slot="footer">
-            Create an editable form for a specific record. This recipe uses a static schema definition (fields are explicitly imported).
+            Create an editable form for a specific record. This recipe uses a
+            static schema definition (fields are explicitly imported).
         </c-view-source>
-
     </lightning-card>
-
 </template>

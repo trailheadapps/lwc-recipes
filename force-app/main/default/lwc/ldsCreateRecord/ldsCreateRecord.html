@@ -1,16 +1,26 @@
 <template>
-
     <lightning-card title="LdsCreateRecord" icon-name="standard:record">
         <div class="slds-m-around_medium">
-            <lightning-input label="Id" disabled value={accountId}></lightning-input>
-            <lightning-input label="Name" onchange={handleNameChange} class="slds-m-bottom_x-small"></lightning-input>
-            <lightning-button label="Create Account" variant="brand" onclick={createAccount}></lightning-button>
+            <lightning-input
+                label="Id"
+                disabled
+                value={accountId}
+            ></lightning-input>
+            <lightning-input
+                label="Name"
+                onchange={handleNameChange}
+                class="slds-m-bottom_x-small"
+            ></lightning-input>
+            <lightning-button
+                label="Create Account"
+                variant="brand"
+                onclick={createAccount}
+            ></lightning-button>
         </div>
 
         <c-view-source source="lwc/ldsCreateRecord" slot="footer">
-            Create a record without writing server-side code. Always consider lightning-record-form and lightning-record-edit-form first. 
+            Create a record without writing server-side code. Always consider
+            lightning-record-form and lightning-record-edit-form first.
         </c-view-source>
-
     </lightning-card>
-
 </template>

@@ -4,6 +4,10 @@
     "tabWidth": 4,
     "overrides": [
         {
+            "files": "**/lwc/**/*.html",
+            "options": { "parser": "lwc" }
+        },
+        {
             "files": "*.cmp",
             "options": { "parser": "html" }
         }

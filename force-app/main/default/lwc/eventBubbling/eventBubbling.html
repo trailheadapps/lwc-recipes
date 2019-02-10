@@ -1,22 +1,37 @@
 <template>
-
     <lightning-card title="EventBubbling" icon-name="standard:logging">
-
         <template if:true={contacts.data}>
             <lightning-layout class="slds-m-around_medium">
                 <!-- c-contact-list-item-bubbling emits a bubbling event so a single listener on a containing element works -->
-                <lightning-layout-item class="wide" oncontactselect={handleContactSelect}>
+                <lightning-layout-item
+                    class="wide"
+                    oncontactselect={handleContactSelect}
+                >
                     <template for:each={contacts.data} for:item="contact">
-                        <c-contact-list-item-bubbling key={contact.Id} contact={contact}></c-contact-list-item-bubbling>
+                        <c-contact-list-item-bubbling
+                            key={contact.Id}
+                            contact={contact}
+                        ></c-contact-list-item-bubbling>
                     </template>
                 </lightning-layout-item>
                 <lightning-layout-item class="slds-m-left_medium">
                     <template if:true={selectedContact}>
-                        <img src={selectedContact.Picture__c} alt="Profile photo">
+                        <img
+                            src={selectedContact.Picture__c}
+                            alt="Profile photo"
+                        />
                         <p>{selectedContact.Name}</p>
                         <p>{selectedContact.Title}</p>
-                        <p><lightning-formatted-phone value={selectedContact.Phone}></lightning-formatted-phone></p>
-                        <p><lightning-formatted-email value={selectedContact.Email}></lightning-formatted-email></p>
+                        <p>
+                            <lightning-formatted-phone
+                                value={selectedContact.Phone}
+                            ></lightning-formatted-phone>
+                        </p>
+                        <p>
+                            <lightning-formatted-email
+                                value={selectedContact.Email}
+                            ></lightning-formatted-email>
+                        </p>
                     </template>
                 </lightning-layout-item>
             </lightning-layout>
@@ -25,9 +40,9 @@
             <c-error-panel errors={contacts.error}></c-error-panel>
         </template>
         <c-view-source source="lwc/eventBubbling" slot="footer">
-            Child-to-grandparents communication using an event that bubbles and is handled on a higher level element in the DOM tree. Click an item in the list to see the recipe in action.
+            Child-to-grandparents communication using an event that bubbles and
+            is handled on a higher level element in the DOM tree. Click an item
+            in the list to see the recipe in action.
         </c-view-source>
-
     </lightning-card>
-
 </template>

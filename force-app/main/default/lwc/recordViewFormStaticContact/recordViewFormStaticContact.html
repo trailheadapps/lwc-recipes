@@ -1,23 +1,34 @@
 <template>
-
-    <lightning-card title="RecordViewFormStaticContact" icon-name="standard:contact">
-
+    <lightning-card
+        title="RecordViewFormStaticContact"
+        icon-name="standard:contact"
+    >
         <div class="slds-m-around_medium">
             <lightning-record-view-form
                 object-api-name={objectApiName}
-                record-id={recordId}>
-                <lightning-output-field field-name={accountField}></lightning-output-field>
-                <lightning-output-field field-name={nameField}></lightning-output-field>
-                <lightning-output-field field-name={titleField}></lightning-output-field>
-                <lightning-output-field field-name={phoneField}></lightning-output-field>
-                <lightning-output-field field-name={emailField}></lightning-output-field>
+                record-id={recordId}
+            >
+                <lightning-output-field
+                    field-name={accountField}
+                ></lightning-output-field>
+                <lightning-output-field
+                    field-name={nameField}
+                ></lightning-output-field>
+                <lightning-output-field
+                    field-name={titleField}
+                ></lightning-output-field>
+                <lightning-output-field
+                    field-name={phoneField}
+                ></lightning-output-field>
+                <lightning-output-field
+                    field-name={emailField}
+                ></lightning-output-field>
             </lightning-record-view-form>
         </div>
 
         <c-view-source source="lwc/recordViewFormStaticContact" slot="footer">
-            Create a read-only form for a specific record. This recipe uses a static schema definition (fields are explicitly imported).
+            Create a read-only form for a specific record. This recipe uses a
+            static schema definition (fields are explicitly imported).
         </c-view-source>
-
     </lightning-card>
-
 </template>

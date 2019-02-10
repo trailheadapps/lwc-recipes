@@ -6,7 +6,6 @@
 **/aura/**/*.evt
 **/aura/**/*.svg
 **/aura/**/*.xml
-**/lwc/**/*.html
 **/lwc/**/*.svg
 **/lwc/**/*.xml
 .sfdx

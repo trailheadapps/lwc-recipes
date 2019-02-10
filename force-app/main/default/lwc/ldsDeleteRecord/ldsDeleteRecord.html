@@ -1,16 +1,21 @@
 <template>
-
     <lightning-card title="LdsDeleteRecord" icon-name="standard:record">
-
         <template if:true={accounts}>
             <div class="slds-m-around_medium">
                 <template for:each={accounts} for:item="account">
-                    <lightning-layout key={account.Id} class="slds-m-vertical_x-small">
+                    <lightning-layout
+                        key={account.Id}
+                        class="slds-m-vertical_x-small"
+                    >
                         <lightning-layout-item flexibility="grow">
                             {account.Name}
                         </lightning-layout-item>
                         <lightning-layout-item>
-                            <lightning-button-icon icon-name="utility:delete" onclick={deleteAccount} data-recordid={account.Id}></lightning-button-icon>
+                            <lightning-button-icon
+                                icon-name="utility:delete"
+                                onclick={deleteAccount}
+                                data-recordid={account.Id}
+                            ></lightning-button-icon>
                         </lightning-layout-item>
                     </lightning-layout>
                 </template>
@@ -23,7 +28,5 @@
         <c-view-source source="lwc/ldsDeleteRecord" slot="footer">
             Delete a record without writing server-side code.
         </c-view-source>
-
     </lightning-card>
-
 </template>

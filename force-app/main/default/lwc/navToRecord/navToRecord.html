@@ -5,9 +5,20 @@
                 Example Contact:
                 <p>{contact.data.Name}</p>
                 <p>{contact.data.Title}</p>
-                <p class="slds-m-bottom_small"><lightning-formatted-email value={contact.data.Email}></lightning-formatted-email></p>
-                <lightning-button label="Go to Contact Record" onclick={navigateToContact} class="slds-m-right_x-small"></lightning-button>
-                <lightning-button label="Go to Edit Contact" onclick={navigateToEdit}></lightning-button>
+                <p class="slds-m-bottom_small">
+                    <lightning-formatted-email
+                        value={contact.data.Email}
+                    ></lightning-formatted-email>
+                </p>
+                <lightning-button
+                    label="Go to Contact Record"
+                    onclick={navigateToContact}
+                    class="slds-m-right_x-small"
+                ></lightning-button>
+                <lightning-button
+                    label="Go to Edit Contact"
+                    onclick={navigateToEdit}
+                ></lightning-button>
             </div>
         </template>
         <template if:true={contact.error}>
@@ -16,6 +27,5 @@
         <c-view-source source="lwc/navToRecord" slot="footer">
             Navigate to a record page. In this example, a contact.
         </c-view-source>
-
     </lightning-card>
 </template>

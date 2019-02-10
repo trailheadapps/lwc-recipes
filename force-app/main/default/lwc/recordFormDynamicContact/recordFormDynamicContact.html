@@ -1,15 +1,19 @@
 <template>
-
-    <lightning-card title="RecordFormDynamicContact" icon-name="standard:contact">
-
+    <lightning-card
+        title="RecordFormDynamicContact"
+        icon-name="standard:contact"
+    >
         <div class="slds-m-around_medium">
-            <lightning-record-form object-api-name={objectApiName} record-id={recordId} fields={fields}></lightning-record-form>
+            <lightning-record-form
+                object-api-name={objectApiName}
+                record-id={recordId}
+                fields={fields}
+            ></lightning-record-form>
         </div>
 
         <c-view-source source="lwc/recordFormDynamicContact" slot="footer">
-            Create an editable form for a specific record. This recipe uses a dynamic schema definition (fields are specified as string).
+            Create an editable form for a specific record. This recipe uses a
+            dynamic schema definition (fields are specified as string).
         </c-view-source>
-
     </lightning-card>
-
 </template>

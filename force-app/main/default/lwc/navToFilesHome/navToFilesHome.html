@@ -1,13 +1,13 @@
 <template>
+    <lightning-card title="NavToFilesHome" icon-name="custom:custom96">
+        <lightning-button
+            label="Go to Files Home"
+            class="slds-m-around_medium"
+            onclick={navigateToFilesHome}
+        ></lightning-button>
 
-        <lightning-card title="NavToFilesHome" icon-name="custom:custom96">
-
-                <lightning-button label="Go to Files Home" class="slds-m-around_medium" onclick={navigateToFilesHome}></lightning-button>
-
-                <c-view-source source="lwc/navToFilesHome" slot="footer">
-                        Navigate to an object home page. In this example, the Files home.
-                </c-view-source>
-        
-        </lightning-card>
-
+        <c-view-source source="lwc/navToFilesHome" slot="footer">
+            Navigate to an object home page. In this example, the Files home.
+        </c-view-source>
+    </lightning-card>
 </template>

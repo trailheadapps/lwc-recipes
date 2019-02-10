@@ -1,13 +1,13 @@
 <template>
+    <lightning-card title="NavToHelloTab" icon-name="custom:custom96">
+        <lightning-button
+            label="Go to Hello tab"
+            class="slds-m-around_medium"
+            onclick={navigateToHelloTab}
+        ></lightning-button>
 
-        <lightning-card title="NavToHelloTab" icon-name="custom:custom96">
-
-                <lightning-button label="Go to Hello tab" class="slds-m-around_medium" onclick={navigateToHelloTab}></lightning-button>
-
-                <c-view-source source="lwc/navToHelloTab" slot="footer">
-                        Navigate to a custom page. In this example, the Hello tab.
-                </c-view-source>
-        
-        </lightning-card>
-
+        <c-view-source source="lwc/navToHelloTab" slot="footer">
+            Navigate to a custom page. In this example, the Hello tab.
+        </c-view-source>
+    </lightning-card>
 </template>

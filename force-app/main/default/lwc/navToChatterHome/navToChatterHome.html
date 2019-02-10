@@ -1,13 +1,13 @@
 <template>
+    <lightning-card title="NavToChatterHome" icon-name="custom:custom96">
+        <lightning-button
+            label="Go to Chatter Home"
+            class="slds-m-around_medium"
+            onclick={navigateToChatter}
+        ></lightning-button>
 
-        <lightning-card title="NavToChatterHome" icon-name="custom:custom96">
-
-                <lightning-button label="Go to Chatter Home" class="slds-m-around_medium" onclick={navigateToChatter}></lightning-button>
-
-                <c-view-source source="lwc/navToChatterHome" slot="footer">
-                        Navigate to a standard page. In this example, Chatter home.
-                </c-view-source>
-
-        </lightning-card>
-
+        <c-view-source source="lwc/navToChatterHome" slot="footer">
+            Navigate to a standard page. In this example, Chatter home.
+        </c-view-source>
+    </lightning-card>
 </template>

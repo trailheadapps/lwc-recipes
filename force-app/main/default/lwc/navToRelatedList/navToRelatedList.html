@@ -5,8 +5,15 @@
                 Example Account:
                 <p>{account.data.Name}</p>
                 <p>{account.data.Type}</p>
-                <p class="slds-m-bottom_small"><lightning-formatted-phone value={account.data.Phone}></lightning-formatted-phone></p>
-                <lightning-button label="Go to Related Contacts list" onclick={navigateToRelatedList}></lightning-button>
+                <p class="slds-m-bottom_small">
+                    <lightning-formatted-phone
+                        value={account.data.Phone}
+                    ></lightning-formatted-phone>
+                </p>
+                <lightning-button
+                    label="Go to Related Contacts list"
+                    onclick={navigateToRelatedList}
+                ></lightning-button>
             </div>
         </template>
         <template if:true={account.error}>
@@ -15,6 +22,5 @@
         <c-view-source source="lwc/navToRelatedList" slot="footer">
             Navigate to a related list. In this example, Related Contacts.
         </c-view-source>
-
     </lightning-card>
 </template>
