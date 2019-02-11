@@ -15,26 +15,24 @@ There are two ways to install Lightning Web Components Recipes:
 
 ## Installing Recipes using Salesforce DX
 
-> **IMPORTANT**: Because of a current issue in pre-release, make sure your project path doesn't include any of the following folder names: **lwc**, **aura**, **wave**. For example, DO NOT clone this repository in a folder called **/Projects/lwc**.
-
 1. Set up your environment. Follow the steps in the [Quick Start: Lightning Web Components](https://trailhead.salesforce.com/content/learn/projects/quick-start-lightning-web-components/) Trailhead project. The steps include:
 
-  - Sign up for a Spring '19 pre-release org and enable Dev Hub
-  - Install the pre-release version of the Salesforce CLI
+  - Enable Dev Hub in your Trailhead Playground
+  - Install Salesforce CLI
   - Install Visual Studio Code
   - Install the Visual Studio Code Salesforce extensions, including the Lightning Web Components extension
 
-2. If you haven't already done so, authenticate with your Spring '19 hub org and provide it with an alias (spring19hub):
+2. If you haven't already done so, authenticate with your hub org and provide it with an alias (**myhuborg** in the command below):
 
   ```
-  sfdx force:auth:web:login -d -a spring19hub
+  sfdx force:auth:web:login -d -a myhuborg
   ```
 
 3. Clone the lwc-recipes repository:
 
   ```
   git clone https://github.com/trailheadapps/lwc-recipes
-   cd lwc-recipes
+  cd lwc-recipes
   ```
 
 4. Create a scratch org and provide it with an alias (**lwc-recipes** in the command below):
@@ -73,13 +71,15 @@ There are two ways to install Lightning Web Components Recipes:
 
 ## Installing Recipes using an Unlocked Package
 
-1. [Sign up](https://www.salesforce.com/form/signup/prerelease-spring19/) for a Spring '19 pre-release org, enable My Domain, and deploy it to all users.
+1. [Sign up](https://developer.salesforce.com/signup) for a Developer Edition (DE) org.
 
-2. Click [this link](https://login.salesforce.com/packaging/installPackage.apexp?p0=04tB0000000YGYOIA4) to install the Recipes unlocked package in your Spring '19 org.
+2. Enable MyDomain in your DE org. Instructions to do this are [here](https://trailhead.salesforce.com/modules/identity_login/units/identity_login_my_domain).
 
-3. Select **Install for All Users**
+3. Click [this link](https://login.salesforce.com/packaging/installPackage.apexp?p0=04tB0000000KAfTIAW) to install the Recipes unlocked package in your DE org.
 
-4. Import Account and Contacts data:
+4. Select **Install for All Users**
+
+5. Import Account and Contacts data:
 
   - Click [here](https://raw.githubusercontent.com/trailheadapps/lwc-recipes/master/data/Accounts-Contacts.csv) to acccess the **Accounts-Contacts.csv** file. Right click in the browser window and save the file as **Accounts-Contacts.csv**.
   - In **Setup**, type **Data Import** in the Quick Find box and click **Data Import Wizard**.
@@ -88,9 +88,9 @@ There are two ways to install Lightning Web Components Recipes:
   - Drag the **Accounts-Contacts.csv** file you just saved to the upload area.
   - Click **Next**, **Next**, and **Start Import**.
 
-5. In **Setup**, under **Themes and Branding**, activate the **Recipes Lite** or **Recipes Blue** theme.
+6. In **Setup**, under **Themes and Branding**, activate the **Recipes Lite** or **Recipes Blue** theme.
 
-6. In App Launcher, select the **LWC** app.
+7. In App Launcher, select the **LWC** app.
 
 ## Optional Installation Instructions
 
@@ -106,14 +106,14 @@ This repository contains several files that are relevant if you want to integrat
 
 ### Pre-commit hook
 
-This repository also comes with a <package.json> file that makes it easy to set up a pre-commit hook that enforces code formatting and linting by running Prettier and ESLint every time you `git commit` changes.
+This repository also comes with a [package.json](./package.json) file that makes it easy to set up a pre-commit hook that enforces code formatting and linting by running Prettier and ESLint every time you `git commit` changes.
 
 To set up the formatting and linting pre-commit hook:
 
 1. Install [Node.js](https://nodejs.org) if you haven't already done so
 2. Run `npm install` in your project's root folder to install the ESLint and Prettier modules (Note: Mac users should verify that Xcode command line tools are installed before running this command.)
 
-Prettier and ESLint will now run automatically every time you commit changes. The commit will fail if linting errors are detected. You can also run the formatting and linting from the command line using the following commands (check out <package.json> for the full list):
+Prettier and ESLint will now run automatically every time you commit changes. The commit will fail if linting errors are detected. You can also run the formatting and linting from the command line using the following commands (check out [package.json](./package.json) for the full list):
 
 ```
 npm run lint:lwc

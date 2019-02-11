@@ -1,13 +1,13 @@
 <template>
+    <lightning-card title="NavToHome" icon-name="custom:custom96">
+        <lightning-button
+            label="Go to Home"
+            class="slds-m-around_medium"
+            onclick={navigateToHome}
+        ></lightning-button>
 
-        <lightning-card title="NavToHome" icon-name="custom:custom96">
-
-                <lightning-button label="Go to Home" class="slds-m-around_medium" onclick={navigateToHome}></lightning-button>
-
-                <c-view-source source="lwc/navToHome" slot="footer">
-                        Navigate to a standard page. In this example, the Home page.
-                </c-view-source>
-        
-        </lightning-card>
-
+        <c-view-source source="lwc/navToHome" slot="footer">
+            Navigate to a standard page. In this example, the Home page.
+        </c-view-source>
+    </lightning-card>
 </template>

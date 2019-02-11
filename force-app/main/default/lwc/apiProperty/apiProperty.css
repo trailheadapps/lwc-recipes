@@ -8,7 +8,7 @@ c-chart-bar {
 }
 
 c-chart-bar:before {
-    content: "c-chart-bar";
+    content: 'c-chart-bar';
     color: #dddbda;
     position: absolute;
     top: -10px;

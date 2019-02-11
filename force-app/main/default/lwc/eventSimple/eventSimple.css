@@ -11,7 +11,7 @@ c-paginator {
 }
 
 c-paginator:before {
-    content: "c-paginator";
+    content: 'c-paginator';
     color: #dddbda;
     position: absolute;
     top: -10px;

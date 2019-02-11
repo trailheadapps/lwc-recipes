@@ -1,25 +1,43 @@
 <template>
-
     <lightning-card title="MiscSharedJavaScript" icon-name="custom:custom19">
-
         <div class="slds-m-around_medium">
-            <lightning-input type="number" label="Principal" value={principal} onchange={principalChange}></lightning-input>
+            <lightning-input
+                type="number"
+                label="Principal"
+                value={principal}
+                onchange={principalChange}
+            ></lightning-input>
             <lightning-combobox
                 label="Term"
                 value={term}
                 onchange={termChange}
-                options={termOptions}>
+                options={termOptions}
+            >
             </lightning-combobox>
-            <lightning-input type="number" label="Rate" value={rate} onchange={rateChange}></lightning-input>
-            <p class="slds-m-vertical_small"><lightning-button label="Calculate Monthly Payment" onclick={calculateMonthlyPayment}></lightning-button></p>
+            <lightning-input
+                type="number"
+                label="Rate"
+                value={rate}
+                onchange={rateChange}
+            ></lightning-input>
+            <p class="slds-m-vertical_small">
+                <lightning-button
+                    label="Calculate Monthly Payment"
+                    onclick={calculateMonthlyPayment}
+                ></lightning-button>
+            </p>
             <p>Monthly Payment</p>
-            <lightning-formatted-number format-style="currency" currency-code="USD" value={monthlyPayment}></lightning-formatted-number><br>
+            <lightning-formatted-number
+                format-style="currency"
+                currency-code="USD"
+                value={monthlyPayment}
+            ></lightning-formatted-number
+            ><br />
         </div>
 
         <c-view-source source="lwc/miscSharedJavaScript" slot="footer">
-            Share JavaScript code using JavaScript modules. In this case, the JavaScript module provides the logic to calculate mortgage payments.
+            Share JavaScript code using JavaScript modules. In this case, the
+            JavaScript module provides the logic to calculate mortgage payments.
         </c-view-source>
-
     </lightning-card>
-
 </template>

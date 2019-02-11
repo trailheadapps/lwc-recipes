@@ -11,8 +11,8 @@
         "test:unit": "lwc-jest",
         "test:unit:watch": "lwc-jest --watch",
         "test:unit:debug": "lwc-jest --debug",
-        "prettier": "npm run prettier:lwc",
-        "prettier:lwc": "prettier --write '**/lwc/**'",
+        "prettier": "prettier --write **/lwc/** **/aura/**",
+        "prettier:verify": "prettier --list-different **/lwc/** **/aura/**",
         "postinstall": "node bin/check-version.js"
     },
     "author": "salesforce.com",
@@ -28,11 +28,10 @@
     "devDependencies": {
         "@salesforce/eslint-config-lwc": "^0.3.0",
         "@salesforce/lwc-jest": "^0.4.7",
-        "@types/jest": "^23.3.12",
-        "eslint": "^5.12.0",
+        "eslint": "^5.13.0",
         "husky": "^1.3.1",
-        "lint-staged": "^8.1.0",
-        "prettier": "^1.15.3",
+        "lint-staged": "^8.1.3",
+        "prettier": "github:prettier/prettier",
         "semver": "^5.5.0"
     },
     "husky": {
@@ -44,6 +43,10 @@
         "**/lwc/**": [
             "prettier --write",
             "eslint",
+            "git add"
+        ],
+        "**/aura/**": [
+            "prettier --write",
             "git add"
         ]
     }

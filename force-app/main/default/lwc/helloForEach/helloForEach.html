@@ -1,7 +1,5 @@
 <template>
-
     <lightning-card title="HelloForEach" icon-name="custom:custom14">
-
         <ul class="slds-m-around_medium">
             <template for:each={contacts} for:item="contact">
                 <li key={contact.Id}>
@@ -12,7 +10,5 @@
         <c-view-source source="lwc/helloForEach" slot="footer">
             Loop through an array of items in a template.
         </c-view-source>
-
     </lightning-card>
-
 </template>

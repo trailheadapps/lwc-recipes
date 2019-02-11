@@ -22,9 +22,9 @@ c-contact-tile:before {
 }
 
 lightning-input:before {
-    content: "lightning-input";
+    content: 'lightning-input';
 }
 
 c-contact-tile:before {
-    content: "c-contact-tile";
+    content: 'c-contact-tile';
 }

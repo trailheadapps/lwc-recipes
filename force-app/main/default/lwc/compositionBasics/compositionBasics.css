@@ -7,7 +7,7 @@ c-contact-tile {
 }
 
 c-contact-tile:before {
-    content: "c-contact-tile";
+    content: 'c-contact-tile';
     color: #dddbda;
     position: absolute;
     top: -9px;

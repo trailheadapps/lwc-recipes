@@ -15,7 +15,7 @@ c-contact-list-item {
 }
 
 c-contact-list-item:before {
-    content: "c-contact-list-item";
+    content: 'c-contact-list-item';
     color: #dddbda;
     position: absolute;
     top: -9px;

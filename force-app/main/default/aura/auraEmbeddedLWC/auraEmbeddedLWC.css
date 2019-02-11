@@ -26,7 +26,7 @@
 }
 
 .THIS c-contact-list:before {
-    content: "c-contact-list (Lightning Web component)";
+    content: 'c-contact-list (Lightning Web component)';
     color: #dddbda;
     position: absolute;
     top: -9px;
@@ -34,4 +34,3 @@
     background-color: #ffffff;
     padding: 0 4px;
 }
-

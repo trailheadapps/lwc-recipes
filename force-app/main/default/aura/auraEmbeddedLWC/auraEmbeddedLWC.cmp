@@ -1,14 +1,15 @@
 <aura:component implements="flexipage:availableForAllPageTypes">
+    <aura:attribute name="contactId" type="Id" />
+    <aura:attribute name="selectedContact" type="Contact" />
 
-    <aura:attribute name="contactId" type="Id"/>
-    <aura:attribute name="selectedContact" type="Contact"/>
-
-    <force:recordData aura:id="service" recordId="{!v.contactId}"
+    <force:recordData
+        aura:id="service"
+        recordId="{!v.contactId}"
         fields="['Name', 'Title', 'Phone', 'Email', 'Picture__c']"
-        targetFields="{!v.selectedContact}"/>
+        targetFields="{!v.selectedContact}"
+    />
 
     <lightning:card title="AuraEmbeddedLWC" iconName="custom:custom30">
-
         <aura:set attribute="actions">
             <span class="aura">Aura Component</span>
         </aura:set>
@@ -17,24 +18,40 @@
             <lightning:layout>
                 <lightning:layoutItem size="6">
                     <!-- This is an LWC component -->
-                    <c:contactList oncontactselect="{!c.handleContactSelect}"/>
+                    <c:contactList oncontactselect="{!c.handleContactSelect}" />
                 </lightning:layoutItem>
                 <lightning:layoutItem size="6" class="slds-p-left_medium">
                     <aura:if isTrue="{!v.selectedContact}">
-                        <img src="{!v.selectedContact.Picture__c}" alt="Profile photo"/>
+                        <img
+                            src="{!v.selectedContact.Picture__c}"
+                            alt="Profile photo"
+                        />
                         <p>{!v.selectedContact.Name}</p>
                         <p>{!v.selectedContact.Title}</p>
-                        <p><lightning:formattedPhone value="{!v.selectedContact.Phone}"/></p>
-                        <p><lightning:formattedEmail value="{!v.selectedContact.Email}"/></p>
+                        <p
+                            ><lightning:formattedPhone
+                                value="{!v.selectedContact.Phone}"
+                        /></p>
+                        <p
+                            ><lightning:formattedEmail
+                                value="{!v.selectedContact.Email}"
+                        /></p>
                     </aura:if>
                 </lightning:layoutItem>
             </lightning:layout>
         </div>
 
         <div class="slds-card__footer">
-            Embed a Lightning Web component in a parent Aura component and communicate with events
-            <p><a class="slds-text-link" href="https://github.com/trailheadapps/lwc-recipes/tree/master/force-app/main/default/aura/auraEmbeddedLWC" target="source">View Source</a></p>
+            Embed a Lightning Web component in a parent Aura component and
+            communicate with events
+            <p
+                ><a
+                    class="slds-text-link"
+                    href="https://github.com/trailheadapps/lwc-recipes/tree/master/force-app/main/default/aura/auraEmbeddedLWC"
+                    target="source"
+                    >View Source</a
+                ></p
+            >
         </div>
     </lightning:card>
-
 </aura:component>

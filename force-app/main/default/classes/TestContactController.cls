@@ -20,7 +20,7 @@ public with sharing class TestContactController {
 
     }
 
-    static testMethod void getContactList() {
+    @isTest static void getContactList() {
 
         TestContactController.createContacts(10);
 
@@ -32,7 +32,7 @@ public with sharing class TestContactController {
 
     }
 
-   static testMethod void findContacts() {
+   @isTest static void findContacts() {
 
         TestContactController.createContacts(10);
 
@@ -44,7 +44,7 @@ public with sharing class TestContactController {
 
     }
 
-    static testMethod void getSingleContact() {
+    @isTest static void getSingleContact() {
 
         TestContactController.createContacts(1);
 

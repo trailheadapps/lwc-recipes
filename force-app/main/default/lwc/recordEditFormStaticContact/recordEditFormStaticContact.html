@@ -1,27 +1,43 @@
 <template>
-
-    <lightning-card title="RecordEditFormStaticContact" icon-name="standard:contact">
-
+    <lightning-card
+        title="RecordEditFormStaticContact"
+        icon-name="standard:contact"
+    >
         <div class="slds-m-around_medium">
             <lightning-record-edit-form
                 object-api-name={objectApiName}
-                record-id={recordId}>
+                record-id={recordId}
+            >
                 <lightning-messages></lightning-messages>
-                <lightning-input-field field-name={accountField}></lightning-input-field>
-                <lightning-input-field field-name={nameField}></lightning-input-field>
-                <lightning-input-field field-name={titleField}></lightning-input-field>
-                <lightning-input-field field-name={phoneField}></lightning-input-field>
-                <lightning-input-field field-name={emailField}></lightning-input-field>
+                <lightning-input-field
+                    field-name={accountField}
+                ></lightning-input-field>
+                <lightning-input-field
+                    field-name={nameField}
+                ></lightning-input-field>
+                <lightning-input-field
+                    field-name={titleField}
+                ></lightning-input-field>
+                <lightning-input-field
+                    field-name={phoneField}
+                ></lightning-input-field>
+                <lightning-input-field
+                    field-name={emailField}
+                ></lightning-input-field>
                 <div class="slds-m-top_medium">
-                    <lightning-button variant="brand" type="submit" name="save" label="Save"></lightning-button>
+                    <lightning-button
+                        variant="brand"
+                        type="submit"
+                        name="save"
+                        label="Save"
+                    ></lightning-button>
                 </div>
             </lightning-record-edit-form>
         </div>
 
         <c-view-source source="lwc/recordEditFormStaticContact" slot="footer">
-            Create an edit-mode form for a specific record. This recipe uses a static schema definition (fields are explicitly imported).
+            Create an edit-mode form for a specific record. This recipe uses a
+            static schema definition (fields are explicitly imported).
         </c-view-source>
-
     </lightning-card>
-
 </template>

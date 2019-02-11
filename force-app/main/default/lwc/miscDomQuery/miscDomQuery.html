@@ -1,10 +1,21 @@
 <template>
-
     <lightning-card title="MiscDomQuery" icon-name="custom:custom19">
         <div class="slds-m-around_medium">
-            <lightning-input label="Category 1" type="checkbox" onchange={handleCheckboxChange}></lightning-input>
-            <lightning-input label="Category 2" type="checkbox" onchange={handleCheckboxChange}></lightning-input>
-            <lightning-input label="Category 3" type="checkbox" onchange={handleCheckboxChange}></lightning-input>
+            <lightning-input
+                label="Category 1"
+                type="checkbox"
+                onchange={handleCheckboxChange}
+            ></lightning-input>
+            <lightning-input
+                label="Category 2"
+                type="checkbox"
+                onchange={handleCheckboxChange}
+            ></lightning-input>
+            <lightning-input
+                label="Category 3"
+                type="checkbox"
+                onchange={handleCheckboxChange}
+            ></lightning-input>
 
             <p class="slds-m-top_medium">Checked items: {selection}</p>
         </div>
@@ -12,7 +23,5 @@
         <c-view-source source="lwc/miscDomQuery" slot="footer">
             Use query selectors to access DOM elements.
         </c-view-source>
-
     </lightning-card>
-
 </template>

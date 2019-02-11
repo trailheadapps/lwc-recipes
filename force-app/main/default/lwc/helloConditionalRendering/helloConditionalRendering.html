@@ -1,10 +1,14 @@
 <template>
-
-    <lightning-card title="HelloConditionalRendering" icon-name="custom:custom14">
-
+    <lightning-card
+        title="HelloConditionalRendering"
+        icon-name="custom:custom14"
+    >
         <div class="slds-m-around_medium">
-
-            <lightning-input type="checkbox" label="Show details" onchange={handleChange}></lightning-input>
+            <lightning-input
+                type="checkbox"
+                label="Show details"
+                onchange={handleChange}
+            ></lightning-input>
 
             <div class="slds-m-vertical_medium">
                 <template if:true={areDetailsVisible}>
@@ -14,13 +18,10 @@
                     Not showing details.
                 </template>
             </div>
-
         </div>
 
         <c-view-source source="lwc/helloConditionalRendering" slot="footer">
             Conditionally render elements.
         </c-view-source>
-
     </lightning-card>
-
 </template>

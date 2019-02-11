@@ -9,27 +9,28 @@
  - If the child is a Lightning Web component, use attribute passing or call a public @api method defined in the child component
 -->
 <aura:component implements="flexipage:availableForAllPageTypes">
+    <aura:attribute name="contactId" type="Id" />
+    <aura:attribute name="contact" type="Object" />
 
-    <aura:attribute name="contactId" type="Id"/>
-    <aura:attribute name="contact" type="Object"/>
+    <c:auraPubsub aura:id="pubsub" onready="{!c.handlePubsubReady}" />
 
-    <c:auraPubsub aura:id="pubsub" onready="{!c.handlePubsubReady}"/>
+    <aura:handler name="destroy" value="{!this}" action="{!c.handleDestroy}" />
 
-    <aura:handler name="destroy" value="{!this}" action="{!c.handleDestroy}"/>
-
-    <force:recordData aura:id="service" recordId="{!v.contactId}"
+    <force:recordData
+        aura:id="service"
+        recordId="{!v.contactId}"
         fields="['Name', 'Title', 'Phone', 'Email', 'Picture__c']"
-        targetFields="{!v.contact}"/>
+        targetFields="{!v.contact}"
+    />
 
     <lightning:card title="AuraPubsubSubscriber" iconName="custom:custom30">
-
         <aura:set attribute="actions">
             <span class="aura">Aura Component</span>
         </aura:set>
 
         <div class="slds-m-around_medium">
             <aura:if isTrue="{!v.contact}">
-                <img src="{!v.contact.Picture__c}" alt="Profile photo"/>
+                <img src="{!v.contact.Picture__c}" alt="Profile photo" />
                 <p>{!v.contact.Name}</p>
                 <p>{!v.contact.Title}</p>
                 <p><lightning:formattedPhone value="{!v.contact.Phone}"/></p>
@@ -38,10 +39,16 @@
         </div>
 
         <div class="slds-card__footer">
-            Subscribe to an event using the pubsub utility from an Aura component.
-            <p><a class="slds-text-link" href="https://github.com/trailheadapps/lwc-recipes/tree/master/force-app/main/default/aura/auraPubsubSubscriber" target="source">View Source</a></p>
+            Subscribe to an event using the pubsub utility from an Aura
+            component.
+            <p
+                ><a
+                    class="slds-text-link"
+                    href="https://github.com/trailheadapps/lwc-recipes/tree/master/force-app/main/default/aura/auraPubsubSubscriber"
+                    target="source"
+                    >View Source</a
+                ></p
+            >
         </div>
-
     </lightning:card>
-
 </aura:component>

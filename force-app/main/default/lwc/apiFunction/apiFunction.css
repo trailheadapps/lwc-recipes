@@ -8,7 +8,7 @@ c-clock {
 }
 
 c-clock:before {
-    content: "c-clock";
+    content: 'c-clock';
     color: #dddbda;
     position: absolute;
     top: -10px;
