@@ -13,6 +13,6 @@
     "sfdcLoginUrl": "https://login.salesforce.com",
     "packageAliases": {
         "LWCRecipes": "0HoB0000000GmiJKAS",
-        "LWCRecipes@1.0.0-3": "04tB0000000YGYOIA4"
+        "LWCRecipes@1.0.0-4": "04tB0000000KAfTIAW"
     }
 }
