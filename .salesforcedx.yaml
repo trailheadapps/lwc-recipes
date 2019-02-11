@@ -1,0 +1,9 @@
+scratch-org-def: config/project-scratch-def.json
+assign-permset: true
+permset-name: recipes
+run-apex-tests: true
+delete-scratch-org: false
+show-scratch-org-url: true
+data-plans:
+  - ./data/data-plan.json
+open-path: /lightning/n/Hello
