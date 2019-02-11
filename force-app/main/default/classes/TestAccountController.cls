@@ -17,7 +17,7 @@ public class TestAccountController {
 
     }
 
-    static testMethod void getAccountList() {
+    @isTest static void getAccountList() {
 
         TestAccountController.createAccounts(10);
 
@@ -30,7 +30,7 @@ public class TestAccountController {
     }
 
 
-    static testMethod void getSingleAccount() {
+    @isTest static void getSingleAccount() {
 
         TestAccountController.createAccounts(1);
 
