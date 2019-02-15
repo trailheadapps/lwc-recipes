@@ -50,10 +50,6 @@ describe('c-event-bubbling', () => {
                 expect(contactListItemEls.length).toBe(0);
             });
         });
-
-        //     return Promise.resolve().then(() => {
-
-        // });
     });
 
     describe('getContactList @wire error', () => {
