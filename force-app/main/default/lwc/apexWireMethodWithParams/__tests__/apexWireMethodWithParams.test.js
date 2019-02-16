@@ -1,6 +1,6 @@
 import { createElement } from 'lwc';
 import ApexWireMethodWithParams from 'c/apexWireMethodWithParams';
-import { registerLdsTestWireAdapter } from '@salesforce/wire-service-jest-util';
+import { registerApexTestWireAdapter } from '@salesforce/lwc-jest';
 import findContacts from '@salesforce/apex/ContactController.findContacts';
 
 // Realistic data with a list of contacts
@@ -9,8 +9,8 @@ const mockFindContacts = require('./data/findContacts.json');
 // when there is no data to display
 const mockFindContactsNoRecords = require('./data/findContactsNoRecords.json');
 
-// Register as an LDS wire adapter. Some tests verify that provisioned values trigger desired behavior.
-const findContactsAdapter = registerLdsTestWireAdapter(findContacts);
+// Register as an Apex wire adapter. Some tests verify that provisioned values trigger desired behavior.
+const findContactsAdapter = registerApexTestWireAdapter(findContacts);
 
 describe('c-apex-wire-method-with-params', () => {
     beforeAll(() => {

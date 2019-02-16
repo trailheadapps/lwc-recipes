@@ -1,6 +1,6 @@
 import { createElement } from 'lwc';
 import ApexStaticSchema from 'c/apexStaticSchema';
-import { registerLdsTestWireAdapter } from '@salesforce/wire-service-jest-util';
+import { registerApexTestWireAdapter } from '@salesforce/lwc-jest';
 import getSingleContact from '@salesforce/apex/ContactController.getSingleContact';
 
 // Realistic data with a single record
@@ -9,8 +9,8 @@ const mockGetSingleContact = require('./data/getSingleContact.json');
 // when there is no data to display
 const mockGetSingleContactNoRecord = require('./data/getSingleContactNoRecord.json');
 
-// Register as an LDS wire adapter. Some tests verify that provisioned values trigger desired behavior.
-const getSingleContactAdapter = registerLdsTestWireAdapter(getSingleContact);
+// Register as an Apex wire adapter. Some tests verify that provisioned values trigger desired behavior.
+const getSingleContactAdapter = registerApexTestWireAdapter(getSingleContact);
 
 describe('c-apex-static-schema', () => {
     afterEach(() => {
