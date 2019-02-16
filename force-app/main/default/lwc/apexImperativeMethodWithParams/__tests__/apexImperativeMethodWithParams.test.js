@@ -42,7 +42,7 @@ describe('c-apex-imperative-method-with-params', () => {
         return new Promise(resolve => setImmediate(resolve));
     }
 
-    it('lists two contacts based on user input', () => {
+    it('renders one contact', () => {
         findContacts.mockResolvedValue(APEX_CONTACTS_SUCCESS);
 
         // Create initial element
@@ -58,8 +58,6 @@ describe('c-apex-imperative-method-with-params', () => {
         // Select button for executing Apex call
         const buttonEl = element.shadowRoot.querySelector('lightning-button');
         buttonEl.dispatchEvent(new CustomEvent('click'));
-
-        jest.runAllTimers();
 
         return flushPromises().then(() => {
             // Select div for conditionally changed text content
