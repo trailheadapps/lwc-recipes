@@ -42,6 +42,30 @@ describe('c-apex-imperative-method-with-params', () => {
         return new Promise(resolve => setImmediate(resolve));
     }
 
+    it('passes the user input to the Apex method correctly', () => {
+        const USER_INPUT = 'Taylor';
+        const APEX_PARAMETERS = { searchKey: USER_INPUT };
+        findContacts.mockResolvedValue(APEX_CONTACTS_SUCCESS);
+
+        // Create initial element
+        const element = createElement('c-apex-imperative-method-with-params', {
+            is: ApexImperativeMethodWithParams
+        });
+        document.body.appendChild(element);
+
+        const inputEl = element.shadowRoot.querySelector('lightning-input');
+        inputEl.value = USER_INPUT;
+        inputEl.dispatchEvent(new CustomEvent('change'));
+
+        // Select button for executing Apex call
+        const buttonEl = element.shadowRoot.querySelector('lightning-button');
+        buttonEl.dispatchEvent(new CustomEvent('click'));
+
+        return flushPromises().then(() => {
+            expect(findContacts.mock.calls[0][0]).toEqual(APEX_PARAMETERS);
+        });
+    });
+
     it('renders one contact', () => {
         findContacts.mockResolvedValue(APEX_CONTACTS_SUCCESS);
 
