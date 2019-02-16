@@ -67,6 +67,8 @@ describe('c-apex-imperative-method-with-params', () => {
     });
 
     it('renders one contact', () => {
+        const USER_INPUT = 'Taylor';
+        const USER_RESULT = 'Amy Taylor';
         findContacts.mockResolvedValue(APEX_CONTACTS_SUCCESS);
 
         // Create initial element
@@ -76,7 +78,7 @@ describe('c-apex-imperative-method-with-params', () => {
         document.body.appendChild(element);
 
         const inputEl = element.shadowRoot.querySelector('lightning-input');
-        inputEl.value = 'Taylor';
+        inputEl.value = USER_INPUT;
         inputEl.dispatchEvent(new CustomEvent('change'));
 
         // Select button for executing Apex call
@@ -87,7 +89,7 @@ describe('c-apex-imperative-method-with-params', () => {
             // Select div for conditionally changed text content
             const detailEls = element.shadowRoot.querySelectorAll('p');
             expect(detailEls.length).toBe(1);
-            expect(detailEls[0].textContent).toBe('Amy Taylor');
+            expect(detailEls[0].textContent).toBe(USER_RESULT);
         });
     });
 

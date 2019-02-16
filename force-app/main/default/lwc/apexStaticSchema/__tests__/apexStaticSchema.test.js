@@ -24,6 +24,10 @@ describe('c-apex-static-schema', () => {
 
     describe('getSingleContact @wire data', () => {
         it('with single record', () => {
+            const USER_RESULT = 'Amy Taylor';
+            const TITLE_RESULT = 'VP of Engineering';
+            const EMAIL_RESULT = 'amy@demo.net';
+
             const element = createElement('c-apex-static-schema', {
                 is: ApexStaticSchema
             });
@@ -33,13 +37,13 @@ describe('c-apex-static-schema', () => {
             // Return a promise to wait for any asynchronous DOM updates.
             return Promise.resolve().then(() => {
                 const detailEls = element.shadowRoot.querySelectorAll('p');
-                expect(detailEls[0].textContent).toBe('Amy Taylor');
-                expect(detailEls[1].textContent).toBe('VP of Engineering');
+                expect(detailEls[0].textContent).toBe(USER_RESULT);
+                expect(detailEls[1].textContent).toBe(TITLE_RESULT);
 
                 const emailEl = element.shadowRoot.querySelector(
                     'lightning-formatted-email'
                 );
-                expect(emailEl.value).toBe('amy@demo.net');
+                expect(emailEl.value).toBe(EMAIL_RESULT);
             });
         });
 

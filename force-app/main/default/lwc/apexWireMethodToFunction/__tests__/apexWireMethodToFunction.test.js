@@ -24,6 +24,9 @@ describe('c-apex-wire-method-to-function', () => {
 
     describe('getContactList @wire data', () => {
         it('with two records', () => {
+            const USER1_RESULT = 'Amy Taylor';
+            const USER2_RESULT = 'Jeff Taylor';
+
             const element = createElement('c-apex-wire-method-to-function', {
                 is: ApexWireMethodToFunction
             });
@@ -32,8 +35,8 @@ describe('c-apex-wire-method-to-function', () => {
             return Promise.resolve().then(() => {
                 const detailEls = element.shadowRoot.querySelectorAll('p');
                 expect(detailEls.length).toBe(2);
-                expect(detailEls[0].textContent).toBe('Amy Taylor');
-                expect(detailEls[1].textContent).toBe('Jeff Taylor');
+                expect(detailEls[0].textContent).toBe(USER1_RESULT);
+                expect(detailEls[1].textContent).toBe(USER2_RESULT);
             });
         });
 

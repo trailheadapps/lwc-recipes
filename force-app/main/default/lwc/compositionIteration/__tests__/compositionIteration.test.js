@@ -31,7 +31,7 @@ describe('c-composition-iteration', () => {
         document.body.appendChild(element);
 
         // Select contact tiles for public property check
-        const contactListExpected = [
+        const CONTACT_LIST_EXPECTED = [
             'Amy Taylor',
             'Michael Jones',
             'Jennifer Wu'
@@ -39,6 +39,6 @@ describe('c-composition-iteration', () => {
         const contactTileNames = Array.from(
             element.shadowRoot.querySelectorAll('c-contact-tile')
         ).map(contactTile => contactTile.contact.Name);
-        expect(contactTileNames).toEqual(contactListExpected);
+        expect(contactTileNames).toEqual(CONTACT_LIST_EXPECTED);
     });
 });
