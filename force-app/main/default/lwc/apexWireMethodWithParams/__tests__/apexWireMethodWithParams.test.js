@@ -27,7 +27,29 @@ describe('c-apex-wire-method-with-params', () => {
     });
 
     describe('findContacts @wire data', () => {
-        it('with one record', () => {
+        it('gets called with data from user input', () => {
+            const USER_INPUT = 'Amy';
+            const WIRE_PARAMETER = { searchKey: USER_INPUT };
+
+            const element = createElement('c-apex-wire-method-with-params', {
+                is: ApexWireMethodWithParams
+            });
+            document.body.appendChild(element);
+
+            const inputEl = element.shadowRoot.querySelector('lightning-input');
+            inputEl.value = USER_INPUT;
+            inputEl.dispatchEvent(new CustomEvent('change'));
+
+            jest.runAllTimers();
+
+            return Promise.resolve().then(() => {
+                expect(findContactsAdapter.getLastConfig()).toEqual(
+                    WIRE_PARAMETER
+                );
+            });
+        });
+
+        it('renders data of one record', () => {
             const element = createElement('c-apex-wire-method-with-params', {
                 is: ApexWireMethodWithParams
             });
@@ -47,7 +69,7 @@ describe('c-apex-wire-method-with-params', () => {
             });
         });
 
-        it('with no record', () => {
+        it('renders with no record', () => {
             const element = createElement('c-apex-wire-method-with-params', {
                 is: ApexWireMethodWithParams
             });
