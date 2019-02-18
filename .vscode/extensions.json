@@ -1,0 +1,8 @@
+{
+    "recommendations": [
+        "salesforce.salesforcedx-vscode",
+        "redhat.vscode-xml",
+        "orta.vscode-jest",
+        "firsttris.vscode-jest-runner"
+    ]
+}

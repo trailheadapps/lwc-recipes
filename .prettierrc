@@ -8,7 +8,7 @@
             "options": { "parser": "lwc" }
         },
         {
-            "files": "*.cmp",
+            "files": "*.{cmp,page,component}",
             "options": { "parser": "html" }
         }
     ]
