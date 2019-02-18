@@ -23,10 +23,6 @@ const APEX_CONTACTS_ERROR = {
 };
 
 describe('c-apex-imperative-method-with-params', () => {
-    beforeAll(() => {
-        jest.useFakeTimers();
-    });
-
     afterEach(() => {
         // The jsdom instance is shared across test cases in a single file so reset the DOM
         while (document.body.firstChild) {
@@ -105,8 +101,6 @@ describe('c-apex-imperative-method-with-params', () => {
         // Select button for executing Apex call
         const buttonEl = element.shadowRoot.querySelector('lightning-button');
         buttonEl.dispatchEvent(new CustomEvent('click'));
-
-        jest.runAllTimers();
 
         // Return an immediate flushed promise (after the Apex call) to then
         // wait for any asynchronous DOM updates. Jest will automatically wait
