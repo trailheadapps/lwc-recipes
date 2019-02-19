@@ -2,10 +2,5 @@
 # More information: https://prettier.io/docs/en/ignore.html
 #
 
-**/aura/**/*.design
-**/aura/**/*.evt
-**/aura/**/*.svg
-**/aura/**/*.xml
-**/lwc/**/*.svg
-**/lwc/**/*.xml
+**/staticresources/**
 .sfdx
