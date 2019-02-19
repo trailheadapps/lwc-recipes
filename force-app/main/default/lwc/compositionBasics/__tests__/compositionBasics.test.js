@@ -24,6 +24,9 @@ describe('c-composition-basics', () => {
     });
 
     it('renders with contact tile properties set', () => {
+        const USER_RESULT = 'Amy Taylor';
+        const TITLE_RESULT = 'VP of Engineering';
+
         // Create initial element
         const element = createElement('c-composition-basics', {
             is: CompositionBasics
@@ -34,7 +37,7 @@ describe('c-composition-basics', () => {
         const contactTileEl = element.shadowRoot.querySelector(
             'c-contact-tile'
         );
-        expect(contactTileEl.contact.Name).toBe('Amy Taylor');
-        expect(contactTileEl.contact.Title).toBe('VP of Engineering');
+        expect(contactTileEl.contact.Name).toBe(USER_RESULT);
+        expect(contactTileEl.contact.Title).toBe(TITLE_RESULT);
     });
 });

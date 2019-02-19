@@ -1,5 +1,7 @@
 const { jestConfig } = require('@salesforce/lwc-jest/config');
 module.exports = {
     ...jestConfig,
-    // add any custom configurations here
+    moduleNameMapper: {
+        '^@salesforce/apex$': '<rootDir>/force-app/test/jest-mocks/apex'
+    }
 };
