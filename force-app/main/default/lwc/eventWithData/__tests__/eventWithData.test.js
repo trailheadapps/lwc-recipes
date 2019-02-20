@@ -1,6 +1,6 @@
 import { createElement } from 'lwc';
 import EventWithData from 'c/eventWithData';
-import { registerLdsTestWireAdapter } from '@salesforce/wire-service-jest-util';
+import { registerApexTestWireAdapter } from '@salesforce/lwc-jest';
 import getContactList from '@salesforce/apex/ContactController.getContactList';
 
 // Realistic data with a list of records
@@ -9,8 +9,8 @@ const mockGetContactList = require('./data/getContactList.json');
 // when there is no data to display
 const mockGetContactListNoRecords = require('./data/getContactListNoRecords.json');
 
-// Register as an LDS wire adapter. Some tests verify that provisioned values trigger desired behavior.
-const getContactListAdapter = registerLdsTestWireAdapter(getContactList);
+// Register as an Apex wire adapter. Some tests verify that provisioned values trigger desired behavior.
+const getContactListAdapter = registerApexTestWireAdapter(getContactList);
 
 describe('c-event-bubbling', () => {
     afterEach(() => {
