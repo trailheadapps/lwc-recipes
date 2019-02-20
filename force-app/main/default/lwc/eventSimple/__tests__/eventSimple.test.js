@@ -35,7 +35,7 @@ describe('c-event-simple', () => {
                 // Verify that property is correctly incremented.
                 expect(pageEl.textContent).toBe('Page 2');
 
-                // Now click "Previoius", so that the page property decrements to 1
+                // Now click "Previous", so that the page property decrements to 1
                 buttonEls.forEach(buttonEl => {
                     if (buttonEl.label === 'Previous') {
                         buttonEl.dispatchEvent(new CustomEvent('click'));

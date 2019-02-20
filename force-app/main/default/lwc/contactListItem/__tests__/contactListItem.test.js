@@ -16,7 +16,7 @@ describe('c-contact-list-item', () => {
             Picture__c: 'https://some.host/image.png'
         };
 
-        const element = createElement('c-apex-wire-method-to-function', {
+        const element = createElement('c-contact-list-item', {
             is: ContactListItem
         });
         element.contact = CONTACT;
