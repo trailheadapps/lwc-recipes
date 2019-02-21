@@ -25,7 +25,8 @@ describe('c-contact-list', () => {
     describe('getContactList @wire data', () => {
         it('with six records', () => {
             const USER_NAME_RESULT = 'Amy Taylor';
-            const USER_PIC_RESULT = 'Jeff Taylor';
+            const USER_PIC_RESULT =
+                'https://s3-us-west-1.amazonaws.com/sfdc-demo/people/amy_taylor.jpg';
             const USER_COUNT_RESULT = 6;
 
             const element = createElement('c-contact-list', {
@@ -38,7 +39,7 @@ describe('c-contact-list', () => {
                 expect(nameEls.length).toBe(USER_COUNT_RESULT);
                 expect(nameEls[0].textContent).toBe(USER_NAME_RESULT);
 
-                const picEl = element.shadowRoot.querySelectorAll('img');
+                const picEl = element.shadowRoot.querySelector('img');
                 expect(picEl.src).toBe(USER_PIC_RESULT);
             });
         });
