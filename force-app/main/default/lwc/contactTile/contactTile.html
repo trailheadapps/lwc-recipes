@@ -1,16 +1,21 @@
 <template>
-    <lightning-layout vertical-align="center">
-        <lightning-layout-item>
-            <img src={contact.Picture__c} alt="Profile photo" />
-        </lightning-layout-item>
-        <lightning-layout-item padding="around-small">
-            <p>{contact.Name}</p>
-            <p>{contact.Title}</p>
-            <p>
-                <lightning-formatted-phone
-                    value={contact.Phone}
-                ></lightning-formatted-phone>
-            </p>
-        </lightning-layout-item>
-    </lightning-layout>
+    <template if:true={contact}>
+        <lightning-layout vertical-align="center">
+            <lightning-layout-item>
+                <img src={contact.Picture__c} alt="Profile photo" />
+            </lightning-layout-item>
+            <lightning-layout-item padding="around-small">
+                <p>{contact.Name}</p>
+                <p>{contact.Title}</p>
+                <p>
+                    <lightning-formatted-phone
+                        value={contact.Phone}
+                    ></lightning-formatted-phone>
+                </p>
+            </lightning-layout-item>
+        </lightning-layout>
+    </template>
+    <template if:false={contact}
+        ><p>No contact data available.</p></template
+    >
 </template>
