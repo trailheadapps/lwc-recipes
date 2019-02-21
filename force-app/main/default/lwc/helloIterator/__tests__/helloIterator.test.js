@@ -10,7 +10,7 @@ describe('c-hello-iterator', () => {
     });
 
     it('displays contacts in specific order', () => {
-        const expected = [
+        const EXPECTED = [
             'Amy Taylor, VP of Engineering',
             'Michael Jones, VP of Sales',
             'Jennifer Wu, CEO'
@@ -26,7 +26,7 @@ describe('c-hello-iterator', () => {
         const contacts = Array.from(
             element.shadowRoot.querySelectorAll('li')
         ).map(li => li.textContent);
-        expect(contacts).toEqual(expected);
+        expect(contacts).toEqual(EXPECTED);
     });
 
     it('displays div in first and last contacts', () => {

@@ -39,6 +39,7 @@ describe('c-composition-contact-search', () => {
     }
 
     it('renders one contact tile based on user input', () => {
+        const USER_INPUT = 'Amy';
         findContacts.mockResolvedValue(APEX_CONTACTS_SUCCESS);
 
         // Create initial element
@@ -51,7 +52,7 @@ describe('c-composition-contact-search', () => {
         const inputFieldEl = element.shadowRoot.querySelector(
             'lightning-input'
         );
-        inputFieldEl.value = 'Amy';
+        inputFieldEl.value = USER_INPUT;
         inputFieldEl.dispatchEvent(new CustomEvent('change'));
 
         jest.runAllTimers();
@@ -70,6 +71,7 @@ describe('c-composition-contact-search', () => {
     });
 
     it('renders the error panel when the Apex method returns an error', () => {
+        const USER_INPUT = 'invalid';
         findContacts.mockRejectedValue(APEX_CONTACTS_ERROR);
 
         // Create initial element
@@ -82,7 +84,7 @@ describe('c-composition-contact-search', () => {
         const inputFieldEl = element.shadowRoot.querySelector(
             'lightning-input'
         );
-        inputFieldEl.value = 'invalid';
+        inputFieldEl.value = USER_INPUT;
         inputFieldEl.dispatchEvent(new CustomEvent('change'));
 
         jest.runAllTimers();
