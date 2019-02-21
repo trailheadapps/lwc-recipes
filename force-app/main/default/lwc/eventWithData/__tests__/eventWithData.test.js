@@ -69,7 +69,7 @@ describe('c-event-bubbling', () => {
     });
 
     it('shows selected contact data after event', () => {
-        const CONTACT_ID = 99;
+        const CONTACT_ID = '99';
 
         const element = createElement('c-event-with-data', {
             is: EventWithData
