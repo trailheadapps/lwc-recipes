@@ -17,8 +17,6 @@ describe('c-contact-tile', () => {
         while (document.body.firstChild) {
             document.body.removeChild(document.body.firstChild);
         }
-        // Prevent data saved on mocks from leaking between tests
-        jest.clearAllMocks();
     });
 
     it('renders picture, name, title, and phone number based on public property input', () => {

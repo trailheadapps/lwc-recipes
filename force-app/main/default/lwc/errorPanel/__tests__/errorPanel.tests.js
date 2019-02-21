@@ -7,8 +7,6 @@ describe('c-error-panel', () => {
         while (document.body.firstChild) {
             document.body.removeChild(document.body.firstChild);
         }
-        // Prevent data saved on mocks from leaking between tests
-        jest.clearAllMocks();
     });
 
     it('displays a default friendly message', () => {
