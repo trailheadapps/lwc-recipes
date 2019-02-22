@@ -2,7 +2,7 @@ import { createElement } from 'lwc';
 import ApexImperativeMethod from 'c/apexImperativeMethod';
 import getContactList from '@salesforce/apex/ContactController.getContactList';
 
-// Mocking impertive Apex method call
+// Mocking imperative Apex method call
 jest.mock(
     '@salesforce/apex/ContactController.getContactList',
     () => {
