@@ -28,7 +28,6 @@ describe('c-wire-current-page-reference', () => {
         const preEl = element.shadowRoot.querySelector('pre');
         expect(preEl).not.toBeNull();
 
-        // TODO Test doesn't work with standard test adapter nor with LDS test adapter.
         currentPageReferenceAdapter.emit(mockCurrentPageReference);
 
         return Promise.resolve().then(() => {

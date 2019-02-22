@@ -35,8 +35,6 @@ describe('c-wire-get-object-info', () => {
             );
             buttonEl.dispatchEvent(new CustomEvent('click'));
 
-            //getObjectInfoAdapter.emit(mockGetObjectInfo);
-
             return Promise.resolve(() => {
                 expect(getObjectInfoAdapter.getLastConfig()).toEqual({
                     objectApiName: USER_INPUT
