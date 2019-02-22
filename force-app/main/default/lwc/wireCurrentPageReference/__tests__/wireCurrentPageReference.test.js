@@ -5,7 +5,7 @@ import { registerTestWireAdapter } from '@salesforce/lwc-jest';
 
 const mockCurrentPageReference = require('./data/CurrentPageReference.json');
 
-// Register as an LDS wire adapter. Some tests verify the provisioned values trigger desired behavior.
+// Register as an standard test wire adapter. Some tests verify the provisioned values trigger desired behavior.
 const currentPageReferenceAdapter = registerTestWireAdapter(
     CurrentPageReference
 );
@@ -33,7 +33,7 @@ describe('c-wire-current-page-reference', () => {
 
         return Promise.resolve().then(() => {
             expect(preEl.textContent).toBe(
-                JSON.stringify(mockCurrentPageReference)
+                JSON.stringify(mockCurrentPageReference, null, 2)
             );
         });
     });
