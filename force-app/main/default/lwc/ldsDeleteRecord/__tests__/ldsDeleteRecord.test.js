@@ -27,6 +27,7 @@ describe('c-lds-delete-record', () => {
         it('renders two records with name and lightning-button-icon', () => {
             const ACCOUNT_NAME_RESULT = 'GenePoint';
             const ACCOUNT_ID_RESULT = '0011700000r5uciAAA';
+            const ACCOUNT_COUNT = 7;
 
             const element = createElement('c-lds-delete-record', {
                 is: LdsDeleteRecord
@@ -42,7 +43,7 @@ describe('c-lds-delete-record', () => {
                 const buttonEls = element.shadowRoot.querySelectorAll(
                     'lightning-button-icon'
                 );
-                expect(buttonEls.length).toBe(2);
+                expect(buttonEls.length).toBe(ACCOUNT_COUNT);
                 expect(buttonEls[0].dataset.recordid).toBe(ACCOUNT_ID_RESULT);
             });
         });

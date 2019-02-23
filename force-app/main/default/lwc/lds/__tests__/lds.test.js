@@ -6,9 +6,6 @@ import getSingleContact from '@salesforce/apex/ContactController.getSingleContac
 
 // Realistic data with a single record
 const mockGetSingleContact = require('./data/getSingleContact.json');
-// An empty list of records to verify the component does something reasonable
-// when there is no data to display
-const mockGetSingleContactNoRecord = require('./data/getSingleContactNoRecord.json');
 
 // Register as an Apex wire adapter. Some tests verify that provisioned values trigger desired behavior.
 const getSingleContactAdapter = registerApexTestWireAdapter(getSingleContact);
@@ -41,28 +38,12 @@ describe('c-lds', () => {
             });
         });
 
-        it('with no record', () => {
-            const element = createElement('c-lds', {
-                is: Lds
-            });
-            document.body.appendChild(element);
-            getSingleContactAdapter.emit(mockGetSingleContactNoRecord);
-
-            // Return a promise to wait for any asynchronous DOM updates.
-            return Promise.resolve().then(() => {
-                const buttonEl = element.shadowRoot.querySelector(
-                    'lightning-button'
-                );
-                expect(buttonEl).toBeNull();
-            });
-        });
-
         it('navigates to contact page when Take me there! button clicked', () => {
             const INPUT_ID = '0031700000pHcf8AAC';
             const INPUT_OBJECT = 'Contact';
             const INPUT_TYPE = 'standard__recordPage';
 
-            const element = createElement('c-product-list-item', {
+            const element = createElement('c-lds', {
                 is: Lds
             });
             document.body.appendChild(element);
