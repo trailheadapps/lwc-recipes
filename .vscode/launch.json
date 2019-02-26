@@ -16,7 +16,7 @@
             "type": "node",
             "name": "Debug Jest Tests",
             "request": "launch",
-            "args": ["--runInBand", "--silent"],
+            "args": ["--runInBand"],
             "cwd": "${workspaceFolder}",
             "console": "integratedTerminal",
             "internalConsoleOptions": "neverOpen",
