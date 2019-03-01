@@ -7,7 +7,7 @@ import getSingleContact from '@salesforce/apex/ContactController.getSingleContac
 // Realistic data with a single record
 const mockGetSingleContact = require('./data/getSingleContact.json');
 
-// Register as an Apex wire adapter. Some tests verify that provisioned values trigger desired behavior.
+// Register as Apex wire adapter. Some tests verify that provisioned values trigger desired behavior.
 const getSingleContactAdapter = registerApexTestWireAdapter(getSingleContact);
 
 describe('c-lds', () => {
@@ -22,15 +22,20 @@ describe('c-lds', () => {
 
     describe('getSingleContact @wire data', () => {
         it('render UI with record', () => {
+            // Create initial element
             const element = createElement('c-lds', {
                 is: Lds
             });
             document.body.appendChild(element);
 
+            // Emit data from @wire
             getSingleContactAdapter.emit(mockGetSingleContact);
 
-            // Return a promise to wait for any asynchronous DOM updates.
+            // Return a promise to wait for any asynchronous DOM updates. Jest
+            // will automatically wait for the Promise chain to complete before
+            // ending the test and fail the test if the promise rejects.
             return Promise.resolve().then(() => {
+                // Select elements for validation
                 const buttonEl = element.shadowRoot.querySelector(
                     'lightning-button'
                 );
@@ -42,14 +47,20 @@ describe('c-lds', () => {
             const INPUT_OBJECT = 'Contact';
             const INPUT_TYPE = 'standard__recordPage';
 
+            // Create initial element
             const element = createElement('c-lds', {
                 is: Lds
             });
             document.body.appendChild(element);
 
+            // Emit data from @wire
             getSingleContactAdapter.emit(mockGetSingleContact);
 
+            // Return a promise to wait for any asynchronous DOM updates. Jest
+            // will automatically wait for the Promise chain to complete before
+            // ending the test and fail the test if the promise rejects.
             return Promise.resolve().then(() => {
+                // Select button to simulate user interaction
                 const buttonEl = element.shadowRoot.querySelector(
                     'lightning-button'
                 );
@@ -71,11 +82,18 @@ describe('c-lds', () => {
 
     describe('getSingleContact @wire error', () => {
         it('shows error panel element', () => {
+            // Create initial element
             const element = createElement('c-lds', {
                 is: Lds
             });
             document.body.appendChild(element);
+
+            // Emit error from @wire
             getSingleContactAdapter.error();
+
+            // Return a promise to wait for any asynchronous DOM updates. Jest
+            // will automatically wait for the Promise chain to complete before
+            // ending the test and fail the test if the promise rejects.
             return Promise.resolve().then(() => {
                 const errorPanelEl = element.shadowRoot.querySelector(
                     'c-error-panel'

@@ -6,10 +6,10 @@ import getSingleContact from '@salesforce/apex/ContactController.getSingleContac
 // Realistic data with a single record
 const mockGetSingleContact = require('./data/getSingleContact.json');
 // An empty list of records to verify the component does something reasonable
-// when there is no data to display
+// when there is no data to display.
 const mockGetSingleContactNoRecord = require('./data/getSingleContactNoRecord.json');
 
-// Register as an Apex wire adapter. Some tests verify that provisioned values trigger desired behavior.
+// Register as Apex wire adapter. Some tests verify that provisioned values trigger desired behavior.
 const getSingleContactAdapter = registerApexTestWireAdapter(getSingleContact);
 
 describe('c-apex-static-schema', () => {
@@ -23,15 +23,21 @@ describe('c-apex-static-schema', () => {
     });
 
     describe('getSingleContact @wire data', () => {
-        it('with single record', () => {
+        it('renders single record', () => {
+            // Create initial element
             const element = createElement('c-apex-static-schema', {
                 is: ApexStaticSchema
             });
             document.body.appendChild(element);
+
+            // Emit data from @wire
             getSingleContactAdapter.emit(mockGetSingleContact);
 
-            // Return a promise to wait for any asynchronous DOM updates.
+            // Return a promise to wait for any asynchronous DOM updates. Jest
+            // will automatically wait for the Promise chain to complete before
+            // ending the test and fail the test if the promise rejects.
             return Promise.resolve().then(() => {
+                // Select elements for validation
                 const detailEls = element.shadowRoot.querySelectorAll('p');
                 expect(detailEls[0].textContent).toBe(
                     mockGetSingleContact.Name
@@ -47,15 +53,21 @@ describe('c-apex-static-schema', () => {
             });
         });
 
-        it('with no record', () => {
+        it('renders empty UI when no record data is available', () => {
+            // Create initial element
             const element = createElement('c-apex-static-schema', {
                 is: ApexStaticSchema
             });
             document.body.appendChild(element);
+
+            // Emit data from @wire
             getSingleContactAdapter.emit(mockGetSingleContactNoRecord);
 
-            // Return a promise to wait for any asynchronous DOM updates.
+            // Return a promise to wait for any asynchronous DOM updates. Jest
+            // will automatically wait for the Promise chain to complete before
+            // ending the test and fail the test if the promise rejects.
             return Promise.resolve().then(() => {
+                // Select elements for validation
                 const detailEls = element.shadowRoot.querySelectorAll('p');
                 expect(detailEls[0].textContent).toBe('');
                 expect(detailEls[1].textContent).toBe('');
@@ -70,11 +82,18 @@ describe('c-apex-static-schema', () => {
 
     describe('getSingleContact @wire error', () => {
         it('shows error panel element', () => {
+            // Create initial element
             const element = createElement('c-apex-static-schema', {
                 is: ApexStaticSchema
             });
             document.body.appendChild(element);
+
+            // Emit error from @wire
             getSingleContactAdapter.error();
+
+            // Return a promise to wait for any asynchronous DOM updates. Jest
+            // will automatically wait for the Promise chain to complete before
+            // ending the test and fail the test if the promise rejects.
             return Promise.resolve().then(() => {
                 const errorPanelEl = element.shadowRoot.querySelector(
                     'c-error-panel'

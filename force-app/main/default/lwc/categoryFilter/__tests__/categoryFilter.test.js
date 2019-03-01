@@ -10,14 +10,18 @@ describe('c-category-filter', () => {
     });
 
     it('sends checkbox labels on click as CustomEvent details', () => {
+        // Create initial element
         const element = createElement('c-category-filter', {
             is: CategoryFilter
         });
         document.body.appendChild(element);
 
+        // Mock handler for child event
         const handler = jest.fn();
+        // Add event listener to catch child event
         element.addEventListener('filterchange', handler);
 
+        // Select input fields for simulating user input
         element.shadowRoot
             .querySelectorAll('lightning-input')
             .forEach(checkbox => {
@@ -25,11 +29,15 @@ describe('c-category-filter', () => {
                 checkbox.dispatchEvent(new CustomEvent('change'));
             });
 
+        // Return a promise to wait for any asynchronous DOM updates. Jest
+        // will automatically wait for the Promise chain to complete before
+        // ending the test and fail the test if the promise rejects.
         return Promise.resolve().then(() => {
             const inputValues = Array.from(
                 element.shadowRoot.querySelectorAll('lightning-input')
             ).map(checkbox => checkbox.label);
 
+            // Validate filterchange event
             expect(handler.mock.calls.length).toBe(inputValues.length);
             expect(handler.mock.calls[1][0].detail).toEqual({
                 filters: inputValues

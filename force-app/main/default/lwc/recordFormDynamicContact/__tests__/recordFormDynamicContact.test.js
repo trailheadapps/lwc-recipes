@@ -24,12 +24,12 @@ describe('c-record-form-dynamic-contact', () => {
         const element = createElement('c-record-form-dynamic-contact', {
             is: RecordFormDynamicContact
         });
-
+        // Set public properties
         element.recordId = RECORD_ID_INPUT;
         element.objectApiName = OBJECT_API_NAME_INPUT;
-
         document.body.appendChild(element);
 
+        // Validate if correct parameters have been passed to base components
         const formEl = element.shadowRoot.querySelector(
             'lightning-record-form'
         );

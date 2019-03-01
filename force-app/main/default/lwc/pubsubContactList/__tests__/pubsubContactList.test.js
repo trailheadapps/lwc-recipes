@@ -14,7 +14,7 @@ const mockFindContacts = require('./data/findContacts.json');
 // when there is no data to display
 const mockFindContactsNoRecords = require('./data/findContactsNoRecords.json');
 
-// Register as an Apex wire adapter. Some tests verify that provisioned values trigger desired behavior.
+// Register as Apex wire adapter. Some tests verify that provisioned values trigger desired behavior.
 const findContactsAdapter = registerApexTestWireAdapter(findContacts);
 
 // Mock out the pubsub lib and use these mocks to verify how functions were called
@@ -39,14 +39,17 @@ describe('c-pubsub-contact-list', () => {
     });
 
     it('registers and unregisters the pubsub listener during the component lifecycle', () => {
+        // Create initial element
         const element = createElement('c-pubsub-contact-list', {
             is: PubsubContactList
         });
         document.body.appendChild(element);
 
+        // Validate if pubsub got registered after connected to the DOM
         expect(registerListener.mock.calls.length).toBe(1);
         expect(registerListener.mock.calls[0][0]).toEqual('searchKeyChange');
 
+        // Validate if pubsub got unregistered after disconnected from the DOM
         document.body.removeChild(element);
         expect(unregisterAllListeners.mock.calls.length).toBe(1);
     });
@@ -55,12 +58,17 @@ describe('c-pubsub-contact-list', () => {
         it('gets called initially with undefined searchkey parameter', () => {
             const WIRE_PARAMETER = { searchKey: undefined };
 
+            // Create initial element
             const element = createElement('c-pubsub-contact-list', {
                 is: PubsubContactList
             });
             document.body.appendChild(element);
 
+            // Return a promise to wait for any asynchronous DOM updates. Jest
+            // will automatically wait for the Promise chain to complete before
+            // ending the test and fail the test if the promise rejects.
             return Promise.resolve().then(() => {
+                // Validate parameters of wire adapter
                 expect(findContactsAdapter.getLastConfig()).toEqual(
                     WIRE_PARAMETER
                 );
@@ -68,13 +76,20 @@ describe('c-pubsub-contact-list', () => {
         });
 
         it('renders data of one record', () => {
+            // Create initial element
             const element = createElement('c-pubsub-contact-list', {
                 is: PubsubContactList
             });
             document.body.appendChild(element);
 
+            // Emit data from @wire
             findContactsAdapter.emit(mockFindContacts);
+
+            // Return a promise to wait for any asynchronous DOM updates. Jest
+            // will automatically wait for the Promise chain to complete before
+            // ending the test and fail the test if the promise rejects.
             return Promise.resolve().then(() => {
+                // Select elements for validation
                 const detailEls = element.shadowRoot.querySelectorAll(
                     'c-contact-list-item-bubbling'
                 );
@@ -83,13 +98,20 @@ describe('c-pubsub-contact-list', () => {
         });
 
         it('renders with no record', () => {
+            // Create initial element
             const element = createElement('c-pubsub-contact-list', {
                 is: PubsubContactList
             });
             document.body.appendChild(element);
 
+            // Emit data from @wire
             findContactsAdapter.emit(mockFindContactsNoRecords);
+
+            // Return a promise to wait for any asynchronous DOM updates. Jest
+            // will automatically wait for the Promise chain to complete before
+            // ending the test and fail the test if the promise rejects.
             return Promise.resolve().then(() => {
+                // Select elements for validation
                 const detailEls = element.shadowRoot.querySelectorAll(
                     'c-contact-list-item-bubbling'
                 );
@@ -109,16 +131,24 @@ describe('c-pubsub-contact-list', () => {
                 'https://s3-us-west-1.amazonaws.com/sfdc-demo/people/amy_taylor.jpg'
         };
 
+        // Create initial element
         const element = createElement('c-pubsub-contact-list', {
             is: PubsubContactList
         });
         document.body.appendChild(element);
 
+        // Emit data from @wire
         findContactsAdapter.emit(mockFindContacts);
+
+        // Return a promise to wait for any asynchronous DOM updates. Jest
+        // will automatically wait for the Promise chain to complete before
+        // ending the test and fail the test if the promise rejects.
         return Promise.resolve().then(() => {
             const detailEl = element.shadowRoot.querySelector(
                 'c-contact-list-item-bubbling'
             );
+            // Dispatch new event on child component to validate if it triggers
+            // a fireEvent call in the current component.
             detailEl.dispatchEvent(
                 new CustomEvent('contactselect', {
                     detail: CONTACT,

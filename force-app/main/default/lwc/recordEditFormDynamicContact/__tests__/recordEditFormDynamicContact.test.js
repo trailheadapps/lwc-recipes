@@ -17,18 +17,19 @@ describe('c-record-edit-form-dynamic-contact', () => {
         const element = createElement('c-record-edit-form-dynamic-contact', {
             is: RecordEditFormDynamicContact
         });
-
+        // Set public properties
         element.recordId = RECORD_ID_INPUT;
         element.objectApiName = OBJECT_API_NAME_INPUT;
-
         document.body.appendChild(element);
 
+        // Validate if correct parameters have been passed to base components
         const formEl = element.shadowRoot.querySelector(
             'lightning-record-edit-form'
         );
         expect(formEl.recordId).toBe(RECORD_ID_INPUT);
         expect(formEl.objectApiName).toBe(OBJECT_API_NAME_INPUT);
 
+        // Validate if submit button is defined
         const buttonEl = element.shadowRoot.querySelector('lightning-button');
         expect(buttonEl.type).toBe('submit');
         expect(buttonEl.label).toBe('Save');
@@ -43,12 +44,12 @@ describe('c-record-edit-form-dynamic-contact', () => {
         const element = createElement('c-record-edit-form-dynamic-contact', {
             is: RecordEditFormDynamicContact
         });
-
+        // Set public properties
         element.recordId = RECORD_ID_INPUT;
         element.objectApiName = OBJECT_API_NAME_INPUT;
-
         document.body.appendChild(element);
 
+        // Select elements for validation
         const outputFieldNames = Array.from(
             element.shadowRoot.querySelectorAll('lightning-input-field')
         ).map(outputField => outputField.fieldName);

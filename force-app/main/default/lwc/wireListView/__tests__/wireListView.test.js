@@ -3,6 +3,7 @@ import WireListView from 'c/wireListView';
 import { getListUi } from 'lightning/uiListApi';
 import { registerLdsTestWireAdapter } from '@salesforce/lwc-jest';
 
+// Mock realistic data
 const mockGetListUi = require('./data/getListUi.json');
 
 // Register as an LDS wire adapter. Some tests verify the provisioned values trigger desired behavior.
@@ -24,9 +25,14 @@ describe('c-wire-list-view', () => {
             });
             document.body.appendChild(element);
 
+            // Emit data from @wire
             getListUiAdapter.emit(mockGetListUi);
 
+            // Return a promise to wait for any asynchronous DOM updates. Jest
+            // will automatically wait for the Promise chain to complete before
+            // ending the test and fail the test if the promise rejects.
             return Promise.resolve().then(() => {
+                // Select elements for validation
                 const contactEls = element.shadowRoot.querySelectorAll('p');
                 expect(contactEls.length).toBe(mockGetListUi.records.count);
                 expect(contactEls[0].textContent).toBe(
@@ -38,11 +44,18 @@ describe('c-wire-list-view', () => {
 
     describe('getListUi @wire error', () => {
         it('shows error panel element', () => {
+            // Create initial element
             const element = createElement('c-wire-list-view', {
                 is: WireListView
             });
             document.body.appendChild(element);
+
+            // Emit error from @wire
             getListUiAdapter.error();
+
+            // Return a promise to wait for any asynchronous DOM updates. Jest
+            // will automatically wait for the Promise chain to complete before
+            // ending the test and fail the test if the promise rejects.
             return Promise.resolve().then(() => {
                 const errorPanelEl = element.shadowRoot.querySelector(
                     'c-error-panel'

@@ -3,6 +3,7 @@ import WireGetObjectInfo from 'c/wireGetObjectInfo';
 import { registerLdsTestWireAdapter } from '@salesforce/lwc-jest';
 import { getObjectInfo } from 'lightning/uiObjectInfoApi';
 
+// Mock realistic data
 const mockGetObjectInfo = require('./data/getObjectInfo.json');
 
 // Register as an LDS wire adapter. Some tests verify the provisioned values trigger desired behavior.
@@ -26,15 +27,20 @@ describe('c-wire-get-object-info', () => {
             });
             document.body.appendChild(element);
 
+            // Select input field for simulating user input
             const inputEl = element.shadowRoot.querySelector('lightning-input');
             inputEl.value = USER_INPUT;
             inputEl.dispatchEvent(new CustomEvent('change'));
 
+            // Select button for simulating user interaction
             const buttonEl = element.shadowRoot.querySelector(
                 'lightning-button'
             );
-            buttonEl.dispatchEvent(new CustomEvent('click'));
+            buttonEl.click();
 
+            // Return a promise to wait for any asynchronous DOM updates. Jest
+            // will automatically wait for the Promise chain to complete before
+            // ending the test and fail the test if the promise rejects.
             return Promise.resolve(() => {
                 expect(getObjectInfoAdapter.getLastConfig()).toEqual({
                     objectApiName: USER_INPUT
@@ -51,18 +57,26 @@ describe('c-wire-get-object-info', () => {
             });
             document.body.appendChild(element);
 
+            // Select input field for simulating user input
+
             const inputEl = element.shadowRoot.querySelector('lightning-input');
             inputEl.value = USER_INPUT;
             inputEl.dispatchEvent(new CustomEvent('change'));
 
+            // Select button for simulating user interaction
             const buttonEl = element.shadowRoot.querySelector(
                 'lightning-button'
             );
-            buttonEl.dispatchEvent(new CustomEvent('click'));
+            buttonEl.click();
 
+            // Emit data from @wire
             getObjectInfoAdapter.emit(mockGetObjectInfo);
 
+            // Return a promise to wait for any asynchronous DOM updates. Jest
+            // will automatically wait for the Promise chain to complete before
+            // ending the test and fail the test if the promise rejects.
             return Promise.resolve(() => {
+                // Select element for validation
                 const preEl = element.shadowRoot.querySelector('pre');
                 expect(preEl.textContent).toBe(JSON.stringify(USER_INPUT));
             });
@@ -71,13 +85,18 @@ describe('c-wire-get-object-info', () => {
 
     describe('getObjectInfo @wire error', () => {
         it('shows error panel element', () => {
+            // Create initial element
             const element = createElement('c-wire-get-object-info', {
                 is: WireGetObjectInfo
             });
             document.body.appendChild(element);
 
+            // Emit error from @wire
             getObjectInfoAdapter.error();
 
+            // Return a promise to wait for any asynchronous DOM updates. Jest
+            // will automatically wait for the Promise chain to complete before
+            // ending the test and fail the test if the promise rejects.
             return Promise.resolve().then(() => {
                 const errorPanelEl = element.shadowRoot.querySelector(
                     'c-error-panel'

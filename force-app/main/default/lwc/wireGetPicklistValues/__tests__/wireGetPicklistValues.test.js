@@ -3,6 +3,7 @@ import WireGetPicklistValues from 'c/wireGetPicklistValues';
 import { registerLdsTestWireAdapter } from '@salesforce/lwc-jest';
 import { getPicklistValues } from 'lightning/uiObjectInfoApi';
 
+// Mock realistic data
 const mockGetPicklistValues = require('./data/getPicklistValues.json');
 
 // Register as an LDS wire adapter. Some tests verify the provisioned values trigger desired behavior.
@@ -24,9 +25,14 @@ describe('c-wire-get-picklist-values', () => {
             });
             document.body.appendChild(element);
 
+            // Emit data from @wire
             getPicklistValuesAdapter.emit(mockGetPicklistValues);
 
+            // Return a promise to wait for any asynchronous DOM updates. Jest
+            // will automatically wait for the Promise chain to complete before
+            // ending the test and fail the test if the promise rejects.
             return Promise.resolve(() => {
+                // Select elements for validation
                 const checkboxEls = element.shadowRoot.querySelectorAll(
                     'lightning-input'
                 );
@@ -41,11 +47,18 @@ describe('c-wire-get-picklist-values', () => {
 
     describe('getObjectInfo @wire error', () => {
         it('shows error panel element', () => {
+            // Create initial element
             const element = createElement('c-wire-get-picklist-values', {
                 is: WireGetPicklistValues
             });
             document.body.appendChild(element);
+
+            // Emit error from @wire
             getPicklistValuesAdapter.error();
+
+            // Return a promise to wait for any asynchronous DOM updates. Jest
+            // will automatically wait for the Promise chain to complete before
+            // ending the test and fail the test if the promise rejects.
             return Promise.resolve().then(() => {
                 const errorPanelEl = element.shadowRoot.querySelector(
                     'c-error-panel'

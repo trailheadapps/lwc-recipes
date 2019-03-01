@@ -10,7 +10,7 @@ const mockGetAccountList = require('./data/getAccountList.json');
 // when there is no data to display
 const mockGetAccountListNoRecords = require('./data/getAccountListNoRecords.json');
 
-// Register as an Apex wire adapter. Some tests verify that provisioned values trigger desired behavior.
+// Register as Apex wire adapter. Some tests verify that provisioned values trigger desired behavior.
 const getAccountListAdapter = registerApexTestWireAdapter(getAccountList);
 
 describe('c-lds-delete-record', () => {
@@ -25,12 +25,20 @@ describe('c-lds-delete-record', () => {
 
     describe('getAccountList @wire data', () => {
         it('renders seven records with name and lightning-button-icon', () => {
+            // Create initial element
             const element = createElement('c-lds-delete-record', {
                 is: LdsDeleteRecord
             });
             document.body.appendChild(element);
+
+            // Emit data from @wire
             getAccountListAdapter.emit(mockGetAccountList);
+
+            // Return a promise to wait for any asynchronous DOM updates. Jest
+            // will automatically wait for the Promise chain to complete before
+            // ending the test and fail the test if the promise rejects.
             return Promise.resolve().then(() => {
+                // Select elements for validation
                 const nameEl = element.shadowRoot.querySelector(
                     'lightning-layout-item'
                 );
@@ -47,12 +55,20 @@ describe('c-lds-delete-record', () => {
         });
 
         it('renders no buttons when no record exists', () => {
+            // Create initial element
             const element = createElement('c-lds-delete-record', {
                 is: LdsDeleteRecord
             });
             document.body.appendChild(element);
+
+            // Emit data from @wire
             getAccountListAdapter.emit(mockGetAccountListNoRecords);
+
+            // Return a promise to wait for any asynchronous DOM updates. Jest
+            // will automatically wait for the Promise chain to complete before
+            // ending the test and fail the test if the promise rejects.
             return Promise.resolve().then(() => {
+                // Select elements for validation
                 const nameEl = element.shadowRoot.querySelector(
                     'lightning-button-icon'
                 );
@@ -70,11 +86,18 @@ describe('c-lds-delete-record', () => {
 
     describe('getAccountList @wire error', () => {
         it('shows error panel element', () => {
+            // Create initial element
             const element = createElement('c-apex-wire-method-to-function', {
                 is: LdsDeleteRecord
             });
             document.body.appendChild(element);
+
+            // Emit error from @wire
             getAccountListAdapter.error();
+
+            // Return a promise to wait for any asynchronous DOM updates. Jest
+            // will automatically wait for the Promise chain to complete before
+            // ending the test and fail the test if the promise rejects.
             return Promise.resolve().then(() => {
                 const errorPanelEl = element.shadowRoot.querySelector(
                     'c-error-panel'
@@ -85,22 +108,29 @@ describe('c-lds-delete-record', () => {
     });
 
     it('deletes the first entry of the account list on button click', () => {
+        // Create initial element
         const element = createElement('c-lds-delete-record', {
             is: LdsDeleteRecord
         });
         document.body.appendChild(element);
 
+        // Emit data from @wire
         getAccountListAdapter.emit(mockGetAccountList);
 
+        // Return a promise to wait for any asynchronous DOM updates. Jest
+        // will automatically wait for the Promise chain to complete before
+        // ending the test and fail the test if the promise rejects.
         // Return a promise to wait for any asynchronous DOM updates.
         return Promise.resolve()
             .then(() => {
+                // Select button for simulating user interaction
                 const buttonEl = element.shadowRoot.querySelector(
                     'lightning-button-icon'
                 );
                 buttonEl.click();
             })
             .then(() => {
+                // Validate if deleteRecord has been called
                 expect(deleteRecord).toHaveBeenCalled();
                 expect(deleteRecord.mock.calls[0][0]).toEqual(
                     mockGetAccountList[0].Id

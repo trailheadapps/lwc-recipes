@@ -20,12 +20,15 @@ describe('c-contact-list-item-bubbling', () => {
                 'https://s3-us-west-1.amazonaws.com/sfdc-demo/people/amy_taylor.jpg'
         };
 
+        // Create initial element
         const element = createElement('c-contact-list-item-bubbling', {
             is: ContactListItemBubbling
         });
+        // Set public property
         element.contact = CONTACT;
         document.body.appendChild(element);
 
+        // Select elements for validation
         const imgEl = element.shadowRoot.querySelector('img');
         expect(imgEl.src).toBe(CONTACT.Picture__c);
         const nameEl = element.shadowRoot.querySelector('p');

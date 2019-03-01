@@ -26,27 +26,30 @@ describe('c-misc-notification', () => {
         // Add event listener to catch toast event
         element.addEventListener(ShowToastEventName, handler);
 
+        // Select input field for simulating user input
         const inputTitleEl = element.shadowRoot.querySelector(
             'lightning-input[data-id="titleInput"]'
         );
         inputTitleEl.value = TOAST_TITLE;
         inputTitleEl.dispatchEvent(new CustomEvent('change'));
 
+        // Select input field for simulating user input
         const inputMessageEl = element.shadowRoot.querySelector(
             'lightning-input[data-id="messageInput"]'
         );
         inputMessageEl.value = TOAST_MESSAGE;
         inputMessageEl.dispatchEvent(new CustomEvent('change'));
 
+        // Select combobox for simulating user input
         const comboboxEl = element.shadowRoot.querySelector(
             'lightning-combobox'
         );
         comboboxEl.value = TOAST_VARIANT;
         comboboxEl.dispatchEvent(new CustomEvent('change'));
 
-        // Query lightning-button
+        // Select button for simulating user interaction
         const buttonEl = element.shadowRoot.querySelector('lightning-button');
-        buttonEl.dispatchEvent(new CustomEvent('click'));
+        buttonEl.click();
 
         // Return a promise to wait for any asynchronous DOM updates. Jest
         // will automatically wait for the Promise chain to complete before

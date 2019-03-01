@@ -24,12 +24,15 @@ describe('c-event-simple', () => {
         // First click "Next", so that the page property increments to 2
         buttonEls.forEach(buttonEl => {
             if (buttonEl.label === 'Next') {
-                buttonEl.dispatchEvent(new CustomEvent('click'));
+                buttonEl.click();
             }
         });
 
         const pageEl = element.shadowRoot.querySelector('p');
 
+        // Return a promise to wait for any asynchronous DOM updates. Jest
+        // will automatically wait for the Promise chain to complete before
+        // ending the test and fail the test if the promise rejects.
         return Promise.resolve()
             .then(() => {
                 // Verify that property is correctly incremented.
@@ -38,7 +41,7 @@ describe('c-event-simple', () => {
                 // Now click "Previous", so that the page property decrements to 1
                 buttonEls.forEach(buttonEl => {
                     if (buttonEl.label === 'Previous') {
-                        buttonEl.dispatchEvent(new CustomEvent('click'));
+                        buttonEl.click();
                     }
                 });
             })
@@ -49,7 +52,7 @@ describe('c-event-simple', () => {
                 // Decrement again
                 buttonEls.forEach(buttonEl => {
                     if (buttonEl.label === 'Previous') {
-                        buttonEl.dispatchEvent(new CustomEvent('click'));
+                        buttonEl.click();
                     }
                 });
             })

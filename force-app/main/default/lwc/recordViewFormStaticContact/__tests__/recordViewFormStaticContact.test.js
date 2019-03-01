@@ -17,12 +17,12 @@ describe('c-record-view-form-static-contact', () => {
         const element = createElement('c-record-view-form-static-contact', {
             is: RecordViewFormStaticContact
         });
-
+        // Set public properties
         element.recordId = RECORD_ID_INPUT;
         element.objectApiName = OBJECT_API_NAME_INPUT;
-
         document.body.appendChild(element);
 
+        // Validate if correct parameters have been passed to base components
         const formEl = element.shadowRoot.querySelector(
             'lightning-record-view-form'
         );
@@ -60,12 +60,12 @@ describe('c-record-view-form-static-contact', () => {
         const element = createElement('c-record-view-form-static-contact', {
             is: RecordViewFormStaticContact
         });
-
+        // Set public properties
         element.recordId = RECORD_ID_INPUT;
         element.objectApiName = OBJECT_API_NAME_INPUT;
-
         document.body.appendChild(element);
 
+        // Select elements for validation
         const outputFieldNames = Array.from(
             element.shadowRoot.querySelectorAll('lightning-output-field')
         ).map(outputField => outputField.fieldName);

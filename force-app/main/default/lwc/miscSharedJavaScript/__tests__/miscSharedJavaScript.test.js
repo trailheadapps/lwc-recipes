@@ -2,6 +2,7 @@ import { createElement } from 'lwc';
 import MiscSharedJavaScript from 'c/miscSharedJavaScript';
 import { calculateMonthlyPayment } from 'c/mortgage';
 
+// Mocking mortgage module
 jest.mock('c/mortgage', () => {
     return {
         getTermOptions: jest.fn(),
@@ -36,10 +37,9 @@ describe('c-misc-shared-java-script', () => {
         });
         document.body.appendChild(element);
 
-        const lightningButtonEl = element.shadowRoot.querySelector(
-            'lightning-button'
-        );
-        lightningButtonEl.dispatchEvent(new CustomEvent('click'));
+        // Select button for simulating user interaction
+        const buttonEl = element.shadowRoot.querySelector('lightning-button');
+        buttonEl.click();
 
         // Return a promise to wait for any asynchronous DOM updates. Jest
         // will automatically wait for the Promise chain to complete before
@@ -62,6 +62,7 @@ describe('c-misc-shared-java-script', () => {
         });
         document.body.appendChild(element);
 
+        // Select input fields for simulating user input
         const lightningInputEls = element.shadowRoot.querySelectorAll(
             'lightning-input'
         );
@@ -75,16 +76,16 @@ describe('c-misc-shared-java-script', () => {
             el.dispatchEvent(new CustomEvent('change'));
         });
 
+        // Select combobox for simulating user input
         const lightningComboboxEl = element.shadowRoot.querySelector(
             'lightning-combobox'
         );
         lightningComboboxEl.value = TERM_CUSTOM;
         lightningComboboxEl.dispatchEvent(new CustomEvent('change'));
 
-        const lightningButtonEl = element.shadowRoot.querySelector(
-            'lightning-button'
-        );
-        lightningButtonEl.dispatchEvent(new CustomEvent('click'));
+        // Select button for simulating user interaction
+        const buttonEl = element.shadowRoot.querySelector('lightning-button');
+        buttonEl.click();
 
         // Return a promise to wait for any asynchronous DOM updates. Jest
         // will automatically wait for the Promise chain to complete before
