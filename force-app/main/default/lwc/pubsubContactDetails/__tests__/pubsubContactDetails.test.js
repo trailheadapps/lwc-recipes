@@ -1,5 +1,6 @@
 import { createElement } from 'lwc';
 import PubsubContactDetails from 'c/pubsubContactDetails';
+import { ShowToastEventName } from 'lightning/platformShowToastEvent';
 import { registerListener, unregisterAllListeners } from 'c/pubsub';
 import { getRecord } from 'lightning/uiRecordApi';
 import {
@@ -121,10 +122,12 @@ describe('c-pubsub-contact-details', () => {
             document.body.appendChild(element);
 
             const handler = jest.fn();
-            element.addEventListener('lightning__showtoast', handler);
+            element.addEventListener(ShowToastEventName, handler);
+
             getRecordAdapter.error();
+
             return Promise.resolve().then(() => {
-                expect(handler.mock.calls.length).toBe(1);
+                expect(handler).toHaveBeenCalled();
             });
         });
     });
