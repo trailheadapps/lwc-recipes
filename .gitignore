@@ -30,5 +30,5 @@ ehthumbs.db
 [Dd]esktop.ini
 $RECYCLE.BIN/
 
-# VS Code settings
-.vscode/settings.json
+# VS Code project settings
+.vscode/
