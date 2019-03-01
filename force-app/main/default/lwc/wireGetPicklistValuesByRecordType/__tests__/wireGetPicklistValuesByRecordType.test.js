@@ -19,7 +19,7 @@ describe('c-wire-get-picklist-values-by-record-type', () => {
     });
 
     describe('getPicklistValuesByRecordType @wire data', () => {
-        it('renders seven lightning-input fields of type checkbox', () => {
+        it('renders a lightning-tree with eight entries', () => {
             // Create element
             const element = createElement(
                 'c-wire-get-picklist-values-by-record-type',
