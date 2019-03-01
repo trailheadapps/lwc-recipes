@@ -21,7 +21,7 @@ describe('c-lds', () => {
     });
 
     describe('getSingleContact @wire data', () => {
-        it('with record', () => {
+        it('render UI with record', () => {
             const element = createElement('c-lds', {
                 is: Lds
             });

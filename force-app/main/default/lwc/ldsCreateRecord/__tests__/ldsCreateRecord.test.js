@@ -70,7 +70,7 @@ describe('c-lds-create-record', () => {
         // Return a promise to wait for any asynchronous DOM updates.
         return flushPromises().then(() => {
             const displayEl = element.shadowRoot.querySelector(
-                'lightning-input:not([class="slds-m-bottom_x-small"])'
+                'lightning-input[data-id="accountId"]'
             );
             expect(displayEl.value).toBe(RESULT);
         });

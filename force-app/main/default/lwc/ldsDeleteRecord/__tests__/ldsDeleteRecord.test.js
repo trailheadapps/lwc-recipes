@@ -24,7 +24,7 @@ describe('c-lds-delete-record', () => {
     });
 
     describe('getAccountList @wire data', () => {
-        it('renders two records with name and lightning-button-icon', () => {
+        it('renders seven records with name and lightning-button-icon', () => {
             const ACCOUNT_NAME_RESULT = 'GenePoint';
             const ACCOUNT_ID_RESULT = '0011700000r5uciAAA';
             const ACCOUNT_COUNT = 7;
@@ -48,7 +48,7 @@ describe('c-lds-delete-record', () => {
             });
         });
 
-        it('with no record', () => {
+        it('renders no buttons when no record exists', () => {
             const element = createElement('c-lds-delete-record', {
                 is: LdsDeleteRecord
             });
