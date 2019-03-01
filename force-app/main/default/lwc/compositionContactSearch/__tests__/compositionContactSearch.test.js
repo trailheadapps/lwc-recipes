@@ -62,11 +62,11 @@ describe('c-composition-contact-search', () => {
         // for the Promise chain to complete before ending the test and fail
         // the test if the promise ends in the rejected state
         return flushPromises().then(() => {
-            const contactTile = element.shadowRoot.querySelector(
+            const contactTileEl = element.shadowRoot.querySelector(
                 'c-contact-tile'
             );
-            expect(contactTile).not.toBeNull();
-            expect(contactTile.contact.Name).toBe(
+            expect(contactTileEl).not.toBeNull();
+            expect(contactTileEl.contact.Name).toBe(
                 APEX_CONTACTS_SUCCESS[0].Name
             );
         });

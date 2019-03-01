@@ -23,9 +23,9 @@ describe('c-hello-binding', () => {
         expect(div.textContent).not.toBe(`Hello, ${EXPECTED}!`);
 
         // Trigger new greeting
-        const input = element.shadowRoot.querySelector('lightning-input');
-        input.value = EXPECTED;
-        input.dispatchEvent(new CustomEvent('change'));
+        const inputEl = element.shadowRoot.querySelector('lightning-input');
+        inputEl.value = EXPECTED;
+        inputEl.dispatchEvent(new CustomEvent('change'));
 
         // Return a promise to wait for any asynchronous DOM updates. Jest
         // will automatically wait for the Promise chain to complete before
