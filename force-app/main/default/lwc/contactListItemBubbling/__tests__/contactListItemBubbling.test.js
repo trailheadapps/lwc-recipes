@@ -23,8 +23,8 @@ describe('c-contact-list-item-bubbling', () => {
         document.body.appendChild(element);
 
         const imgEl = element.shadowRoot.querySelector('img');
-        expect(imgEl.src).toBe('https://some.host/image.png');
+        expect(imgEl.src).toBe(CONTACT.Picture__c);
         const nameEl = element.shadowRoot.querySelector('p');
-        expect(nameEl.textContent).toBe('Amy Taylor');
+        expect(nameEl.textContent).toBe(CONTACT.Name);
     });
 });

@@ -20,11 +20,6 @@ describe('c-contact-tile', () => {
     });
 
     it('renders picture, name, title, and phone number based on public property input', () => {
-        const CONTACT_PICTURE_RESULT = CONTACT_INPUT.Picture__c;
-        const CONTACT_NAME_RESULT = CONTACT_INPUT.Name;
-        const CONTACT_TITLE_RESULT = CONTACT_INPUT.Title;
-        const CONTACT_PHONE_RESULT = CONTACT_INPUT.Phone;
-
         const element = createElement('c-contact-tile', {
             is: ContactTile
         });
@@ -32,16 +27,16 @@ describe('c-contact-tile', () => {
         document.body.appendChild(element);
 
         const imgEl = element.shadowRoot.querySelector('img');
-        expect(imgEl.src).toBe(CONTACT_PICTURE_RESULT);
+        expect(imgEl.src).toBe(CONTACT_INPUT.Picture__c);
 
         const detailEls = element.shadowRoot.querySelectorAll('p');
-        expect(detailEls[0].textContent).toBe(CONTACT_NAME_RESULT);
-        expect(detailEls[1].textContent).toBe(CONTACT_TITLE_RESULT);
+        expect(detailEls[0].textContent).toBe(CONTACT_INPUT.Name);
+        expect(detailEls[1].textContent).toBe(CONTACT_INPUT.Title);
 
         const phoneEl = element.shadowRoot.querySelector(
             'lightning-formatted-phone'
         );
-        expect(phoneEl.value).toBe(CONTACT_PHONE_RESULT);
+        expect(phoneEl.value).toBe(CONTACT_INPUT.Phone);
     });
 
     it('renders an informational message if public property is not set', () => {

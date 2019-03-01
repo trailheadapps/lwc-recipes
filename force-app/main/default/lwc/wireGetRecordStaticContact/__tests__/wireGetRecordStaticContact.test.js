@@ -18,10 +18,6 @@ describe('c-wire-get-record-static-contact', () => {
 
     describe('getRecord @wire data', () => {
         it('renders contact details', () => {
-            const NAME_RESULT = 'Amy Taylor';
-            const PHONE_RESULT = '4152568563';
-            const EMAIL_RESULT = 'amy@demo.net';
-
             // Create element
             const element = createElement('c-wire-get-record-dynamic-contact', {
                 is: WireGetRecordStaticContact
@@ -32,17 +28,19 @@ describe('c-wire-get-record-static-contact', () => {
 
             return Promise.resolve(() => {
                 const nameEl = element.shadowRoot.querySelector('p');
-                expect(nameEl.textContent).toBe(NAME_RESULT);
+                expect(nameEl.textContent).toBe(
+                    mockGetRecord.result.fields.Name
+                );
 
                 const phoneEl = element.shadowRoot.querySelector(
                     'lightning-formatted-phone'
                 );
-                expect(phoneEl.value).toBe(PHONE_RESULT);
+                expect(phoneEl.value).toBe(mockGetRecord.result.fields.Phone);
 
                 const emailEl = element.shadowRoot.querySelector(
                     'lightning-formatted-email'
                 );
-                expect(emailEl.value).toBe(EMAIL_RESULT);
+                expect(emailEl.value).toBe(mockGetRecord.result.fields.Email);
             });
         });
     });

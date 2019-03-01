@@ -51,7 +51,6 @@ describe('c-lds-create-record', () => {
 
     it('displays an account id after record creation', () => {
         const USER_INPUT = 'Gomez Inc.';
-        const RESULT = '0011700000r6zdbAAA';
         createRecord.mockResolvedValue(mockCreateRecord);
 
         const element = createElement('c-lds-create-record', {
@@ -73,7 +72,7 @@ describe('c-lds-create-record', () => {
             const displayEl = element.shadowRoot.querySelector(
                 'lightning-input[data-id="accountId"]'
             );
-            expect(displayEl.value).toBe(RESULT);
+            expect(displayEl.value).toBe(mockCreateRecord.id);
         });
     });
 

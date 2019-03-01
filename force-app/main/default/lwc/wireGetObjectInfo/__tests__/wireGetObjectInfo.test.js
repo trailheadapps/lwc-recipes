@@ -18,7 +18,7 @@ describe('c-wire-get-object-info', () => {
 
     describe('getObjectInfo @wire data', () => {
         it('gets called with value from lightning-input field', () => {
-            const USER_INPUT = 'Opportunity';
+            const USER_INPUT = 'Account';
 
             // Create element
             const element = createElement('c-wire-get-object-info', {
@@ -43,7 +43,7 @@ describe('c-wire-get-object-info', () => {
         });
 
         it('renders the object info value in the pre tag', () => {
-            const USER_INPUT = 'Opportunity';
+            const USER_INPUT = 'Account';
 
             // Create element
             const element = createElement('c-wire-get-object-info', {

@@ -78,7 +78,7 @@ describe('c-pubsub-contact-list', () => {
                 const detailEls = element.shadowRoot.querySelectorAll(
                     'c-contact-list-item-bubbling'
                 );
-                expect(detailEls.length).toBe(1);
+                expect(detailEls.length).toBe(mockFindContacts.length);
             });
         });
 
@@ -93,7 +93,7 @@ describe('c-pubsub-contact-list', () => {
                 const detailEls = element.shadowRoot.querySelectorAll(
                     'c-contact-list-item-bubbling'
                 );
-                expect(detailEls.length).toBe(0);
+                expect(detailEls.length).toBe(mockFindContactsNoRecords.length);
             });
         });
     });

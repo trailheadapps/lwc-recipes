@@ -24,11 +24,6 @@ describe('c-contact-list', () => {
 
     describe('getContactList @wire data', () => {
         it('renders contact data of six records', () => {
-            const USER_NAME_RESULT = 'Amy Taylor';
-            const USER_PIC_RESULT =
-                'https://s3-us-west-1.amazonaws.com/sfdc-demo/people/amy_taylor.jpg';
-            const USER_COUNT_RESULT = 6;
-
             const element = createElement('c-contact-list', {
                 is: ContactList
             });
@@ -36,11 +31,11 @@ describe('c-contact-list', () => {
             getContactListAdapter.emit(mockGetContactList);
             return Promise.resolve().then(() => {
                 const nameEls = element.shadowRoot.querySelectorAll('p');
-                expect(nameEls.length).toBe(USER_COUNT_RESULT);
-                expect(nameEls[0].textContent).toBe(USER_NAME_RESULT);
+                expect(nameEls.length).toBe(mockGetContactList.length);
+                expect(nameEls[0].textContent).toBe(mockGetContactList[0].Name);
 
                 const picEl = element.shadowRoot.querySelector('img');
-                expect(picEl.src).toBe(USER_PIC_RESULT);
+                expect(picEl.src).toBe(mockGetContactList[0].Picture__c);
             });
         });
 
@@ -52,7 +47,7 @@ describe('c-contact-list', () => {
             getContactListAdapter.emit(mockGetContactListNoRecords);
             return Promise.resolve().then(() => {
                 const nameEls = element.shadowRoot.querySelectorAll('p');
-                expect(nameEls.length).toBe(0);
+                expect(nameEls.length).toBe(mockGetContactListNoRecords.length);
             });
         });
     });

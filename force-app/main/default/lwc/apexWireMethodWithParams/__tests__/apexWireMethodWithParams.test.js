@@ -66,8 +66,8 @@ describe('c-apex-wire-method-with-params', () => {
             findContactsAdapter.emit(mockFindContacts);
             return Promise.resolve().then(() => {
                 const detailEls = element.shadowRoot.querySelectorAll('p');
-                expect(detailEls.length).toBe(1);
-                expect(detailEls[0].textContent).toBe('Amy Taylor');
+                expect(detailEls.length).toBe(mockFindContacts.length);
+                expect(detailEls[0].textContent).toBe(mockFindContacts[0].Name);
             });
         });
 
@@ -88,7 +88,7 @@ describe('c-apex-wire-method-with-params', () => {
             findContactsAdapter.emit(mockFindContactsNoRecords);
             return Promise.resolve().then(() => {
                 const detailEls = element.shadowRoot.querySelectorAll('p');
-                expect(detailEls.length).toBe(0);
+                expect(detailEls.length).toBe(mockFindContactsNoRecords.length);
             });
         });
     });

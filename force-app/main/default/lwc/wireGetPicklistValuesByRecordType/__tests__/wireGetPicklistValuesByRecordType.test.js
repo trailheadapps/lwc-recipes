@@ -37,7 +37,9 @@ describe('c-wire-get-picklist-values-by-record-type', () => {
                 const treeEl = element.shadowRoot.querySelectorAll(
                     'lightning-tree'
                 );
-                expect(treeEl.items.length).toBe(8);
+                expect(treeEl.items.length).toBe(
+                    mockGetPicklistValuesByRecordType.length
+                );
             });
         });
     });

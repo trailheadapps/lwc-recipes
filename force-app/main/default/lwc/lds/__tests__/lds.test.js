@@ -39,7 +39,6 @@ describe('c-lds', () => {
         });
 
         it('navigates to contact page when Take me there! button clicked', () => {
-            const INPUT_ID = '0031700000pHcf8AAC';
             const INPUT_OBJECT = 'Contact';
             const INPUT_TYPE = 'standard__recordPage';
 
@@ -63,7 +62,9 @@ describe('c-lds', () => {
                 expect(pageReference.attributes.objectApiName).toBe(
                     INPUT_OBJECT
                 );
-                expect(pageReference.attributes.recordId).toBe(INPUT_ID);
+                expect(pageReference.attributes.recordId).toBe(
+                    mockGetSingleContact.Id
+                );
             });
         });
     });

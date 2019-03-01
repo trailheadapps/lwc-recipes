@@ -59,9 +59,13 @@ describe('c-apex-imperative-method', () => {
             const detailEls = element.shadowRoot.querySelectorAll(
                 'p:not([class])'
             );
-            expect(detailEls.length).toBe(2);
-            expect(detailEls[0].textContent).toBe('Amy Taylor');
-            expect(detailEls[1].textContent).toBe('Jeff Taylor');
+            expect(detailEls.length).toBe(APEX_CONTACTS_SUCCESS.length);
+            expect(detailEls[0].textContent).toBe(
+                APEX_CONTACTS_SUCCESS[0].Name
+            );
+            expect(detailEls[1].textContent).toBe(
+                APEX_CONTACTS_SUCCESS[1].Name
+            );
         });
     });
 

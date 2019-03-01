@@ -64,7 +64,6 @@ describe('c-apex-imperative-method-with-params', () => {
 
     it('renders one contact', () => {
         const USER_INPUT = 'Taylor';
-        const USER_RESULT = 'Amy Taylor';
         findContacts.mockResolvedValue(APEX_CONTACTS_SUCCESS);
 
         // Create initial element
@@ -85,7 +84,9 @@ describe('c-apex-imperative-method-with-params', () => {
             // Select div for conditionally changed text content
             const detailEls = element.shadowRoot.querySelectorAll('p');
             expect(detailEls.length).toBe(1);
-            expect(detailEls[0].textContent).toBe(USER_RESULT);
+            expect(detailEls[0].textContent).toBe(
+                APEX_CONTACTS_SUCCESS[0].Name
+            );
         });
     });
 

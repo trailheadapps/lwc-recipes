@@ -66,7 +66,9 @@ describe('c-composition-contact-search', () => {
                 'c-contact-tile'
             );
             expect(contactTile).not.toBeNull();
-            expect(contactTile.contact.Name).toBe('Amy Taylor');
+            expect(contactTile.contact.Name).toBe(
+                APEX_CONTACTS_SUCCESS[0].Name
+            );
         });
     });
 

@@ -32,7 +32,9 @@ describe('c-event-bubbling', () => {
                 const contactListItemEls = element.shadowRoot.querySelectorAll(
                     'c-contact-list-item'
                 );
-                expect(contactListItemEls.length).toBe(2);
+                expect(contactListItemEls.length).toBe(
+                    mockGetContactList.length
+                );
             });
         });
 
@@ -47,7 +49,9 @@ describe('c-event-bubbling', () => {
                 const contactListItemEls = element.shadowRoot.querySelectorAll(
                     'c-contact-list-item'
                 );
-                expect(contactListItemEls.length).toBe(0);
+                expect(contactListItemEls.length).toBe(
+                    mockGetContactListNoRecords.length
+                );
             });
         });
     });
@@ -69,8 +73,6 @@ describe('c-event-bubbling', () => {
     });
 
     it('shows selected contact data after event', () => {
-        const CONTACT_ID = '99';
-
         const element = createElement('c-event-with-data', {
             is: EventWithData
         });
@@ -84,13 +86,15 @@ describe('c-event-bubbling', () => {
                 expect(contactListItemEls.length).toBe(2);
                 contactListItemEls[0].dispatchEvent(
                     new CustomEvent('select', {
-                        detail: CONTACT_ID
+                        detail: mockGetContactList[0].Id
                     })
                 );
             })
             .then(() => {
                 const contactNameEl = element.shadowRoot.querySelector('p');
-                expect(contactNameEl.textContent).toBe('Amy Taylor');
+                expect(contactNameEl.textContent).toBe(
+                    mockGetContactList[0].Name
+                );
             });
     });
 });

@@ -10,14 +10,14 @@ jest.mock('c/mortgage', () => {
 });
 
 // Default values for mortgage calculation
-const principalDefault = 200000;
-const termDefault = 30;
-const rateDefault = 4;
+const PRINCIPAL_DEFAULT = 200000;
+const TERM_DEFAULT = 30;
+const RATE_DEFAULT = 4;
 
 // Custom values for mortgate calculation
-const principalCustom = 100000;
-const termCustom = 15;
-const rateCustom = 2;
+const PRINCIPAL_CUSTOM = 100000;
+const TERM_CUSTOM = 15;
+const RATE_CUSTOM = 2;
 
 describe('c-misc-shared-java-script', () => {
     afterEach(() => {
@@ -48,9 +48,9 @@ describe('c-misc-shared-java-script', () => {
         return Promise.resolve().then(() => {
             // Check if default values for principal, term, and rate are used for mortgage calculcation
             expect(calculateMonthlyPayment).toHaveBeenCalledWith(
-                principalDefault,
-                termDefault,
-                rateDefault
+                PRINCIPAL_DEFAULT,
+                TERM_DEFAULT,
+                RATE_DEFAULT
             );
         });
     });
@@ -68,9 +68,9 @@ describe('c-misc-shared-java-script', () => {
 
         lightningInputEls.forEach(el => {
             if (el.label === 'Rate') {
-                el.value = rateCustom;
+                el.value = RATE_CUSTOM;
             } else if (el.label === 'Principal') {
-                el.value = principalCustom;
+                el.value = PRINCIPAL_CUSTOM;
             }
             el.dispatchEvent(new CustomEvent('change'));
         });
@@ -78,7 +78,7 @@ describe('c-misc-shared-java-script', () => {
         const lightningComboboxEl = element.shadowRoot.querySelector(
             'lightning-combobox'
         );
-        lightningComboboxEl.value = termCustom;
+        lightningComboboxEl.value = TERM_CUSTOM;
         lightningComboboxEl.dispatchEvent(new CustomEvent('change'));
 
         const lightningButtonEl = element.shadowRoot.querySelector(
@@ -93,9 +93,9 @@ describe('c-misc-shared-java-script', () => {
         return Promise.resolve().then(() => {
             // Check if default values for principal, term, and rate are used for mortgage calculcation
             expect(calculateMonthlyPayment).toHaveBeenCalledWith(
-                principalCustom,
-                termCustom,
-                rateCustom
+                PRINCIPAL_CUSTOM,
+                TERM_CUSTOM,
+                RATE_CUSTOM
             );
         });
     });

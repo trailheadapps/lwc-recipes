@@ -18,8 +18,6 @@ describe('c-wire-list-view', () => {
 
     describe('getListUi @wire data', () => {
         it('renders contacts from listView', () => {
-            const CONTACT_RESULT = 'Amy Taylor';
-
             // Create element
             const element = createElement('c-wire-list-view', {
                 is: WireListView
@@ -30,8 +28,10 @@ describe('c-wire-list-view', () => {
 
             return Promise.resolve().then(() => {
                 const contactEls = element.shadowRoot.querySelectorAll('p');
-                expect(contactEls.length).toBe(6);
-                expect(contactEls[0].textContent).toBe(CONTACT_RESULT);
+                expect(contactEls.length).toBe(mockGetListUi.records.count);
+                expect(contactEls[0].textContent).toBe(
+                    mockGetListUi.records.records[0].fields.Name.value
+                );
             });
         });
     });

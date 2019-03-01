@@ -3,7 +3,7 @@ import ApiSetterGetter from 'c/apiSetterGetter';
 
 describe('c-api-setter-getter', () => {
     it('creates a new todo item', () => {
-        const todoDescription = 'Some ToDo';
+        const TODO_DESCRIPTION = 'Some ToDo';
 
         // Create initial element
         const element = createElement('c-api-setter-getter', {
@@ -22,7 +22,7 @@ describe('c-api-setter-getter', () => {
 
         lightningInputEls.forEach(el => {
             if (el.label === 'Description') {
-                el.value = todoDescription;
+                el.value = TODO_DESCRIPTION;
             } else if (el.label === 'Priority') {
                 el.checked = true;
             }
@@ -42,7 +42,7 @@ describe('c-api-setter-getter', () => {
             // Compare if tracked property has been assigned a new value.
             const todoListEl = element.shadowRoot.querySelector('c-todo-list');
             expect(todoListEl.todos.length).toBe(todoCountPrevious + 1);
-            expect(todoListEl.todos[2].description).toBe(todoDescription);
+            expect(todoListEl.todos[2].description).toBe(TODO_DESCRIPTION);
             expect(todoListEl.todos[2].priority).toBe(true);
         });
     });

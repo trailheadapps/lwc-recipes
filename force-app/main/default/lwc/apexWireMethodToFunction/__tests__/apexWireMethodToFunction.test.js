@@ -24,10 +24,6 @@ describe('c-apex-wire-method-to-function', () => {
 
     describe('getContactList @wire data', () => {
         it('with six records', () => {
-            const USER1_RESULT = 'Amy Taylor';
-            const USER2_RESULT = 'Michael Jones';
-            const USER_COUNT_RESULT = 6;
-
             const element = createElement('c-apex-wire-method-to-function', {
                 is: ApexWireMethodToFunction
             });
@@ -35,9 +31,10 @@ describe('c-apex-wire-method-to-function', () => {
             getContactListAdapter.emit(mockGetContactList);
             return Promise.resolve().then(() => {
                 const detailEls = element.shadowRoot.querySelectorAll('p');
-                expect(detailEls.length).toBe(USER_COUNT_RESULT);
-                expect(detailEls[0].textContent).toBe(USER1_RESULT);
-                expect(detailEls[1].textContent).toBe(USER2_RESULT);
+                expect(detailEls.length).toBe(mockGetContactList.length);
+                expect(detailEls[0].textContent).toBe(
+                    mockGetContactList[0].Name
+                );
             });
         });
 

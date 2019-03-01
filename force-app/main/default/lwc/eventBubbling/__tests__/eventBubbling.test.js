@@ -32,7 +32,9 @@ describe('c-event-bubbling', () => {
                 const contactListItemEls = element.shadowRoot.querySelectorAll(
                     'c-contact-list-item-bubbling'
                 );
-                expect(contactListItemEls.length).toBe(2);
+                expect(contactListItemEls.length).toBe(
+                    mockGetContactList.length
+                );
             });
         });
 
@@ -47,7 +49,9 @@ describe('c-event-bubbling', () => {
                 const contactListItemEls = element.shadowRoot.querySelectorAll(
                     'c-contact-list-item-bubbling'
                 );
-                expect(contactListItemEls.length).toBe(0);
+                expect(contactListItemEls.length).toBe(
+                    mockGetContactListNoRecords.length
+                );
             });
         });
     });
@@ -91,7 +95,7 @@ describe('c-event-bubbling', () => {
             })
             .then(() => {
                 const contactNameEl = element.shadowRoot.querySelector('p');
-                expect(contactNameEl.textContent).toBe('Amy Taylor');
+                expect(contactNameEl.textContent).toBe(CONTACT.Name);
             });
     });
 });

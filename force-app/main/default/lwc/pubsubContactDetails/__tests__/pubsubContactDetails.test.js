@@ -49,12 +49,6 @@ describe('c-pubsub-contact-details', () => {
 
     describe('getRecord @wire data', () => {
         it('renders contact details with picture', () => {
-            const NAME_RESULT = 'Amy Taylor';
-            const PHONE_RESULT = '4152568563';
-            const EMAIL_RESULT = 'amy@demo.net';
-            const PICTURE_RESULT =
-                'https://s3-us-west-1.amazonaws.com/sfdc-demo/people/amy_taylor.jpg';
-
             // Create element
             const element = createElement('c-pubsub-contact-details', {
                 is: PubsubContactDetails
@@ -65,28 +59,26 @@ describe('c-pubsub-contact-details', () => {
 
             return Promise.resolve(() => {
                 const imgEl = element.shadowRoot.querySelector('img');
-                expect(imgEl.src).toBe(PICTURE_RESULT);
+                expect(imgEl.src).toBe(mockGetRecord.result.fields.Picture__c);
 
                 const nameEl = element.shadowRoot.querySelector('p');
-                expect(nameEl.textContent).toBe(NAME_RESULT);
+                expect(nameEl.textContent).toBe(
+                    mockGetRecord.result.fields.Name
+                );
 
                 const phoneEl = element.shadowRoot.querySelector(
                     'lightning-formatted-phone'
                 );
-                expect(phoneEl.value).toBe(PHONE_RESULT);
+                expect(phoneEl.value).toBe(mockGetRecord.result.fields.Phone);
 
                 const emailEl = element.shadowRoot.querySelector(
                     'lightning-formatted-email'
                 );
-                expect(emailEl.value).toBe(EMAIL_RESULT);
+                expect(emailEl.value).toBe(mockGetRecord.result.fields.Email);
             });
         });
 
         it('renders contact details without picture', () => {
-            const NAME_RESULT = 'Amy Taylor';
-            const PHONE_RESULT = '4152568563';
-            const EMAIL_RESULT = 'amy@demo.net';
-
             // Create element
             const element = createElement('c-pubsub-contact-details', {
                 is: PubsubContactDetails
@@ -100,17 +92,23 @@ describe('c-pubsub-contact-details', () => {
                 expect(imgEl.src).toBeNull();
 
                 const nameEl = element.shadowRoot.querySelector('p');
-                expect(nameEl.textContent).toBe(NAME_RESULT);
+                expect(nameEl.textContent).toBe(
+                    mockGetRecordNoPicture.result.fields.Name
+                );
 
                 const phoneEl = element.shadowRoot.querySelector(
                     'lightning-formatted-phone'
                 );
-                expect(phoneEl.value).toBe(PHONE_RESULT);
+                expect(phoneEl.value).toBe(
+                    mockGetRecordNoPicture.result.fields.Phone
+                );
 
                 const emailEl = element.shadowRoot.querySelector(
                     'lightning-formatted-email'
                 );
-                expect(emailEl.value).toBe(EMAIL_RESULT);
+                expect(emailEl.value).toBe(
+                    mockGetRecordNoPicture.result.fields.Email
+                );
             });
         });
     });

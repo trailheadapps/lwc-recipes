@@ -10,7 +10,7 @@ describe('c-hello-binding', () => {
     });
 
     it('displays greeting specified by change event target', () => {
-        const expected = 'Test';
+        const EXPECTED = 'Test';
 
         // Create element
         const element = createElement('c-hello-binding', {
@@ -20,11 +20,11 @@ describe('c-hello-binding', () => {
 
         // Verify default greeting
         let div = element.shadowRoot.querySelector('div');
-        expect(div.textContent).not.toBe(`Hello, ${expected}!`);
+        expect(div.textContent).not.toBe(`Hello, ${EXPECTED}!`);
 
         // Trigger new greeting
         const input = element.shadowRoot.querySelector('lightning-input');
-        input.value = expected;
+        input.value = EXPECTED;
         input.dispatchEvent(new CustomEvent('change'));
 
         // Return a promise to wait for any asynchronous DOM updates. Jest
@@ -32,7 +32,7 @@ describe('c-hello-binding', () => {
         // ending the test and fail the test if the promise rejects.
         return Promise.resolve().then(() => {
             // Verify displayed greeting
-            expect(div.textContent).toBe(`Hello, ${expected}!`);
+            expect(div.textContent).toBe(`Hello, ${EXPECTED}!`);
         });
     });
 });
