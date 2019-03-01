@@ -99,7 +99,15 @@ describe('c-pubsub-contact-list', () => {
     });
 
     it('calls fireEvent based on an event from a child c-contact-list-item-bubbling component', () => {
-        const CONTACT = { Id: '99', Name: 'Amy Taylor' };
+        const CONTACT = {
+            Id: '0031700000pJRRSAA4',
+            Name: 'Amy Taylor',
+            Title: 'VP of Engineering',
+            Phone: '4152568563',
+            Email: 'amy@demo.net',
+            Picture__c:
+                'https://s3-us-west-1.amazonaws.com/sfdc-demo/people/amy_taylor.jpg'
+        };
 
         const element = createElement('c-pubsub-contact-list', {
             is: PubsubContactList

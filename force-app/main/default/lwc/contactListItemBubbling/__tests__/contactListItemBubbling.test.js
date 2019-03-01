@@ -11,9 +11,13 @@ describe('c-contact-list-item-bubbling', () => {
 
     it('shows contact name and image based on public property', () => {
         const CONTACT = {
-            Id: '99',
+            Id: '0031700000pJRRSAA4',
             Name: 'Amy Taylor',
-            Picture__c: 'https://some.host/image.png'
+            Title: 'VP of Engineering',
+            Phone: '4152568563',
+            Email: 'amy@demo.net',
+            Picture__c:
+                'https://s3-us-west-1.amazonaws.com/sfdc-demo/people/amy_taylor.jpg'
         };
 
         const element = createElement('c-contact-list-item-bubbling', {

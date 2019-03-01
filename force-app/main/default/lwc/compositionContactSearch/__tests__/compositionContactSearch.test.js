@@ -12,7 +12,17 @@ jest.mock(
     { virtual: true }
 );
 
-const APEX_CONTACTS_SUCCESS = [{ Id: '99', Name: 'Amy Taylor' }];
+const APEX_CONTACTS_SUCCESS = [
+    {
+        Id: '0031700000pJRRSAA4',
+        Name: 'Amy Taylor',
+        Title: 'VP of Engineering',
+        Phone: '4152568563',
+        Email: 'amy@demo.net',
+        Picture__c:
+            'https://s3-us-west-1.amazonaws.com/sfdc-demo/people/amy_taylor.jpg'
+    }
+];
 const APEX_CONTACTS_ERROR = {
     body: { message: 'An internal server error has occurred' },
     ok: false,

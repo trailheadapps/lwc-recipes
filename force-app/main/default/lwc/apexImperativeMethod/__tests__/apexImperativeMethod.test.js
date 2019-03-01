@@ -15,8 +15,24 @@ jest.mock(
 
 // Sample data for imperative Apex call
 const APEX_CONTACTS_SUCCESS = [
-    { Id: '99', Name: 'Amy Taylor' },
-    { Id: '22', Name: 'Jeff Taylor' }
+    {
+        Id: '0031700000pJRRSAA4',
+        Name: 'Amy Taylor',
+        Title: 'VP of Engineering',
+        Phone: '4152568563',
+        Email: 'amy@demo.net',
+        Picture__c:
+            'https://s3-us-west-1.amazonaws.com/sfdc-demo/people/amy_taylor.jpg'
+    },
+    {
+        Id: '0031700000pJRRTAA4',
+        Name: 'Michael Jones',
+        Title: 'VP of Sales',
+        Phone: '4158526633',
+        Email: 'michael@demo.net',
+        Picture__c:
+            'https://s3-us-west-1.amazonaws.com/sfdc-demo/people/michael_jones.jpg'
+    }
 ];
 const APEX_CONTACTS_ERROR = {
     body: { message: 'An internal server error has occurred' },
