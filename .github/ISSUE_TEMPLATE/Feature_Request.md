@@ -15,7 +15,7 @@ Salesforce Developer Forums
 https://developer.salesforce.com/forums
 
 Salesforce Stackexchange
-(https://salesforce.stackexchange.com/
+https://salesforce.stackexchange.com/
 -->
 
 **What is missing from the application? Please describe.**
