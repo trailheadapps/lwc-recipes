@@ -11,8 +11,8 @@
         "test:unit": "lwc-jest",
         "test:unit:watch": "lwc-jest --watch",
         "test:unit:debug": "lwc-jest --debug",
-        "prettier": "prettier --write **/lwc/** **/aura/**",
-        "prettier:verify": "prettier --list-different **/lwc/** **/aura/**",
+        "prettier": "prettier --write '**/*.{cmp,component,css,html,js,json,md,page,yaml,yml}'",
+        "prettier:verify": "prettier --list-different '**/*.{html,js,json,yaml,yml,md,cmp,page,component}'",
         "postinstall": "node bin/check-version.js"
     },
     "author": "salesforce.com",
@@ -40,13 +40,13 @@
         }
     },
     "lint-staged": {
-        "**/lwc/**": [
-            "prettier --write",
-            "eslint",
-            "git add"
+        "**/*.{html,js,json,yaml,yml,md,cmp,page,component}": [
+            "prettier --write"
         ],
-        "**/aura/**": [
-            "prettier --write",
+        "**/lwc/**": [
+            "eslint"
+        ],
+        "*": [
             "git add"
         ]
     }

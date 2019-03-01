@@ -3,16 +3,12 @@
         "sobject": "Account",
         "saveRefs": true,
         "resolveRefs": false,
-        "files": [
-            "Accounts.json"
-        ]
+        "files": ["Accounts.json"]
     },
     {
         "sobject": "Contact",
         "saveRefs": true,
         "resolveRefs": true,
-        "files": [
-            "Contacts.json"
-        ]
+        "files": ["Contacts.json"]
     }
 ]
