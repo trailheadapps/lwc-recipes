@@ -85,7 +85,9 @@ describe('c-event-bubbling', () => {
                 const contactListItemEls = element.shadowRoot.querySelectorAll(
                     'c-contact-list-item-bubbling'
                 );
-                expect(contactListItemEls.length).toBe(2);
+                expect(contactListItemEls.length).toBe(
+                    mockGetContactList.length
+                );
                 contactListItemEls[0].dispatchEvent(
                     new CustomEvent('contactselect', {
                         detail: CONTACT,

@@ -46,7 +46,9 @@ describe('c-apex-wire-method-to-property', () => {
             getContactListAdapter.emit(mockGetContactListNoRecords);
             return Promise.resolve().then(() => {
                 const detailEls = element.shadowRoot.querySelectorAll('p');
-                expect(detailEls.length).toBe(0);
+                expect(detailEls.length).toBe(
+                    mockGetContactListNoRecords.length
+                );
             });
         });
     });

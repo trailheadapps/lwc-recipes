@@ -30,7 +30,7 @@ describe('c-wire-get-picklist-values', () => {
                 const checkboxEls = element.shadowRoot.querySelectorAll(
                     'lightning-input'
                 );
-                expect(checkboxEls.length).toBe(7);
+                expect(checkboxEls.length).toBe(mockGetPicklistValues.length);
 
                 checkboxEls.array.forEach(checkboxEl => {
                     expect(checkboxEl.type).toBe('checkbox');

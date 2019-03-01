@@ -83,7 +83,7 @@ describe('c-apex-imperative-method-with-params', () => {
         return flushPromises().then(() => {
             // Select div for conditionally changed text content
             const detailEls = element.shadowRoot.querySelectorAll('p');
-            expect(detailEls.length).toBe(1);
+            expect(detailEls.length).toBe(APEX_CONTACTS_SUCCESS.length);
             expect(detailEls[0].textContent).toBe(
                 APEX_CONTACTS_SUCCESS[0].Name
             );
