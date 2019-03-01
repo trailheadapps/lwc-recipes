@@ -1,0 +1,555 @@
+{
+    "eTag": "9a393f7e36318c5df750cb1855a38ead",
+    "picklistFieldValues": {
+        "AccountSource": {
+            "controllerValues": {},
+            "defaultValue": null,
+            "eTag": "81beabc4c1cf0121c409b841cddca189",
+            "url": "/services/data/v45.0/ui-api/object-info/Account/picklist-values/012000000000000AAA/AccountSource",
+            "values": [
+                {
+                    "attributes": null,
+                    "label": "Web",
+                    "validFor": [],
+                    "value": "Web"
+                },
+                {
+                    "attributes": null,
+                    "label": "Phone Inquiry",
+                    "validFor": [],
+                    "value": "Phone Inquiry"
+                },
+                {
+                    "attributes": null,
+                    "label": "Partner Referral",
+                    "validFor": [],
+                    "value": "Partner Referral"
+                },
+                {
+                    "attributes": null,
+                    "label": "Purchased List",
+                    "validFor": [],
+                    "value": "Purchased List"
+                },
+                {
+                    "attributes": null,
+                    "label": "Other",
+                    "validFor": [],
+                    "value": "Other"
+                }
+            ]
+        },
+        "BillingGeocodeAccuracy": {
+            "controllerValues": {},
+            "defaultValue": null,
+            "eTag": "5524979a7ef34d06a8a68d7ec6870d26",
+            "url": "/services/data/v45.0/ui-api/object-info/Account/picklist-values/012000000000000AAA/BillingGeocodeAccuracy",
+            "values": [
+                {
+                    "attributes": null,
+                    "label": "Address",
+                    "validFor": [],
+                    "value": "Address"
+                },
+                {
+                    "attributes": null,
+                    "label": "NearAddress",
+                    "validFor": [],
+                    "value": "NearAddress"
+                },
+                {
+                    "attributes": null,
+                    "label": "Block",
+                    "validFor": [],
+                    "value": "Block"
+                },
+                {
+                    "attributes": null,
+                    "label": "Street",
+                    "validFor": [],
+                    "value": "Street"
+                },
+                {
+                    "attributes": null,
+                    "label": "ExtendedZip",
+                    "validFor": [],
+                    "value": "ExtendedZip"
+                },
+                {
+                    "attributes": null,
+                    "label": "Zip",
+                    "validFor": [],
+                    "value": "Zip"
+                },
+                {
+                    "attributes": null,
+                    "label": "Neighborhood",
+                    "validFor": [],
+                    "value": "Neighborhood"
+                },
+                {
+                    "attributes": null,
+                    "label": "City",
+                    "validFor": [],
+                    "value": "City"
+                },
+                {
+                    "attributes": null,
+                    "label": "County",
+                    "validFor": [],
+                    "value": "County"
+                },
+                {
+                    "attributes": null,
+                    "label": "State",
+                    "validFor": [],
+                    "value": "State"
+                },
+                {
+                    "attributes": null,
+                    "label": "Unknown",
+                    "validFor": [],
+                    "value": "Unknown"
+                }
+            ]
+        },
+        "CleanStatus": {
+            "controllerValues": {},
+            "defaultValue": null,
+            "eTag": "fe3c7fb90b2ae4fa3256c7703c895abd",
+            "url": "/services/data/v45.0/ui-api/object-info/Account/picklist-values/012000000000000AAA/CleanStatus",
+            "values": [
+                {
+                    "attributes": null,
+                    "label": "In Sync",
+                    "validFor": [],
+                    "value": "Matched"
+                },
+                {
+                    "attributes": null,
+                    "label": "Different",
+                    "validFor": [],
+                    "value": "Different"
+                },
+                {
+                    "attributes": null,
+                    "label": "Reviewed",
+                    "validFor": [],
+                    "value": "Acknowledged"
+                },
+                {
+                    "attributes": null,
+                    "label": "Not Found",
+                    "validFor": [],
+                    "value": "NotFound"
+                },
+                {
+                    "attributes": null,
+                    "label": "Inactive",
+                    "validFor": [],
+                    "value": "Inactive"
+                },
+                {
+                    "attributes": null,
+                    "label": "Not Compared",
+                    "validFor": [],
+                    "value": "Pending"
+                },
+                {
+                    "attributes": null,
+                    "label": "Select Match",
+                    "validFor": [],
+                    "value": "SelectMatch"
+                },
+                {
+                    "attributes": null,
+                    "label": "Skipped",
+                    "validFor": [],
+                    "value": "Skipped"
+                }
+            ]
+        },
+        "Industry": {
+            "controllerValues": {},
+            "defaultValue": null,
+            "eTag": "a9797cd9a28025aaef2c602752324f08",
+            "url": "/services/data/v45.0/ui-api/object-info/Account/picklist-values/012000000000000AAA/Industry",
+            "values": [
+                {
+                    "attributes": null,
+                    "label": "Agriculture",
+                    "validFor": [],
+                    "value": "Agriculture"
+                },
+                {
+                    "attributes": null,
+                    "label": "Apparel",
+                    "validFor": [],
+                    "value": "Apparel"
+                },
+                {
+                    "attributes": null,
+                    "label": "Banking",
+                    "validFor": [],
+                    "value": "Banking"
+                },
+                {
+                    "attributes": null,
+                    "label": "Biotechnology",
+                    "validFor": [],
+                    "value": "Biotechnology"
+                },
+                {
+                    "attributes": null,
+                    "label": "Chemicals",
+                    "validFor": [],
+                    "value": "Chemicals"
+                },
+                {
+                    "attributes": null,
+                    "label": "Communications",
+                    "validFor": [],
+                    "value": "Communications"
+                },
+                {
+                    "attributes": null,
+                    "label": "Construction",
+                    "validFor": [],
+                    "value": "Construction"
+                },
+                {
+                    "attributes": null,
+                    "label": "Consulting",
+                    "validFor": [],
+                    "value": "Consulting"
+                },
+                {
+                    "attributes": null,
+                    "label": "Education",
+                    "validFor": [],
+                    "value": "Education"
+                },
+                {
+                    "attributes": null,
+                    "label": "Electronics",
+                    "validFor": [],
+                    "value": "Electronics"
+                },
+                {
+                    "attributes": null,
+                    "label": "Energy",
+                    "validFor": [],
+                    "value": "Energy"
+                },
+                {
+                    "attributes": null,
+                    "label": "Engineering",
+                    "validFor": [],
+                    "value": "Engineering"
+                },
+                {
+                    "attributes": null,
+                    "label": "Entertainment",
+                    "validFor": [],
+                    "value": "Entertainment"
+                },
+                {
+                    "attributes": null,
+                    "label": "Environmental",
+                    "validFor": [],
+                    "value": "Environmental"
+                },
+                {
+                    "attributes": null,
+                    "label": "Finance",
+                    "validFor": [],
+                    "value": "Finance"
+                },
+                {
+                    "attributes": null,
+                    "label": "Food &amp; Beverage",
+                    "validFor": [],
+                    "value": "Food &amp; Beverage"
+                },
+                {
+                    "attributes": null,
+                    "label": "Government",
+                    "validFor": [],
+                    "value": "Government"
+                },
+                {
+                    "attributes": null,
+                    "label": "Healthcare",
+                    "validFor": [],
+                    "value": "Healthcare"
+                },
+                {
+                    "attributes": null,
+                    "label": "Hospitality",
+                    "validFor": [],
+                    "value": "Hospitality"
+                },
+                {
+                    "attributes": null,
+                    "label": "Insurance",
+                    "validFor": [],
+                    "value": "Insurance"
+                },
+                {
+                    "attributes": null,
+                    "label": "Machinery",
+                    "validFor": [],
+                    "value": "Machinery"
+                },
+                {
+                    "attributes": null,
+                    "label": "Manufacturing",
+                    "validFor": [],
+                    "value": "Manufacturing"
+                },
+                {
+                    "attributes": null,
+                    "label": "Media",
+                    "validFor": [],
+                    "value": "Media"
+                },
+                {
+                    "attributes": null,
+                    "label": "Not For Profit",
+                    "validFor": [],
+                    "value": "Not For Profit"
+                },
+                {
+                    "attributes": null,
+                    "label": "Recreation",
+                    "validFor": [],
+                    "value": "Recreation"
+                },
+                {
+                    "attributes": null,
+                    "label": "Retail",
+                    "validFor": [],
+                    "value": "Retail"
+                },
+                {
+                    "attributes": null,
+                    "label": "Shipping",
+                    "validFor": [],
+                    "value": "Shipping"
+                },
+                {
+                    "attributes": null,
+                    "label": "Technology",
+                    "validFor": [],
+                    "value": "Technology"
+                },
+                {
+                    "attributes": null,
+                    "label": "Telecommunications",
+                    "validFor": [],
+                    "value": "Telecommunications"
+                },
+                {
+                    "attributes": null,
+                    "label": "Transportation",
+                    "validFor": [],
+                    "value": "Transportation"
+                },
+                {
+                    "attributes": null,
+                    "label": "Utilities",
+                    "validFor": [],
+                    "value": "Utilities"
+                },
+                {
+                    "attributes": null,
+                    "label": "Other",
+                    "validFor": [],
+                    "value": "Other"
+                }
+            ]
+        },
+        "Ownership": {
+            "controllerValues": {},
+            "defaultValue": null,
+            "eTag": "a5de136591b6e31e19756cb52af1b066",
+            "url": "/services/data/v45.0/ui-api/object-info/Account/picklist-values/012000000000000AAA/Ownership",
+            "values": [
+                {
+                    "attributes": null,
+                    "label": "Public",
+                    "validFor": [],
+                    "value": "Public"
+                },
+                {
+                    "attributes": null,
+                    "label": "Private",
+                    "validFor": [],
+                    "value": "Private"
+                },
+                {
+                    "attributes": null,
+                    "label": "Subsidiary",
+                    "validFor": [],
+                    "value": "Subsidiary"
+                },
+                {
+                    "attributes": null,
+                    "label": "Other",
+                    "validFor": [],
+                    "value": "Other"
+                }
+            ]
+        },
+        "Rating": {
+            "controllerValues": {},
+            "defaultValue": null,
+            "eTag": "1c83377aa7b927ffc9706e279bd70ca7",
+            "url": "/services/data/v45.0/ui-api/object-info/Account/picklist-values/012000000000000AAA/Rating",
+            "values": [
+                {
+                    "attributes": null,
+                    "label": "Hot",
+                    "validFor": [],
+                    "value": "Hot"
+                },
+                {
+                    "attributes": null,
+                    "label": "Warm",
+                    "validFor": [],
+                    "value": "Warm"
+                },
+                {
+                    "attributes": null,
+                    "label": "Cold",
+                    "validFor": [],
+                    "value": "Cold"
+                }
+            ]
+        },
+        "ShippingGeocodeAccuracy": {
+            "controllerValues": {},
+            "defaultValue": null,
+            "eTag": "5524979a7ef34d06a8a68d7ec6870d26",
+            "url": "/services/data/v45.0/ui-api/object-info/Account/picklist-values/012000000000000AAA/ShippingGeocodeAccuracy",
+            "values": [
+                {
+                    "attributes": null,
+                    "label": "Address",
+                    "validFor": [],
+                    "value": "Address"
+                },
+                {
+                    "attributes": null,
+                    "label": "NearAddress",
+                    "validFor": [],
+                    "value": "NearAddress"
+                },
+                {
+                    "attributes": null,
+                    "label": "Block",
+                    "validFor": [],
+                    "value": "Block"
+                },
+                {
+                    "attributes": null,
+                    "label": "Street",
+                    "validFor": [],
+                    "value": "Street"
+                },
+                {
+                    "attributes": null,
+                    "label": "ExtendedZip",
+                    "validFor": [],
+                    "value": "ExtendedZip"
+                },
+                {
+                    "attributes": null,
+                    "label": "Zip",
+                    "validFor": [],
+                    "value": "Zip"
+                },
+                {
+                    "attributes": null,
+                    "label": "Neighborhood",
+                    "validFor": [],
+                    "value": "Neighborhood"
+                },
+                {
+                    "attributes": null,
+                    "label": "City",
+                    "validFor": [],
+                    "value": "City"
+                },
+                {
+                    "attributes": null,
+                    "label": "County",
+                    "validFor": [],
+                    "value": "County"
+                },
+                {
+                    "attributes": null,
+                    "label": "State",
+                    "validFor": [],
+                    "value": "State"
+                },
+                {
+                    "attributes": null,
+                    "label": "Unknown",
+                    "validFor": [],
+                    "value": "Unknown"
+                }
+            ]
+        },
+        "Type": {
+            "controllerValues": {},
+            "defaultValue": null,
+            "eTag": "8c7c1b7d2a22b6e10fe50bed9f0e9204",
+            "url": "/services/data/v45.0/ui-api/object-info/Account/picklist-values/012000000000000AAA/Type",
+            "values": [
+                {
+                    "attributes": null,
+                    "label": "Prospect",
+                    "validFor": [],
+                    "value": "Prospect"
+                },
+                {
+                    "attributes": null,
+                    "label": "Customer - Direct",
+                    "validFor": [],
+                    "value": "Customer - Direct"
+                },
+                {
+                    "attributes": null,
+                    "label": "Customer - Channel",
+                    "validFor": [],
+                    "value": "Customer - Channel"
+                },
+                {
+                    "attributes": null,
+                    "label": "Channel Partner / Reseller",
+                    "validFor": [],
+                    "value": "Channel Partner / Reseller"
+                },
+                {
+                    "attributes": null,
+                    "label": "Installation Partner",
+                    "validFor": [],
+                    "value": "Installation Partner"
+                },
+                {
+                    "attributes": null,
+                    "label": "Technology Partner",
+                    "validFor": [],
+                    "value": "Technology Partner"
+                },
+                {
+                    "attributes": null,
+                    "label": "Other",
+                    "validFor": [],
+                    "value": "Other"
+                }
+            ]
+        }
+    }
+}

@@ -1,0 +1,209 @@
+{
+    "apiName": "Account",
+    "childRelationships": {},
+    "eTag": "788e5cd46fe975f60520d461c563ab05",
+    "fields": {
+        "AccountNumber": {
+            "displayValue": null,
+            "value": null
+        },
+        "AnnualRevenue": {
+            "displayValue": null,
+            "value": null
+        },
+        "BillingCity": {
+            "displayValue": null,
+            "value": null
+        },
+        "BillingCountry": {
+            "displayValue": null,
+            "value": null
+        },
+        "BillingPostalCode": {
+            "displayValue": null,
+            "value": null
+        },
+        "BillingState": {
+            "displayValue": null,
+            "value": null
+        },
+        "BillingStreet": {
+            "displayValue": null,
+            "value": null
+        },
+        "CreatedBy": {
+            "displayValue": "User User",
+            "value": {
+                "apiName": "User",
+                "childRelationships": {},
+                "eTag": "b6a084d75f57d98908cd8cb6855bee06",
+                "fields": {
+                    "Id": {
+                        "displayValue": null,
+                        "value": "00517000002fESIAA2"
+                    },
+                    "Name": {
+                        "displayValue": null,
+                        "value": "User User"
+                    }
+                },
+                "id": "00517000002fESIAA2",
+                "lastModifiedById": "00517000002fESIAA2",
+                "lastModifiedDate": "2019-02-18T09:36:29.000Z",
+                "recordTypeInfo": null,
+                "systemModstamp": "2019-02-18T10:35:43.000Z"
+            }
+        },
+        "CreatedById": {
+            "displayValue": null,
+            "value": "00517000002fESIAA2"
+        },
+        "CreatedDate": {
+            "displayValue": "2/18/2019 9:18 PM",
+            "value": "2019-02-19T05:18:53.000Z"
+        },
+        "Description": {
+            "displayValue": null,
+            "value": null
+        },
+        "Fax": {
+            "displayValue": null,
+            "value": null
+        },
+        "Industry": {
+            "displayValue": null,
+            "value": null
+        },
+        "LastModifiedBy": {
+            "displayValue": "User User",
+            "value": {
+                "apiName": "User",
+                "childRelationships": {},
+                "eTag": "b6a084d75f57d98908cd8cb6855bee06",
+                "fields": {
+                    "Id": {
+                        "displayValue": null,
+                        "value": "00517000002fESIAA2"
+                    },
+                    "Name": {
+                        "displayValue": null,
+                        "value": "User User"
+                    }
+                },
+                "id": "00517000002fESIAA2",
+                "lastModifiedById": "00517000002fESIAA2",
+                "lastModifiedDate": "2019-02-18T09:36:29.000Z",
+                "recordTypeInfo": null,
+                "systemModstamp": "2019-02-18T10:35:43.000Z"
+            }
+        },
+        "LastModifiedById": {
+            "displayValue": null,
+            "value": "00517000002fESIAA2"
+        },
+        "LastModifiedDate": {
+            "displayValue": "2/18/2019 9:18 PM",
+            "value": "2019-02-19T05:18:53.000Z"
+        },
+        "Name": {
+            "displayValue": null,
+            "value": "Universal Containers"
+        },
+        "NumberOfEmployees": {
+            "displayValue": null,
+            "value": null
+        },
+        "Owner": {
+            "displayValue": "User User",
+            "value": {
+                "apiName": "User",
+                "childRelationships": {},
+                "eTag": "b6a084d75f57d98908cd8cb6855bee06",
+                "fields": {
+                    "Id": {
+                        "displayValue": null,
+                        "value": "00517000002fESIAA2"
+                    },
+                    "Name": {
+                        "displayValue": null,
+                        "value": "User User"
+                    }
+                },
+                "id": "00517000002fESIAA2",
+                "lastModifiedById": "00517000002fESIAA2",
+                "lastModifiedDate": "2019-02-18T09:36:29.000Z",
+                "recordTypeInfo": null,
+                "systemModstamp": "2019-02-18T10:35:43.000Z"
+            }
+        },
+        "OwnerId": {
+            "displayValue": null,
+            "value": "00517000002fESIAA2"
+        },
+        "Ownership": {
+            "displayValue": null,
+            "value": null
+        },
+        "Parent": {
+            "displayValue": null,
+            "value": null
+        },
+        "ParentId": {
+            "displayValue": null,
+            "value": null
+        },
+        "Phone": {
+            "displayValue": null,
+            "value": null
+        },
+        "Rating": {
+            "displayValue": null,
+            "value": null
+        },
+        "ShippingCity": {
+            "displayValue": null,
+            "value": null
+        },
+        "ShippingCountry": {
+            "displayValue": null,
+            "value": null
+        },
+        "ShippingPostalCode": {
+            "displayValue": null,
+            "value": null
+        },
+        "ShippingState": {
+            "displayValue": null,
+            "value": null
+        },
+        "ShippingStreet": {
+            "displayValue": null,
+            "value": null
+        },
+        "Sic": {
+            "displayValue": null,
+            "value": null
+        },
+        "Site": {
+            "displayValue": null,
+            "value": null
+        },
+        "TickerSymbol": {
+            "displayValue": null,
+            "value": null
+        },
+        "Type": {
+            "displayValue": null,
+            "value": null
+        },
+        "Website": {
+            "displayValue": null,
+            "value": null
+        }
+    },
+    "id": "0011700000r6zdbAAA",
+    "lastModifiedById": "00517000002fESIAA2",
+    "lastModifiedDate": "2019-02-19T05:18:53.000Z",
+    "recordTypeInfo": null,
+    "systemModstamp": "2019-02-19T05:18:53.000Z"
+}

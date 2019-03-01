@@ -1,5 +1,11 @@
 const { jestConfig } = require('@salesforce/lwc-jest/config');
 module.exports = {
-    ...jestConfig
-    // add any custom configurations here
+    ...jestConfig,
+    moduleNameMapper: {
+        '^@salesforce/apex$': '<rootDir>/force-app/test/jest-mocks/apex',
+        '^lightning/navigation$':
+            '<rootDir>/force-app/test/jest-mocks/lightning/navigation',
+        '^lightning/platformShowToastEvent$':
+            '<rootDir>/force-app/test/jest-mocks/lightning/platformShowToastEvent'
+    }
 };
