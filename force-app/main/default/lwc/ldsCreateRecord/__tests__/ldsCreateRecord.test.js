@@ -1,5 +1,6 @@
 import { createElement } from 'lwc';
 import LdsCreateRecord from 'c/ldsCreateRecord';
+import { ShowToastEventName } from 'lightning/platformShowToastEvent';
 import { createRecord } from 'lightning/uiRecordApi';
 
 // Realistic data after a create record call
@@ -88,7 +89,7 @@ describe('c-lds-create-record', () => {
         // Mock handler for toast event
         const handler = jest.fn();
         // Add event listener to catch toast event
-        element.addEventListener('lightning__showtoast', handler);
+        element.addEventListener(ShowToastEventName, handler);
 
         const inputEl = element.shadowRoot.querySelector(
             'lightning-input[class="slds-m-bottom_x-small"]'
@@ -103,12 +104,13 @@ describe('c-lds-create-record', () => {
         return Promise.resolve().then(() => {
             // Check if toast event has been fired
             expect(handler).toHaveBeenCalled();
+            expect(handler.mock.calls[0][0].detail.variant).toBe('success');
         });
     });
 
     it('displays an error toast on createRecord error', () => {
         const USER_INPUT = 'invalid';
-        createRecord.mockResolvedValue = { id: '111' };
+        createRecord.mockRejectedValue = { id: '111' };
 
         const element = createElement('c-lds-create-record', {
             is: LdsCreateRecord
@@ -118,7 +120,7 @@ describe('c-lds-create-record', () => {
         // Mock handler for toast event
         const handler = jest.fn();
         // Add event listener to catch toast event
-        element.addEventListener('lightning__showtoast', handler);
+        element.addEventListener(ShowToastEventName, handler);
 
         const inputEl = element.shadowRoot.querySelector(
             'lightning-input[class="slds-m-bottom_x-small"]'
@@ -133,6 +135,7 @@ describe('c-lds-create-record', () => {
         return Promise.resolve().then(() => {
             // Check if toast event has been fired
             expect(handler).toHaveBeenCalled();
+            expect(handler.mock.calls[0][0].detail.variant).toBe('success');
         });
     });
 });
