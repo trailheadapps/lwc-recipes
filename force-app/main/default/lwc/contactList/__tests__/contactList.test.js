@@ -23,7 +23,7 @@ describe('c-contact-list', () => {
     });
 
     describe('getContactList @wire data', () => {
-        it('with six records', () => {
+        it('renders contact data of six records', () => {
             const USER_NAME_RESULT = 'Amy Taylor';
             const USER_PIC_RESULT =
                 'https://s3-us-west-1.amazonaws.com/sfdc-demo/people/amy_taylor.jpg';
@@ -44,7 +44,7 @@ describe('c-contact-list', () => {
             });
         });
 
-        it('with no record', () => {
+        it('renders no contact details when no record is present', () => {
             const element = createElement('c-contact-list', {
                 is: ContactList
             });
