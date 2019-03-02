@@ -39,12 +39,12 @@ describe('c-record-form-static-contact', () => {
         const element = createElement('c-record-form-static-contact', {
             is: RecordFormStaticContact
         });
-
+        // Set public properties
         element.recordId = RECORD_ID_INPUT;
         element.objectApiName = OBJECT_API_NAME_INPUT;
-
         document.body.appendChild(element);
 
+        // Validate if correct parameters have been passed to base components
         const formEl = element.shadowRoot.querySelector(
             'lightning-record-form'
         );

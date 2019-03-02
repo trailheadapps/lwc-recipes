@@ -15,12 +15,15 @@ describe('c-view-source', () => {
         const LWC_PARAMETER = 'superLwc';
         const RESULT = BASE_URL + LWC_PARAMETER;
 
+        // Create initial element
         const element = createElement('c-contact-list', {
             is: ViewSource
         });
+        // Set public properties
         element.source = LWC_PARAMETER;
         document.body.appendChild(element);
 
+        // Select element for validation
         const linkEl = element.shadowRoot.querySelector('a');
         expect(linkEl.href).toBe(RESULT);
     });

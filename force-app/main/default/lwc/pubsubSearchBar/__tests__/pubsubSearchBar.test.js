@@ -26,15 +26,18 @@ describe('c-pubsub-search-bar', () => {
     it('fires a pubsub event on field value change', () => {
         const USER_INPUT = 'Some input';
 
+        // Create initial element
         const element = createElement('c-pubsub-search-bar', {
             is: PubsubSearchBar
         });
         document.body.appendChild(element);
 
+        // Select input field for simulating user input
         const inputEl = element.shadowRoot.querySelector('lightning-input');
         inputEl.value = USER_INPUT;
         inputEl.dispatchEvent(new CustomEvent('change'));
 
+        // Validate if fireEvent got fired after input value has changed
         expect(fireEvent).toHaveBeenCalledWith(
             undefined,
             'searchKeyChange',

@@ -33,7 +33,7 @@ describe('c-todo-list', () => {
         const element = createElement('c-todo-list', {
             is: TodoList
         });
-        // Set initial todo items
+        // Set public properties
         element.todos = TODOS;
         document.body.appendChild(element);
 
@@ -47,13 +47,13 @@ describe('c-todo-list', () => {
         const element = createElement('c-todo-list', {
             is: TodoList
         });
+        // Set public properties
         element.todos = TODOS;
         document.body.appendChild(element);
 
         // Return a promise to wait for any asynchronous DOM updates. Jest
         // will automatically wait for the Promise chain to complete before
-        // ending the test and fail the test if the promise ends in the
-        // rejected state
+        // ending the test and fail the test if the promise rejects.
         return Promise.resolve().then(() => {
             // Validate rendered output for first todo object
             let outputEls = element.shadowRoot.querySelectorAll('p');

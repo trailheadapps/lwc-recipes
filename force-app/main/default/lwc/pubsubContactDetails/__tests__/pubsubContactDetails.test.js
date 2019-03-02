@@ -36,14 +36,17 @@ describe('c-pubsub-contact-details', () => {
     });
 
     it('registers and unregisters the pubsub listener during the component lifecycle', () => {
+        // Create initial element
         const element = createElement('c-pubsub-contact-details', {
             is: PubsubContactDetails
         });
         document.body.appendChild(element);
 
+        // Validate if pubsub got registered after connected to the DOM
         expect(registerListener.mock.calls.length).toBe(1);
         expect(registerListener.mock.calls[0][0]).toBe('contactSelected');
 
+        // Validate if pubsub got unregistered after disconnected from the DOM
         document.body.removeChild(element);
         expect(unregisterAllListeners.mock.calls.length).toBe(1);
     });
@@ -56,9 +59,14 @@ describe('c-pubsub-contact-details', () => {
             });
             document.body.appendChild(element);
 
+            // Emit data from @wire
             getRecordAdapter.emit(mockGetRecord);
 
+            // Return a promise to wait for any asynchronous DOM updates. Jest
+            // will automatically wait for the Promise chain to complete before
+            // ending the test and fail the test if the promise rejects.
             return Promise.resolve(() => {
+                // Select elements for validation
                 const imgEl = element.shadowRoot.querySelector('img');
                 expect(imgEl.src).toBe(mockGetRecord.result.fields.Picture__c);
 
@@ -86,9 +94,14 @@ describe('c-pubsub-contact-details', () => {
             });
             document.body.appendChild(element);
 
+            // Emit data from @wire
             getRecordAdapter.emit(mockGetRecordNoPicture);
 
+            // Return a promise to wait for any asynchronous DOM updates. Jest
+            // will automatically wait for the Promise chain to complete before
+            // ending the test and fail the test if the promise rejects.
             return Promise.resolve(() => {
+                // Select elements for validation
                 const imgEl = element.shadowRoot.querySelector('img');
                 expect(imgEl.src).toBeNull();
 
@@ -116,16 +129,23 @@ describe('c-pubsub-contact-details', () => {
 
     describe('getRecord @wire error', () => {
         it('displays a toast message', () => {
+            // Create initial element
             const element = createElement('c-pubsub-contact-details', {
                 is: PubsubContactDetails
             });
             document.body.appendChild(element);
 
+            // Mock handler for toast event
             const handler = jest.fn();
+            // Add event listener to catch toast event
             element.addEventListener(ShowToastEventName, handler);
 
+            // Emit error from @wire
             getRecordAdapter.error();
 
+            // Return a promise to wait for any asynchronous DOM updates. Jest
+            // will automatically wait for the Promise chain to complete before
+            // ending the test and fail the test if the promise rejects.
             return Promise.resolve().then(() => {
                 expect(handler).toHaveBeenCalled();
             });

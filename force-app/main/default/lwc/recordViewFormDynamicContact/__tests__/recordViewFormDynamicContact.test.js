@@ -17,12 +17,12 @@ describe('c-record-view-form-dynamic-contact', () => {
         const element = createElement('c-record-view-form-dynamic-contact', {
             is: RecordViewFormDynamicContact
         });
-
+        // Set public properties
         element.recordId = RECORD_ID_INPUT;
         element.objectApiName = OBJECT_API_NAME_INPUT;
-
         document.body.appendChild(element);
 
+        // Validate if correct parameters have been passed to base components
         const formEl = element.shadowRoot.querySelector(
             'lightning-record-view-form'
         );
@@ -39,10 +39,9 @@ describe('c-record-view-form-dynamic-contact', () => {
         const element = createElement('c-record-view-form-dynamic-contact', {
             is: RecordViewFormDynamicContact
         });
-
+        // Set public properties
         element.recordId = RECORD_ID_INPUT;
         element.objectApiName = OBJECT_API_NAME_INPUT;
-
         document.body.appendChild(element);
 
         const outputFieldNames = Array.from(

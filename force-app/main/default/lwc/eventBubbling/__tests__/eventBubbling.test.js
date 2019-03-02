@@ -5,11 +5,12 @@ import getContactList from '@salesforce/apex/ContactController.getContactList';
 
 // Realistic data with a list of records
 const mockGetContactList = require('./data/getContactList.json');
+
 // An empty list of records to verify the component does something reasonable
 // when there is no data to display
 const mockGetContactListNoRecords = require('./data/getContactListNoRecords.json');
 
-// Register as an Apex wire adapter. Some tests verify that provisioned values trigger desired behavior.
+// Register as Apex wire adapter. Some tests verify that provisioned values trigger desired behavior.
 const getContactListAdapter = registerApexTestWireAdapter(getContactList);
 
 describe('c-event-bubbling', () => {
@@ -27,8 +28,15 @@ describe('c-event-bubbling', () => {
                 is: EventBubbling
             });
             document.body.appendChild(element);
+
+            // Emit data from @wire
             getContactListAdapter.emit(mockGetContactList);
+
+            // Return a promise to wait for any asynchronous DOM updates. Jest
+            // will automatically wait for the Promise chain to complete before
+            // ending the test and fail the test if the promise rejects.
             return Promise.resolve().then(() => {
+                // Select elements for validation
                 const contactListItemEls = element.shadowRoot.querySelectorAll(
                     'c-contact-list-item-bubbling'
                 );
@@ -44,8 +52,15 @@ describe('c-event-bubbling', () => {
                 is: EventBubbling
             });
             document.body.appendChild(element);
+
+            // Emit data from @wire
             getContactListAdapter.emit(mockGetContactListNoRecords);
+
+            // Return a promise to wait for any asynchronous DOM updates. Jest
+            // will automatically wait for the Promise chain to complete before
+            // ending the test and fail the test if the promise rejects.
             return Promise.resolve().then(() => {
+                // Select elements for validation
                 const contactListItemEls = element.shadowRoot.querySelectorAll(
                     'c-contact-list-item-bubbling'
                 );
@@ -58,11 +73,18 @@ describe('c-event-bubbling', () => {
 
     describe('getContactList @wire error', () => {
         it('shows error panel element', () => {
-            const element = createElement('c-apex-wire-method-to-function', {
+            // Create initial element
+            const element = createElement('c-event-bubbling', {
                 is: EventBubbling
             });
             document.body.appendChild(element);
+
+            // Emit error from @wire
             getContactListAdapter.error();
+
+            // Return a promise to wait for any asynchronous DOM updates. Jest
+            // will automatically wait for the Promise chain to complete before
+            // ending the test and fail the test if the promise rejects.
             return Promise.resolve().then(() => {
                 const errorPanelEl = element.shadowRoot.querySelector(
                     'c-error-panel'
@@ -83,19 +105,26 @@ describe('c-event-bubbling', () => {
                 'https://s3-us-west-1.amazonaws.com/sfdc-demo/people/amy_taylor.jpg'
         };
 
-        const element = createElement('c-apex-wire-method-to-function', {
+        // Create initial element
+        const element = createElement('c-event-bubbling', {
             is: EventBubbling
         });
         document.body.appendChild(element);
+
+        // Emit data from @wire
         getContactListAdapter.emit(mockGetContactList);
+
         return Promise.resolve()
             .then(() => {
+                // Select element for validation
                 const contactListItemEls = element.shadowRoot.querySelectorAll(
                     'c-contact-list-item-bubbling'
                 );
                 expect(contactListItemEls.length).toBe(
                     mockGetContactList.length
                 );
+                // Dispatch event from child element to validate
+                // behavior in current component.
                 contactListItemEls[0].dispatchEvent(
                     new CustomEvent('contactselect', {
                         detail: CONTACT,
@@ -104,6 +133,7 @@ describe('c-event-bubbling', () => {
                 );
             })
             .then(() => {
+                // Select element for validation
                 const contactNameEl = element.shadowRoot.querySelector('p');
                 expect(contactNameEl.textContent).toBe(CONTACT.Name);
             });

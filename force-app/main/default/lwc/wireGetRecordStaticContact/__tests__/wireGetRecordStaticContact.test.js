@@ -3,6 +3,7 @@ import WireGetRecordStaticContact from 'c/wireGetRecordStaticContact';
 import { getRecord } from 'lightning/uiRecordApi';
 import { registerLdsTestWireAdapter } from '@salesforce/lwc-jest';
 
+// Mock realistic data
 const mockGetRecord = require('./data/getRecord.json');
 
 // Register as an LDS wire adapter. Some tests verify the provisioned values trigger desired behavior.
@@ -24,9 +25,14 @@ describe('c-wire-get-record-static-contact', () => {
             });
             document.body.appendChild(element);
 
+            // Emit data from @wire
             getRecordAdapter.emit(mockGetRecord);
 
+            // Return a promise to wait for any asynchronous DOM updates. Jest
+            // will automatically wait for the Promise chain to complete before
+            // ending the test and fail the test if the promise rejects.
             return Promise.resolve(() => {
+                // Select elements for validation
                 const nameEl = element.shadowRoot.querySelector('p');
                 expect(nameEl.textContent).toBe(
                     mockGetRecord.result.fields.Name
@@ -47,11 +53,18 @@ describe('c-wire-get-record-static-contact', () => {
 
     describe('getRecord @wire error', () => {
         it('shows error panel element', () => {
-            const element = createElement('c-wire-get-record-dynamic-contact', {
+            // Create initial element
+            const element = createElement('c-wire-get-record-static-contact', {
                 is: WireGetRecordStaticContact
             });
             document.body.appendChild(element);
+
+            // Emit error from @wire
             getRecordAdapter.error();
+
+            // Return a promise to wait for any asynchronous DOM updates. Jest
+            // will automatically wait for the Promise chain to complete before
+            // ending the test and fail the test if the promise rejects.
             return Promise.resolve().then(() => {
                 const errorPanelEl = element.shadowRoot.querySelector(
                     'c-error-panel'

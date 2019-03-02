@@ -12,6 +12,7 @@ describe('c-error-panel', () => {
     it('displays a default friendly message', () => {
         const MESSAGE = 'Error retrieving data';
 
+        // Create initial element
         const element = createElement('c-error-panel', {
             is: ErrorPanel
         });
@@ -24,6 +25,7 @@ describe('c-error-panel', () => {
     it('displays a custom friendly message', () => {
         const MESSAGE = 'Errors are bad';
 
+        // Create initial element
         const element = createElement('c-error-panel', {
             is: ErrorPanel
         });
@@ -35,6 +37,7 @@ describe('c-error-panel', () => {
     });
 
     it('displays no error details when no errors are passed as parameters', () => {
+        // Create initial element
         const element = createElement('c-error-panel', {
             is: ErrorPanel
         });
@@ -51,6 +54,7 @@ describe('c-error-panel', () => {
         ];
         const ERROR_MESSAGES_OUTPUT = ['First bad error', 'Second bad error'];
 
+        // Create initial element
         const element = createElement('c-error-panel', {
             is: ErrorPanel
         });
@@ -61,6 +65,9 @@ describe('c-error-panel', () => {
         inputEl.checked = true;
         inputEl.dispatchEvent(new CustomEvent('change'));
 
+        // Return a promise to wait for any asynchronous DOM updates. Jest
+        // will automatically wait for the Promise chain to complete before
+        // ending the test and fail the test if the promise rejects.
         return Promise.resolve().then(() => {
             const messageTexts = Array.from(
                 element.shadowRoot.querySelectorAll('p[class="error-message"]')
