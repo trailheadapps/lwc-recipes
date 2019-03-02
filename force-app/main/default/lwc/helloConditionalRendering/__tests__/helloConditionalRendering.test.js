@@ -17,10 +17,10 @@ describe('c-hello-conditional-rendering', () => {
         document.body.appendChild(element);
 
         // Verify displayed message
-        const details = element.shadowRoot.querySelector(
+        const detailEl = element.shadowRoot.querySelector(
             '.slds-m-vertical_medium'
         );
-        expect(details.textContent).toBe('Not showing details.');
+        expect(detailEl.textContent).toBe('Not showing details.');
     });
 
     it('shows details when checkbox toggled', () => {
@@ -31,19 +31,19 @@ describe('c-hello-conditional-rendering', () => {
         document.body.appendChild(element);
 
         // Toggle checkbox to show details
-        const input = element.shadowRoot.querySelector('lightning-input');
-        input.checked = true;
-        input.dispatchEvent(new CustomEvent('change'));
+        const inputEl = element.shadowRoot.querySelector('lightning-input');
+        inputEl.checked = true;
+        inputEl.dispatchEvent(new CustomEvent('change'));
 
         // Return a promise to wait for any asynchronous DOM updates. Jest
         // will automatically wait for the Promise chain to complete before
         // ending the test and fail the test if the promise rejects.
         return Promise.resolve().then(() => {
             // Verify displayed message
-            const details = element.shadowRoot.querySelector(
+            const detailEl = element.shadowRoot.querySelector(
                 '.slds-m-vertical_medium'
             );
-            expect(details.textContent).toBe('These are the details!');
+            expect(detailEl.textContent).toBe('These are the details!');
         });
     });
 });

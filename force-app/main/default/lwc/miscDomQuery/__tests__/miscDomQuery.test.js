@@ -17,10 +17,10 @@ describe('c-misc-dom-query', () => {
         document.body.appendChild(element);
 
         // Query all lightning-input fields
-        const lightningInputChecked = element.shadowRoot.querySelectorAll(
+        const lightningInputCheckedEls = element.shadowRoot.querySelectorAll(
             'lightning-input'
         );
-        lightningInputChecked.forEach(input => {
+        lightningInputCheckedEls.forEach(input => {
             expect(input.checked).toBeFalsy();
         });
     });

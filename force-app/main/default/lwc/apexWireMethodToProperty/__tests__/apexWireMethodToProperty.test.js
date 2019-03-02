@@ -5,11 +5,12 @@ import getContactList from '@salesforce/apex/ContactController.getContactList';
 
 // Realistic data with a list of contacts
 const mockGetContactList = require('./data/getContactList.json');
+
 // An empty list of records to verify the component does something reasonable
 // when there is no data to display
 const mockGetContactListNoRecords = require('./data/getContactListNoRecords.json');
 
-// Register as an Apex wire adapter. Some tests verify that provisioned values trigger desired behavior.
+// Register as Apex wire adapter. Some tests verify that provisioned values trigger desired behavior.
 const getContactListAdapter = registerApexTestWireAdapter(getContactList);
 
 describe('c-apex-wire-method-to-property', () => {
@@ -23,43 +24,66 @@ describe('c-apex-wire-method-to-property', () => {
     });
 
     describe('getContactList @wire data', () => {
-        it('with two records', () => {
-            const USER1_RESULT = 'Amy Taylor';
-            const USER2_RESULT = 'Jeff Taylor';
-
+        it('renders six records', () => {
+            // Create initial element
             const element = createElement('c-apex-wire-method-to-property', {
                 is: ApexWireMethodToProperty
             });
             document.body.appendChild(element);
+
+            // Emit data from @wire
             getContactListAdapter.emit(mockGetContactList);
+
+            // Return a promise to wait for any asynchronous DOM updates. Jest
+            // will automatically wait for the Promise chain to complete before
+            // ending the test and fail the test if the promise rejects.
             return Promise.resolve().then(() => {
+                // Select elements for validation
                 const detailEls = element.shadowRoot.querySelectorAll('p');
-                expect(detailEls.length).toBe(2);
-                expect(detailEls[0].textContent).toBe(USER1_RESULT);
-                expect(detailEls[1].textContent).toBe(USER2_RESULT);
+                expect(detailEls.length).toBe(mockGetContactList.length);
+                expect(detailEls[0].textContent).toBe(
+                    mockGetContactList[0].Name
+                );
             });
         });
 
-        it('with no record', () => {
+        it('renders no items when no records are available', () => {
+            // Create initial element
             const element = createElement('c-apex-wire-method-to-property', {
                 is: ApexWireMethodToProperty
             });
             document.body.appendChild(element);
+
+            // Emit data from @wire
             getContactListAdapter.emit(mockGetContactListNoRecords);
+
+            // Return a promise to wait for any asynchronous DOM updates. Jest
+            // will automatically wait for the Promise chain to complete before
+            // ending the test and fail the test if the promise rejects.
             return Promise.resolve().then(() => {
+                // Select elements for validation
                 const detailEls = element.shadowRoot.querySelectorAll('p');
-                expect(detailEls.length).toBe(0);
+                expect(detailEls.length).toBe(
+                    mockGetContactListNoRecords.length
+                );
             });
         });
     });
 
     describe('getContactList @wire error', () => {
         it('shows error panel element', () => {
+            // Create initial element
             const element = createElement('c-apex-wire-method-to-property', {
                 is: ApexWireMethodToProperty
             });
             document.body.appendChild(element);
+
+            // Emit error from @wire
             getContactListAdapter.error();
+
+            // Return a promise to wait for any asynchronous DOM updates. Jest
+            // will automatically wait for the Promise chain to complete before
+            // ending the test and fail the test if the promise rejects.
             return Promise.resolve().then(() => {
                 const errorPanelEl = element.shadowRoot.querySelector(
                     'c-error-panel'

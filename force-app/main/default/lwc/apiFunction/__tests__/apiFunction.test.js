@@ -14,15 +14,12 @@ describe('c-api-function', () => {
         clockEl.refresh = jest.fn();
 
         // Query lightning-button element
-        const lightningButtonEl = element.shadowRoot.querySelector(
-            'lightning-button'
-        );
-        lightningButtonEl.dispatchEvent(new CustomEvent('click'));
+        const buttonEl = element.shadowRoot.querySelector('lightning-button');
+        buttonEl.click();
 
         // Return a promise to wait for any asynchronous DOM updates. Jest
         // will automatically wait for the Promise chain to complete before
-        // ending the test and fail the test if the promise ends in the
-        // rejected state
+        // ending the test and fail the test if the promise rejects.
         return Promise.resolve().then(() => {
             // Compare if public function has been called
             expect(clockEl.refresh).toHaveBeenCalled();

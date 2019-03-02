@@ -11,20 +11,27 @@ describe('c-contact-list-item-bubbling', () => {
 
     it('shows contact name and image based on public property', () => {
         const CONTACT = {
-            Id: '99',
+            Id: '0031700000pJRRSAA4',
             Name: 'Amy Taylor',
-            Picture__c: 'https://some.host/image.png'
+            Title: 'VP of Engineering',
+            Phone: '4152568563',
+            Email: 'amy@demo.net',
+            Picture__c:
+                'https://s3-us-west-1.amazonaws.com/sfdc-demo/people/amy_taylor.jpg'
         };
 
+        // Create initial element
         const element = createElement('c-contact-list-item-bubbling', {
             is: ContactListItemBubbling
         });
+        // Set public property
         element.contact = CONTACT;
         document.body.appendChild(element);
 
+        // Select elements for validation
         const imgEl = element.shadowRoot.querySelector('img');
-        expect(imgEl.src).toBe('https://some.host/image.png');
+        expect(imgEl.src).toBe(CONTACT.Picture__c);
         const nameEl = element.shadowRoot.querySelector('p');
-        expect(nameEl.textContent).toBe('Amy Taylor');
+        expect(nameEl.textContent).toBe(CONTACT.Name);
     });
 });

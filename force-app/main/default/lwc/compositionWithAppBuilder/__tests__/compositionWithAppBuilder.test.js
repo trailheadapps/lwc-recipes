@@ -14,6 +14,7 @@ describe('c-composition-with-app-builder', () => {
         const element = createElement('c-composition-with-app-builder', {
             is: CompositionWithAppBuilder
         });
+        // Set public properties
         element.picklistValue = 'somePicklist';
         element.stringValue = 'someString';
         element.numberValue = 99;

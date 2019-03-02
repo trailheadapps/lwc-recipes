@@ -15,9 +15,27 @@ jest.mock(
 
 // Sample data for imperative Apex call
 const APEX_CONTACTS_SUCCESS = [
-    { Id: '99', Name: 'Amy Taylor' },
-    { Id: '22', Name: 'Jeff Taylor' }
+    {
+        Id: '0031700000pJRRSAA4',
+        Name: 'Amy Taylor',
+        Title: 'VP of Engineering',
+        Phone: '4152568563',
+        Email: 'amy@demo.net',
+        Picture__c:
+            'https://s3-us-west-1.amazonaws.com/sfdc-demo/people/amy_taylor.jpg'
+    },
+    {
+        Id: '0031700000pJRRTAA4',
+        Name: 'Michael Jones',
+        Title: 'VP of Sales',
+        Phone: '4158526633',
+        Email: 'michael@demo.net',
+        Picture__c:
+            'https://s3-us-west-1.amazonaws.com/sfdc-demo/people/michael_jones.jpg'
+    }
 ];
+
+// Sample error for imperative Apex call
 const APEX_CONTACTS_ERROR = {
     body: { message: 'An internal server error has occurred' },
     ok: false,
@@ -35,13 +53,15 @@ describe('c-apex-imperative-method', () => {
         jest.clearAllMocks();
     });
 
-    // Helper function to wait until the microtask queue is empty. This is needed for promise timing when calling Apex
+    // Helper function to wait until the microtask queue is empty. This is needed for promise
+    // timing when calling imperative Apex.
     function flushPromises() {
         // eslint-disable-next-line no-undef
         return new Promise(resolve => setImmediate(resolve));
     }
 
     it('renders two contacts returned from imperative Apex call', () => {
+        // Assign mock value for resolved Apex promise
         getContactList.mockResolvedValue(APEX_CONTACTS_SUCCESS);
 
         // Create initial element
@@ -52,20 +72,29 @@ describe('c-apex-imperative-method', () => {
 
         // Select button for executing Apex call
         const buttonEl = element.shadowRoot.querySelector('lightning-button');
-        buttonEl.dispatchEvent(new CustomEvent('click'));
+        buttonEl.click();
 
+        // Return an immediate flushed promise (after the Apex call) to then
+        // wait for any asynchronous DOM updates. Jest will automatically wait
+        // for the Promise chain to complete before ending the test and fail
+        // the test if the promise ends in the rejected state.
         return flushPromises().then(() => {
-            // Select div for conditionally changed text content
+            // Select div for validating conditionally changed text content
             const detailEls = element.shadowRoot.querySelectorAll(
                 'p:not([class])'
             );
-            expect(detailEls.length).toBe(2);
-            expect(detailEls[0].textContent).toBe('Amy Taylor');
-            expect(detailEls[1].textContent).toBe('Jeff Taylor');
+            expect(detailEls.length).toBe(APEX_CONTACTS_SUCCESS.length);
+            expect(detailEls[0].textContent).toBe(
+                APEX_CONTACTS_SUCCESS[0].Name
+            );
+            expect(detailEls[1].textContent).toBe(
+                APEX_CONTACTS_SUCCESS[1].Name
+            );
         });
     });
 
     it('renders the error panel when the Apex method returns an error', () => {
+        // Assign mock value for rejected Apex promise
         getContactList.mockRejectedValue(APEX_CONTACTS_ERROR);
 
         // Create initial element
@@ -76,12 +105,12 @@ describe('c-apex-imperative-method', () => {
 
         // Select button for executing Apex call
         const buttonEl = element.shadowRoot.querySelector('lightning-button');
-        buttonEl.dispatchEvent(new CustomEvent('click'));
+        buttonEl.click();
 
         // Return an immediate flushed promise (after the Apex call) to then
         // wait for any asynchronous DOM updates. Jest will automatically wait
         // for the Promise chain to complete before ending the test and fail
-        // the test if the promise ends in the rejected state
+        // the test if the promise ends in the rejected state.
         return flushPromises().then(() => {
             const errorPanelEl = element.shadowRoot.querySelector(
                 'c-error-panel'

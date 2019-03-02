@@ -16,7 +16,8 @@ describe('c-lds-create-record', () => {
         jest.clearAllMocks();
     });
 
-    // Helper function to wait until the microtask queue is empty. This is needed for promise timing when calling UI API
+    // Helper function to wait until the microtask queue is empty. This is needed for promise
+    // timing when calling createRecord.
     function flushPromises() {
         // eslint-disable-next-line no-undef
         return new Promise(resolve => setImmediate(resolve));
@@ -28,22 +29,28 @@ describe('c-lds-create-record', () => {
             { apiName: 'Account', fields: { Name: USER_INPUT } }
         ];
 
+        // Create initial element
         const element = createElement('c-lds-create-record', {
             is: LdsCreateRecord
         });
         document.body.appendChild(element);
 
+        // Select input field for simulating user input
         const inputEl = element.shadowRoot.querySelector(
             'lightning-input[class="slds-m-bottom_x-small"]'
         );
         inputEl.value = USER_INPUT;
         inputEl.dispatchEvent(new CustomEvent('change'));
 
+        // Select button for simulating user interaction
         const buttonEl = element.shadowRoot.querySelector('lightning-button');
         buttonEl.click();
 
-        // Return a promise to wait for any asynchronous DOM updates.
+        // Return a promise to wait for any asynchronous DOM updates. Jest
+        // will automatically wait for the Promise chain to complete before
+        // ending the test and fail the test if the promise rejects.
         return Promise.resolve().then(() => {
+            // Validate createRecord call
             expect(createRecord).toHaveBeenCalled();
             expect(createRecord.mock.calls[0]).toEqual(INPUT_PARAMETERS);
         });
@@ -51,36 +58,47 @@ describe('c-lds-create-record', () => {
 
     it('displays an account id after record creation', () => {
         const USER_INPUT = 'Gomez Inc.';
-        const RESULT = '0011700000r6zdbAAA';
+
+        // Assign mock value for resolved createRecord promise
         createRecord.mockResolvedValue(mockCreateRecord);
 
+        // Create initial element
         const element = createElement('c-lds-create-record', {
             is: LdsCreateRecord
         });
         document.body.appendChild(element);
 
+        // Select input field for simulating user input
         const inputEl = element.shadowRoot.querySelector(
             'lightning-input[class="slds-m-bottom_x-small"]'
         );
         inputEl.value = USER_INPUT;
         inputEl.dispatchEvent(new CustomEvent('change'));
 
+        // Select button for simulating user interaction
         const buttonEl = element.shadowRoot.querySelector('lightning-button');
         buttonEl.click();
 
-        // Return a promise to wait for any asynchronous DOM updates.
+        // Return an immediate flushed promise (after the createRecord call) to then
+        // wait for any asynchronous DOM updates. Jest will automatically wait
+        // for the Promise chain to complete before ending the test and fail
+        // the test if the promise ends in the rejected state.
         return flushPromises().then(() => {
+            // Select element for validation
             const displayEl = element.shadowRoot.querySelector(
                 'lightning-input[data-id="accountId"]'
             );
-            expect(displayEl.value).toBe(RESULT);
+            expect(displayEl.value).toBe(mockCreateRecord.id);
         });
     });
 
     it('displays a success toast after record creation', () => {
         const USER_INPUT = 'Gomez Inc.';
+
+        // Assign mock value for resolved createRecord promise
         createRecord.mockResolvedValue(mockCreateRecord);
 
+        // Create initial element
         const element = createElement('c-lds-create-record', {
             is: LdsCreateRecord
         });
@@ -91,16 +109,20 @@ describe('c-lds-create-record', () => {
         // Add event listener to catch toast event
         element.addEventListener(ShowToastEventName, handler);
 
+        // Select input field for simulating user input
         const inputEl = element.shadowRoot.querySelector(
             'lightning-input[class="slds-m-bottom_x-small"]'
         );
         inputEl.value = USER_INPUT;
         inputEl.dispatchEvent(new CustomEvent('change'));
 
+        // Select button for simulating user interaction
         const buttonEl = element.shadowRoot.querySelector('lightning-button');
         buttonEl.click();
 
-        // Return a promise to wait for any asynchronous DOM updates.
+        // Return a promise to wait for any asynchronous DOM updates. Jest
+        // will automatically wait for the Promise chain to complete before
+        // ending the test and fail the test if the promise rejects.
         return Promise.resolve().then(() => {
             // Check if toast event has been fired
             expect(handler).toHaveBeenCalled();
@@ -110,8 +132,11 @@ describe('c-lds-create-record', () => {
 
     it('displays an error toast on createRecord error', () => {
         const USER_INPUT = 'invalid';
+
+        // Assign mock value for rejected createRecord promise
         createRecord.mockRejectedValue = { id: '111' };
 
+        // Create initial element
         const element = createElement('c-lds-create-record', {
             is: LdsCreateRecord
         });
@@ -122,16 +147,20 @@ describe('c-lds-create-record', () => {
         // Add event listener to catch toast event
         element.addEventListener(ShowToastEventName, handler);
 
+        // Select input field for simulating user input
         const inputEl = element.shadowRoot.querySelector(
             'lightning-input[class="slds-m-bottom_x-small"]'
         );
         inputEl.value = USER_INPUT;
         inputEl.dispatchEvent(new CustomEvent('change'));
 
+        // Select button for simulating user interaction
         const buttonEl = element.shadowRoot.querySelector('lightning-button');
         buttonEl.click();
 
-        // Return a promise to wait for any asynchronous DOM updates.
+        // Return a promise to wait for any asynchronous DOM updates. Jest
+        // will automatically wait for the Promise chain to complete before
+        // ending the test and fail the test if the promise rejects.
         return Promise.resolve().then(() => {
             // Check if toast event has been fired
             expect(handler).toHaveBeenCalled();
