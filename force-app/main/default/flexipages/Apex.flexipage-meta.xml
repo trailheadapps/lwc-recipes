@@ -31,6 +31,9 @@
         <componentInstances>
             <componentName>apexImperativeMethodWithParams</componentName>
         </componentInstances>
+        <componentInstances>
+            <componentName>apexImperativeMethodWithApexTypeParams</componentName>
+        </componentInstances>
         <name>region4</name>
         <type>Region</type>
     </flexiPageRegions>
