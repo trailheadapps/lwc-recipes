@@ -22,15 +22,15 @@
         "url": "git+https://github.com/trailheadapps/lwc-recipes"
     },
     "engines": {
-        "node": ">= 8.9.4",
-        "npm": ">= 5.7.1"
+        "node": ">= 10.13.0",
+        "npm": ">= 6.5.0"
     },
     "devDependencies": {
         "@salesforce/eslint-config-lwc": "^0.3.0",
-        "@salesforce/lwc-jest": "^0.4.10",
-        "eslint": "^5.13.0",
+        "@salesforce/lwc-jest": "^0.4.11",
+        "eslint": "^5.15.1",
         "husky": "^1.3.1",
-        "lint-staged": "^8.1.3",
+        "lint-staged": "^8.1.5",
         "prettier": "github:prettier/prettier",
         "semver": "^5.5.0"
     },
