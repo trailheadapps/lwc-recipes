@@ -26,10 +26,8 @@ describe('c-libs-momentjs', () => {
     });
 
     it('populates the disabled lightning-input fields with moment.js data based on user input', () => {
-        const OUTPUT_RAW = '2019-03-11T22:30:00.000Z';
-        const OUTPUT_DAY_OF_YEAR = 70;
-        const OUTPUT_WEEK_OF_YEAR = 11;
-        const OUTPUT_CALCULATED = 'Today at 8:57 AM';
+        const INPUT_RAW = '2019-03-11T22:30:00.000Z';
+        const OUTPUT_EXPECTED = [70, 11, 'Yesterday at 8:57 AM'];
 
         // Create initial element
         const element = createElement('c-libs-momentjs', {
@@ -39,16 +37,16 @@ describe('c-libs-momentjs', () => {
 
         // Selecting the input element for simulating user input
         const inputEl = element.shadowRoot.querySelector('lightning-input');
-        inputEl.value = new Date(OUTPUT_RAW);
+        inputEl.value = new Date(INPUT_RAW);
         inputEl.dispatchEvent(new CustomEvent('change'));
 
         return Promise.resolve().then(() => {
-            const inputEls = element.shadowRoot.querySelectorAll(
-                'lightning-input'
-            );
-            expect(inputEls[2].value).toBe(OUTPUT_DAY_OF_YEAR);
-            expect(inputEls[3].value).toBe(OUTPUT_WEEK_OF_YEAR);
-            expect(inputEls[4].value).toBe(OUTPUT_CALCULATED);
+            const values = Array.from(
+                element.shadowRoot.querySelectorAll('lightning-input')
+            )
+                .filter(input => input.disabled)
+                .map(input => input.value);
+            expect(values).toEqual(OUTPUT_EXPECTED);
         });
     });
 
