@@ -50,7 +50,7 @@ jobs:
             - run:
                   name: Unit test Lightning Web Components
                   command: |
-                      npm run test:unit -- -- --runInBand
+                      npm run test:unit:coverage -- -- --runInBand
     install_cli:
         # This installs Salesforce CLI.
         <<: *defaults
@@ -170,8 +170,11 @@ jobs:
             - run:
                   name: Push to Codecov.io
                   command: |
+                      # Uploading Apex tests
                       cp ~/tests/apex/test-result-codecoverage.json .
                       bash <(curl -s https://codecov.io/bash)
+                      # Uploading Jest tests
+                      node_modules/codecov/bin/codecov
     cleanup_scratch_org:
         <<: *defaults
         steps:
