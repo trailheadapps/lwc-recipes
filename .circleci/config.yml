@@ -173,6 +173,7 @@ jobs:
                       # Uploading Apex tests
                       cp ~/tests/apex/test-result-codecoverage.json .
                       bash <(curl -s https://codecov.io/bash)
+                      rm -f test-result-codecoverage.json
                       # Uploading Jest tests
                       node_modules/codecov/bin/codecov
     cleanup_scratch_org:
