@@ -25,7 +25,7 @@ export default class LibsMomentjs extends LightningElement {
     }
 
     setMomentValues(dateTime) {
-        const mom = moment(dateTime);
+        const mom = moment.utc(dateTime);
         this.selectedDateTime = dateTime;
         this.weekOfYear = mom.week();
         this.dayOfYear = mom.dayOfYear();
