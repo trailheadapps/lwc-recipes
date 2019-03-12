@@ -4,7 +4,6 @@ import { LightningElement, track } from 'lwc';
 const QUERY_URL = 'https://www.googleapis.com/books/v1/volumes?q=';
 
 export default class MiscRestCall extends LightningElement {
-
     @track searchKey = 'Harry Potter';
     @track books;
     @track error;
@@ -17,12 +16,11 @@ export default class MiscRestCall extends LightningElement {
         fetch(QUERY_URL + this.searchKey)
             .then(response => response.json())
             .then(jsonResponse => {
-                this.books = jsonResponse
+                this.books = jsonResponse;
             })
             .catch(error => {
                 this.error = error;
                 this.books = undefined;
             });
     }
-
 }
