@@ -51,6 +51,12 @@ jobs:
                   name: Unit test Lightning Web Components
                   command: |
                       npm run test:unit:coverage -- -- --runInBand
+            - persist_to_workspace:
+                  root: ~/
+                  paths:
+                      - .sfdx/*
+                      - project/*
+                      - coverage/*
     install_cli:
         # This installs Salesforce CLI.
         <<: *defaults
