@@ -1,8 +1,8 @@
 # Lightning Web Components Recipes
 
-[![CircleCI](https://circleci.com/gh/trailheadapps/lwc-recipes.svg?style=svg)](https://circleci.com/gh/trailheadapps/lwc-recipes)
+[![CircleCI](https://circleci.com/gh/trailheadapps/lwc-recipes.svg?style=svg)](https://circleci.com/gh/trailheadapps/lwc-recipes) [![codecov](https://codecov.io/gh/trailheadapps/lwc-recipes/branch/master/graph/badge.svg)](https://codecov.io/gh/trailheadapps/lwc-recipes)
 
-![recipes-logo](recipes-logo.png)
+![recipes-logo](recipes-logo.png) 
 
 A collection of easy-to-digest code examples for Lightning Web Components. Each recipe demonstrates how to code a specific task in 30 lines of code or less. A View Source link takes you right to the code in GitHub. From Hello World to data access and third-party libraries, there is a recipe for that!
 
