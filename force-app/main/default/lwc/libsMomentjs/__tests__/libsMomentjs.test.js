@@ -98,7 +98,7 @@ describe('c-libs-momentjs', () => {
         loadScript.mockRejectedValue(LOAD_SCRIPT_ERROR);
 
         // Create initial element
-        const element = createElement('c-libs-chartjs', {
+        const element = createElement('c-libs-momentjs', {
             is: LibsMomentjs
         });
         document.body.appendChild(element);
