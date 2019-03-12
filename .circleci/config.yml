@@ -156,6 +156,12 @@ jobs:
                   command: |
                       mkdir -p ~/tests/apex
                       node_modules/sfdx-cli/bin/run force:apex:test:run -u ciorg -c -r human -d ~/tests/apex -w 20
+            - persist_to_workspace:
+                  root: ~/
+                  paths:
+                      - .sfdx/*
+                      - project/*
+                      - tests/*
     upload_code_coverage:
         <<: *defaults
         steps:
