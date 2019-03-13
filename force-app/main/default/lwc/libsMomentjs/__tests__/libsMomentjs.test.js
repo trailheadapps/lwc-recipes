@@ -1,6 +1,12 @@
 import { createElement } from 'lwc';
 import LibsMomentjs from 'c/libsMomentjs';
-import { loadScript } from 'lightning/platformResourceLoader';
+
+// This variable is used to fork the behavior of the following
+// mock where we overwrite `lightning/platformResourceLoader`.
+//
+// Note that it's prefixed with the word `mock`. This is needed
+// for using the variable within the mock.
+let mockScriptSuccess = true;
 
 // The Lightning web component relies on data that is calculated
 // via the moment.js static resource. Instead of using the default
@@ -15,24 +21,21 @@ jest.mock(
     () => {
         return {
             loadScript() {
-                // eslint-disable-next-line no-unused-vars
                 return new Promise((resolve, reject) => {
-                    global.moment = require('../../../staticresources/moment');
-                    resolve();
+                    // If the variable is false we're simulating an error when loading
+                    // the script resource.
+                    if (!mockScriptSuccess) {
+                        reject('Could not load script');
+                    } else {
+                        global.moment = require('../../../staticresources/moment');
+                        resolve();
+                    }
                 });
             }
         };
     },
     { virtual: true }
 );
-
-// Sample error for loadScript error
-const LOAD_SCRIPT_ERROR = {
-    body: { message: 'An internal server error has occurred' },
-    ok: false,
-    status: 400,
-    statusText: 'Bad Request'
-};
 
 describe('c-libs-momentjs', () => {
     afterEach(() => {
@@ -49,25 +52,14 @@ describe('c-libs-momentjs', () => {
         return new Promise(resolve => setImmediate(resolve));
     }
 
-    it('loads the momentjs javascript static resource', () => {
-        const MOMENT_JS = 'moment';
-
-        // Create initial element
-        const element = createElement('c-libs-momentjs', {
-            is: LibsMomentjs
-        });
-        document.body.appendChild(element);
-
-        // Validation that the loadScript promise is called once.
-        // expect(loadScript).resolves.toBe(true);
-        // Validation that the chartjs static resource is passed as parameter.
-        return flushPromises().then(() => {
-            expect(loadScript.mock.calls[0][1]).toEqual(MOMENT_JS);
-        });
-    });
-
     it('populates the disabled lightning-input fields with moment.js data based on user input', () => {
+        // Enforcing to load the static resource via the overwritten function.
+        mockScriptSuccess = true;
+
         const INPUT_RAW = '2019-03-11T22:30:00.000Z';
+        // This array holds two values:
+        // - 70 represents that the given date from INPUT_RAW is the 70th day of the year
+        // - 11 represents that the given date from INPUT_RAW is the 11th week of the year
         const OUTPUT_EXPECTED = [70, 11];
 
         // Create initial element
@@ -95,7 +87,8 @@ describe('c-libs-momentjs', () => {
     });
 
     it('shows the error panel element on static resource load error', () => {
-        loadScript.mockRejectedValue(LOAD_SCRIPT_ERROR);
+        // Enforcing to fail loading the static resource via the overwritten function.
+        mockScriptSuccess = false;
 
         // Create initial element
         const element = createElement('c-libs-momentjs', {

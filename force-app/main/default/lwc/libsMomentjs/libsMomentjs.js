@@ -4,6 +4,7 @@ import { loadScript } from 'lightning/platformResourceLoader';
 import MOMENT_JS from '@salesforce/resourceUrl/moment';
 
 export default class LibsMomentjs extends LightningElement {
+    @track error;
     @track selectedDateTime = new Date().toISOString();
     @track weekOfYear;
     @track dayOfYear;
