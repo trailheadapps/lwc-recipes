@@ -50,7 +50,13 @@ jobs:
             - run:
                   name: Unit test Lightning Web Components
                   command: |
-                      npm run test:unit -- -- --runInBand
+                      npm run test:unit:coverage -- -- --runInBand
+            - persist_to_workspace:
+                  # We're saving the generated coverage results (folder 'coverage', a sub-folder to 'project') so
+                  # that we can upload them in another step to Codecov.io.
+                  root: ~/
+                  paths:
+                      - project/*
     install_cli:
         # This installs Salesforce CLI.
         <<: *defaults
@@ -154,7 +160,25 @@ jobs:
             - run:
                   name: Run Apex Tests
                   command: |
-                      node_modules/sfdx-cli/bin/run force:apex:test:run -u ciorg -c -r human
+                      mkdir -p ./tests/apex
+                      node_modules/sfdx-cli/bin/run force:apex:test:run -u ciorg -c -r human -d ./tests/apex -w 20
+            - persist_to_workspace:
+                  # This is similar to storing the coverage results from the Lightning Web Component unit test.
+                  # The Apex test will store the test results in the `test` folder (which is a sub-folder of 'project')
+                  # The test data will be uploaded to Codecov.io in another step.
+                  root: ~/
+                  paths:
+                      - project/*
+    upload_code_coverage:
+        <<: *defaults
+        steps:
+            - attach_workspace:
+                  at: ~/
+            - run:
+                  name: Push to Codecov.io
+                  command: |
+                      # Uploading Apex and LWC tests
+                      bash <(curl -s https://codecov.io/bash)
     cleanup_scratch_org:
         <<: *defaults
         steps:
@@ -169,53 +193,29 @@ workflows:
     version: 2
     build_and_test:
         jobs:
-            - setup_tooling:
-                  filters:
-                      branches:
-                          ignore: master
+            - setup_tooling
             - prettier_verify:
                   requires:
                       - setup_tooling
-                  filters:
-                      branches:
-                          ignore: master
             - lint_lwc:
                   requires:
                       - prettier_verify
-                  filters:
-                      branches:
-                          ignore: master
             - unit_test_lwc:
                   requires:
                       - lint_lwc
-                  filters:
-                      branches:
-                          ignore: master
             - install_cli:
                   requires:
                       - unit_test_lwc
-                  filters:
-                      branches:
-                          ignore: master
             - lint_aura:
                   requires:
                       - install_cli
-                  filters:
-                      branches:
-                          ignore: master
             - setup_dx_orgs:
                   context: trailhead-global
                   requires:
                       - lint_aura
-                  filters:
-                      branches:
-                          ignore: master
             - deploy_source:
                   requires:
                       - setup_dx_orgs
-                  filters:
-                      branches:
-                          ignore: master
             - create_and_test_package:
                   requires:
                       - setup_dx_orgs
@@ -224,13 +224,15 @@ workflows:
                           only: none
             - run_apex_tests:
                   requires:
+                      - create_and_test_package
                       - deploy_source
-                  filters:
-                      branches:
-                          ignore: master
+            - upload_code_coverage:
+                  requires:
+                      - run_apex_tests
             - cleanup_scratch_org:
                   requires:
                       - setup_dx_orgs
                       - deploy_source
                       - create_and_test_package
                       - run_apex_tests
+                      - upload_code_coverage
