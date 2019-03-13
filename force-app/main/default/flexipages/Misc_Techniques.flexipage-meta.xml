@@ -18,6 +18,9 @@
         <componentInstances>
             <componentName>miscSharedJavaScript</componentName>
         </componentInstances>
+        <componentInstances>
+            <componentName>miscRestApiCall</componentName>
+        </componentInstances>
         <name>region3</name>
         <type>Region</type>
     </flexiPageRegions>

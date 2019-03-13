@@ -1,0 +1,39 @@
+<template>
+    <lightning-card title="MiscRestApiCall" icon-name="custom:custom63">
+        <div class="slds-m-around_medium">
+            <lightning-layout vertical-align="end" class="slds-m-bottom_small">
+                <lightning-layout-item flexibility="grow">
+                    <lightning-input
+                        type="search"
+                        onchange={handleSearchKeyChange}
+                        label="Search Books"
+                        value={searchKey}
+                    ></lightning-input>
+                </lightning-layout-item>
+                <lightning-layout-item class="slds-p-left_xx-small">
+                    <lightning-button
+                        label="Search"
+                        onclick={handleSearchClick}
+                    ></lightning-button>
+                </lightning-layout-item>
+            </lightning-layout>
+            <template if:true={books}>
+                <template for:each={books.items} for:item="book">
+                    <p key={book.id}>{book.volumeInfo.title}</p>
+                </template>
+            </template>
+            <template if:true={error}>
+                <c-error-panel errors={error}></c-error-panel>
+            </template>
+        </div>
+
+        <c-view-source source="lwc/miscRestApiCall" slot="footer">
+            Call a REST service using the&nbsp;
+            <a
+                href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API"
+                target="_blank"
+                >Fetch API</a
+            >.
+        </c-view-source>
+    </lightning-card>
+</template>
