@@ -221,7 +221,7 @@ workflows:
                       - setup_dx_orgs
                   filters:
                       branches:
-                          only: master
+                          only: none
             - run_apex_tests:
                   requires:
                       - deploy_source
