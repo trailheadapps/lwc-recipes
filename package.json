@@ -11,6 +11,7 @@
         "test:unit": "lwc-jest",
         "test:unit:watch": "lwc-jest --watch",
         "test:unit:debug": "lwc-jest --debug",
+        "test:unit:coverage": "lwc-jest --coverage",
         "prettier": "prettier --write '**/*.{cmp,component,css,html,js,json,md,page,yaml,yml}'",
         "prettier:verify": "prettier --list-different '**/*.{html,js,json,yaml,yml,md,cmp,page,component}'",
         "postinstall": "node bin/check-version.js"
@@ -27,10 +28,10 @@
     },
     "devDependencies": {
         "@salesforce/eslint-config-lwc": "^0.3.0",
-        "@salesforce/lwc-jest": "^0.4.11",
-        "eslint": "^5.15.1",
+        "@salesforce/lwc-jest": "^0.4.12",
+        "eslint": "^5.13.0",
         "husky": "^1.3.1",
-        "lint-staged": "^8.1.5",
+        "lint-staged": "^8.1.3",
         "prettier": "github:prettier/prettier",
         "semver": "^5.5.0"
     },
