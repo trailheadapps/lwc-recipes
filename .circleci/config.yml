@@ -149,7 +149,7 @@ jobs:
                   name: Create and install package
                   command: |
                       if [[ $SFDX_TEST_PACKAGING == "true" ]]; then
-                        scripts/packagingDeployment.sh
+                        bin/packagingDeployment.sh
                       fi
                   no_output_timeout: 15m
     run_apex_tests:
@@ -197,11 +197,18 @@ workflows:
             - prettier_verify:
                   requires:
                       - setup_tooling
+                  filters:
+                      branches:
+                          ignore: master
             - lint_lwc:
                   requires:
                       - prettier_verify
+                  filters:
+                      branches:
+                          ignore: master
             - unit_test_lwc:
                   requires:
+                      - setup_tooling
                       - lint_lwc
             - install_cli:
                   requires:
@@ -209,16 +216,24 @@ workflows:
             - lint_aura:
                   requires:
                       - install_cli
+                  filters:
+                      branches:
+                          ignore: master
             - setup_dx_orgs:
                   context: trailhead-global
                   requires:
+                      - install_cli
                       - lint_aura
             - deploy_source:
                   requires:
                       - setup_dx_orgs
+                  #   filters:
+                  #       branches:
+                  #           ignore: master
             - create_and_test_package:
                   requires:
                       - setup_dx_orgs
+                      - deploy_source
                   filters:
                       branches:
                           only: none
@@ -228,11 +243,11 @@ workflows:
                       - deploy_source
             - upload_code_coverage:
                   requires:
+                      - unit_test_lwc
                       - run_apex_tests
             - cleanup_scratch_org:
                   requires:
                       - setup_dx_orgs
                       - deploy_source
                       - create_and_test_package
-                      - run_apex_tests
                       - upload_code_coverage
