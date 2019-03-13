@@ -22,17 +22,18 @@ describe('c-misc-rest-api-call', () => {
         return jest
             .fn()
             .mockImplementation(() =>
-                Promise.resolve({ json: () => Promise.resolve(data) })
+                Promise.resolve({ ok: true, json: () => Promise.resolve(data) })
             );
     }
 
     // Helper function to mock a rejected fetch call.
     function mockFetchError(error) {
-        return jest
-            .fn()
-            .mockImplementation(() =>
-                Promise.resolve({ json: () => Promise.reject(error) })
-            );
+        return jest.fn().mockImplementation(() =>
+            Promise.resolve({
+                ok: false,
+                json: () => Promise.resolve(error)
+            })
+        );
     }
 
     // Helper function to wait until the microtask queue is empty.
@@ -88,9 +89,7 @@ describe('c-misc-rest-api-call', () => {
 
     it('renders book details based on a user query', () => {
         const USER_INPUT = 'Harry Potter';
-        const BOOK_TITLES = Array.from(FETCH_DATA.items).map(
-            book => book.title
-        );
+        const BOOK_TITLES = FETCH_DATA.items.map(book => book.title);
 
         // Create initial element
         const element = createElement('c-misc-rest-api-call', {
