@@ -233,6 +233,7 @@ workflows:
             - create_and_test_package:
                   requires:
                       - setup_dx_orgs
+                      - deploy_source
             - run_apex_tests:
                   requires:
                       - create_and_test_package
