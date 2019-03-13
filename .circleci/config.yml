@@ -52,11 +52,11 @@ jobs:
                   command: |
                       npm run test:unit:coverage -- -- --runInBand
             - persist_to_workspace:
+                  # We're saving the generated coverage results (folder 'coverage') so
+                  # that we can upload them in another step to Codecov.io.
                   root: ~/
                   paths:
-                      - .sfdx/*
                       - project/*
-                      - coverage/*
     install_cli:
         # This installs Salesforce CLI.
         <<: *defaults
@@ -160,14 +160,15 @@ jobs:
             - run:
                   name: Run Apex Tests
                   command: |
-                      mkdir -p ~/tests/apex
-                      node_modules/sfdx-cli/bin/run force:apex:test:run -u ciorg -c -r human -d ~/tests/apex -w 20
+                      mkdir -p ./tests/apex
+                      node_modules/sfdx-cli/bin/run force:apex:test:run -u ciorg -c -r human -d ./tests/apex -w 20
             - persist_to_workspace:
+                  # This is similar to storing the coverage results from the Lightning Web Component unit test.
+                  # The Apex test will store the test results in the `test` folder, and will be in another workflow
+                  # step uploaded to Codecov.io.
                   root: ~/
                   paths:
-                      - .sfdx/*
                       - project/*
-                      - tests/*
     upload_code_coverage:
         <<: *defaults
         steps:
@@ -177,9 +178,8 @@ jobs:
                   name: Push to Codecov.io
                   command: |
                       # Uploading Apex tests
-                      cp ~/tests/apex/test-result-codecoverage.json .
+                      cp ./tests/apex/test-result-codecoverage.json .
                       bash <(curl -s https://codecov.io/bash)
-                      rm -f test-result-codecoverage.json
                       # Uploading Jest tests
                       node_modules/codecov/bin/codecov
     cleanup_scratch_org:
