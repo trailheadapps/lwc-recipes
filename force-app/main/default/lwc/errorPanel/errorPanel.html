@@ -13,7 +13,7 @@
                 </div>
                 <template if:true={viewDetails}>
                     <template for:each={errorMessages} for:item="message">
-                        <p key={message}>{message}</p>
+                        <p key={message} class="error-message">{message}</p>
                     </template>
                 </template>
             </template>

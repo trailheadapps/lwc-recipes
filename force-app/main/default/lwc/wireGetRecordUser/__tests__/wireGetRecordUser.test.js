@@ -3,6 +3,7 @@ import WireGetRecordUser from 'c/wireGetRecordUser';
 import { getRecord, getFieldValue } from 'lightning/uiRecordApi';
 import { registerLdsTestWireAdapter } from '@salesforce/lwc-jest';
 
+// Mock realistic data
 const mockGetRecord = require('./data/getRecord.json');
 
 // Register as an LDS wire adapter. Some tests verify the provisioned values trigger desired behavior.
@@ -24,13 +25,18 @@ describe('c-wire-get-record-user', () => {
             });
             document.body.appendChild(element);
 
+            // Emit data from @wire
             getRecordAdapter.emit(mockGetRecord);
 
+            // Return a promise to wait for any asynchronous DOM updates. Jest
+            // will automatically wait for the Promise chain to complete before
+            // ending the test and fail the test if the promise rejects.
             return Promise.resolve().then(() => {
                 const userEls = element.shadowRoot.querySelectorAll('p');
                 expect(userEls.length).toBe(3);
 
-                // getFieldValue is a default jest.fn() mock. We're not testing the functionality, but if it get called accordingly.
+                // getFieldValue is a default jest.fn() mock. We're not testing
+                // the functionality, but if it gets called accordingly.
                 expect(getFieldValue.mock.calls.length).toBe(2);
             });
         });
@@ -38,11 +44,18 @@ describe('c-wire-get-record-user', () => {
 
     describe('getRecord @wire error', () => {
         it('shows error panel element', () => {
+            // Create initial element
             const element = createElement('c-wire-get-record-user', {
                 is: WireGetRecordUser
             });
             document.body.appendChild(element);
+
+            // Emit error from @wire
             getRecordAdapter.error();
+
+            // Return a promise to wait for any asynchronous DOM updates. Jest
+            // will automatically wait for the Promise chain to complete before
+            // ending the test and fail the test if the promise rejects.
             return Promise.resolve().then(() => {
                 const errorPanelEl = element.shadowRoot.querySelector(
                     'c-error-panel'

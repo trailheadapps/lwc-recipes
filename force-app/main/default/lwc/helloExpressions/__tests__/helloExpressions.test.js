@@ -41,8 +41,8 @@ describe('c-hello-expressions', () => {
         // ending the test and fail the test if the promise rejects.
         return Promise.resolve().then(() => {
             // Verify displayed message
-            const details = element.shadowRoot.querySelector('p');
-            expect(details.textContent).toBe(`${PREFIX} PETER`);
+            const detailEl = element.shadowRoot.querySelector('p');
+            expect(detailEl.textContent).toBe(`${PREFIX} PETER`);
         });
     });
 
@@ -60,8 +60,8 @@ describe('c-hello-expressions', () => {
         // ending the test and fail the test if the promise rejects.
         return Promise.resolve().then(() => {
             // Verify displayed message
-            const details = element.shadowRoot.querySelector('p');
-            expect(details.textContent).toBe(`${PREFIX} PAN`);
+            const detailEl = element.shadowRoot.querySelector('p');
+            expect(detailEl.textContent).toBe(`${PREFIX} PAN`);
         });
     });
 
@@ -79,8 +79,8 @@ describe('c-hello-expressions', () => {
         // ending the test and fail the test if the promise rejects.
         return Promise.resolve().then(() => {
             // Verify displayed message
-            const details = element.shadowRoot.querySelector('p');
-            expect(details.textContent).toBe(`${PREFIX} PETER PAN`);
+            const detailEl = element.shadowRoot.querySelector('p');
+            expect(detailEl.textContent).toBe(`${PREFIX} PETER PAN`);
         });
     });
 });

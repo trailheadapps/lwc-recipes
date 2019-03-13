@@ -2,6 +2,7 @@ import { createElement } from 'lwc';
 import MiscSharedJavaScript from 'c/miscSharedJavaScript';
 import { calculateMonthlyPayment } from 'c/mortgage';
 
+// Mocking mortgage module
 jest.mock('c/mortgage', () => {
     return {
         getTermOptions: jest.fn(),
@@ -10,14 +11,14 @@ jest.mock('c/mortgage', () => {
 });
 
 // Default values for mortgage calculation
-const principalDefault = 200000;
-const termDefault = 30;
-const rateDefault = 4;
+const PRINCIPAL_DEFAULT = 200000;
+const TERM_DEFAULT = 30;
+const RATE_DEFAULT = 4;
 
 // Custom values for mortgate calculation
-const principalCustom = 100000;
-const termCustom = 15;
-const rateCustom = 2;
+const PRINCIPAL_CUSTOM = 100000;
+const TERM_CUSTOM = 15;
+const RATE_CUSTOM = 2;
 
 describe('c-misc-shared-java-script', () => {
     afterEach(() => {
@@ -36,10 +37,9 @@ describe('c-misc-shared-java-script', () => {
         });
         document.body.appendChild(element);
 
-        const lightningButtonEl = element.shadowRoot.querySelector(
-            'lightning-button'
-        );
-        lightningButtonEl.dispatchEvent(new CustomEvent('click'));
+        // Select button for simulating user interaction
+        const buttonEl = element.shadowRoot.querySelector('lightning-button');
+        buttonEl.click();
 
         // Return a promise to wait for any asynchronous DOM updates. Jest
         // will automatically wait for the Promise chain to complete before
@@ -48,9 +48,9 @@ describe('c-misc-shared-java-script', () => {
         return Promise.resolve().then(() => {
             // Check if default values for principal, term, and rate are used for mortgage calculcation
             expect(calculateMonthlyPayment).toHaveBeenCalledWith(
-                principalDefault,
-                termDefault,
-                rateDefault
+                PRINCIPAL_DEFAULT,
+                TERM_DEFAULT,
+                RATE_DEFAULT
             );
         });
     });
@@ -62,29 +62,30 @@ describe('c-misc-shared-java-script', () => {
         });
         document.body.appendChild(element);
 
+        // Select input fields for simulating user input
         const lightningInputEls = element.shadowRoot.querySelectorAll(
             'lightning-input'
         );
 
         lightningInputEls.forEach(el => {
             if (el.label === 'Rate') {
-                el.value = rateCustom;
+                el.value = RATE_CUSTOM;
             } else if (el.label === 'Principal') {
-                el.value = principalCustom;
+                el.value = PRINCIPAL_CUSTOM;
             }
             el.dispatchEvent(new CustomEvent('change'));
         });
 
+        // Select combobox for simulating user input
         const lightningComboboxEl = element.shadowRoot.querySelector(
             'lightning-combobox'
         );
-        lightningComboboxEl.value = termCustom;
+        lightningComboboxEl.value = TERM_CUSTOM;
         lightningComboboxEl.dispatchEvent(new CustomEvent('change'));
 
-        const lightningButtonEl = element.shadowRoot.querySelector(
-            'lightning-button'
-        );
-        lightningButtonEl.dispatchEvent(new CustomEvent('click'));
+        // Select button for simulating user interaction
+        const buttonEl = element.shadowRoot.querySelector('lightning-button');
+        buttonEl.click();
 
         // Return a promise to wait for any asynchronous DOM updates. Jest
         // will automatically wait for the Promise chain to complete before
@@ -93,9 +94,9 @@ describe('c-misc-shared-java-script', () => {
         return Promise.resolve().then(() => {
             // Check if default values for principal, term, and rate are used for mortgage calculcation
             expect(calculateMonthlyPayment).toHaveBeenCalledWith(
-                principalCustom,
-                termCustom,
-                rateCustom
+                PRINCIPAL_CUSTOM,
+                TERM_CUSTOM,
+                RATE_CUSTOM
             );
         });
     });
