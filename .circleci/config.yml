@@ -52,7 +52,7 @@ jobs:
                   command: |
                       npm run test:unit:coverage -- -- --runInBand
             - persist_to_workspace:
-                  # We're saving the generated coverage results (folder 'coverage') so
+                  # We're saving the generated coverage results (folder 'coverage', a sub-folder to 'project') so
                   # that we can upload them in another step to Codecov.io.
                   root: ~/
                   paths:
@@ -164,8 +164,8 @@ jobs:
                       node_modules/sfdx-cli/bin/run force:apex:test:run -u ciorg -c -r human -d ./tests/apex -w 20
             - persist_to_workspace:
                   # This is similar to storing the coverage results from the Lightning Web Component unit test.
-                  # The Apex test will store the test results in the `test` folder, and will be in another workflow
-                  # step uploaded to Codecov.io.
+                  # The Apex test will store the test results in the `test` folder (which is a sub-folder of 'project')
+                  # The test data will be uploaded to Codecov.io in another step.
                   root: ~/
                   paths:
                       - project/*
