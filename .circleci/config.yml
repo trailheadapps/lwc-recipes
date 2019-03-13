@@ -227,13 +227,16 @@ workflows:
             - deploy_source:
                   requires:
                       - setup_dx_orgs
-                  filters:
-                      branches:
-                          ignore: master
+                  #   filters:
+                  #       branches:
+                  #           ignore: master
             - create_and_test_package:
                   requires:
                       - setup_dx_orgs
                       - deploy_source
+                  filters:
+                      branches:
+                          only: none
             - run_apex_tests:
                   requires:
                       - create_and_test_package
