@@ -149,7 +149,7 @@ jobs:
                   name: Create and install package
                   command: |
                       if [[ $SFDX_TEST_PACKAGING == "true" ]]; then
-                        scripts/packagingDeployment.sh
+                        bin/packagingDeployment.sh
                       fi
                   no_output_timeout: 15m
     run_apex_tests:
