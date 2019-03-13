@@ -3,7 +3,7 @@ version: 2
 # Defining default values for all jobs
 defaults: &defaults
     docker:
-        - image: circleci/node:8.9.4-browsers
+        - image: circleci/node:lts-browsers
 
 jobs:
     setup_tooling:
@@ -50,7 +50,13 @@ jobs:
             - run:
                   name: Unit test Lightning Web Components
                   command: |
-                      npm run test:unit -- -- --runInBand
+                      npm run test:unit:coverage -- -- --runInBand
+            - persist_to_workspace:
+                  # We're saving the generated coverage results (folder 'coverage', a sub-folder to 'project') so
+                  # that we can upload them in another step to Codecov.io.
+                  root: ~/
+                  paths:
+                      - project/*
     install_cli:
         # This installs Salesforce CLI.
         <<: *defaults
@@ -154,7 +160,28 @@ jobs:
             - run:
                   name: Run Apex Tests
                   command: |
-                      node_modules/sfdx-cli/bin/run force:apex:test:run -u ciorg -c -r human
+                      mkdir -p ./tests/apex
+                      node_modules/sfdx-cli/bin/run force:apex:test:run -u ciorg -c -r human -d ./tests/apex -w 20
+            - persist_to_workspace:
+                  # This is similar to storing the coverage results from the Lightning Web Component unit test.
+                  # The Apex test will store the test results in the `test` folder (which is a sub-folder of 'project')
+                  # The test data will be uploaded to Codecov.io in another step.
+                  root: ~/
+                  paths:
+                      - project/*
+    upload_code_coverage:
+        <<: *defaults
+        steps:
+            - attach_workspace:
+                  at: ~/
+            - run:
+                  name: Push to Codecov.io
+                  command: |
+                      # Uploading Apex tests
+                      cp ./tests/apex/test-result-codecoverage.json .
+                      bash <(curl -s https://codecov.io/bash)
+                      # Uploading Jest tests
+                      node_modules/codecov/bin/codecov
     cleanup_scratch_org:
         <<: *defaults
         steps:
@@ -228,9 +255,16 @@ workflows:
                   filters:
                       branches:
                           ignore: master
+            - upload_code_coverage:
+                  requires:
+                      - run_apex_tests
+                  filters:
+                      branches:
+                          ignore: master
             - cleanup_scratch_org:
                   requires:
                       - setup_dx_orgs
                       - deploy_source
                       - create_and_test_package
                       - run_apex_tests
+                      - upload_code_coverage
