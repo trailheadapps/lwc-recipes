@@ -1,6 +1,6 @@
 import { LightningElement, track } from 'lwc';
 
-export default class MiscSldsModal extends LightningElement {
+export default class MiscModal extends LightningElement {
     @track content = 'The modal content';
     @track header = 'The modal header';
 
