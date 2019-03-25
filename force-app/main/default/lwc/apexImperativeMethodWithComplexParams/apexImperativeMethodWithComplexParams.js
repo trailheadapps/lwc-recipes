@@ -1,7 +1,7 @@
 import { LightningElement, track } from 'lwc';
 import checkApexTypes from '@salesforce/apex/ApexTypesController.checkApexTypes';
 
-export default class ApexImperativeMethodWithApexTypeParams extends LightningElement {
+export default class ApexImperativeMethodWithComplexParams extends LightningElement {
     listItemValue = 4;
     numberValue = 50;
     stringValue = 'Some string';
