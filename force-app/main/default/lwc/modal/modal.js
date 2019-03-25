@@ -3,15 +3,17 @@ import { LightningElement, api, track } from 'lwc';
 const CSS_CLASS = 'modal-hidden';
 
 export default class Modal extends LightningElement {
-    @api header = '';
+    @api
+    set header(value) {
+        this.hasHeaderString = value !== '';
+        this._headerPrivate = value;
+    }
+    get header() {
+        return this._headerPrivate;
+    }
 
     @track hasHeaderString = false;
-
-    connectedCallback() {
-        if (this.header !== '') {
-            this.hasHeaderString = true;
-        }
-    }
+    _headerPrivate;
 
     @api show() {
         const outerDivEl = this.template.querySelector('div');
