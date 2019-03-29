@@ -17,7 +17,7 @@
         "postinstall": "node bin/check-version.js"
     },
     "author": "salesforce.com",
-    "license": "Apache-2.0",
+    "license": "CC0-1.0",
     "repository": {
         "type": "git",
         "url": "git+https://github.com/trailheadapps/lwc-recipes"
