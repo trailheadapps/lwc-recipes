@@ -19,12 +19,16 @@
                     ></lightning-button-icon>
 
                     <template if:true={hasHeaderString}>
-                        <h2 class="slds-text-heading_medium slds-hyphenate">
+                        <h2
+                            class="slds-text-heading_medium slds-hyphenate header-string"
+                        >
                             {header}
                         </h2>
                     </template>
                     <template if:false={hasHeaderString}>
-                        <h2 class="slds-text-heading_medium slds-hyphenate">
+                        <h2
+                            class="slds-text-heading_medium slds-hyphenate header-slot"
+                        >
                             <slot name="header"></slot>
                         </h2>
                     </template>
