@@ -22,7 +22,7 @@ export default class ApexImperativeMethodWithApexTypeParams extends LightningEle
     }
 
     handleButtonClick() {
-        // Creating the JSON object that represents the shape
+        // Creating the object that represents the shape
         // of the Apex wrapper class.
         let parameterObject = {
             someString: this.stringValue,

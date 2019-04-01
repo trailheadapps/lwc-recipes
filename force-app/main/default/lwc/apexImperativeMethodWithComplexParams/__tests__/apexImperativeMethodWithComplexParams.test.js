@@ -101,6 +101,7 @@ describe('c-apex-imperative-method-with-complex-params', () => {
         // the test if the promise ends in the rejected state.
         return flushPromises().then(() => {
             // Validate parameters of mocked Apex call
+            expect(checkApexTypes.mock.calls.length).toBe(1);
             expect(checkApexTypes.mock.calls[0][0]).toEqual({
                 wrapper: APEX_PARAMETER
             });
