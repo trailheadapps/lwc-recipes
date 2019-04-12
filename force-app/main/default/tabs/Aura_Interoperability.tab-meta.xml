@@ -3,6 +3,6 @@
     <description>Created by Lightning App Builder</description>
     <flexiPage>Aura_Interoperability</flexiPage>
     <label>Aura Interop</label>
-    <mobileReady>true</mobileReady>
+    
     <motif>Custom37: Bridge</motif>
 </CustomTab>
