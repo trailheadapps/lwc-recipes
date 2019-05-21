@@ -113,6 +113,8 @@ To set up the formatting and linting pre-commit hook:
 1. Install [Node.js](https://nodejs.org) if you haven't already done so
 2. Run `npm install` in your project's root folder to install the ESLint and Prettier modules (Note: Mac users should verify that Xcode command line tools are installed before running this command.)
 
+> Note: This projects also contains [Jest](https://jestjs.io) tests for unit testing Lightning Web Components. If you experience errors regarding `deasync` when running `npm install` please check out the troubleshooting information in the [lwc-jest repository](https://github.com/salesforce/lwc-jest#troubleshooting-deasync-installation-errors).
+
 Prettier and ESLint will now run automatically every time you commit changes. The commit will fail if linting errors are detected. You can also run the formatting and linting from the command line using the following commands (check out [package.json](./package.json) for the full list):
 
 ```
