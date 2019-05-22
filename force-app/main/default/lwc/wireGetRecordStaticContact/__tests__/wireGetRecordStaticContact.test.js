@@ -31,11 +31,11 @@ describe('c-wire-get-record-static-contact', () => {
             // Return a promise to wait for any asynchronous DOM updates. Jest
             // will automatically wait for the Promise chain to complete before
             // ending the test and fail the test if the promise rejects.
-            return Promise.resolve(() => {
+            return Promise.resolve().then(() => {
                 // Select elements for validation
                 const nameEl = element.shadowRoot.querySelector('p');
                 expect(nameEl.textContent).toBe(
-                    mockGetRecord.result.fields.Name
+                    'mockGetRecord.result.fields.Name'
                 );
 
                 const phoneEl = element.shadowRoot.querySelector(

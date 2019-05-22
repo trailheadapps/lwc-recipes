@@ -41,7 +41,7 @@ describe('c-wire-get-object-info', () => {
             // Return a promise to wait for any asynchronous DOM updates. Jest
             // will automatically wait for the Promise chain to complete before
             // ending the test and fail the test if the promise rejects.
-            return Promise.resolve(() => {
+            return Promise.resolve().then(() => {
                 expect(getObjectInfoAdapter.getLastConfig()).toEqual({
                     objectApiName: USER_INPUT
                 });
@@ -75,7 +75,7 @@ describe('c-wire-get-object-info', () => {
             // Return a promise to wait for any asynchronous DOM updates. Jest
             // will automatically wait for the Promise chain to complete before
             // ending the test and fail the test if the promise rejects.
-            return Promise.resolve(() => {
+            return Promise.resolve().then(() => {
                 // Select element for validation
                 const preEl = element.shadowRoot.querySelector('pre');
                 expect(preEl.textContent).toBe(JSON.stringify(USER_INPUT));

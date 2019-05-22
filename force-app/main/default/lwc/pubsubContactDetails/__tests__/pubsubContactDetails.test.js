@@ -65,7 +65,7 @@ describe('c-pubsub-contact-details', () => {
             // Return a promise to wait for any asynchronous DOM updates. Jest
             // will automatically wait for the Promise chain to complete before
             // ending the test and fail the test if the promise rejects.
-            return Promise.resolve(() => {
+            return Promise.resolve().then(() => {
                 // Select elements for validation
                 const imgEl = element.shadowRoot.querySelector('img');
                 expect(imgEl.src).toBe(mockGetRecord.result.fields.Picture__c);
@@ -100,7 +100,7 @@ describe('c-pubsub-contact-details', () => {
             // Return a promise to wait for any asynchronous DOM updates. Jest
             // will automatically wait for the Promise chain to complete before
             // ending the test and fail the test if the promise rejects.
-            return Promise.resolve(() => {
+            return Promise.resolve().then(() => {
                 // Select elements for validation
                 const imgEl = element.shadowRoot.querySelector('img');
                 expect(imgEl.src).toBeNull();

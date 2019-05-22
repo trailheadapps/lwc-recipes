@@ -38,7 +38,7 @@ describe('c-wire-get-picklist-values-by-record-type', () => {
             // Return a promise to wait for any asynchronous DOM updates. Jest
             // will automatically wait for the Promise chain to complete before
             // ending the test and fail the test if the promise rejects.
-            return Promise.resolve(() => {
+            return Promise.resolve().then(() => {
                 // Select elements for validation
                 const treeEl = element.shadowRoot.querySelectorAll(
                     'lightning-tree'
