@@ -31,6 +31,9 @@
         <componentInstances>
             <componentName>miscDomQuery</componentName>
         </componentInstances>
+        <componentInstances>
+            <componentName>miscModal</componentName>
+        </componentInstances>
         <name>region4</name>
         <type>Region</type>
     </flexiPageRegions>

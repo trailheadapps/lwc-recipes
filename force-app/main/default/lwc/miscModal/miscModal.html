@@ -1,0 +1,44 @@
+<template>
+    <lightning-card title="MiscModal" icon-name="custom:custom19">
+        <div class="slds-m-around_medium">
+            <lightning-input
+                label="Header"
+                type="text"
+                value={header}
+                class="header-jest"
+                onchange={handleHeaderChange}
+            ></lightning-input>
+            <lightning-input
+                label="Content"
+                type="text"
+                value={content}
+                class="content-jest"
+                onchange={handleContentChange}
+            ></lightning-input>
+            <br />
+            <lightning-button
+                label="Show modal"
+                onclick={handleShowModal}
+            ></lightning-button>
+            <c-modal header={header}
+                >{content}
+                <div slot="footer">
+                    <lightning-button
+                        label="Cancel"
+                        variant="neutral"
+                        onclick={handleCancelModal}
+                    ></lightning-button>
+                    <lightning-button
+                        label="Close"
+                        variant="brand"
+                        onclick={handleCloseModal}
+                    ></lightning-button>
+                </div>
+            </c-modal>
+        </div>
+
+        <c-view-source source="lwc/miscModal" slot="footer">
+            Use query selectors to access DOM elements.
+        </c-view-source>
+    </lightning-card>
+</template>
