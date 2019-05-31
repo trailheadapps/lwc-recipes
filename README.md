@@ -6,6 +6,8 @@
 
 A collection of easy-to-digest code examples for Lightning Web Components. Each recipe demonstrates how to code a specific task in 30 lines of code or less. A View Source link takes you right to the code in GitHub. From Hello World to data access and third-party libraries, there is a recipe for that!
 
+> This sample application is designed to run on Salesforce Platform. If you want to experience Lightning Web Components on any platform, please visit https://lwc.dev, and try out our Lightning Web Components sample application [LWC Recipes OSS](https://github.com/trailheadapps/lwc-recipes-oss).
+
 ## Installation Instructions
 
 There are two ways to install Lightning Web Components Recipes:
