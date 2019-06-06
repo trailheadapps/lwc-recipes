@@ -6,6 +6,11 @@
 
 const events = {};
 
+/**
+ * Confirm that two page references have the same attributes
+ * @param {object} pageRef1 - The first page reference
+ * @param {object} pageRef2 - The second page reference
+ */
 const samePageRef = (pageRef1, pageRef2) => {
     const obj1 = pageRef1.attributes;
     const obj2 = pageRef2.attributes;
