@@ -18,9 +18,16 @@ export const getRecordUi = jest.fn();
 export const getFieldValue = jest.fn((data, fieldReference) => {
     if (data) {
         const fields = fieldReference.fieldApiName.split('.');
-        const fieldData = fields.reduce((o, i) => o[i], data.result.fields);
-        if (fieldData && fieldData.value) {
-            return fieldData.value;
+        if (data.result) {
+            const fieldData = fields.reduce((o, i) => o[i], data.result.fields);
+            if (fieldData && fieldData.value) {
+                return fieldData.value;
+            }
+        } else {
+            const fieldData = fields.reduce((o, i) => o[i], data.fields);
+            if (fieldData && fieldData.value) {
+                return fieldData.value;
+            }
         }
         return null;
     }
