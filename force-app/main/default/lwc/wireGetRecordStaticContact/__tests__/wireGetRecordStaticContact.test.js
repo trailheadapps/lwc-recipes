@@ -17,6 +17,13 @@ describe('c-wire-get-record-static-contact', () => {
         }
     });
 
+    // Helper function to wait until the microtask queue is empty. This is needed for promise
+    // timing.
+    function flushPromises() {
+        // eslint-disable-next-line no-undef
+        return new Promise(resolve => setImmediate(resolve));
+    }
+
     describe('getRecord @wire data', () => {
         it('renders contact details', () => {
             // Create element
@@ -31,22 +38,26 @@ describe('c-wire-get-record-static-contact', () => {
             // Return a promise to wait for any asynchronous DOM updates. Jest
             // will automatically wait for the Promise chain to complete before
             // ending the test and fail the test if the promise rejects.
-            return Promise.resolve().then(() => {
+            return flushPromises().then(() => {
                 // Select elements for validation
                 const nameEl = element.shadowRoot.querySelector('p');
                 expect(nameEl.textContent).toBe(
-                    'mockGetRecord.result.fields.Name'
+                    mockGetRecord.result.fields.Name.value
                 );
 
                 const phoneEl = element.shadowRoot.querySelector(
                     'lightning-formatted-phone'
                 );
-                expect(phoneEl.value).toBe(mockGetRecord.result.fields.Phone);
+                expect(phoneEl.value).toBe(
+                    mockGetRecord.result.fields.Phone.value
+                );
 
                 const emailEl = element.shadowRoot.querySelector(
                     'lightning-formatted-email'
                 );
-                expect(emailEl.value).toBe(mockGetRecord.result.fields.Email);
+                expect(emailEl.value).toBe(
+                    mockGetRecord.result.fields.Email.value
+                );
             });
         });
     });
