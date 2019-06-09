@@ -78,7 +78,9 @@ describe('c-wire-get-object-info', () => {
             return Promise.resolve().then(() => {
                 // Select element for validation
                 const preEl = element.shadowRoot.querySelector('pre');
-                expect(preEl.textContent).toBe(JSON.stringify(USER_INPUT));
+                expect(preEl.textContent).toEqual(
+                    JSON.stringify(mockGetObjectInfo, null, 2)
+                );
             });
         });
     });
