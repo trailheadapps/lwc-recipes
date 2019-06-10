@@ -31,22 +31,23 @@ describe('c-wire-get-record-dynamic-contact', () => {
             // Return a promise to wait for any asynchronous DOM updates. Jest
             // will automatically wait for the Promise chain to complete before
             // ending the test and fail the test if the promise rejects.
+            //return flushPromises().then(() => {
             return Promise.resolve().then(() => {
                 // Select elements for validation
                 const nameEl = element.shadowRoot.querySelector('p');
                 expect(nameEl.textContent).toBe(
-                    mockGetRecord.result.fields.Name
+                    mockGetRecord.fields.Name.value
                 );
 
                 const phoneEl = element.shadowRoot.querySelector(
                     'lightning-formatted-phone'
                 );
-                expect(phoneEl.value).toBe(mockGetRecord.result.fields.Phone);
+                expect(phoneEl.value).toBe(mockGetRecord.fields.Phone.value);
 
                 const emailEl = element.shadowRoot.querySelector(
                     'lightning-formatted-email'
                 );
-                expect(emailEl.value).toBe(mockGetRecord.result.fields.Email);
+                expect(emailEl.value).toBe(mockGetRecord.fields.Email.value);
             });
         });
     });
