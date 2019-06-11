@@ -17,6 +17,13 @@ describe('c-wire-get-record-user', () => {
         }
     });
 
+    // Helper function to wait until the microtask queue is empty. This is needed for promise
+    // timing.
+    function flushPromises() {
+        // eslint-disable-next-line no-undef
+        return new Promise(resolve => setImmediate(resolve));
+    }
+
     describe('getRecord @wire data', () => {
         it('renders user record details', () => {
             // Create element
@@ -31,12 +38,9 @@ describe('c-wire-get-record-user', () => {
             // Return a promise to wait for any asynchronous DOM updates. Jest
             // will automatically wait for the Promise chain to complete before
             // ending the test and fail the test if the promise rejects.
-            return Promise.resolve().then(() => {
+            return flushPromises().then(() => {
                 const userEls = element.shadowRoot.querySelectorAll('p');
                 expect(userEls.length).toBe(3);
-
-                // getFieldValue is a default jest.fn() mock. We're not testing
-                // the functionality, but if it gets called accordingly.
                 expect(getFieldValue.mock.calls.length).toBe(2);
             });
         });

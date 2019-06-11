@@ -33,7 +33,7 @@
         "husky": "^1.3.1",
         "lint-staged": "^8.1.5",
         "prettier": "^1.17",
-        "semver": "^5.7.0"
+        "semver": "^5.5.0"
     },
     "husky": {
         "hooks": {
