@@ -10,7 +10,7 @@ import findContacts from '@salesforce/apex/ContactController.findContacts';
 import { registerListener, unregisterAllListeners, fireEvent } from 'c/pubsub';
 
 export default class PubsubContactList extends LightningElement {
-    searchKey;
+    searchKey = '';
 
     @wire(CurrentPageReference) pageRef;
 

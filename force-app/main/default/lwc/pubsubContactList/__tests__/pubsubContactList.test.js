@@ -55,8 +55,8 @@ describe('c-pubsub-contact-list', () => {
     });
 
     describe('findContacts @wire data', () => {
-        it('gets called initially with undefined searchkey parameter', () => {
-            const WIRE_PARAMETER = { searchKey: undefined };
+        it('gets called initially with empty searchkey parameter', () => {
+            const WIRE_PARAMETER = { searchKey: '' };
 
             // Create initial element
             const element = createElement('c-pubsub-contact-list', {
