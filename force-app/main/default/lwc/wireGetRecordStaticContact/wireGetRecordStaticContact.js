@@ -11,7 +11,7 @@ const fields = [NAME_FIELD, TITLE_FIELD, PHONE_FIELD, EMAIL_FIELD];
 export default class WireGetRecordStaticContact extends LightningElement {
     @api recordId;
 
-    @wire(getRecord, { recordId: '$recordId', fields })
+    @wire(getRecord, { recordId: '$recordId', fields: fields })
     contact;
 
     get name() {
