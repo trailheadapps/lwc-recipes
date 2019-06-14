@@ -4,8 +4,8 @@
             "path": "force-app",
             "default": true,
             "package": "LWCRecipes",
-            "versionName": "Spring '19",
-            "versionNumber": "1.0.0.NEXT"
+            "versionName": "Summer '19",
+            "versionNumber": "2.0.0.NEXT"
         }
     ],
     "namespace": "",
@@ -13,6 +13,6 @@
     "sfdcLoginUrl": "https://login.salesforce.com",
     "packageAliases": {
         "LWCRecipes": "0HoB0000000GmiJKAS",
-        "LWCRecipes@1.0.0-4": "04tB0000000KAfTIAW"
+        "LWCRecipes@2.0.0-2": "04tB0000000AjVfIAK"
     }
 }
