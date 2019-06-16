@@ -1,7 +1,7 @@
 {
     "orgName": "LWC Recipes",
     "edition": "Developer",
-    "hasSampleData": "false",
+    "hasSampleData": false,
     "settings": {
         "orgPreferenceSettings": {
             "s1DesktopEnabled": true,

@@ -3,6 +3,6 @@
     <description>Created by Lightning App Builder</description>
     <flexiPage>Parent_to_Child</flexiPage>
     <label>Parent-to-Child</label>
-    <mobileReady>true</mobileReady>
+    
     <motif>Custom9: Lightning</motif>
 </CustomTab>
