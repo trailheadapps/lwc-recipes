@@ -9,5 +9,9 @@ module.exports = {
             '<rootDir>/force-app/test/jest-mocks/lightning/platformShowToastEvent',
         '^lightning/uiRecordApi$':
             '<rootDir>/force-app/test/jest-mocks/lightning/uiRecordApi'
-    }
+    },
+    collectCoverageFrom: [
+        "force-app/main/default/lwc/**/*.js",
+        "!**/node_modules/**"
+    ]
 };
