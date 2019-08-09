@@ -1,7 +1,7 @@
 import { createElement } from 'lwc';
 import LdsDeleteRecord from 'c/ldsDeleteRecord';
 import { deleteRecord } from 'lightning/uiRecordApi';
-import { registerApexTestWireAdapter } from '@salesforce/lwc-jest';
+import { registerApexTestWireAdapter } from '@salesforce/sfdx-lwc-jest';
 import getAccountList from '@salesforce/apex/AccountController.getAccountList';
 
 // Realistic data with a list of contacts

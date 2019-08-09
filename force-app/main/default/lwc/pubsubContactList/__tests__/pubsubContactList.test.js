@@ -4,7 +4,7 @@ import { fireEvent, registerListener, unregisterAllListeners } from 'c/pubsub';
 import {
     registerTestWireAdapter,
     registerApexTestWireAdapter
-} from '@salesforce/lwc-jest';
+} from '@salesforce/sfdx-lwc-jest';
 import findContacts from '@salesforce/apex/ContactController.findContacts';
 import { CurrentPageReference } from 'lightning/navigation';
 

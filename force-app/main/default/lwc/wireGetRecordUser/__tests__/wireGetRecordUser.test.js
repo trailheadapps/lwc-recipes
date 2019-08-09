@@ -1,7 +1,7 @@
 import { createElement } from 'lwc';
 import WireGetRecordUser from 'c/wireGetRecordUser';
 import { getRecord, getFieldValue } from 'lightning/uiRecordApi';
-import { registerLdsTestWireAdapter } from '@salesforce/lwc-jest';
+import { registerLdsTestWireAdapter } from '@salesforce/sfdx-lwc-jest';
 
 // Mock realistic data
 const mockGetRecord = require('./data/getRecord.json');

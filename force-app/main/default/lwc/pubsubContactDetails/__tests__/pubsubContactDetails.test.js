@@ -6,7 +6,7 @@ import { getRecord } from 'lightning/uiRecordApi';
 import {
     registerLdsTestWireAdapter,
     registerTestWireAdapter
-} from '@salesforce/lwc-jest';
+} from '@salesforce/sfdx-lwc-jest';
 import { CurrentPageReference } from 'lightning/navigation';
 
 const mockGetRecord = require('./data/getRecord.json');
