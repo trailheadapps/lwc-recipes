@@ -1,7 +1,7 @@
 import { createElement } from 'lwc';
 import MiscGetUserId from 'c/miscGetUserId';
 
-// lwc-jest automocks @salesforce/user/Id to this const value.
+// sfdx-lwc-jest automocks @salesforce/user/Id to this const value.
 const USER_ID = '005000000000000000';
 
 describe('c-misc-get-user-id', () => {

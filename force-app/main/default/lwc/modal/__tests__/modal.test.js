@@ -36,7 +36,7 @@ describe('c-modal', () => {
         expect(headerSlotEl).toBeNull();
     });
 
-    // lwc-jest cannot validate slotchange events. We're only checking
+    // sfdx-lwc-jest cannot validate slotchange events. We're only checking
     // here if the empty h2 div is rendered.
     it('renders the header slot when no public header property is set', () => {
         // Create initial element

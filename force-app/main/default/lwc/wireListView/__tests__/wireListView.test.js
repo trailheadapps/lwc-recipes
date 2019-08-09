@@ -1,7 +1,7 @@
 import { createElement } from 'lwc';
 import WireListView from 'c/wireListView';
 import { getListUi } from 'lightning/uiListApi';
-import { registerLdsTestWireAdapter } from '@salesforce/lwc-jest';
+import { registerLdsTestWireAdapter } from '@salesforce/sfdx-lwc-jest';
 
 // Mock realistic data
 const mockGetListUi = require('./data/getListUi.json');
