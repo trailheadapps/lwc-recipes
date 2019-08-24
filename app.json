@@ -1,0 +1,32 @@
+{
+    "buildpacks": [
+        {
+          "url": "https://github.com/heroku/salesforce-cli-buildpack#v3"
+        },
+        {
+          "url": "https://github.com/heroku/salesforce-buildpack#v3"
+    }],
+    "env": {
+        "SFDX_DEV_HUB_AUTH_URL": {
+          "required": true
+        },
+        "SFDX_BUILDPACK_DEBUG": {
+          "required": true
+        },
+        "HEROKU_APP_NAME" : {
+          "required": true
+        }
+      },
+      "environments": {
+        "test": {
+          "scripts": {
+            "test-setup":
+              "./vendor/sfdx/release.sh ci-$HEROKU_TEST_RUN_COMMIT_VERSION && ./bin/test-setup.sh",
+            "test": "./bin/test.sh"
+          }
+        }
+      },
+      "scripts": {
+        "pr-predestroy": "./bin/ra-org-delete.sh"
+      }
+}
