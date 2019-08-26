@@ -4,3 +4,4 @@
 
 **/staticresources/**
 .sfdx
+coverage/
