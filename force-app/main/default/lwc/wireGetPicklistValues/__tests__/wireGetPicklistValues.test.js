@@ -1,6 +1,6 @@
 import { createElement } from 'lwc';
 import WireGetPicklistValues from 'c/wireGetPicklistValues';
-import { registerLdsTestWireAdapter } from '@salesforce/lwc-jest';
+import { registerLdsTestWireAdapter } from '@salesforce/sfdx-lwc-jest';
 import { getPicklistValues } from 'lightning/uiObjectInfoApi';
 
 // Mock realistic data

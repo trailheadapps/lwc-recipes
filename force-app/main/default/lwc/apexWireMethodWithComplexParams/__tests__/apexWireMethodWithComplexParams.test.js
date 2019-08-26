@@ -1,6 +1,6 @@
 import { createElement } from 'lwc';
 import ApexWireMethodWithComplexParams from 'c/apexWireMethodWithComplexParams';
-import { registerApexTestWireAdapter } from '@salesforce/lwc-jest';
+import { registerApexTestWireAdapter } from '@salesforce/sfdx-lwc-jest';
 import checkApexTypes from '@salesforce/apex/ApexTypesController.checkApexTypes';
 
 // Sample default values for wired Apex call

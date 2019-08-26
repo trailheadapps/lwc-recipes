@@ -1,7 +1,7 @@
 import { createElement } from 'lwc';
 import PubsubSearchBar from 'c/pubsubSearchBar';
 import { fireEvent } from 'c/pubsub';
-import { registerTestWireAdapter } from '@salesforce/lwc-jest';
+import { registerTestWireAdapter } from '@salesforce/sfdx-lwc-jest';
 import { CurrentPageReference } from 'lightning/navigation';
 
 // Mock out the event firing function to verify it was called with expected parameters.
