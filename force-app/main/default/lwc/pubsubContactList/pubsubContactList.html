@@ -1,11 +1,13 @@
 <template>
     <lightning-card title="PubsubContactList" icon-name="custom:custom30">
         <div class="slds-m-around_medium" oncontactselect={handleContactSelect}>
-            <template for:each={contacts.data} for:item="contact">
-                <c-contact-list-item-bubbling
-                    key={contact.Id}
-                    contact={contact}
-                ></c-contact-list-item-bubbling>
+            <template if:true={contacts.data}>
+                <template for:each={contacts.data} for:item="contact">
+                    <c-contact-list-item-bubbling
+                        key={contact.Id}
+                        contact={contact}
+                    ></c-contact-list-item-bubbling>
+                </template>
             </template>
         </div>
 
