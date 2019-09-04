@@ -54,6 +54,20 @@ describe('c-composition-contact-search', () => {
         return new Promise(resolve => setImmediate(resolve));
     }
 
+    it('does not render contact tiles by default', () => {
+        // Create initial element
+        const element = createElement('c-composition-contact-search', {
+            is: CompositionContactSearch
+        });
+        document.body.appendChild(element);
+
+        // Select rendered contact tile for length check
+        const contactTileEls = element.shadowRoot.querySelectorAll(
+            'c-contact-tile'
+        );
+        expect(contactTileEls.length).toBe(0);
+    });
+
     it('renders one contact tile based on user input', () => {
         const USER_INPUT = 'Amy';
 
