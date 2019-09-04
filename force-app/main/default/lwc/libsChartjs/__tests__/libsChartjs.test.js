@@ -35,7 +35,7 @@ describe('c-libs-chartjs', () => {
         document.body.appendChild(element);
 
         // Querying the DOM element that has the lwc:dom directive set.
-        const domEl = element.shadowRoot.querySelector('canvas[class="donut"]');
+        const domEl = element.shadowRoot.querySelector('div.chart');
         expect(domEl).not.toBeNull();
     });
 
