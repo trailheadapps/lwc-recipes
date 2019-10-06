@@ -259,7 +259,7 @@ workflows:
                       branches:
                           only:
                               - master
-                              - prerelease/.*
+                              - prerelease/winter20
         jobs:
             - setup_tooling
             - prettier_verify:
