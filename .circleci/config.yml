@@ -254,12 +254,12 @@ workflows:
     nightly:
         triggers:
             - schedule:
-                  cron: '0 16 * * 0'
+                  cron: '0 17 * * 0'
                   filters:
                       branches:
                           only:
                               - master
-                              - prerelease/winter20
+                              - .*prerelease.*
         jobs:
             - setup_tooling
             - prettier_verify:
