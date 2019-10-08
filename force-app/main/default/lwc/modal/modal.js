@@ -17,14 +17,10 @@ export default class Modal extends LightningElement {
     _headerPrivate;
 
     @api show() {
-        //const outerDivEl = this.template.querySelector('div');
-        //outerDivEl.classList.remove(CSS_CLASS);
         this.showModal = true;
     }
 
     @api hide() {
-        //const outerDivEl = this.template.querySelector('div');
-        //outerDivEl.classList.add(CSS_CLASS);
         this.showModal = false;
     }
 
