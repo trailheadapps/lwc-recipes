@@ -35,3 +35,6 @@ $RECYCLE.BIN/
 
 # VS Code project settings
 .vscode/
+
+# LWC Local Dev
+.localdevserver
