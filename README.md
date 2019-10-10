@@ -83,7 +83,7 @@ sfdx force:org:open
 
 5. Import Account and Contacts data:
 
--   Click [here](https://raw.githubusercontent.com/trailheadapps/lwc-recipes/master/data/Accounts-Contacts.csv) to acccess the **Accounts-Contacts.csv** file. Right click in the browser window and save the file as **Accounts-Contacts.csv**.
+-   Click [here](https://raw.githubusercontent.com/trailheadapps/lwc-recipes/master/data/Accounts-Contacts.csv) to access the **Accounts-Contacts.csv** file. Right click on the browser window and save the file as **Accounts-Contacts.csv**.
 -   In **Setup**, type **Data Import** in the Quick Find box and click **Data Import Wizard**.
 -   Click **Launch Wizard**.
 -   Click **Accounts and Contacts**, and click **Add New Records**.
@@ -104,7 +104,7 @@ This repository contains several files that are relevant if you want to integrat
 
 ### Code linting
 
-[ESLint](https://eslint.org/) is a popular JavaScript linting tool used to identify stylistic errors and erroneous constructs. To use ESLint with Visual Studio Code, install [this extension](https://marketplace.visualstudio.com/items?itemName=salesforce.salesforcedx-vscode-lwc) from the Visual Studio Code Marketplace. The [.eslintignore](/.eslintignore) file is provided as part of this repository to exclude specific files from the linting process in the context of Lighning Web Components development.
+[ESLint](https://eslint.org/) is a popular JavaScript linting tool used to identify stylistic errors and erroneous constructs. To use ESLint with Visual Studio Code, install [this extension](https://marketplace.visualstudio.com/items?itemName=salesforce.salesforcedx-vscode-lwc) from the Visual Studio Code Marketplace. The [.eslintignore](/.eslintignore) file is provided as part of this repository to exclude specific files from the linting process in the context of Lightning Web Components development.
 
 ### Pre-commit hook
 
