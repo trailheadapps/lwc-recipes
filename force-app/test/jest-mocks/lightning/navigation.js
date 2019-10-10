@@ -1,7 +1,7 @@
 /**
  * For the original lightning/navigation mock that comes by default with
  * @salesforce/sfdx-lwc-jest, see:
- * https://github.com/salesforce/sfdx-lwc-jest/blob/master/src/lightning-mocks/navigation/navigation.js
+ * https://github.com/salesforce/sfdx-lwc-jest/blob/master/src/lightning-stubs/navigation/navigation.js
  */
 export const CurrentPageReference = jest.fn();
 
