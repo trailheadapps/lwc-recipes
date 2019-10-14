@@ -43,7 +43,7 @@
         }
     },
     "lint-staged": {
-        "**/*.{html,js,json,yaml,yml,md,cmp,page,component}": [
+        "**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,yaml,yml}": [
             "prettier --write"
         ],
         "**/lwc/**": [
