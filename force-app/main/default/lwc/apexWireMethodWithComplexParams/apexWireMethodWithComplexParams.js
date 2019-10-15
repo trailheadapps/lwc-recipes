@@ -16,21 +16,30 @@ export default class ApexImperativeMethodWithApexTypeParams extends LightningEle
     apexResponse;
 
     handleStringChange(event) {
-        this.parameterObject.someString = this.stringValue = event.target.value;
+        this.parameterObject = {
+            ...this.parameterObject,
+            someString: (this.stringValue = event.target.value)
+        };
     }
 
     handleNumberChange(event) {
-        this.parameterObject.someInteger = this.numberValue =
-            event.target.value;
+        this.parameterObject = {
+            ...this.parameterObject,
+            someInteger: (this.someInteger = event.target.value)
+        };
     }
 
     handleListItemChange(event) {
-        this.parameterObject.someList = [];
+        const someList = [];
         for (let i = 0; i < event.target.value; i++) {
-            this.parameterObject.someList.push({
+            someList.push({
                 someInnerString: this.stringValue,
                 someInnerInteger: this.numberValue
             });
         }
+        this.parameterObject = {
+            ...this.parameterObject,
+            someList
+        };
     }
 }
