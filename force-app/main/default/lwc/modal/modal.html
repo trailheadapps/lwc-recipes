@@ -1,5 +1,5 @@
 <template>
-    <div class="modal-hidden">
+    <template if:true={showModal}>
         <section
             role="dialog"
             tabindex="-1"
@@ -56,5 +56,5 @@
             </div>
         </section>
         <div class="slds-backdrop slds-backdrop_open"></div>
-    </div>
+    </template>
 </template>
