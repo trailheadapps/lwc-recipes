@@ -31,6 +31,12 @@
         <componentInstances>
             <componentName>apexImperativeMethodWithParams</componentName>
         </componentInstances>
+        <componentInstances>
+            <componentName>apexWireMethodWithComplexParams</componentName>
+        </componentInstances>
+        <componentInstances>
+            <componentName>apexImperativeMethodWithComplexParams</componentName>
+        </componentInstances>
         <name>region4</name>
         <type>Region</type>
     </flexiPageRegions>

@@ -3,4 +3,6 @@
 #
 
 **/staticresources/**
+.localdevserver
 .sfdx
+coverage/

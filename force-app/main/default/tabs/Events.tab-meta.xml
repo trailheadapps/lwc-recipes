@@ -3,6 +3,6 @@
     <description>Created by Lightning App Builder</description>
     <flexiPage>Events</flexiPage>
     <label>Child-to-Parent</label>
-    <mobileReady>true</mobileReady>
+    
     <motif>Custom9: Lightning</motif>
 </CustomTab>

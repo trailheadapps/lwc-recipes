@@ -1,7 +1,7 @@
 import { createElement } from 'lwc';
 import WireCurrentPageReference from 'c/wireCurrentPageReference';
 import { CurrentPageReference } from 'lightning/navigation';
-import { registerTestWireAdapter } from '@salesforce/lwc-jest';
+import { registerTestWireAdapter } from '@salesforce/sfdx-lwc-jest';
 
 // Mock realistic data
 const mockCurrentPageReference = require('./data/CurrentPageReference.json');

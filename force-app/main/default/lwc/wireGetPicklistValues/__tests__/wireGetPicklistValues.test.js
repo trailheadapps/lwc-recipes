@@ -1,6 +1,6 @@
 import { createElement } from 'lwc';
 import WireGetPicklistValues from 'c/wireGetPicklistValues';
-import { registerLdsTestWireAdapter } from '@salesforce/lwc-jest';
+import { registerLdsTestWireAdapter } from '@salesforce/sfdx-lwc-jest';
 import { getPicklistValues } from 'lightning/uiObjectInfoApi';
 
 // Mock realistic data
@@ -31,14 +31,16 @@ describe('c-wire-get-picklist-values', () => {
             // Return a promise to wait for any asynchronous DOM updates. Jest
             // will automatically wait for the Promise chain to complete before
             // ending the test and fail the test if the promise rejects.
-            return Promise.resolve(() => {
+            return Promise.resolve().then(() => {
                 // Select elements for validation
                 const checkboxEls = element.shadowRoot.querySelectorAll(
                     'lightning-input'
                 );
-                expect(checkboxEls.length).toBe(mockGetPicklistValues.length);
+                expect(checkboxEls.length).toBe(
+                    mockGetPicklistValues.values.length
+                );
 
-                checkboxEls.array.forEach(checkboxEl => {
+                checkboxEls.forEach(checkboxEl => {
                     expect(checkboxEl.type).toBe('checkbox');
                 });
             });

@@ -1,19 +1,21 @@
 # Lightning Web Components Recipes
 
-[![CircleCI](https://circleci.com/gh/trailheadapps/lwc-recipes.svg?style=svg)](https://circleci.com/gh/trailheadapps/lwc-recipes)
+[![CircleCI](https://circleci.com/gh/trailheadapps/lwc-recipes.svg?style=svg)](https://circleci.com/gh/trailheadapps/lwc-recipes) [![codecov](https://codecov.io/gh/trailheadapps/lwc-recipes/branch/master/graph/badge.svg)](https://codecov.io/gh/trailheadapps/lwc-recipes)
 
 ![recipes-logo](recipes-logo.png)
 
 A collection of easy-to-digest code examples for Lightning Web Components. Each recipe demonstrates how to code a specific task in 30 lines of code or less. A View Source link takes you right to the code in GitHub. From Hello World to data access and third-party libraries, there is a recipe for that!
 
+> This sample application is designed to run on Salesforce Platform. If you want to experience Lightning Web Components on any platform, please visit https://lwc.dev, and try out our Lightning Web Components sample application [LWC Recipes OSS](https://github.com/trailheadapps/lwc-recipes-oss).
+
 ## Installation Instructions
 
 There are two ways to install Lightning Web Components Recipes:
 
--   [Using Salesforce DX](#installing-recipes-using-salesforce-dx): This is the recommended installation option. Use this option if you are a developer who wants to experience the app and the code.
+-   [Using a Scratch Org](#installing-recipes-using-a-scratch-org): This is the recommended installation option. Use this option if you are a developer who wants to experience the app and the code.
 -   [Using an Unlocked Package](#installing-recipes-using-an-unlocked-package): This option allows anybody to experience the sample app without installing a local development environment.
 
-## Installing Recipes using Salesforce DX
+## Installing Recipes using a Scratch Org
 
 1. Set up your environment. Follow the steps in the [Quick Start: Lightning Web Components](https://trailhead.salesforce.com/content/learn/projects/quick-start-lightning-web-components/) Trailhead project. The steps include:
 
@@ -75,13 +77,13 @@ sfdx force:org:open
 
 2. Enable MyDomain in your DE org. Instructions to do this are [here](https://trailhead.salesforce.com/modules/identity_login/units/identity_login_my_domain).
 
-3. Click [this link](https://login.salesforce.com/packaging/installPackage.apexp?p0=04tB0000000KAfTIAW) to install the Recipes unlocked package in your DE org.
+3. Click [this link](https://login.salesforce.com/packaging/installPackage.apexp?p0=04tB0000000OEEdIAO) to install the Recipes unlocked package in your DE org.
 
 4. Select **Install for All Users**
 
 5. Import Account and Contacts data:
 
--   Click [here](https://raw.githubusercontent.com/trailheadapps/lwc-recipes/master/data/Accounts-Contacts.csv) to acccess the **Accounts-Contacts.csv** file. Right click in the browser window and save the file as **Accounts-Contacts.csv**.
+-   Click [here](https://raw.githubusercontent.com/trailheadapps/lwc-recipes/master/data/Accounts-Contacts.csv) to access the **Accounts-Contacts.csv** file. Right click on the browser window and save the file as **Accounts-Contacts.csv**.
 -   In **Setup**, type **Data Import** in the Quick Find box and click **Data Import Wizard**.
 -   Click **Launch Wizard**.
 -   Click **Accounts and Contacts**, and click **Add New Records**.
@@ -102,7 +104,7 @@ This repository contains several files that are relevant if you want to integrat
 
 ### Code linting
 
-[ESLint](https://eslint.org/) is a popular JavaScript linting tool used to identify stylistic errors and erroneous constructs. To use ESLint with Visual Studio Code, install [this extension](https://marketplace.visualstudio.com/items?itemName=salesforce.salesforcedx-vscode-lwc) from the Visual Studio Code Marketplace. The [.eslintignore](/.eslintignore) file is provided as part of this repository to exclude specific files from the linting process in the context of Lighning Web Components development.
+[ESLint](https://eslint.org/) is a popular JavaScript linting tool used to identify stylistic errors and erroneous constructs. To use ESLint with Visual Studio Code, install [this extension](https://marketplace.visualstudio.com/items?itemName=salesforce.salesforcedx-vscode-lwc) from the Visual Studio Code Marketplace. The [.eslintignore](/.eslintignore) file is provided as part of this repository to exclude specific files from the linting process in the context of Lightning Web Components development.
 
 ### Pre-commit hook
 
