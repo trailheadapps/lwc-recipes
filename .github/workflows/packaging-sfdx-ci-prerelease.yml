@@ -1,12 +1,14 @@
 # Unique name for this workflow
-name: Salesforce DX CI (packaging)
+name: Salesforce DX CI Prerelease (packaging)
 
 # Definition when the workflow should run
 on:
     pull_request:
         types: [opened, synchronize, reopened]
         branches:
-            - master
+            - prerelease/spring[2-9][0-9]
+            - prerelease/summer[2-9][0-9]
+            - prerelease/winter[2-9][0-9]
         paths:
             - 'force-app/**'
 
@@ -55,33 +57,23 @@ jobs:
             - name: 'Checkout source code'
               uses: actions/checkout@v1
 
-            # Store secret for dev hub
-            - name: 'Populate auth file with DEVHUB_SFDX_URL secret'
-              shell: bash
-              run: 'echo ${{ secrets.DEVHUB_SFDX_URL}} > ./DEVHUB_SFDX_URL.txt'
+            # Install salesforcedx pre-release plugin
+            - name: 'Install salesforcedx pre-release plugin'
+              uses: forcedotcom/salesforcedx-actions@master
+              if: startsWith(github.head_ref, 'prerelease')
+              with:
+                  args: 'plugins:install salesforcedx@pre-release'
 
-            # Store secret for package target org installation
-            - name: 'Populate auth file with PACKAGING_SFDX_URL secret'
+            # Store secret for dev hub
+            - name: 'Populate auth file with DEVHUB_PREREL_SFDX_URL secret'
               shell: bash
-              run: 'echo ${{ secrets.PACKAGING_SFDX_URL}} > ./PACKAGING_SFDX_URL.txt'
+              run: 'echo ${{ secrets.DEVHUB_PREREL_SFDX_URL}} > ./DEVHUB_SFDX_URL.txt'
 
             # Authenticate dev hub
             - name: 'Authenticate Dev Hub'
               uses: forcedotcom/salesforcedx-actions@master
               with:
                   args: 'force:auth:sfdxurl:store --sfdxurlfile=./DEVHUB_SFDX_URL.txt --setalias=devhub --setdefaultdevhubusername'
-
-            # Authenticate package target org
-            - name: 'Authenticate package target org'
-              uses: forcedotcom/salesforcedx-actions@master
-              with:
-                  args: 'force:auth:sfdxurl:store --sfdxurlfile=./PACKAGING_SFDX_URL.txt --setalias=packagingorg --setdefaultusername'
-
-            # Remove auth files
-            - name: 'Remove auth files'
-              run: |
-                  rm -f ./DEVHUB_SFDX_URL.txt
-                  rm -f ./PACKAGING_SFDX_URL.txt
 
             # Create package version
             - name: 'Create package version'
@@ -96,31 +88,3 @@ jobs:
               uses: muenzpraeger/github-action-extract-sfdx-packaging-result@master
               with:
                   json: ${{steps.package-version-create.outputs.result}}
-
-            # Wait for package replication
-            - name: 'Wait for package replication'
-              uses: maddox/actions/sleep@master
-              with:
-                  args: 300
-
-            # Install new package into test org
-            - name: 'Install new package version into test org'
-              if: steps.extract-data-package-version-create.outputs.isSuccess
-              uses: forcedotcom/salesforcedx-actions@master
-              with:
-                  args: 'force:package:install --package ${{ steps.extract-data-package-version-create.outputs.packageVersionId }} -w 10 -u packagingorg -r'
-
-            # Update sfdx-project.json and README to use only latest package version
-            - name: 'Update sfdx-project.json and README'
-              id: packaging-updater
-              uses: muenzpraeger/github-action-sfdx-packaging-updater@master
-
-            # Re-add changes back to source
-            - name: 'Add new package version, updated sfdx-project.json and README to source'
-              if: steps.packaging-updater.outputs.isSuccess
-              uses: Automattic/action-commit-to-branch@master
-              with:
-                  branch: ${{ github.head_ref }}
-                  commit_message: 'Added new package version ID'
-              env:
-                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

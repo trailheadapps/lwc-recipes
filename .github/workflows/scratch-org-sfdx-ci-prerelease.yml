@@ -1,11 +1,11 @@
 # Unique name for this workflow
-name: Salesforce DX CI (scratch org only)
+name: Salesforce DX CI Prerelease (scratch org only)
 
 # Definition when the workflow should run
 on:
     pull_request:
         types: [opened, synchronize, reopened]
-        branches-ignore:
+        branches:
             - prerelease/spring[2-9][0-9]
             - prerelease/summer[2-9][0-9]
             - prerelease/winter[2-9][0-9]
@@ -47,12 +47,6 @@ jobs:
             - name: 'Unit test Lightning Web Components'
               run: npm run test:unit:coverage
 
-            # Upload code coverage data
-            - name: 'Upload code coverage for LWC to Codecov.io'
-              uses: codecov/codecov-action@v1
-              with:
-                  token: ${{ secrets.CODECOV_TOKEN }}
-
     scratch-org-test:
         runs-on: ubuntu-latest
         needs: formatting-and-linting
@@ -61,10 +55,17 @@ jobs:
             - name: 'Checkout source code'
               uses: actions/checkout@v1
 
+            # Install salesforcedx pre-release plugin
+            - name: 'Install salesforcedx pre-release plugin'
+              uses: forcedotcom/salesforcedx-actions@master
+              if: startsWith(github.head_ref, 'prerelease')
+              with:
+                  args: 'plugins:install salesforcedx@pre-release'
+
             # Store secret for dev hub
-            - name: 'Populate auth file with DEVHUB_SFDX_URL secret'
+            - name: 'Populate auth file with DEVHUB_PREREL_SFDX_URL secret'
               shell: bash
-              run: 'echo ${{ secrets.DEVHUB_SFDX_URL}} > ./DEVHUB_SFDX_URL.txt'
+              run: 'echo ${{ secrets.DEVHUB_PREREL_SFDX_URL}} > ./DEVHUB_SFDX_URL.txt'
 
             # Authenticate dev hub
             - name: 'Authenticate Dev Hub'
@@ -107,12 +108,6 @@ jobs:
               uses: forcedotcom/salesforcedx-actions@master
               with:
                   args: 'force:apex:test:run -c -r human -d ./tests/apex -w 20'
-
-            # Upload code coverage data
-            - name: 'Upload code coverage for Apex to Codecov.io'
-              uses: codecov/codecov-action@v1
-              with:
-                  token: ${{ secrets.CODECOV_TOKEN }}
 
             # Housekeeping
             - name: 'Delete scratch org'
