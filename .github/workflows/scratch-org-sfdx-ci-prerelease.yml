@@ -88,7 +88,7 @@ jobs:
             - name: 'Push source to scratch org'
               uses: forcedotcom/salesforcedx-actions@master
               with:
-                  args: 'force:source:push -u scratch-org'
+                  args: 'force:source:push'
 
             # Assign permissionset
             - name: 'Assign permissionset to default user'
