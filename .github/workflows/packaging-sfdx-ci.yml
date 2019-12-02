@@ -69,13 +69,13 @@ jobs:
             - name: 'Authenticate Dev Hub'
               uses: forcedotcom/salesforcedx-actions@master
               with:
-                  args: 'force:auth:sfdxurl:store --sfdxurlfile=./DEVHUB_SFDX_URL.txt --setalias=devhub --setdefaultdevhubusername'
+                  args: 'force:auth:sfdxurl:store -f ./DEVHUB_SFDX_URL.txt -a devhub -d'
 
             # Authenticate package target org
             - name: 'Authenticate package target org'
               uses: forcedotcom/salesforcedx-actions@master
               with:
-                  args: 'force:auth:sfdxurl:store --sfdxurlfile=./PACKAGING_SFDX_URL.txt --setalias=packagingorg --setdefaultusername'
+                  args: 'force:auth:sfdxurl:store -f ./PACKAGING_SFDX_URL.txt -a packagingorg -s'
 
             # Remove auth files
             - name: 'Remove auth files'

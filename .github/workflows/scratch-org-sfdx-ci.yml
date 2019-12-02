@@ -70,7 +70,7 @@ jobs:
             - name: 'Authenticate Dev Hub'
               uses: forcedotcom/salesforcedx-actions@master
               with:
-                  args: 'force:auth:sfdxurl:store --sfdxurlfile=./DEVHUB_SFDX_URL.txt --setalias=devhub --setdefaultdevhubusername'
+                  args: 'force:auth:sfdxurl:store -f ./DEVHUB_SFDX_URL.txt -a devhub -d'
 
             # Lint Aura components
             - name: 'Lint Aura components'
@@ -100,7 +100,7 @@ jobs:
             - name: 'Import sample data'
               uses: forcedotcom/salesforcedx-actions@master
               with:
-                  args: 'force:data:tree:import --plan ./data/data-plan.json'
+                  args: 'force:data:tree:import -p ./data/data-plan.json'
 
             # Run Apex tests in scratch org
             - name: 'Run Apex tests'
