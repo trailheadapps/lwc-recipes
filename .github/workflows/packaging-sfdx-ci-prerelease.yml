@@ -60,7 +60,6 @@ jobs:
             # Install salesforcedx pre-release plugin
             - name: 'Install salesforcedx pre-release plugin'
               uses: forcedotcom/salesforcedx-actions@master
-              if: startsWith(github.head_ref, 'prerelease')
               with:
                   args: 'plugins:install salesforcedx@pre-release'
 
