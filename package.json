@@ -28,7 +28,7 @@
     },
     "devDependencies": {
         "@salesforce/eslint-config-lwc": "^0.4.0",
-        "@salesforce/sfdx-lwc-jest": "^0.6.1",
+        "@salesforce/sfdx-lwc-jest": "^0.6.2",
         "eslint": "^5.16.0",
         "husky": "^3.1.0",
         "jest-canvas-mock": "^2.2.0",
