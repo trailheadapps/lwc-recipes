@@ -9,7 +9,7 @@
         }
     ],
     "namespace": "",
-    "sourceApiVersion": "47.0",
+    "sourceApiVersion": "48.0",
     "sfdcLoginUrl": "https://login.salesforce.com",
     "packageAliases": {
         "LWCRecipes": "0HoB0000000GmiJKAS",
