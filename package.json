@@ -30,7 +30,7 @@
         "@salesforce/eslint-config-lwc": "^0.4.0",
         "@salesforce/sfdx-lwc-jest": "^0.6.1",
         "eslint": "^5.16.0",
-        "husky": "^3.0.9",
+        "husky": "^3.1.0",
         "jest-canvas-mock": "^2.2.0",
         "lint-staged": "^9.4.2",
         "prettier": "^1.18",
