@@ -1,0 +1,16 @@
+<template>
+    <lightning-card title="MiscMultipleTemplates">
+        <div>
+            Template Two
+        </div>
+        <p class="margin-vertical-small">
+            <lightning-button
+                label="Switch Templates"
+                onclick={switchTemplate}
+            ></lightning-button>
+        </p>
+        <recipe-view-source source="recipe/miscMultipleTemplates" slot="footer">
+            Choose which template to render.
+        </recipe-view-source>
+    </lightning-card>
+</template>
