@@ -57,6 +57,14 @@ jobs:
         runs-on: ubuntu-latest
         needs: formatting-and-linting
         steps:
+            # Install Salesforce CLI
+            - name: Install Salesforce CLI
+              run: |
+                  wget https://developer.salesforce.com/media/salesforce-cli/sfdx-linux-amd64.tar.xz
+                  mkdir sfdx-cli
+                  tar xJf sfdx-linux-amd64.tar.xz -C sfdx-cli --strip-components 1
+                  ./sfdx-cli/install
+
             # Checkout the code in the pull request
             - name: 'Checkout source code'
               uses: actions/checkout@v1
@@ -68,45 +76,31 @@ jobs:
 
             # Authenticate dev hub
             - name: 'Authenticate Dev Hub'
-              uses: forcedotcom/salesforcedx-actions@master
-              with:
-                  args: 'force:auth:sfdxurl:store -f ./DEVHUB_SFDX_URL.txt -a devhub -d'
+              run: 'sfdx force:auth:sfdxurl:store -f ./DEVHUB_SFDX_URL.txt -a devhub -d'
 
             # Lint Aura components
             - name: 'Lint Aura components'
-              uses: forcedotcom/salesforcedx-actions@master
-              with:
-                  args: 'force:lightning:lint force-app/main/default/aura --exit'
+              run: 'sfdx force:lightning:lint force-app/main/default/aura --exit'
 
             # Create scratch org
             - name: 'Create scratch org'
-              uses: forcedotcom/salesforcedx-actions@master
-              with:
-                  args: 'force:org:create -f config/project-scratch-def.json -a scratch-org -s -d 1'
+              run: 'sfdx force:org:create -f config/project-scratch-def.json -a scratch-org -s -d 1'
 
             # Deploy source to scratch org
             - name: 'Push source to scratch org'
-              uses: forcedotcom/salesforcedx-actions@master
-              with:
-                  args: 'force:source:push'
+              run: 'sfdx force:source:push'
 
             # Assign permissionset
             - name: 'Assign permissionset to default user'
-              uses: forcedotcom/salesforcedx-actions@master
-              with:
-                  args: 'force:user:permset:assign -n recipes'
+              run: 'sfdx force:user:permset:assign -n recipes'
 
             # Import sample data
             - name: 'Import sample data'
-              uses: forcedotcom/salesforcedx-actions@master
-              with:
-                  args: 'force:data:tree:import -p ./data/data-plan.json'
+              run: 'sfdx force:data:tree:import -p ./data/data-plan.json'
 
             # Run Apex tests in scratch org
             - name: 'Run Apex tests'
-              uses: forcedotcom/salesforcedx-actions@master
-              with:
-                  args: 'force:apex:test:run -c -r human -d ./tests/apex -w 20'
+              run: 'sfdx force:apex:test:run -c -r human -d ./tests/apex -w 20'
 
             # Upload code coverage data
             - name: 'Upload code coverage for Apex to Codecov.io'
@@ -116,6 +110,4 @@ jobs:
 
             # Housekeeping
             - name: 'Delete scratch org'
-              uses: forcedotcom/salesforcedx-actions@master
-              with:
-                  args: 'force:org:delete -p -u scratch-org'
+              run: 'sfdx force:org:delete -p -u scratch-org'

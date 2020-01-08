@@ -51,6 +51,14 @@ jobs:
         runs-on: ubuntu-latest
         needs: formatting-and-linting
         steps:
+            # Install Salesforce CLI
+            - name: Install Salesforce CLI
+              run: |
+                  wget https://developer.salesforce.com/media/salesforce-cli/sfdx-linux-amd64.tar.xz
+                  mkdir sfdx-cli
+                  tar xJf sfdx-linux-amd64.tar.xz -C sfdx-cli --strip-components 1
+                  ./sfdx-cli/install
+
             # Checkout the code in the pull request
             - name: 'Checkout source code'
               uses: actions/checkout@v1
@@ -67,15 +75,11 @@ jobs:
 
             # Authenticate dev hub
             - name: 'Authenticate Dev Hub'
-              uses: forcedotcom/salesforcedx-actions@master
-              with:
-                  args: 'force:auth:sfdxurl:store -f ./DEVHUB_SFDX_URL.txt -a devhub -d'
+              run: 'sfdx force:auth:sfdxurl:store -f ./DEVHUB_SFDX_URL.txt -a devhub -d'
 
             # Authenticate package target org
             - name: 'Authenticate package target org'
-              uses: forcedotcom/salesforcedx-actions@master
-              with:
-                  args: 'force:auth:sfdxurl:store -f ./PACKAGING_SFDX_URL.txt -a packagingorg -s'
+              run: 'sfdx force:auth:sfdxurl:store -f ./PACKAGING_SFDX_URL.txt -a packagingorg -s'
 
             # Remove auth files
             - name: 'Remove auth files'
@@ -86,9 +90,7 @@ jobs:
             # Create package version
             - name: 'Create package version'
               id: package-version-create
-              uses: forcedotcom/salesforcedx-actions@master
-              with:
-                  args: 'force:package:version:create -p LWCRecipes -x -w 20 --json'
+              run: echo "::set-output name=result::$(sfdx force:package:version:create -p LWCRecipes -x -w 20 --json | jq -c .)"
 
             # Extract data from package version create result
             - name: 'Extract package:version:create result data'
@@ -106,9 +108,7 @@ jobs:
             # Install new package into test org
             - name: 'Install new package version into test org'
               if: steps.extract-data-package-version-create.outputs.isSuccess
-              uses: forcedotcom/salesforcedx-actions@master
-              with:
-                  args: 'force:package:install --package ${{ steps.extract-data-package-version-create.outputs.packageVersionId }} -w 10 -u packagingorg -r'
+              run: 'sfdx force:package:install --package ${{ steps.extract-data-package-version-create.outputs.packageVersionId }} -w 10 -u packagingorg -r'
 
             # Update sfdx-project.json and README to use only latest package version
             - name: 'Update sfdx-project.json and README'
