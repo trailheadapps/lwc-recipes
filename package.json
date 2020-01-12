@@ -12,8 +12,8 @@
         "test:unit:watch": "lwc-jest --watch",
         "test:unit:debug": "lwc-jest --debug",
         "test:unit:coverage": "lwc-jest --coverage",
-        "prettier": "prettier --write '**/*.{cmp,component,css,html,js,json,md,page,yaml,yml}'",
-        "prettier:verify": "prettier --list-different '**/*.{html,js,json,yaml,yml,md,cmp,page,component}'",
+        "prettier": "prettier --write '**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,yaml,yml}'",
+        "prettier:verify": "prettier --list-different '**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,yaml,yml}'",
         "postinstall": "node bin/check-version.js"
     },
     "author": "salesforce.com",
@@ -27,13 +27,15 @@
         "npm": ">= 6.5.0"
     },
     "devDependencies": {
-        "@salesforce/eslint-config-lwc": "^0.3.0",
-        "@salesforce/lwc-jest": "^0.5.0",
+        "@salesforce/eslint-config-lwc": "^0.4.0",
+        "@salesforce/sfdx-lwc-jest": "^0.6.2",
         "eslint": "^5.16.0",
-        "husky": "^2.4.1",
-        "lint-staged": "^8.1.5",
+        "husky": "^3.1.0",
+        "jest-canvas-mock": "^2.2.0",
+        "lint-staged": "^9.5.0",
         "prettier": "^1.18",
-        "semver": "^6.1.1"
+        "prettier-plugin-apex": "^1.0.0",
+        "semver": "^6.3.0"
     },
     "husky": {
         "hooks": {
@@ -41,7 +43,7 @@
         }
     },
     "lint-staged": {
-        "**/*.{html,js,json,yaml,yml,md,cmp,page,component}": [
+        "**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,yaml,yml}": [
             "prettier --write"
         ],
         "**/lwc/**": [

@@ -1,6 +1,6 @@
 import { createElement } from 'lwc';
 import Lds from 'c/lds';
-import { registerApexTestWireAdapter } from '@salesforce/lwc-jest';
+import { registerApexTestWireAdapter } from '@salesforce/sfdx-lwc-jest';
 import { getNavigateCalledWith } from 'lightning/navigation';
 import getSingleContact from '@salesforce/apex/ContactController.getSingleContact';
 

@@ -55,9 +55,9 @@ export default class LibsChartjs extends LightningElement {
 
         loadScript(this, chartjs)
             .then(() => {
-                const ctx = this.template
-                    .querySelector('canvas.donut')
-                    .getContext('2d');
+                const canvas = document.createElement('canvas');
+                this.template.querySelector('div.chart').appendChild(canvas);
+                const ctx = canvas.getContext('2d');
                 this.chart = new window.Chart(ctx, this.config);
             })
             .catch(error => {

@@ -1,6 +1,6 @@
 import { createElement } from 'lwc';
 import ApexStaticSchema from 'c/apexStaticSchema';
-import { registerApexTestWireAdapter } from '@salesforce/lwc-jest';
+import { registerApexTestWireAdapter } from '@salesforce/sfdx-lwc-jest';
 import getSingleContact from '@salesforce/apex/ContactController.getSingleContact';
 
 // Realistic data with a single record

@@ -1,0 +1,126 @@
+# Unique name for this workflow
+name: Salesforce DX CI (packaging)
+
+# Definition when the workflow should run
+on:
+    pull_request:
+        types: [opened, synchronize, reopened]
+        branches:
+            - master
+        paths:
+            - 'force-app/**'
+
+# Jobs to be executed
+jobs:
+    formatting-and-linting:
+        runs-on: ubuntu-latest
+        steps:
+            # Checkout the code in the pull request
+            - name: 'Checkout source code'
+              uses: actions/checkout@v1
+
+            # Cache node_modules to speed up the process
+            - name: Restore node_modules cache
+              id: cache-npm
+              uses: actions/cache@v1
+              with:
+                  path: node_modules
+                  key: npm-${{ hashFiles('**/package-lock.json') }}
+                  restore-keys: |
+                      npm-${{ env.cache-name }}-
+                      npm-
+
+            # Install npm dependencies for Prettier and Jest
+            - name: 'Install npm dependencies'
+              if: steps.cache-npm.outputs.cache-hit != 'true'
+              run: npm install
+
+            # Prettier formatting
+            - name: 'Code formatting verification with Prettier'
+              run: npm run prettier:verify
+
+            # ESlint
+            - name: 'Lint Lightning Web Components'
+              run: npm run lint:lwc
+
+            # Unit tests
+            - name: 'Unit test Lightning Web Components'
+              run: npm run test:unit:coverage
+
+    packaging:
+        runs-on: ubuntu-latest
+        needs: formatting-and-linting
+        steps:
+            # Install Salesforce CLI
+            - name: Install Salesforce CLI
+              run: |
+                  wget https://developer.salesforce.com/media/salesforce-cli/sfdx-linux-amd64.tar.xz
+                  mkdir sfdx-cli
+                  tar xJf sfdx-linux-amd64.tar.xz -C sfdx-cli --strip-components 1
+                  ./sfdx-cli/install
+
+            # Checkout the code in the pull request
+            - name: 'Checkout source code'
+              uses: actions/checkout@v1
+
+            # Store secret for dev hub
+            - name: 'Populate auth file with DEVHUB_SFDX_URL secret'
+              shell: bash
+              run: 'echo ${{ secrets.DEVHUB_SFDX_URL}} > ./DEVHUB_SFDX_URL.txt'
+
+            # Store secret for package target org installation
+            - name: 'Populate auth file with PACKAGING_SFDX_URL secret'
+              shell: bash
+              run: 'echo ${{ secrets.PACKAGING_SFDX_URL}} > ./PACKAGING_SFDX_URL.txt'
+
+            # Authenticate dev hub
+            - name: 'Authenticate Dev Hub'
+              run: 'sfdx force:auth:sfdxurl:store -f ./DEVHUB_SFDX_URL.txt -a devhub -d'
+
+            # Authenticate package target org
+            - name: 'Authenticate package target org'
+              run: 'sfdx force:auth:sfdxurl:store -f ./PACKAGING_SFDX_URL.txt -a packagingorg -s'
+
+            # Remove auth files
+            - name: 'Remove auth files'
+              run: |
+                  rm -f ./DEVHUB_SFDX_URL.txt
+                  rm -f ./PACKAGING_SFDX_URL.txt
+
+            # Create package version
+            - name: 'Create package version'
+              id: package-version-create
+              run: echo "::set-output name=result::$(sfdx force:package:version:create -p LWCRecipes -x -w 20 --json | jq -c .)"
+
+            # Extract data from package version create result
+            - name: 'Extract package:version:create result data'
+              id: extract-data-package-version-create
+              uses: muenzpraeger/github-action-extract-sfdx-packaging-result@master
+              with:
+                  json: ${{steps.package-version-create.outputs.result}}
+
+            # Wait for package replication
+            - name: 'Wait for package replication'
+              uses: maddox/actions/sleep@master
+              with:
+                  args: 300
+
+            # Install new package into test org
+            - name: 'Install new package version into test org'
+              if: steps.extract-data-package-version-create.outputs.isSuccess
+              run: 'sfdx force:package:install --package ${{ steps.extract-data-package-version-create.outputs.packageVersionId }} -w 10 -u packagingorg -r'
+
+            # Update sfdx-project.json and README to use only latest package version
+            - name: 'Update sfdx-project.json and README'
+              id: packaging-updater
+              uses: muenzpraeger/github-action-sfdx-packaging-updater@master
+
+            # Re-add changes back to source
+            - name: 'Add new package version, updated sfdx-project.json and README to source'
+              if: steps.packaging-updater.outputs.isSuccess
+              uses: Automattic/action-commit-to-branch@master
+              with:
+                  branch: ${{ github.head_ref }}
+                  commit_message: 'Added new package version ID'
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

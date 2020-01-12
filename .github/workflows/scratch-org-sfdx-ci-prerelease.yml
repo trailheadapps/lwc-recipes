@@ -1,0 +1,105 @@
+# Unique name for this workflow
+name: Salesforce DX CI Prerelease (scratch org only)
+
+# Definition when the workflow should run
+on:
+    pull_request:
+        types: [opened, synchronize, reopened]
+        branches:
+            - prerelease/spring[2-9][0-9]
+            - prerelease/summer[2-9][0-9]
+            - prerelease/winter[2-9][0-9]
+
+# Jobs to be executed
+jobs:
+    formatting-and-linting:
+        runs-on: ubuntu-latest
+        steps:
+            # Checkout the code in the pull request
+            - name: 'Checkout source code'
+              uses: actions/checkout@v1
+
+            # Cache node_modules to speed up the process
+            - name: Restore node_modules cache
+              id: cache-npm
+              uses: actions/cache@v1
+              with:
+                  path: node_modules
+                  key: npm-${{ hashFiles('**/package-lock.json') }}
+                  restore-keys: |
+                      npm-${{ env.cache-name }}-
+                      npm-
+
+            # Install npm dependencies for Prettier and Jest
+            - name: 'Install npm dependencies'
+              if: steps.cache-npm.outputs.cache-hit != 'true'
+              run: npm install
+
+            # Prettier formatting
+            - name: 'Code formatting verification with Prettier'
+              run: npm run prettier:verify
+
+            # ESlint
+            - name: 'Lint Lightning Web Components'
+              run: npm run lint:lwc
+
+            # Unit tests
+            - name: 'Unit test Lightning Web Components'
+              run: npm run test:unit:coverage
+
+    scratch-org-test:
+        runs-on: ubuntu-latest
+        needs: formatting-and-linting
+        steps:
+            # Install Salesforce CLI
+            - name: Install Salesforce CLI
+              run: |
+                  wget https://developer.salesforce.com/media/salesforce-cli/sfdx-linux-amd64.tar.xz
+                  mkdir sfdx-cli
+                  tar xJf sfdx-linux-amd64.tar.xz -C sfdx-cli --strip-components 1
+                  ./sfdx-cli/install
+
+            # Checkout the code in the pull request
+            - name: 'Checkout source code'
+              uses: actions/checkout@v1
+
+            # Install salesforcedx pre-release plugin
+            - name: 'Install salesforcedx pre-release plugin'
+              run: 'sfdx plugins:install salesforcedx@pre-release'
+
+            # Store secret for dev hub
+            - name: 'Populate auth file with DEVHUB_PREREL_SFDX_URL secret'
+              shell: bash
+              run: 'echo ${{ secrets.DEVHUB_PREREL_SFDX_URL}} > ./DEVHUB_SFDX_URL.txt'
+
+            # Authenticate dev hub
+            - name: 'Authenticate Dev Hub'
+              run: 'sfdx force:auth:sfdxurl:store -f ./DEVHUB_SFDX_URL.txt -a devhub -d'
+
+            # Lint Aura components
+            - name: 'Lint Aura components'
+              run: 'sfdx force:lightning:lint force-app/main/default/aura --exit'
+
+            # Create scratch org
+            - name: 'Create scratch org'
+              run: 'sfdx force:org:create -f config/project-scratch-def.json -a scratch-org -s -d 1'
+
+            # Deploy source to scratch org
+            - name: 'Push source to scratch org'
+              run: 'sfdx force:source:push'
+
+            # Assign permissionset
+            - name: 'Assign permissionset to default user'
+              run: 'sfdx force:user:permset:assign -n recipes'
+
+            # Import sample data
+            - name: 'Import sample data'
+              run: 'sfdx force:data:tree:import -p ./data/data-plan.json'
+
+            # Run Apex tests in scratch org
+            - name: 'Run Apex tests'
+              run: 'sfdx force:apex:test:run -c -r human -d ./tests/apex -w 20'
+
+            # Housekeeping
+            - name: 'Delete scratch org'
+              run: 'sfdx force:org:delete -p -u scratch-org'

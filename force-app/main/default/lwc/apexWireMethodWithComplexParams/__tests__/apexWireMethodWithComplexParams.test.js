@@ -1,6 +1,6 @@
 import { createElement } from 'lwc';
 import ApexWireMethodWithComplexParams from 'c/apexWireMethodWithComplexParams';
-import { registerApexTestWireAdapter } from '@salesforce/lwc-jest';
+import { registerApexTestWireAdapter } from '@salesforce/sfdx-lwc-jest';
 import checkApexTypes from '@salesforce/apex/ApexTypesController.checkApexTypes';
 
 // Sample default values for wired Apex call
@@ -15,9 +15,9 @@ const WIRE_INPUT = {
     someString: 'This is a string',
     someInteger: 20,
     someList: [
-        { someInnerString: 'This is a string', someInnerInteger: 20 },
-        { someInnerString: 'This is a string', someInnerInteger: 20 },
-        { someInnerString: 'This is a string', someInnerInteger: 20 }
+        { someInnerString: 'This is a string', someInnerInteger: 50 },
+        { someInnerString: 'This is a string', someInnerInteger: 50 },
+        { someInnerString: 'This is a string', someInnerInteger: 50 }
     ]
 };
 

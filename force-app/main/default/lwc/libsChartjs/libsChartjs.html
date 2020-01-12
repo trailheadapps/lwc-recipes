@@ -1,8 +1,6 @@
 <template>
     <lightning-card title="LibsChartjs" icon-name="custom:custom19">
-        <div class="slds-m-around_medium">
-            <canvas class="donut" lwc:dom="manual"></canvas>
-        </div>
+        <div class="chart slds-m-around_medium" lwc:dom="manual"></div>
         <template if:true={error}>
             <c-error-panel errors={error}></c-error-panel>
         </template>

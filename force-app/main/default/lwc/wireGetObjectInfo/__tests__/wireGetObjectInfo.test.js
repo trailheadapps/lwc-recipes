@@ -1,6 +1,6 @@
 import { createElement } from 'lwc';
 import WireGetObjectInfo from 'c/wireGetObjectInfo';
-import { registerLdsTestWireAdapter } from '@salesforce/lwc-jest';
+import { registerLdsTestWireAdapter } from '@salesforce/sfdx-lwc-jest';
 import { getObjectInfo } from 'lightning/uiObjectInfoApi';
 
 // Mock realistic data

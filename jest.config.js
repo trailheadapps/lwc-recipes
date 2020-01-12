@@ -1,4 +1,4 @@
-const { jestConfig } = require('@salesforce/lwc-jest/config');
+const { jestConfig } = require('@salesforce/sfdx-lwc-jest/config');
 module.exports = {
     ...jestConfig,
     moduleNameMapper: {
@@ -9,5 +9,6 @@ module.exports = {
             '<rootDir>/force-app/test/jest-mocks/lightning/platformShowToastEvent',
         '^lightning/uiRecordApi$':
             '<rootDir>/force-app/test/jest-mocks/lightning/uiRecordApi'
-    }
+    },
+    setupFiles: ['jest-canvas-mock']
 };
