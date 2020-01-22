@@ -81,12 +81,6 @@ jobs:
             - name: 'Authenticate package target org'
               run: 'sfdx force:auth:sfdxurl:store -f ./PACKAGING_SFDX_URL.txt -a packagingorg -s'
 
-            # Remove auth files
-            - name: 'Remove auth files'
-              run: |
-                  rm -f ./DEVHUB_SFDX_URL.txt
-                  rm -f ./PACKAGING_SFDX_URL.txt
-
             # Create package version
             - name: 'Create package version'
               id: package-version-create
@@ -109,18 +103,3 @@ jobs:
             - name: 'Install new package version into test org'
               if: steps.extract-data-package-version-create.outputs.isSuccess
               run: 'sfdx force:package:install --package ${{ steps.extract-data-package-version-create.outputs.packageVersionId }} -w 10 -u packagingorg -r'
-
-            # Update sfdx-project.json and README to use only latest package version
-            - name: 'Update sfdx-project.json and README'
-              id: packaging-updater
-              uses: muenzpraeger/github-action-sfdx-packaging-updater@master
-
-            # Re-add changes back to source
-            - name: 'Add new package version, updated sfdx-project.json and README to source'
-              if: steps.packaging-updater.outputs.isSuccess
-              uses: Automattic/action-commit-to-branch@master
-              with:
-                  branch: ${{ github.head_ref }}
-                  commit_message: 'Added new package version ID'
-              env:
-                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
