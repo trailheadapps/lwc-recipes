@@ -123,7 +123,7 @@ jobs:
             # Housekeeping
             - name: 'Delete scratch org'
               run: 'sfdx force:org:delete -p -u scratch-org'
-              
+
             # Create package version
             - name: 'Create package version'
               id: package-version-create
