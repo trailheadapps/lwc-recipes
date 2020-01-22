@@ -1,10 +1,9 @@
 # Unique name for this workflow
-name: Salesforce DX CI PR (packaging)
+name: Salesforce DX CI (packaging)
 
 # Definition when the workflow should run
 on:
-    pull_request:
-        types: [opened, synchronize, reopened]
+    push:
         branches:
             - master
         paths:
@@ -12,41 +11,6 @@ on:
 
 # Jobs to be executed
 jobs:
-    formatting-and-linting:
-        runs-on: ubuntu-latest
-        steps:
-            # Checkout the code in the pull request
-            - name: 'Checkout source code'
-              uses: actions/checkout@v2
-
-            # Cache node_modules to speed up the process
-            - name: Restore node_modules cache
-              id: cache-npm
-              uses: actions/cache@v1
-              with:
-                  path: node_modules
-                  key: npm-${{ hashFiles('**/package-lock.json') }}
-                  restore-keys: |
-                      npm-${{ env.cache-name }}-
-                      npm-
-
-            # Install npm dependencies for Prettier and Jest
-            - name: 'Install npm dependencies'
-              if: steps.cache-npm.outputs.cache-hit != 'true'
-              run: npm install
-
-            # Prettier formatting
-            - name: 'Code formatting verification with Prettier'
-              run: npm run prettier:verify
-
-            # ESlint
-            - name: 'Lint Lightning Web Components'
-              run: npm run lint:lwc
-
-            # Unit tests
-            - name: 'Unit test Lightning Web Components'
-              run: npm run test:unit:coverage
-
     packaging:
         runs-on: ubuntu-latest
         needs: formatting-and-linting
@@ -103,3 +67,38 @@ jobs:
             - name: 'Install new package version into test org'
               if: steps.extract-data-package-version-create.outputs.isSuccess
               run: 'sfdx force:package:install --package ${{ steps.extract-data-package-version-create.outputs.packageVersionId }} -w 10 -u packagingorg -r'
+
+            # Update sfdx-project.json and README to use only latest package version
+            - name: 'Update sfdx-project.json and README'
+              id: packaging-updater
+              uses: muenzpraeger/github-action-sfdx-packaging-updater@master
+
+            # Remove auth files
+            - name: 'Remove auth files'
+              run: |
+                  rm -f ./DEVHUB_SFDX_URL.txt
+                  rm -f ./PACKAGING_SFDX_URL.txt
+
+            # The main branch is protected, so we have to take a sequea for updating the README through a new PR
+            - name: 'Create new branch and pull request for updated package version ID'
+              uses: peter-evans/create-pull-request@v2
+              with:
+                  title: 'Added new package version ID'
+                  commit-message: 'Added new package version ID ${{ steps.extract-data-package-version-create.outputs.packageVersionId }}'
+                  branch: 'auto/package-version-update'
+                  token: ${{ secrets.GITHUB_TOKEN }}
+
+            # Merge pull request
+            - name: 'Merge pull request'
+              uses: juliangruber/merge-pull-request-action@v1
+              with:
+                  github-token: ${{ secrets.GITHUB_TOKEN }}
+                  number: ${{ env.PULL_REQUEST_NUMBER }}
+                  method: squash
+
+            # Delete pull request, for GitHub Actions initiated PRs the auto-delete of GitHub doesn't work
+            - name: 'Delete pull request branch'
+              uses: dawidd6/action-delete-branch@master
+              with:
+                  github_token: ${{ secrets.GITHUB_TOKEN }}
+                  numbers: ${{ env.PULL_REQUEST_NUMBER }}

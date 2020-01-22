@@ -1,5 +1,5 @@
 # Unique name for this workflow
-name: Salesforce DX CI Prerelease (packaging)
+name: Salesforce DX CI Prerelease PR (packaging)
 
 # Definition when the workflow should run
 on:
@@ -19,7 +19,7 @@ jobs:
         steps:
             # Checkout the code in the pull request
             - name: 'Checkout source code'
-              uses: actions/checkout@v1
+              uses: actions/checkout@v2
 
             # Cache node_modules to speed up the process
             - name: Restore node_modules cache
@@ -63,7 +63,7 @@ jobs:
 
             # Checkout the code in the pull request
             - name: 'Checkout source code'
-              uses: actions/checkout@v1
+              uses: actions/checkout@v2
 
             # Install salesforcedx pre-release plugin
             - name: 'Install salesforcedx pre-release plugin'
@@ -82,10 +82,3 @@ jobs:
             - name: 'Create package version'
               id: package-version-create
               run: echo "::set-output name=result::$(sfdx force:package:version:create -p LWCRecipes -x -w 20 --json | jq -c .)"
-
-            # Extract data from package version create result
-            - name: 'Extract package:version:create result data'
-              id: extract-data-package-version-create
-              uses: muenzpraeger/github-action-extract-sfdx-packaging-result@master
-              with:
-                  json: ${{steps.package-version-create.outputs.result}}
