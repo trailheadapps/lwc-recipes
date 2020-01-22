@@ -1,5 +1,5 @@
 # Unique name for this workflow
-name: Salesforce DX CI Prerelease (scratch org only)
+name: Salesforce DX Prerelease (scratch org)
 
 # Definition when the workflow should run
 on:
@@ -17,7 +17,7 @@ jobs:
         steps:
             # Checkout the code in the pull request
             - name: 'Checkout source code'
-              uses: actions/checkout@v1
+              uses: actions/checkout@v2
 
             # Cache node_modules to speed up the process
             - name: Restore node_modules cache
@@ -61,7 +61,7 @@ jobs:
 
             # Checkout the code in the pull request
             - name: 'Checkout source code'
-              uses: actions/checkout@v1
+              uses: actions/checkout@v2
 
             # Install salesforcedx pre-release plugin
             - name: 'Install salesforcedx pre-release plugin'
@@ -102,4 +102,5 @@ jobs:
 
             # Housekeeping
             - name: 'Delete scratch org'
+              if: always()
               run: 'sfdx force:org:delete -p -u scratch-org'
