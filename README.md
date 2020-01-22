@@ -1,6 +1,6 @@
 # Lightning Web Components Recipes
 
-[![Github Workflow](<https://github.com/trailheadapps/lwc-recipes/workflows/Salesforce%20DX%20CI%20(scratch%20org%20only)/badge.svg?branch=master>)](https://github.com/trailheadapps/lwc-recipes/actions) [![codecov](https://codecov.io/gh/trailheadapps/lwc-recipes/branch/master/graph/badge.svg)](https://codecov.io/gh/trailheadapps/lwc-recipes)
+[![Github Workflow](https://github.com/trailheadapps/lwc-recipes/workflows/Salesforce%20DX%20CI/badge.svg?branch=master)](https://github.com/trailheadapps/lwc-recipes/actions) [![codecov](https://codecov.io/gh/trailheadapps/lwc-recipes/branch/master/graph/badge.svg)](https://codecov.io/gh/trailheadapps/lwc-recipes)
 
 ![recipes-logo](recipes-logo.png)
 
