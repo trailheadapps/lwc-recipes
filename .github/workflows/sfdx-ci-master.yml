@@ -120,6 +120,10 @@ jobs:
               with:
                   token: ${{ secrets.CODECOV_TOKEN }}
 
+            # Remove test result files
+            - name: 'Remove test result files'
+              run: rm -rf ./tests
+
             # Housekeeping
             - name: 'Delete scratch org'
               run: 'sfdx force:org:delete -p -u scratch-org'
@@ -157,7 +161,7 @@ jobs:
               if: steps.packaging-updater.outputs.isSuccess
               uses: Automattic/action-commit-to-branch@master
               with:
-                  branch: ${{ github.head_ref }}
+                  branch: 'master'
                   commit_message: 'Added new package version ID'
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
