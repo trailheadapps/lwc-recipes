@@ -7,12 +7,9 @@ export default class ApexWireMethodToFunction extends LightningElement {
 
     @wire(getContactList)
     wiredContacts({ error, data }) {
-        if (data) {
+        if (data || error) {
             this.contacts = data;
-            this.error = undefined;
-        } else if (error) {
             this.error = error;
-            this.contacts = undefined;
         }
     }
 }
