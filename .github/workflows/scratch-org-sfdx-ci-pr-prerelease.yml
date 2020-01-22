@@ -1,5 +1,5 @@
 # Unique name for this workflow
-name: Salesforce DX Prerelease (scratch org)
+name: Salesforce DX Prerelease PR (scratch org)
 
 # Definition when the workflow should run
 on:
