@@ -4,7 +4,7 @@ name: Salesforce DX CI (packaging)
 # Definition when the workflow should run
 on:
     pull_request:
-        types: [opened, synchronize, reopened]
+        types: [opened, edited, synchronize, reopened]
         branches:
             - master
         paths:
