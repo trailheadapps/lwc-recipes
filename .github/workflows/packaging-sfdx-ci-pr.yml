@@ -1,5 +1,5 @@
 # Unique name for this workflow
-name: Salesforce DX CI (packaging)
+name: Salesforce DX PR (packaging)
 
 # Definition when the workflow should run
 on:
@@ -17,7 +17,7 @@ jobs:
         steps:
             # Checkout the code in the pull request
             - name: 'Checkout source code'
-              uses: actions/checkout@v1
+              uses: actions/checkout@v2
 
             # Cache node_modules to speed up the process
             - name: Restore node_modules cache
@@ -51,9 +51,17 @@ jobs:
         runs-on: ubuntu-latest
         needs: formatting-and-linting
         steps:
+            # Install Salesforce CLI
+            - name: Install Salesforce CLI
+              run: |
+                  wget https://developer.salesforce.com/media/salesforce-cli/sfdx-linux-amd64.tar.xz
+                  mkdir sfdx-cli
+                  tar xJf sfdx-linux-amd64.tar.xz -C sfdx-cli --strip-components 1
+                  ./sfdx-cli/install
+
             # Checkout the code in the pull request
             - name: 'Checkout source code'
-              uses: actions/checkout@v1
+              uses: actions/checkout@v2
 
             # Store secret for dev hub
             - name: 'Populate auth file with DEVHUB_SFDX_URL secret'
@@ -67,28 +75,16 @@ jobs:
 
             # Authenticate dev hub
             - name: 'Authenticate Dev Hub'
-              uses: forcedotcom/salesforcedx-actions@master
-              with:
-                  args: 'force:auth:sfdxurl:store -f ./DEVHUB_SFDX_URL.txt -a devhub -d'
+              run: 'sfdx force:auth:sfdxurl:store -f ./DEVHUB_SFDX_URL.txt -a devhub -d'
 
             # Authenticate package target org
             - name: 'Authenticate package target org'
-              uses: forcedotcom/salesforcedx-actions@master
-              with:
-                  args: 'force:auth:sfdxurl:store -f ./PACKAGING_SFDX_URL.txt -a packagingorg -s'
-
-            # Remove auth files
-            - name: 'Remove auth files'
-              run: |
-                  rm -f ./DEVHUB_SFDX_URL.txt
-                  rm -f ./PACKAGING_SFDX_URL.txt
+              run: 'sfdx force:auth:sfdxurl:store -f ./PACKAGING_SFDX_URL.txt -a packagingorg -s'
 
             # Create package version
             - name: 'Create package version'
               id: package-version-create
-              uses: forcedotcom/salesforcedx-actions@master
-              with:
-                  args: 'force:package:version:create -p LWCRecipes -x -w 20 --json'
+              run: echo "::set-output name=result::$(sfdx force:package:version:create -p LWCRecipes -x -w 20 --json | jq -c .)"
 
             # Extract data from package version create result
             - name: 'Extract package:version:create result data'
@@ -106,21 +102,4 @@ jobs:
             # Install new package into test org
             - name: 'Install new package version into test org'
               if: steps.extract-data-package-version-create.outputs.isSuccess
-              uses: forcedotcom/salesforcedx-actions@master
-              with:
-                  args: 'force:package:install --package ${{ steps.extract-data-package-version-create.outputs.packageVersionId }} -w 10 -u packagingorg -r'
-
-            # Update sfdx-project.json and README to use only latest package version
-            - name: 'Update sfdx-project.json and README'
-              id: packaging-updater
-              uses: muenzpraeger/github-action-sfdx-packaging-updater@master
-
-            # Re-add changes back to source
-            - name: 'Add new package version, updated sfdx-project.json and README to source'
-              if: steps.packaging-updater.outputs.isSuccess
-              uses: Automattic/action-commit-to-branch@master
-              with:
-                  branch: ${{ github.head_ref }}
-                  commit_message: 'Added new package version ID'
-              env:
-                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+              run: 'sfdx force:package:install --package ${{ steps.extract-data-package-version-create.outputs.packageVersionId }} -w 10 -u packagingorg -r'
