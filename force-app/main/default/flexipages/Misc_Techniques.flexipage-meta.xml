@@ -24,6 +24,9 @@
         <componentInstances>
             <componentName>miscRestApiCall</componentName>
         </componentInstances>
+        <componentInstances>
+            <componentName>miscDomQuery</componentName>
+        </componentInstances>
         <name>region3</name>
         <type>Region</type>
     </flexiPageRegions>
@@ -35,7 +38,7 @@
             <componentName>miscContentAsset</componentName>
         </componentInstances>
         <componentInstances>
-            <componentName>miscDomQuery</componentName>
+            <componentName>miscMultipleTemplates</componentName>
         </componentInstances>
         <name>region4</name>
         <type>Region</type>
