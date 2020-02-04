@@ -1,4 +1,4 @@
-import { LightningElement, track } from 'lwc';
+import { LightningElement } from 'lwc';
 import checkApexTypes from '@salesforce/apex/ApexTypesController.checkApexTypes';
 
 export default class ApexImperativeMethodWithComplexParams extends LightningElement {
@@ -6,8 +6,8 @@ export default class ApexImperativeMethodWithComplexParams extends LightningElem
     numberValue = 50;
     stringValue = 'Some string';
 
-    @track message;
-    @track error;
+    message;
+    error;
 
     handleStringChange(event) {
         this.stringValue = event.target.value;

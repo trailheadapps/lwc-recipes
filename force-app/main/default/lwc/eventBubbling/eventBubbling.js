@@ -1,8 +1,8 @@
-import { LightningElement, wire, track } from 'lwc';
+import { LightningElement, wire } from 'lwc';
 import getContactList from '@salesforce/apex/ContactController.getContactList';
 
 export default class EventBubbling extends LightningElement {
-    @track selectedContact;
+    selectedContact;
 
     @wire(getContactList) contacts;
 

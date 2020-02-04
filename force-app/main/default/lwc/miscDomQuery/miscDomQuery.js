@@ -1,7 +1,7 @@
-import { LightningElement, track } from 'lwc';
+import { LightningElement } from 'lwc';
 
 export default class MiscDomQuery extends LightningElement {
-    @track selection;
+    selection;
 
     handleCheckboxChange() {
         // Query the DOM
