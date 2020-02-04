@@ -1,7 +1,7 @@
-import { LightningElement, api, track } from 'lwc';
+import { LightningElement, api } from 'lwc';
 
 export default class Clock extends LightningElement {
-    @track timestamp = new Date();
+    timestamp = new Date();
 
     @api
     refresh() {

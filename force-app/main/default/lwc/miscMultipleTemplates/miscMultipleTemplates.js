@@ -1,4 +1,4 @@
-import { LightningElement, track } from 'lwc';
+import { LightningElement } from 'lwc';
 import templateOne from './templateOne.html';
 import templateTwo from './templateTwo.html';
 
@@ -6,7 +6,7 @@ import trailheadLogo from '@salesforce/resourceUrl/trailhead_logo';
 import trailheadCharacters from '@salesforce/resourceUrl/trailhead_characters';
 
 export default class MiscMultipleTemplates extends LightningElement {
-    @track showTemplateOne = true;
+    showTemplateOne = true;
 
     trailheadLogoUrl = trailheadLogo;
     einsteinUrl = trailheadCharacters + '/images/einstein.png';

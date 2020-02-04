@@ -1,4 +1,4 @@
-import { LightningElement, track } from 'lwc';
+import { LightningElement } from 'lwc';
 import { loadScript } from 'lightning/platformResourceLoader';
 import chartjs from '@salesforce/resourceUrl/chart';
 
@@ -7,7 +7,7 @@ const generateRandomNumber = () => {
 };
 
 export default class LibsChartjs extends LightningElement {
-    @track error;
+    error;
     chart;
     chartjsInitialized = false;
 

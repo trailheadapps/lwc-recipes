@@ -1,13 +1,13 @@
-import { LightningElement, track } from 'lwc';
+import { LightningElement } from 'lwc';
 
 // The base URL (in this case https://www.googleapis.com/ must be added to the CSP Trusted Sites in Setup)
 const QUERY_URL =
     'https://www.googleapis.com/books/v1/volumes?langRestrict=en&q=';
 
 export default class MiscRestCall extends LightningElement {
-    @track searchKey = 'Harry Potter';
-    @track books;
-    @track error;
+    searchKey = 'Harry Potter';
+    books;
+    error;
 
     handleSearchKeyChange(event) {
         this.searchKey = event.target.value;
