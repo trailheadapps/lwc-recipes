@@ -1,7 +1,7 @@
-import { LightningElement, track } from 'lwc';
+import { LightningElement } from 'lwc';
 
 export default class HelloConditionalRendering extends LightningElement {
-    @track areDetailsVisible = false;
+    areDetailsVisible = false;
 
     handleChange(event) {
         this.areDetailsVisible = event.target.checked;

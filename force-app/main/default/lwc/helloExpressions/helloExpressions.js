@@ -1,8 +1,8 @@
-import { LightningElement, track } from 'lwc';
+import { LightningElement } from 'lwc';
 
 export default class HelloExpressions extends LightningElement {
-    @track firstName = '';
-    @track lastName = '';
+    firstName = '';
+    lastName = '';
 
     handleChange(event) {
         const field = event.target.name;
