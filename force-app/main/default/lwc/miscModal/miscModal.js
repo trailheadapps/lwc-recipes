@@ -1,8 +1,8 @@
-import { LightningElement, track } from 'lwc';
+import { LightningElement } from 'lwc';
 
 export default class MiscModal extends LightningElement {
-    @track content = 'The modal content';
-    @track header = 'The modal header';
+    content = 'The modal content';
+    header = 'The modal header';
 
     handleHeaderChange(event) {
         this.header = event.target.value;
