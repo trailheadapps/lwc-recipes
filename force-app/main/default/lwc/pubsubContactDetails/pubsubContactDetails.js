@@ -4,7 +4,7 @@
  * For child-to-parent communication, fire a DOM event in the child component
  * For parent-to-child communication, use property passing or call a public @api method defined in the child component
  */
-import { LightningElement, track, wire } from 'lwc';
+import { LightningElement, wire } from 'lwc';
 import { CurrentPageReference } from 'lightning/navigation';
 import { getRecord, getFieldValue } from 'lightning/uiRecordApi';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
@@ -28,11 +28,11 @@ const fields = [
 export default class PubsubContactDetails extends LightningElement {
     recordId;
 
-    @track name;
-    @track title;
-    @track phone;
-    @track email;
-    @track picture;
+    name;
+    title;
+    phone;
+    email;
+    picture;
 
     @wire(CurrentPageReference) pageRef;
 

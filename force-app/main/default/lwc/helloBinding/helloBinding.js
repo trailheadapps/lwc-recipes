@@ -1,7 +1,7 @@
-import { LightningElement, track } from 'lwc';
+import { LightningElement } from 'lwc';
 
 export default class HelloBinding extends LightningElement {
-    @track greeting = 'World';
+    greeting = 'World';
 
     handleChange(event) {
         this.greeting = event.target.value;

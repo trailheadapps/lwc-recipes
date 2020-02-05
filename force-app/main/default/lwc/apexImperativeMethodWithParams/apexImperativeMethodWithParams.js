@@ -1,10 +1,10 @@
-import { LightningElement, track } from 'lwc';
+import { LightningElement } from 'lwc';
 import findContacts from '@salesforce/apex/ContactController.findContacts';
 
 export default class ApexImperativeMethodWithParams extends LightningElement {
-    @track searchKey = '';
-    @track contacts;
-    @track error;
+    searchKey = '';
+    contacts;
+    error;
 
     handleKeyChange(event) {
         this.searchKey = event.target.value;
