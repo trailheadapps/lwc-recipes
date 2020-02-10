@@ -1,8 +1,8 @@
 import { createElement } from 'lwc';
-import NavToHelloTab from 'c/navToHelloTab';
+import NavToNewRecord from 'c/navToNewRecord';
 import { getNavigateCalledWith } from 'lightning/navigation';
 
-describe('c-nav-to-hello-tab', () => {
+describe('c-nav-to-new-record', () => {
     // maybe not needed...there is just the one nav button
     // afterEach(() => {
     //     while (document.body.firstChild) {
@@ -10,16 +10,20 @@ describe('c-nav-to-hello-tab', () => {
     //     }
     // });
 
-    it('navigates to hello tab', () => {
-        const NAV_TYPE = 'standard__navItemPage';
-        const NAV_API_NAME = 'Hello';
+    it('navigates to new record', () => {
+        // nav param values to test later
+        const NAV_TYPE = 'standard__objectPage';
+        const NAV_OBJECT_API_NAME = 'Contact';
+        const NAV_ACTION_NAME = 'new';
 
-        const element = createElement('c-nav-to-hello-tab', {
-            is: NavToHelloTab
+        // boilerplate code to create lwc and attach to virtual DOM
+        const element = createElement('c-nav-to-new-record', {
+            is: NavToNewRecord
         });
         document.body.appendChild(element);
 
         return Promise.resolve().then(() => {
+            // get handle to button and invoke click
             const buttonEl = element.shadowRoot.querySelector(
                 'lightning-button'
             );
@@ -29,7 +33,10 @@ describe('c-nav-to-hello-tab', () => {
 
             // verify component called with correct event type
             expect(pageReference.type).toBe(NAV_TYPE);
-            expect(pageReference.attributes.apiName).toBe(NAV_API_NAME);
+            expect(pageReference.attributes.objectApiName).toBe(
+                NAV_OBJECT_API_NAME
+            );
+            expect(pageReference.attributes.actionName).toBe(NAV_ACTION_NAME);
         });
     });
 });
