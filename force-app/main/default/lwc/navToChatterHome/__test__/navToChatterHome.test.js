@@ -18,6 +18,7 @@ describe('c-nav-to-chatter-home', () => {
         document.body.appendChild(element);
 
         return Promise.resolve().then(() => {
+            // get view button and fire click event
             const buttonEl = element.shadowRoot.querySelector(
                 'lightning-button'
             );
@@ -25,7 +26,7 @@ describe('c-nav-to-chatter-home', () => {
 
             const { pageReference } = getNavigateCalledWith();
 
-            // verify component called with correct event type
+            // verify component called with correct event type and param
             expect(pageReference.type).toBe(NAV_TYPE);
             expect(pageReference.attributes.pageName).toBe(NAV_PAGE);
         });

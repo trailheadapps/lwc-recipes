@@ -1,15 +1,11 @@
 import { createElement } from 'lwc';
 import NavToNewRecord from 'c/navToNewRecord';
 import { getNavigateCalledWith } from 'lightning/navigation';
+// this test uses a mocked navigation plugin.
+// see force-app/test/jest-mocks/navigation.js for the mock
+// and see jest.config.js for jest config to use the mock
 
 describe('c-nav-to-new-record', () => {
-    // maybe not needed...there is just the one nav button
-    // afterEach(() => {
-    //     while (document.body.firstChild) {
-    //         document.body.removeChild(document.body.firstChild);
-    //     }
-    // });
-
     it('navigates to new record', () => {
         // nav param values to test later
         const NAV_TYPE = 'standard__objectPage';
@@ -31,7 +27,7 @@ describe('c-nav-to-new-record', () => {
 
             const { pageReference } = getNavigateCalledWith();
 
-            // verify component called with correct event type
+            // verify component called with correct event type ane params
             expect(pageReference.type).toBe(NAV_TYPE);
             expect(pageReference.attributes.objectApiName).toBe(
                 NAV_OBJECT_API_NAME

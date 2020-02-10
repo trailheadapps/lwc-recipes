@@ -1,15 +1,11 @@
 import { createElement } from 'lwc';
 import NavToListView from 'c/navToListView';
 import { getNavigateCalledWith } from 'lightning/navigation';
+// this test uses a mocked navigation plugin.
+// see force-app/test/jest-mocks/navigation.js for the mock
+// and see jest.config.js for jest config to use the mock
 
 describe('c-nav-to-list-view', () => {
-    // maybe not needed...there is just the one nav button
-    // afterEach(() => {
-    //     while (document.body.firstChild) {
-    //         document.body.removeChild(document.body.firstChild);
-    //     }
-    // });
-
     it('navigates to list view', () => {
         // nav params to test later
         const NAV_TYPE = 'standard__objectPage';
@@ -32,7 +28,7 @@ describe('c-nav-to-list-view', () => {
 
             const { pageReference } = getNavigateCalledWith();
 
-            // verify component called with correct event params
+            // verify component called with correct event and params
             expect(pageReference.type).toBe(NAV_TYPE);
             expect(pageReference.attributes.objectApiName).toBe(
                 NAV_OBJECT_API_NAME
