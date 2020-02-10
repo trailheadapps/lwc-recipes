@@ -1,8 +1,8 @@
 import { createElement } from 'lwc';
-import NavToHome from 'c/navToHome';
+import NavToHelloTab from 'c/navToHelloTab';
 import { getNavigateCalledWith } from 'lightning/navigation';
 
-describe('c-nav-to-home', () => {
+describe('c-nav-to-hello-tab', () => {
     // maybe not needed...there is just the one nav button
     // afterEach(() => {
     //     while (document.body.firstChild) {
@@ -10,12 +10,12 @@ describe('c-nav-to-home', () => {
     //     }
     // });
 
-    it('navigates to home tab', () => {
-        const NAV_TYPE = 'standard__namedPage';
-        const NAV_PAGE = 'home';
+    it('navigates to hello tab', () => {
+        const NAV_TYPE = 'standard__navItemPage';
+        const NAV_API_NAME = 'Hello';
 
         const element = createElement('c-nav-to-home', {
-            is: NavToHome
+            is: NavToHelloTab
         });
         document.body.appendChild(element);
 
@@ -29,7 +29,7 @@ describe('c-nav-to-home', () => {
 
             // verify component called with correct event type
             expect(pageReference.type).toBe(NAV_TYPE);
-            expect(pageReference.attributes.pageName).toBe(NAV_PAGE);
+            expect(pageReference.attributes.apiName).toBe(NAV_API_NAME);
         });
     });
 });
