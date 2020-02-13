@@ -14,7 +14,7 @@ export default class ApexWireMethodWithComplexParams extends LightningElement {
 
     @wire(checkApexTypes, { wrapper: '$parameterObject' })
     apexResponse;
-    
+
     handleStringChange(event) {
         this.parameterObject = {
             ...this.parameterObject,
