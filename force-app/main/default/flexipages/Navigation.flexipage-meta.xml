@@ -35,6 +35,9 @@
             <componentName>navToNewRecord</componentName>
         </componentInstances>
         <componentInstances>
+            <componentName>navToNewRecordWithDefaults</componentName>
+        </componentInstances>
+        <componentInstances>
             <componentName>navToRecord</componentName>
         </componentInstances>
         <name>region4</name>
