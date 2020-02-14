@@ -7,7 +7,7 @@ public with sharing class CustomWrapper {
     }
 
     @AuraEnabled
-    public String someInteger { get; set; }
+    public Integer someInteger { get; set; }
     @AuraEnabled
     public String someString { get; set; }
     @AuraEnabled
