@@ -13,7 +13,6 @@ on:
 jobs:
     packaging:
         runs-on: ubuntu-latest
-        needs: formatting-and-linting
         steps:
             # Install Salesforce CLI
             - name: Install Salesforce CLI
