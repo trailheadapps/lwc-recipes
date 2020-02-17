@@ -1,11 +1,11 @@
-import { LightningElement, track, wire } from 'lwc';
+import { LightningElement, wire } from 'lwc';
 import findContacts from '@salesforce/apex/ContactController.findContacts';
 
 /** The delay used when debouncing event handlers before invoking Apex. */
 const DELAY = 300;
 
 export default class ApexWireMethodWithParams extends LightningElement {
-    @track searchKey = '';
+    searchKey = '';
 
     @wire(findContacts, { searchKey: '$searchKey' })
     contacts;

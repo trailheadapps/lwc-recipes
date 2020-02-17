@@ -15,9 +15,9 @@ const WIRE_INPUT = {
     someString: 'This is a string',
     someInteger: 20,
     someList: [
-        { someInnerString: 'This is a string', someInnerInteger: 50 },
-        { someInnerString: 'This is a string', someInnerInteger: 50 },
-        { someInnerString: 'This is a string', someInnerInteger: 50 }
+        { someInnerString: 'This is a string', someInnerInteger: 20 },
+        { someInnerString: 'This is a string', someInnerInteger: 20 },
+        { someInnerString: 'This is a string', someInnerInteger: 20 }
     ]
 };
 

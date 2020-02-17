@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<ApexClass xmlns="urn:metadata.tooling.soap.sforce.com" fqn="TestContactController">
-    <apiVersion>47.0</apiVersion>
+<ApexClass
+    xmlns="urn:metadata.tooling.soap.sforce.com"
+    fqn="TestContactController"
+>
+    <apiVersion>48.0</apiVersion>
     <status>Active</status>
 </ApexClass>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <BrandingSet xmlns="http://soap.sforce.com/2006/04/metadata">
     <brandingSetProperty>
         <propertyName>BRAND_COLOR</propertyName>
@@ -22,19 +22,19 @@
     </brandingSetProperty>
     <brandingSetProperty>
         <propertyName>GROUPS_BANNER_IMAGE</propertyName>
-        <propertyValue/>
+        <propertyValue />
     </brandingSetProperty>
     <brandingSetProperty>
         <propertyName>GROUP_IMAGE</propertyName>
-        <propertyValue/>
+        <propertyValue />
     </brandingSetProperty>
     <brandingSetProperty>
         <propertyName>PROFILE_BANNER_IMAGE</propertyName>
-        <propertyValue/>
+        <propertyValue />
     </brandingSetProperty>
     <brandingSetProperty>
         <propertyName>USER_IMAGE</propertyName>
-        <propertyValue/>
+        <propertyValue />
     </brandingSetProperty>
     <brandingSetProperty>
         <propertyName>LINK_AS_BACKGROUND</propertyName>

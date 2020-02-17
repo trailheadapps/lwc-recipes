@@ -1,10 +1,10 @@
-import { LightningElement, track } from 'lwc';
+import { LightningElement } from 'lwc';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 
 export default class MiscNotification extends LightningElement {
-    @track titleText = 'Sample Title';
-    @track messageText = 'Sample Message';
-    @track variant = 'error';
+    titleText = 'Sample Title';
+    messageText = 'Sample Message';
+    variant = 'error';
     variantOptions = [
         { label: 'error', value: 'error' },
         { label: 'warning', value: 'warning' },

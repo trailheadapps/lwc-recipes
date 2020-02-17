@@ -8,12 +8,12 @@
         "lint:lwc": "eslint **/lwc/**",
         "lint:aura": "sfdx force:lightning:lint force-app/main/default/aura --exit",
         "test": "npm run lint && npm run test:unit",
-        "test:unit": "lwc-jest",
-        "test:unit:watch": "lwc-jest --watch",
-        "test:unit:debug": "lwc-jest --debug",
-        "test:unit:coverage": "lwc-jest --coverage",
-        "prettier": "prettier --write '**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,yaml,yml}'",
-        "prettier:verify": "prettier --list-different '**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,yaml,yml}'",
+        "test:unit": "sfdx-lwc-jest",
+        "test:unit:watch": "sfdx-lwc-jest --watch",
+        "test:unit:debug": "sfdx-lwc-jest --debug",
+        "test:unit:coverage": "sfdx-lwc-jest --coverage",
+        "prettier": "prettier --write \"**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,xml,yaml,yml}\"",
+        "prettier:verify": "prettier --list-different \"**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,xml,yaml,yml}\"",
         "postinstall": "node bin/check-version.js"
     },
     "author": "salesforce.com",
@@ -27,13 +27,14 @@
         "npm": ">= 6.5.0"
     },
     "devDependencies": {
+        "@prettier/plugin-xml": "^0.7.0",
         "@salesforce/eslint-config-lwc": "^0.4.0",
-        "@salesforce/sfdx-lwc-jest": "^0.6.2",
+        "@salesforce/sfdx-lwc-jest": "^0.7.0",
         "eslint": "^5.16.0",
         "husky": "^3.1.0",
         "jest-canvas-mock": "^2.2.0",
         "lint-staged": "^9.5.0",
-        "prettier": "^1.18",
+        "prettier": "^1.19.1",
         "prettier-plugin-apex": "^1.0.0",
         "semver": "^7.1.1"
     },
@@ -43,7 +44,7 @@
         }
     },
     "lint-staged": {
-        "**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,yaml,yml}": [
+        "**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,xml,yaml,yml}": [
             "prettier --write"
         ],
         "**/lwc/**": [

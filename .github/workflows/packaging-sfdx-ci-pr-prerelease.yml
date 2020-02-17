@@ -4,7 +4,7 @@ name: Salesforce DX Prerelease PR (packaging)
 # Definition when the workflow should run
 on:
     pull_request:
-        types: [opened, synchronize, reopened]
+        types: [opened, edited, synchronize, reopened]
         branches:
             - prerelease/spring[2-9][0-9]
             - prerelease/summer[2-9][0-9]
