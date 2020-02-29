@@ -14,6 +14,7 @@ public with sharing class AccountController {
         ];
     }
 
+    // get accounts that have at least one child contact
     @AuraEnabled(cacheable=true)
     public static List<Account> getAccountsWithContacts() {
         return [

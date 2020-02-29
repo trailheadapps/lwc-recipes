@@ -1,0 +1,48 @@
+<apex:page controller="VFRemotingController">
+    <!-- 
+        TODO: 
+            - Break into two VF components, one for publish, one for subscribe
+            - Encapsulate logic of each into the component. They share a message channel, so...
+            - Investigate ways to make them reusable? Is that necessary? If so, maybe pass the message channel handle to each component
+    -->
+    <ul class="accounts"> </ul>
+    <div>
+        <p>Subscribe to SampleMessageChannel </p>
+        <button onclick="subscribeMC()">Subscribe</button>
+        <p>Unsubscribe from subscription</p>
+        <button onclick="unsubscribeMC()">Unsubscribe</button>
+        <br />
+        <br />
+        <p>Received message:</p>
+        <textarea
+            id="MCMessageTextArea"
+            rows="10"
+            style="disabled:true;resize:none;width:100%;"
+        />
+    </div>
+
+    <script>
+        // Load the MessageChannel token in a variable const SAMPLEMC =
+        "{!$MessageChannel.RecordSelected__c}"; // Get a handle to remote
+        functions we will need const {getAccountsWithContacts,
+        getContactsByAccountId} = VFRemotingController; let subscriptionToMC;
+        function onMCPublished(message) { const textArea =
+        document.querySelector("#MCMessageTextArea");
+        getContactsByAccountId(message.recordId, (result, event) => {
+        textArea.innerHTML = message ? JSON.stringify(result, null, '\t') : 'no
+        message payload'; }) } function subscribeMC() { if (!subscriptionToMC) {
+        subscriptionToMC = sforce.one.subscribe(SAMPLEMC, onMCPublished, {scope:
+        "APPLICATION"}); } } function unsubscribeMC() { if (subscriptionToMC) {
+        sforce.one.unsubscribe(subscriptionToMC); subscriptionToMC = null; } }
+        function handleSelectAccount(event){ const payload = { recordId:
+        event.target.dataset.id } sforce.one.publish(SAMPLEMC, payload); }
+        function constructListItem(item){ return `<li
+        data-id="${item.Id}">${item.Name}, (${item.Id})</li>`; } // Init
+        Accounts list getAccountsWithContacts((result, event) => { const ul =
+        document.querySelector('.accounts'); if (result) { const acctList =
+        result .map(item => constructListItem(item)) .join(''); ul.innerHTML =
+        acctList; const listItems = ul.querySelectorAll('li');
+        listItems.forEach(item => { item.addEventListener('click',
+        handleSelectAccount); }) } });
+    </script>
+</apex:page>

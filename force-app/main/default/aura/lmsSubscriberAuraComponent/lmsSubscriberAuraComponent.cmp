@@ -1,0 +1,22 @@
+<aura:component controller="ContactController">
+    Sub
+    <aura:attribute name="contacts" type="Contact[]" default="[]" />
+
+    <lightning:messageChannel
+        type="RecordSelected__c"
+        aura:id="recordSelected"
+        onMessage="{!c.handleMessage}"
+        scope="APPLICATION"
+    />
+
+    <aura:if isTrue="{!v.contacts.length > 0}">
+        <ul>
+            <aura:iteration var="contact" items="{!v.contacts}">
+                <li data-id="{!contact.Id}">{!contact.Name} ({!contact.Id})</li>
+            </aura:iteration>
+            <aura:set attribute="else">
+                No Records
+            </aura:set>
+        </ul>
+    </aura:if>
+</aura:component>
