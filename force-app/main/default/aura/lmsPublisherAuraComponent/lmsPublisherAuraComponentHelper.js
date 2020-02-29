@@ -1,0 +1,3 @@
+({
+    helperMethod: function() {}
+});

@@ -1,0 +1,6 @@
+<aura:component implements="flexipage:availableForAllPageTypes">
+    <lightning:card title="LMS Aura">
+        <c:lmsPublisherAuraComponent />
+        <c:lmsSubscriberAuraComponent />
+    </lightning:card>
+</aura:component>

@@ -1,0 +1,19 @@
+<aura:component controller="AccountController">
+    Pub
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+    <aura:attribute name="accounts" type="Account[]" />
+
+    <lightning:messageChannel
+        type="RecordSelected__c"
+        aura:id="recordSelected"
+    />
+
+    <ul>
+        <aura:iteration var="account" items="{!v.accounts}">
+            <li onclick="{!c.handleClick}" data-id="{!account.Id}"
+                >account.Name ({!account.Id})</li
+            >
+        </aura:iteration>
+    </ul>
+</aura:component>
