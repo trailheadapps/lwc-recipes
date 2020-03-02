@@ -28,9 +28,9 @@
     },
     "devDependencies": {
         "@prettier/plugin-xml": "^0.7.2",
-        "@salesforce/eslint-config-lwc": "^0.4.0",
+        "@salesforce/eslint-config-lwc": "^0.5.0",
         "@salesforce/sfdx-lwc-jest": "^0.7.0",
-        "eslint": "^5.16.0",
+        "eslint": "^6.8.0",
         "husky": "^4.2.3",
         "jest-canvas-mock": "^2.2.0",
         "lint-staged": "^10.0.7",
