@@ -85,6 +85,13 @@ jobs:
                   branch: 'auto/package-version-update'
                   token: ${{ secrets.GITHUB_TOKEN }}
 
+            # Approve pull request
+            - name: 'Approve Pull Request'
+              uses: juliangruber/approve-pull-request-action@v1
+              with:
+                  github-token: ${{ secrets.GITHUB_TOKEN }}
+                  number: ${{ env.PULL_REQUEST_NUMBER }}
+
             # Merge pull request
             - name: 'Merge pull request'
               uses: juliangruber/merge-pull-request-action@v1
