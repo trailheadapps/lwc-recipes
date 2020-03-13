@@ -31,7 +31,7 @@ NavigationMixin.GenerateUrl = GenerateUrl;
  */
 export const getNavigateCalledWith = () => {
     return {
-        pageReference: _pageReference,
+        pageReference: _navigatePageReference,
         replace: _replace
     };
 };
