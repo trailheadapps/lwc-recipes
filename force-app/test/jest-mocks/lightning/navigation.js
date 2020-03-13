@@ -36,4 +36,6 @@ export const getNavigateCalledWith = () => {
     };
 };
 
-export const getGenerateUrlCalledWith = () => ({ pageReference: _generatePageReference });
+export const getGenerateUrlCalledWith = () => ({
+    pageReference: _generatePageReference
+});
