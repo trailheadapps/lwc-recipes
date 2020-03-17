@@ -24,52 +24,52 @@ There are two ways to install Lightning Web Components Recipes:
 -   Install Visual Studio Code
 -   Install the Visual Studio Code Salesforce extensions, including the Lightning Web Components extension
 
-2. If you haven't already done so, authenticate with your hub org and provide it with an alias (**myhuborg** in the command below):
+1. If you haven't already done so, authenticate with your hub org and provide it with an alias (**myhuborg** in the command below):
 
 ```
 sfdx force:auth:web:login -d -a myhuborg
 ```
 
-3. Clone the lwc-recipes repository:
+1. Clone the lwc-recipes repository:
 
 ```
 git clone https://github.com/trailheadapps/lwc-recipes
 cd lwc-recipes
 ```
 
-4. Create a scratch org and provide it with an alias (**lwc-recipes** in the command below):
+1. Create a scratch org and provide it with an alias (**lwc-recipes** in the command below):
 
 ```
 sfdx force:org:create -s -f config/project-scratch-def.json -a lwc-recipes
 ```
 
-5. Push the app to your scratch org:
+1. Push the app to your scratch org:
 
 ```
 sfdx force:source:push
 ```
 
-6. Assign the **recipes** permission set to the default user:
+1. Assign the **recipes** permission set to the default user:
 
 ```
 sfdx force:user:permset:assign -n recipes
 ```
 
-7. Import sample data:
+1. Import sample data:
 
 ```
 sfdx force:data:tree:import -p ./data/data-plan.json
 ```
 
-8. Open the scratch org:
+1. Open the scratch org:
 
 ```
 sfdx force:org:open
 ```
 
-9. In **Setup**, under **Themes and Branding**, activate the **Recipes Lite** or **Recipes Blue** theme.
+1. In **Setup**, under **Themes and Branding**, activate the **Recipes Lite** or **Recipes Blue** theme.
 
-10. In App Launcher, click View all then select the **LWC** app.
+1. In App Launcher, click View all then select the **LWC** app.
 
 ## Installing Recipes using an Unlocked Package
 
@@ -117,7 +117,7 @@ This repository also comes with a [package.json](./package.json) file that makes
 To set up the formatting and linting pre-commit hook:
 
 1. Install [Node.js](https://nodejs.org) if you haven't already done so
-2. Run `npm install` in your project's root folder to install the ESLint and Prettier modules (Note: Mac users should verify that Xcode command line tools are installed before running this command.)
+1. Run `npm install` in your project's root folder to install the ESLint and Prettier modules (Note: Mac users should verify that Xcode command line tools are installed before running this command.)
 
 Prettier and ESLint will now run automatically every time you commit changes. The commit will fail if linting errors are detected. You can also run the formatting and linting from the command line using the following commands (check out [package.json](./package.json) for the full list):
 
