@@ -55,10 +55,10 @@ sfdx force:source:push
 sfdx force:user:permset:assign -n recipes
 ```
 
-7. Load sample data:
+7. Import sample data:
 
 ```
-sfdx force:data:tree:import --plan ./data/data-plan.json
+sfdx force:data:tree:import -p ./data/data-plan.json
 ```
 
 8. Open the scratch org:
@@ -69,19 +69,23 @@ sfdx force:org:open
 
 9. In **Setup**, under **Themes and Branding**, activate the **Recipes Lite** or **Recipes Blue** theme.
 
-10. In App Launcher, select the **LWC** app.
+10. In App Launcher, click View all then select the **LWC** app.
 
 ## Installing Recipes using an Unlocked Package
 
-1. [Sign up](https://developer.salesforce.com/signup) for a Developer Edition (DE) org.
+Follow this set of instructions if you want to deploy the app to a more permanent environment than a Scratch org or if you don't want to install the local developement tools. You can use a non source-tracked orgs such as a free [Developer Edition Org](https://developer.salesforce.com/signup) or a [Trailhead Playground](https://trailhead.salesforce.com/).
 
-2. Enable MyDomain in your DE org. Instructions to do this are [here](https://trailhead.salesforce.com/modules/identity_login/units/identity_login_my_domain).
+Make sure to start from a brand-new environment to avoid conflicts with previous work you may have done.
 
-3. Click [this link](https://login.salesforce.com/packaging/installPackage.apexp?p0=04tB000000076yFIAQ) to install the Recipes unlocked package in your DE org.
+1. Log in to your org
 
-4. Select **Install for All Users**
+1. If you are setting up a Developer Edition: go to **Setup**, under **My Domain**, [register a My Domain](https://help.salesforce.com/articleView?id=domain_name_setup.htm&type=5).
 
-5. Import Account and Contacts data:
+1. Click [this link](https://login.salesforce.com/packaging/installPackage.apexp?p0=04tB000000076yFIAQ) to install the Recipes unlocked package in your org.
+
+1. Select **Install for All Users**
+
+1. Import Account and Contacts data:
 
 -   Click [here](https://raw.githubusercontent.com/trailheadapps/lwc-recipes/master/data/Accounts-Contacts.csv) to access the **Accounts-Contacts.csv** file. Right click on the browser window and save the file as **Accounts-Contacts.csv**.
 -   In **Setup**, type **Data Import** in the Quick Find box and click **Data Import Wizard**.
@@ -90,9 +94,9 @@ sfdx force:org:open
 -   Drag the **Accounts-Contacts.csv** file you just saved to the upload area.
 -   Click **Next**, **Next**, and **Start Import**.
 
-6. In **Setup**, under **Themes and Branding**, activate the **Recipes Lite** or **Recipes Blue** theme.
+1. In **Setup**, under **Themes and Branding**, activate the **Recipes Lite** or **Recipes Blue** theme.
 
-7. In App Launcher, select the **LWC** app.
+1. In App Launcher, click **View all** then select the **LWC** app.
 
 ## Optional Installation Instructions
 
