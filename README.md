@@ -19,10 +19,10 @@ There are two ways to install Lightning Web Components Recipes:
 
 1. Set up your environment. Follow the steps in the [Quick Start: Lightning Web Components](https://trailhead.salesforce.com/content/learn/projects/quick-start-lightning-web-components/) Trailhead project. The steps include:
 
-    -   Enable Dev Hub in your Trailhead Playground
-    -   Install Salesforce CLI
-    -   Install Visual Studio Code
-    -   Install the Visual Studio Code Salesforce extensions, including the Lightning Web Components extension
+    - Enable Dev Hub in your Trailhead Playground
+    - Install Salesforce CLI
+    - Install Visual Studio Code
+    - Install the Visual Studio Code Salesforce extensions, including the Lightning Web Components extension
 
 1. If you haven't already done so, authenticate with your hub org and provide it with an alias (**myhuborg** in the command below):
 
@@ -87,12 +87,12 @@ Make sure to start from a brand-new environment to avoid conflicts with previous
 
 1. Import Account and Contacts data:
 
-    -   Click [here](https://raw.githubusercontent.com/trailheadapps/lwc-recipes/master/data/Accounts-Contacts.csv) to access the **Accounts-Contacts.csv** file. Right click on the browser window and save the file as **Accounts-Contacts.csv**.
-    -   In **Setup**, type **Data Import** in the Quick Find box and click **Data Import Wizard**.
-    -   Click **Launch Wizard**.
-    -   Click **Accounts and Contacts**, and click **Add New Records**.
-    -   Drag the **Accounts-Contacts.csv** file you just saved to the upload area.
-    -   Click **Next**, **Next**, and **Start Import**.
+    - Click [here](https://raw.githubusercontent.com/trailheadapps/lwc-recipes/master/data/Accounts-Contacts.csv) to access the **Accounts-Contacts.csv** file. Right click on the browser window and save the file as **Accounts-Contacts.csv**.
+    - In **Setup**, type **Data Import** in the Quick Find box and click **Data Import Wizard**.
+    - Click **Launch Wizard**.
+    - Click **Accounts and Contacts**, and click **Add New Records**.
+    - Drag the **Accounts-Contacts.csv** file you just saved to the upload area.
+    - Click **Next**, **Next**, and **Start Import**.
 
 1. In **Setup**, under **Themes and Branding**, activate the **Recipes Lite** or **Recipes Blue** theme.
 
