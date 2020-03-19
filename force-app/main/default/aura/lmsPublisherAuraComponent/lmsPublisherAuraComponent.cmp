@@ -11,9 +11,9 @@
 
     <ul>
         <aura:iteration var="account" items="{!v.accounts}">
-            <li onclick="{!c.handleClick}" data-id="{!account.Id}"
-                >account.Name ({!account.Id})</li
-            >
+            <li onclick="{!c.handleClick}" data-id="{!account.Id}">
+                {!account.Name} ({!account.Id})
+            </li>
         </aura:iteration>
     </ul>
 </aura:component>
