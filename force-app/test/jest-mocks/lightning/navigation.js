@@ -5,17 +5,20 @@
  */
 export const CurrentPageReference = jest.fn();
 
-let _pageReference, _replace;
+let _navigatePageReference, _generatePageReference, _replace;
 
 const Navigate = Symbol('Navigate');
 const GenerateUrl = Symbol('GenerateUrl');
 export const NavigationMixin = Base => {
     return class extends Base {
         [Navigate](pageReference, replace) {
-            _pageReference = pageReference;
+            _navigatePageReference = pageReference;
             _replace = replace;
         }
-        [GenerateUrl](pageReference) {}
+        [GenerateUrl](pageReference) {
+            _generatePageReference = pageReference;
+            return new Promise(resolve => resolve('https://www.example.com'));
+        }
     };
 };
 NavigationMixin.Navigate = Navigate;
@@ -28,7 +31,11 @@ NavigationMixin.GenerateUrl = GenerateUrl;
  */
 export const getNavigateCalledWith = () => {
     return {
-        pageReference: _pageReference,
+        pageReference: _navigatePageReference,
         replace: _replace
     };
 };
+
+export const getGenerateUrlCalledWith = () => ({
+    pageReference: _generatePageReference
+});
