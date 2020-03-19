@@ -69,7 +69,7 @@ There are two ways to install Lightning Web Components Recipes:
 
 1. In **Setup**, under **Themes and Branding**, activate the **Recipes Lite** or **Recipes Blue** theme.
 
-1. In App Launcher, click View all then select the **LWC** app.
+1. In App Launcher, click **View All** then select the **LWC** app.
 
 ## Installing Recipes using an Unlocked Package
 
@@ -96,7 +96,7 @@ Make sure to start from a brand-new environment to avoid conflicts with previous
 
 1. In **Setup**, under **Themes and Branding**, activate the **Recipes Lite** or **Recipes Blue** theme.
 
-1. In App Launcher, click **View all** then select the **LWC** app.
+1. In App Launcher, click **View All** then select the **LWC** app.
 
 ## Optional Installation Instructions
 
