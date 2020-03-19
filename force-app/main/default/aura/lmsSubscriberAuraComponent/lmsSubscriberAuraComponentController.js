@@ -1,7 +1,9 @@
 ({
     handleMessage: function(component, event) {
         if (event && event.getParam('recordId')) {
-            console.log(`got record id ${event.getParam('recordId')}`);
+            console.log(
+                `aura component got record id ${event.getParam('recordId')}`
+            );
             const accountId = event.getParam('recordId');
 
             const action = component.get('c.getContactsByAccountId');

@@ -14,11 +14,12 @@
         <br />
         <br />
         <p>Received message:</p>
-        <textarea
+        <ul class="contacts"></ul>
+        <!-- <textarea
             id="MCMessageTextArea"
             rows="10"
             style="disabled:true;resize:none;width:100%;"
-        />
+        /> -->
     </div>
 
     <script>
@@ -26,16 +27,19 @@
         "{!$MessageChannel.RecordSelected__c}"; // Get a handle to remote
         functions we will need const {getAccountsWithContacts,
         getContactsByAccountId} = VFRemotingController; let subscriptionToMC;
-        function onMCPublished(message) { const textArea =
-        document.querySelector("#MCMessageTextArea");
-        getContactsByAccountId(message.recordId, (result, event) => {
-        textArea.innerHTML = message ? JSON.stringify(result, null, '\t') : 'no
-        message payload'; }) } function subscribeMC() { if (!subscriptionToMC) {
-        subscriptionToMC = sforce.one.subscribe(SAMPLEMC, onMCPublished, {scope:
-        "APPLICATION"}); } } function unsubscribeMC() { if (subscriptionToMC) {
+        function onMCPublished(message) { const ul =
+        document.querySelector(".contacts"); console.log('vf page got message
+        with record Id: ' + message.recordId);
+        getContactsByAccountId(message.recordId, (result, event) => { const
+        contactList = result .map( item => constructListItem(item)) .join('');
+        ul.innerHTML = contactList; //textArea.innerHTML = message ?
+        JSON.stringify(result, null, '\t') : 'no message payload'; }) ; }
+        function subscribeMC() { if (!subscriptionToMC) { subscriptionToMC =
+        sforce.one.subscribe(SAMPLEMC, onMCPublished, {scope: "APPLICATION"}); }
+        } function unsubscribeMC() { if (subscriptionToMC) {
         sforce.one.unsubscribe(subscriptionToMC); subscriptionToMC = null; } }
         function handleSelectAccount(event){ const payload = { recordId:
-        event.target.dataset.id } sforce.one.publish(SAMPLEMC, payload); }
+        event.target.dataset.id }; sforce.one.publish(SAMPLEMC, payload); }
         function constructListItem(item){ return `<li
         data-id="${item.Id}">${item.Name}, (${item.Id})</li>`; } // Init
         Accounts list getAccountsWithContacts((result, event) => { const ul =
