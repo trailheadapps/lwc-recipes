@@ -104,7 +104,7 @@ jobs:
 
             # Delete pull request, for GitHub Actions initiated PRs the auto-delete of GitHub doesn't work
             - name: 'Delete pull request branch'
-              uses: dawidd6/action-delete-branch@master
+              uses: dawidd6/action-delete-branch@v2
               with:
                   github_token: ${{ secrets.GITHUB_TOKEN }}
                   numbers: ${{ env.PULL_REQUEST_NUMBER }}
