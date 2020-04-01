@@ -1,4 +1,4 @@
-<apex:page controller="VFRemotingController">
+<apex:page controller="VFRemotingController" docType="html-5.0">
     <!-- 
         TODO: 
             - Break into two VF components, one for publish, one for subscribe
@@ -22,31 +22,55 @@
         /> -->
     </div>
 
+    <!-- prettier-ignore -->
     <script>
-        // Load the MessageChannel token in a variable const SAMPLEMC =
-        "{!$MessageChannel.RecordSelected__c}"; // Get a handle to remote
-        functions we will need const {getAccountsWithContacts,
-        getContactsByAccountId} = VFRemotingController; let subscriptionToMC;
-        function onMCPublished(message) { const ul =
-        document.querySelector(".contacts"); console.log('vf page got message
-        with record Id: ' + message.recordId);
-        getContactsByAccountId(message.recordId, (result, event) => { const
-        contactList = result .map( item => constructListItem(item)) .join('');
-        ul.innerHTML = contactList; //textArea.innerHTML = message ?
-        JSON.stringify(result, null, '\t') : 'no message payload'; }) ; }
-        function subscribeMC() { if (!subscriptionToMC) { subscriptionToMC =
-        sforce.one.subscribe(SAMPLEMC, onMCPublished, {scope: "APPLICATION"}); }
-        } function unsubscribeMC() { if (subscriptionToMC) {
+        // Load the MessageChannel token in a variable 
+        const SAMPLEMC = "{!$MessageChannel.RecordSelected__c}"; 
+        
+        // Get a handle to remote functions we will need 
+        const {getAccountsWithContacts, getContactsByAccountId} = VFRemotingController; 
+        
+        let subscriptionToMC;
+        
+        function onMCPublished(message) { 
+            const ul = document.querySelector(".contacts"); 
+            console.log('vf page got message with record Id: ' + message.recordId);
+
+            getContactsByAccountId(message.recordId, (result, event) => { 
+                const contactList = result
+                                        .map( item => constructListItem(item))
+                                        .join('');
+                ul.innerHTML = contactList; 
+                //textArea.innerHTML = message ? JSON.stringify(result, null, '\t') : 'no message payload'; 
+            }) ; 
+        }
+
+        function subscribeMC() { 
+            if (!subscriptionToMC) { subscriptionToMC = sforce.one.subscribe(SAMPLEMC, onMCPublished, {scope: "APPLICATION"}); }
+        } 
+        
+        function unsubscribeMC() { if (subscriptionToMC) {
         sforce.one.unsubscribe(subscriptionToMC); subscriptionToMC = null; } }
-        function handleSelectAccount(event){ const payload = { recordId:
-        event.target.dataset.id }; sforce.one.publish(SAMPLEMC, payload); }
-        function constructListItem(item){ return `<li
-        data-id="${item.Id}">${item.Name}, (${item.Id})</li>`; } // Init
-        Accounts list getAccountsWithContacts((result, event) => { const ul =
-        document.querySelector('.accounts'); if (result) { const acctList =
-        result .map(item => constructListItem(item)) .join(''); ul.innerHTML =
-        acctList; const listItems = ul.querySelectorAll('li');
+        
+        function handleSelectAccount(event){ 
+            const payload = { recordId: event.target.dataset.id }; 
+            sforce.one.publish(SAMPLEMC, payload); 
+        }
+        
+        function constructListItem(item){ 
+            return `<li data-id="${item.Id}">${item.Name}, (${item.Id})</li>`; 
+        } 
+        // Init Accounts list 
+        getAccountsWithContacts((result, event) => { 
+            const ul = document.querySelector('.accounts'); 
+            
+            if (result) { 
+                const acctList = result 
+                                    .map(item => constructListItem(item)) 
+                                    .join(''); 
+                ul.innerHTML = acctList; const listItems = ul.querySelectorAll('li');
         listItems.forEach(item => { item.addEventListener('click',
-        handleSelectAccount); }) } });
+        handleSelectAccount); }) } 
+        });
     </script>
 </apex:page>
