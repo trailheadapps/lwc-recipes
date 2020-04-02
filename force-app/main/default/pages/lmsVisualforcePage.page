@@ -25,7 +25,7 @@
     <!-- prettier-ignore -->
     <script type="text/javascript">
         // Load the MessageChannel token in a variable 
-        var SAMPLEMC = "{!$MessageChannel.RecordSelected__c}"; 
+        var SAMPLEMC = "{!$MessageChannel.recordSelected__c}"; 
         
         // Get a handle to remote functions we will need 
         var {getAccountsWithContacts, getContactsByAccountId} = VFRemotingController; 

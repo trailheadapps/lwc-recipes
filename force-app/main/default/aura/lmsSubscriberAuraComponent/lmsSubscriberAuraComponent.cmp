@@ -3,7 +3,7 @@
     <aura:attribute name="contacts" type="Contact[]" default="[]" />
 
     <lightning:messageChannel
-        type="RecordSelected__c"
+        type="recordSelected__c"
         aura:id="recordSelected"
         onMessage="{!c.handleMessage}"
         scope="APPLICATION"

@@ -4,9 +4,9 @@
             console.log(
                 `aura component got record id ${event.getParam('recordId')}`
             );
-            const accountId = event.getParam('recordId');
+            var accountId = event.getParam('recordId');
 
-            const action = component.get('c.getContactsByAccountId');
+            var action = component.get('c.getContactsByAccountId');
             action.setParams({ accountId });
             action.setCallback(this, function(response) {
                 if (response.getState() === 'SUCCESS') {

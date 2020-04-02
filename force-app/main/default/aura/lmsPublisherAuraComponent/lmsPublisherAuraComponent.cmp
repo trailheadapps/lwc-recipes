@@ -5,7 +5,7 @@
     <aura:attribute name="accounts" type="Account[]" />
 
     <lightning:messageChannel
-        type="RecordSelected__c"
+        type="recordSelected__c"
         aura:id="recordSelected"
     />
 
