@@ -1,6 +1,6 @@
 ({
     doInit: function(component, event) {
-        const action = component.get('c.getAccountsWithContacts');
+        var action = component.get('c.getAccountsWithContacts');
         action.setCallback(this, function(response) {
             if (response.getState() === 'SUCCESS') {
                 component.set('v.accounts', response.getReturnValue());
@@ -10,9 +10,9 @@
     },
     handleClick: function(component, event) {
         //console.log(event.target.dataset.id);
-        const accountId = event.target.dataset.id;
+        var accountId = event.target.dataset.id;
 
-        let payload = { recordId: accountId };
+        var payload = { recordId: accountId };
 
         component.find('recordSelected').publish(payload);
     }
