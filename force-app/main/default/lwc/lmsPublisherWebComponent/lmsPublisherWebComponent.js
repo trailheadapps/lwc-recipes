@@ -1,7 +1,7 @@
 import { LightningElement, wire } from 'lwc';
 import getAccountsWithContacts from '@salesforce/apex/AccountController.getAccountsWithContacts';
 import { publish, MessageContext } from 'lightning/messageService';
-import recordSelected from '@salesforce/messageChannel/RecordSelected__c';
+import recordSelected from '@salesforce/messageChannel/recordSelected__c';
 
 export default class LmsPublisherWebComponent extends LightningElement {
     @wire(getAccountsWithContacts)
