@@ -2,7 +2,7 @@
     handleMessage: function(component, event) {
         if (event && event.getParam('recordId')) {
             console.log(
-                `aura component got record id ${event.getParam('recordId')}`
+                'aura component got record id ' + event.getParam('recordId')
             );
             var accountId = event.getParam('recordId');
 
