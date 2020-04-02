@@ -7,7 +7,7 @@
             var accountId = event.getParam('recordId');
 
             var action = component.get('c.getContactsByAccountId');
-            action.setParams({ accountId });
+            action.setParams({ accountId: accountId });
             action.setCallback(this, function(response) {
                 if (response.getState() === 'SUCCESS') {
                     component.set('v.contacts', response.getReturnValue());
