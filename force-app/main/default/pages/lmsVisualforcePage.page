@@ -23,21 +23,21 @@
     </div>
 
     <!-- prettier-ignore -->
-    <script>
+    <script type="text/javascript">
         // Load the MessageChannel token in a variable 
-        const SAMPLEMC = "{!$MessageChannel.RecordSelected__c}"; 
+        var SAMPLEMC = "{!$MessageChannel.RecordSelected__c}"; 
         
         // Get a handle to remote functions we will need 
-        const {getAccountsWithContacts, getContactsByAccountId} = VFRemotingController; 
+        var {getAccountsWithContacts, getContactsByAccountId} = VFRemotingController; 
         
         let subscriptionToMC;
         
         function onMCPublished(message) { 
-            const ul = document.querySelector(".contacts"); 
+            var ul = document.querySelector(".contacts"); 
             console.log('vf page got message with record Id: ' + message.recordId);
 
             getContactsByAccountId(message.recordId, (result, event) => { 
-                const contactList = result
+                var contactList = result
                                         .map( item => constructListItem(item))
                                         .join('');
                 ul.innerHTML = contactList; 
@@ -46,14 +46,21 @@
         }
 
         function subscribeMC() { 
-            if (!subscriptionToMC) { subscriptionToMC = sforce.one.subscribe(SAMPLEMC, onMCPublished, {scope: "APPLICATION"}); }
+            if (!subscriptionToMC) { 
+                subscriptionToMC = sforce.one.subscribe(SAMPLEMC, onMCPublished, {scope: "APPLICATION"}); 
+                console.log(subscriptionToMC);
+            }
         } 
         
-        function unsubscribeMC() { if (subscriptionToMC) {
-        sforce.one.unsubscribe(subscriptionToMC); subscriptionToMC = null; } }
+        function unsubscribeMC() { 
+            if (subscriptionToMC) {
+                sforce.one.unsubscribe(subscriptionToMC); 
+                subscriptionToMC = null; 
+            } 
+        }
         
         function handleSelectAccount(event){ 
-            const payload = { recordId: event.target.dataset.id }; 
+            var payload = { recordId: event.target.dataset.id }; 
             sforce.one.publish(SAMPLEMC, payload); 
         }
         
@@ -62,15 +69,18 @@
         } 
         // Init Accounts list 
         getAccountsWithContacts((result, event) => { 
-            const ul = document.querySelector('.accounts'); 
+            var ul = document.querySelector('.accounts'); 
             
             if (result) { 
-                const acctList = result 
+                var acctList = result 
                                     .map(item => constructListItem(item)) 
                                     .join(''); 
-                ul.innerHTML = acctList; const listItems = ul.querySelectorAll('li');
-        listItems.forEach(item => { item.addEventListener('click',
-        handleSelectAccount); }) } 
+                ul.innerHTML = acctList; 
+                var listItems = ul.querySelectorAll('li');
+                listItems.forEach(item => {
+                    item.addEventListener('click', handleSelectAccount); 
+                });
+            } 
         });
     </script>
 </apex:page>
