@@ -7,7 +7,7 @@
     -->
     <ul class="accounts"> </ul>
     <div>
-        <p>Subscribe to SampleMessageChannel </p>
+        <p>Subscribe to Message Channel </p>
         <button onclick="subscribeMC()">Subscribe</button>
         <p>Unsubscribe from subscription</p>
         <button onclick="unsubscribeMC()">Unsubscribe</button>
