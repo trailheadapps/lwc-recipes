@@ -20,7 +20,7 @@ export default class LibsMomentjs extends LightningElement {
             .then(() => {
                 this.setMomentValues(this.selectedDateTime);
             })
-            .catch(error => {
+            .catch((error) => {
                 this.error = error;
             });
     }

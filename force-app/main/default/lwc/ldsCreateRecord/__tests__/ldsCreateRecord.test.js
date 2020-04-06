@@ -20,7 +20,7 @@ describe('c-lds-create-record', () => {
     // timing when calling createRecord.
     function flushPromises() {
         // eslint-disable-next-line no-undef
-        return new Promise(resolve => setImmediate(resolve));
+        return new Promise((resolve) => setImmediate(resolve));
     }
 
     it('sets value from lightning-input field as parameter to createRecord call', () => {

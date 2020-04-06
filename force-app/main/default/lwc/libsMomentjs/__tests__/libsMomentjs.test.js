@@ -49,7 +49,7 @@ describe('c-libs-momentjs', () => {
     // timing when the platformResourceLoader promises.
     function flushPromises() {
         // eslint-disable-next-line no-undef
-        return new Promise(resolve => setImmediate(resolve));
+        return new Promise((resolve) => setImmediate(resolve));
     }
 
     it('populates the disabled lightning-input fields with moment.js data based on user input', () => {
@@ -79,9 +79,9 @@ describe('c-libs-momentjs', () => {
             const values = Array.from(
                 element.shadowRoot.querySelectorAll('lightning-input')
             )
-                .filter(input => input.disabled)
+                .filter((input) => input.disabled)
                 .splice(0, 2)
-                .map(input => input.value);
+                .map((input) => input.value);
             expect(values).toEqual(OUTPUT_EXPECTED);
         });
     });

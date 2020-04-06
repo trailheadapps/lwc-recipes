@@ -22,7 +22,7 @@ describe('c-event-simple', () => {
         );
 
         // First click "Next", so that the page property increments to 2
-        buttonEls.forEach(buttonEl => {
+        buttonEls.forEach((buttonEl) => {
             if (buttonEl.label === 'Next') {
                 buttonEl.click();
             }
@@ -39,7 +39,7 @@ describe('c-event-simple', () => {
                 expect(pageEl.textContent).toBe('Page 2');
 
                 // Now click "Previous", so that the page property decrements to 1
-                buttonEls.forEach(buttonEl => {
+                buttonEls.forEach((buttonEl) => {
                     if (buttonEl.label === 'Previous') {
                         buttonEl.click();
                     }
@@ -50,7 +50,7 @@ describe('c-event-simple', () => {
                 expect(pageEl.textContent).toBe('Page 1');
 
                 // Decrement again
-                buttonEls.forEach(buttonEl => {
+                buttonEls.forEach((buttonEl) => {
                     if (buttonEl.label === 'Previous') {
                         buttonEl.click();
                     }

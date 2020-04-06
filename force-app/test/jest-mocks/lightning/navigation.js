@@ -9,7 +9,7 @@ let _navigatePageReference, _generatePageReference, _replace;
 
 const Navigate = Symbol('Navigate');
 const GenerateUrl = Symbol('GenerateUrl');
-export const NavigationMixin = Base => {
+export const NavigationMixin = (Base) => {
     return class extends Base {
         [Navigate](pageReference, replace) {
             _navigatePageReference = pageReference;
@@ -17,7 +17,7 @@ export const NavigationMixin = Base => {
         }
         [GenerateUrl](pageReference) {
             _generatePageReference = pageReference;
-            return new Promise(resolve => resolve('https://www.example.com'));
+            return new Promise((resolve) => resolve('https://www.example.com'));
         }
     };
 };

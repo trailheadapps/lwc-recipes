@@ -28,14 +28,16 @@
                         />
                         <p>{!v.selectedContact.Name}</p>
                         <p>{!v.selectedContact.Title}</p>
-                        <p
-                            ><lightning:formattedPhone
+                        <p>
+                            <lightning:formattedPhone
                                 value="{!v.selectedContact.Phone}"
-                        /></p>
-                        <p
-                            ><lightning:formattedEmail
+                            />
+                        </p>
+                        <p>
+                            <lightning:formattedEmail
                                 value="{!v.selectedContact.Email}"
-                        /></p>
+                            />
+                        </p>
                     </aura:if>
                 </lightning:layoutItem>
             </lightning:layout>
@@ -44,14 +46,14 @@
         <div class="slds-card__footer">
             Embed a Lightning Web component in a parent Aura component and
             communicate with events
-            <p
-                ><a
+            <p>
+                <a
                     class="slds-text-link"
                     href="https://github.com/trailheadapps/lwc-recipes/tree/master/force-app/main/default/aura/auraEmbeddedLWC"
                     target="source"
                     >View Source</a
-                ></p
-            >
+                >
+            </p>
         </div>
     </lightning:card>
 </aura:component>

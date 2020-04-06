@@ -40,11 +40,11 @@ export default class ApexImperativeMethodWithComplexParams extends LightningElem
         // Calling the imperative Apex method with the JSON
         // object as parameter.
         checkApexTypes({ wrapper: parameterObject })
-            .then(result => {
+            .then((result) => {
                 this.message = result;
                 this.error = undefined;
             })
-            .catch(error => {
+            .catch((error) => {
                 this.message = undefined;
                 this.error = error;
             });

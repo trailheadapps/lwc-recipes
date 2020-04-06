@@ -57,7 +57,7 @@ describe('c-apex-imperative-method', () => {
     // timing when calling imperative Apex.
     function flushPromises() {
         // eslint-disable-next-line no-undef
-        return new Promise(resolve => setImmediate(resolve));
+        return new Promise((resolve) => setImmediate(resolve));
     }
 
     it('renders two contacts returned from imperative Apex call', () => {
