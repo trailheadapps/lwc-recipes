@@ -24,7 +24,7 @@ describe('c-category-filter', () => {
         // Select input fields for simulating user input
         element.shadowRoot
             .querySelectorAll('lightning-input')
-            .forEach(checkbox => {
+            .forEach((checkbox) => {
                 checkbox.checked = true;
                 checkbox.dispatchEvent(new CustomEvent('change'));
             });
@@ -35,7 +35,7 @@ describe('c-category-filter', () => {
         return Promise.resolve().then(() => {
             const inputValues = Array.from(
                 element.shadowRoot.querySelectorAll('lightning-input')
-            ).map(checkbox => checkbox.label);
+            ).map((checkbox) => checkbox.label);
 
             // Validate filterchange event
             expect(handler.mock.calls.length).toBe(inputValues.length);

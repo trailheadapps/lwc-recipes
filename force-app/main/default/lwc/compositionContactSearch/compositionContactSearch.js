@@ -16,11 +16,11 @@ export default class CompositionContactSearch extends LightningElement {
         // eslint-disable-next-line @lwc/lwc/no-async-operation
         this.delayTimeout = setTimeout(() => {
             findContacts({ searchKey })
-                .then(result => {
+                .then((result) => {
                     this.contacts = result;
                     this.error = undefined;
                 })
-                .catch(error => {
+                .catch((error) => {
                     this.error = error;
                     this.contacts = undefined;
                 });

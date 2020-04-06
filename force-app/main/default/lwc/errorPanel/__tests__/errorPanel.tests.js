@@ -71,7 +71,7 @@ describe('c-error-panel', () => {
         return Promise.resolve().then(() => {
             const messageTexts = Array.from(
                 element.shadowRoot.querySelectorAll('p[class="error-message"]')
-            ).map(errorMessage => (errorMessage = errorMessage.textContent));
+            ).map((errorMessage) => (errorMessage = errorMessage.textContent));
             expect(messageTexts).toEqual(ERROR_MESSAGES_OUTPUT);
         });
     });

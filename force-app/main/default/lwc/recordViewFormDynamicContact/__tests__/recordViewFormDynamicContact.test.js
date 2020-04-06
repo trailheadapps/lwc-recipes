@@ -46,7 +46,7 @@ describe('c-record-view-form-dynamic-contact', () => {
 
         const outputFieldNames = Array.from(
             element.shadowRoot.querySelectorAll('lightning-output-field')
-        ).map(outputField => outputField.fieldName);
+        ).map((outputField) => outputField.fieldName);
         expect(outputFieldNames).toEqual(OUTPUT_FIELDS);
     });
 });

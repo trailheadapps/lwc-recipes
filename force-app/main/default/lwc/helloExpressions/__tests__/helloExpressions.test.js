@@ -16,7 +16,7 @@ describe('c-hello-expressions', () => {
         // can't use an attribute query selector.
         element.shadowRoot
             .querySelectorAll('lightning-input')
-            .forEach(input => {
+            .forEach((input) => {
                 if (firstName && input.name === 'firstName') {
                     input.value = firstName;
                     input.dispatchEvent(new CustomEvent('change'));

@@ -27,14 +27,14 @@
 
         <div class="slds-card__footer">
             Publish an event using the pubsub utility from an Aura component.
-            <p
-                ><a
+            <p>
+                <a
                     class="slds-text-link"
                     href="https://github.com/trailheadapps/lwc-recipes/tree/master/force-app/main/default/aura/auraPubsubPublisher"
                     target="source"
                     >View Source</a
-                ></p
-            >
+                >
+            </p>
         </div>
     </lightning:card>
 </aura:component>

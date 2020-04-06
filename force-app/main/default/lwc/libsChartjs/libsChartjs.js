@@ -60,7 +60,7 @@ export default class LibsChartjs extends LightningElement {
                 const ctx = canvas.getContext('2d');
                 this.chart = new window.Chart(ctx, this.config);
             })
-            .catch(error => {
+            .catch((error) => {
                 this.error = error;
             });
     }
