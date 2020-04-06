@@ -24,7 +24,7 @@ describe('c-libs-chartjs', () => {
     // timing when the platformResourceLoader promises.
     function flushPromises() {
         // eslint-disable-next-line no-undef
-        return new Promise(resolve => setImmediate(resolve));
+        return new Promise((resolve) => setImmediate(resolve));
     }
 
     it('contains a canvas element for ChartJs', () => {

@@ -20,7 +20,7 @@ export default class LdsCreateRecord extends LightningElement {
         fields[NAME_FIELD.fieldApiName] = this.name;
         const recordInput = { apiName: ACCOUNT_OBJECT.objectApiName, fields };
         createRecord(recordInput)
-            .then(account => {
+            .then((account) => {
                 this.accountId = account.id;
                 this.dispatchEvent(
                     new ShowToastEvent({
@@ -30,7 +30,7 @@ export default class LdsCreateRecord extends LightningElement {
                     })
                 );
             })
-            .catch(error => {
+            .catch((error) => {
                 this.dispatchEvent(
                     new ShowToastEvent({
                         title: 'Error creating record',

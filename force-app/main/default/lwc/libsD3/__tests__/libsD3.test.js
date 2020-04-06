@@ -25,7 +25,7 @@ describe('c-libs-d3', () => {
     // timing when the platformResourceLoader promises.
     function flushPromises() {
         // eslint-disable-next-line no-undef
-        return new Promise(resolve => setImmediate(resolve));
+        return new Promise((resolve) => setImmediate(resolve));
     }
 
     it('contains a svg element for D3', () => {

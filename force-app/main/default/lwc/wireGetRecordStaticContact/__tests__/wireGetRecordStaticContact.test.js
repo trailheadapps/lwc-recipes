@@ -21,7 +21,7 @@ describe('c-wire-get-record-static-contact', () => {
     // timing.
     function flushPromises() {
         // eslint-disable-next-line no-undef
-        return new Promise(resolve => setImmediate(resolve));
+        return new Promise((resolve) => setImmediate(resolve));
     }
 
     describe('getRecord @wire data', () => {

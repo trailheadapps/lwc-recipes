@@ -24,7 +24,7 @@ export default class LibsD3 extends LightningElement {
             .then(() => {
                 this.initializeD3();
             })
-            .catch(error => {
+            .catch((error) => {
                 this.dispatchEvent(
                     new ShowToastEvent({
                         title: 'Error loading D3',
@@ -46,7 +46,7 @@ export default class LibsD3 extends LightningElement {
             .forceSimulation()
             .force(
                 'link',
-                d3.forceLink().id(d => {
+                d3.forceLink().id((d) => {
                     return d.id;
                 })
             )
@@ -60,7 +60,7 @@ export default class LibsD3 extends LightningElement {
             .data(DATA.links)
             .enter()
             .append('line')
-            .attr('stroke-width', d => {
+            .attr('stroke-width', (d) => {
                 return Math.sqrt(d.value);
             });
 
@@ -72,7 +72,7 @@ export default class LibsD3 extends LightningElement {
             .enter()
             .append('circle')
             .attr('r', 5)
-            .attr('fill', d => {
+            .attr('fill', (d) => {
                 return color(d.group);
             })
             .call(
@@ -83,7 +83,7 @@ export default class LibsD3 extends LightningElement {
                     .on('end', dragended)
             );
 
-        node.append('title').text(d => {
+        node.append('title').text((d) => {
             return d.id;
         });
 
@@ -92,11 +92,11 @@ export default class LibsD3 extends LightningElement {
         simulation.force('link').links(DATA.links);
 
         function ticked() {
-            link.attr('x1', d => d.source.x)
-                .attr('y1', d => d.source.y)
-                .attr('x2', d => d.target.x)
-                .attr('y2', d => d.target.y);
-            node.attr('cx', d => d.x).attr('cy', d => d.y);
+            link.attr('x1', (d) => d.source.x)
+                .attr('y1', (d) => d.source.y)
+                .attr('x2', (d) => d.target.x)
+                .attr('y2', (d) => d.target.y);
+            node.attr('cx', (d) => d.x).attr('cy', (d) => d.y);
         }
 
         function dragstarted(d) {

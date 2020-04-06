@@ -40,7 +40,7 @@ describe('c-wire-get-picklist-values', () => {
                     mockGetPicklistValues.values.length
                 );
 
-                checkboxEls.forEach(checkboxEl => {
+                checkboxEls.forEach((checkboxEl) => {
                     expect(checkboxEl.type).toBe('checkbox');
                 });
             });

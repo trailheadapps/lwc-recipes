@@ -51,7 +51,7 @@ describe('c-composition-contact-search', () => {
     // timing when calling imperative Apex.
     function flushPromises() {
         // eslint-disable-next-line no-undef
-        return new Promise(resolve => setImmediate(resolve));
+        return new Promise((resolve) => setImmediate(resolve));
     }
 
     it('does not render contact tiles by default', () => {

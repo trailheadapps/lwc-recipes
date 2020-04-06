@@ -37,7 +37,7 @@ export default class LdsDeleteRecord extends LightningElement {
                 );
                 return refreshApex(this.wiredAccountsResult);
             })
-            .catch(error => {
+            .catch((error) => {
                 this.dispatchEvent(
                     new ShowToastEvent({
                         title: 'Error deleting record',

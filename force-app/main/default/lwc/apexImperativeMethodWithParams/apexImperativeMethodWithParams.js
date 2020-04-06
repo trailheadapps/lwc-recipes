@@ -12,11 +12,11 @@ export default class ApexImperativeMethodWithParams extends LightningElement {
 
     handleSearch() {
         findContacts({ searchKey: this.searchKey })
-            .then(result => {
+            .then((result) => {
                 this.contacts = result;
                 this.error = undefined;
             })
-            .catch(error => {
+            .catch((error) => {
                 this.error = error;
                 this.contacts = undefined;
             });
