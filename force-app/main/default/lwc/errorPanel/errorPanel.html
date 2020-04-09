@@ -1,8 +1,17 @@
 <template>
-    <div class="slds-p-around_medium">
-        <lightning-icon icon-name="utility:error"></lightning-icon>
-        <div class="slds-p-around_small">
-            <p>{friendlyMessage}</p>
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="233"
+        height="105"
+        class="slds-align--absolute-center"
+    >
+        <use xlink:href={noDataSvgUrl}></use>
+    </svg>
+    <div class="slds-text-longform">
+        <h3 class="slds-text-heading_medium">
+            <div class="slds-text-longform">
+                <h3 class="slds-text-heading_medium">{friendlyMessage}</h3>
+            </div>
             <template if:true={errorMessages.length}>
                 <div class="slds-p-vertical_x-small">
                     <lightning-input
@@ -13,10 +22,12 @@
                 </div>
                 <template if:true={viewDetails}>
                     <template for:each={errorMessages} for:item="message">
-                        <p key={message} class="error-message">{message}</p>
+                        <p class="slds-text-body_regulars" key={message}>
+                            {message}
+                        </p>
                     </template>
                 </template>
             </template>
-        </div>
+        </h3>
     </div>
 </template>
