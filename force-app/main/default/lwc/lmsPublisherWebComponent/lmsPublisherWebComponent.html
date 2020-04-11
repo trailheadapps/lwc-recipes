@@ -1,10 +1,12 @@
 <template>
-    Pub
-    <ul>
-        <template for:each={accounts.data} for:item="account">
-            <li onclick={handleClick} data-id={account.Id} key={account.Id}>
-                {account.Name} ({account.Id})
-            </li>
-        </template>
-    </ul>
+    <lightning-card title="LMS LWC Publisher">
+        Pub
+        <ul>
+            <template for:each={accounts.data} for:item="account">
+                <li onclick={handleClick} data-id={account.Id} key={account.Id}>
+                    {account.Name} ({account.Id})
+                </li>
+            </template>
+        </ul>
+    </lightning-card>
 </template>

@@ -1,22 +1,24 @@
 <template>
-    Sub
-    <p>Subscribe to Message Channel</p>
-    <button onclick={handleSubscribeMC}>Subscribe</button>
-    <p>Unsubscribe from subscription</p>
-    <button onclick={handleUnsubscribeMC}>Unsubscribe</button>
-    <br />
-    <br />
-    <p>Received message:</p>
-    <template if:true={contacts.data}>
-        <ul>
-            <template for:each={contacts.data} for:item="contact">
-                <li key={contact.Id}>
-                    {contact.Name} ({contact.Id})
-                </li>
-            </template>
-        </ul>
-    </template>
-    <template if:false={contacts.data}>
-        No Data
-    </template>
+    <lightning-card title="LMS LWC Subscriber">
+        Sub
+        <p>Subscribe to Message Channel</p>
+        <button onclick={handleSubscribeMC}>Subscribe</button>
+        <p>Unsubscribe from subscription</p>
+        <button onclick={handleUnsubscribeMC}>Unsubscribe</button>
+        <br />
+        <br />
+        <p>Received message:</p>
+        <template if:true={contacts.data}>
+            <ul>
+                <template for:each={contacts.data} for:item="contact">
+                    <li key={contact.Id}>
+                        {contact.Name} ({contact.Id})
+                    </li>
+                </template>
+            </ul>
+        </template>
+        <template if:false={contacts.data}>
+            No Data
+        </template>
+    </lightning-card>
 </template>

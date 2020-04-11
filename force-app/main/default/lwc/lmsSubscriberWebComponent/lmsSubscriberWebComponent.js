@@ -19,9 +19,7 @@ export default class LmsSubscriberWebComponent extends LightningElement {
     @wire(MessageContext)
     messageContext;
 
-    handleSubscribeMC(event) {
-        console.dir(event);
-
+    handleSubscribeMC() {
         if (!this.subscription) {
             this.subscription = subscribe(
                 this.messageContext,
@@ -32,8 +30,7 @@ export default class LmsSubscriberWebComponent extends LightningElement {
         }
     }
 
-    handleUnsubscribeMC(event) {
-        console.dir(event);
+    handleUnsubscribeMC() {
         unsubscribe(this.subscription);
         this.subscription = null;
     }
