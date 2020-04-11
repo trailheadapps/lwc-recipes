@@ -1,4 +1,8 @@
-<apex:page controller="VFRemotingController" docType="html-5.0">
+<apex:page
+    controller="VFRemotingController"
+    docType="html-5.0"
+    lightningStylesheets="true"
+>
     <!-- 
         TODO: 
             - Break into two VF components, one for publish, one for subscribe

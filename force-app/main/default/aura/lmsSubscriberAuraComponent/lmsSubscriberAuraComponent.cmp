@@ -1,5 +1,7 @@
-<aura:component controller="ContactController">
-    Sub
+<aura:component
+    controller="ContactController"
+    implements="flexipage:availableForAllPageTypes"
+>
     <aura:attribute name="contacts" type="Contact[]" default="[]" />
 
     <lightning:messageChannel
@@ -9,14 +11,19 @@
         scope="APPLICATION"
     />
 
-    <aura:if isTrue="{!v.contacts.length > 0}">
-        <ul>
-            <aura:iteration var="contact" items="{!v.contacts}">
-                <li data-id="{!contact.Id}">{!contact.Name} ({!contact.Id})</li>
-            </aura:iteration>
-            <aura:set attribute="else">
-                No Records
-            </aura:set>
-        </ul>
-    </aura:if>
+    <lightning:card title="LMS Aura Subscriber">
+        Sub
+        <aura:if isTrue="{!v.contacts.length > 0}">
+            <ul>
+                <aura:iteration var="contact" items="{!v.contacts}">
+                    <li data-id="{!contact.Id}"
+                        >{!contact.Name} ({!contact.Id})</li
+                    >
+                </aura:iteration>
+                <aura:set attribute="else">
+                    No Records
+                </aura:set>
+            </ul>
+        </aura:if>
+    </lightning:card>
 </aura:component>
