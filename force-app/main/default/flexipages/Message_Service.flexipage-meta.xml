@@ -6,14 +6,20 @@
     </flexiPageRegions>
     <flexiPageRegions>
         <componentInstances>
-            <componentName>lmsWebComponent</componentName>
+            <componentName>lmsPublisherWebComponent</componentName>
+        </componentInstances>
+        <componentInstances>
+            <componentName>lmsSubscriberWebComponent</componentName>
         </componentInstances>
         <name>region2</name>
         <type>Region</type>
     </flexiPageRegions>
     <flexiPageRegions>
         <componentInstances>
-            <componentName>lmsAuraComponent</componentName>
+            <componentName>lmsPublisherAuraComponent</componentName>
+        </componentInstances>
+        <componentInstances>
+            <componentName>lmsSubscriberAuraComponent</componentName>
         </componentInstances>
         <name>region3</name>
         <type>Region</type>
@@ -23,6 +29,10 @@
             <componentInstanceProperties>
                 <name>height</name>
                 <value>300</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>label</name>
+                <value>LMS Visualforce Page</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>pageName</name>
