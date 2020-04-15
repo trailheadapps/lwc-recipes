@@ -2,7 +2,8 @@
     controller="ContactController"
     implements="flexipage:availableForAllPageTypes"
 >
-    <aura:attribute name="contacts" type="Contact[]" default="[]" />
+    <aura:attribute name="contacts" type="Contact[]" />
+    <!-- <aura:attribute name="contacts" type="Contact[]" default="[]" /> -->
 
     <lightning:messageChannel
         type="recordSelected__c"
