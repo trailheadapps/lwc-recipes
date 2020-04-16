@@ -1,6 +1,6 @@
 import { LightningElement } from 'lwc';
-import { loadScript } from 'lightning/platformResourceLoader';
-import chartjs from '@salesforce/resourceUrl/chart';
+import { loadScript, loadStyle } from 'lightning/platformResourceLoader';
+import chartjs from '@salesforce/resourceUrl/chartJs';
 
 const generateRandomNumber = () => {
     return Math.round(Math.random() * 100);
@@ -53,14 +53,20 @@ export default class LibsChartjs extends LightningElement {
         }
         this.chartjsInitialized = true;
 
-        loadScript(this, chartjs)
+        Promise.all([
+            loadScript(this, chartjs + '/Chart.js'),
+            loadStyle(this, chartjs + '/Chart.css')
+        ])
             .then(() => {
+                // disable Chart.js CSS injection
+                window.Chart.platform.disableCSSInjection = true;
+
                 const canvas = document.createElement('canvas');
                 this.template.querySelector('div.chart').appendChild(canvas);
                 const ctx = canvas.getContext('2d');
                 this.chart = new window.Chart(ctx, this.config);
             })
-            .catch((error) => {
+            .catch(error => {
                 this.error = error;
             });
     }
