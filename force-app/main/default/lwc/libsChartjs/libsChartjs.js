@@ -54,8 +54,8 @@ export default class LibsChartjs extends LightningElement {
         this.chartjsInitialized = true;
 
         Promise.all([
-            loadScript(this, chartjs + '/Chart.js'),
-            loadStyle(this, chartjs + '/Chart.css')
+            loadScript(this, chartjs + '/Chart.min.js'),
+            loadStyle(this, chartjs + '/Chart.min.css')
         ])
             .then(() => {
                 // disable Chart.js CSS injection
@@ -66,7 +66,7 @@ export default class LibsChartjs extends LightningElement {
                 const ctx = canvas.getContext('2d');
                 this.chart = new window.Chart(ctx, this.config);
             })
-            .catch(error => {
+            .catch((error) => {
                 this.error = error;
             });
     }

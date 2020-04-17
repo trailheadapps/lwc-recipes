@@ -24,7 +24,7 @@ describe('c-libs-chartjs', () => {
     // timing when the platformResourceLoader promises.
     function flushPromises() {
         // eslint-disable-next-line no-undef
-        return new Promise(resolve => setImmediate(resolve));
+        return new Promise((resolve) => setImmediate(resolve));
     }
 
     it('contains a canvas element for ChartJs', () => {
@@ -40,8 +40,8 @@ describe('c-libs-chartjs', () => {
     });
 
     it('loads the ChartJS javascript and css static resources', () => {
-        const CHARTJS_JS = 'chartJs/Chart.js';
-        const CHARTJS_CSS = 'chartJs/Chart.css';
+        const CHARTJS_JS = 'chartJs/Chart.min.js';
+        const CHARTJS_CSS = 'chartJs/Chart.min.css';
 
         // Create initial element
         const element = createElement('c-libs-chartjs', {
