@@ -3,13 +3,13 @@ import { reduceErrors } from 'c/ldsUtils';
 import NODATA_SVG from '@salesforce/resourceUrl/noDataErrorIllustration';
 
 export default class ErrorPanel extends LightningElement {
-    /** Generic / user-friendly message */
-    @api friendlyMessage = 'Error retrieving data';
     /** Single or array of LDS errors */
     @api errors;
+    /** Generic / user-friendly message */
+    @api friendlyMessage = 'Error retrieving data';
 
-    viewDetails = false;
     noDataSvgUrl = `${NODATA_SVG}#noDataErrorIllustration`;
+    viewDetails = false;
 
     get errorMessages() {
         return reduceErrors(this.errors);
