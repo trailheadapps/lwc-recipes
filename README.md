@@ -27,7 +27,7 @@ A collection of easy-to-digest code examples for Lightning Web Components. Each 
     - Install Visual Studio Code
     - Install the Visual Studio Code Salesforce extensions, including the Lightning Web Components extension
 
-1. If you haven't already done so, authenticate with your hub org and provide it with an alias (**myhuborg** in the command below):
+1. If you haven't already done so, authorize your hub org and provide it with an alias (**myhuborg** in the command below):
 
     ```
     sfdx force:auth:web:login -d -a myhuborg
@@ -108,7 +108,7 @@ This includes non source-tracked orgs such as a [free Developer Edition Org](htt
 
 Make sure to start from a brand-new environment to avoid conflicts with previous work you may have done.
 
-1. Authenticate with your Trailhead Playground or Developer org and provide it with an alias (**mydevorg** in the command below):
+1. Authorize your Trailhead Playground or Developer org and provide it with an alias (**mydevorg** in the command below):
 
     ```
     sfdx force:auth:web:login -d -a mydevorg
