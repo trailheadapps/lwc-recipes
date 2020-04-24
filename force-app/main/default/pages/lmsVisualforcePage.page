@@ -9,9 +9,9 @@
             - Encapsulate logic of each into the component. They share a message channel, so...
             - Investigate ways to make them reusable? Is that necessary? If so, maybe pass the message channel handle to each component
     -->
-    <ul class="accounts"> </ul>
+    <ul class="accounts"></ul>
     <div>
-        <p>Subscribe to Message Channel </p>
+        <p>Subscribe to Message Channel</p>
         <button onclick="subscribeMC()">Subscribe</button>
         <p>Unsubscribe from subscription</p>
         <button onclick="unsubscribeMC()">Unsubscribe</button>

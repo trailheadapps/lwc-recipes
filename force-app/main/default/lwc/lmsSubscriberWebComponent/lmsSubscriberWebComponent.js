@@ -24,7 +24,7 @@ export default class LmsSubscriberWebComponent extends LightningElement {
             this.subscription = subscribe(
                 this.messageContext,
                 recordSelected,
-                message => this.handleMessage(message),
+                (message) => this.handleMessage(message),
                 { scope: APPLICATION_SCOPE }
             );
         }

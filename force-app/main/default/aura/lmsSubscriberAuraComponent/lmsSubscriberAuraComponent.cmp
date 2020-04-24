@@ -17,9 +17,9 @@
         <aura:if isTrue="{!v.contacts.length > 0}">
             <ul>
                 <aura:iteration var="contact" items="{!v.contacts}">
-                    <li data-id="{!contact.Id}"
-                        >{!contact.Name} ({!contact.Id})</li
-                    >
+                    <li data-id="{!contact.Id}">
+                        {!contact.Name} ({!contact.Id})
+                    </li>
                 </aura:iteration>
                 <aura:set attribute="else">
                     No Records
