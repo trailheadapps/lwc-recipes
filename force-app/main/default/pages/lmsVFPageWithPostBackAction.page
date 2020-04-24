@@ -1,0 +1,79 @@
+<apex:page
+    lightningStylesheets="true"
+    controller="VFRemotingController"
+    docType="html-5.0"
+>
+    <apex:slds>
+        <style>
+            .img-thumb {
+                width: 30px;
+                height: 30px;
+                border-radius: 50%;
+                margin-bottom: 8px;
+            }
+            .img-small {
+                width: 80px;
+                height: 80px;
+                border-radius: 50%;
+                margin-bottom: 8px;
+            }
+        </style>
+
+        <apex:outputPanel id="contactlist">
+            <apex:dataList value="{!contacts}" var="contact">
+                <apex:outputText value="{!contact.Name}" />
+                &nbsp; (<apex:outputText value="{!contact.Id}" />)
+            </apex:dataList>
+
+            <apex:pageBlock rendered="{!showList}">
+                <apex:pageBlockTable value="{!contacts}" var="contact">
+                    <apex:column>
+                        <apex:image
+                            styleClass="img-thumb"
+                            value="{!contact.Picture__c}"
+                        />
+                    </apex:column>
+                    <apex:column value="{!contact.Name}" />
+                </apex:pageBlockTable>
+            </apex:pageBlock>
+        </apex:outputPanel>
+
+        <apex:form>
+            <apex:actionFunction
+                action="{!refreshContacts}"
+                name="refreshContactsFunction"
+                reRender="contactlist"
+            >
+                <apex:param name="acctId" value="" />
+            </apex:actionFunction>
+        </apex:form>
+    </apex:slds>
+    <!-- prettier-ignore -->
+    <script type="text/javascript">
+        // Load the MessageChannel token in a variable 
+        var SAMPLEMC = "{!$MessageChannel.recordSelected__c}"; 
+        
+        // Get a handle to remote functions we will need 
+        var {getAccountsWithContacts, getContactsByAccountId} = VFRemotingController; 
+        
+        let subscriptionToMC2;
+        
+        function onMCPublished(message) { 
+            refreshContactsFunction(message.recordId);
+
+        }
+
+        function subscribeMC() { 
+            if (!subscriptionToMC2) { 
+                subscriptionToMC2 = sforce.one.subscribe(SAMPLEMC, onMCPublished, {scope: "APPLICATION"}); 
+            }
+        } 
+
+        document.addEventListener('readystatechange', function(event){
+            if (event.target.readyState === 'complete') {
+                subscribeMC();
+            }
+        });
+
+    </script>
+</apex:page>

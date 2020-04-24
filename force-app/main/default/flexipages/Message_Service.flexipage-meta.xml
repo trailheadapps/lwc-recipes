@@ -44,6 +44,21 @@
             </componentInstanceProperties>
             <componentName>flexipage:visualforcePage</componentName>
         </componentInstances>
+        <componentInstances>
+            <componentInstanceProperties>
+                <name>height</name>
+                <value>300</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>pageName</name>
+                <value>lmsVFPageWithPostBackAction</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>showLabel</name>
+                <value>true</value>
+            </componentInstanceProperties>
+            <componentName>flexipage:visualforcePage</componentName>
+        </componentInstances>
         <name>region4</name>
         <type>Region</type>
     </flexiPageRegions>
