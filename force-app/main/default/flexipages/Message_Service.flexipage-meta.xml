@@ -28,15 +28,15 @@
         <componentInstances>
             <componentInstanceProperties>
                 <name>height</name>
-                <value>300</value>
+                <value>200</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>label</name>
-                <value>LMS Visualforce Page</value>
+                <value>LMS Visualforce Publisher</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>pageName</name>
-                <value>lmsVisualforcePage</value>
+                <value>lmsPublisherVisualforce</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>showLabel</name>
@@ -47,11 +47,34 @@
         <componentInstances>
             <componentInstanceProperties>
                 <name>height</name>
-                <value>300</value>
+                <value>225</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>label</name>
+                <value>LMS Visualforce Subscriber with Remoting</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>pageName</name>
-                <value>lmsVFPageWithPostBackAction</value>
+                <value>lmsSubscriberVisualforceRemoting</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>showLabel</name>
+                <value>true</value>
+            </componentInstanceProperties>
+            <componentName>flexipage:visualforcePage</componentName>
+        </componentInstances>
+        <componentInstances>
+            <componentInstanceProperties>
+                <name>height</name>
+                <value>360</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>label</name>
+                <value>LMS Visualforce Subscriber with Action</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>pageName</name>
+                <value>lmsSubscriberVisualforcePostbackAction</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>showLabel</name>

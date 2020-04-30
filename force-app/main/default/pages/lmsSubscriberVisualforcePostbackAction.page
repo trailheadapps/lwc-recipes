@@ -5,55 +5,26 @@
     lightningStylesheets="true"
     docType="html-5.0"
 >
-    <style>
-        ul {
-            list-style-type: none;
-        }
-        .img-thumb {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            margin-bottom: 8px;
-        }
-        .img-small {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            margin-bottom: 8px;
-        }
-    </style>
-    <article class="slds-card">
-        <div class="slds-card__body">
-            <apex:outputPanel
-                styleClass="slds-m-around_medium"
-                id="contactlist"
-            >
-                <apex:actionStatus id="status">
-                    loading...
-                </apex:actionStatus>
-                <apex:dataList
-                    styleClass="slds-grid slds-grid_vertical-align-center"
-                    value="{!contacts}"
-                    var="contact"
-                >
-                    <article class="slds-grid">
-                        <span>
-                            <apex:image
-                                styleClass="img-thumb"
-                                value="{!contact.Picture__c}"
-                            />
-                        </span>
-                        <span>
-                            <apex:outputText value="{!contact.Name}" />
-                        </span>
-                    </article>
-                </apex:dataList>
+    <apex:stylesheet value="{!$Resource.lmsvf}" />
+    <apex:slds />
 
-                <apex:pageBlock rendered="{!showList}">
+    <apex:outputPanel id="contactlist">
+        <apex:actionStatus id="status">
+            <apex:facet name="start">
+                <c:spinner />
+            </apex:facet>
+        </apex:actionStatus>
+        <div class="slds-card">
+            <apex:outputPanel
+                layout="block"
+                rendered="{!showList}"
+                styleClass="slds-card__body slds-card__body_inner"
+            >
+                <apex:pageBlock>
                     <apex:pageBlockTable value="{!contacts}" var="contact">
                         <apex:column>
                             <apex:image
-                                styleClass="img-thumb"
+                                styleClass="img-thumb-pageblock"
                                 value="{!contact.Picture__c}"
                             />
                         </apex:column>
@@ -61,9 +32,27 @@
                     </apex:pageBlockTable>
                 </apex:pageBlock>
             </apex:outputPanel>
-        </div>
-    </article>
+            <apex:outputPanel
+                layout="block"
+                rendered="{!NOT(showList)}"
+                styleClass="slds-card__body slds-card__body_inner"
+            >
+                Awaiting message...
+            </apex:outputPanel>
 
+            <footer class="slds-card__footer">
+                <c:viewSource
+                    source="pages/{!$CurrentPage.Name}.page"
+                    branch="beta"
+                >
+                    <p>
+                        Handle LMS message and refresh data using Visualforce
+                        post back action.
+                    </p>
+                </c:viewSource>
+            </footer>
+        </div>
+    </apex:outputPanel>
     <apex:form>
         <apex:actionFunction
             action="{!refreshContacts}"
@@ -101,5 +90,5 @@
             }
         });
         
-        </script>
+    </script>
 </apex:page>

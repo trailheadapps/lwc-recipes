@@ -1,0 +1,71 @@
+<apex:page
+    showHeader="false"
+    sidebar="false"
+    controller="LMSVisualforceController"
+    lightningStylesheets="true"
+    docType="html-5.0"
+>
+    <apex:slds />
+    <div class="slds-card">
+        <div class="slds-card__body slds-card__body_inner">
+            <ul class="contacts">
+                Awaiting Message...
+            </ul>
+        </div>
+
+        <footer class="slds-card__footer">
+            <c:viewSource
+                source="pages/{!$CurrentPage.Name}.page"
+                branch="beta"
+            >
+                <p>
+                    Handle LMS message and refresh data using Visualforce remote
+                    action.
+                </p>
+            </c:viewSource>
+        </footer>
+    </div>
+    <!-- prettier-ignore -->
+    <script type="text/javascript">
+        // Load the MessageChannel token in a variable 
+        var SAMPLEMC = "{!$MessageChannel.recordSelected__c}"; 
+        
+        // Get a handle to remote functions we will need 
+        var {getContactsByAccountId} = LMSVisualforceController; 
+        
+        let subscriptionToMC;
+        
+        function onMCPublished(message) { 
+            var ul = document.querySelector(".contacts"); 
+            console.log('vf page got message with record Id: ' + message.recordId);
+
+            getContactsByAccountId(message.recordId, (result, event) => { 
+                var contactList = result
+                                        .map( item => constructListItem(item))
+                                        .join('');
+                // ul.appendChild(contactList); 
+                ul.innerHTML = contactList; 
+                //textArea.innerHTML = message ? JSON.stringify(result, null, '\t') : 'no message payload'; 
+            }) ; 
+        }
+
+        function subscribeMC() { 
+            if (!subscriptionToMC) { 
+                subscriptionToMC = sforce.one.subscribe(SAMPLEMC, onMCPublished, {scope: "APPLICATION"}); 
+                console.log(subscriptionToMC);
+            }
+        } 
+        
+        function constructListItem(item){ 
+            var image = `<img class="img-thumb" src="${item.Picture__c}">`;
+            return `<li data-id="${item.Id}">${image}${item.Name}, (${item.Id})</li>`; 
+        } 
+
+        document.addEventListener('readystatechange', function(event){
+            if (event.target.readyState === 'complete') {
+                subscribeMC();
+            }
+        });
+
+    </script>
+</apex:page>

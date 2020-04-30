@@ -1,0 +1,62 @@
+<apex:page
+    controller="LMSVisualforceController"
+    docType="html-5.0"
+    lightningStylesheets="true"
+>
+    <apex:slds />
+    <div class="slds-card">
+        <div class="slds-card__body slds-card__body_inner">
+            <ul class="accounts"></ul>
+        </div>
+
+        <footer class="slds-card__footer">
+            <c:viewSource
+                source="pages/{!$CurrentPage.Name}.page"
+                branch="beta"
+            >
+                <p>
+                    Handle LMS message and refresh data using Visualforce remote
+                    action.
+                </p>
+            </c:viewSource>
+        </footer>
+    </div>
+
+    <!-- prettier-ignore -->
+    <script type="text/javascript">
+        // Load the MessageChannel token in a variable 
+        var SAMPLEMC = "{!$MessageChannel.recordSelected__c}"; 
+        
+        // Get a handle to remote functions we will need 
+        var {getAccountsWithContacts} = LMSVisualforceController; 
+        
+        function handleSelectAccount(event){ 
+            var payload = { recordId: event.target.dataset.id }; 
+            sforce.one.publish(SAMPLEMC, payload); 
+        }
+        
+        function constructListItem(item){ 
+            return `<li data-id="${item.Id}">${item.Name}, (${item.Id})</li>`; 
+        } 
+        // Init Accounts list 
+        document.addEventListener('readystatechange', function(event){
+            if (event.target.readyState === 'complete') {
+                getAccountsWithContacts((result, event) => { 
+                    var ul = document.querySelector('.accounts'); 
+                    
+                    if (result) { 
+                        var acctList = result 
+                                            .map(item => constructListItem(item)) 
+                                            .join(''); 
+                        ul.innerHTML = acctList; 
+                        var listItems = ul.querySelectorAll('li');
+                        listItems.forEach(item => {
+                            item.addEventListener('click', handleSelectAccount); 
+                        });
+                    } 
+                });
+            }
+        });
+
+    </script>
+</apex:page>

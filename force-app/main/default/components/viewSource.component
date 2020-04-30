@@ -1,0 +1,39 @@
+<apex:component>
+    <apex:attribute
+        name="source"
+        type="String"
+        description="Location of the component in the source directory"
+    />
+    <apex:attribute
+        name="branch"
+        type="String"
+        default="master"
+        description="Which git branch it is found in"
+    />
+    <apex:attribute
+        name="rootUrl"
+        type="String"
+        default="https://github.com/trailheadapps/lwc-recipes/tree/"
+        description="Git project directory"
+    />
+    <apex:attribute
+        name="sourceHome"
+        type="String"
+        default="/force-app/main/default/"
+        description="Source directory location"
+    />
+
+    <apex:stylesheet value="{!$Resource.lmsvf}" />
+    <apex:slds />
+
+    <div class="source-description">
+        <apex:componentBody />
+    </div>
+    <p>
+        <apex:outputLink
+            styleClass="slds-text-link"
+            value="{! rootURL + branch + sourceHome + source}"
+            >View Source</apex:outputLink
+        >
+    </p>
+</apex:component>

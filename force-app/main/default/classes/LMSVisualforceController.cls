@@ -1,5 +1,5 @@
-public inherited sharing class VFRemotingController {
-    // composing these two methods into a single class to act as the single VF page controller
+public with sharing class LMSVisualforceController {
+    // Class to support Visualforce pages used in Lightning Message Service recipes
     public List<Contact> contacts { get; set; }
     public Boolean showList {
         get {
@@ -7,7 +7,7 @@ public inherited sharing class VFRemotingController {
         }
     }
 
-    public VFRemotingController() {
+    public LMSVisualforceController() {
         contacts = new List<Contact>();
     }
 
@@ -25,5 +25,10 @@ public inherited sharing class VFRemotingController {
     @RemoteAction
     public static List<Account> getAccountsWithContacts() {
         return AccountController.getAccountsWithContacts();
+    }
+
+    @RemoteAction
+    public static List<Contact> getContactList() {
+        return ContactController.getContactList();
     }
 }
