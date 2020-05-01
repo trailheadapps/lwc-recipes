@@ -23,7 +23,7 @@
         description="Source directory location"
     />
 
-    <apex:stylesheet value="{!$Resource.lmsvf}" />
+    <apex:stylesheet value="{!URLFOR($Resource.lmsvf, 'lmsvf.css')}" />
     <apex:slds />
 
     <div class="source-description">

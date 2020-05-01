@@ -2,15 +2,16 @@
     showHeader="false"
     sidebar="false"
     controller="LMSVisualforceController"
-    lightningStylesheets="true"
     docType="html-5.0"
 >
     <apex:slds />
+    <!-- <apex:includeScript value="{!URLFOR($Resource.lmsvf, 'lmsvf.js')}"/> -->
     <div class="slds-card">
-        <div class="slds-card__body slds-card__body_inner">
-            <ul class="contacts">
-                Awaiting Message...
-            </ul>
+        <div
+            data-contact="contact"
+            class="slds-card__body slds-card__body_inner"
+        >
+            Awaiting Message...
         </div>
 
         <footer class="slds-card__footer">
@@ -25,47 +26,21 @@
             </c:viewSource>
         </footer>
     </div>
+
+    <apex:remoteObjects>
+        <apex:remoteObjectModel
+            name="Contact"
+            fields="Id, Name, Title, Phone, Email, Picture__c"
+        />
+    </apex:remoteObjects>
     <!-- prettier-ignore -->
     <script type="text/javascript">
-        // Load the MessageChannel token in a variable 
-        var SAMPLEMC = "{!$MessageChannel.recordSelected__c}"; 
-        
-        // Get a handle to remote functions we will need 
-        var {getContactsByAccountId} = LMSVisualforceController; 
-        
-        let subscriptionToMC;
-        
-        function onMCPublished(message) { 
-            var ul = document.querySelector(".contacts"); 
-            console.log('vf page got message with record Id: ' + message.recordId);
 
-            getContactsByAccountId(message.recordId, (result, event) => { 
-                var contactList = result
-                                        .map( item => constructListItem(item))
-                                        .join('');
-                // ul.appendChild(contactList); 
-                ul.innerHTML = contactList; 
-                //textArea.innerHTML = message ? JSON.stringify(result, null, '\t') : 'no message payload'; 
-            }) ; 
-        }
-
-        function subscribeMC() { 
-            if (!subscriptionToMC) { 
-                subscriptionToMC = sforce.one.subscribe(SAMPLEMC, onMCPublished, {scope: "APPLICATION"}); 
-                console.log(subscriptionToMC);
-            }
-        } 
-        
-        function constructListItem(item){ 
-            var image = `<img class="img-thumb" src="${item.Picture__c}">`;
-            return `<li data-id="${item.Id}">${image}${item.Name}, (${item.Id})</li>`; 
-        } 
-
-        document.addEventListener('readystatechange', function(event){
-            if (event.target.readyState === 'complete') {
-                subscribeMC();
-            }
-        });
+        window.lmsutil = {
+            messageChannel: "{!$MessageChannel.Record_Selected__c}",
+            currentPage: "{!$CurrentPage.Name}"
+        };  
 
     </script>
+    <script src="{!URLFOR($Resource.lmsvf, 'lmsvf.js')}"></script>
 </apex:page>

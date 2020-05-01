@@ -32,6 +32,7 @@ public with sharing class ContactController {
         ];
     }
 
+    // TODO: marked for cleanup
     @AuraEnabled(cacheable=true)
     public static List<Contact> getContactsByAccountId(String accountId) {
         return [

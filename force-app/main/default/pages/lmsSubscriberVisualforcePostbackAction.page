@@ -5,7 +5,7 @@
     lightningStylesheets="true"
     docType="html-5.0"
 >
-    <apex:stylesheet value="{!$Resource.lmsvf}" />
+    <apex:stylesheet value="{!URLFOR($Resource.lmsvf, 'lmsvf.css')}" />
     <apex:slds />
 
     <apex:outputPanel id="contactlist">
@@ -17,24 +17,32 @@
         <div class="slds-card">
             <apex:outputPanel
                 layout="block"
-                rendered="{!showList}"
+                rendered="{!NOT(ISBLANK(contactRecord.Id))}"
                 styleClass="slds-card__body slds-card__body_inner"
             >
-                <apex:pageBlock>
-                    <apex:pageBlockTable value="{!contacts}" var="contact">
-                        <apex:column>
-                            <apex:image
-                                styleClass="img-thumb-pageblock"
-                                value="{!contact.Picture__c}"
-                            />
-                        </apex:column>
-                        <apex:column value="{!contact.Name}" />
-                    </apex:pageBlockTable>
-                </apex:pageBlock>
+                <div class="slds-m-around_medium">
+                    <img
+                        src="{!contactRecord.Picture__c}"
+                        class="img-small"
+                        alt="Profile photo"
+                    />
+                </div>
+                <p>{!contactRecord.Name}</p>
+                <p>{!contactRecord.Title}</p>
+                <p>
+                    <a href="tel:{!contactRecord.Phone}"
+                        >{!contactRecord.Phone}</a
+                    >
+                </p>
+                <p>
+                    <a href="mailto:{!contactRecord.Email}"
+                        >{!contactRecord.Email}</a
+                    >
+                </p>
             </apex:outputPanel>
             <apex:outputPanel
                 layout="block"
-                rendered="{!NOT(showList)}"
+                rendered="{!ISBLANK(contactRecord.Id)}"
                 styleClass="slds-card__body slds-card__body_inner"
             >
                 Awaiting message...
@@ -54,41 +62,25 @@
         </div>
     </apex:outputPanel>
     <apex:form>
+        <!-- Surface controller method as JS function -->
         <apex:actionFunction
-            action="{!refreshContacts}"
+            action="{!refreshContact}"
             name="refreshContactsFunction"
             reRender="contactlist"
             status="status"
         >
-            <apex:param name="acctId" value="" />
+            <apex:param name="Id" value="" />
         </apex:actionFunction>
     </apex:form>
     <!-- prettier-ignore -->
     <script type="text/javascript">
-        // Load the MessageChannel token in a variable 
-        var SAMPLEMC = "{!$MessageChannel.recordSelected__c}"; 
-        
-        // Get a handle to remote functions we will need 
-        var {getAccountsWithContacts, getContactsByAccountId} = LMSVisualforceController; 
-        
-        let subscriptionToMC;
-        
-        function onMCPublished(message) { 
-            refreshContactsFunction(message.recordId);
-            
-        }
-        
-        function subscribeMC() { 
-            if (!subscriptionToMC) { 
-                subscriptionToMC = sforce.one.subscribe(SAMPLEMC, onMCPublished, {scope: "APPLICATION"}); 
-            }
-        } 
-        
-        document.addEventListener('readystatechange', function(event){
-            if (event.target.readyState === 'complete') {
-                subscribeMC();
-            }
-        });
-        
+
+        window.lmsutil = {
+            messageChannel: "{!$MessageChannel.Record_Selected__c}",
+            currentPage: "{!$CurrentPage.Name}", 
+            actionFunction: refreshContactsFunction
+        };  
+
     </script>
+    <script src="{!URLFOR($Resource.lmsvf, 'lmsvf.js')}"></script>
 </apex:page>

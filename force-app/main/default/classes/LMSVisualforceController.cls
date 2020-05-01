@@ -1,34 +1,22 @@
 public with sharing class LMSVisualforceController {
     // Class to support Visualforce pages used in Lightning Message Service recipes
-    public List<Contact> contacts { get; set; }
-    public Boolean showList {
-        get {
-            return contacts.size() > 1;
-        }
-    }
+    public Contact contactRecord { get; set; }
 
     public LMSVisualforceController() {
-        contacts = new List<Contact>();
+        this.contactRecord = new Contact();
     }
 
-    public PageReference refreshContacts() {
-        Id accountId = ApexPages.currentPage().getParameters().get('acctId');
-        this.contacts = ContactController.getContactsByAccountId(accountId);
+    public PageReference refreshContact() {
+        Id contactId = ApexPages.currentPage().getParameters().get('Id');
+
+        this.contactRecord = [
+            SELECT Id, Name, Title, Phone, Email, Picture__c
+            FROM Contact
+            WHERE Id = :contactId
+            WITH SECURITY_ENFORCED
+            LIMIT 1
+        ];
+
         return null;
-    }
-
-    @RemoteAction
-    public static List<Contact> getContactsByAccountId(String accountId) {
-        return ContactController.getContactsByAccountId(accountId);
-    }
-
-    @RemoteAction
-    public static List<Account> getAccountsWithContacts() {
-        return AccountController.getAccountsWithContacts();
-    }
-
-    @RemoteAction
-    public static List<Contact> getContactList() {
-        return ContactController.getContactList();
     }
 }

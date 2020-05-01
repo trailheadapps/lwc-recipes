@@ -1,12 +1,9 @@
-<apex:page
-    controller="LMSVisualforceController"
-    docType="html-5.0"
-    lightningStylesheets="true"
->
+<apex:page controller="LMSVisualforceController" docType="html-5.0">
+    <!-- <apex:includeScript value="{!URLFOR($Resource.lmsvf, 'lmsvf.js')}"/> -->
     <apex:slds />
     <div class="slds-card">
         <div class="slds-card__body slds-card__body_inner">
-            <ul class="accounts"></ul>
+            <ul data-list="list"></ul>
         </div>
 
         <footer class="slds-card__footer">
@@ -22,41 +19,18 @@
         </footer>
     </div>
 
+    <apex:remoteObjects>
+        <apex:remoteObjectModel name="Contact" fields="Id,Name,Picture__c" />
+    </apex:remoteObjects>
+
     <!-- prettier-ignore -->
     <script type="text/javascript">
-        // Load the MessageChannel token in a variable 
-        var SAMPLEMC = "{!$MessageChannel.recordSelected__c}"; 
-        
-        // Get a handle to remote functions we will need 
-        var {getAccountsWithContacts} = LMSVisualforceController; 
-        
-        function handleSelectAccount(event){ 
-            var payload = { recordId: event.target.dataset.id }; 
-            sforce.one.publish(SAMPLEMC, payload); 
-        }
-        
-        function constructListItem(item){ 
-            return `<li data-id="${item.Id}">${item.Name}, (${item.Id})</li>`; 
-        } 
-        // Init Accounts list 
-        document.addEventListener('readystatechange', function(event){
-            if (event.target.readyState === 'complete') {
-                getAccountsWithContacts((result, event) => { 
-                    var ul = document.querySelector('.accounts'); 
-                    
-                    if (result) { 
-                        var acctList = result 
-                                            .map(item => constructListItem(item)) 
-                                            .join(''); 
-                        ul.innerHTML = acctList; 
-                        var listItems = ul.querySelectorAll('li');
-                        listItems.forEach(item => {
-                            item.addEventListener('click', handleSelectAccount); 
-                        });
-                    } 
-                });
-            }
-        });
+
+        window.lmsutil = {
+            messageChannel: "{!$MessageChannel.Record_Selected__c}",
+            currentPage: "{!$CurrentPage.Name}"
+        };  
 
     </script>
+    <script src="{!URLFOR($Resource.lmsvf, 'lmsvf.js')}"></script>
 </apex:page>
