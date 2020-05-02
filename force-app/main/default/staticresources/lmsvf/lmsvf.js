@@ -1,3 +1,5 @@
+"use strict";
+
 var lmsutil = window.lmsutil; 
 
 if (lmsutil === undefined) {
