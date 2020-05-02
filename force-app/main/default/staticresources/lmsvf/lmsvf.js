@@ -8,7 +8,7 @@ lmsutil.lmsChannelSubscription;
 
 // Function to generate li elements from contact remote object record
 lmsutil.constructContactListItem = function(item){
-    const nodeString = `
+    var nodeString = `
         <li data-id="${item.get('Id')}">
             <a href="#">
                 <div class="slds-grid slds-grid_vertical-align-center">
@@ -28,7 +28,7 @@ lmsutil.constructContactListItem = function(item){
 
 // Function to generate detail DOM for contact remote object record
 lmsutil.constructContactCardBody = function(contact){
-    const nodeString = `
+    var nodeString = `
         <div class="slds-m-around_medium">
             <img src="${contact.get('Picture__c')}" class="img-small" alt="Profile photo">
         </div>
@@ -100,7 +100,7 @@ lmsutil.handleLMSMessageRemoting = function(message){
     
 // LMS Message Handler for lmsSubscriberVisualforcePostbackAction page
 lmsutil.handleLMSMessagePostback = function(message){
-    lmsutil['actionFunction'](message.recordId);
+    lmsutil.actionFunction(message.recordId);
 }
 
 // Util function to subscribe to LMS message channels
@@ -110,28 +110,36 @@ lmsutil.subscribeToMessageChannel = function(channel, handler) {
     }
 } 
 
+// Init functions for each page. 
+// By naming them for each page, we can invoke implicitly based on $CurrentPage.Name global variable
+lmsutil.initFunctions = {};
+
+lmsutil.initFunctions.lmsSubscriberVisualforcePostbackAction = function(event){
+        lmsutil.subscribeToMessageChannel(lmsutil.messageChannel, lmsutil.handleLMSMessagePostback);
+}
+
+lmsutil.initFunctions.lmsSubscriberVisualforceRemoting = function(event){
+        lmsutil.subscribeToMessageChannel(lmsutil.messageChannel, lmsutil.handleLMSMessageRemoting);
+}
+
+lmsutil.initFunctions.lmsPublisherVisualforce = function(event){
+        var contactModel = new SObjectModel.Contact();
+
+        contactModel.retrieve(
+            {
+                limit: 10
+            },
+            lmsutil.handleRemoteContactsCallback
+        );
+}
+
 // Init lmsutil for each page and wire up LMS features accordingly
 lmsutil.init = function(event){
     if (event.target.readyState === 'complete'){
+
+        // Invoke init for current page using this library
+        lmsutil.initFunctions[lmsutil.currentPage](event);
         
-        if (lmsutil.currentPage === 'lmsPublisherVisualforce'){
-            var contactModel = new SObjectModel.Contact();
-
-            contactModel.retrieve(
-                {
-                    limit: 10
-                },
-                lmsutil.handleRemoteContactsCallback
-            );
-        }
-
-        if (lmsutil.currentPage === 'lmsSubscriberVisualforceRemoting') {
-            lmsutil.subscribeToMessageChannel(lmsutil.messageChannel, lmsutil.handleLMSMessageRemoting);
-        }
-
-        if (lmsutil.currentPage === 'lmsSubscriberVisualforcePostbackAction') {
-            lmsutil.subscribeToMessageChannel(lmsutil.messageChannel, lmsutil.handleLMSMessagePostback);
-        }
     }
 }
 

@@ -19,10 +19,8 @@
                 source="pages/{!$CurrentPage.Name}.page"
                 branch="beta"
             >
-                <p>
-                    Handle LMS message and refresh data using Visualforce remote
-                    action.
-                </p>
+                Handle LMS message and refresh data using Visualforce remote
+                action.
             </c:viewSource>
         </footer>
     </div>
