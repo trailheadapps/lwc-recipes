@@ -1,17 +1,17 @@
 <template>
-    <div class="slds-illustration slds-m-vertical_small">
+    <div class="slds-illustration slds-var-m-vertical_small">
         <svg
             xmlns="http://www.w3.org/2000/svg"
             width="233"
             height="105"
-            class="slds-m-bottom_medium"
+            class="slds-var-m-bottom_medium"
         >
             <use xlink:href={noDataSvgUrl}></use>
         </svg>
         <div class="slds-text-longform">
             <h3 class="slds-text-heading_medium">{friendlyMessage}</h3>
             <template if:true={errorMessages.length}>
-                <div class="slds-p-vertical_x-small">
+                <div class="slds-var-p-vertical_x-small">
                     <lightning-input
                         label="Show Details"
                         type="checkbox"
