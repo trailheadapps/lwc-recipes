@@ -3,6 +3,6 @@
     xmlns="urn:metadata.tooling.soap.sforce.com"
     fqn="ApexTypesController"
 >
-    <apiVersion>48.0</apiVersion>
+    <apiVersion>49.0</apiVersion>
     <status>Active</status>
 </ApexClass>
