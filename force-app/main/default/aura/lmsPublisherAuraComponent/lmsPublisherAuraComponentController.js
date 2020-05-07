@@ -9,10 +9,8 @@
         $A.enqueueAction(action);
     },
     handleContactSelect: function (component, event) {
-        console.log(event.target.contact.Id);
-
         var payload = { recordId: event.target.contact.Id };
-
+        // publish LMS message with payload
         component.find('recordSelected').publish(payload);
     }
 });
