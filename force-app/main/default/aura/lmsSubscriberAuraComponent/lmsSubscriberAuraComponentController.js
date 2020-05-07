@@ -1,24 +1,12 @@
 ({
     handleMessage: function (component, message) {
         if (message && message.getParam('recordId')) {
-            console.log(
-                'aura component got record id ' + message.getParam('recordId')
-            );
-            var accountId = message.getParam('recordId');
-
-            var action = component.get('c.getContactsByAccountId');
-            action.setParams({ accountId: accountId });
-            action.setCallback(this, function (response) {
-                var comp = component;
-                if (response.getState() === 'SUCCESS') {
-                    comp.set('v.contacts', response.getReturnValue());
-                }
-            });
-
-            $A.enqueueAction(action);
+            var recordId = message.getParam('recordId');
+            component.set('v.contactId', recordId);
+            var service = component.find('service');
+            service.reloadRecord();
         } else {
-            console.error('we got no message or message params');
-            component.set('v.contacts', []);
+            component.set('v.contactId', '');
         }
     }
 });
