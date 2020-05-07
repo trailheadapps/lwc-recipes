@@ -12,7 +12,7 @@
     "sourceApiVersion": "49.0",
     "sfdcLoginUrl": "https://login.salesforce.com",
     "packageAliases": {
-        "LWCRecipes": "0HoB0000000GmiJKAS",
+        "lWCRecipes": "0HoB0000000GmiJKAS",
         "LWCRecipes@3.0.0-81": "04tB0000000KwaNIAS"
     }
 }
