@@ -1,1 +1,2 @@
-ignore: force-app/main/default/staticresources/**
+ignore:
+    - 'force-app/main/default/staticresources/**'
