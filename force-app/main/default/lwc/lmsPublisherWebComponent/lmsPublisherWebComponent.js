@@ -1,17 +1,20 @@
 import { LightningElement, wire } from 'lwc';
-import getAccountsWithContacts from '@salesforce/apex/AccountController.getAccountsWithContacts';
+import getContactList from '@salesforce/apex/ContactController.getContactList';
+
+// Import message service features required for publishing and message channel
 import { publish, MessageContext } from 'lightning/messageService';
-import recordSelected from '@salesforce/messageChannel/recordSelected__c';
+import recordSelected from '@salesforce/messageChannel/Record_Selected__c';
 
 export default class LmsPublisherWebComponent extends LightningElement {
-    @wire(getAccountsWithContacts)
-    accounts;
+    @wire(getContactList)
+    contacts;
 
     @wire(MessageContext)
     messageContext;
 
-    handleClick(event) {
-        const payload = { recordId: event.target.dataset.id };
+    // Respond to UI event by publishing message
+    handleContactSelect(event) {
+        const payload = { recordId: event.target.contact.Id };
 
         publish(this.messageContext, recordSelected, payload);
     }

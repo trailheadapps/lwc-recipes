@@ -1,12 +1,34 @@
 <template>
-    <lightning-card title="LMS LWC Publisher">
-        Pub
+    <lightning-card
+        title="LMSPublisherWebComponent"
+        icon-name="custom:custom30"
+    >
+        <div class="slds-m-around_medium" oncontactselect={handleContactSelect}>
+            <template if:true={contacts.data}>
+                <template for:each={contacts.data} for:item="contact">
+                    <c-contact-list-item-bubbling
+                        key={contact.Id}
+                        contact={contact}
+                    ></c-contact-list-item-bubbling>
+                </template>
+            </template>
+        </div>
+
+        <c-view-source source="lwc/lmsPublisherWebComponent" slot="footer">
+            Publish a message for other components to respond to using Lightning
+            Message Service. This component subscribes to the
+            <strong>Record_Selected__c</strong>
+            event. Click a contact in the list to notify subscriber components
+            on this page. The selected contact should then appear in the
+            subscriber component.
+        </c-view-source>
+        <!-- Pub
         <ul>
             <template for:each={accounts.data} for:item="account">
                 <li onclick={handleClick} data-id={account.Id} key={account.Id}>
                     {account.Name} ({account.Id})
                 </li>
             </template>
-        </ul>
+        </ul> -->
     </lightning-card>
 </template>

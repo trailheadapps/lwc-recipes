@@ -1,25 +1,57 @@
-/* eslint-disable no-console */
 import { LightningElement, wire } from 'lwc';
-import getContactsByAccountId from '@salesforce/apex/ContactController.getContactsByAccountId';
+import { getRecord, getFieldValue } from 'lightning/uiRecordApi';
+import { ShowToastEvent } from 'lightning/platformShowToastEvent';
+import { reduceErrors } from 'c/ldsUtils';
+
+// Import message service features required for subscribing and message channel
 import {
     subscribe,
     unsubscribe,
     APPLICATION_SCOPE,
     MessageContext
 } from 'lightning/messageService';
-import recordSelected from '@salesforce/messageChannel/recordSelected__c';
+import recordSelected from '@salesforce/messageChannel/Record_Selected__c';
+
+import NAME_FIELD from '@salesforce/schema/Contact.Name';
+import TITLE_FIELD from '@salesforce/schema/Contact.Title';
+import PHONE_FIELD from '@salesforce/schema/Contact.Phone';
+import EMAIL_FIELD from '@salesforce/schema/Contact.Email';
+import PICTURE_FIELD from '@salesforce/schema/Contact.Picture__c';
+
+const fields = [
+    NAME_FIELD,
+    TITLE_FIELD,
+    PHONE_FIELD,
+    EMAIL_FIELD,
+    PICTURE_FIELD
+];
 
 export default class LmsSubscriberWebComponent extends LightningElement {
     subscription = null;
-    accountId;
+    recordId;
 
-    @wire(getContactsByAccountId, { accountId: '$accountId' })
-    contacts;
+    Name;
+    Title;
+    Phone;
+    Email;
+    Picture__c;
+
+    @wire(getRecord, { recordId: '$recordId', fields })
+    wiredRecord({ error, data }) {
+        if (error) {
+            this.dispatchToast(error);
+        } else if (data) {
+            fields.forEach(
+                (item) => (this[item.fieldApiName] = getFieldValue(data, item))
+            );
+        }
+    }
 
     @wire(MessageContext)
     messageContext;
 
-    handleSubscribeMC() {
+    // Encapsulate logic for subscribe/unsubsubscribe
+    subscribeToMessageChannel() {
         if (!this.subscription) {
             this.subscription = subscribe(
                 this.messageContext,
@@ -30,13 +62,32 @@ export default class LmsSubscriberWebComponent extends LightningElement {
         }
     }
 
-    handleUnsubscribeMC() {
+    unsubscribeToMessageChannel() {
         unsubscribe(this.subscription);
         this.subscription = null;
     }
 
+    // Handler for message received by component
     handleMessage(message) {
-        console.log(`lwc component got record Id: ${message.recordId}`);
-        this.accountId = message.recordId;
+        this.recordId = message.recordId;
+    }
+
+    // Standard lifecycle hooks used to sub/unsub to message channel
+    connectedCallback() {
+        this.subscribeToMessageChannel();
+    }
+
+    disconnectedCallback() {
+        this.unsubscribeToMessageChannel();
+    }
+
+    dispatchToast(error) {
+        this.dispatchEvent(
+            new ShowToastEvent({
+                title: 'Error loading contact',
+                message: reduceErrors(error).join(', '),
+                variant: 'error'
+            })
+        );
     }
 }
