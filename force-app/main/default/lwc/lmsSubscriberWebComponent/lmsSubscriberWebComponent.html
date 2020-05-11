@@ -1,12 +1,36 @@
 <template>
-    <lightning-card title="LMS LWC Subscriber">
-        Sub
-        <p>Subscribe to Message Channel</p>
-        <button onclick={handleSubscribeMC}>Subscribe</button>
-        <p>Unsubscribe from subscription</p>
-        <button onclick={handleUnsubscribeMC}>Unsubscribe</button>
-        <br />
-        <br />
+    <lightning-card
+        title="LMSSubscriberWebComponent"
+        icon-name="custom:custom30"
+    >
+        <div class="slds-m-around_medium">
+            <template if:true={picture}>
+                <img src={picture} alt="Profile photo" />
+            </template>
+            <p>{name}</p>
+            <p>{title}</p>
+            <p>
+                <lightning-formatted-phone
+                    value={phone}
+                ></lightning-formatted-phone>
+            </p>
+            <p>
+                <lightning-formatted-email
+                    value={email}
+                ></lightning-formatted-email>
+            </p>
+        </div>
+
+        <c-view-source source="lwc/pubsubContactDetails" slot="footer">
+            Subscribe to a Lightning Message Service channel that another
+            component publishes using the pubsub utility. This component
+            subscribes to the
+            <strong>Record_Selected__c</strong> event. Select a contact in the
+            ContactList to see this recipe in action.
+        </c-view-source>
+
+        <!-- 
+
         <p>Received message:</p>
         <template if:true={contacts.data}>
             <ul>
@@ -19,6 +43,6 @@
         </template>
         <template if:false={contacts.data}>
             No Data
-        </template>
+        </template> -->
     </lightning-card>
 </template>
