@@ -1,10 +1,9 @@
-/* eslint-disable no-console */
 import { LightningElement, wire } from 'lwc';
 import { getRecord, getFieldValue } from 'lightning/uiRecordApi';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import { reduceErrors } from 'c/ldsUtils';
 
-// message service and message channel
+// Import message service features required for subscribing and message channel
 import {
     subscribe,
     unsubscribe,
@@ -31,40 +30,27 @@ export default class LmsSubscriberWebComponent extends LightningElement {
     subscription = null;
     recordId;
 
-    name;
-    title;
-    phone;
-    email;
-    picture;
+    Name;
+    Title;
+    Phone;
+    Email;
+    Picture__c;
 
     @wire(getRecord, { recordId: '$recordId', fields })
     wiredRecord({ error, data }) {
         if (error) {
-            this.dispatchEvent(
-                new ShowToastEvent({
-                    title: 'Error loading contact',
-                    message: reduceErrors(error).join(', '),
-                    variant: 'error'
-                })
-            );
+            this.dispatchToast(error);
         } else if (data) {
-            this.name = getFieldValue(data, NAME_FIELD);
-            this.title = getFieldValue(data, TITLE_FIELD);
-            this.phone = getFieldValue(data, PHONE_FIELD);
-            this.email = getFieldValue(data, EMAIL_FIELD);
-            this.picture = getFieldValue(data, PICTURE_FIELD);
+            fields.forEach(
+                (item) => (this[item.fieldApiName] = getFieldValue(data, item))
+            );
         }
     }
 
     @wire(MessageContext)
     messageContext;
 
-    // Handler for message received by component
-    handleMessage(message) {
-        this.recordId = message.recordId;
-    }
-
-    // Functions to encapsulate logic for subscription state
+    // Encapsulate logic for subscribe/unsubsubscribe
     subscribeToMessageChannel() {
         if (!this.subscription) {
             this.subscription = subscribe(
@@ -81,6 +67,11 @@ export default class LmsSubscriberWebComponent extends LightningElement {
         this.subscription = null;
     }
 
+    // Handler for message received by component
+    handleMessage(message) {
+        this.recordId = message.recordId;
+    }
+
     // Standard lifecycle hooks used to sub/unsub to message channel
     connectedCallback() {
         this.subscribeToMessageChannel();
@@ -88,5 +79,15 @@ export default class LmsSubscriberWebComponent extends LightningElement {
 
     disconnectedCallback() {
         this.unsubscribeToMessageChannel();
+    }
+
+    dispatchToast(error) {
+        this.dispatchEvent(
+            new ShowToastEvent({
+                title: 'Error loading contact',
+                message: reduceErrors(error).join(', '),
+                variant: 'error'
+            })
+        );
     }
 }

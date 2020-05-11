@@ -4,19 +4,19 @@
         icon-name="custom:custom30"
     >
         <div class="slds-m-around_medium">
-            <template if:true={picture}>
-                <img src={picture} alt="Profile photo" />
+            <template if:true={Picture__c}>
+                <img src={Picture__c} alt="Profile photo" />
             </template>
-            <p>{name}</p>
-            <p>{title}</p>
+            <p>{Name}</p>
+            <p>{Title}</p>
             <p>
                 <lightning-formatted-phone
-                    value={phone}
+                    value={Phone}
                 ></lightning-formatted-phone>
             </p>
             <p>
                 <lightning-formatted-email
-                    value={email}
+                    value={Email}
                 ></lightning-formatted-email>
             </p>
         </div>
@@ -36,7 +36,7 @@
             <ul>
                 <template for:each={contacts.data} for:item="contact">
                     <li key={contact.Id}>
-                        {contact.Name} ({contact.Id})
+                        {contact.N} ({contact.Id})
                     </li>
                 </template>
             </ul>
