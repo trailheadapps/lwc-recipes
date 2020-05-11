@@ -66,33 +66,4 @@ public class TestAccountController {
 
         System.assertEquals(acc.Name, 'Name 1');
     }
-
-    @isTest
-    static void testAccountsWithContacts() {
-        Integer accountCount = 3;
-        Integer accountWithContactCount = 2;
-
-        createAccountsWithContacts(accountCount, accountWithContactCount);
-
-        Test.startTest();
-        List<Account> accounts = AccountController.getAccountsWithContacts();
-        Test.stopTest();
-
-        List<Account> allAccounts = [SELECT Id FROM Account];
-
-        System.assertEquals(
-            accountWithContactCount,
-            accounts.size(),
-            'The accounts list should have ' +
-            accountWithContactCount +
-            ' accounts.'
-        );
-        System.assertEquals(
-            accountCount,
-            allAccounts.size(),
-            'The allAccounts list should have ' +
-            accountCount +
-            ' accounts.'
-        );
-    }
 }
