@@ -3,6 +3,7 @@
     <apex:slds />
     <div class="slds-card">
         <div class="slds-card__body slds-card__body_inner">
+            <!-- Placeholder to build list. -->
             <ul data-list="list"></ul>
         </div>
 
@@ -11,8 +12,12 @@
                 source="pages/{!$CurrentPage.Name}.page"
                 branch="beta"
             >
-                Handle LMS message and refresh data using Visualforce remote
-                action.
+                Publish a Lightning Message Service message for other
+                Visualforce pages, LWCs, and Aura components to respond to. This
+                page publishes the <strong>Record_Selected__c</strong> event.
+                Click a contact in the list to notify subscribers on this page.
+                The selected contact detail should then appear in the
+                subscribers.
             </c:viewSource>
         </footer>
     </div>

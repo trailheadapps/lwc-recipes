@@ -9,11 +9,6 @@
     <apex:slds />
 
     <apex:outputPanel id="contactlist">
-        <apex:actionStatus id="status">
-            <apex:facet name="start">
-                <c:spinner />
-            </apex:facet>
-        </apex:actionStatus>
         <div class="slds-card">
             <apex:outputPanel
                 layout="block"
@@ -49,12 +44,14 @@
             </apex:outputPanel>
 
             <footer class="slds-card__footer">
-                <c:viewSource
-                    source="pages/{!$CurrentPage.Name}.page"
-                    branch="beta"
-                >
-                    Handle LMS message and refresh data using Visualforce post
-                    back action.
+                <c:viewSource source="pages/{!$CurrentPage.Name}.page">
+                    Subscribe to a Lightning Message Service channel that
+                    another Visualforce page, LWC, or Aura component publishes.
+                    This LWC subscribes to the
+                    <strong>Record_Selected__c</strong> event. Selecting a
+                    contact in one of the contact lists above publishes the
+                    event. This page interacts with the server using a
+                    Visualforce postback action.
                 </c:viewSource>
             </footer>
         </div>
@@ -65,7 +62,6 @@
             action="{!refreshContact}"
             name="refreshContactsFunction"
             reRender="contactlist"
-            status="status"
         >
             <apex:param name="Id" value="" />
         </apex:actionFunction>

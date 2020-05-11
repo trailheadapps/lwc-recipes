@@ -28,11 +28,11 @@
         <componentInstances>
             <componentInstanceProperties>
                 <name>height</name>
-                <value>450</value>
+                <value>425</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>label</name>
-                <value>LMS Visualforce Publisher</value>
+                <value>LMSPublisherVisualforce</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>pageName</name>
@@ -47,11 +47,11 @@
         <componentInstances>
             <componentInstanceProperties>
                 <name>height</name>
-                <value>300</value>
+                <value>335</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>label</name>
-                <value>LMS Visualforce Subscribe Remote Object</value>
+                <value>LMSSubscriberVisualforceRemoting</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>pageName</name>
@@ -66,11 +66,11 @@
         <componentInstances>
             <componentInstanceProperties>
                 <name>height</name>
-                <value>300</value>
+                <value>360</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>label</name>
-                <value>LMS Visualforce Subscriber Postback Action</value>
+                <value>LMSSubscriberVisualforcePostbackAction</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>pageName</name>

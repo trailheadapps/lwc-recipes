@@ -7,6 +7,7 @@
     <apex:slds />
     <!-- <apex:includeScript value="{!URLFOR($Resource.lmsvf, 'lmsvf.js')}"/> -->
     <div class="slds-card">
+        <!-- Placeholder for card body. -->
         <div
             data-contact="contact"
             class="slds-card__body slds-card__body_inner"
@@ -15,12 +16,13 @@
         </div>
 
         <footer class="slds-card__footer">
-            <c:viewSource
-                source="pages/{!$CurrentPage.Name}.page"
-                branch="beta"
-            >
-                Handle LMS message and refresh data using Visualforce remote
-                action.
+            <c:viewSource source="pages/{!$CurrentPage.Name}.page">
+                Subscribe to a Lightning Message Service channel that another
+                Visualforce page, LWC, or Aura component publishes. This LWC
+                subscribes to the <strong>Record_Selected__c</strong> event.
+                Selecting a contact in one of the contact lists above publishes
+                the event. This page interacts with the server using a
+                Visualforce remote object.
             </c:viewSource>
         </footer>
     </div>

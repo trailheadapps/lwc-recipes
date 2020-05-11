@@ -21,28 +21,11 @@
             </p>
         </div>
 
-        <c-view-source source="lwc/pubsubContactDetails" slot="footer">
-            Subscribe to a Lightning Message Service channel that another
-            component publishes using the pubsub utility. This component
-            subscribes to the
-            <strong>Record_Selected__c</strong> event. Select a contact in the
-            ContactList to see this recipe in action.
+        <c-view-source source="lwc/lmsSubscriberWebComponent" slot="footer">
+            Subscribe to a Lightning Message Service channel that another LWC,
+            Aura component, or Visualforce page publishes. This LWC subscribes
+            to the <strong>Record_Selected__c</strong> event. Selecting a
+            contact in one of the contact lists above publishes the event.
         </c-view-source>
-
-        <!-- 
-
-        <p>Received message:</p>
-        <template if:true={contacts.data}>
-            <ul>
-                <template for:each={contacts.data} for:item="contact">
-                    <li key={contact.Id}>
-                        {contact.N} ({contact.Id})
-                    </li>
-                </template>
-            </ul>
-        </template>
-        <template if:false={contacts.data}>
-            No Data
-        </template> -->
     </lightning-card>
 </template>

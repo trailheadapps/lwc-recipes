@@ -26,10 +26,10 @@
     <apex:stylesheet value="{!URLFOR($Resource.lmsvf, 'lmsvf.css')}" />
     <apex:slds />
 
-    <div class="source-description">
+    <div class="source-description source-left">
         <apex:componentBody />
     </div>
-    <p>
+    <p class="source-left">
         <apex:outputLink
             styleClass="slds-text-link"
             value="{! rootURL + branch + sourceHome + source}"

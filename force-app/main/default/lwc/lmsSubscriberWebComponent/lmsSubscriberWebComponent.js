@@ -3,7 +3,7 @@ import { getRecord, getFieldValue } from 'lightning/uiRecordApi';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import { reduceErrors } from 'c/ldsUtils';
 
-// Import message service features required for subscribing and message channel
+// Import message service features required for subscribing and the message channel
 import {
     subscribe,
     unsubscribe,
@@ -50,7 +50,7 @@ export default class LmsSubscriberWebComponent extends LightningElement {
     @wire(MessageContext)
     messageContext;
 
-    // Encapsulate logic for subscribe/unsubsubscribe
+    // Encapsulate logic for LMS subscribe/unsubsubscribe
     subscribeToMessageChannel() {
         if (!this.subscription) {
             this.subscription = subscribe(
@@ -81,6 +81,7 @@ export default class LmsSubscriberWebComponent extends LightningElement {
         this.unsubscribeToMessageChannel();
     }
 
+    // Helper
     dispatchToast(error) {
         this.dispatchEvent(
             new ShowToastEvent({
