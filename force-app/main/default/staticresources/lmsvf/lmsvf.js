@@ -14,7 +14,7 @@ lmsutil.constructContactListItem = function(item){
         <li data-id="${item.get('Id')}">
             <a href="#">
                 <div class="slds-grid slds-grid_vertical-align-center">
-                    <div class="slds-p-around_small">
+                    <div>
                         <img class="img-thumb" src="${item.get('Picture__c')}">
                     </div>
                     <div class="slds-p-around_small">

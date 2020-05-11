@@ -59,31 +59,5 @@ public with sharing class TestContactController {
             cont.Name,
             'The contact name should be: First 1 Last 1'
         );
-    }
-
-    @isTest
-    static void testGetContactsFromAccountId() {
-        Integer acctCount = 3;
-        Integer acctsWithContacts = 2;
-
-        // reusing the utility method from the TestAccountController test class
-        TestAccountController.createAccountsWithContacts(
-            acctCount,
-            acctsWithContacts
-        );
-
-        List<Account> accounts = AccountController.getAccountsWithContacts();
-
-        Test.startTest();
-        List<Contact> contacts = ContactController.getContactsByAccountId(
-            accounts[0].Id
-        );
-        Test.stopTest();
-
-        System.assertEquals(
-            'Last Name 0',
-            contacts[0].Name,
-            'The zeroth contact name should be: Last Name 0'
-        );
-    }
+    } // }
 }
