@@ -29,6 +29,7 @@
     <!-- prettier-ignore -->
     <script type="text/javascript">
 
+        // Binding message channel to variable accessible to static resource.
         window.lmsutil = {
             messageChannel: "{!$MessageChannel.Record_Selected__c}",
             currentPage: "{!$CurrentPage.Name}"

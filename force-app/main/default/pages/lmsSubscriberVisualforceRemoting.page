@@ -11,9 +11,7 @@
         <div
             data-contact="contact"
             class="slds-card__body slds-card__body_inner"
-        >
-            Awaiting Message...
-        </div>
+        />
 
         <footer class="slds-card__footer">
             <c:viewSource source="pages/{!$CurrentPage.Name}.page">
@@ -36,6 +34,7 @@
     <!-- prettier-ignore -->
     <script type="text/javascript">
 
+        // Binding message channel to variable accessible to static resource.
         window.lmsutil = {
             messageChannel: "{!$MessageChannel.Record_Selected__c}",
             currentPage: "{!$CurrentPage.Name}"
