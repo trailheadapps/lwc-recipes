@@ -6,8 +6,8 @@
 
 ## The PR fulfills these requirements:
 
--   Have tests for the proposed changes been added/updated? ✅ / ❌
--   Did you run code linting and formatting? ✅ / ❌
+[ ] Tests for the proposed changes have been added/updated.
+[ ] Code linting and formatting was performed.
 
 ### Functionality Before
 
