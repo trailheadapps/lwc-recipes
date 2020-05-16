@@ -1,0 +1,18 @@
+name: 'Close stale issues and pull requests'
+on:
+    schedule:
+        - cron: '0 0 * * *'
+
+jobs:
+    stale:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/stale@v1
+              with:
+                  repo-token: ${{ secrets.GITHUB_TOKEN }}
+                  stale-issue-message: 'Flagging this as stale, as there was no recent activity within the last 14 days. 🧐'
+                  stale-pr-message: 'Ok, no one seems to work on this. Closing it now. 👋'
+                  stale-issue-label: 'no-issue-activity'
+                  stale-pr-label: 'no-pr-activity'
+                  days-before-stale: 14
+                  days-before-close: 7
