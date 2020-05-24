@@ -4,6 +4,7 @@
  * TODO - adopt standard flexipage sibling communication mechanism when it's available.
  */
 
+const SUFFIX_ONREGISTER_EVENTNAME = '_onRegister';
 const events = {};
 
 /**
@@ -43,6 +44,9 @@ const registerListener = (eventName, callback, thisArg) => {
     });
     if (!duplicate) {
         events[eventName].push({ callback, thisArg });
+        if (!eventName.endsWith( SUFFIX_ONREGISTER_EVENTNAME )) {
+            informPublishers(thisArg.pageRef, eventName);
+        }
     }
 };
 
@@ -94,9 +98,29 @@ const fireEvent = (pageRef, eventName, payload) => {
     }
 };
 
+/**
+ * Registers a callback on new listeners
+ * Allowing Publishers to respond when a listener is subscribed AFTER initiation of publisher
+ * Use case: send an initial event to any (new) listener
+ */
+const onNewListeners = (eventName, callback, thisArg) => {
+    // Execute registerListener logic for OnRegister EventName with provided callback and thisArg
+    registerListener(eventName + SUFFIX_ONREGISTER_EVENTNAME, callback, thisArg);
+}
+
+/**
+ * Internal method to inform Publishers which requested to be informed when a new Listener is registered
+ * @param {string} eventName - Name of the event the registration handler is for
+ */
+const informPublishers = (pageRef,eventName) => {
+    // Execute fireEvent logic passing Current pageRef, OnRegister EventName and the EventName as Payload
+    fireEvent(pageRef, eventName + SUFFIX_ONREGISTER_EVENTNAME, eventName);
+}
+
 export {
     registerListener,
     unregisterListener,
     unregisterAllListeners,
-    fireEvent
+    fireEvent,
+    onNewListeners
 };
