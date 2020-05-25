@@ -5,34 +5,42 @@
         <type>Region</type>
     </flexiPageRegions>
     <flexiPageRegions>
-        <componentInstances>
-            <componentName>compositionBasics</componentName>
-        </componentInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentName>compositionBasics</componentName>
+            </componentInstance>
+        </itemInstances>
         <name>region2</name>
         <type>Region</type>
     </flexiPageRegions>
     <flexiPageRegions>
-        <componentInstances>
-            <componentName>compositionIteration</componentName>
-        </componentInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentName>compositionIteration</componentName>
+            </componentInstance>
+        </itemInstances>
         <name>region3</name>
         <type>Region</type>
     </flexiPageRegions>
     <flexiPageRegions>
-        <componentInstances>
-            <componentName>compositionContactSearch</componentName>
-        </componentInstances>
-        <componentInstances>
-            <componentInstanceProperties>
-                <name>numberValue</name>
-                <value>10</value>
-            </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>picklistValue</name>
-                <value>Option One</value>
-            </componentInstanceProperties>
-            <componentName>compositionWithAppBuilder</componentName>
-        </componentInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentName>compositionContactSearch</componentName>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>numberValue</name>
+                    <value>10</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>picklistValue</name>
+                    <value>Option One</value>
+                </componentInstanceProperties>
+                <componentName>compositionWithAppBuilder</componentName>
+            </componentInstance>
+        </itemInstances>
         <name>region4</name>
         <type>Region</type>
     </flexiPageRegions>

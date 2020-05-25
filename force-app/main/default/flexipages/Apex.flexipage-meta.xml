@@ -5,38 +5,55 @@
         <type>Region</type>
     </flexiPageRegions>
     <flexiPageRegions>
-        <componentInstances>
-            <componentName>apexWireMethodToProperty</componentName>
-        </componentInstances>
-        <componentInstances>
-            <componentName>apexWireMethodToFunction</componentName>
-        </componentInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentName>apexWireMethodToProperty</componentName>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+                <componentInstance>
+                <componentName>apexWireMethodToFunction</componentName>
+            </componentInstance>
+        </itemInstances>
         <name>region2</name>
         <type>Region</type>
     </flexiPageRegions>
     <flexiPageRegions>
-        <componentInstances>
-            <componentName>apexImperativeMethod</componentName>
-        </componentInstances>
-        <componentInstances>
-            <componentName>apexStaticSchema</componentName>
-        </componentInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentName>apexImperativeMethod</componentName>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentName>apexStaticSchema</componentName>
+            </componentInstance>
+        </itemInstances>
         <name>region3</name>
         <type>Region</type>
     </flexiPageRegions>
     <flexiPageRegions>
-        <componentInstances>
-            <componentName>apexWireMethodWithParams</componentName>
-        </componentInstances>
-        <componentInstances>
-            <componentName>apexImperativeMethodWithParams</componentName>
-        </componentInstances>
-        <componentInstances>
-            <componentName>apexWireMethodWithComplexParams</componentName>
-        </componentInstances>
-        <componentInstances>
-            <componentName>apexImperativeMethodWithComplexParams</componentName>
-        </componentInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentName>apexWireMethodWithParams</componentName>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentName>apexImperativeMethodWithParams</componentName>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentName>apexWireMethodWithComplexParams</componentName>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentName
+                >apexImperativeMethodWithComplexParams</componentName>
+            </componentInstance>
+        </itemInstances>
         <name>region4</name>
         <type>Region</type>
     </flexiPageRegions>
