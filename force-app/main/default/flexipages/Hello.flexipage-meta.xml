@@ -5,32 +5,44 @@
         <type>Region</type>
     </flexiPageRegions>
     <flexiPageRegions>
-        <componentInstances>
-            <componentName>hello</componentName>
-        </componentInstances>
-        <componentInstances>
-            <componentName>helloBinding</componentName>
-        </componentInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentName>hello</componentName>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentName>helloBinding</componentName>
+            </componentInstance>
+        </itemInstances>
         <name>region2</name>
         <type>Region</type>
     </flexiPageRegions>
     <flexiPageRegions>
-        <componentInstances>
-            <componentName>helloExpressions</componentName>
-        </componentInstances>
-        <componentInstances>
-            <componentName>helloConditionalRendering</componentName>
-        </componentInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentName>helloExpressions</componentName>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentName>helloConditionalRendering</componentName>
+            </componentInstance>
+        </itemInstances>
         <name>region3</name>
         <type>Region</type>
     </flexiPageRegions>
     <flexiPageRegions>
-        <componentInstances>
-            <componentName>helloForEach</componentName>
-        </componentInstances>
-                <componentInstances>
-            <componentName>helloIterator</componentName>
-        </componentInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentName>helloForEach</componentName>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentName>helloIterator</componentName>
+            </componentInstance>
+        </itemInstances>
         <name>region4</name>
         <type>Region</type>
     </flexiPageRegions>
