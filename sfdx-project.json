@@ -4,7 +4,7 @@
             "path": "force-app",
             "default": true,
             "package": "LWCRecipes",
-            "versionName": "Spring '20",
+            "versionName": "Summer '20",
             "versionNumber": "3.0.0.NEXT"
         }
     ],
