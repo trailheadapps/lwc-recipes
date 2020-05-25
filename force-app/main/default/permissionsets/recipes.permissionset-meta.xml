@@ -171,6 +171,10 @@
         <visibility>Visible</visibility>
     </tabSettings>
     <tabSettings>
+        <tab>Message_Service</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+    <tabSettings>
         <tab>Wire</tab>
         <visibility>Visible</visibility>
     </tabSettings>

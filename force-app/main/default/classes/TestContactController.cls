@@ -24,7 +24,11 @@ public with sharing class TestContactController {
         List<Contact> conts = ContactController.getContactList();
         Test.stopTest();
 
-        System.assertEquals(conts.size(), 10);
+        System.assertEquals(
+            10,
+            conts.size(),
+            'The contact list size should be 10'
+        );
     }
 
     @isTest
@@ -35,7 +39,11 @@ public with sharing class TestContactController {
         List<Contact> conts = ContactController.findContacts('Last');
         Test.stopTest();
 
-        System.assertEquals(conts.size(), 10);
+        System.assertEquals(
+            10,
+            conts.size(),
+            'The contacts retrieved by search should be 10'
+        );
     }
 
     @isTest
@@ -46,6 +54,10 @@ public with sharing class TestContactController {
         Contact cont = ContactController.getSingleContact();
         Test.stopTest();
 
-        System.assertEquals(cont.Name, 'First 1 Last 1');
-    }
+        System.assertEquals(
+            'First 1 Last 1',
+            cont.Name,
+            'The contact name should be: First 1 Last 1'
+        );
+    } // }
 }
