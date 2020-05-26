@@ -10,8 +10,7 @@ lmsutil.lmsChannelSubscription;
 
 // Function to generate li elements from contact remote object record
 lmsutil.constructContactListItem = function(item){
-    var nodeString = `
-        <li data-id="${item.get('Id')}">
+    var nodeString = `<li data-id="${item.get('Id')}">
             <a href="#">
                 <div class="slds-grid slds-grid_vertical-align-center">
                     <div>
@@ -22,8 +21,7 @@ lmsutil.constructContactListItem = function(item){
                     </div>
                 </div>
             </a
-        </li>
-    `;
+        </li>`;
 
     return nodeString.trim(); 
 }
@@ -55,7 +53,7 @@ lmsutil.handleContactSelected = function(event){
     sforce.one.publish(lmsutil.messageChannel, payload); 
 }
 
-// util function to assign handler to list of items
+// Util function to assign handler to list of items
 lmsutil.addPublisherListener = function(items, handler){
 
     items.forEach( item => {
@@ -63,7 +61,7 @@ lmsutil.addPublisherListener = function(items, handler){
     });
 }
 
-// hadnler for RemoteObject query for Contacts on publisher page
+// Handler for RemoteObject query for Contacts on publisher page
 lmsutil.handleRemoteContactsCallback = function(err, records){
     if (err) {
         console.error(err);

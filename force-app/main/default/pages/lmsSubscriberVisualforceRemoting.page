@@ -5,7 +5,6 @@
     docType="html-5.0"
 >
     <apex:slds />
-    <!-- <apex:includeScript value="{!URLFOR($Resource.lmsvf, 'lmsvf.js')}"/> -->
     <div class="slds-card">
         <!-- Placeholder for card body. -->
         <div

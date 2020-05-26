@@ -1,5 +1,4 @@
 <apex:page controller="LMSVisualforceController" docType="html-5.0">
-    <!-- <apex:includeScript value="{!URLFOR($Resource.lmsvf, 'lmsvf.js')}"/> -->
     <apex:slds />
     <div class="slds-card">
         <div class="slds-card__body slds-card__body_inner">
@@ -8,10 +7,7 @@
         </div>
 
         <footer class="slds-card__footer">
-            <c:viewSource
-                source="pages/{!$CurrentPage.Name}.page"
-                branch="beta"
-            >
+            <c:viewSource source="pages/{!$CurrentPage.Name}.page">
                 Publish a Lightning Message Service message for other
                 Visualforce pages, LWCs, and Aura components to respond to. This
                 page publishes the <strong>Record_Selected__c</strong> event.

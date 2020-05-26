@@ -6,5 +6,5 @@ img {
 }
 
 .alert {
-    color: #ff0000;
+    color: var(--lwc-color-text-destructive);
 }

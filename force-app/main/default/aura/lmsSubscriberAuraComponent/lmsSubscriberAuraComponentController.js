@@ -1,7 +1,7 @@
 ({
     handleMessage: function (component, message) {
         if (message && message.getParam('recordId')) {
-            // Retreive LMS message parameter
+            // Retrieve LMS message parameter
             var recordId = message.getParam('recordId');
             component.set('v.contactId', recordId);
             // Refresh record from data service

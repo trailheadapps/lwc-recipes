@@ -59,5 +59,5 @@ public with sharing class TestContactController {
             cont.Name,
             'The contact name should be: First 1 Last 1'
         );
-    } // }
+    }
 }
