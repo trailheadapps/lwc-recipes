@@ -59,17 +59,15 @@
             <apex:param name="Id" value="" />
         </apex:actionFunction>
     </apex:form>
-    <!-- prettier-ignore -->
-    <script type="text/javascript">
 
+    <script type="text/javascript">
         // Binding message channel to variable accessible to static resource.
         // Passing actionFunction name to static resource for use as LMS event handler.
         window.lmsutil = {
-            messageChannel: "{!$MessageChannel.Record_Selected__c}",
-            currentPage: "{!$CurrentPage.Name}", 
+            messageChannel: '{!$MessageChannel.Record_Selected__c}',
+            currentPage: '{!$CurrentPage.Name}',
             actionFunction: refreshContactsFunction
-        };  
-
+        };
     </script>
     <script src="{!URLFOR($Resource.lmsvf, 'lmsvf.js')}"></script>
 </apex:page>

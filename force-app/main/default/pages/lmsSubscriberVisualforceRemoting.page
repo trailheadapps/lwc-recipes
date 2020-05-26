@@ -30,15 +30,13 @@
             fields="Id, Name, Title, Phone, Email, Picture__c"
         />
     </apex:remoteObjects>
-    <!-- prettier-ignore -->
-    <script type="text/javascript">
 
+    <script type="text/javascript">
         // Binding message channel to variable accessible to static resource.
         window.lmsutil = {
-            messageChannel: "{!$MessageChannel.Record_Selected__c}",
-            currentPage: "{!$CurrentPage.Name}"
-        };  
-
+            messageChannel: '{!$MessageChannel.Record_Selected__c}',
+            currentPage: '{!$CurrentPage.Name}'
+        };
     </script>
     <script src="{!URLFOR($Resource.lmsvf, 'lmsvf.js')}"></script>
 </apex:page>
