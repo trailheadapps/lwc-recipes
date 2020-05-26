@@ -1,6 +1,9 @@
 <template>
     <lightning-card title="PubsubContactList" icon-name="custom:custom30">
-        <div class="slds-m-around_medium" oncontactselect={handleContactSelect}>
+        <div
+            class="slds-var-m-around_medium"
+            oncontactselect={handleContactSelect}
+        >
             <template if:true={contacts.data}>
                 <template for:each={contacts.data} for:item="contact">
                     <c-contact-list-item-bubbling
