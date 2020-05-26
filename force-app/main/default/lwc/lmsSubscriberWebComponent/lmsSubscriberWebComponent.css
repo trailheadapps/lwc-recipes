@@ -6,5 +6,5 @@ img {
 }
 
 .alert {
-    color: var(--lwc-color-text-destructive);
+    color: var(slds-text-color_destructive);
 }
