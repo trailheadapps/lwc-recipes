@@ -1,6 +1,6 @@
 <template>
     <lightning-card title="ApiProperty" icon-name="standard:product_consumed">
-        <div class="slds-m-around_medium">
+        <div class="slds-var-m-around_medium">
             <lightning-input
                 label="Percentage"
                 type="number"
@@ -9,7 +9,10 @@
                 value={percentage}
                 onchange={handlePercentageChange}
             ></lightning-input>
-            <c-chart-bar percentage={percentage}></c-chart-bar>
+            <c-chart-bar
+                class="slds-show slds-is-relative"
+                percentage={percentage}
+            ></c-chart-bar>
         </div>
 
         <c-view-source source="lwc/apiProperty" slot="footer">

@@ -1,11 +1,11 @@
 <template>
     <lightning-card title="ApiFunction" icon-name="standard:product_consumed">
-        <div class="slds-m-around_medium">
+        <div class="slds-var-m-around_medium">
             <lightning-button
                 label="Refresh Time"
                 onclick={handleRefresh}
             ></lightning-button>
-            <c-clock></c-clock>
+            <c-clock class="slds-show slds-is-relative"></c-clock>
         </div>
 
         <c-view-source source="lwc/apiFunction" slot="footer">
