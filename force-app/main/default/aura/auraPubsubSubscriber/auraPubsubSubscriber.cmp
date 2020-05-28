@@ -28,7 +28,7 @@
             <span class="aura">Aura Component</span>
         </aura:set>
 
-        <div class="slds-m-around_medium">
+        <div class="slds-var-m-around_medium">
             <aura:if isTrue="{!v.contact}">
                 <img src="{!v.contact.Picture__c}" alt="Profile photo" />
                 <p>{!v.contact.Name}</p>
@@ -38,7 +38,7 @@
             </aura:if>
         </div>
 
-        <div class="slds-card__footer">
+        <div class="slds-text-align_left slds-card__footer">
             Subscribe to an event using the pubsub utility from an Aura
             component.
             <p>

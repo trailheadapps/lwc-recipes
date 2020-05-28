@@ -1,18 +1,19 @@
 <template>
     <lightning-card title="EventWithData" icon-name="standard:logging">
         <template if:true={contacts.data}>
-            <lightning-layout class="slds-m-around_medium">
+            <lightning-layout class="slds-var-m-around_medium">
                 <lightning-layout-item>
                     <!-- c-contact-list-item emits a non-bubbling event so each element must have a listener-->
                     <template for:each={contacts.data} for:item="contact">
                         <c-contact-list-item
+                            class="slds-show slds-is-relative"
                             key={contact.Id}
                             contact={contact}
                             onselect={handleSelect}
                         ></c-contact-list-item>
                     </template>
                 </lightning-layout-item>
-                <lightning-layout-item class="slds-m-left_medium">
+                <lightning-layout-item class="slds-var-m-left_medium">
                     <template if:true={selectedContact}>
                         <img
                             src={selectedContact.Picture__c}

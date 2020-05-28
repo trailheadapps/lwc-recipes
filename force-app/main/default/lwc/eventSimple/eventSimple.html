@@ -1,8 +1,13 @@
 <template>
     <lightning-card title="EventSimple" icon-name="standard:logging">
-        <div class="slds-m-around_medium">
-            <p class="slds-m-vertical_medium content">Page {page}</p>
+        <div class="slds-var-m-around_medium">
+            <p
+                class="slds-text-align_center slds-var-m-vertical_medium content"
+            >
+                Page {page}
+            </p>
             <c-paginator
+                class="slds-show slds-is-relative"
                 onprevious={handlePrevious}
                 onnext={handleNext}
             ></c-paginator>

@@ -1,22 +1,17 @@
 c-todo-list {
-    position: relative;
-    border: solid 1px #ecebea;
-    border-radius: 4px;
-    display: block;
-    padding: 14px 8px 8px 8px;
-    margin-top: 12px;
+    border: solid var(--lwc-borderWidthThin, 1px) #ecebea;
+    border-radius: var(--lwc-borderRadiusMedium, 4px);
+    padding: 14px var(--lwc-varSpacingXSmall, 8px)
+        var(--lwc-varSpacingXSmall, 8px) var(--lwc-varSpacingXSmall, 8px);
+    margin-top: var(--lwc-varSpacingSmall, 12px);
 }
 
 c-todo-list:before {
     content: 'c-todo-list';
-    color: #dddbda;
+    color: rgb(221, 219, 218);
     position: absolute;
     top: -10px;
-    left: 4px;
-    background-color: #ffffff;
-    padding: 0 4px;
-}
-
-lightning-button {
-    display: block;
+    left: var(--lwc-varSpacingXxSmall, 4px);
+    background-color: var(--lwc-colorBackgroundAlt, #ffffff);
+    padding: 0 var(--lwc-varSpacingXxSmall, 4px);
 }
