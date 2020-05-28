@@ -1,7 +1,7 @@
 <template>
     <lightning-card title="WireListView" icon-name="custom:custom67">
         <template if:true={listView.data}>
-            <div class="slds-m-around_medium">
+            <div class="slds-var-m-around_medium">
                 <template for:each={contacts} for:item="contact">
                     <p key={contact.fields.Id.value}>
                         {contact.fields.Name.value}

@@ -46,7 +46,7 @@ describe('c-nav-to-record', () => {
         return Promise.resolve().then(() => {
             // Get handle to view button and fire click event
             const buttonEl = element.shadowRoot.querySelector(
-                'lightning-button.slds-m-right_x-small'
+                'lightning-button.slds-var-m-right_x-small'
             );
             buttonEl.click();
 
@@ -84,7 +84,7 @@ describe('c-nav-to-record', () => {
         return Promise.resolve().then(() => {
             // Get handle to edit button and fire click event
             const buttonEl = element.shadowRoot.querySelector(
-                'lightning-button:not(.slds-m-right_x-small)'
+                'lightning-button:not(.slds-var-m-right_x-small)'
             );
             // Selector for no class could also be 'lightning-button:not([class])'
 
