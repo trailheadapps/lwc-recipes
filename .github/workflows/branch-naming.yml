@@ -15,5 +15,5 @@ jobs:
             - name: Validate branch name requirements
               uses: deepakputhraya/action-branch-name@master
               with:
-                  regex: '([a-z])+\/([a-z])+'
+                  regex: '([a-zA-Z])+\/([a-zA-Z])+'
                   min_length: 6
