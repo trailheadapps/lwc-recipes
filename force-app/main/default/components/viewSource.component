@@ -7,10 +7,10 @@
     <apex:stylesheet value="{!URLFOR($Resource.lmsvf, 'lmsvf.css')}" />
     <apex:slds />
 
-    <div class="source-description source-left">
+    <div class="slds-text-align_left slds-color__text_gray-9">
         <apex:componentBody />
     </div>
-    <p class="source-left">
+    <p class="slds-text-align_left">
         <apex:outputLink
             styleClass="slds-text-link"
             value="https://github.com/trailheadapps/lwc-recipes/tree/master/force-app/main/default/{!source}"

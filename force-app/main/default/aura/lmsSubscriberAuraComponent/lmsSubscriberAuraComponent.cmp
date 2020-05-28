@@ -42,19 +42,22 @@
             </aura:if>
         </div>
 
-        <div class="slds-card__footer">
-            Subscribe to a Lightning Message Service channel that another Aura
-            component, LWC, or Visualforce page publishes. This LWC subscribes
-            to the <strong>Record_Selected__c</strong> event. Selecting a
-            contact in one of the contact lists above publishes the event.
-            <p>
-                <a
-                    class="slds-text-link"
-                    href="https://github.com/trailheadapps/lwc-recipes/tree/master/force-app/main/default/aura/lmsSubscriberAuraComponent"
-                    target="source"
-                    >View Source</a
-                >
-            </p>
-        </div>
+        <aura:set attribute="footer">
+            <div class="slds-text-align_left slds-color__text_gray-9">
+                Subscribe to a Lightning Message Service channel that another
+                Aura component, LWC, or Visualforce page publishes. This LWC
+                subscribes to the <strong>Record_Selected__c</strong> event.
+                Selecting a contact in one of the contact lists above publishes
+                the event.
+                <p>
+                    <a
+                        class="slds-text-link"
+                        href="https://github.com/trailheadapps/lwc-recipes/tree/master/force-app/main/default/aura/lmsSubscriberAuraComponent"
+                        target="source"
+                        >View Source</a
+                    >
+                </p>
+            </div>
+        </aura:set>
     </lightning:card>
 </aura:component>

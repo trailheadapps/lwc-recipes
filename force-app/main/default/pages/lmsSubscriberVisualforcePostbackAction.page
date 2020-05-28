@@ -15,7 +15,7 @@
                 rendered="{!NOT(ISBLANK(contactRecord.Id))}"
                 styleClass="slds-card__body slds-card__body_inner"
             >
-                <div class="slds-m-around_medium">
+                <div class="slds-var-m-around_medium">
                     <img
                         src="{!contactRecord.Picture__c}"
                         class="img-small"

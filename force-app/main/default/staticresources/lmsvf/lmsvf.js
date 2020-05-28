@@ -10,26 +10,28 @@ lmsutil.lmsChannelSubscription;
 
 // Function to generate li elements from contact remote object record
 lmsutil.constructContactListItem = function (item) {
-    var nodeString = `<li data-id="${item.get('Id')}">
+    var nodeString = `
+        <li data-id="${item.get('Id')}">
             <a href="#">
                 <div class="slds-grid slds-grid_vertical-align-center">
                     <div>
                         <img class="img-thumb" src="${item.get('Picture__c')}">
                     </div>
-                    <div class="slds-p-around_small">
+                    <div class="slds-var-p-around_small">
                         ${item.get('Name')}
                     </div>
                 </div>
             </a
-        </li>`;
+        </li>
+    `;
 
-    return nodeString.trim();
+    return nodeString;
 };
 
 // Function to generate detail DOM for contact remote object record
 lmsutil.constructContactCardBody = function (contact) {
     var nodeString = `
-        <div class="slds-m-around_medium">
+        <div class="slds-var-m-around_medium">
             <img src="${contact.get(
                 'Picture__c'
             )}" class="img-small" alt="Profile photo">

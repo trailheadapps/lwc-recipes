@@ -4,7 +4,3 @@ img {
     border-radius: 50%;
     margin-bottom: 8px;
 }
-
-.alert {
-    color: var(slds-text-color_destructive);
-}

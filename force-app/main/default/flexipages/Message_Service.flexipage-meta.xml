@@ -34,7 +34,6 @@
     </flexiPageRegions>
     <flexiPageRegions>
         <itemInstances>
-
             <componentInstance>
                 <componentInstanceProperties>
                     <name>height</name>
@@ -56,7 +55,6 @@
             </componentInstance>
         </itemInstances>
         <itemInstances>
-
             <componentInstance>
                 <componentInstanceProperties>
                     <name>height</name>
@@ -78,7 +76,6 @@
             </componentInstance>
         </itemInstances>
         <itemInstances>
-
             <componentInstance>
                 <componentInstanceProperties>
                     <name>height</name>
