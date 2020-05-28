@@ -4,7 +4,6 @@
         type="String"
         description="Location of the component in the source directory"
     />
-    <apex:stylesheet value="{!URLFOR($Resource.lmsvf, 'lmsvf.css')}" />
     <apex:slds />
 
     <div class="slds-text-align_left slds-color__text_gray-9">
