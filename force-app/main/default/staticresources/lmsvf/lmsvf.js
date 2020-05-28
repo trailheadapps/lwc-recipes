@@ -1,15 +1,15 @@
 'use strict';
 
-var lmsutil = window.lmsutil;
+var lmsUtil = window.lmsUtil;
 
-if (lmsutil === undefined) {
-    lmsutil = {};
+if (lmsUtil === undefined) {
+    lmsUtil = {};
 }
 
-lmsutil.lmsChannelSubscription;
+lmsUtil.lmsChannelSubscription;
 
 // Function to generate li elements from contact remote object record
-lmsutil.constructContactListItem = function (item) {
+lmsUtil.constructContactListItem = function (item) {
     var nodeString = `
         <li data-id="${item.get('Id')}">
             <a href="#">
@@ -29,7 +29,7 @@ lmsutil.constructContactListItem = function (item) {
 };
 
 // Function to generate detail DOM for contact remote object record
-lmsutil.constructContactCardBody = function (contact) {
+lmsUtil.constructContactCardBody = function (contact) {
     var nodeString = `
         <div class="slds-var-m-around_medium">
             <img src="${contact.get(
@@ -50,22 +50,22 @@ lmsutil.constructContactCardBody = function (contact) {
 };
 
 // LMS Message Publisher handler: this publishes to the message service
-lmsutil.handleContactSelected = function (event) {
+lmsUtil.handleContactSelected = function (event) {
     const selectedIdNode = event.path.find((item) => item.dataset.id);
 
     var payload = { recordId: selectedIdNode.dataset.id };
-    sforce.one.publish(lmsutil.messageChannel, payload);
+    sforce.one.publish(lmsUtil.messageChannel, payload);
 };
 
 // Util function to assign handler to list of items
-lmsutil.addPublisherListener = function (items, handler) {
+lmsUtil.addPublisherListener = function (items, handler) {
     items.forEach((item) => {
         item.addEventListener('click', handler);
     });
 };
 
 // Handler for RemoteObject query for Contacts on publisher page
-lmsutil.handleRemoteContactsCallback = function (err, records) {
+lmsUtil.handleRemoteContactsCallback = function (err, records) {
     if (err) {
         console.error(err);
         return;
@@ -74,19 +74,19 @@ lmsutil.handleRemoteContactsCallback = function (err, records) {
     var ul = document.querySelector('ul[data-list]');
 
     var liList = records
-        .map((item) => lmsutil.constructContactListItem(item))
+        .map((item) => lmsUtil.constructContactListItem(item))
         .join('');
 
     ul.innerHTML = liList;
 
-    lmsutil.addPublisherListener(
+    lmsUtil.addPublisherListener(
         ul.querySelectorAll('li'),
-        lmsutil.handleContactSelected
+        lmsUtil.handleContactSelected
     );
 };
 
 // LMS Message Handler for lmsSubscriberVisualforceRemoting page
-lmsutil.handleLMSMessageRemoting = function (message) {
+lmsUtil.handleLMSMessageRemoting = function (message) {
     var contactModel = new SObjectModel.Contact();
 
     contactModel.retrieve(
@@ -99,20 +99,20 @@ lmsutil.handleLMSMessageRemoting = function (message) {
             var [contact] = records;
 
             var contactDiv = document.querySelector('div[data-contact]');
-            contactDiv.innerHTML = lmsutil.constructContactCardBody(contact);
+            contactDiv.innerHTML = lmsUtil.constructContactCardBody(contact);
         }
     );
 };
 
 // LMS Message Handler for lmsSubscriberVisualforcePostbackAction page
-lmsutil.handleLMSMessagePostback = function (message) {
-    lmsutil.actionFunction(message.recordId);
+lmsUtil.handleLMSMessagePostback = function (message) {
+    lmsUtil.actionFunction(message.recordId);
 };
 
 // Util function to subscribe to LMS message channels
-lmsutil.subscribeToMessageChannel = function (channel, handler) {
-    if (!lmsutil.lmsChannelSubscription) {
-        lmsutil.lmsChannelSubscription = sforce.one.subscribe(
+lmsUtil.subscribeToMessageChannel = function (channel, handler) {
+    if (!lmsUtil.lmsChannelSubscription) {
+        lmsUtil.lmsChannelSubscription = sforce.one.subscribe(
             channel,
             handler,
             { scope: 'APPLICATION' }
@@ -122,42 +122,42 @@ lmsutil.subscribeToMessageChannel = function (channel, handler) {
 
 // Init functions for each page.
 // By naming them for each page, we can invoke implicitly based on $CurrentPage.Name global variable
-lmsutil.initFunctions = {};
+lmsUtil.initFunctions = {};
 
-lmsutil.initFunctions.lmsSubscriberVisualforcePostbackAction = function (
+lmsUtil.initFunctions.lmsSubscriberVisualforcePostbackAction = function (
     event
 ) {
-    lmsutil.subscribeToMessageChannel(
-        lmsutil.messageChannel,
-        lmsutil.handleLMSMessagePostback
+    lmsUtil.subscribeToMessageChannel(
+        lmsUtil.messageChannel,
+        lmsUtil.handleLMSMessagePostback
     );
 };
 
-lmsutil.initFunctions.lmsSubscriberVisualforceRemoting = function (event) {
-    lmsutil.subscribeToMessageChannel(
-        lmsutil.messageChannel,
-        lmsutil.handleLMSMessageRemoting
+lmsUtil.initFunctions.lmsSubscriberVisualforceRemoting = function (event) {
+    lmsUtil.subscribeToMessageChannel(
+        lmsUtil.messageChannel,
+        lmsUtil.handleLMSMessageRemoting
     );
 };
 
-lmsutil.initFunctions.lmsPublisherVisualforce = function (event) {
+lmsUtil.initFunctions.lmsPublisherVisualforce = function (event) {
     var contactModel = new SObjectModel.Contact();
 
     contactModel.retrieve(
         {
             limit: 10
         },
-        lmsutil.handleRemoteContactsCallback
+        lmsUtil.handleRemoteContactsCallback
     );
 };
 
-// Init lmsutil for each page and wire up LMS features accordingly
-lmsutil.init = function (event) {
+// Init lmsUtil for each page and wire up LMS features accordingly
+lmsUtil.init = function (event) {
     if (event.target.readyState === 'complete') {
         // Invoke init for current page using this library
-        lmsutil.initFunctions[lmsutil.currentPage](event);
+        lmsUtil.initFunctions[lmsUtil.currentPage](event);
     }
 };
 
 // Wire up init to page readystatechange event
-document.addEventListener('readystatechange', lmsutil.init);
+document.addEventListener('readystatechange', lmsUtil.init);
