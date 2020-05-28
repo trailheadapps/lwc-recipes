@@ -2,8 +2,12 @@
 # More information: https://prettier.io/docs/en/ignore.html
 #
 
-**/staticresources/**
 .localdevserver
 .sfdx
 coverage/
 .vscode
+
+# Only prettify specifc static resources
+force-app/main/default/staticresources/*
+!/force-app/main/default/staticresources/lmsvf
+!/force-app/main/default/staticresources/sampleExternalResource
