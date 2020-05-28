@@ -1,4 +1,5 @@
 <apex:page controller="LMSVisualforceController" docType="html-5.0">
+    <apex:stylesheet value="{!URLFOR($Resource.lmsvf, 'lmsvf.css')}" />
     <apex:slds />
     <div class="slds-card">
         <div class="slds-card__body slds-card__body_inner">
