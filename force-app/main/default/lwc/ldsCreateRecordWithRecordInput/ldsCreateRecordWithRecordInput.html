@@ -1,0 +1,51 @@
+<template>
+    <lightning-card
+        title="LdsCreateRecordWithRecordInput"
+        icon-name="standard:record"
+    >
+        <div class="slds-var-m-around_medium">
+            <template if:false={error}>
+                <template if:true={nameEditable}>
+                    <lightning-input
+                        label="Name"
+                        onchange={handleNameChange}
+                        value={name}
+                    ></lightning-input>
+                </template>
+                <template if:true={areaNumberEditable}>
+                    <lightning-input
+                        type="number"
+                        label="Area Number"
+                        onchange={handleAreaNumberChange}
+                        value={areaNumber}
+                    ></lightning-input>
+                </template>
+                <template if:true={expectedRevenueEditable}>
+                    <lightning-input
+                        type="number"
+                        formatter="currency"
+                        label="Expected Revenue"
+                        onchange={handleExpectedRevenueChange}
+                        value={expectedRevenue}
+                    ></lightning-input>
+                </template>
+                <div class="slds-var-m-top_x-small">
+                    <lightning-button
+                        label="Create Account"
+                        variant="brand"
+                        onclick={createAccount}
+                    ></lightning-button>
+                </div>
+            </template>
+            <template if:true={error}>
+                <c-error-panel errors={error}></c-error-panel>
+            </template>
+        </div>
+
+        <c-view-source source="lwc/ldsCreateRecord" slot="footer">
+            Create a record form populating default values and enforcing field
+            level security. In this example, Area Number field has a default
+            value, and Expected Revenue field is not editable, so we hide it.
+        </c-view-source>
+    </lightning-card>
+</template>
