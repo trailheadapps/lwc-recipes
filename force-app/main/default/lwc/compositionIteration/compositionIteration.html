@@ -1,8 +1,9 @@
 <template>
     <lightning-card title="CompositionIteration" icon-name="custom:custom57">
-        <div class="slds-m-around_medium">
+        <div class="slds-var-m-around_medium">
             <template for:each={contacts} for:item="contact">
                 <c-contact-tile
+                    class="slds-show slds-is-relative"
                     key={contact.Id}
                     contact={contact}
                 ></c-contact-tile>

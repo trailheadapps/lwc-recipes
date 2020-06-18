@@ -61,9 +61,9 @@ describe('c-error-panel', () => {
         element.errors = ERROR_MESSAGES_INPUT;
         document.body.appendChild(element);
 
-        const inputEl = element.shadowRoot.querySelector('lightning-input');
+        const inputEl = element.shadowRoot.querySelector('a');
         inputEl.checked = true;
-        inputEl.dispatchEvent(new CustomEvent('change'));
+        inputEl.dispatchEvent(new CustomEvent('click'));
 
         // Return a promise to wait for any asynchronous DOM updates. Jest
         // will automatically wait for the Promise chain to complete before

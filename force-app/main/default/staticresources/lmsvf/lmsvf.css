@@ -1,0 +1,18 @@
+.img-thumb-pageblock {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+.img-thumb {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+.img-small {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-top: 8px;
+}
