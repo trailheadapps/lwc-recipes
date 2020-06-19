@@ -7,6 +7,7 @@
 **/aura/**/*.cmp
 **/aura/**/*.css
 **/aura/**/*.design
+**/aura/**/*.evt
 **/aura/**/*.json
 **/aura/**/*.svg
 **/aura/**/*.xml
