@@ -3,4 +3,11 @@
 **/lwc/**/*.json
 **/lwc/**/*.svg
 **/lwc/**/*.xml
+**/aura/**/*.auradoc
+**/aura/**/*.cmp
+**/aura/**/*.css
+**/aura/**/*.design
+**/aura/**/*.json
+**/aura/**/*.svg
+**/aura/**/*.xml
 .sfdx
