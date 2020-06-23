@@ -12,7 +12,7 @@
             <componentName>ldsCreateRecord</componentName>
         </componentInstances>
         <componentInstances>
-            <componentName>ldsCreateRecordWithRecordInput</componentName>
+            <componentName>generateRecordInputForCreate</componentName>
         </componentInstances>
         <name>region2</name>
         <type>Region</type>
