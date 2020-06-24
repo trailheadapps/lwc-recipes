@@ -10,13 +10,12 @@ import ACCOUNT_OBJECT from '@salesforce/schema/Account';
 import NAME_FIELD from '@salesforce/schema/Account.Name';
 import AREANUMBER_FIELD from '@salesforce/schema/Account.AreaNumber__c';
 
-export default class GenerateRecordInputForCreate extends LightningElement {
+export default class WireGenerateRecordInputForCreate extends LightningElement {
     areaNumber;
-    areaNumberField = AREANUMBER_FIELD;
+    areaNumberField = AREANUMBER_FIELD.fieldApiName;
     areaNumberCreateable;
     error;
-    name;
-    nameField = NAME_FIELD;
+    nameField = NAME_FIELD.fieldApiName;
     recordInput;
 
     @wire(getRecordCreateDefaults, { objectApiName: ACCOUNT_OBJECT })
@@ -37,22 +36,17 @@ export default class GenerateRecordInputForCreate extends LightningElement {
         } else if (error) {
             this.areaNumberCreateable = undefined;
             this.areaNumber = undefined;
-            this.name = undefined;
             this.error = error;
         }
     }
 
     handleFieldChange(event) {
-        this[event.dataset.target.fieldName] = event.target.value;
+        const fieldName = event.target.dataset.fieldName;
+        const fieldValue = event.target.value;
+        this.recordInput.fields[fieldName] = fieldValue;
     }
 
     createAccount() {
-        this.recordInput.fields[NAME_FIELD.fieldApiName] = this.name;
-        if (this.areaNumberCreateable) {
-            this.recordInput.fields[
-                AREANUMBER_FIELD.fieldApiName
-            ] = this.areaNumber;
-        }
         createRecord(this.recordInput)
             .then((account) => {
                 this.dispatchEvent(

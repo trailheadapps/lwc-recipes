@@ -1,6 +1,6 @@
 <template>
     <lightning-card
-        title="GenerateRecordInputForCreate"
+        title="WireGenerateRecordInputForCreate"
         icon-name="standard:record"
     >
         <div class="slds-var-m-around_medium">
@@ -9,7 +9,6 @@
                     label="Name"
                     onchange={handleFieldChange}
                     data-field-name={nameField}
-                    value={name}
                 ></lightning-input>
                 <template if:true={areaNumberCreateable}>
                     <lightning-input
@@ -33,10 +32,11 @@
             </template>
         </div>
 
-        <c-view-source source="lwc/ldsCreateRecord" slot="footer">
+        <c-view-source source="lwc/wireGenerateRecordInputForCreate" slot="footer">
             Create a record form populating default values and enforcing field
             level security. In this example, Area Number field has a default
-            value and it is shown, as it is createable.
+            value and it is shown, as it is createable. Always consider
+            lightning-record-form and lightning-record-edit-form first.
         </c-view-source>
     </lightning-card>
 </template>
