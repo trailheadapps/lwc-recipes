@@ -4,7 +4,7 @@
         icon-name="standard:record"
     >
         <div class="slds-var-m-around_medium">
-            <template if:false={error}>
+            <template if:true={recordInput}>
                 <lightning-input
                     label="Name"
                     onchange={handleFieldChange}
@@ -32,7 +32,10 @@
             </template>
         </div>
 
-        <c-view-source source="lwc/wireGenerateRecordInputForCreate" slot="footer">
+        <c-view-source
+            source="lwc/wireGenerateRecordInputForCreate"
+            slot="footer"
+        >
             Create a record form populating default values and enforcing field
             level security. In this example, Area Number field has a default
             value and it is shown, as it is createable. Always consider
