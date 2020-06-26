@@ -1,16 +1,16 @@
 import { LightningElement, wire } from 'lwc';
 import { NavigationMixin } from 'lightning/navigation';
-import getSingleContact from '@salesforce/apex/ContactController.getSingleContact';
+import getSingleC_Solution__c from '@salesforce/apex/ContactController.getSingleC_Solution__c';
 
 export default class NavToRecord extends NavigationMixin(LightningElement) {
-    @wire(getSingleContact) contact;
+    @wire(getSingleC_Solution__c) solution;
 
-    navigateToContact() {
+    navigateToSolution() {
         this[NavigationMixin.Navigate]({
             type: 'standard__recordPage',
             attributes: {
-                recordId: this.contact.data.Id,
-                objectApiName: 'Contact',
+                recordId: this.solution.data.Id,
+                objectApiName: 'Solution',
                 actionName: 'view'
             }
         });
@@ -20,8 +20,8 @@ export default class NavToRecord extends NavigationMixin(LightningElement) {
         this[NavigationMixin.Navigate]({
             type: 'standard__recordPage',
             attributes: {
-                recordId: this.contact.data.Id,
-                objectApiName: 'Contact',
+                recordId: this.solution.data.Id,
+                objectApiName: 'Solution',
                 actionName: 'edit'
             }
         });
