@@ -84,7 +84,7 @@ Make sure to start from a brand-new environment to avoid conflicts with previous
 
 1. If you are setting up a Developer Edition: go to **Setup**, under **My Domain**, [register a My Domain](https://help.salesforce.com/articleView?id=domain_name_setup.htm&type=5).
 
-1. Click [this link](https://login.salesforce.com/packaging/installPackage.apexp?p0=04tB0000000KwaNIAS) to install the Recipes unlocked package in your org.
+1. Click [this link](https://login.salesforce.com/packaging/installPackage.apexp?p0=04tB0000000OzdLIAS) to install the Recipes unlocked package in your org.
 
 1. Select **Install for All Users**
 
@@ -108,17 +108,17 @@ This includes non source-tracked orgs such as a [free Developer Edition Org](htt
 
 Make sure to start from a brand-new environment to avoid conflicts with previous work you may have done.
 
-1. Authorize your Trailhead Playground or Developer org and provide it with an alias (**mydevorg** in the command below):
-
-    ```
-    sfdx force:auth:web:login -d -a mydevorg
-    ```
-
 1. Clone this repository:
 
     ```
     git clone https://github.com/trailheadapps/lwc-recipes
     cd lwc-recipes
+    ```
+
+1. Authorize your Trailhead Playground or Developer org and provide it with an alias (**mydevorg** in the command below):
+
+    ```
+    sfdx force:auth:web:login -s -a mydevorg
     ```
 
 1. If you are setting up a Developer Edition: go to **Setup**, under **My Domain**, [register a My Domain](https://help.salesforce.com/articleView?id=domain_name_setup.htm&type=5).
