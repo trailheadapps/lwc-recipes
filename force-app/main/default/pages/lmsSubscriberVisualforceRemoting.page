@@ -35,9 +35,10 @@
     <script type="text/javascript">
         // Binding message channel to variable accessible to static resource.
         window.lmsUtil = {
-            messageChannel: '{!$MessageChannel.Record_Selected__c}',
-            currentPage: '{!$CurrentPage.Name}'
+            messageChannel: '{!$MessageChannel.Record_Selected__c}'
         };
     </script>
-    <script src="{!URLFOR($Resource.lmsvf, 'lmsvf.js')}"></script>
+    <script
+        src="{!URLFOR($Resource.lmsvf, 'lmsSubscriberVisualforceRemoting.js')}"
+    ></script>
 </apex:page>

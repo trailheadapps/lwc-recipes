@@ -65,9 +65,10 @@
         // Passing actionFunction name to static resource for use as LMS event handler.
         window.lmsUtil = {
             messageChannel: '{!$MessageChannel.Record_Selected__c}',
-            currentPage: '{!$CurrentPage.Name}',
             actionFunction: refreshContactsFunction
         };
     </script>
-    <script src="{!URLFOR($Resource.lmsvf, 'lmsvf.js')}"></script>
+    <script
+        src="{!URLFOR($Resource.lmsvf, 'lmsSubscriberVisualforcePostbackAction.js')}"
+    ></script>
 </apex:page>
