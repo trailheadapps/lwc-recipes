@@ -1,6 +1,4 @@
 <apex:page
-    showHeader="false"
-    sidebar="false"
     controller="LMSVisualforceController"
     lightningStylesheets="true"
     docType="html-5.0"
@@ -50,7 +48,7 @@
         </div>
     </apex:outputPanel>
     <apex:form>
-        <!-- Surface controller method as JS function -->
+        <!-- Surface apex controller method as JS function -->
         <apex:actionFunction
             action="{!refreshContact}"
             name="refreshContactsFunction"
@@ -60,15 +58,15 @@
         </apex:actionFunction>
     </apex:form>
 
-    <script type="text/javascript">
-        // Binding message channel to variable accessible to static resource.
-        // Passing actionFunction name to static resource for use as LMS event handler.
-        window.lmsUtil = {
+    <!-- Import js module static resource -->
+    <script type="module">
+        import { setPageConfigs } from '{!URLFOR($Resource.lmsvf, 'lmsSubscriberVisualforcePostbackAction.js')}';
+
+        // Pass object/function references from page
+        setPageConfigs({
             messageChannel: '{!$MessageChannel.Record_Selected__c}',
-            actionFunction: refreshContactsFunction
-        };
+            actionFunction: refreshContactsFunction,
+            lmsSubscribe: sforce.one.subscribe
+        });
     </script>
-    <script
-        src="{!URLFOR($Resource.lmsvf, 'lmsSubscriberVisualforcePostbackAction.js')}"
-    ></script>
 </apex:page>

@@ -1,32 +1,37 @@
 'use strict';
 
-const lmsUtil = window.lmsUtil;
+// To store handles to items in the scope of the page
+let _pageConfigs = {};
 
-if (lmsUtil === undefined) {
-    lmsUtil = {};
+function setPageConfigs(configs) {
+    _pageConfigs = { ...configs };
 }
 
-lmsUtil.lmsChannelSubscription;
-
-// Handle LMS message and invoke action function with payload
-lmsUtil.handleLMSMessagePostback = function (message) {
-    // apex:actionFunction passed through from page
-    lmsUtil.actionFunction(message.recordId);
-};
+// LMS Subscription object
+let lmsChannelSubscription;
 
 // Invoke sforce.one.subscribe to subscribe to LMS message channel.
-lmsUtil.subscribeToMessageChannel = function (channel, handler) {
-    if (!lmsUtil.lmsChannelSubscription) {
-        lmsUtil.lmsChannelSubscription = sforce.one.subscribe(channel, handler);
+function subscribeToMessageChannel(channel, handler) {
+    if (!lmsChannelSubscription) {
+        lmsChannelSubscription = _pageConfigs.lmsSubscribe(channel, handler);
     }
-};
+}
 
 // Subscribe on page load complete
 document.addEventListener('readystatechange', (event) => {
     if (event.target.readyState === 'complete') {
-        lmsUtil.subscribeToMessageChannel(
-            lmsUtil.messageChannel,
-            lmsUtil.handleLMSMessagePostback
+        subscribeToMessageChannel(
+            _pageConfigs.messageChannel,
+            handleLMSMessagePostback
         );
     }
 });
+
+// Handle LMS message and invoke action function with payload
+function handleLMSMessagePostback(message) {
+    // apex:actionFunction passed through from page
+    _pageConfigs.actionFunction(message.recordId);
+}
+
+// Expose function to pass in page objects
+export { setPageConfigs };

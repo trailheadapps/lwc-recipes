@@ -1,45 +1,29 @@
 'use strict';
+// HTML Template to render after remote call
+import { listItemTemplate } from './templates.js';
 
-const lmsUtil = window.lmsUtil;
+// To store handles to items in the scope of the page
+let _pageConfigs = {};
 
-// (do I need this?)
-// if (lmsUtil === undefined) {
-//     lmsUtil = {};
-// }
-
-// Function to generate li elements from contact remote object record
-lmsUtil.listItemTemplate = (item) => {
-    const nodeString = `
-        <li data-id="${item.get('Id')}">
-            <a href="#">
-                <div class="slds-grid slds-grid_vertical-align-center">
-                    <div>
-                        <img class="img-thumb" src="${item.get('Picture__c')}">
-                    </div>
-                    <div class="slds-var-p-around_small">
-                        ${item.get('Name')}
-                    </div>
-                </div>
-            </a
-        </li>
-    `;
-
-    return nodeString;
-};
+function setPageConfigs(configs) {
+    _pageConfigs = { ...configs };
+}
 
 // Click handler to invoke sforce.one.publish to publish
 // LMS message with payload including the Id of the selected item
-lmsUtil.handleContactSelected = (event) => {
+function handleContactSelected(event) {
     // Get the DOM node that has the data-id tag on it
     const selectedIdNode = event.path.find((item) => item.dataset.id);
 
-    // Set the id value into the payload object and publish to message channel
+    // Create LMS message payload
     const payload = { recordId: selectedIdNode.dataset.id };
-    sforce.one.publish(lmsUtil.messageChannel, payload);
-};
+
+    // sforce.one.publish passed in from page as _pageConfigs.lmsPublish
+    _pageConfigs.lmsPublish(_pageConfigs.messageChannel, payload);
+}
 
 // Handle remote callback, construct DOM, and assign click handlers
-lmsUtil.handleRemoteContactsCallback = (err, records) => {
+function handleRemoteContactsCallback(err, records) {
     if (err) {
         console.error(err);
         return;
@@ -49,27 +33,30 @@ lmsUtil.handleRemoteContactsCallback = (err, records) => {
     var ul = document.querySelector('ul[data-list]');
 
     // Construct list items
-    var liList = records.map((item) => lmsUtil.listItemTemplate(item)).join('');
+    var liList = records.map((item) => listItemTemplate(item)).join('');
 
     // Attach list items to DOM root
     ul.innerHTML = liList;
 
     // Attach click handler on each li item
     ul.querySelectorAll('li').forEach((item) => {
-        item.addEventListener('click', lmsUtil.handleContactSelected);
+        item.addEventListener('click', handleContactSelected);
     });
-};
+}
 
 // On page ready, fetch salesforce data and build list of Contacts
 document.addEventListener('readystatechange', (event) => {
     if (event.target.readyState === 'complete') {
-        var contactModel = new SObjectModel.Contact();
+        var contactModel = new _pageConfigs.RemoteContact();
 
         contactModel.retrieve(
             {
                 limit: 10
             },
-            lmsUtil.handleRemoteContactsCallback
+            handleRemoteContactsCallback
         );
     }
 });
+
+// Expose function to pass in page objects
+export { setPageConfigs };
