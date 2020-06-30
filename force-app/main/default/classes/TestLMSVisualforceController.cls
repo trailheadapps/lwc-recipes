@@ -27,7 +27,7 @@ private class TestLMSVisualforceController {
 
         System.assert(
             controller.contactRecord != null,
-            'Contact record does not initialize on class instantiation'
+            'Contact should initialize on class instantiation'
         );
         System.assertEquals(
             controller.contactRecord.Id,
@@ -54,7 +54,7 @@ private class TestLMSVisualforceController {
         System.assertNotEquals(
             testContact.Id,
             null,
-            'Test failed to setup correctly, test record does not have an Id after save.'
+            'Test failed to setup correctly, test record should have an Id after save.'
         );
 
         // Set current page for test
@@ -62,6 +62,7 @@ private class TestLMSVisualforceController {
         Test.setCurrentPage(pageReference);
 
         // Set up page state: controller instantiated and Id parameter set to a Contact Id
+        // Calling put() on the map returned by getParameters() assigns a URL parameter
         LMSVisualforceController controller = new LMSVisualforceController();
         ApexPages.currentPage().getParameters().put('Id', testContact.Id);
 
@@ -80,32 +81,32 @@ private class TestLMSVisualforceController {
         System.assertEquals(
             testContact.Id,
             controller.contactRecord.Id,
-            'testContact.Id does not match controller.contactRecord.Id'
+            'actual controller.contactRecord.Id should match expected testContact.Id'
         );
         System.assertEquals(
             testContactName,
             controller.contactRecord.Name,
-            'testContact.Name does not match controller.contactRecord.Name'
+            'actual controller.contactRecord.Name should match expected testContactName'
         );
         System.assertEquals(
             testContact.Title,
             controller.contactRecord.Title,
-            'testContact.Title does not match controller.contactRecord.Title'
+            'actual controller.contactRecord.Title should match expected testContact.Title'
         );
         System.assertEquals(
             testContact.Phone,
             controller.contactRecord.Phone,
-            'testContact.Phone does not match controller.contactRecord.Phone'
+            'actual controller.contactRecord.Phone should match expected testContact.Phone'
         );
         System.assertEquals(
             testContact.Email,
             controller.contactRecord.Email,
-            'testContact.Email does not match controller.contactRecord.Email'
+            'actual controller.contactRecord.Email should match expected testContact.Email'
         );
         System.assertEquals(
             testContact.Picture__c,
             controller.contactRecord.Picture__c,
-            'testContact.Picture__c does not match controller.contactRecord.Picture__c'
+            'actual controller.contactRecord.Picture__c should match expected testContact.Picture__c'
         );
     }
 }
