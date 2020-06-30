@@ -1,9 +1,9 @@
-<apex:page controller="LMSVisualforceController" docType="html-5.0">
+<apex:page docType="html-5.0">
     <apex:stylesheet value="{!URLFOR($Resource.lmsvf, 'lmsvf.css')}" />
     <apex:slds />
     <div class="slds-card">
         <div class="slds-card__body slds-card__body_inner">
-            <!-- Placeholder to build list. -->
+            <!-- Root tag for contact list -->
             <ul data-list="list"></ul>
         </div>
 
@@ -19,16 +19,20 @@
         </footer>
     </div>
 
+    <!-- Data access through remote object API -->
     <apex:remoteObjects>
         <apex:remoteObjectModel name="Contact" fields="Id,Name,Picture__c" />
     </apex:remoteObjects>
 
-    <script type="text/javascript">
-        // Binding message channel to variable accessible to static resource.
-        window.lmsUtil = {
+    <!-- Import js module static resource -->
+    <script type="module">
+        import { setPageConfigs } from '{!URLFOR($Resource.lmsvf, 'lmsPublisherVisualforce.js')}';
+
+        // Pass object/function references from page
+        setPageConfigs({
             messageChannel: '{!$MessageChannel.Record_Selected__c}',
-            currentPage: '{!$CurrentPage.Name}'
-        };
+            RemoteContact: SObjectModel.Contact,
+            lmsPublish: sforce.one.publish
+        });
     </script>
-    <script src="{!URLFOR($Resource.lmsvf, 'lmsvf.js')}"></script>
 </apex:page>
