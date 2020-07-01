@@ -1,0 +1,10 @@
+<template>
+    <lightning-button label="Call Continuation" onclick={callContinuation}>
+    </lightning-button>
+    <div>
+        @wire(startRequest) result: {formattedWireResult}
+    </div>
+    <div>
+        Imperative result: {formattedImperativeResult}
+    </div>
+</template>
