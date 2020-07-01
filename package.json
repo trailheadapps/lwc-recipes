@@ -6,7 +6,7 @@
     "scripts": {
         "lint": "npm run lint:lwc && npm run lint:aura",
         "lint:lwc": "eslint **/lwc/**",
-        "lint:aura": "sfdx force:lightning:lint force-app/main/default/aura --exit",
+        "lint:aura": "eslint **/aura/**",
         "test": "npm run lint && npm run test:unit",
         "test:unit": "sfdx-lwc-jest",
         "test:unit:watch": "sfdx-lwc-jest --watch",
@@ -29,11 +29,13 @@
     "devDependencies": {
         "@prettier/plugin-xml": "^0.7.2",
         "@salesforce/eslint-config-lwc": "^0.7.0",
+        "@salesforce/eslint-plugin-aura": "^1.4.0",
         "@salesforce/sfdx-lwc-jest": "^0.7.1",
-        "eslint": "^6.8.0",
+        "eslint": "^7.2.0",
+        "eslint-config-prettier": "^6.11.0",
         "husky": "^4.2.5",
         "jest-canvas-mock": "^2.2.0",
-        "lint-staged": "^10.2.7",
+        "lint-staged": "^10.2.11",
         "prettier": "^2.0.5",
         "prettier-plugin-apex": "^1.5.0",
         "semver": "^7.3.2"
