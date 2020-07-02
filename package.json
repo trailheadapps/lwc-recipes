@@ -42,7 +42,7 @@
     },
     "husky": {
         "hooks": {
-            "pre-commit": "lint-staged && npm run lint:aura"
+            "pre-commit": "lint-staged"
         }
     },
     "lint-staged": {
@@ -50,6 +50,9 @@
             "prettier --write"
         ],
         "**/lwc/**": [
+            "eslint"
+        ],
+        "**/aura/**": [
             "eslint"
         ]
     }
