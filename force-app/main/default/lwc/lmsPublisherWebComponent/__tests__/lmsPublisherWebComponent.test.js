@@ -117,9 +117,8 @@ describe('c-lms-publisher-web-component', () => {
                 })
             );
 
-            //
+            // Was publish called and was it called with the correct params?
             expect(publish).toHaveBeenCalled();
-
             expect(publish).toHaveBeenCalledWith(
                 undefined,
                 MESSAGE_CHANNEL,
