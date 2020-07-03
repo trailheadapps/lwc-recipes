@@ -45,7 +45,9 @@ export default class LmsSubscriberWebComponent extends LightningElement {
     @wire(MessageContext)
     messageContext;
 
-    // Encapsulate logic for LMS subscribe/unsubsubscribe
+    // Encapsulate logic for LMS subscribe. Because messageContext is
+    // created with the @wire adapter, unsubscribe will be implicitly
+    // calle during the component destruction lifecycle.
     subscribeToMessageChannel() {
         this.subscription = subscribe(
             this.messageContext,
