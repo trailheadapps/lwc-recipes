@@ -27,6 +27,9 @@
         <componentInstances>
             <componentName>wireCurrentPageReference</componentName>
         </componentInstances>
+        <componentInstances>
+            <componentName>wireGenerateRecordInputForCreate</componentName>
+        </componentInstances>
         <name>region3</name>
         <type>Region</type>
     </flexiPageRegions>

@@ -11,9 +11,6 @@
         <componentInstances>
             <componentName>ldsCreateRecord</componentName>
         </componentInstances>
-        <componentInstances>
-            <componentName>wireGenerateRecordInputForCreate</componentName>
-        </componentInstances>
         <name>region2</name>
         <type>Region</type>
     </flexiPageRegions>

@@ -21,29 +21,24 @@ export default class WireGenerateRecordInputForCreate extends LightningElement {
     @wire(getRecordCreateDefaults, { objectApiName: ACCOUNT_OBJECT })
     loadAccountCreateDefaults({ data, error }) {
         if (data) {
-            const accountObjectInfo =
-                data.objectInfos[ACCOUNT_OBJECT.objectApiName];
-            const recordDefaults = data.record;
-            // Creates an account record input with default field values
+            // Creates a record input with default field values
             this.recordInput = generateRecordInputForCreate(
-                recordDefaults,
-                accountObjectInfo // ObjectInfo filters it to only fields that are createable
+                data.record,
+                data.objectInfos[ACCOUNT_OBJECT.objectApiName] // Filters it to only createable fields
             );
             const fields = this.recordInput.fields;
             this.areaNumberCreateable = AREANUMBER_FIELD.fieldApiName in fields;
             this.areaNumber = fields[AREANUMBER_FIELD.fieldApiName];
             this.error = undefined;
         } else if (error) {
-            this.areaNumberCreateable = undefined;
-            this.areaNumber = undefined;
+            this.recordInput = undefined;
             this.error = error;
         }
     }
 
     handleFieldChange(event) {
-        const fieldName = event.target.dataset.fieldName;
-        const fieldValue = event.target.value;
-        this.recordInput.fields[fieldName] = fieldValue;
+        this.recordInput.fields[event.target.dataset.fieldName] =
+            event.target.value;
     }
 
     createAccount() {
