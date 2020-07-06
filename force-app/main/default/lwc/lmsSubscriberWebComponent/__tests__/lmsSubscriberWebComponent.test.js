@@ -8,7 +8,7 @@ import {
 } from '@salesforce/sfdx-lwc-jest';
 
 import { subscribe, MessageContext, publish } from 'lightning/messageService';
-import recordSelected from '@salesforce/messageChannel/Record_Selected__c';
+import RECORD_SELECTED_CHANNEL from '@salesforce/messageChannel/Record_Selected__c';
 
 const mockGetRecord = require('./data/getRecord.json');
 const mockGetRecordNoPicture = require('./data/getRecordNoPicture.json');
@@ -37,7 +37,7 @@ describe('c-lms-subscriber-web-component', () => {
 
         // Validate if pubsub got registered after connected to the DOM
         expect(subscribe).toHaveBeenCalled();
-        expect(subscribe.mock.calls[0][1]).toBe(recordSelected);
+        expect(subscribe.mock.calls[0][1]).toBe(RECORD_SELECTED_CHANNEL);
     });
 
     it('invokes getRecord with the published message payload value', () => {
@@ -47,9 +47,13 @@ describe('c-lms-subscriber-web-component', () => {
         });
         document.body.appendChild(element);
 
-        // Simulate pulishing a message using recordSelected message channel
+        // Simulate pulishing a message using RECORD_SELECTED_CHANNEL message channel
         const messagePayload = { recordId: '001' };
-        publish(messageContextWireAdapter, recordSelected, messagePayload);
+        publish(
+            messageContextWireAdapter,
+            RECORD_SELECTED_CHANNEL,
+            messagePayload
+        );
 
         return Promise.resolve().then(() => {
             // The component subscription should cause getRecord to be invoked.

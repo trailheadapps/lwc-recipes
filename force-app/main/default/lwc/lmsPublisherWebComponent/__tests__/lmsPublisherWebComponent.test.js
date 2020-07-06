@@ -1,7 +1,7 @@
 import { createElement } from 'lwc';
 import LmsPublisherWebComponent from 'c/lmsPublisherWebComponent';
 import { publish, MessageContext } from 'lightning/messageService';
-import recordSelected from '@salesforce/messageChannel/Record_Selected__c';
+import RECORD_SELECTED_CHANNEL from '@salesforce/messageChannel/Record_Selected__c';
 
 import {
     registerApexTestWireAdapter,
@@ -88,9 +88,6 @@ describe('c-lms-publisher-web-component', () => {
                 'https://s3-us-west-1.amazonaws.com/sfdc-demo/people/amy_taylor.jpg'
         };
 
-        // Message Channel used in component
-        const MESSAGE_CHANNEL = recordSelected;
-
         const PAYLOAD = { recordId: CONTACT.Id };
 
         // Create initial element
@@ -120,7 +117,7 @@ describe('c-lms-publisher-web-component', () => {
             // Was publish called and was it called with the correct params?
             expect(publish).toHaveBeenCalledWith(
                 undefined,
-                MESSAGE_CHANNEL,
+                RECORD_SELECTED_CHANNEL,
                 PAYLOAD
             );
         });
