@@ -80,26 +80,24 @@ describe('c-lms-subscriber-web-component', () => {
                 expect(imgEl.src).toBe(
                     mockGetRecord.result.fields.Picture__c.value
                 );
-                // const imgEl = element.shadowRoot.querySelector('img');
-                // expect(imgEl).toBeNull();
 
                 const nameEl = element.shadowRoot.querySelector('p');
                 expect(nameEl.textContent).toBe(
-                    mockGetRecordNoPicture.result.fields.Name.value
+                    mockGetRecord.result.fields.Name.value
                 );
 
                 const phoneEl = element.shadowRoot.querySelector(
                     'lightning-formatted-phone'
                 );
                 expect(phoneEl.value).toBe(
-                    mockGetRecordNoPicture.result.fields.Phone.value
+                    mockGetRecord.result.fields.Phone.value
                 );
 
                 const emailEl = element.shadowRoot.querySelector(
                     'lightning-formatted-email'
                 );
                 expect(emailEl.value).toBe(
-                    mockGetRecordNoPicture.result.fields.Email.value
+                    mockGetRecord.result.fields.Email.value
                 );
             });
         });
