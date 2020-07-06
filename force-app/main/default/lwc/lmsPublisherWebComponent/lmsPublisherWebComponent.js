@@ -3,7 +3,7 @@ import getContactList from '@salesforce/apex/ContactController.getContactList';
 
 // Import message service features required for publishing and the message channel
 import { publish, MessageContext } from 'lightning/messageService';
-import recordSelected from '@salesforce/messageChannel/Record_Selected__c';
+import RECORD_SELECTED_CHANNEL from '@salesforce/messageChannel/Record_Selected__c';
 
 export default class LmsPublisherWebComponent extends LightningElement {
     @wire(getContactList)
@@ -16,6 +16,6 @@ export default class LmsPublisherWebComponent extends LightningElement {
     handleContactSelect(event) {
         const payload = { recordId: event.target.contact.Id };
 
-        publish(this.messageContext, recordSelected, payload);
+        publish(this.messageContext, RECORD_SELECTED_CHANNEL, payload);
     }
 }
