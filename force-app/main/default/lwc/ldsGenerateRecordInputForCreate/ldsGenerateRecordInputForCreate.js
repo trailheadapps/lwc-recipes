@@ -10,7 +10,7 @@ import ACCOUNT_OBJECT from '@salesforce/schema/Account';
 import NAME_FIELD from '@salesforce/schema/Account.Name';
 import AREANUMBER_FIELD from '@salesforce/schema/Account.AreaNumber__c';
 
-export default class WireGenerateRecordInputForCreate extends LightningElement {
+export default class ldsGenerateRecordInputForCreate extends LightningElement {
     areaNumber;
     areaNumberField = AREANUMBER_FIELD.fieldApiName;
     areaNumberCreateable;

@@ -1,5 +1,5 @@
 import { createElement } from 'lwc';
-import WireGenerateRecordInputForCreate from 'c/wireGenerateRecordInputForCreate';
+import ldsGenerateRecordInputForCreate from 'c/ldsGenerateRecordInputForCreate';
 import { registerLdsTestWireAdapter } from '@salesforce/sfdx-lwc-jest';
 import { getRecordCreateDefaults } from 'lightning/uiRecordApi';
 import { generateRecordInputForCreate } from 'lightning/uiRecordApi';
@@ -13,7 +13,7 @@ const getRecordCreateDefaultsAdapter = registerLdsTestWireAdapter(
     getRecordCreateDefaults
 );
 
-describe('c-wire-generate-record-input-for-create', () => {
+describe('c-lds-generate-record-input-for-create', () => {
     afterEach(() => {
         // The jsdom instance is shared across test cases in a single file so reset the DOM
         while (document.body.firstChild) {
@@ -28,9 +28,9 @@ describe('c-wire-generate-record-input-for-create', () => {
         it('renders data correctly', () => {
             // Create element
             const element = createElement(
-                'c-wire-generate-record-input-for-create',
+                'c-lds-generate-record-input-for-create',
                 {
-                    is: WireGenerateRecordInputForCreate
+                    is: ldsGenerateRecordInputForCreate
                 }
             );
             document.body.appendChild(element);
@@ -66,9 +66,9 @@ describe('c-wire-generate-record-input-for-create', () => {
         it('shows error panel element', () => {
             // Create element
             const element = createElement(
-                'c-wire-generate-record-input-for-create',
+                'c-lds-generate-record-input-for-create',
                 {
-                    is: WireGenerateRecordInputForCreate
+                    is: ldsGenerateRecordInputForCreate
                 }
             );
             document.body.appendChild(element);
