@@ -1,7 +1,11 @@
 import { createElement } from 'lwc';
 import ldsGenerateRecordInputForCreate from 'c/ldsGenerateRecordInputForCreate';
 import { registerLdsTestWireAdapter } from '@salesforce/sfdx-lwc-jest';
-import { getRecordCreateDefaults, generateRecordInputForCreate, createRecord } from 'lightning/uiRecordApi';
+import {
+    getRecordCreateDefaults,
+    generateRecordInputForCreate,
+    createRecord
+} from 'lightning/uiRecordApi';
 import { ShowToastEventName } from 'lightning/platformShowToastEvent';
 import NAME_FIELD from '@salesforce/schema/Account.Name';
 import AREANUMBER_FIELD from '@salesforce/schema/Account.AreaNumber__c';
@@ -27,7 +31,6 @@ describe('c-lds-generate-record-input-for-create', () => {
         jest.clearAllMocks();
     });
 
-
     // Helper function to wait until the microtask queue is empty. This is needed for promise
     // timing when calling createRecord.
     function flushPromises() {
@@ -41,7 +44,7 @@ describe('c-lds-generate-record-input-for-create', () => {
         generateRecordInputForCreate.mockReturnValue(
             mockGenerateRecordInputForCreate
         );
-    
+
         // Emit mock data in adapter
         getRecordCreateDefaultsAdapter.emit(mockGetRecordCreateDefaults);
     }
@@ -152,16 +155,18 @@ describe('c-lds-generate-record-input-for-create', () => {
         });
     });
 
-
     describe('createAccount', () => {
         it('populates recordInput correctly when inputs change', () => {
             // Assign mock value for resolved createRecord promise
             createRecord.mockResolvedValue(mockCreateRecord);
 
             // Create initial element
-            const element = createElement('c-lds-generate-record-input-for-create', {
-                is: ldsGenerateRecordInputForCreate
-            });
+            const element = createElement(
+                'c-lds-generate-record-input-for-create',
+                {
+                    is: ldsGenerateRecordInputForCreate
+                }
+            );
             document.body.appendChild(element);
 
             generateMockRecordInput();
@@ -173,11 +178,21 @@ describe('c-lds-generate-record-input-for-create', () => {
                 const USER_INPUT_NAME = 'Gomez Inc.';
                 const USER_INPUT_AREANUMBER = 2000;
 
-                simulateUserInput(element, NAME_FIELD.fieldApiName, USER_INPUT_NAME);
-                simulateUserInput(element, AREANUMBER_FIELD.fieldApiName, USER_INPUT_AREANUMBER);
+                simulateUserInput(
+                    element,
+                    NAME_FIELD.fieldApiName,
+                    USER_INPUT_NAME
+                );
+                simulateUserInput(
+                    element,
+                    AREANUMBER_FIELD.fieldApiName,
+                    USER_INPUT_AREANUMBER
+                );
 
                 // Select button for simulating user interaction
-                const buttonEl = element.shadowRoot.querySelector('lightning-button');
+                const buttonEl = element.shadowRoot.querySelector(
+                    'lightning-button'
+                );
                 buttonEl.click();
 
                 // Return an immediate flushed promise (after the LDS call) to then
@@ -188,10 +203,14 @@ describe('c-lds-generate-record-input-for-create', () => {
                     // Validate parameters of mocked LDS call
                     expect(createRecord.mock.calls.length).toBe(1);
 
-                    const expectedRecordInput = {...mockGenerateRecordInputForCreate};
+                    const expectedRecordInput = {
+                        ...mockGenerateRecordInputForCreate
+                    };
                     expectedRecordInput.fields.Name = USER_INPUT_NAME;
                     expectedRecordInput.fields.AreaNumber__c = USER_INPUT_AREANUMBER;
-                    expect(createRecord.mock.calls[0][0]).toEqual(expectedRecordInput);
+                    expect(createRecord.mock.calls[0][0]).toEqual(
+                        expectedRecordInput
+                    );
                 });
             });
         });
@@ -201,9 +220,12 @@ describe('c-lds-generate-record-input-for-create', () => {
             createRecord.mockResolvedValue(mockCreateRecord);
 
             // Create initial element
-            const element = createElement('c-lds-generate-record-input-for-create', {
-                is: ldsGenerateRecordInputForCreate
-            });
+            const element = createElement(
+                'c-lds-generate-record-input-for-create',
+                {
+                    is: ldsGenerateRecordInputForCreate
+                }
+            );
             document.body.appendChild(element);
 
             generateMockRecordInput();
@@ -216,16 +238,24 @@ describe('c-lds-generate-record-input-for-create', () => {
             // will automatically wait for the Promise chain to complete before
             // ending the test and fail the test if the promise rejects.
             return Promise.resolve().then(() => {
-                simulateUserInput(element, NAME_FIELD.fieldApiName, 'Gomez Inc.');
+                simulateUserInput(
+                    element,
+                    NAME_FIELD.fieldApiName,
+                    'Gomez Inc.'
+                );
 
                 // Select button for simulating user interaction
-                const buttonEl = element.shadowRoot.querySelector('lightning-button');
+                const buttonEl = element.shadowRoot.querySelector(
+                    'lightning-button'
+                );
                 buttonEl.click();
 
                 return flushPromises().then(() => {
                     // Check if toast event has been fired
                     expect(handler).toHaveBeenCalled();
-                    expect(handler.mock.calls[0][0].detail.variant).toBe('success');
+                    expect(handler.mock.calls[0][0].detail.variant).toBe(
+                        'success'
+                    );
                 });
             });
         });
@@ -235,9 +265,12 @@ describe('c-lds-generate-record-input-for-create', () => {
             createRecord.mockRejectedValue(new Error('Account creation error'));
 
             // Create initial element
-            const element = createElement('c-lds-generate-record-input-for-create', {
-                is: ldsGenerateRecordInputForCreate
-            });
+            const element = createElement(
+                'c-lds-generate-record-input-for-create',
+                {
+                    is: ldsGenerateRecordInputForCreate
+                }
+            );
             document.body.appendChild(element);
 
             generateMockRecordInput();
@@ -253,13 +286,17 @@ describe('c-lds-generate-record-input-for-create', () => {
                 simulateUserInput(element, NAME_FIELD.fieldApiName, 'invalid');
 
                 // Select button for simulating user interaction
-                const buttonEl = element.shadowRoot.querySelector('lightning-button');
+                const buttonEl = element.shadowRoot.querySelector(
+                    'lightning-button'
+                );
                 buttonEl.click();
 
                 return flushPromises().then(() => {
                     // Check if toast event has been fired
                     expect(handler).toHaveBeenCalled();
-                    expect(handler.mock.calls[0][0].detail.variant).toBe('error');
+                    expect(handler.mock.calls[0][0].detail.variant).toBe(
+                        'error'
+                    );
                 });
             });
         });
