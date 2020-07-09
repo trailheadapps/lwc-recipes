@@ -14,13 +14,12 @@ export default class ContinuationComponent extends LightningElement {
     // Imperative Call
     callContinuation() {
         startRequest()
-            .then(result => {
+            .then((result) => {
                 this.imperativeContinuation = result;
             })
-            .catch(error => {
+            .catch((error) => {
                 this.imperativeContinuation = error;
-            }
-        );
+            });
     }
 
     get formattedImperativeResult() {
