@@ -11,6 +11,9 @@
         <componentInstances>
             <componentName>ldsCreateRecord</componentName>
         </componentInstances>
+        <componentInstances>
+            <componentName>ldsGenerateRecordInputForCreate</componentName>
+        </componentInstances>
         <name>region2</name>
         <type>Region</type>
     </flexiPageRegions>

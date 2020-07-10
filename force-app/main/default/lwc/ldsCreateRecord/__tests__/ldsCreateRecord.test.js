@@ -134,7 +134,7 @@ describe('c-lds-create-record', () => {
         const USER_INPUT = 'invalid';
 
         // Assign mock value for rejected createRecord promise
-        createRecord.mockRejectedValue = { id: '111' };
+        createRecord.mockRejectedValue(new Error('Account creation error'));
 
         // Create initial element
         const element = createElement('c-lds-create-record', {
@@ -158,13 +158,14 @@ describe('c-lds-create-record', () => {
         const buttonEl = element.shadowRoot.querySelector('lightning-button');
         buttonEl.click();
 
-        // Return a promise to wait for any asynchronous DOM updates. Jest
-        // will automatically wait for the Promise chain to complete before
-        // ending the test and fail the test if the promise rejects.
-        return Promise.resolve().then(() => {
+        // Return an immediate flushed promise (after the LDS call) to then
+        // wait for any asynchronous DOM updates. Jest will automatically wait
+        // for the Promise chain to complete before ending the test and fail
+        // the test if the promise ends in the rejected state.
+        return flushPromises().then(() => {
             // Check if toast event has been fired
             expect(handler).toHaveBeenCalled();
-            expect(handler.mock.calls[0][0].detail.variant).toBe('success');
+            expect(handler.mock.calls[0][0].detail.variant).toBe('error');
         });
     });
 });
