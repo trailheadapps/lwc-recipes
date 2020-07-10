@@ -5,6 +5,8 @@ import { LightningElement } from 'lwc';
 import hasAccessRestrictedUI from '@salesforce/customPermission/accessRestrictedUIPermission';
 
 export default class MiscPermissionBasedUI extends LightningElement {
-    // surface imported permission to HTML template
-    isRestrictedUIAccessible = hasAccessRestrictedUI;
+    // surface imported permission to HTML template with getter
+    get isRestrictedUIAccessible() {
+        return hasAccessRestrictedUI;
+    }
 }
