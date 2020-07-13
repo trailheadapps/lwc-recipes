@@ -1,7 +1,7 @@
 import { getTermOptions, calculateMonthlyPayment } from 'c/mortgage';
 
 describe('c-mortgage', () => {
-    describe('getTermOptions function', () => {
+    describe('calculateMonthlyPayment function', () => {
         it('returns monthly payment with valid inputs', () => {
             const principal = 50000;
             const years = 20;
