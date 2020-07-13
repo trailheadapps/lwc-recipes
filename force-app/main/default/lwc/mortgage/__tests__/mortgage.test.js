@@ -18,6 +18,7 @@ describe('c-mortgage', () => {
             // convert long decimal to two decimal places and compare
             expect(monthlyPayment.toFixed(2)).toBe(expectedResult);
         });
+
         it('returns zero with invalid inputs', () => {
             // each value tests each param as falsy, third param also tested for explicit zero value
             const invalidInputs = require('./data/invalidInputsTestData.json');
