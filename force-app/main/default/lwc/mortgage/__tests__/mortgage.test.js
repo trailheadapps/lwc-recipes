@@ -18,7 +18,7 @@ describe('c-mortgage', () => {
         });
         it('returns zero with invalid inputs', () => {
             // each value tests each param as falsy, third param also tested for explicit zero value
-            const invalidInputs = require('./data/invalidInputs.json');
+            const invalidInputs = require('./data/invalidInputsTestData.json');
 
             // invoke with 4 invalid input sets and store each return value in an array
             const results = invalidInputs.inputs.map((item) =>
