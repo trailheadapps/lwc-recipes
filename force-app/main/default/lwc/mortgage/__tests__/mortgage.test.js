@@ -3,17 +3,17 @@ import { getTermOptions, calculateMonthlyPayment } from 'c/mortgage';
 describe('c-mortgage', () => {
     describe('calculateMonthlyPayment function', () => {
         it('returns monthly payment with valid inputs', () => {
-            const principal = 50000;
-            const years = 20;
-            const rate = 3;
+            const PRINCIPLE = 50000;
+            const YEARS = 20;
+            const RATE = 3;
 
             // Get a two decimal place string representation of long decimal
             const expectedResult = (277.298798926959).toFixed(2);
 
             const monthlyPayment = calculateMonthlyPayment(
-                principal,
-                years,
-                rate
+                PRINCIPLE,
+                YEARS,
+                RATE
             );
             // convert long decimal to two decimal places and compare
             expect(monthlyPayment.toFixed(2)).toBe(expectedResult);
