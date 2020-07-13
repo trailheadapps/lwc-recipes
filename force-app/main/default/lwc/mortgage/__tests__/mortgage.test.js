@@ -7,14 +7,16 @@ describe('c-mortgage', () => {
             const years = 20;
             const rate = 3;
 
-            const expectedResult = 277.298798926959;
+            // Get a two decimal place string representation of long decimal
+            const expectedResult = (277.298798926959).toFixed(2);
 
             const monthlyPayment = calculateMonthlyPayment(
                 principal,
                 years,
                 rate
             );
-            expect(monthlyPayment).toBe(expectedResult);
+            // convert long decimal to two decimal places and compare
+            expect(monthlyPayment.toFixed(2)).toBe(expectedResult);
         });
         it('returns zero with invalid inputs', () => {
             // each value tests each param as falsy, third param also tested for explicit zero value
