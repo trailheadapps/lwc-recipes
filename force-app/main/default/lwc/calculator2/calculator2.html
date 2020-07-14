@@ -1,0 +1,29 @@
+<template>
+    <lightning-card>
+        <h3 slot="title">
+            <lightning-icon
+                icon-name="utility:connected_apps"
+                size="small"
+            ></lightning-icon>
+
+            Platform App Builder Exam Results
+        </h3>
+
+        <div slot="footer">
+            <h6>Your result is(%): </h6>
+            <lightning-badge label= {result}></lightning-badge>
+        </div>
+
+        <p class="slds-p-horizontal_small">
+            <lightning-input value={sfFundamentals} name="sfFundamentals" label="Salesforce Fundamentals" onchange={handleChanges}></lightning-input>
+            <lightning-input value={dataModeling} name="dataModeling" label="Data Modeling and Management" onchange={handleChanges}></lightning-input>
+            <lightning-input value={security} name="security" label="Security" onchange={handleChanges}></lightning-input>
+            <lightning-input value={automation} name="automation" label="Automation" onchange={handleChanges}></lightning-input>
+            <lightning-input value={social} name="social" label="Social" onchange={handleChanges}></lightning-input>
+            <lightning-input value={userInterface} name="userInterface" label="User Interface" onchange={handleChanges}></lightning-input>
+            <lightning-input value={reporting} name="reporting" label="Reporting" onchange={handleChanges}></lightning-input>
+            <lightning-input value={mobile} name="mobile" label="Mobile" onchange={handleChanges}></lightning-input>
+            <lightning-input value={appDeployment} name="appDeployment" label="App Deployment" onchange={handleChanges}></lightning-input>
+        </p>
+    </lightning-card>
+</template>

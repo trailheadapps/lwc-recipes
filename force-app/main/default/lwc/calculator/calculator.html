@@ -1,0 +1,32 @@
+<template>
+    <lightning-card>
+        <h3 slot="title">
+            <lightning-icon
+                icon-name="utility:connected_apps"
+                size="small"
+            ></lightning-icon>
+
+            Administrator Exam Results
+        </h3>
+
+        <div slot="footer">
+            <h6>Your result is(%):</h6>
+            <lightning-badge label= {result}></lightning-badge>
+        </div>
+
+        <p class="slds-p-horizontal_small">
+            <lightning-input value={orgSetup} name="orgSetup" label="Organizational Setup" onchange={handleChanges}></lightning-input>
+            <lightning-input value={userSetup} name="userSetup" label="User Setup" onchange={handleChanges}></lightning-input>
+            <lightning-input value={securityAccess} name="securityAccess" label="Security Access" onchange={handleChanges}></lightning-input>
+            <lightning-input value={stdCustomObjects} name="stdCustomObjects" label="Standard and Custom Objects" onchange={handleChanges}></lightning-input>
+            <lightning-input value={salesMarketingApps} name="salesMarketingApps" label="Sales and Marketing Applications" onchange={handleChanges}></lightning-input>
+            <lightning-input value={serviceSupportApps} name="serviceSupportApps" label="Service and Support Applications" onchange={handleChanges}></lightning-input>
+            <lightning-input value={activityMgtColab} name="activityMgtColab" label="Activity Management Collaboration" onchange={handleChanges}></lightning-input>
+            <lightning-input value={dataMgt} name="dataMgt" label="Data Management" onchange={handleChanges}></lightning-input>
+            <lightning-input value={reportsDashboards} name="reportsDashboards" label="Reports and Dashboards" onchange={handleChanges}></lightning-input>
+            <lightning-input value={workflowProcessAut} name="workflowProcessAut" label="Workflows and Process Automation" onchange={handleChanges}></lightning-input>
+            <lightning-input value={desktopMobileAdmin} name="desktopMobileAdmin" label="Desktop and Mobile Administration" onchange={handleChanges}></lightning-input>
+            <lightning-input value={appExchange} name="appExchange" label="AppExcahnge" onchange={handleChanges}></lightning-input>
+        </p>
+    </lightning-card>
+</template>
