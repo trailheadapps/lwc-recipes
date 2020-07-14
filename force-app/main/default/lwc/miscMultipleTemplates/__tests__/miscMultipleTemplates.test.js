@@ -62,6 +62,7 @@ describe('c-misc-multiple-templates', () => {
             expect(imgEl.getAttribute('src')).toBe(TEMPLATE2_LOGO_URL);
         });
     });
+
     it('displays templateOne after two clicks', () => {
         // Create initial element
         const element = createElement('c-misc-multiple-templates', {
