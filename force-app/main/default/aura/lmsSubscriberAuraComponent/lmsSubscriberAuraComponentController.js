@@ -1,11 +1,15 @@
 ({
     handleMessage: function (component, message) {
+        var recordId;
+        var service;
+
         if (message && message.getParam('recordId')) {
             // Retrieve LMS message parameter
-            var recordId = message.getParam('recordId');
+            recordId = message.getParam('recordId');
             component.set('v.contactId', recordId);
+
             // Refresh record from data service
-            var service = component.find('service');
+            service = component.find('service');
             service.reloadRecord();
         } else {
             component.set('v.contactId', '');
