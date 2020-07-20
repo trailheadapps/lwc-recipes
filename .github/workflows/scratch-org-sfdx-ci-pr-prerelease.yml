@@ -51,6 +51,12 @@ jobs:
             - name: 'Unit test Lightning Web Components'
               run: npm run test:unit:coverage
 
+            # Upload code coverage data
+            - name: 'Upload code coverage for LWC to Codecov.io'
+              uses: codecov/codecov-action@v1
+              with:
+                  flags: LWC
+
     scratch-org-test:
         runs-on: ubuntu-latest
         needs: formatting-and-linting
@@ -99,6 +105,12 @@ jobs:
             # Run Apex tests in scratch org
             - name: 'Run Apex tests'
               run: 'sfdx force:apex:test:run -c -r human -d ./tests/apex -w 20'
+
+            # Upload code coverage data
+            - name: 'Upload code coverage for Apex to Codecov.io'
+              uses: codecov/codecov-action@v1
+              with:
+                  flags: Apex
 
             # Housekeeping
             - name: 'Delete scratch org'

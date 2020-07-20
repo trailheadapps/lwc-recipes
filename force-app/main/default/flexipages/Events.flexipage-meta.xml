@@ -5,23 +5,29 @@
         <type>Region</type>
     </flexiPageRegions>
     <flexiPageRegions>
-        <componentInstances>
-            <componentName>eventSimple</componentName>
-        </componentInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentName>eventSimple</componentName>
+            </componentInstance>
+        </itemInstances>
         <name>region2</name>
         <type>Region</type>
     </flexiPageRegions>
     <flexiPageRegions>
-        <componentInstances>
-            <componentName>eventWithData</componentName>
-        </componentInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentName>eventWithData</componentName>
+            </componentInstance>
+        </itemInstances>
         <name>region3</name>
         <type>Region</type>
     </flexiPageRegions>
     <flexiPageRegions>
-        <componentInstances>
-            <componentName>eventBubbling</componentName>
-        </componentInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentName>eventBubbling</componentName>
+            </componentInstance>
+        </itemInstances>
         <name>region4</name>
         <type>Region</type>
     </flexiPageRegions>

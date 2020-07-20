@@ -21,16 +21,16 @@
     <formFactors>Large</formFactors>
     <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
     <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
-    <label>LWC</label>
+    <label>LWC Recipes</label>
     <navType>Standard</navType>
     <tabs>Hello</tabs>
-    <tabs>Apex</tabs>
     <tabs>Data_Service</tabs>
+    <tabs>Apex</tabs>
     <tabs>standard-Contact</tabs>
     <tabs>Composition</tabs>
     <tabs>Events</tabs>
     <tabs>Parent_to_Child</tabs>
-    <tabs>Pub_Sub</tabs>
+    <tabs>Message_Service</tabs>
     <tabs>Aura_Interoperability</tabs>
     <tabs>Wire</tabs>
     <tabs>Navigation</tabs>

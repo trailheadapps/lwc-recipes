@@ -3,4 +3,5 @@
     <context>All</context>
     <endpointUrl>https://www.googleapis.com</endpointUrl>
     <isActive>true</isActive>
+    <isApplicableToConnectSrc>true</isApplicableToConnectSrc>
 </CspTrustedSite>

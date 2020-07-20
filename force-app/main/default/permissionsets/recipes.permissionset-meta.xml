@@ -169,6 +169,10 @@
         <visibility>Visible</visibility>
     </tabSettings>
     <tabSettings>
+        <tab>Message_Service</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+    <tabSettings>
         <tab>Misc_Techniques</tab>
         <visibility>Visible</visibility>
     </tabSettings>
@@ -178,10 +182,6 @@
     </tabSettings>
     <tabSettings>
         <tab>Parent_to_Child</tab>
-        <visibility>Visible</visibility>
-    </tabSettings>
-    <tabSettings>
-        <tab>Pub_Sub</tab>
         <visibility>Visible</visibility>
     </tabSettings>
     <tabSettings>
