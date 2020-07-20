@@ -1,0 +1,61 @@
+<template>
+    <lightning-card>
+        <h3 slot="title">
+            <lightning-icon icon-name="utility:connected_apps" size="small"></lightning-icon>
+            Admin Exam Score Calculator
+        </h3>
+        <div slot="footer">
+            <lightning-badge label={result1}></lightning-badge>
+        </div>
+        <p class="slds-p-horizontal_small">
+            <lightning-input value={orgSetup} name="1" label="Admin - Org Setup" onchange={handleChanges1}></lightning-input>
+            <lightning-input value={userSetup} name="2" label="Admin - User Setup" onchange={handleChanges1}></lightning-input>
+            <lightning-input value={securityAndAccess} name="3" label="Admin - Security and Access" onchange={handleChanges1}></lightning-input>
+            <lightning-input value={standardAndCustomObjects} name="4" label="Admin - Standard and CustomObjects" onchange={handleChanges1}></lightning-input>
+            <lightning-input value={salesAndMArketingApps} name="5" label="Admin - Sales andd Marketing Apps" onchange={handleChanges1}></lightning-input>
+            <lightning-input value={salesAndSupportApps} name="6" label="Admin - Sales and SupportApps" onchange={handleChanges1}></lightning-input>
+            <lightning-input value={activityManagementAndCollaboration} name="7" label="Admin - Activity Management and Collaboration" onchange={handleChanges1}></lightning-input>
+            <lightning-input value={dataManagement} name="8" label="Admin - Data Management" onchange={handleChanges1}></lightning-input>
+            <lightning-input value={analyticsReportsAndDashboards} name="9" label="Admin - Analytics Reports and Dashboards" onchange={handleChanges1}></lightning-input>
+            <lightning-input value={workflowAndProcessAutomation} name="10" label="Admin - Workflow and Process Automation" onchange={handleChanges1}></lightning-input>
+            <lightning-input value={desktopAndMobileAdmin} name="11" label="Admin - Desktop and MobileAdmin" onchange={handleChanges1}></lightning-input>
+            <lightning-input value={appexchange} name="12" label="Admin - Appexchange" onchange={handleChanges1}></lightning-input>
+        </p>
+    </lightning-card>
+    <lightning-card>
+        <h3 slot="title">
+            <lightning-icon icon-name="utility:connected_apps" size="small"></lightning-icon>
+           AppBuilder Exam Score Calculator
+        </h3>
+        <div slot="footer">
+            <lightning-badge label={result2}></lightning-badge>
+        </div>
+        <p class="slds-p-horizontal_small">
+            <lightning-input value={salesforceFundamentals} name="first1" label="AppBuilder - Salesforce Fundamentals" onchange={handleChanges2}></lightning-input>
+            <lightning-input value={dataModelingAndManagement} name="second2" label="AppBuilder - Data Modeling and Management" onchange={handleChanges2}></lightning-input>
+            <lightning-input value={security} name="third3" label="AppBuilder - Security" onchange={handleChanges2}></lightning-input>
+            <lightning-input value={automation} name="fourth4" label="AppBuilder -  Automation" onchange={handleChanges2}></lightning-input>
+            <lightning-input value={social} name="fifth5" label="AppBuilder - Social" onchange={handleChanges2}></lightning-input>
+            <lightning-input value={userInterface} name="sixth6" label="AppBuilder - User Interface" onchange={handleChanges2}></lightning-input>
+            <lightning-input value={reporting} name="seventh7" label="AppBuilder - Reporting" onchange={handleChanges2}></lightning-input>
+            <lightning-input value={mobile} name="eights8" label="AppBuilder - Mobile" onchange={handleChanges2}></lightning-input>
+            <lightning-input value={appDeployment} name="nineth9" label="AppBuilder - AppDeployment" onchange={handleChanges2}></lightning-input>
+        </p>
+    </lightning-card>
+            <lightning-card>
+                <h3 slot="title">
+                    <lightning-icon icon-name="utility:connected_apps" size="small"></lightning-icon>
+                   Platform Developer1 Exam Score Calculator
+                </h3>
+                <div slot="footer">
+                    <lightning-badge label={result3}></lightning-badge>
+                </div>
+        <p class="slds-p-horizontal_small">
+            <lightning-input value={salesforceFundamentals} name="first" label="PD1 - Salesforce Fundamentals"  onchange={handleChanges3}></lightning-input>
+            <lightning-input value={dataModelingAndManagement} name="second" label="PD1 - Data Modeling and Management"  onchange={handleChanges3}></lightning-input>
+            <lightning-input value={processAutomationAndLogic} name="third" label="PD1 - Process Automation and Logic"  onchange={handleChanges3}></lightning-input>
+            <lightning-input value={userInterface} name="fourth" label="PD1 - User Interface"  onchange={handleChanges3}></lightning-input>
+            <lightning-input value={testingDebuggingAndDeployment} name="fifth" label="PD1 - Testing Debugging and Deployment"  onchange={handleChanges3}></lightning-input>
+        </p>
+    </lightning-card>
+</template>

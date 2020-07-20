@@ -59,7 +59,6 @@ export default class ExamCalculator extends LightningElement {
             this.testingDebuggingAndDeployment = event.target.value;
             this.testingDebuggingAndDeploymentPercentage = event.target.value;
         }
-        //this.percentage = event.target.value;
         this.result = parseInt(parseInt(this.salesforceFundamentals * 7)/100 +
             parseInt(this.dataModelingAndManagement * 13) / 100 +
             parseInt(this.processAutomationAndLogic * 38) / 100 +

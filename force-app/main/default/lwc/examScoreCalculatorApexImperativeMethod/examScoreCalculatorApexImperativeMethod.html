@@ -1,0 +1,21 @@
+<template>
+    <lightning-card title="ExamScoreCalculator" icon-name="custom:custom63">
+        <div class="slds-m-around_medium">
+            <p class="slds-m-bottom_small">
+                <lightning-button
+                    label="Load Scores"
+                    onclick={handleLoad}
+                ></lightning-button>
+            </p>
+            <template if:true={scores}>
+                <template for:each={scores} for:item="score">
+                    <p key={score.Id}>{score.Name}</p>
+                    <p key={score.Id}>{score.Result__c}</p>
+                </template>
+            </template>
+            <template if:true={error}>
+                <c-error-panel errors={error}></c-error-panel>
+            </template>
+        </div>
+    </lightning-card>
+</template>
