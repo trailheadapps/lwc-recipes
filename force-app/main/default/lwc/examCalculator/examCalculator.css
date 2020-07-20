@@ -1,0 +1,17 @@
+c-chart-bar {
+    position: relative;
+    border: solid 1px #020342;
+    border-radius: 4px;
+    display: block;
+    padding: 10px 2px 2px 2px;
+    margin-top: 12px;
+}
+c-chart-bar:before {
+    content: 'c-chart-bar';
+    color: #d14007;
+    position: absolute;
+    top: -10px;
+    left: 4px;
+    background-color: #ffffff;
+    padding: 0 4px;
+}

@@ -1,0 +1,24 @@
+<template>
+    <lightning-card>
+        <h3 slot="title">
+            <lightning-icon icon-name="utility:dial_in" size="small"></lightning-icon>
+            "Platform Developer1" Exam Score Calculator
+        </h3>
+        <div slot="footer">
+            <lightning-badge label={result}></lightning-badge>
+        </div>
+        <p class="slds-p-horizontal_small">
+            <lightning-input value={salesforceFundamentals} name="salesforceFundamentals" label="PD1 - Salesforce Fundamentals"  onchange={handleChanges}></lightning-input>
+            <c-chart-bar percentage={salesforceFundamentalsPercentage}></c-chart-bar>
+            <lightning-input value={dataModelingAndManagement} name="dataModelingAndManagement" label="PD1 - Data Modeling and Management"  onchange={handleChanges}></lightning-input>
+            <c-chart-bar percentage={dataModelingAndManagementPercentage}></c-chart-bar>
+            <lightning-input value={processAutomationAndLogic} name="processAutomationAndLogic" label="PD1 - Process Automation and Logic"  onchange={handleChanges}></lightning-input>
+            <c-chart-bar percentage={processAutomationAndLogicPercentage}></c-chart-bar>
+            <lightning-input value={userInterface} name="userInterface" label="PD1 - User Interface"  onchange={handleChanges}></lightning-input>
+            <c-chart-bar percentage={userInterfacePercentage}></c-chart-bar>
+            <lightning-input value={testingDebuggingAndDeployment} name="testingDebuggingAndDeployment" label="PD1 - Testing Debugging and Deployment"  onchange={handleChanges}></lightning-input>
+            <c-chart-bar percentage={testingDebuggingAndDeploymentPercentage}></c-chart-bar>
+        </p>
+    </lightning-card>
+    <lightning-button label="Save Score" onclick={saveScore}></lightning-button>
+</template>
