@@ -9,8 +9,14 @@
             </p>
             <template if:true={scores}>
                 <template for:each={scores} for:item="score">
-                    <p key={score.Id}>{score.Name}</p>
-                    <p key={score.Id}>{score.Result__c}</p>
+                    <tr key={score.Id}>
+                        <td>
+                            <p>{score.Name}</p>
+                        </td>
+                        <td>
+                            <p>{score.Result__c}</p>
+                        </td>
+                    </tr>
                 </template>
             </template>
             <template if:true={error}>

@@ -1,5 +1,5 @@
 public with sharing class ExamScoreCalculatorController {
-    @AuraEnabled(cacheable=true)
+    @AuraEnabled
     public static list<Score__c> getScoreList() {
         return [
             SELECT Id, Name, Result__c
