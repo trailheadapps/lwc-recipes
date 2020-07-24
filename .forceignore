@@ -18,4 +18,4 @@ package.xml
 **/__tests__/**
 
 # For the pubsub README
-**/README.md
+**/pubsub/**
