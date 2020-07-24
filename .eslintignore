@@ -13,3 +13,5 @@
 **/aura/**/*.xml
 **/aura/**/*.tokens
 .sfdx
+
+**/lwc/pubsub/README.md
