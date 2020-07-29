@@ -3,14 +3,14 @@
         title="HelloConditionalRendering"
         icon-name="custom:custom14"
     >
-        <div class="slds-m-around_medium">
+        <div class="slds-var-m-around_medium">
             <lightning-input
                 type="checkbox"
                 label="Show details"
                 onchange={handleChange}
             ></lightning-input>
 
-            <div class="slds-m-vertical_medium">
+            <div class="slds-var-m-vertical_medium">
                 <template if:true={areDetailsVisible}>
                     These are the details!
                 </template>

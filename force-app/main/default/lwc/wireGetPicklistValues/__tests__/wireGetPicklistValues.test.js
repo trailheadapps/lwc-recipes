@@ -1,6 +1,6 @@
 import { createElement } from 'lwc';
 import WireGetPicklistValues from 'c/wireGetPicklistValues';
-import { registerLdsTestWireAdapter } from '@salesforce/lwc-jest';
+import { registerLdsTestWireAdapter } from '@salesforce/sfdx-lwc-jest';
 import { getPicklistValues } from 'lightning/uiObjectInfoApi';
 
 // Mock realistic data
@@ -40,7 +40,7 @@ describe('c-wire-get-picklist-values', () => {
                     mockGetPicklistValues.values.length
                 );
 
-                checkboxEls.forEach(checkboxEl => {
+                checkboxEls.forEach((checkboxEl) => {
                     expect(checkboxEl.type).toBe('checkbox');
                 });
             });

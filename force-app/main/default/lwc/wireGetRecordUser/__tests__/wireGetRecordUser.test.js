@@ -1,7 +1,7 @@
 import { createElement } from 'lwc';
 import WireGetRecordUser from 'c/wireGetRecordUser';
 import { getRecord, getFieldValue } from 'lightning/uiRecordApi';
-import { registerLdsTestWireAdapter } from '@salesforce/lwc-jest';
+import { registerLdsTestWireAdapter } from '@salesforce/sfdx-lwc-jest';
 
 // Mock realistic data
 const mockGetRecord = require('./data/getRecord.json');
@@ -21,7 +21,7 @@ describe('c-wire-get-record-user', () => {
     // timing.
     function flushPromises() {
         // eslint-disable-next-line no-undef
-        return new Promise(resolve => setImmediate(resolve));
+        return new Promise((resolve) => setImmediate(resolve));
     }
 
     describe('getRecord @wire data', () => {

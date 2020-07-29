@@ -1,0 +1,19 @@
+<template>
+    <div class="slds-var-m-vertical_small">
+        <span class="slds-text-color_destructive">
+            {friendlyMessage}.
+            <template if:true={errorMessages.length}>
+                <a onclick={handleShowDetailsClick}> Show details.</a>
+            </template>
+        </span>
+        <template if:true={errorMessages.length}>
+            <template if:true={viewDetails}>
+                <template for:each={errorMessages} for:item="message">
+                    <p class="slds-text-body_regular" key={message}>
+                        {message}
+                    </p>
+                </template>
+            </template>
+        </template>
+    </div>
+</template>

@@ -1,6 +1,6 @@
 import { createElement } from 'lwc';
 import LibsChartjs from 'c/libsChartjs';
-import { loadScript } from 'lightning/platformResourceLoader';
+import { loadScript, loadStyle } from 'lightning/platformResourceLoader';
 
 // Sample error for loadScript error
 const LOAD_SCRIPT_ERROR = {
@@ -24,7 +24,7 @@ describe('c-libs-chartjs', () => {
     // timing when the platformResourceLoader promises.
     function flushPromises() {
         // eslint-disable-next-line no-undef
-        return new Promise(resolve => setImmediate(resolve));
+        return new Promise((resolve) => setImmediate(resolve));
     }
 
     it('contains a canvas element for ChartJs', () => {
@@ -35,12 +35,13 @@ describe('c-libs-chartjs', () => {
         document.body.appendChild(element);
 
         // Querying the DOM element that has the lwc:dom directive set.
-        const domEl = element.shadowRoot.querySelector('canvas[class="donut"]');
+        const domEl = element.shadowRoot.querySelector('div.chart');
         expect(domEl).not.toBeNull();
     });
 
-    it('loads the ChartJS javascript static resource', () => {
-        const CHARTJS_JS = 'chart';
+    it('loads the ChartJS javascript and css static resources', () => {
+        const CHARTJS_JS = 'chartJs/Chart.min.js';
+        const CHARTJS_CSS = 'chartJs/Chart.min.css';
 
         // Create initial element
         const element = createElement('c-libs-chartjs', {
@@ -48,10 +49,12 @@ describe('c-libs-chartjs', () => {
         });
         document.body.appendChild(element);
 
-        // Validation that the loadScript promise is called once.
+        // Validation that the loadScript and loadStyle promises are each called once.
         expect(loadScript.mock.calls.length).toBe(1);
-        // Validation that the chartjs static resource is passed as parameter.
+        expect(loadStyle.mock.calls.length).toBe(1);
+        // Validation that the chartjs js and css static resources are each passed as parameters.
         expect(loadScript.mock.calls[0][1]).toEqual(CHARTJS_JS);
+        expect(loadStyle.mock.calls[0][1]).toEqual(CHARTJS_CSS);
     });
 
     it('shows the error panel element on static resource load error', () => {

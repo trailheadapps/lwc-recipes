@@ -40,7 +40,7 @@ describe('c-misc-rest-api-call', () => {
     // This is needed for promise timing.
     function flushPromises() {
         // eslint-disable-next-line no-undef
-        return new Promise(resolve => setImmediate(resolve));
+        return new Promise((resolve) => setImmediate(resolve));
     }
 
     it('calls the Google Books API based on user input', () => {
@@ -89,7 +89,7 @@ describe('c-misc-rest-api-call', () => {
 
     it('renders book details based on a user query', () => {
         const USER_INPUT = 'Harry Potter';
-        const BOOK_TITLES = FETCH_DATA.items.map(book => book.title);
+        const BOOK_TITLES = FETCH_DATA.items.map((book) => book.title);
 
         // Create initial element
         const element = createElement('c-misc-rest-api-call', {
@@ -114,7 +114,7 @@ describe('c-misc-rest-api-call', () => {
             // returned by fetch, and that they are populated with the book titles.
             const EXPECTED = Array.from(
                 element.shadowRoot.querySelectorAll('p')
-            ).map(p => p.tag);
+            ).map((p) => p.tag);
             expect(EXPECTED).toEqual(BOOK_TITLES);
         });
     });

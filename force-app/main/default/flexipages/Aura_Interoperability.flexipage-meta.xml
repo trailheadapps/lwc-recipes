@@ -1,30 +1,23 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <FlexiPage xmlns="http://soap.sforce.com/2006/04/metadata">
     <flexiPageRegions>
-        <componentInstances>
-            <componentName>auraEmbeddedLWC</componentName>
-        </componentInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentName>auraEmbeddedLWC</componentName>
+            </componentInstance>
+        </itemInstances>
         <name>region1</name>
         <type>Region</type>
     </flexiPageRegions>
     <flexiPageRegions>
-        <componentInstances>
-            <componentName>auraPubsubPublisher</componentName>
-        </componentInstances>
         <name>region2</name>
         <type>Region</type>
     </flexiPageRegions>
     <flexiPageRegions>
-        <componentInstances>
-            <componentName>pubsubContactList</componentName>
-        </componentInstances>
         <name>region3</name>
         <type>Region</type>
     </flexiPageRegions>
     <flexiPageRegions>
-        <componentInstances>
-            <componentName>auraPubsubSubscriber</componentName>
-        </componentInstances>
         <name>region4</name>
         <type>Region</type>
     </flexiPageRegions>

@@ -54,7 +54,7 @@ describe('c-apex-imperative-method-with-complex-params', () => {
     // timing when calling imperative Apex.
     function flushPromises() {
         // eslint-disable-next-line no-undef
-        return new Promise(resolve => setImmediate(resolve));
+        return new Promise((resolve) => setImmediate(resolve));
     }
 
     it('passes the user input to the Apex method correctly', () => {

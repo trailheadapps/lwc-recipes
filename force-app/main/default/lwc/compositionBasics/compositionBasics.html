@@ -1,7 +1,10 @@
 <template>
     <lightning-card title="CompositionBasics" icon-name="custom:custom57">
-        <div class="slds-m-around_medium">
-            <c-contact-tile contact={contact}></c-contact-tile>
+        <div class="slds-var-m-around_medium">
+            <c-contact-tile
+                class="slds-show slds-is-relative"
+                contact={contact}
+            ></c-contact-tile>
         </div>
 
         <c-view-source source="lwc/compositionBasics" slot="footer">

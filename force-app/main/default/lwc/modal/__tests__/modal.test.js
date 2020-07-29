@@ -1,8 +1,6 @@
 import { createElement } from 'lwc';
 import Modal from 'c/modal';
 
-const CSS_CLASS = 'modal-hidden';
-
 describe('c-modal', () => {
     afterEach(() => {
         // The jsdom instance is shared across test cases in a single file so reset the DOM
@@ -19,6 +17,7 @@ describe('c-modal', () => {
             is: Modal
         });
         element.header = HEADER;
+        element.show();
         document.body.appendChild(element);
 
         // Query h2 element for header. We use a CSS selector to distinguish
@@ -36,13 +35,14 @@ describe('c-modal', () => {
         expect(headerSlotEl).toBeNull();
     });
 
-    // lwc-jest cannot validate slotchange events. We're only checking
+    // sfdx-lwc-jest cannot validate slotchange events. We're only checking
     // here if the empty h2 div is rendered.
     it('renders the header slot when no public header property is set', () => {
         // Create initial element
         const element = createElement('c-modal', {
             is: Modal
         });
+        element.show();
         document.body.appendChild(element);
 
         // Return a promise to wait for any asynchronous DOM updates. Jest
@@ -64,10 +64,12 @@ describe('c-modal', () => {
         });
         document.body.appendChild(element);
 
-        const outerDivEl = element.shadowRoot.querySelector('div');
+        const modalContainerElement = element.shadowRoot.querySelector(
+            '.slds-modal__container'
+        );
 
-        // // Validate default value
-        expect(outerDivEl.classList.value).toBe(CSS_CLASS);
+        // validate default no DOM rendered
+        expect(modalContainerElement).toBeNull();
     });
 
     it('changes the modal CSS class based on public function calls', () => {
@@ -77,18 +79,33 @@ describe('c-modal', () => {
         });
         document.body.appendChild(element);
 
-        const outerDivEl = element.shadowRoot.querySelector('div');
-
-        // Call `show` function to remove CSS class
+        // Call `show` to change showModal to true
         element.show();
 
-        // // Validate that CSS class is removed
-        expect(outerDivEl.classList.value).toBe('');
+        // Return a promise to wait for any asynchronous DOM updates. Jest
+        // will automatically wait for the Promise chain to complete before
+        // ending the test and fail the test if the promise rejects.
+        return Promise.resolve()
+            .then(() => {
+                // Query modal container div element
+                const modalContainerElementShow = element.shadowRoot.querySelector(
+                    '.slds-modal__container'
+                );
 
-        // Call `hide` function to add CSS class
-        element.hide();
+                // validate we successfully found the modal container DOM element
+                expect(modalContainerElementShow.tagName).toBe('DIV');
 
-        // // Validate that CSS class is added
-        expect(outerDivEl.classList.value).toBe(CSS_CLASS);
+                // Call 'hide' to set showModal to false
+                element.hide();
+            })
+            .then(() => {
+                // Query modal container div element
+                const modalContainerElementHide = element.shadowRoot.querySelector(
+                    '.slds-modal__container'
+                );
+
+                // validate we successfully removed the modal from the DOM
+                expect(modalContainerElementHide).toBeNull();
+            });
     });
 });

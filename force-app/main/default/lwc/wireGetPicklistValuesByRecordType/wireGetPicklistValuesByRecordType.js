@@ -1,10 +1,10 @@
-import { LightningElement, wire, track } from 'lwc';
+import { LightningElement, wire } from 'lwc';
 import { getPicklistValuesByRecordType } from 'lightning/uiObjectInfoApi';
 import ACCOUNT_RECORD from '@salesforce/schema/Account';
 
 export default class WireGetPicklistValuesByRecordType extends LightningElement {
-    @track treeModel;
-    @track error;
+    treeModel;
+    error;
 
     @wire(getPicklistValuesByRecordType, {
         objectApiName: ACCOUNT_RECORD,
@@ -22,10 +22,10 @@ export default class WireGetPicklistValuesByRecordType extends LightningElement 
 
     buildTreeModel(picklistValues) {
         const treeNodes = [];
-        Object.keys(picklistValues).forEach(picklist => {
+        Object.keys(picklistValues).forEach((picklist) => {
             treeNodes.push({
                 label: picklist,
-                items: picklistValues[picklist].values.map(item => ({
+                items: picklistValues[picklist].values.map((item) => ({
                     label: item.label,
                     name: item.value
                 }))

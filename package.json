@@ -6,14 +6,14 @@
     "scripts": {
         "lint": "npm run lint:lwc && npm run lint:aura",
         "lint:lwc": "eslint **/lwc/**",
-        "lint:aura": "sfdx force:lightning:lint force-app/main/default/aura --exit",
+        "lint:aura": "eslint **/aura/**",
         "test": "npm run lint && npm run test:unit",
-        "test:unit": "lwc-jest",
-        "test:unit:watch": "lwc-jest --watch",
-        "test:unit:debug": "lwc-jest --debug",
-        "test:unit:coverage": "lwc-jest --coverage",
-        "prettier": "prettier --write '**/*.{cmp,component,css,html,js,json,md,page,yaml,yml}'",
-        "prettier:verify": "prettier --list-different '**/*.{html,js,json,yaml,yml,md,cmp,page,component}'",
+        "test:unit": "sfdx-lwc-jest",
+        "test:unit:watch": "sfdx-lwc-jest --watch",
+        "test:unit:debug": "sfdx-lwc-jest --debug",
+        "test:unit:coverage": "sfdx-lwc-jest --coverage",
+        "prettier": "prettier --write \"**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,xml,yaml,yml}\"",
+        "prettier:verify": "prettier --list-different \"**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,xml,yaml,yml}\"",
         "postinstall": "node bin/check-version.js"
     },
     "author": "salesforce.com",
@@ -27,28 +27,30 @@
         "npm": ">= 6.5.0"
     },
     "devDependencies": {
-        "@salesforce/eslint-config-lwc": "^0.3.0",
-        "@salesforce/lwc-jest": "^0.5.0",
-        "eslint": "^5.16.0",
-        "husky": "^2.4.1",
-        "lint-staged": "^8.1.5",
-        "prettier": "^1.18",
-        "semver": "^6.1.1"
+        "@prettier/plugin-xml": "^0.7.2",
+        "@salesforce/eslint-config-lwc": "^0.7.0",
+        "@salesforce/eslint-plugin-aura": "^1.4.0",
+        "@salesforce/sfdx-lwc-jest": "^0.9.1",
+        "eslint": "^7.2.0",
+        "eslint-config-prettier": "^6.11.0",
+        "husky": "^4.2.5",
+        "jest-canvas-mock": "^2.2.0",
+        "lint-staged": "^10.2.11",
+        "prettier": "^2.0.5",
+        "prettier-plugin-apex": "^1.5.0",
+        "semver": "^7.3.2"
     },
     "husky": {
         "hooks": {
-            "pre-commit": "lint-staged && npm run lint:aura"
+            "pre-commit": "lint-staged"
         }
     },
     "lint-staged": {
-        "**/*.{html,js,json,yaml,yml,md,cmp,page,component}": [
+        "**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,xml,yaml,yml}": [
             "prettier --write"
         ],
-        "**/lwc/**": [
+        "**/{aura|lwc}/**": [
             "eslint"
-        ],
-        "*": [
-            "git add"
         ]
     }
 }

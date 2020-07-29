@@ -16,3 +16,6 @@ package.xml
 
 # LWC Jest
 **/__tests__/**
+
+# For the pubsub README
+**/pubsub/**

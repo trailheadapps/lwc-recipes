@@ -1,7 +1,11 @@
-import { LightningElement, api, track } from 'lwc';
+import { LightningElement, api } from 'lwc';
 
 export default class TodoList extends LightningElement {
-    @track filteredTodos = [];
+    // Spring 20 Note on tracked properties: this component may seem to
+    // mutate an array, but because Array.prototype.filter() always creates
+    // a new array, in fact no mutation occurs. Since we always assign
+    // a new array to filteredTodos, the track decorator is not required.
+    filteredTodos = [];
 
     _todos = [];
 
@@ -19,7 +23,7 @@ export default class TodoList extends LightningElement {
     filterTodos() {
         if (this.priorityFilter) {
             this.filteredTodos = this._todos.filter(
-                todo => todo.priority === true
+                (todo) => todo.priority === true
             );
         } else {
             this.filteredTodos = this._todos;

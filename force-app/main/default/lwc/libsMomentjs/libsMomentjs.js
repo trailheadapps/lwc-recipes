@@ -1,14 +1,14 @@
 /* global moment */
-import { LightningElement, track } from 'lwc';
+import { LightningElement } from 'lwc';
 import { loadScript } from 'lightning/platformResourceLoader';
 import MOMENT_JS from '@salesforce/resourceUrl/moment';
 
 export default class LibsMomentjs extends LightningElement {
-    @track error;
-    @track selectedDateTime = new Date().toISOString();
-    @track weekOfYear;
-    @track dayOfYear;
-    @track calculatedDateTime;
+    error;
+    selectedDateTime = new Date().toISOString();
+    weekOfYear;
+    dayOfYear;
+    calculatedDateTime;
 
     renderedCallback() {
         if (this.momentjsInitialized) {
@@ -20,7 +20,7 @@ export default class LibsMomentjs extends LightningElement {
             .then(() => {
                 this.setMomentValues(this.selectedDateTime);
             })
-            .catch(error => {
+            .catch((error) => {
                 this.error = error;
             });
     }

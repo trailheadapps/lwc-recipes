@@ -20,7 +20,7 @@ describe('c-misc-dom-query', () => {
         const lightningInputCheckedEls = element.shadowRoot.querySelectorAll(
             'lightning-input'
         );
-        lightningInputCheckedEls.forEach(input => {
+        lightningInputCheckedEls.forEach((input) => {
             expect(input.checked).toBeFalsy();
         });
     });

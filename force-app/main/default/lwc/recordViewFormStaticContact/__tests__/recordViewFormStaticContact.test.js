@@ -68,7 +68,7 @@ describe('c-record-view-form-static-contact', () => {
         // Select elements for validation
         const outputFieldNames = Array.from(
             element.shadowRoot.querySelectorAll('lightning-output-field')
-        ).map(outputField => outputField.fieldName);
+        ).map((outputField) => outputField.fieldName);
         expect(outputFieldNames).toEqual(OUTPUT_FIELDS);
     });
 });

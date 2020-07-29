@@ -14,7 +14,7 @@ describe('c-misc-content-asset', () => {
             'img[alt="Recipes logo"]'
         );
         expect(imgRecipesEl).not.toBeNull();
-        // lwc-jest automocks @salesforce/contentAsset, and returns localhost/name_of_content_asset.
+        // sfdx-lwc-jest automocks @salesforce/contentAsset, and returns localhost/name_of_content_asset.
         expect(imgRecipesEl.src).toBe('http://localhost/recipes_sq_logo');
     });
 });

@@ -5,38 +5,64 @@
         <type>Region</type>
     </flexiPageRegions>
     <flexiPageRegions>
-        <componentInstances>
-            <componentName>miscGetUserId</componentName>
-        </componentInstances>
-        <componentInstances>
-            <componentName>miscNotification</componentName>
-        </componentInstances>
-        <componentInstances>
-            <componentName>miscModal</componentName>
-        </componentInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentName>miscPermissionBasedUI</componentName>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentName>miscGetUserId</componentName>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentName>miscNotification</componentName>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentName>miscModal</componentName>
+            </componentInstance>
+        </itemInstances>
         <name>region2</name>
         <type>Region</type>
     </flexiPageRegions>
     <flexiPageRegions>
-        <componentInstances>
-            <componentName>miscSharedJavaScript</componentName>
-        </componentInstances>
-        <componentInstances>
-            <componentName>miscRestApiCall</componentName>
-        </componentInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentName>miscSharedJavaScript</componentName>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentName>miscRestApiCall</componentName>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentName>miscDomQuery</componentName>
+            </componentInstance>
+        </itemInstances>
         <name>region3</name>
         <type>Region</type>
     </flexiPageRegions>
     <flexiPageRegions>
-        <componentInstances>
-            <componentName>miscStaticResource</componentName>
-        </componentInstances>
-        <componentInstances>
-            <componentName>miscContentAsset</componentName>
-        </componentInstances>
-        <componentInstances>
-            <componentName>miscDomQuery</componentName>
-        </componentInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentName>miscStaticResource</componentName>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentName>miscContentAsset</componentName>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentName>miscMultipleTemplates</componentName>
+            </componentInstance>
+        </itemInstances>
         <name>region4</name>
         <type>Region</type>
     </flexiPageRegions>

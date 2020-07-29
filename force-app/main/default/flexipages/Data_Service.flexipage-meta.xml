@@ -1,23 +1,34 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <FlexiPage xmlns="http://soap.sforce.com/2006/04/metadata">
     <flexiPageRegions>
-        <componentInstances>
-            <componentName>lds</componentName>
-        </componentInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentName>lds</componentName>
+            </componentInstance>
+        </itemInstances>
         <name>region1</name>
         <type>Region</type>
     </flexiPageRegions>
     <flexiPageRegions>
-        <componentInstances>
-            <componentName>ldsCreateRecord</componentName>
-        </componentInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentName>ldsCreateRecord</componentName>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentName>ldsGenerateRecordInputForCreate</componentName>
+            </componentInstance>
+        </itemInstances>
         <name>region2</name>
         <type>Region</type>
     </flexiPageRegions>
     <flexiPageRegions>
-        <componentInstances>
-            <componentName>ldsDeleteRecord</componentName>
-        </componentInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentName>ldsDeleteRecord</componentName>
+            </componentInstance>
+        </itemInstances>
         <name>region3</name>
         <type>Region</type>
     </flexiPageRegions>
