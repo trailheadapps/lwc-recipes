@@ -6,6 +6,7 @@
 .sfdx
 coverage/
 .vscode
+jsconfig.json
 
 # Only prettify specifc static resources
 force-app/main/default/staticresources/*
