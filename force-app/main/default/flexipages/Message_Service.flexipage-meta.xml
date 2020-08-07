@@ -41,7 +41,7 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
-                    <value>LMSPublisherVisualforce</value>
+                    <value>LmsPublisherVisualforce</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>pageName</name>
@@ -62,7 +62,7 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
-                    <value>LMSSubscriberVisualforceRemoting</value>
+                    <value>LmsSubscriberVisualforceRemoting</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>pageName</name>
@@ -83,7 +83,7 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
-                    <value>LMSSubscriberVisualforcePostbackAction</value>
+                    <value>LmsSubscriberVisualforcePostbackAction</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>pageName</name>
