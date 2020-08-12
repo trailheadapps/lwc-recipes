@@ -80,6 +80,7 @@ jobs:
 
             # The main branch is protected, so we have to take a sequea for updating the README through a new PR
             - name: 'Create new branch and pull request for new package version ID'
+              id: create-pr
               uses: peter-evans/create-pull-request@v3
               with:
                   title: 'Released new package version: ${{ steps.extract-data-package-version-create.outputs.packageVersionId }}'
@@ -94,12 +95,12 @@ jobs:
               uses: juliangruber/approve-pull-request-action@v1
               with:
                   github-token: ${{ secrets.GITHUB_TOKEN }}
-                  number: ${{ env.PULL_REQUEST_NUMBER }}
+                  number: ${{ steps.create-pr.outputs.pull-request-number }}
 
             # Merge pull request
             - name: 'Merge pull request'
               uses: juliangruber/merge-pull-request-action@v1
               with:
                   github-token: ${{ secrets.GITHUB_TOKEN }}
-                  number: ${{ env.PULL_REQUEST_NUMBER }}
+                  number: ${{ steps.create-pr.outputs.pull-request-number }}
                   method: squash
