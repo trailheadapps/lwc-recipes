@@ -48,7 +48,7 @@ jobs:
                   echo $json
                   status=$(echo $json | jq '.status')
                   if [ $status == "0" ]; then
-                      packageVersionId=$(echo $json | jq '.result.SubscriberPackageVersionId')
+                      packageVersionId=$(echo $json | jq -r '.result.SubscriberPackageVersionId')
                       echo "::set-output name=packageVersionId::$packageVersionId"
                   else
                       echo "sfdx force:package:version:create failed"
