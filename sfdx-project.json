@@ -12,7 +12,6 @@
     "sourceApiVersion": "49.0",
     "sfdcLoginUrl": "https://login.salesforce.com",
     "packageAliases": {
-        "LWCRecipes": "0HoB0000000GmiJKAS",
-        "LWCRecipes@3.0.0-155": "04tB0000000QORbIAO"
+        "LWCRecipes": "0Ho3t000000KywNCAS"
     }
 }

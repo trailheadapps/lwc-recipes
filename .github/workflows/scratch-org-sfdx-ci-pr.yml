@@ -12,7 +12,18 @@ on:
 
 # Jobs to be executed
 jobs:
+    # Dummy job used to skip CI run on automated PRs
+    skip-ci:
+        if: "github.actor == 'trailheadapps-bot'"
+        runs-on: ubuntu-latest
+        steps:
+            - name: Noop
+              run: |
+                  echo "Skipping CI run for automated PRs."
+
+    # Formatting and linting only runs on human-submitted PRs
     formatting-and-linting:
+        if: "github.actor != 'trailheadapps-bot'"
         runs-on: ubuntu-latest
         steps:
             # Checkout the code in the pull request
@@ -44,10 +55,10 @@ jobs:
               run: npm run lint:lwc
 
             # Lint Aura
-            - name: 'Lint Aura'
-              run: npm run lint:aura
+            - name: 'Lint Aura components'
+              run: 'npm run lint:aura'
 
-            # Unit tests
+            # LWC unit tests
             - name: 'Unit test Lightning Web Components'
               run: npm run test:unit:coverage
 
