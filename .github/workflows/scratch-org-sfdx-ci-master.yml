@@ -120,14 +120,13 @@ jobs:
             # Checkout the source code with history
             - name: 'Checkout source code'
               uses: actions/checkout@v2
-              with:
-                  fetch-depth: 0
 
             # Check for package changes using git diff
             - name: Check for package changes
               id: checkForChanges
               run: |
-                  changedPaths=$(git diff-tree --name-only ${{ github.event.before }} ${{ github.sha }})
+                  git fetch origin $GITHUB_BASE_REF --depth=1
+                  changedPaths=$( git diff-tree --name-only origin/$GITHUB_BASE_REF $GITHUB_SHA )
                   set +e
                   hasChanges='false'
                   if [ $(echo "$changedPaths" | grep -c '^force-app') == 1 ]; then
@@ -135,8 +134,8 @@ jobs:
                   fi
                   echo "::set-output name=hasChanges::$hasChanges"
 
-            # Trigger packaging workflow
-            - name: 'Trigger packaging workflow if needed'
+            # Trigger Packaging workflow
+            - name: 'Trigger Packaging workflow if needed'
               uses: peter-evans/repository-dispatch@v1.1.0
               if: ${{ steps.checkForChanges.outputs.hasChanges == 'true' }}
               with:

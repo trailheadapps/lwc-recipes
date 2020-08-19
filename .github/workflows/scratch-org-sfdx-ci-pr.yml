@@ -131,15 +131,13 @@ jobs:
             # Checkout the source code with history
             - name: 'Checkout source code'
               uses: actions/checkout@v2
-              with:
-                  fetch-depth: 0
 
             # Check for package changes using git diff
             - name: Check for package changes
               id: checkForChanges
               run: |
-                  changedPaths=$(git diff-tree --name-only ${{ github.event.before }} ${{ github.sha }})
-                  echo $changedPaths
+                  git fetch origin $GITHUB_BASE_REF --depth=1
+                  changedPaths=$( git diff-tree --name-only origin/$GITHUB_BASE_REF $GITHUB_SHA )
                   set +e
                   hasChanges='false'
                   if [ $(echo "$changedPaths" | grep -c '^force-app') == 1 ]; then
