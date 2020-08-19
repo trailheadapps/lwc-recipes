@@ -1,8 +1,7 @@
 # Unique name for this workflow
 name: Packaging
 
-# Workflow starts when receiving release-package-version-event custom event
-# Event contains the packageName of the target package for which a new version will be released
+# Workflow starts when receiving custom event sent by CI workflow
 on:
     repository_dispatch:
         types: [release-package-version-event]
