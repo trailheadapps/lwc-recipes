@@ -123,3 +123,34 @@ jobs:
             - name: 'Delete scratch org'
               if: always()
               run: 'sfdx force:org:delete -p -u scratch-org'
+
+    trigger-packaging:
+        runs-on: ubuntu-latest
+        needs: scratch-org-test
+        steps:
+            # Checkout the source code with history
+            - name: 'Checkout source code'
+              uses: actions/checkout@v2
+              with:
+                  fetch-depth: 0
+
+            # Check for package changes using git diff
+            - name: Check for package changes
+              id: checkForChanges
+              run: |
+                  changedPaths=$(git diff-tree --name-only ${{ github.event.before }} ${{ github.sha }})
+                  set +e
+                  hasChanges='false'
+                  if [[ $(echo "$changedPaths" | grep -c '^force-app$') == 1 ]]; then
+                      hasChanges='true'
+                  fi
+                  echo "::set-output name=hasChanges::$hasChanges"
+
+            # Trigger Packaging Master PR workflow
+            - name: 'Trigger Packaging Master PR workflow if needed'
+              uses: peter-evans/repository-dispatch@v1.1.0
+              if: ${{ steps.checkForChanges.outputs.hasChanges == 'true' }}
+              with:
+                  token: ${{ secrets.BOT_ACCESS_TOKEN }}
+                  event-type: package-master-pr-event
+                  client-payload: '{ "ref": "${{ github.ref }}", "sha": "${{ github.sha }}" }'
