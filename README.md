@@ -102,7 +102,7 @@ Make sure to start from a brand-new environment to avoid conflicts with previous
     - Go to **Setup > Users > Permission Sets**.
     - Click **recipes**.
     - Click **Manage Assignments**.
-    - Check your user and click **Add Assigements**.
+    - Check your user and click **Add Assignments**.
 
 1. In **Setup**, under **Themes and Branding**, activate the **Recipes Lite** or **Recipes Blue** theme.
 
