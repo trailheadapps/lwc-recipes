@@ -125,8 +125,8 @@ jobs:
             - name: Check for package changes
               id: checkForChanges
               run: |
-                  git fetch origin $GITHUB_BASE_REF --depth=1
-                  changedPaths=$( git diff-tree --name-only origin/$GITHUB_BASE_REF $GITHUB_SHA )
+                  git fetch origin ${{ github.event.before }} --depth=1
+                  changedPaths=$( git diff-tree --name-only ${{ github.event.before }} $GITHUB_SHA )
                   set +e
                   hasChanges='false'
                   if [ $(echo "$changedPaths" | grep -c '^force-app') == 1 ]; then
