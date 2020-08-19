@@ -105,6 +105,13 @@ Make sure to start from a brand-new environment to avoid conflicts with previous
     - Drag the **Accounts-Contacts.csv** file you just saved to the upload area.
     - Click **Next**, **Next**, and **Start Import**.
 
+1. If you're attempting the [Quick Start](https://trailhead.salesforce.com/en/content/learn/projects/quick-start-ebikes-sample-app) on Trailhead, this step is required, but otherwise, skip:
+
+    - Go to **Setup > Users > Permission Sets**.
+    - Click **recipes**.
+    - Click **Manage Assignments**.
+    - Check your user and click **Add Assignments**.
+
 1. In **Setup**, under **Themes and Branding**, activate the **Recipes Lite** or **Recipes Blue** theme.
 
 1. In App Launcher, click **View All** then select the **LWC** app.
