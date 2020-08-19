@@ -139,9 +139,10 @@ jobs:
               id: checkForChanges
               run: |
                   changedPaths=$(git diff-tree --name-only ${{ github.event.before }} ${{ github.sha }})
+                  echo $changedPaths
                   set +e
                   hasChanges='false'
-                  if [[ $(echo "$changedPaths" | grep -c '^force-app$') == 1 ]]; then
+                  if [ $(echo "$changedPaths" | grep -c '^force-app') == 1 ]; then
                       hasChanges='true'
                   fi
                   echo "::set-output name=hasChanges::$hasChanges"
