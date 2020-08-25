@@ -1,4 +1,4 @@
-import { LightningElement, track } from 'lwc';
+import { LightningElement } from 'lwc';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import { createRecord } from 'lightning/uiRecordApi';
 import { reduceErrors } from 'c/ldsUtils';
@@ -6,7 +6,7 @@ import ACCOUNT_OBJECT from '@salesforce/schema/Account';
 import NAME_FIELD from '@salesforce/schema/Account.Name';
 
 export default class LdsCreateRecord extends LightningElement {
-    @track accountId;
+    accountId;
 
     name = '';
 
@@ -20,7 +20,7 @@ export default class LdsCreateRecord extends LightningElement {
         fields[NAME_FIELD.fieldApiName] = this.name;
         const recordInput = { apiName: ACCOUNT_OBJECT.objectApiName, fields };
         createRecord(recordInput)
-            .then(account => {
+            .then((account) => {
                 this.accountId = account.id;
                 this.dispatchEvent(
                     new ShowToastEvent({
@@ -30,7 +30,7 @@ export default class LdsCreateRecord extends LightningElement {
                     })
                 );
             })
-            .catch(error => {
+            .catch((error) => {
                 this.dispatchEvent(
                     new ShowToastEvent({
                         title: 'Error creating record',

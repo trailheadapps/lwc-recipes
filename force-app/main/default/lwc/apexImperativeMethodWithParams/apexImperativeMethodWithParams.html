@@ -3,8 +3,11 @@
         title="ApexImperativeMethodWithParams"
         icon-name="custom:custom63"
     >
-        <div class="slds-m-around_medium">
-            <lightning-layout vertical-align="end" class="slds-m-bottom_small">
+        <div class="slds-var-m-around_medium">
+            <lightning-layout
+                vertical-align="end"
+                class="slds-var-m-bottom_small"
+            >
                 <lightning-layout-item flexibility="grow">
                     <lightning-input
                         type="search"
@@ -13,7 +16,7 @@
                         value={searchKey}
                     ></lightning-input>
                 </lightning-layout-item>
-                <lightning-layout-item class="slds-p-left_xx-small">
+                <lightning-layout-item class="slds-var-p-left_xx-small">
                     <lightning-button
                         label="Search"
                         onclick={handleSearch}

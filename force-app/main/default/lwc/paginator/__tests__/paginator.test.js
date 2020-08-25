@@ -25,7 +25,7 @@ describe('c-paginator', () => {
 
         element.shadowRoot
             .querySelectorAll('lightning-button')
-            .forEach(button => {
+            .forEach((button) => {
                 button.click();
             });
 

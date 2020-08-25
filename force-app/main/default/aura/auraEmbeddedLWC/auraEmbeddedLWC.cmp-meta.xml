@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<AuraDefinitionBundle xmlns="urn:metadata.tooling.soap.sforce.com" fqn="auraDomEventListener">
-    <apiVersion>46.0</apiVersion>
+<AuraDefinitionBundle
+    xmlns="urn:metadata.tooling.soap.sforce.com"
+    fqn="auraDomEventListener"
+>
+    <apiVersion>49.0</apiVersion>
     <description>A Lightning Component Bundle</description>
 </AuraDefinitionBundle>

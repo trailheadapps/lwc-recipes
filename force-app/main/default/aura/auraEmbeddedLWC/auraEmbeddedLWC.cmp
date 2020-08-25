@@ -14,13 +14,13 @@
             <span class="aura">Aura Component</span>
         </aura:set>
 
-        <div class="slds-m-around_medium">
+        <div class="slds-var-m-around_medium">
             <lightning:layout>
                 <lightning:layoutItem size="6">
                     <!-- This is an LWC component -->
                     <c:contactList oncontactselect="{!c.handleContactSelect}" />
                 </lightning:layoutItem>
-                <lightning:layoutItem size="6" class="slds-p-left_medium">
+                <lightning:layoutItem size="6" class="slds-var-p-left_medium">
                     <aura:if isTrue="{!v.selectedContact}">
                         <img
                             src="{!v.selectedContact.Picture__c}"
@@ -28,30 +28,32 @@
                         />
                         <p>{!v.selectedContact.Name}</p>
                         <p>{!v.selectedContact.Title}</p>
-                        <p
-                            ><lightning:formattedPhone
+                        <p>
+                            <lightning:formattedPhone
                                 value="{!v.selectedContact.Phone}"
-                        /></p>
-                        <p
-                            ><lightning:formattedEmail
+                            />
+                        </p>
+                        <p>
+                            <lightning:formattedEmail
                                 value="{!v.selectedContact.Email}"
-                        /></p>
+                            />
+                        </p>
                     </aura:if>
                 </lightning:layoutItem>
             </lightning:layout>
         </div>
 
-        <div class="slds-card__footer">
+        <div class="slds-text-align_left slds-card__footer">
             Embed a Lightning Web component in a parent Aura component and
             communicate with events
-            <p
-                ><a
+            <p>
+                <a
                     class="slds-text-link"
                     href="https://github.com/trailheadapps/lwc-recipes/tree/master/force-app/main/default/aura/auraEmbeddedLWC"
                     target="source"
                     >View Source</a
-                ></p
-            >
+                >
+            </p>
         </div>
     </lightning:card>
 </aura:component>

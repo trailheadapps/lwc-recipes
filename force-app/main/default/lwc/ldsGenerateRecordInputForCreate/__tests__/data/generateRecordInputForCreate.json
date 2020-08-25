@@ -1,0 +1,33 @@
+{
+    "apiName": "Account",
+    "fields": {
+        "AccountNumber": null,
+        "AnnualRevenue": null,
+        "AreaNumber__c": 1000,
+        "BillingCity": null,
+        "BillingCountry": null,
+        "BillingPostalCode": null,
+        "BillingState": null,
+        "BillingStreet": null,
+        "Description": null,
+        "Fax": null,
+        "Industry": null,
+        "Name": null,
+        "NumberOfEmployees": null,
+        "OwnerId": "0053F000006CIslQAG",
+        "Ownership": null,
+        "ParentId": null,
+        "Phone": null,
+        "Rating": null,
+        "ShippingCity": null,
+        "ShippingCountry": null,
+        "ShippingPostalCode": null,
+        "ShippingState": null,
+        "ShippingStreet": null,
+        "Sic": null,
+        "Site": null,
+        "TickerSymbol": null,
+        "Type": null,
+        "Website": null
+    }
+}

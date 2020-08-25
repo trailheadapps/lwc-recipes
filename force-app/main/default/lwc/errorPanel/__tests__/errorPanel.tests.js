@@ -18,7 +18,7 @@ describe('c-error-panel', () => {
         });
         document.body.appendChild(element);
 
-        const messageEl = element.shadowRoot.querySelector('p');
+        const messageEl = element.shadowRoot.querySelector('h3');
         expect(messageEl.textContent).toBe(MESSAGE);
     });
 
@@ -32,7 +32,7 @@ describe('c-error-panel', () => {
         element.friendlyMessage = MESSAGE;
         document.body.appendChild(element);
 
-        const messageEl = element.shadowRoot.querySelector('p');
+        const messageEl = element.shadowRoot.querySelector('h3');
         expect(messageEl.textContent).toBe(MESSAGE);
     });
 
@@ -61,17 +61,17 @@ describe('c-error-panel', () => {
         element.errors = ERROR_MESSAGES_INPUT;
         document.body.appendChild(element);
 
-        const inputEl = element.shadowRoot.querySelector('lightning-input');
+        const inputEl = element.shadowRoot.querySelector('a');
         inputEl.checked = true;
-        inputEl.dispatchEvent(new CustomEvent('change'));
+        inputEl.dispatchEvent(new CustomEvent('click'));
 
         // Return a promise to wait for any asynchronous DOM updates. Jest
         // will automatically wait for the Promise chain to complete before
         // ending the test and fail the test if the promise rejects.
         return Promise.resolve().then(() => {
             const messageTexts = Array.from(
-                element.shadowRoot.querySelectorAll('p[class="error-message"]')
-            ).map(errorMessage => (errorMessage = errorMessage.textContent));
+                element.shadowRoot.querySelectorAll('p')
+            ).map((errorMessage) => (errorMessage = errorMessage.textContent));
             expect(messageTexts).toEqual(ERROR_MESSAGES_OUTPUT);
         });
     });

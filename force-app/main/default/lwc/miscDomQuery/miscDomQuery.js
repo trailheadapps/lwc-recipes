@@ -1,7 +1,7 @@
-import { LightningElement, track } from 'lwc';
+import { LightningElement } from 'lwc';
 
 export default class MiscDomQuery extends LightningElement {
-    @track selection;
+    selection;
 
     handleCheckboxChange() {
         // Query the DOM
@@ -9,9 +9,9 @@ export default class MiscDomQuery extends LightningElement {
             this.template.querySelectorAll('lightning-input')
         )
             // Filter to only checked items
-            .filter(element => element.checked)
+            .filter((element) => element.checked)
             // Map to their labels
-            .map(element => element.label);
+            .map((element) => element.label);
         this.selection = checked.join(', ');
     }
 }

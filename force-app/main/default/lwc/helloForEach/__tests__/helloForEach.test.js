@@ -25,7 +25,7 @@ describe('c-hello-for-each', () => {
         // Verify displayed list
         const contacts = Array.from(
             element.shadowRoot.querySelectorAll('li')
-        ).map(li => li.textContent);
+        ).map((li) => li.textContent);
         expect(contacts).toEqual(EXPECTED);
     });
 });

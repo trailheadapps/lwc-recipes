@@ -1,0 +1,18 @@
+<template>
+    <lightning-card
+        title="NavToNewRecordWithDefaults"
+        icon-name="custom:custom96"
+    >
+        <lightning-button
+            name="new-with-defaults"
+            label="Go to New Contact with Defaults"
+            class="slds-var-m-around_medium"
+            onclick={navigateToNewContactWithDefaults}
+        ></lightning-button>
+
+        <c-view-source source="lwc/navToNewRecordWithDefaults" slot="footer">
+            Navigate to a new record page with default values. In this example,
+            a new contact page.
+        </c-view-source>
+    </lightning-card>
+</template>

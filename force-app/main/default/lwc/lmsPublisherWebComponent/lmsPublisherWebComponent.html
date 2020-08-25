@@ -1,0 +1,25 @@
+<template>
+    <lightning-card
+        title="LmsPublisherWebComponent"
+        icon-name="custom:custom30"
+    >
+        <div class="slds-m-around_medium" oncontactselect={handleContactSelect}>
+            <template if:true={contacts.data}>
+                <template for:each={contacts.data} for:item="contact">
+                    <c-contact-list-item-bubbling
+                        key={contact.Id}
+                        contact={contact}
+                    ></c-contact-list-item-bubbling>
+                </template>
+            </template>
+        </div>
+
+        <c-view-source source="lwc/lmsPublisherWebComponent" slot="footer">
+            Publish a Lightning Message Service message for other LWCs, Aura
+            components, and Visualforce pages to respond to. This component
+            publishes the <strong>Record_Selected__c</strong> event. Click a
+            contact in the list to notify subscribers on this page. The selected
+            contact detail should then appear in the subscribers.
+        </c-view-source>
+    </lightning-card>
+</template>

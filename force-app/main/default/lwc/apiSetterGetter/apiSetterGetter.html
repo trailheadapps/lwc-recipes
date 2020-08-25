@@ -3,7 +3,7 @@
         title="ApiSetterGetter"
         icon-name="standard:product_consumed"
     >
-        <div class="slds-m-around_medium">
+        <div class="slds-var-m-around_medium">
             <lightning-input
                 label="Description"
                 onchange={handleDescriptionChange}
@@ -19,9 +19,12 @@
                 label="Add Todo"
                 variant="brand"
                 onclick={handleSave}
-                class="slds-p-vertical_small"
+                class="slds-show slds-var-p-vertical_small"
             ></lightning-button>
-            <c-todo-list todos={todos}></c-todo-list>
+            <c-todo-list
+                class="slds-show slds-is-relative"
+                todos={todos}
+            ></c-todo-list>
         </div>
 
         <c-view-source source="lwc/apiSetterGetter" slot="footer">

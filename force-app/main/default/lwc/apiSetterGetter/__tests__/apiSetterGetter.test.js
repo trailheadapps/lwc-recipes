@@ -21,7 +21,7 @@ describe('c-api-setter-getter', () => {
         ).todos.length;
 
         // Select input fields for simulating user input
-        lightningInputEls.forEach(el => {
+        lightningInputEls.forEach((el) => {
             if (el.label === 'Description') {
                 el.value = TODO_DESCRIPTION;
             } else if (el.label === 'Priority') {

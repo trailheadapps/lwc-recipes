@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomPermission xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description
+    >For use in toggling UI features in the wireCustomPermission recipe.</description>
+    <label>Access Restricted UI Permission</label>
+</CustomPermission>

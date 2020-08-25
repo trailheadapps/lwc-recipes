@@ -1,45 +1,63 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <FlexiPage xmlns="http://soap.sforce.com/2006/04/metadata">
     <flexiPageRegions>
         <name>region1</name>
         <type>Region</type>
     </flexiPageRegions>
     <flexiPageRegions>
-        <componentInstances>
-            <componentName>apexWireMethodToProperty</componentName>
-        </componentInstances>
-        <componentInstances>
-            <componentName>apexWireMethodToFunction</componentName>
-        </componentInstances>
-        <componentInstances>
-            <componentName>apexWireMethodWithParams</componentName>
-        </componentInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentName>apexWireMethodToProperty</componentName>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentName>apexWireMethodToFunction</componentName>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentName>apexWireMethodWithParams</componentName>
+            </componentInstance>
+        </itemInstances>
         <name>region2</name>
         <type>Region</type>
     </flexiPageRegions>
     <flexiPageRegions>
-        <componentInstances>
-            <componentName>wireGetRecordUser</componentName>
-        </componentInstances>
-        <componentInstances>
-            <componentName>wireGetObjectInfo</componentName>
-        </componentInstances>
-        <componentInstances>
-            <componentName>wireCurrentPageReference</componentName>
-        </componentInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentName>wireGetRecordUser</componentName>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentName>wireGetObjectInfo</componentName>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentName>wireCurrentPageReference</componentName>
+            </componentInstance>
+        </itemInstances>
         <name>region3</name>
         <type>Region</type>
     </flexiPageRegions>
     <flexiPageRegions>
-        <componentInstances>
-            <componentName>wireListView</componentName>
-        </componentInstances>
-        <componentInstances>
-            <componentName>wireGetPicklistValues</componentName>
-        </componentInstances>
-        <componentInstances>
-            <componentName>wireGetPicklistValuesByRecordType</componentName>
-        </componentInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentName>wireListView</componentName>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentName>wireGetPicklistValues</componentName>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentName>wireGetPicklistValuesByRecordType</componentName>
+            </componentInstance>
+        </itemInstances>
         <name>region4</name>
         <type>Region</type>
     </flexiPageRegions>

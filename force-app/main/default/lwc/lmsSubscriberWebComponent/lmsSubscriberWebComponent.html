@@ -1,0 +1,31 @@
+<template>
+    <lightning-card
+        title="LmsSubscriberWebComponent"
+        icon-name="custom:custom30"
+    >
+        <div class="slds-m-around_medium">
+            <template if:true={Picture__c}>
+                <img src={Picture__c} alt="Profile photo" />
+            </template>
+            <p>{Name}</p>
+            <p>{Title}</p>
+            <p>
+                <lightning-formatted-phone
+                    value={Phone}
+                ></lightning-formatted-phone>
+            </p>
+            <p>
+                <lightning-formatted-email
+                    value={Email}
+                ></lightning-formatted-email>
+            </p>
+        </div>
+
+        <c-view-source source="lwc/lmsSubscriberWebComponent" slot="footer">
+            Subscribe to a Lightning Message Service channel that another LWC,
+            Aura component, or Visualforce page publishes. This LWC subscribes
+            to the <strong>Record_Selected__c</strong> event. Selecting a
+            contact in one of the contact lists above publishes the event.
+        </c-view-source>
+    </lightning-card>
+</template>

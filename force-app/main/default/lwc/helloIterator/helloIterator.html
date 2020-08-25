@@ -1,6 +1,6 @@
 <template>
     <lightning-card title="HelloIterator" icon-name="custom:custom14">
-        <ul class="slds-m-around_medium">
+        <ul class="slds-var-m-around_medium">
             <template iterator:it={contacts}>
                 <li key={it.value.Id}>
                     <div if:true={it.first} class="list-first"></div>

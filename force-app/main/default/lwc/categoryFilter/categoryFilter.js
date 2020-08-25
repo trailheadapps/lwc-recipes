@@ -6,8 +6,8 @@ export default class CategoryFilter extends LightningElement {
         const filters = Array.from(
             this.template.querySelectorAll('lightning-input')
         )
-            .filter(element => element.checked)
-            .map(element => element.label);
+            .filter((element) => element.checked)
+            .map((element) => element.label);
         // 2. Read about event best practices at http://developer.salesforce.com/docs/component-library/documentation/lwc/lwc.events_best_practices
         const filterChangeEvent = new CustomEvent('filterchange', {
             detail: { filters }

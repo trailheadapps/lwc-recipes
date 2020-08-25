@@ -2,8 +2,9 @@
 # If you are not using git, you can delete this file. For more information see: https://git-scm.com/docs/gitignore
 # For useful gitignore templates see: https://github.com/github/gitignore
 
-# Salesforce cache
+# Salesforce dev
 .sfdx/
+.localdevserver/
 
 # LWC VSCode autocomplete
 jsconfig.json
