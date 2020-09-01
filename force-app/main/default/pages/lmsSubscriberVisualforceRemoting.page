@@ -1,0 +1,42 @@
+<apex:page docType="html-5.0">
+    <apex:stylesheet value="{!URLFOR($Resource.lmsvf, 'lmsvf.css')}" />
+    <apex:slds />
+    <div class="slds-card">
+        <!-- Placeholder for card body. -->
+        <div
+            data-contact="contact"
+            class="slds-card__body slds-card__body_inner"
+        />
+
+        <footer class="slds-card__footer">
+            <c:viewSource source="pages/{!$CurrentPage.Name}.page">
+                Subscribe to a Lightning Message Service channel that another
+                Visualforce page, LWC, or Aura component publishes. This LWC
+                subscribes to the <strong>Record_Selected__c</strong> event.
+                Selecting a contact in one of the contact lists above publishes
+                the event. This page interacts with the server using a
+                Visualforce remote object.
+            </c:viewSource>
+        </footer>
+    </div>
+
+    <!-- Data access through remote object API -->
+    <apex:remoteObjects>
+        <apex:remoteObjectModel
+            name="Contact"
+            fields="Id, Name, Title, Phone, Email, Picture__c"
+        />
+    </apex:remoteObjects>
+
+    <!-- Import js module static resource -->
+    <script type="module">
+        import { setPageConfigs } from '{!URLFOR($Resource.lmsvf, 'lmsSubscriberVisualforceRemoting.js')}';
+
+        // Pass object/function references from page
+        setPageConfigs({
+            messageChannel: '{!$MessageChannel.Record_Selected__c}',
+            RemoteContact: SObjectModel.Contact,
+            lmsSubscribe: sforce.one.subscribe
+        });
+    </script>
+</apex:page>

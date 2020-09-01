@@ -1,0 +1,16 @@
+name: Greeting
+
+on:
+    issues:
+        types: [opened]
+
+jobs:
+    comment:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: rytswd/respost@v0.1.0
+              with:
+                  title: Welcome! 👋
+                  body: 'Thank you for posting this issue. 🙇🏼‍♂️ We will come back to you latest within the next 48h (working days). Stay tuned!'
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

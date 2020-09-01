@@ -1,7 +1,7 @@
-import { LightningElement, track } from 'lwc';
+import { LightningElement } from 'lwc';
 
 export default class EventSimple extends LightningElement {
-    @track page = 1;
+    page = 1;
 
     handlePrevious() {
         if (this.page > 1) {

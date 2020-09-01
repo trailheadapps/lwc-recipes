@@ -2,5 +2,16 @@
 # More information: https://prettier.io/docs/en/ignore.html
 #
 
-**/staticresources/**
+.localdevserver
 .sfdx
+coverage/
+.vscode
+jsconfig.json
+
+# Only prettify specifc static resources
+force-app/main/default/staticresources/*
+!/force-app/main/default/staticresources/lmsvf
+!/force-app/main/default/staticresources/sampleExternalResource
+
+# Exclude project config (edited by CI workflow)
+sfdx-project.json

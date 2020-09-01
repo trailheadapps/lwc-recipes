@@ -18,7 +18,7 @@ describe('c-hello-conditional-rendering', () => {
 
         // Verify displayed message
         const detailEl = element.shadowRoot.querySelector(
-            '.slds-m-vertical_medium'
+            '.slds-var-m-vertical_medium'
         );
         expect(detailEl.textContent).toBe('Not showing details.');
     });
@@ -41,7 +41,7 @@ describe('c-hello-conditional-rendering', () => {
         return Promise.resolve().then(() => {
             // Verify displayed message
             const detailEl = element.shadowRoot.querySelector(
-                '.slds-m-vertical_medium'
+                '.slds-var-m-vertical_medium'
             );
             expect(detailEl.textContent).toBe('These are the details!');
         });

@@ -1,8 +1,9 @@
-import { LightningElement, api, track } from 'lwc';
+import { LightningElement, api } from 'lwc';
 
 const CSS_CLASS = 'modal-hidden';
 
 export default class Modal extends LightningElement {
+    showModal = false;
     @api
     set header(value) {
         this.hasHeaderString = value !== '';
@@ -12,20 +13,21 @@ export default class Modal extends LightningElement {
         return this._headerPrivate;
     }
 
-    @track hasHeaderString = false;
+    hasHeaderString = false;
     _headerPrivate;
 
     @api show() {
-        const outerDivEl = this.template.querySelector('div');
-        outerDivEl.classList.remove(CSS_CLASS);
+        this.showModal = true;
     }
 
     @api hide() {
-        const outerDivEl = this.template.querySelector('div');
-        outerDivEl.classList.add(CSS_CLASS);
+        this.showModal = false;
     }
 
     handleDialogClose() {
+        //Let parent know that dialog is closed (mainly by that cross button) so it can set proper variables if needed
+        const closedialog = new CustomEvent('closedialog');
+        this.dispatchEvent(closedialog);
         this.hide();
     }
 

@@ -1,5 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata" fqn="modal">
-    <apiVersion>45.0</apiVersion>
+<?xml version="1.0" encoding="UTF-8" ?>
+<LightningComponentBundle
+    xmlns="http://soap.sforce.com/2006/04/metadata"
+    fqn="modal"
+>
+    <apiVersion>49.0</apiVersion>
     <isExposed>false</isExposed>
 </LightningComponentBundle>

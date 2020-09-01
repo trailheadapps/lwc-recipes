@@ -1,6 +1,6 @@
 import { createElement } from 'lwc';
 import ApexWireMethodWithParams from 'c/apexWireMethodWithParams';
-import { registerApexTestWireAdapter } from '@salesforce/lwc-jest';
+import { registerApexTestWireAdapter } from '@salesforce/sfdx-lwc-jest';
 import findContacts from '@salesforce/apex/ContactController.findContacts';
 
 // Realistic data with a list of contacts

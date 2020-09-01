@@ -1,0 +1,18 @@
+<template>
+    <lightning-card title="MiscMultipleTemplates" icon-name="custom:custom19">
+        <div class="slds-var-m-around_medium">
+            <p>Template Two</p>
+            <img src={einsteinUrl} alt="Einstein logo" />
+            <p class="slds-var-m-vertical_small">
+                <lightning-button
+                    label="Switch Templates"
+                    onclick={switchTemplate}
+                ></lightning-button>
+            </p>
+        </div>
+
+        <c-view-source source="lwc/miscMultipleTemplates" slot="footer">
+            Choose which template to render.
+        </c-view-source>
+    </lightning-card>
+</template>

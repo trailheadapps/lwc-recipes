@@ -1,13 +1,12 @@
 <template>
     <lightning-card title="WireGetObjectInfo" icon-name="custom:custom67">
-        <div class="slds-m-horizontal_medium">
+        <div class="slds-var-m-horizontal_medium">
             <lightning-input
-                value={objectApiNameInputValue}
+                value="Account"
                 placeholder="Enter object API name"
-                onchange={objectNameChange}
                 label="Search"
             ></lightning-input>
-            <p class="slds-p-vertical_small">
+            <p class="slds-var-p-vertical_small">
                 <lightning-button
                     label="Get Object Info"
                     onclick={handleBtnClick}

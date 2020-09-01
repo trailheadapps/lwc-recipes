@@ -1,0 +1,19 @@
+# Unique name for this workflow
+name: Enforce branch naming
+
+# Definition when the workflow should run
+on:
+    push:
+        branches-ignore:
+            - master
+
+# Jobs to be executed
+jobs:
+    validate-branch-name:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Validate branch name requirements
+              uses: deepakputhraya/action-branch-name@master
+              with:
+                  regex: '([a-zA-Z])+\/([a-zA-Z])+'
+                  min_length: 6

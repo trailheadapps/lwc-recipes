@@ -1,7 +1,7 @@
 import { createElement } from 'lwc';
 import MiscGetUserId from 'c/miscGetUserId';
 
-// lwc-jest automocks @salesforce/user/Id to this const value.
+// sfdx-lwc-jest automocks @salesforce/user/Id to this const value.
 const USER_ID = '005000000000000000';
 
 describe('c-misc-get-user-id', () => {
@@ -14,7 +14,7 @@ describe('c-misc-get-user-id', () => {
 
         // Query div element that displays user id.
         const divEl = element.shadowRoot.querySelector(
-            'div[class="slds-m-around_medium"]'
+            'div[class="slds-var-m-around_medium"]'
         );
         expect(divEl).not.toBeNull();
         expect(divEl.textContent).toBe('User Id:' + USER_ID);

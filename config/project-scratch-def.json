@@ -1,12 +1,18 @@
 {
     "orgName": "LWC Recipes",
     "edition": "Developer",
-    "hasSampleData": "false",
+    "hasSampleData": false,
     "settings": {
-        "orgPreferenceSettings": {
-            "s1DesktopEnabled": true,
-            "selfSetPasswordInApi": true,
-            "s1EncryptedStoragePref2": false
+        "lightningExperienceSettings": {
+            "enableS1DesktopEnabled": true
+        },
+        "securitySettings": {
+            "passwordPolicies": {
+                "enableSetPasswordInApi": true
+            }
+        },
+        "mobileSettings": {
+            "enableS1EncryptedStoragePref2": false
         }
     }
 }

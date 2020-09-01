@@ -1,0 +1,72 @@
+<apex:page
+    controller="LMSVisualforceController"
+    lightningStylesheets="true"
+    docType="html-5.0"
+>
+    <apex:stylesheet value="{!URLFOR($Resource.lmsvf, 'lmsvf.css')}" />
+    <apex:slds />
+
+    <apex:outputPanel id="contactlist">
+        <div class="slds-card">
+            <apex:outputPanel
+                layout="block"
+                rendered="{!NOT(ISBLANK(contactRecord.Id))}"
+                styleClass="slds-card__body slds-card__body_inner"
+            >
+                <div class="slds-var-m-around_medium">
+                    <img
+                        src="{!contactRecord.Picture__c}"
+                        class="img-small"
+                        alt="Profile photo"
+                    />
+                </div>
+                <p>{!contactRecord.Name}</p>
+                <p>{!contactRecord.Title}</p>
+                <p>
+                    <a href="tel:{!contactRecord.Phone}"
+                        >{!contactRecord.Phone}</a
+                    >
+                </p>
+                <p>
+                    <a href="mailto:{!contactRecord.Email}"
+                        >{!contactRecord.Email}</a
+                    >
+                </p>
+            </apex:outputPanel>
+
+            <footer class="slds-card__footer">
+                <c:viewSource source="pages/{!$CurrentPage.Name}.page">
+                    Subscribe to a Lightning Message Service channel that
+                    another Visualforce page, LWC, or Aura component publishes.
+                    This LWC subscribes to the
+                    <strong>Record_Selected__c</strong> event. Selecting a
+                    contact in one of the contact lists above publishes the
+                    event. This page interacts with the server using a
+                    Visualforce postback action.
+                </c:viewSource>
+            </footer>
+        </div>
+    </apex:outputPanel>
+    <apex:form>
+        <!-- Surface apex controller method as JS function -->
+        <apex:actionFunction
+            action="{!refreshContact}"
+            name="refreshContactsFunction"
+            reRender="contactlist"
+        >
+            <apex:param name="Id" value="" />
+        </apex:actionFunction>
+    </apex:form>
+
+    <!-- Import js module static resource -->
+    <script type="module">
+        import { setPageConfigs } from '{!URLFOR($Resource.lmsvf, 'lmsSubscriberVisualforcePostbackAction.js')}';
+
+        // Pass object/function references from page
+        setPageConfigs({
+            messageChannel: '{!$MessageChannel.Record_Selected__c}',
+            actionFunction: refreshContactsFunction,
+            lmsSubscribe: sforce.one.subscribe
+        });
+    </script>
+</apex:page>

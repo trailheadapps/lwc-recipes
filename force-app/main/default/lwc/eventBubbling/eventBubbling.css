@@ -1,8 +1,8 @@
 img {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    margin-bottom: 8px;
+    width: var(--lwc-squareIconLargeBoundaryAlt, 80px);
+    height: var(--lwc-squareIconLargeBoundaryAlt, 80px);
+    border-radius: var(--lwc-borderRadiusCircle, 50%);
+    margin-bottom: var(--lwc-varSpacingXSmall, 8px);
 }
 
 lightning-layout-item.wide {
@@ -10,20 +10,19 @@ lightning-layout-item.wide {
 }
 
 c-contact-list-item-bubbling {
-    position: relative;
-    border: solid 1px #ecebea;
-    border-radius: 4px;
-    display: block;
-    margin: 1px 0;
-    padding: 3px 2px 0 2px;
+    border: solid var(--lwc-borderWidthThin, 1px) #ecebea;
+    border-radius: var(--lwc-borderRadiusMedium, 4px);
+    margin: var(--lwc-borderWidthThin, 1px) 0;
+    padding: 3px var(--lwc-varSpacingXxxSmall, 2px) 0
+        var(--lwc-varSpacingXxxSmall, 2px);
 }
 
 c-contact-list-item-bubbling:before {
     content: 'c-contact-list-item-bubbling';
-    color: #dddbda;
+    color: rgb(221, 219, 218);
     position: absolute;
     top: -9px;
-    left: 4px;
-    background-color: #ffffff;
-    padding: 0 4px;
+    left: var(--lwc-varSpacingXxSmall, 4px);
+    background-color: var(--lwc-colorBackgroundAlt, #ffffff);
+    padding: 0 var(--lwc-varSpacingXxSmall, 4px);
 }

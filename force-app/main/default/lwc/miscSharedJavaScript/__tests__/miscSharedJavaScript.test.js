@@ -67,7 +67,7 @@ describe('c-misc-shared-java-script', () => {
             'lightning-input'
         );
 
-        lightningInputEls.forEach(el => {
+        lightningInputEls.forEach((el) => {
             if (el.label === 'Rate') {
                 el.value = RATE_CUSTOM;
             } else if (el.label === 'Principal') {

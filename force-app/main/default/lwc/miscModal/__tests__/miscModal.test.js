@@ -21,6 +21,7 @@ describe('c-misc-modal', () => {
 
         // Query modal component element
         const modalEl = element.shadowRoot.querySelector('c-modal');
+        modalEl.show();
 
         // Return a promise to wait for any asynchronous DOM updates. Jest
         // will automatically wait for the Promise chain to complete before
@@ -58,6 +59,7 @@ describe('c-misc-modal', () => {
 
         // Query modal component element
         const modalEl = element.shadowRoot.querySelector('c-modal');
+        modalEl.show();
 
         // Return a promise to wait for any asynchronous DOM updates. Jest
         // will automatically wait for the Promise chain to complete before
