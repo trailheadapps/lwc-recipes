@@ -86,6 +86,7 @@ describe('c-apex-wire-method-with-params', () => {
                 const detailEls = element.shadowRoot.querySelectorAll('p');
                 expect(detailEls.length).toBe(mockFindContacts.length);
                 expect(detailEls[0].textContent).toBe(mockFindContacts[0].Name);
+                expect(element).toBeAccessible();
             });
         });
 
@@ -139,6 +140,31 @@ describe('c-apex-wire-method-with-params', () => {
                 );
                 expect(errorPanelEl).not.toBeNull();
             });
+        });
+    });
+
+    it('is accessible', () => {
+        const USER_INPUT = 'Amy';
+
+        // Create initial element
+        const element = createElement('c-apex-wire-method-with-params', {
+            is: ApexWireMethodWithParams
+        });
+        document.body.appendChild(element);
+
+        // Select input field for simulating user input
+        const inputEl = element.shadowRoot.querySelector('lightning-input');
+        inputEl.value = USER_INPUT;
+        inputEl.dispatchEvent(new CustomEvent('change'));
+
+        // Run all fake timers.
+        jest.runAllTimers();
+
+        // Emit data from @wire
+        findContactsAdapter.emit(mockFindContacts);
+
+        return Promise.resolve().then(() => {
+            expect(element).toBeAccessible();
         });
     });
 });

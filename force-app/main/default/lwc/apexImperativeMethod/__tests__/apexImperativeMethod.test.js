@@ -118,4 +118,14 @@ describe('c-apex-imperative-method', () => {
             expect(errorPanelEl).not.toBeNull();
         });
     });
+
+    it('is accessible', () => {
+        const element = createElement('c-apex-imperative-method', {
+            is: ApexImperativeMethod
+        });
+
+        document.body.appendChild(element);
+
+        return Promise.resolve().then(() => expect(element).toBeAccessible());
+    });
 });

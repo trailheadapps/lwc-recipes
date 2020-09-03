@@ -48,4 +48,14 @@ describe('c-hello-iterator', () => {
         // Verify no other divs
         expect(element.shadowRoot.querySelectorAll('li > div')).toHaveLength(2);
     });
+
+    it('is accessible', () => {
+        const element = createElement('c-hello-iterator', {
+            is: HelloIterator
+        });
+
+        document.body.appendChild(element);
+
+        return Promise.resolve().then(() => expect(element).toBeAccessible());
+    });
 });

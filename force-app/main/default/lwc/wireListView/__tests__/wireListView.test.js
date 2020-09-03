@@ -64,4 +64,14 @@ describe('c-wire-list-view', () => {
             });
         });
     });
+
+    it('is accessible', () => {
+        const element = createElement('c-wire-list-view', {
+            is: WireListView
+        });
+
+        document.body.appendChild(element);
+
+        return Promise.resolve().then(() => expect(element).toBeAccessible());
+    });
 });

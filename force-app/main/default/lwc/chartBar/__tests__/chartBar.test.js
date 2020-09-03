@@ -55,4 +55,14 @@ describe('c-chart-bar', () => {
             expect(divEl.style._values.width).toBe('60%');
         });
     });
+
+    it('is accessible', () => {
+        const element = createElement('c-chart-bar', {
+            is: ChartBar
+        });
+
+        document.body.appendChild(element);
+
+        return Promise.resolve().then(() => expect(element).toBeAccessible());
+    });
 });

@@ -122,4 +122,14 @@ describe('c-lms-publisher-web-component', () => {
             );
         });
     });
+
+    it('is accessible', () => {
+        const element = createElement('c-lms-publisher-web-component', {
+            is: LmsPublisherWebComponent
+        });
+
+        document.body.appendChild(element);
+
+        return Promise.resolve().then(() => expect(element).toBeAccessible());
+    });
 });

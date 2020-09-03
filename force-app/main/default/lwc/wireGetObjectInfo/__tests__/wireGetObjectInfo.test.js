@@ -107,4 +107,14 @@ describe('c-wire-get-object-info', () => {
             });
         });
     });
+
+    it('is accessible', () => {
+        const element = createElement('c-wire-get-object-info', {
+            is: WireGetObjectInfo
+        });
+
+        document.body.appendChild(element);
+
+        return Promise.resolve().then(() => expect(element).toBeAccessible());
+    });
 });

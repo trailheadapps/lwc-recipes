@@ -74,4 +74,14 @@ describe('c-wire-get-record-dynamic-contact', () => {
             });
         });
     });
+
+    it('is accessible', () => {
+        const element = createElement('c-wire-get-record-dynamic-contact', {
+            is: WireGetRecordDynamicContact
+        });
+
+        document.body.appendChild(element);
+
+        return Promise.resolve().then(() => expect(element).toBeAccessible());
+    });
 });

@@ -55,4 +55,14 @@ describe('c-record-edit-form-dynamic-contact', () => {
         ).map((outputField) => outputField.fieldName);
         expect(outputFieldNames).toEqual(INPUT_FIELDS);
     });
+
+    it('is accessible', () => {
+        const element = createElement('c-record-edit-form-dynamic-contact', {
+            is: RecordEditFormDynamicContact
+        });
+
+        document.body.appendChild(element);
+
+        return Promise.resolve().then(() => expect(element).toBeAccessible());
+    });
 });

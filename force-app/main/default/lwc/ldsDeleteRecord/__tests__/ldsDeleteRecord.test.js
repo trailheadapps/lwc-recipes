@@ -137,4 +137,14 @@ describe('c-lds-delete-record', () => {
                 );
             });
     });
+
+    it('is accessible', () => {
+        const element = createElement('c-lds-delete-record', {
+            is: LdsDeleteRecord
+        });
+
+        document.body.appendChild(element);
+
+        return Promise.resolve().then(() => expect(element).toBeAccessible());
+    });
 });

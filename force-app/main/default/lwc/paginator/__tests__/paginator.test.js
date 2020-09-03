@@ -38,4 +38,14 @@ describe('c-paginator', () => {
             expect(handlerNext.mock.calls.length).toBe(1);
         });
     });
+
+    it('is accessible', () => {
+        const element = createElement('c-paginator', {
+            is: Paginator
+        });
+
+        document.body.appendChild(element);
+
+        return Promise.resolve().then(() => expect(element).toBeAccessible());
+    });
 });

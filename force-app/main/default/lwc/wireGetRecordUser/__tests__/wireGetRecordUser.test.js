@@ -68,4 +68,14 @@ describe('c-wire-get-record-user', () => {
             });
         });
     });
+
+    it('is accessible', () => {
+        const element = createElement('c-wire-get-record-user', {
+            is: WireGetRecordUser
+        });
+
+        document.body.appendChild(element);
+
+        return Promise.resolve().then(() => expect(element).toBeAccessible());
+    });
 });

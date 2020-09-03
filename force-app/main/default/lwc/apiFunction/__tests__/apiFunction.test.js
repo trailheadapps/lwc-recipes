@@ -25,4 +25,14 @@ describe('c-api-function', () => {
             expect(clockEl.refresh).toHaveBeenCalled();
         });
     });
+
+    it('is accessible', () => {
+        const element = createElement('c-api-function', {
+            is: ApiFunction
+        });
+
+        document.body.appendChild(element);
+
+        return Promise.resolve().then(() => expect(element).toBeAccessible());
+    });
 });

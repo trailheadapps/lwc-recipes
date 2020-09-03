@@ -84,4 +84,14 @@ describe('c-wire-get-record-static-contact', () => {
             });
         });
     });
+
+    it('is accessible', () => {
+        const element = createElement('c-wire-get-record-static-contact', {
+            is: WireGetRecordStaticContact
+        });
+
+        document.body.appendChild(element);
+
+        return Promise.resolve().then(() => expect(element).toBeAccessible());
+    });
 });

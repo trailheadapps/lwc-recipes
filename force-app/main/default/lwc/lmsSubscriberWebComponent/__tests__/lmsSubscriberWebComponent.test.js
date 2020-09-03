@@ -170,4 +170,14 @@ describe('c-lms-subscriber-web-component', () => {
             });
         });
     });
+
+    it('is accessible', () => {
+        const element = createElement('c-lms-subscriber-web-component', {
+            is: LmsSubscriberWebComponent
+        });
+
+        document.body.appendChild(element);
+
+        return Promise.resolve().then(() => expect(element).toBeAccessible());
+    });
 });

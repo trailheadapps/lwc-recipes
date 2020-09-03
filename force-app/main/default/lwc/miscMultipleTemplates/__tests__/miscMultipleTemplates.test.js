@@ -90,4 +90,14 @@ describe('c-misc-multiple-templates', () => {
             expect(imgEl.getAttribute('src')).toBe(TEMPLATE1_LOGO_URL);
         });
     });
+
+    it('is accessible', () => {
+        const element = createElement('c-misc-multiple-templates', {
+            is: MiscMultipleTemplates
+        });
+
+        document.body.appendChild(element);
+
+        return Promise.resolve().then(() => expect(element).toBeAccessible());
+    });
 });

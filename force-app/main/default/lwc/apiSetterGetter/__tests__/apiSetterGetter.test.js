@@ -45,4 +45,14 @@ describe('c-api-setter-getter', () => {
             expect(todoListEl.todos[2].priority).toBe(true);
         });
     });
+
+    it('is accessible', () => {
+        const element = createElement('c-api-setter-getter', {
+            is: ApiSetterGetter
+        });
+
+        document.body.appendChild(element);
+
+        return Promise.resolve().then(() => expect(element).toBeAccessible());
+    });
 });

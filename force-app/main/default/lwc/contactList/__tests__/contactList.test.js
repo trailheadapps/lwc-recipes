@@ -102,4 +102,14 @@ describe('c-contact-list', () => {
                 );
             });
     });
+
+    it('is accessible', () => {
+        const element = createElement('c-contact-list', {
+            is: ContactList
+        });
+
+        document.body.appendChild(element);
+
+        return Promise.resolve().then(() => expect(element).toBeAccessible());
+    });
 });

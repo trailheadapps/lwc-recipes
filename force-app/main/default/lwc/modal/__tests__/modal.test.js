@@ -108,4 +108,14 @@ describe('c-modal', () => {
                 expect(modalContainerElementHide).toBeNull();
             });
     });
+
+    it('is accessible', () => {
+        const element = createElement('c-modal', {
+            is: Modal
+        });
+
+        document.body.appendChild(element);
+
+        return Promise.resolve().then(() => expect(element).toBeAccessible());
+    });
 });

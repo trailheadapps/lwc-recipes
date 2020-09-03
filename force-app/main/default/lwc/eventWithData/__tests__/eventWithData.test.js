@@ -132,4 +132,14 @@ describe('c-event-with-data', () => {
                 );
             });
     });
+
+    it('is accessible', () => {
+        const element = createElement('c-event-with-data', {
+            is: EventWithData
+        });
+
+        document.body.appendChild(element);
+
+        return Promise.resolve().then(() => expect(element).toBeAccessible());
+    });
 });

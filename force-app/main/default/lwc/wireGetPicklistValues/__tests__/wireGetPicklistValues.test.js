@@ -69,4 +69,14 @@ describe('c-wire-get-picklist-values', () => {
             });
         });
     });
+
+    it('is accessible', () => {
+        const element = createElement('c-wire-get-picklist-values', {
+            is: WireGetPicklistValues
+        });
+
+        document.body.appendChild(element);
+
+        return Promise.resolve().then(() => expect(element).toBeAccessible());
+    });
 });

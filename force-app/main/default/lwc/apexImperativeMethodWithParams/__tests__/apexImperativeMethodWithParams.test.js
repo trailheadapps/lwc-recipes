@@ -143,4 +143,14 @@ describe('c-apex-imperative-method-with-params', () => {
             expect(errorPanelEl).not.toBeNull();
         });
     });
+
+    it('is accessible', () => {
+        const element = createElement('c-apex-imperative-method-with-params', {
+            is: ApexImperativeMethodWithParams
+        });
+
+        document.body.appendChild(element);
+
+        return Promise.resolve().then(() => expect(element).toBeAccessible());
+    });
 });

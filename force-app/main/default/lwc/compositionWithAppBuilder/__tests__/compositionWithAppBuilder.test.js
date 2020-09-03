@@ -24,4 +24,14 @@ describe('c-composition-with-app-builder', () => {
         expect(element.stringValue).toBe('someString');
         expect(element.numberValue).toBe(99);
     });
+
+    it('is accessible', () => {
+        const element = createElement('c-composition-with-app-builder', {
+            is: CompositionWithAppBuilder
+        });
+
+        document.body.appendChild(element);
+
+        return Promise.resolve().then(() => expect(element).toBeAccessible());
+    });
 });

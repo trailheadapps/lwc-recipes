@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import { createElement } from 'lwc';
-import NavToNewRecord from 'c/navToNewRecord';
+import NavToNewRecordWithDefaults from 'c/navToNewRecordWithDefaults';
 import { getNavigateCalledWith } from 'lightning/navigation';
 //import { encodeDefaultFieldValues } from 'lightning/pageReferenceUtils';
 // This test uses a mocked navigation plugin.
@@ -41,7 +41,7 @@ describe('c-nav-to-new-record', () => {
 
         // Create initial lwc element and attach to virtual DOM
         const element = createElement('c-nav-to-new-record-with-defaults', {
-            is: NavToNewRecordWithDefaults
+            is: NavToNewRecordWithDefaultsWithDefaults
         });
         document.body.appendChild(element);
 
@@ -66,5 +66,15 @@ describe('c-nav-to-new-record', () => {
             expect(pageReference.state.defaultValues).toBe(NAV_ENCODED_DEFAULTS);
         });
         */
+    });
+
+    it('is accessible', () => {
+        const element = createElement('c-nav-to-new-record-with-defaults', {
+            is: NavToNewRecordWithDefaults
+        });
+
+        document.body.appendChild(element);
+
+        return Promise.resolve().then(() => expect(element).toBeAccessible());
     });
 });

@@ -101,4 +101,14 @@ describe('c-nav-to-record', () => {
             expect(pageReference.attributes.recordId).toBe(NAV_RECORD_ID);
         });
     });
+
+    it('is accessible', () => {
+        const element = createElement('c-nav-to-record', {
+            is: NavToRecord
+        });
+
+        document.body.appendChild(element);
+
+        return Promise.resolve().then(() => expect(element).toBeAccessible());
+    });
 });

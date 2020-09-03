@@ -76,4 +76,14 @@ describe('c-libs-chartjs', () => {
             expect(errorPanelEl).not.toBeNull();
         });
     });
+
+    it('is accessible', () => {
+        const element = createElement('c-libs-chartjs', {
+            is: LibsChartjs
+        });
+
+        document.body.appendChild(element);
+
+        return Promise.resolve().then(() => expect(element).toBeAccessible());
+    });
 });

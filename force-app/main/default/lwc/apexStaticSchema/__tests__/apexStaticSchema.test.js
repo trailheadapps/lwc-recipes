@@ -102,4 +102,14 @@ describe('c-apex-static-schema', () => {
             });
         });
     });
+
+    it('is accessible', () => {
+        const element = createElement('c-apex-static-schema', {
+            is: ApexStaticSchema
+        });
+
+        document.body.appendChild(element);
+
+        return Promise.resolve().then(() => expect(element).toBeAccessible());
+    });
 });

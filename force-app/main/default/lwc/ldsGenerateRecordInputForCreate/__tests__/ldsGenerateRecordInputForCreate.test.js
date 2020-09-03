@@ -1,5 +1,5 @@
 import { createElement } from 'lwc';
-import ldsGenerateRecordInputForCreate from 'c/ldsGenerateRecordInputForCreate';
+import LdsGenerateRecordInputForCreate from 'c/ldsGenerateRecordInputForCreate';
 import { registerLdsTestWireAdapter } from '@salesforce/sfdx-lwc-jest';
 import {
     getRecordCreateDefaults,
@@ -65,7 +65,7 @@ describe('c-lds-generate-record-input-for-create', () => {
             const element = createElement(
                 'c-lds-generate-record-input-for-create',
                 {
-                    is: ldsGenerateRecordInputForCreate
+                    is: LdsGenerateRecordInputForCreate
                 }
             );
             document.body.appendChild(element);
@@ -96,7 +96,7 @@ describe('c-lds-generate-record-input-for-create', () => {
             const element = createElement(
                 'c-lds-generate-record-input-for-create',
                 {
-                    is: ldsGenerateRecordInputForCreate
+                    is: LdsGenerateRecordInputForCreate
                 }
             );
             document.body.appendChild(element);
@@ -130,7 +130,7 @@ describe('c-lds-generate-record-input-for-create', () => {
             const element = createElement(
                 'c-lds-generate-record-input-for-create',
                 {
-                    is: ldsGenerateRecordInputForCreate
+                    is: LdsGenerateRecordInputForCreate
                 }
             );
             document.body.appendChild(element);
@@ -164,7 +164,7 @@ describe('c-lds-generate-record-input-for-create', () => {
             const element = createElement(
                 'c-lds-generate-record-input-for-create',
                 {
-                    is: ldsGenerateRecordInputForCreate
+                    is: LdsGenerateRecordInputForCreate
                 }
             );
             document.body.appendChild(element);
@@ -223,7 +223,7 @@ describe('c-lds-generate-record-input-for-create', () => {
             const element = createElement(
                 'c-lds-generate-record-input-for-create',
                 {
-                    is: ldsGenerateRecordInputForCreate
+                    is: LdsGenerateRecordInputForCreate
                 }
             );
             document.body.appendChild(element);
@@ -268,7 +268,7 @@ describe('c-lds-generate-record-input-for-create', () => {
             const element = createElement(
                 'c-lds-generate-record-input-for-create',
                 {
-                    is: ldsGenerateRecordInputForCreate
+                    is: LdsGenerateRecordInputForCreate
                 }
             );
             document.body.appendChild(element);
@@ -300,5 +300,18 @@ describe('c-lds-generate-record-input-for-create', () => {
                 });
             });
         });
+    });
+
+    it('is accessible', () => {
+        const element = createElement(
+            'c-lds-generate-record-input-for-create',
+            {
+                is: LdsGenerateRecordInputForCreate
+            }
+        );
+
+        document.body.appendChild(element);
+
+        return Promise.resolve().then(() => expect(element).toBeAccessible());
     });
 });

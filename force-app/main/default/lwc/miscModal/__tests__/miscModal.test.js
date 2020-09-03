@@ -94,4 +94,14 @@ describe('c-misc-modal', () => {
             expect(modalEl.show).toHaveBeenCalled();
         });
     });
+
+    it('is accessible', () => {
+        const element = createElement('c-misc-modal', {
+            is: MiscModal
+        });
+
+        document.body.appendChild(element);
+
+        return Promise.resolve().then(() => expect(element).toBeAccessible());
+    });
 });

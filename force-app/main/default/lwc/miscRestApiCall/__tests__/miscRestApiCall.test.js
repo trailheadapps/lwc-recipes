@@ -144,4 +144,14 @@ describe('c-misc-rest-api-call', () => {
             expect(errorPanelEl).not.toBeNull();
         });
     });
+
+    it('is accessible', () => {
+        const element = createElement('c-misc-rest-api-call', {
+            is: MiscRestApiCall
+        });
+
+        document.body.appendChild(element);
+
+        return Promise.resolve().then(() => expect(element).toBeAccessible());
+    });
 });

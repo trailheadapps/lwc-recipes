@@ -92,4 +92,14 @@ describe('c-apex-wire-method-to-function', () => {
             });
         });
     });
+
+    it('is accessible', () => {
+        const element = createElement('c-apex-wire-method-to-function', {
+            is: ApexWireMethodToFunction
+        });
+
+        document.body.appendChild(element);
+
+        return Promise.resolve().then(() => expect(element).toBeAccessible());
+    });
 });

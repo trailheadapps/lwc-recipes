@@ -20,4 +20,14 @@ describe('c-hello', () => {
         const div = element.shadowRoot.querySelector('div');
         expect(div.textContent).toBe('Hello, World!');
     });
+
+    it('is accessible', () => {
+        const element = createElement('c-hello', {
+            is: Hello
+        });
+
+        document.body.appendChild(element);
+
+        return Promise.resolve().then(() => expect(element).toBeAccessible());
+    });
 });

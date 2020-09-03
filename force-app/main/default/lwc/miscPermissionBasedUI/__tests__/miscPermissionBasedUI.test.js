@@ -21,4 +21,14 @@ describe('c-misc-permission-based-u-i', () => {
         const pEl = element.shadowRoot.querySelector('p');
         expect(pEl.textContent).toBe('The permission set is assigned');
     });
+
+    it('is accessible', () => {
+        const element = createElement('c-misc-permission-based-u-i', {
+            is: MiscPermissionBasedUI
+        });
+
+        document.body.appendChild(element);
+
+        return Promise.resolve().then(() => expect(element).toBeAccessible());
+    });
 });

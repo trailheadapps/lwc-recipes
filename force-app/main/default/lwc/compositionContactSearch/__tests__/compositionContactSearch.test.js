@@ -138,4 +138,72 @@ describe('c-composition-contact-search', () => {
             expect(errorPanelEl).not.toBeNull();
         });
     });
+
+    it('is accessible', () => {
+        const USER_INPUT = 'Amy';
+
+        // Assign mock value for resolved Apex promise
+        findContacts.mockResolvedValue(APEX_CONTACTS_SUCCESS);
+
+        // Create initial element
+        const element = createElement('c-composition-contact-search', {
+            is: CompositionContactSearch
+        });
+        document.body.appendChild(element);
+
+        // Query lightning-input field element
+        const inputFieldEl = element.shadowRoot.querySelector(
+            'lightning-input'
+        );
+        inputFieldEl.value = USER_INPUT;
+        inputFieldEl.dispatchEvent(new CustomEvent('change'));
+
+        // Run all fake timers.
+        jest.runAllTimers();
+
+        // Return an immediate flushed promise (after the Apex call) to then
+        // wait for any asynchronous DOM updates. Jest will automatically wait
+        // for the Promise chain to complete before ending the test and fail
+        // the test if the promise ends in the rejected state.
+        return flushPromises().then(() => {
+            const contactTileEl = element.shadowRoot.querySelector(
+                'c-contact-tile'
+            );
+            expect(contactTileEl).not.toBeNull();
+            expect(contactTileEl.contact.Name).toBe(
+                APEX_CONTACTS_SUCCESS[0].Name
+            );
+        });
+    });
+
+    it('renders the error panel when the Apex method returns an error', () => {
+        const USER_INPUT = 'invalid';
+
+        // Assign mock value for rejected Apex promise
+        findContacts.mockRejectedValue(APEX_CONTACTS_ERROR);
+
+        // Create initial element
+        const element = createElement('c-composition-contact-search', {
+            is: CompositionContactSearch
+        });
+        document.body.appendChild(element);
+
+        // Query lightning-input field elements
+        const inputFieldEl = element.shadowRoot.querySelector(
+            'lightning-input'
+        );
+        inputFieldEl.value = USER_INPUT;
+        inputFieldEl.dispatchEvent(new CustomEvent('change'));
+
+        // Run all fake timers.
+        jest.runAllTimers();
+
+        // Return an immediate flushed promise (after the Apex call) to then
+        // wait for any asynchronous DOM updates. Jest will automatically wait
+        // for the Promise chain to complete before ending the test and fail
+        // the test if the promise ends in the rejected state.
+        return flushPromises().then(() => {
+            expect(element).toBeAccessible();
+        });
+    });
 });

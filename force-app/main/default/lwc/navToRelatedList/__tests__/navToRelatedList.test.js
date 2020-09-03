@@ -54,4 +54,14 @@ describe('c-nav-to-related-list', () => {
             expect(pageReference.attributes.recordId).toBe(NAV_RECORD_ID);
         });
     });
+
+    it('is accessible', () => {
+        const element = createElement('c-nav-to-related-list', {
+            is: NavToRelatedList
+        });
+
+        document.body.appendChild(element);
+
+        return Promise.resolve().then(() => expect(element).toBeAccessible());
+    });
 });
