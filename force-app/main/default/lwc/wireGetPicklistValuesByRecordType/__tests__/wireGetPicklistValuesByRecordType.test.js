@@ -75,12 +75,17 @@ describe('c-wire-get-picklist-values-by-record-type', () => {
     });
 
     it('is accessible', () => {
-        const element = createElement('c-wire-get-picklist-values-by-record-type', {
-            is: WireGetPicklistValuesByRecordType
-        });
+        const element = createElement(
+            'c-wire-get-picklist-values-by-record-type',
+            {
+                is: WireGetPicklistValuesByRecordType
+            }
+        );
 
         document.body.appendChild(element);
 
-        return Promise.resolve().then(() => expect(element).toBeAccessible());
+        return Promise.resolve().then(() => {
+            expect(element).toBeAccessible();
+        });
     });
 });

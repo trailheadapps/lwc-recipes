@@ -25,6 +25,8 @@ describe('c-misc-content-asset', () => {
 
         document.body.appendChild(element);
 
-        return Promise.resolve().then(() => expect(element).toBeAccessible());
+        return Promise.resolve().then(() => {
+            expect(element).toBeAccessible();
+        });
     });
 });

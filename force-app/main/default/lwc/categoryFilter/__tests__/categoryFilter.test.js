@@ -52,6 +52,8 @@ describe('c-category-filter', () => {
 
         document.body.appendChild(element);
 
-        return Promise.resolve().then(() => expect(element).toBeAccessible());
+        return Promise.resolve().then(() => {
+            expect(element).toBeAccessible();
+        });
     });
 });

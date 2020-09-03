@@ -184,12 +184,17 @@ describe('c-apex-imperative-method-with-complex-params', () => {
     });
 
     it('is accessible', () => {
-        const element = createElement('c-apex-imperative-method-with-complex-params', {
-            is: ApexImperativeMethodWithComplexParams
-        });
+        const element = createElement(
+            'c-apex-imperative-method-with-complex-params',
+            {
+                is: ApexImperativeMethodWithComplexParams
+            }
+        );
 
         document.body.appendChild(element);
 
-        return Promise.resolve().then(() => expect(element).toBeAccessible());
+        return Promise.resolve().then(() => {
+            expect(element).toBeAccessible();
+        });
     });
 });

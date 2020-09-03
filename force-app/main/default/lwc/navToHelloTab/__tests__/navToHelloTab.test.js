@@ -38,6 +38,8 @@ describe('c-nav-to-hello-tab', () => {
 
         document.body.appendChild(element);
 
-        return Promise.resolve().then(() => expect(element).toBeAccessible());
+        return Promise.resolve().then(() => {
+            expect(element).toBeAccessible();
+        });
     });
 });

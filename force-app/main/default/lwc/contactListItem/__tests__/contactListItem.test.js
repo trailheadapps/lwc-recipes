@@ -64,6 +64,8 @@ describe('c-contact-list-item', () => {
         element.contact = CONTACT;
         document.body.appendChild(element);
 
-        return Promise.resolve().then(() => expect(element).toBeAccessible());
+        return Promise.resolve().then(() => {
+            expect(element).toBeAccessible();
+        });
     });
 });

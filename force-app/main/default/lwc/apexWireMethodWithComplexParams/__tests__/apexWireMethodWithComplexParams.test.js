@@ -180,12 +180,17 @@ describe('c-apex-wire-method-with-complex-params', () => {
     });
 
     it('is accessible', () => {
-        const element = createElement('c-apex-wire-method-with-complex-params', {
-            is: ApexWireMethodWithComplexParams
-        });
+        const element = createElement(
+            'c-apex-wire-method-with-complex-params',
+            {
+                is: ApexWireMethodWithComplexParams
+            }
+        );
 
         document.body.appendChild(element);
 
-        return Promise.resolve().then(() => expect(element).toBeAccessible());
+        return Promise.resolve().then(() => {
+            expect(element).toBeAccessible();
+        });
     });
 });
