@@ -193,8 +193,6 @@ describe('c-apex-imperative-method-with-complex-params', () => {
 
         document.body.appendChild(element);
 
-        return Promise.resolve().then(() => {
-            expect(element).toBeAccessible();
-        });
+        return Promise.resolve().then(() => expect(element).toBeAccessible());
     });
 });

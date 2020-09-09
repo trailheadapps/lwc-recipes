@@ -64,8 +64,6 @@ describe('c-contact-list-item-bubbling', () => {
         element.contact = CONTACT;
         document.body.appendChild(element);
 
-        return Promise.resolve().then(() => {
-            expect(element).toBeAccessible();
-        });
+        return Promise.resolve().then(() => expect(element).toBeAccessible());
     });
 });

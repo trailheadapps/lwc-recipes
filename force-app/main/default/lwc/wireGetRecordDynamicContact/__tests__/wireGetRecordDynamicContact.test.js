@@ -82,8 +82,6 @@ describe('c-wire-get-record-dynamic-contact', () => {
 
         document.body.appendChild(element);
 
-        return Promise.resolve().then(() => {
-            expect(element).toBeAccessible();
-        });
+        return Promise.resolve().then(() => expect(element).toBeAccessible());
     });
 });

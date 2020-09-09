@@ -79,8 +79,6 @@ describe('c-record-view-form-static-contact', () => {
 
         document.body.appendChild(element);
 
-        return Promise.resolve().then(() => {
-            expect(element).toBeAccessible();
-        });
+        return Promise.resolve().then(() => expect(element).toBeAccessible());
     });
 });

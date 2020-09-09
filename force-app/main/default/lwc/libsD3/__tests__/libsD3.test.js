@@ -96,8 +96,6 @@ describe('c-libs-d3', () => {
 
         document.body.appendChild(element);
 
-        return Promise.resolve().then(() => {
-            expect(element).toBeAccessible();
-        });
+        return Promise.resolve().then(() => expect(element).toBeAccessible());
     });
 });

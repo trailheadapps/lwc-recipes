@@ -163,8 +163,6 @@ describe('c-apex-wire-method-with-params', () => {
         // Emit data from @wire
         findContactsAdapter.emit(mockFindContacts);
 
-        return Promise.resolve().then(() => {
-            expect(element).toBeAccessible();
-        });
+        return Promise.resolve().then(() => expect(element).toBeAccessible());
     });
 });
