@@ -138,12 +138,28 @@ describe('c-lds-delete-record', () => {
             });
     });
 
-    it('is accessible', () => {
+    it('is accessible when data is returned', () => {
+        // Create initial element
         const element = createElement('c-lds-delete-record', {
             is: LdsDeleteRecord
         });
-
         document.body.appendChild(element);
+
+        // Emit data from @wire
+        getAccountListAdapter.emit(mockGetAccountList);
+
+        return Promise.resolve().then(() => expect(element).toBeAccessible());
+    });
+
+    it('is accessible when error is returned', () => {
+        // Create initial element
+        const element = createElement('c-lds-delete-record', {
+            is: LdsDeleteRecord
+        });
+        document.body.appendChild(element);
+
+        // Emit error from @wire
+        getAccountListAdapter.error();
 
         return Promise.resolve().then(() => expect(element).toBeAccessible());
     });

@@ -143,25 +143,30 @@ describe('c-apex-wire-method-with-params', () => {
         });
     });
 
-    it('is accessible', () => {
-        const USER_INPUT = 'Amy';
-
+    it('is accessible when data is returned', () => {
         // Create initial element
         const element = createElement('c-apex-wire-method-with-params', {
             is: ApexWireMethodWithParams
         });
+
         document.body.appendChild(element);
-
-        // Select input field for simulating user input
-        const inputEl = element.shadowRoot.querySelector('lightning-input');
-        inputEl.value = USER_INPUT;
-        inputEl.dispatchEvent(new CustomEvent('change'));
-
-        // Run all fake timers.
-        jest.runAllTimers();
 
         // Emit data from @wire
         findContactsAdapter.emit(mockFindContacts);
+
+        return Promise.resolve().then(() => expect(element).toBeAccessible());
+    });
+
+    it('is accessible when error is returned', () => {
+        // Create initial element
+        const element = createElement('c-apex-wire-method-with-params', {
+            is: ApexWireMethodWithParams
+        });
+
+        document.body.appendChild(element);
+
+        // Emit error from @wire
+        findContactsAdapter.error();
 
         return Promise.resolve().then(() => expect(element).toBeAccessible());
     });

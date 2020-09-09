@@ -61,6 +61,7 @@ describe('c-chart-bar', () => {
             is: ChartBar
         });
 
+        element.percentage = 40;
         document.body.appendChild(element);
 
         return Promise.resolve().then(() => expect(element).toBeAccessible());

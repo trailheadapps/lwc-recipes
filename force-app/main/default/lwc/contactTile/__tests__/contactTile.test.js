@@ -61,6 +61,7 @@ describe('c-contact-tile', () => {
             is: ContactTile
         });
 
+        element.contact = CONTACT_INPUT;
         document.body.appendChild(element);
 
         return Promise.resolve().then(() => expect(element).toBeAccessible());

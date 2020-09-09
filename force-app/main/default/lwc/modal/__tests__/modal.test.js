@@ -109,11 +109,27 @@ describe('c-modal', () => {
             });
     });
 
-    it('is accessible', () => {
+    it('is accessible when modal shown and has header', () => {
+        const HEADER = 'The modal header';
+
+        // Create initial element
+        const element = createElement('c-modal', {
+            is: Modal
+        });
+        element.header = HEADER;
+        element.show();
+        document.body.appendChild(element);
+
+        return Promise.resolve().then(() => expect(element).toBeAccessible());
+    });
+
+    it('is accessible when modal shown and it has no header', () => {
+        // Create initial element
         const element = createElement('c-modal', {
             is: Modal
         });
 
+        element.show();
         document.body.appendChild(element);
 
         return Promise.resolve().then(() => expect(element).toBeAccessible());

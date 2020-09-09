@@ -119,12 +119,36 @@ describe('c-apex-imperative-method', () => {
         });
     });
 
-    it('is accessible', () => {
+    it('is accessible when data is returned', () => {
+        // Assign mock value for resolved Apex promise
+        getContactList.mockResolvedValue(APEX_CONTACTS_SUCCESS);
+
+        // Create initial element
         const element = createElement('c-apex-imperative-method', {
             is: ApexImperativeMethod
         });
-
         document.body.appendChild(element);
+
+        // Select button for executing Apex call
+        const buttonEl = element.shadowRoot.querySelector('lightning-button');
+        buttonEl.click();
+
+        return Promise.resolve().then(() => expect(element).toBeAccessible());
+    });
+
+    it('is accessible when error is returned', () => {
+        // Assign mock value for rejected Apex promise
+        getContactList.mockRejectedValue(APEX_CONTACTS_ERROR);
+
+        // Create initial element
+        const element = createElement('c-apex-imperative-method', {
+            is: ApexImperativeMethod
+        });
+        document.body.appendChild(element);
+
+        // Select button for executing Apex call
+        const buttonEl = element.shadowRoot.querySelector('lightning-button');
+        buttonEl.click();
 
         return Promise.resolve().then(() => expect(element).toBeAccessible());
     });

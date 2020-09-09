@@ -102,12 +102,49 @@ describe('c-nav-to-record', () => {
         });
     });
 
-    it('is accessible', () => {
+    it('shows error panel when there is an error', () => {
+        // Create initial lwc element and attach to virtual DOM
         const element = createElement('c-nav-to-record', {
             is: NavToRecord
         });
-
         document.body.appendChild(element);
+
+        // Emit error from @wire
+        getSingleContactAdapter.error();
+
+        // Return a promise to wait for any asynchronous DOM updates. Jest
+        // will automatically wait for the Promise chain to complete before
+        // ending the test and fail the test if the promise rejects.
+        return Promise.resolve().then(() => {
+            const errorPanelEl = element.shadowRoot.querySelector(
+                'c-error-panel'
+            );
+            expect(errorPanelEl).not.toBeNull();
+        });
+    });
+
+    it('is accessible when data is returned', () => {
+        // Create initial lwc element and attach to virtual DOM
+        const element = createElement('c-nav-to-record', {
+            is: NavToRecord
+        });
+        document.body.appendChild(element);
+
+        // Simulate the data sent over wire adapter to hydrate the wired property
+        getSingleContactAdapter.emit(mockGetSingleContact);
+
+        return Promise.resolve().then(() => expect(element).toBeAccessible());
+    });
+
+    it('is accessible when error is returned', () => {
+        // Create initial lwc element and attach to virtual DOM
+        const element = createElement('c-nav-to-record', {
+            is: NavToRecord
+        });
+        document.body.appendChild(element);
+
+        // Emit error from @wire
+        getSingleContactAdapter.error();
 
         return Promise.resolve().then(() => expect(element).toBeAccessible());
     });

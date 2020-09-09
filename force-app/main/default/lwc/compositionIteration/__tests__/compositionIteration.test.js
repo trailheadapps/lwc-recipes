@@ -42,7 +42,7 @@ describe('c-composition-iteration', () => {
         expect(contactTileNames).toEqual(CONTACT_LIST_EXPECTED);
     });
 
-    it('is accessible', () => {
+    it('is accessible on initialization', () => {
         const element = createElement('c-composition-iteration', {
             is: CompositionIteration
         });

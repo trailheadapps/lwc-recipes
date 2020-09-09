@@ -103,12 +103,28 @@ describe('c-apex-static-schema', () => {
         });
     });
 
-    it('is accessible', () => {
+    it('is accessible when data is returned', () => {
+        // Create initial element
         const element = createElement('c-apex-static-schema', {
             is: ApexStaticSchema
         });
-
         document.body.appendChild(element);
+
+        // Emit data from @wire
+        getSingleContactAdapter.emit(mockGetSingleContact);
+
+        return Promise.resolve().then(() => expect(element).toBeAccessible());
+    });
+
+    it('is accessible when error is returned', () => {
+        // Create initial element
+        const element = createElement('c-apex-static-schema', {
+            is: ApexStaticSchema
+        });
+        document.body.appendChild(element);
+
+        // Emit error from @wire
+        getSingleContactAdapter.error();
 
         return Promise.resolve().then(() => expect(element).toBeAccessible());
     });

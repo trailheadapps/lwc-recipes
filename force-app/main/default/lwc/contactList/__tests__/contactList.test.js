@@ -103,12 +103,15 @@ describe('c-contact-list', () => {
             });
     });
 
-    it('is accessible', () => {
+    it('is accessible when data is returned', () => {
+        // Create initial element
         const element = createElement('c-contact-list', {
             is: ContactList
         });
-
         document.body.appendChild(element);
+
+        // Emit data from @wire
+        getContactListAdapter.emit(mockGetContactList);
 
         return Promise.resolve().then(() => expect(element).toBeAccessible());
     });

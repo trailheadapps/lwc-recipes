@@ -41,6 +41,7 @@ describe('c-lms-publisher-web-component', () => {
 
             // Emit data from @wire
             getContactListAdapter.emit(mockGetContactList);
+
             // Return a promise to wait for any asynchronous DOM updates. Jest
             // will automatically wait for the Promise chain to complete before
             // ending the test and fail the test if the promise rejects.
@@ -62,6 +63,7 @@ describe('c-lms-publisher-web-component', () => {
 
             // Emit data from @wire
             getContactListAdapter.emit(mockGetContactListNoRecords);
+
             // Return a promise to wait for any asynchronous DOM updates. Jest
             // will automatically wait for the Promise chain to complete before
             // ending the test and fail the test if the promise rejects.
@@ -98,6 +100,7 @@ describe('c-lms-publisher-web-component', () => {
 
         // Emit data from @wire
         getContactListAdapter.emit(mockGetContactList);
+
         // Return a promise to wait for any asynchronous DOM updates. Jest
         // will automatically wait for the Promise chain to complete before
         // ending the test and fail the test if the promise rejects.
@@ -123,12 +126,15 @@ describe('c-lms-publisher-web-component', () => {
         });
     });
 
-    it('is accessible', () => {
+    it('is accessible when data is returned', () => {
+        // Create initial element
         const element = createElement('c-lms-publisher-web-component', {
             is: LmsPublisherWebComponent
         });
-
         document.body.appendChild(element);
+
+        // Emit data from @wire
+        getContactListAdapter.emit(mockGetContactList);
 
         return Promise.resolve().then(() => expect(element).toBeAccessible());
     });

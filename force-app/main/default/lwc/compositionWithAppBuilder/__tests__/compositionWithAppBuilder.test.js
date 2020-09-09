@@ -30,6 +30,9 @@ describe('c-composition-with-app-builder', () => {
             is: CompositionWithAppBuilder
         });
 
+        element.picklistValue = 'somePicklist';
+        element.stringValue = 'someString';
+        element.numberValue = 99;
         document.body.appendChild(element);
 
         return Promise.resolve().then(() => expect(element).toBeAccessible());

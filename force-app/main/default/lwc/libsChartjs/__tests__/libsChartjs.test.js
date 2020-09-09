@@ -77,7 +77,19 @@ describe('c-libs-chartjs', () => {
         });
     });
 
-    it('is accessible', () => {
+    it('is accessible when library is loaded', () => {
+        const element = createElement('c-libs-chartjs', {
+            is: LibsChartjs
+        });
+
+        document.body.appendChild(element);
+
+        return Promise.resolve().then(() => expect(element).toBeAccessible());
+    });
+
+    it('is accessible when there is an error loading library', () => {
+        loadScript.mockRejectedValue(LOAD_SCRIPT_ERROR);
+
         const element = createElement('c-libs-chartjs', {
             is: LibsChartjs
         });

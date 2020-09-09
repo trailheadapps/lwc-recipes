@@ -133,13 +133,59 @@ describe('c-event-with-data', () => {
             });
     });
 
-    it('is accessible', () => {
+    it('is accessible when data is returned', () => {
+        // Create initial element
         const element = createElement('c-event-with-data', {
             is: EventWithData
         });
-
         document.body.appendChild(element);
 
+        // Emit data from @wire
+        getContactListAdapter.emit(mockGetContactList);
+
         return Promise.resolve().then(() => expect(element).toBeAccessible());
+    });
+
+    it('is accessible when error is returned', () => {
+        // Create initial element
+        const element = createElement('c-event-with-data', {
+            is: EventWithData
+        });
+        document.body.appendChild(element);
+
+        // Emit error from @wire
+        getContactListAdapter.error();
+
+        return Promise.resolve().then(() => expect(element).toBeAccessible());
+    });
+
+    it('is accessible when contact is selected', () => {
+        // Create initial element
+        const element = createElement('c-event-with-data', {
+            is: EventWithData
+        });
+        document.body.appendChild(element);
+
+        // Emit data from @wire
+        getContactListAdapter.emit(mockGetContactList);
+
+        return Promise.resolve()
+            .then(() => {
+                // Select element for validation
+                const contactListItemEls = element.shadowRoot.querySelectorAll(
+                    'c-contact-list-item'
+                );
+                expect(contactListItemEls.length).toBe(
+                    mockGetContactList.length
+                );
+                // Dispatch event from child element to validate
+                // behavior in current component.
+                contactListItemEls[0].dispatchEvent(
+                    new CustomEvent('select', {
+                        detail: mockGetContactList[0].Id
+                    })
+                );
+            })
+            .then(() => expect(element).toBeAccessible());
     });
 });

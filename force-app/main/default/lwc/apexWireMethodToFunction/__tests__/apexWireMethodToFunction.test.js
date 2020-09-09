@@ -93,12 +93,28 @@ describe('c-apex-wire-method-to-function', () => {
         });
     });
 
-    it('is accessible', () => {
+    it('is accessible when data is returned', () => {
+        // Create initial element
         const element = createElement('c-apex-wire-method-to-function', {
             is: ApexWireMethodToFunction
         });
-
         document.body.appendChild(element);
+
+        // Emit data from @wire
+        getContactListAdapter.emit(mockGetContactList);
+
+        return Promise.resolve().then(() => expect(element).toBeAccessible());
+    });
+
+    it('is accessible when error is returned', () => {
+        // Create initial element
+        const element = createElement('c-apex-wire-method-to-function', {
+            is: ApexWireMethodToFunction
+        });
+        document.body.appendChild(element);
+
+        // Emit error from @wire
+        getContactListAdapter.error();
 
         return Promise.resolve().then(() => expect(element).toBeAccessible());
     });

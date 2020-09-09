@@ -29,7 +29,7 @@ describe('c-hello-for-each', () => {
         expect(contacts).toEqual(EXPECTED);
     });
 
-    it('is accessible', () => {
+    it('is accessible on initialization', () => {
         const element = createElement('c-hello-for-each', {
             is: HelloForEach
         });

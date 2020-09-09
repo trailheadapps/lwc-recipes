@@ -108,12 +108,28 @@ describe('c-wire-get-object-info', () => {
         });
     });
 
-    it('is accessible', () => {
+    it('is accessible when object info returned', () => {
+        // Create element
         const element = createElement('c-wire-get-object-info', {
             is: WireGetObjectInfo
         });
-
         document.body.appendChild(element);
+
+        // Emit data from @wire
+        getObjectInfoAdapter.emit(mockGetObjectInfo);
+
+        return Promise.resolve().then(() => expect(element).toBeAccessible());
+    });
+
+    it('is accessible when error returned', () => {
+        // Create element
+        const element = createElement('c-wire-get-object-info', {
+            is: WireGetObjectInfo
+        });
+        document.body.appendChild(element);
+
+        // Emit error from @wire
+        getObjectInfoAdapter.error();
 
         return Promise.resolve().then(() => expect(element).toBeAccessible());
     });

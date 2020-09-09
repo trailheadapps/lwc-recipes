@@ -85,12 +85,28 @@ describe('c-wire-get-record-static-contact', () => {
         });
     });
 
-    it('is accessible', () => {
-        const element = createElement('c-wire-get-record-static-contact', {
+    it('is accessible when data is returned', () => {
+        // Create element
+        const element = createElement('c-wire-get-record-dynamic-contact', {
             is: WireGetRecordStaticContact
         });
-
         document.body.appendChild(element);
+
+        // Emit data from @wire
+        getRecordAdapter.emit(mockGetRecord);
+
+        return Promise.resolve().then(() => expect(element).toBeAccessible());
+    });
+
+    it('is accessible when error is returned', () => {
+        // Create element
+        const element = createElement('c-wire-get-record-dynamic-contact', {
+            is: WireGetRecordStaticContact
+        });
+        document.body.appendChild(element);
+
+        // Emit error from @wire
+        getRecordAdapter.error();
 
         return Promise.resolve().then(() => expect(element).toBeAccessible());
     });

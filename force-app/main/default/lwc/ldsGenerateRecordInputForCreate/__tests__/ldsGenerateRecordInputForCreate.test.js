@@ -302,7 +302,8 @@ describe('c-lds-generate-record-input-for-create', () => {
         });
     });
 
-    it('is accessible', () => {
+    it('is accessible when data is returned', () => {
+        // Create element
         const element = createElement(
             'c-lds-generate-record-input-for-create',
             {
@@ -311,6 +312,25 @@ describe('c-lds-generate-record-input-for-create', () => {
         );
 
         document.body.appendChild(element);
+
+        generateMockRecordInput();
+
+        return Promise.resolve().then(() => expect(element).toBeAccessible());
+    });
+
+    it('is accessible when data is returned', () => {
+        // Create element
+        const element = createElement(
+            'c-lds-generate-record-input-for-create',
+            {
+                is: LdsGenerateRecordInputForCreate
+            }
+        );
+
+        document.body.appendChild(element);
+
+        // Emit error from @wire
+        getRecordCreateDefaultsAdapter.error();
 
         return Promise.resolve().then(() => expect(element).toBeAccessible());
     });

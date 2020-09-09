@@ -145,12 +145,44 @@ describe('c-misc-rest-api-call', () => {
         });
     });
 
-    it('is accessible', () => {
+    it('is accessible when data is returned', () => {
+        const USER_INPUT = 'Harry Potter';
+        const BOOK_TITLES = FETCH_DATA.items.map((book) => book.title);
+
+        // Create initial element
         const element = createElement('c-misc-rest-api-call', {
             is: MiscRestApiCall
         });
-
         document.body.appendChild(element);
+
+        // eslint-disable-next-line no-unused-vars
+        const fetch = (global.fetch = mockFetch(FETCH_DATA));
+
+        // Query the input field for simulating user input.
+        const inputEl = element.shadowRoot.querySelector('lightning-input');
+        inputEl.value = USER_INPUT;
+        inputEl.dispatchEvent(new CustomEvent('change'));
+
+        // Query the button for simulating the user action.
+        const buttonEl = element.shadowRoot.querySelector('lightning-button');
+        buttonEl.click();
+
+        return Promise.resolve().then(() => expect(element).toBeAccessible());
+    });
+
+    it('is accessible when error is returned', () => {
+        // Create initial element
+        const element = createElement('c-misc-rest-api-call', {
+            is: MiscRestApiCall
+        });
+        document.body.appendChild(element);
+
+        // eslint-disable-next-line no-unused-vars
+        const fetch = (global.fetch = mockFetchError(FETCH_ERROR));
+
+        // Query the button for simulating the user action.
+        const buttonEl = element.shadowRoot.querySelector('lightning-button');
+        buttonEl.click();
 
         return Promise.resolve().then(() => expect(element).toBeAccessible());
     });
