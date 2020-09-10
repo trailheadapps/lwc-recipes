@@ -144,26 +144,6 @@ describe('c-apex-imperative-method-with-params', () => {
         });
     });
 
-    it('is accessible on initialization', () => {
-        const element = createElement('c-apex-imperative-method-with-params', {
-            is: ApexImperativeMethodWithParams
-        });
-
-        document.body.appendChild(element);
-
-        return Promise.resolve().then(() => expect(element).toBeAccessible());
-    });
-
-    it('is accessible on initialization', () => {
-        const element = createElement('c-apex-imperative-method-with-params', {
-            is: ApexImperativeMethodWithParams
-        });
-
-        document.body.appendChild(element);
-
-        return Promise.resolve().then(() => expect(element).toBeAccessible());
-    });
-
     it('is accessible when data is returned', () => {
         // Assign mock value for resolved Apex promise
         findContacts.mockResolvedValue(APEX_CONTACTS_SUCCESS);

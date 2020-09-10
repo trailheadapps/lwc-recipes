@@ -6,10 +6,6 @@ import findContacts from '@salesforce/apex/ContactController.findContacts';
 // Realistic data with a list of contacts
 const mockFindContacts = require('./data/findContacts.json');
 
-// An empty list of records to verify the component does something reasonable
-// when there is no data to display
-const mockFindContactsNoRecords = require('./data/findContactsNoRecords.json');
-
 // Register as Apex wire adapter. Some tests verify that provisioned values trigger desired behavior.
 const findContactsAdapter = registerApexTestWireAdapter(findContacts);
 
@@ -87,35 +83,6 @@ describe('c-apex-wire-method-with-params', () => {
                 expect(detailEls.length).toBe(mockFindContacts.length);
                 expect(detailEls[0].textContent).toBe(mockFindContacts[0].Name);
                 expect(element).toBeAccessible();
-            });
-        });
-
-        it('renders no items when no record is available', () => {
-            const USER_INPUT = 'does not exist';
-
-            // Create initial element
-            const element = createElement('c-apex-wire-method-with-params', {
-                is: ApexWireMethodWithParams
-            });
-            document.body.appendChild(element);
-
-            // Select input field for simulating user input
-            const inputEl = element.shadowRoot.querySelector('lightning-input');
-            inputEl.value = USER_INPUT;
-            inputEl.dispatchEvent(new CustomEvent('change'));
-
-            // Run all fake timers.
-            jest.runAllTimers();
-
-            // Emit data from @wire
-            findContactsAdapter.emit(mockFindContactsNoRecords);
-
-            // Return a promise to wait for any asynchronous DOM updates. Jest
-            // will automatically wait for the Promise chain to complete before
-            // ending the test and fail the test if the promise rejects.
-            return Promise.resolve().then(() => {
-                const detailEls = element.shadowRoot.querySelectorAll('p');
-                expect(detailEls.length).toBe(mockFindContactsNoRecords.length);
             });
         });
     });

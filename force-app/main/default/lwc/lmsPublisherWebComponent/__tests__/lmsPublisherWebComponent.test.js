@@ -31,8 +31,8 @@ describe('c-lms-publisher-web-component', () => {
         }
     });
 
-    describe('getContactList @wire data', () => {
-        it('renders data of one record', () => {
+    describe('getContactList @wire', () => {
+        it('renders data of one record when it is returned', () => {
             // Create initial element
             const element = createElement('c-lms-publisher-web-component', {
                 is: LmsPublisherWebComponent
@@ -51,30 +51,6 @@ describe('c-lms-publisher-web-component', () => {
                     'c-contact-list-item-bubbling'
                 );
                 expect(detailEls.length).toBe(mockGetContactList.length);
-            });
-        });
-
-        it('renders with no record', () => {
-            // Create initial element
-            const element = createElement('c-lms-publisher-web-component', {
-                is: LmsPublisherWebComponent
-            });
-            document.body.appendChild(element);
-
-            // Emit data from @wire
-            getContactListAdapter.emit(mockGetContactListNoRecords);
-
-            // Return a promise to wait for any asynchronous DOM updates. Jest
-            // will automatically wait for the Promise chain to complete before
-            // ending the test and fail the test if the promise rejects.
-            return Promise.resolve().then(() => {
-                // Select elements for validation
-                const detailEls = element.shadowRoot.querySelectorAll(
-                    'c-contact-list-item-bubbling'
-                );
-                expect(detailEls.length).toBe(
-                    mockGetContactListNoRecords.length
-                );
             });
         });
     });

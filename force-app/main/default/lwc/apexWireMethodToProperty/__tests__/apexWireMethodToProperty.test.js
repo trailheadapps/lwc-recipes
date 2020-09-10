@@ -10,9 +10,6 @@ const mockGetContactList = require('./data/getContactList.json');
 // when there is no data to display
 const mockGetContactListNoRecords = require('./data/getContactListNoRecords.json');
 
-// Register as Apex wire adapter. Some tests verify that provisioned values trigger desired behavior.
-const getContactListAdapter = registerApexTestWireAdapter(getContactList);
-
 describe('c-apex-wire-method-to-property', () => {
     afterEach(() => {
         // The jsdom instance is shared across test cases in a single file so reset the DOM
@@ -23,8 +20,8 @@ describe('c-apex-wire-method-to-property', () => {
         jest.clearAllMocks();
     });
 
-    describe('getContactList @wire data', () => {
-        it('renders six records', () => {
+    describe('getContactList @wire', () => {
+        it('renders six records when data returned', () => {
             // Create initial element
             const element = createElement('c-apex-wire-method-to-property', {
                 is: ApexWireMethodToProperty
@@ -46,32 +43,7 @@ describe('c-apex-wire-method-to-property', () => {
                 );
             });
         });
-
-        it('renders no items when no records are available', () => {
-            // Create initial element
-            const element = createElement('c-apex-wire-method-to-property', {
-                is: ApexWireMethodToProperty
-            });
-            document.body.appendChild(element);
-
-            // Emit data from @wire
-            getContactListAdapter.emit(mockGetContactListNoRecords);
-
-            // Return a promise to wait for any asynchronous DOM updates. Jest
-            // will automatically wait for the Promise chain to complete before
-            // ending the test and fail the test if the promise rejects.
-            return Promise.resolve().then(() => {
-                // Select elements for validation
-                const detailEls = element.shadowRoot.querySelectorAll('p');
-                expect(detailEls.length).toBe(
-                    mockGetContactListNoRecords.length
-                );
-            });
-        });
-    });
-
-    describe('getContactList @wire error', () => {
-        it('shows error panel element', () => {
+        it('shows error panel element when error returned', () => {
             // Create initial element
             const element = createElement('c-apex-wire-method-to-property', {
                 is: ApexWireMethodToProperty
