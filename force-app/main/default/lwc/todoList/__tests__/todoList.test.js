@@ -64,8 +64,6 @@ describe('c-todo-list', () => {
     });
 
     it('is accessible when todo items added', () => {
-        const todosLength = TODOS.length;
-
         // Create initial element
         const element = createElement('c-todo-list', {
             is: TodoList

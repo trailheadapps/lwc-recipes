@@ -318,7 +318,7 @@ describe('c-lds-generate-record-input-for-create', () => {
         return Promise.resolve().then(() => expect(element).toBeAccessible());
     });
 
-    it('is accessible when data is returned', () => {
+    it('is accessible when error is returned', () => {
         // Create element
         const element = createElement(
             'c-lds-generate-record-input-for-create',

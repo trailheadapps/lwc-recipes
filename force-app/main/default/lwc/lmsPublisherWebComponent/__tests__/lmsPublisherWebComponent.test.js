@@ -12,10 +12,6 @@ import getContactList from '@salesforce/apex/ContactController.getContactList';
 // Realistic data with a list of contacts
 const mockGetContactList = require('./data/getContactList.json');
 
-// An empty list of records to verify the component does something reasonable
-// when there is no data to display
-const mockGetContactListNoRecords = require('./data/getContactListNoRecords.json');
-
 // Register as Apex wire adapter. Some tests verify that data is retrieved.
 const getContactListAdapter = registerApexTestWireAdapter(getContactList);
 
