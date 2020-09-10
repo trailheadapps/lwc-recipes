@@ -6,10 +6,6 @@ import getContactList from '@salesforce/apex/ContactController.getContactList';
 // Realistic data with a list of contacts
 const mockGetContactList = require('./data/getContactList.json');
 
-// An empty list of records to verify the component does something reasonable
-// when there is no data to display
-const mockGetContactListNoRecords = require('./data/getContactListNoRecords.json');
-
 describe('c-apex-wire-method-to-property', () => {
     afterEach(() => {
         // The jsdom instance is shared across test cases in a single file so reset the DOM
