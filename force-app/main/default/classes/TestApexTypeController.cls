@@ -13,7 +13,8 @@ public with sharing class TestApexTypeController {
 
         System.assertEquals(
             'You entered "someMockString" as String, and "33" as Integer value. The list contained 0 items.',
-            result
+            result,
+            'checkApexTypes doesn\'t return the expected string'
         );
     }
 }
