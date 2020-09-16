@@ -1,3 +1,9 @@
+/**
+ * Accessibility tests reside in a different test file in this case
+ * because there's an open issue on jest (https://github.com/facebook/jest/issues/8726)
+ * because of which fake timers leak into all the tests in the same file,
+ * while Axe doen't work when using fake timers.
+ **/
 import { createElement } from 'lwc';
 import ApexWireMethodWithParams from 'c/apexWireMethodWithParams';
 import { registerApexTestWireAdapter } from '@salesforce/sfdx-lwc-jest';
@@ -108,33 +114,5 @@ describe('c-apex-wire-method-with-params', () => {
                 expect(errorPanelEl).not.toBeNull();
             });
         });
-    });
-
-    it('is accessible when data is returned', () => {
-        // Create initial element
-        const element = createElement('c-apex-wire-method-with-params', {
-            is: ApexWireMethodWithParams
-        });
-
-        document.body.appendChild(element);
-
-        // Emit data from @wire
-        findContactsAdapter.emit(mockFindContacts);
-
-        return Promise.resolve().then(() => expect(element).toBeAccessible());
-    });
-
-    it('is accessible when error is returned', () => {
-        // Create initial element
-        const element = createElement('c-apex-wire-method-with-params', {
-            is: ApexWireMethodWithParams
-        });
-
-        document.body.appendChild(element);
-
-        // Emit error from @wire
-        findContactsAdapter.error();
-
-        return Promise.resolve().then(() => expect(element).toBeAccessible());
     });
 });

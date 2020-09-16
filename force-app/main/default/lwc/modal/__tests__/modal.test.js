@@ -109,7 +109,7 @@ describe('c-modal', () => {
             });
     });
 
-    it('is accessible when modal shown and has header', () => {
+    it('is accessible when modal shown and public header property is set', () => {
         const HEADER = 'The modal header';
 
         // Create initial element
@@ -123,7 +123,7 @@ describe('c-modal', () => {
         return Promise.resolve().then(() => expect(element).toBeAccessible());
     });
 
-    it('is accessible when modal shown and it has no header', () => {
+    it('is accessible when modal shown and it no public header property is set', () => {
         // Create initial element
         const element = createElement('c-modal', {
             is: Modal
@@ -131,6 +131,12 @@ describe('c-modal', () => {
 
         element.show();
         document.body.appendChild(element);
+
+        // Append element to slot so that we comply with accessibility
+        const divEl = document.createElement('div');
+        divEl.textContent = 'My Header';
+        const slotEl = element.shadowRoot.querySelector('slot[name="header"]');
+        slotEl.appendChild(divEl);
 
         return Promise.resolve().then(() => expect(element).toBeAccessible());
     });
