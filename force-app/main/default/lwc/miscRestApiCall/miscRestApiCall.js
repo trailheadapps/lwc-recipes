@@ -20,8 +20,9 @@ export default class MiscRestCall extends LightningElement {
             .then((response) => {
                 // fetch isn't throwing an error if the request fails.
                 // Therefore we have to check the ok property.
+                // The thrown error will be catched on the catch() method
                 if (!response.ok) {
-                    this.error = response;
+                    throw Error(response);
                 } else {
                     return response.json();
                 }
