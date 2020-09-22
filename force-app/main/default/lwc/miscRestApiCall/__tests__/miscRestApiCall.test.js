@@ -56,7 +56,7 @@ describe('c-misc-rest-api-call', () => {
         // Mock the successful fetch call. An empty response value is
         // sufficient, as we only test that fetch is called with the
         // expected parameter.
-        const fetch = (global.fetch = mockFetch({}));
+        const fetch = (global.fetch = mockFetch({ items: [] }));
 
         // Query the input field for simulating user input.
         const inputEl = element.shadowRoot.querySelector('lightning-input');
@@ -89,7 +89,9 @@ describe('c-misc-rest-api-call', () => {
 
     it('renders book details based on a user query', () => {
         const USER_INPUT = 'Harry Potter';
-        const BOOK_TITLES = FETCH_DATA.items.map((book) => book.title);
+        const BOOK_TITLES = FETCH_DATA.items.map(
+            (book) => book.volumeInfo.title
+        );
 
         // Create initial element
         const element = createElement('c-misc-rest-api-call', {
@@ -114,7 +116,7 @@ describe('c-misc-rest-api-call', () => {
             // returned by fetch, and that they are populated with the book titles.
             const EXPECTED = Array.from(
                 element.shadowRoot.querySelectorAll('p')
-            ).map((p) => p.tag);
+            ).map((p) => p.textContent);
             expect(EXPECTED).toEqual(BOOK_TITLES);
         });
     });

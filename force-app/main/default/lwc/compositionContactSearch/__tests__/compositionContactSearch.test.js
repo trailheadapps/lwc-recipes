@@ -45,6 +45,9 @@ describe('c-composition-contact-search', () => {
         while (document.body.firstChild) {
             document.body.removeChild(document.body.firstChild);
         }
+
+        // Prevent data saved on mocks from leaking between tests
+        jest.clearAllMocks();
     });
 
     // Helper function to wait until the microtask queue is empty. This is needed for promise
@@ -166,13 +169,7 @@ describe('c-composition-contact-search', () => {
         // for the Promise chain to complete before ending the test and fail
         // the test if the promise ends in the rejected state.
         return flushPromises().then(() => {
-            const contactTileEl = element.shadowRoot.querySelector(
-                'c-contact-tile'
-            );
-            expect(contactTileEl).not.toBeNull();
-            expect(contactTileEl.contact.Name).toBe(
-                APEX_CONTACTS_SUCCESS[0].Name
-            );
+            expect(element).toBeAccessible();
         });
     });
 

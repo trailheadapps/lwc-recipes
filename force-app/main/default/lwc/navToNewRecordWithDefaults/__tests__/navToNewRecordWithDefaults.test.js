@@ -41,7 +41,7 @@ describe('c-nav-to-new-record', () => {
 
         // Create initial lwc element and attach to virtual DOM
         const element = createElement('c-nav-to-new-record-with-defaults', {
-            is: NavToNewRecordWithDefaultsWithDefaults
+            is: NavToNewRecordWithDefaults
         });
         document.body.appendChild(element);
 

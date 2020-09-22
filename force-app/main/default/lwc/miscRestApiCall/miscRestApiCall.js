@@ -22,8 +22,9 @@ export default class MiscRestCall extends LightningElement {
                 // Therefore we have to check the ok property.
                 if (!response.ok) {
                     this.error = response;
+                } else {
+                    return response.json();
                 }
-                return response.json();
             })
             .then((jsonResponse) => {
                 this.books = jsonResponse;
