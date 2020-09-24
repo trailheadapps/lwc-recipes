@@ -12,10 +12,6 @@ import getContactList from '@salesforce/apex/ContactController.getContactList';
 // Realistic data with a list of contacts
 const mockGetContactList = require('./data/getContactList.json');
 
-// An empty list of records to verify the component does something reasonable
-// when there is no data to display
-const mockGetContactListNoRecords = require('./data/getContactListNoRecords.json');
-
 // Register as Apex wire adapter. Some tests verify that data is retrieved.
 const getContactListAdapter = registerApexTestWireAdapter(getContactList);
 
@@ -31,8 +27,8 @@ describe('c-lms-publisher-web-component', () => {
         }
     });
 
-    describe('getContactList @wire data', () => {
-        it('renders data of one record', () => {
+    describe('getContactList @wire', () => {
+        it('renders data of one record when it is returned', () => {
             // Create initial element
             const element = createElement('c-lms-publisher-web-component', {
                 is: LmsPublisherWebComponent
@@ -41,6 +37,7 @@ describe('c-lms-publisher-web-component', () => {
 
             // Emit data from @wire
             getContactListAdapter.emit(mockGetContactList);
+
             // Return a promise to wait for any asynchronous DOM updates. Jest
             // will automatically wait for the Promise chain to complete before
             // ending the test and fail the test if the promise rejects.
@@ -50,29 +47,6 @@ describe('c-lms-publisher-web-component', () => {
                     'c-contact-list-item-bubbling'
                 );
                 expect(detailEls.length).toBe(mockGetContactList.length);
-            });
-        });
-
-        it('renders with no record', () => {
-            // Create initial element
-            const element = createElement('c-lms-publisher-web-component', {
-                is: LmsPublisherWebComponent
-            });
-            document.body.appendChild(element);
-
-            // Emit data from @wire
-            getContactListAdapter.emit(mockGetContactListNoRecords);
-            // Return a promise to wait for any asynchronous DOM updates. Jest
-            // will automatically wait for the Promise chain to complete before
-            // ending the test and fail the test if the promise rejects.
-            return Promise.resolve().then(() => {
-                // Select elements for validation
-                const detailEls = element.shadowRoot.querySelectorAll(
-                    'c-contact-list-item-bubbling'
-                );
-                expect(detailEls.length).toBe(
-                    mockGetContactListNoRecords.length
-                );
             });
         });
     });
@@ -98,6 +72,7 @@ describe('c-lms-publisher-web-component', () => {
 
         // Emit data from @wire
         getContactListAdapter.emit(mockGetContactList);
+
         // Return a promise to wait for any asynchronous DOM updates. Jest
         // will automatically wait for the Promise chain to complete before
         // ending the test and fail the test if the promise rejects.
@@ -121,5 +96,18 @@ describe('c-lms-publisher-web-component', () => {
                 PAYLOAD
             );
         });
+    });
+
+    it('is accessible when data is returned', () => {
+        // Create initial element
+        const element = createElement('c-lms-publisher-web-component', {
+            is: LmsPublisherWebComponent
+        });
+        document.body.appendChild(element);
+
+        // Emit data from @wire
+        getContactListAdapter.emit(mockGetContactList);
+
+        return Promise.resolve().then(() => expect(element).toBeAccessible());
     });
 });

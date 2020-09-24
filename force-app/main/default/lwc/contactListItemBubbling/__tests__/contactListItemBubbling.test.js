@@ -55,4 +55,15 @@ describe('c-contact-list-item-bubbling', () => {
         const selectEvent = mockSelectHandler.mock.calls[0][0];
         expect(selectEvent.bubbles).toBeTruthy();
     });
+
+    it('is accessible', () => {
+        const element = createElement('c-contact-list-item-bubbling', {
+            is: ContactListItemBubbling
+        });
+        // Set public property
+        element.contact = CONTACT;
+        document.body.appendChild(element);
+
+        return Promise.resolve().then(() => expect(element).toBeAccessible());
+    });
 });

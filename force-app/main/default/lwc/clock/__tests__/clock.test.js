@@ -26,4 +26,14 @@ describe('c-clock', () => {
             expect(lightningDateTimeEl.value).not.toBe(currentDateTimeVal);
         });
     });
+
+    it('is accessible', () => {
+        const element = createElement('c-clock', {
+            is: Clock
+        });
+
+        document.body.appendChild(element);
+
+        return Promise.resolve().then(() => expect(element).toBeAccessible());
+    });
 });

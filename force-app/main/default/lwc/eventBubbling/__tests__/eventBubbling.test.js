@@ -138,4 +138,71 @@ describe('c-event-bubbling', () => {
                 expect(contactNameEl.textContent).toBe(CONTACT.Name);
             });
     });
+
+    it('is accessible when data is returned', () => {
+        // Create initial element
+        const element = createElement('c-event-bubbling', {
+            is: EventBubbling
+        });
+        document.body.appendChild(element);
+
+        // Emit data from @wire
+        getContactListAdapter.emit(mockGetContactList);
+
+        return Promise.resolve().then(() => expect(element).toBeAccessible());
+    });
+
+    it('is accessible when error is returned', () => {
+        // Create initial element
+        const element = createElement('c-event-bubbling', {
+            is: EventBubbling
+        });
+        document.body.appendChild(element);
+
+        // Emit error from @wire
+        getContactListAdapter.error();
+
+        return Promise.resolve().then(() => expect(element).toBeAccessible());
+    });
+
+    it('is accessible when a contact is selected', () => {
+        const CONTACT = {
+            Id: '0031700000pJRRSAA4',
+            Name: 'Amy Taylor',
+            Title: 'VP of Engineering',
+            Phone: '4152568563',
+            Email: 'amy@demo.net',
+            Picture__c:
+                'https://s3-us-west-1.amazonaws.com/sfdc-demo/people/amy_taylor.jpg'
+        };
+
+        // Create initial element
+        const element = createElement('c-event-bubbling', {
+            is: EventBubbling
+        });
+        document.body.appendChild(element);
+
+        // Emit data from @wire
+        getContactListAdapter.emit(mockGetContactList);
+
+        return Promise.resolve()
+            .then(() => {
+                // Select element for validation
+                const contactListItemEls = element.shadowRoot.querySelectorAll(
+                    'c-contact-list-item-bubbling'
+                );
+                expect(contactListItemEls.length).toBe(
+                    mockGetContactList.length
+                );
+                // Dispatch event from child element to validate
+                // behavior in current component.
+                contactListItemEls[0].dispatchEvent(
+                    new CustomEvent('contactselect', {
+                        detail: CONTACT,
+                        bubbles: true
+                    })
+                );
+            })
+            .then(() => expect(element).toBeAccessible());
+    });
 });

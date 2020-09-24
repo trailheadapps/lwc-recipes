@@ -64,4 +64,30 @@ describe('c-wire-list-view', () => {
             });
         });
     });
+
+    it('is accessible when list view is returned', () => {
+        // Create element
+        const element = createElement('c-wire-list-view', {
+            is: WireListView
+        });
+        document.body.appendChild(element);
+
+        // Emit data from @wire
+        getListUiAdapter.emit(mockGetListUi);
+
+        return Promise.resolve().then(() => expect(element).toBeAccessible());
+    });
+
+    it('is accessible when error is returned', () => {
+        // Create element
+        const element = createElement('c-wire-list-view', {
+            is: WireListView
+        });
+        document.body.appendChild(element);
+
+        // Emit error from @wire
+        getListUiAdapter.error();
+
+        return Promise.resolve().then(() => expect(element).toBeAccessible());
+    });
 });

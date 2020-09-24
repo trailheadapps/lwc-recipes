@@ -54,4 +54,51 @@ describe('c-nav-to-related-list', () => {
             expect(pageReference.attributes.recordId).toBe(NAV_RECORD_ID);
         });
     });
+
+    it('shows error panel when there is an error', () => {
+        // Create initial lwc element and attach to virtual DOM
+        const element = createElement('c-nav-to-related-list', {
+            is: NavToRelatedList
+        });
+        document.body.appendChild(element);
+
+        // Emit error from @wire
+        getSingleAccountAdapter.error();
+
+        // Return a promise to wait for any asynchronous DOM updates. Jest
+        // will automatically wait for the Promise chain to complete before
+        // ending the test and fail the test if the promise rejects.
+        return Promise.resolve().then(() => {
+            const errorPanelEl = element.shadowRoot.querySelector(
+                'c-error-panel'
+            );
+            expect(errorPanelEl).not.toBeNull();
+        });
+    });
+
+    it('is accessible when data is returned', () => {
+        // Create initial lwc element and attach to virtual DOM
+        const element = createElement('c-nav-to-related-list', {
+            is: NavToRelatedList
+        });
+        document.body.appendChild(element);
+
+        // Simulate the data sent over wire adapter to hydrate the wired property
+        getSingleAccountAdapter.emit(mockGetSingleAccount);
+
+        return Promise.resolve().then(() => expect(element).toBeAccessible());
+    });
+
+    it('is accessible when error is returned', () => {
+        // Create initial lwc element and attach to virtual DOM
+        const element = createElement('c-nav-to-related-list', {
+            is: NavToRelatedList
+        });
+        document.body.appendChild(element);
+
+        // Emit error from @wire
+        getSingleAccountAdapter.error();
+
+        return Promise.resolve().then(() => expect(element).toBeAccessible());
+    });
 });

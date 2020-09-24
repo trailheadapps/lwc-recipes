@@ -90,4 +90,28 @@ describe('c-misc-multiple-templates', () => {
             expect(imgEl.getAttribute('src')).toBe(TEMPLATE1_LOGO_URL);
         });
     });
+
+    it('is accessible when template1 is shown', () => {
+        const element = createElement('c-misc-multiple-templates', {
+            is: MiscMultipleTemplates
+        });
+
+        document.body.appendChild(element);
+
+        return Promise.resolve().then(() => expect(element).toBeAccessible());
+    });
+
+    it('is accessible when template2 is shown', () => {
+        const element = createElement('c-misc-multiple-templates', {
+            is: MiscMultipleTemplates
+        });
+
+        document.body.appendChild(element);
+
+        // Simulate user click
+        const button = element.shadowRoot.querySelector('lightning-button');
+        button.click();
+
+        return Promise.resolve().then(() => expect(element).toBeAccessible());
+    });
 });

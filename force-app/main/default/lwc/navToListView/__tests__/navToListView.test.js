@@ -40,4 +40,14 @@ describe('c-nav-to-list-view', () => {
             expect(pageReference.state.filterName).toBe(NAV_FILTER_NAME);
         });
     });
+
+    it('is accessible', () => {
+        const element = createElement('c-nav-to-list-view', {
+            is: NavToListView
+        });
+
+        document.body.appendChild(element);
+
+        return Promise.resolve().then(() => expect(element).toBeAccessible());
+    });
 });

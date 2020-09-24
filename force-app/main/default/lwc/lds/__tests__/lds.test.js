@@ -102,4 +102,14 @@ describe('c-lds', () => {
             });
         });
     });
+
+    it('is accessible', () => {
+        const element = createElement('c-lds', {
+            is: Lds
+        });
+
+        document.body.appendChild(element);
+
+        return Promise.resolve().then(() => expect(element).toBeAccessible());
+    });
 });

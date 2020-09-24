@@ -100,4 +100,14 @@ describe('c-misc-shared-java-script', () => {
             );
         });
     });
+
+    it('is accessible', () => {
+        const element = createElement('c-misc-shared-java-script', {
+            is: MiscSharedJavaScript
+        });
+
+        document.body.appendChild(element);
+
+        return Promise.resolve().then(() => expect(element).toBeAccessible());
+    });
 });

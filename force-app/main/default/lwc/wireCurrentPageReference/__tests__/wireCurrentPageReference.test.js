@@ -42,4 +42,14 @@ describe('c-wire-current-page-reference', () => {
             );
         });
     });
+
+    it('is accessible', () => {
+        const element = createElement('c-wire-current-page-reference', {
+            is: WireCurrentPageReference
+        });
+
+        document.body.appendChild(element);
+
+        return Promise.resolve().then(() => expect(element).toBeAccessible());
+    });
 });
