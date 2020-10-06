@@ -38,7 +38,7 @@
         "jest-canvas-mock": "^2.2.0",
         "lint-staged": "^10.2.13",
         "prettier": "^2.1.1",
-        "prettier-plugin-apex": "^1.6.0",
+        "prettier-plugin-apex": "^1.7.0",
         "semver": "^7.3.2"
     },
     "husky": {
