@@ -26,6 +26,9 @@
                         </h2>
                     </template>
                     <template if:false={hasHeaderString}>
+                        <!-- If you don't set the header public property, make sure to 
+                            pass in some content into the header slot, so that the component
+                            is accessible, as empty headings are considered not accessible. -->
                         <h2
                             class="slds-text-heading_medium slds-hyphenate header-slot"
                         >

@@ -168,4 +168,14 @@ describe('c-lds-create-record', () => {
             expect(handler.mock.calls[0][0].detail.variant).toBe('error');
         });
     });
+
+    it('is accessible', () => {
+        const element = createElement('c-lds-create-record', {
+            is: LdsCreateRecord
+        });
+
+        document.body.appendChild(element);
+
+        return Promise.resolve().then(() => expect(element).toBeAccessible());
+    });
 });

@@ -19,4 +19,14 @@ describe('c-misc-get-user-id', () => {
         expect(divEl).not.toBeNull();
         expect(divEl.textContent).toBe('User Id:' + USER_ID);
     });
+
+    it('is accessible', () => {
+        const element = createElement('c-misc-get-user-id', {
+            is: MiscGetUserId
+        });
+
+        document.body.appendChild(element);
+
+        return Promise.resolve().then(() => expect(element).toBeAccessible());
+    });
 });

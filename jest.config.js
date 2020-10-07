@@ -13,5 +13,6 @@ module.exports = {
         '^lightning/messageService$':
             '<rootDir>/force-app/test/jest-mocks/lightning/messageService'
     },
-    setupFiles: ['jest-canvas-mock']
+    setupFiles: ['jest-canvas-mock'],
+    setupFilesAfterEnv: ['<rootDir>/jest-sa11y-setup.js']
 };

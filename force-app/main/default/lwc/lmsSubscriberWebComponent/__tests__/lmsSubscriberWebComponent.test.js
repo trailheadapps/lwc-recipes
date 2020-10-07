@@ -170,4 +170,43 @@ describe('c-lms-subscriber-web-component', () => {
             });
         });
     });
+
+    it('is accessible when contacts returned with picture', () => {
+        // Create element
+        const element = createElement('c-lms-subscriber-web-component', {
+            is: LmsSubscriberWebComponent
+        });
+        document.body.appendChild(element);
+
+        // Emit data from @wire
+        getRecordAdapter.emit(mockGetRecord);
+
+        return Promise.resolve().then(() => expect(element).toBeAccessible());
+    });
+
+    it('is accessible when contacts returned without picture', () => {
+        // Create element
+        const element = createElement('c-lms-subscriber-web-component', {
+            is: LmsSubscriberWebComponent
+        });
+        document.body.appendChild(element);
+
+        // Emit data from @wire
+        getRecordAdapter.emit(mockGetRecordNoPicture);
+
+        return Promise.resolve().then(() => expect(element).toBeAccessible());
+    });
+
+    it('is accessible when error returned', () => {
+        // Create element
+        const element = createElement('c-lms-subscriber-web-component', {
+            is: LmsSubscriberWebComponent
+        });
+        document.body.appendChild(element);
+
+        // Emit error from @wire
+        getRecordAdapter.error();
+
+        return Promise.resolve().then(() => expect(element).toBeAccessible());
+    });
 });

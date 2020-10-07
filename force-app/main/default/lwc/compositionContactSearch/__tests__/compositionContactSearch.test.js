@@ -45,6 +45,9 @@ describe('c-composition-contact-search', () => {
         while (document.body.firstChild) {
             document.body.removeChild(document.body.firstChild);
         }
+
+        // Prevent data saved on mocks from leaking between tests
+        jest.clearAllMocks();
     });
 
     // Helper function to wait until the microtask queue is empty. This is needed for promise
@@ -136,6 +139,68 @@ describe('c-composition-contact-search', () => {
                 'c-error-panel'
             );
             expect(errorPanelEl).not.toBeNull();
+        });
+    });
+
+    it('is accessible when data is returned', () => {
+        const USER_INPUT = 'Amy';
+
+        // Assign mock value for resolved Apex promise
+        findContacts.mockResolvedValue(APEX_CONTACTS_SUCCESS);
+
+        // Create initial element
+        const element = createElement('c-composition-contact-search', {
+            is: CompositionContactSearch
+        });
+        document.body.appendChild(element);
+
+        // Query lightning-input field element
+        const inputFieldEl = element.shadowRoot.querySelector(
+            'lightning-input'
+        );
+        inputFieldEl.value = USER_INPUT;
+        inputFieldEl.dispatchEvent(new CustomEvent('change'));
+
+        // Run all fake timers.
+        jest.runAllTimers();
+
+        // Return an immediate flushed promise (after the Apex call) to then
+        // wait for any asynchronous DOM updates. Jest will automatically wait
+        // for the Promise chain to complete before ending the test and fail
+        // the test if the promise ends in the rejected state.
+        return flushPromises().then(() => {
+            expect(element).toBeAccessible();
+        });
+    });
+
+    it('is accessible when error is returned', () => {
+        const USER_INPUT = 'invalid';
+
+        // Assign mock value for rejected Apex promise
+        findContacts.mockRejectedValue(APEX_CONTACTS_ERROR);
+
+        // Create initial element
+        const element = createElement('c-composition-contact-search', {
+            is: CompositionContactSearch
+        });
+        document.body.appendChild(element);
+
+        // Query lightning-input field elements
+        const inputFieldEl = element.shadowRoot.querySelector(
+            'lightning-input'
+        );
+        inputFieldEl.value = USER_INPUT;
+        inputFieldEl.dispatchEvent(new CustomEvent('change'));
+
+        // Run all fake timers.
+        jest.runAllTimers();
+
+        // Return an immediate flushed promise (after the Apex call) to then
+        // wait for any asynchronous DOM updates. Jest will automatically wait
+        // for the Promise chain to complete before ending the test and fail
+        // the test if the promise ends in the rejected state.
+        return flushPromises().then(() => {
+            expect(element).toBeAccessible();
         });
     });
 });

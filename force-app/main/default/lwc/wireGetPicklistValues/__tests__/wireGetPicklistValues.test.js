@@ -69,4 +69,30 @@ describe('c-wire-get-picklist-values', () => {
             });
         });
     });
+
+    it('is accessible when picklist values are returned', () => {
+        // Create element
+        const element = createElement('c-wire-get-picklist-values', {
+            is: WireGetPicklistValues
+        });
+        document.body.appendChild(element);
+
+        // Emit data from @wire
+        getPicklistValuesAdapter.emit(mockGetPicklistValues);
+
+        return Promise.resolve().then(() => expect(element).toBeAccessible());
+    });
+
+    it('is accessible when error is returned', () => {
+        // Create element
+        const element = createElement('c-wire-get-picklist-values', {
+            is: WireGetPicklistValues
+        });
+        document.body.appendChild(element);
+
+        // Emit error from @wire
+        getPicklistValuesAdapter.error();
+
+        return Promise.resolve().then(() => expect(element).toBeAccessible());
+    });
 });

@@ -55,4 +55,15 @@ describe('c-contact-list-item', () => {
         const selectEvent = mockSelectHandler.mock.calls[0][0];
         expect(selectEvent.detail).toBe(CONTACT.Id);
     });
+
+    it('is accessible', () => {
+        const element = createElement('c-contact-list-item', {
+            is: ContactListItem
+        });
+        // Set public property
+        element.contact = CONTACT;
+        document.body.appendChild(element);
+
+        return Promise.resolve().then(() => expect(element).toBeAccessible());
+    });
 });

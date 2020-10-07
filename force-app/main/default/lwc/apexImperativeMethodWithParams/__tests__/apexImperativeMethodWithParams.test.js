@@ -143,4 +143,38 @@ describe('c-apex-imperative-method-with-params', () => {
             expect(errorPanelEl).not.toBeNull();
         });
     });
+
+    it('is accessible when data is returned', () => {
+        // Assign mock value for resolved Apex promise
+        findContacts.mockResolvedValue(APEX_CONTACTS_SUCCESS);
+
+        // Create initial element
+        const element = createElement('c-apex-imperative-method-with-params', {
+            is: ApexImperativeMethodWithParams
+        });
+        document.body.appendChild(element);
+
+        // Select button for executing Apex call
+        const buttonEl = element.shadowRoot.querySelector('lightning-button');
+        buttonEl.click();
+
+        return Promise.resolve().then(() => expect(element).toBeAccessible());
+    });
+
+    it('is accessible when error is returned', () => {
+        // Assing mock value for rejected Apex promise
+        findContacts.mockRejectedValue(APEX_CONTACTS_ERROR);
+
+        // Create initial element
+        const element = createElement('c-apex-imperative-method-with-params', {
+            is: ApexImperativeMethodWithParams
+        });
+        document.body.appendChild(element);
+
+        // Select button for executing Apex call
+        const buttonEl = element.shadowRoot.querySelector('lightning-button');
+        buttonEl.click();
+
+        return Promise.resolve().then(() => expect(element).toBeAccessible());
+    });
 });

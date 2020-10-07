@@ -5,9 +5,6 @@ import getContactList from '@salesforce/apex/ContactController.getContactList';
 
 // Realistic data with a list of contacts
 const mockGetContactList = require('./data/getContactList.json');
-// An empty list of records to verify the component does something reasonable
-// when there is no data to display
-const mockGetContactListNoRecords = require('./data/getContactListNoRecords.json');
 
 // Register as Apex wire adapter. Some tests verify that provisioned values trigger desired behavior.
 const getContactListAdapter = registerApexTestWireAdapter(getContactList);
@@ -22,8 +19,8 @@ describe('c-contact-list', () => {
         jest.clearAllMocks();
     });
 
-    describe('getContactList @wire data', () => {
-        it('renders contact data of six records', () => {
+    describe('getContactList @wire', () => {
+        it('renders contact data of six records when data returned', () => {
             // Create initial element
             const element = createElement('c-contact-list', {
                 is: ContactList
@@ -44,26 +41,6 @@ describe('c-contact-list', () => {
 
                 const picEl = element.shadowRoot.querySelector('img');
                 expect(picEl.src).toBe(mockGetContactList[0].Picture__c);
-            });
-        });
-
-        it('renders no contact details when no record is present', () => {
-            // Create initial element
-            const element = createElement('c-contact-list', {
-                is: ContactList
-            });
-            document.body.appendChild(element);
-
-            // Emit data from @wire
-            getContactListAdapter.emit(mockGetContactListNoRecords);
-
-            // Return a promise to wait for any asynchronous DOM updates. Jest
-            // will automatically wait for the Promise chain to complete before
-            // ending the test and fail the test if the promise rejects.
-            return Promise.resolve().then(() => {
-                // Select elements for validation
-                const nameEls = element.shadowRoot.querySelectorAll('p');
-                expect(nameEls.length).toBe(mockGetContactListNoRecords.length);
             });
         });
     });
@@ -101,5 +78,18 @@ describe('c-contact-list', () => {
                     EVENT_DETAIL_PARAMETER
                 );
             });
+    });
+
+    it('is accessible when data is returned', () => {
+        // Create initial element
+        const element = createElement('c-contact-list', {
+            is: ContactList
+        });
+        document.body.appendChild(element);
+
+        // Emit data from @wire
+        getContactListAdapter.emit(mockGetContactList);
+
+        return Promise.resolve().then(() => expect(element).toBeAccessible());
     });
 });

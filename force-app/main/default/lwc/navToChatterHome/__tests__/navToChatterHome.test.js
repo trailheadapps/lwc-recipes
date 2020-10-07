@@ -34,4 +34,14 @@ describe('c-nav-to-chatter-home', () => {
             expect(pageReference.attributes.pageName).toBe(NAV_PAGE);
         });
     });
+
+    it('is accessible', () => {
+        const element = createElement('c-nav-to-chatter-home', {
+            is: NavToChatterHome
+        });
+
+        document.body.appendChild(element);
+
+        return Promise.resolve().then(() => expect(element).toBeAccessible());
+    });
 });

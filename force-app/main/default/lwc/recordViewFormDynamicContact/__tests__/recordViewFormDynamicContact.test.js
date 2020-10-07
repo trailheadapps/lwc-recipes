@@ -49,4 +49,14 @@ describe('c-record-view-form-dynamic-contact', () => {
         ).map((outputField) => outputField.fieldName);
         expect(outputFieldNames).toEqual(OUTPUT_FIELDS);
     });
+
+    it('is accessible', () => {
+        const element = createElement('c-record-view-form-dynamic-contact', {
+            is: RecordViewFormDynamicContact
+        });
+
+        document.body.appendChild(element);
+
+        return Promise.resolve().then(() => expect(element).toBeAccessible());
+    });
 });

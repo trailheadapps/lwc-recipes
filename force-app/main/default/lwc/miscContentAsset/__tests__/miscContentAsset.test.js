@@ -17,4 +17,14 @@ describe('c-misc-content-asset', () => {
         // sfdx-lwc-jest automocks @salesforce/contentAsset, and returns localhost/name_of_content_asset.
         expect(imgRecipesEl.src).toBe('http://localhost/recipes_sq_logo');
     });
+
+    it('is accessible', () => {
+        const element = createElement('c-misc-content-asset', {
+            is: MiscContentAsset
+        });
+
+        document.body.appendChild(element);
+
+        return Promise.resolve().then(() => expect(element).toBeAccessible());
+    });
 });

@@ -38,4 +38,14 @@ describe('c-nav-to-files-home', () => {
             expect(pageReference.attributes.actionName).toBe(NAV_ACTION_NAME);
         });
     });
+
+    it('is accessible', () => {
+        const element = createElement('c-nav-to-files-home', {
+            is: NavToFilesHome
+        });
+
+        document.body.appendChild(element);
+
+        return Promise.resolve().then(() => expect(element).toBeAccessible());
+    });
 });

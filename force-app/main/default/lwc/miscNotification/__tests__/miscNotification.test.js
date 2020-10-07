@@ -63,4 +63,14 @@ describe('c-misc-notification', () => {
             expect(handler.mock.calls[0][0].detail.variant).toBe(TOAST_VARIANT);
         });
     });
+
+    it('is accessible', () => {
+        const element = createElement('c-misc-notification', {
+            is: MiscNotification
+        });
+
+        document.body.appendChild(element);
+
+        return Promise.resolve().then(() => expect(element).toBeAccessible());
+    });
 });

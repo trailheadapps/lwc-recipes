@@ -74,4 +74,30 @@ describe('c-wire-get-record-dynamic-contact', () => {
             });
         });
     });
+
+    it('is accessible when data is returned', () => {
+        // Create element
+        const element = createElement('c-wire-get-record-dynamic-contact', {
+            is: WireGetRecordDynamicContact
+        });
+        document.body.appendChild(element);
+
+        // Emit data from @wire
+        getRecordAdapter.emit(mockGetRecord);
+
+        return Promise.resolve().then(() => expect(element).toBeAccessible());
+    });
+
+    it('is accessible when error is returned', () => {
+        // Create element
+        const element = createElement('c-wire-get-record-dynamic-contact', {
+            is: WireGetRecordDynamicContact
+        });
+        document.body.appendChild(element);
+
+        // Emit data from @wire
+        getRecordAdapter.error();
+
+        return Promise.resolve().then(() => expect(element).toBeAccessible());
+    });
 });

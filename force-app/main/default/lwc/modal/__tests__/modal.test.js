@@ -108,4 +108,24 @@ describe('c-modal', () => {
                 expect(modalContainerElementHide).toBeNull();
             });
     });
+
+    it('is accessible when modal shown and public header property is set', () => {
+        const HEADER = 'The modal header';
+
+        // Create initial element
+        const element = createElement('c-modal', {
+            is: Modal
+        });
+        element.header = HEADER;
+        element.show();
+        document.body.appendChild(element);
+
+        return Promise.resolve().then(() => expect(element).toBeAccessible());
+    });
+
+    /**
+     * It's not currently possible to pass HTML into a slot
+     * on component creation (createElement), so omitting this use case.
+     */
+    // it('is accessible when modal shown and it no public header property is set', () => {});
 });

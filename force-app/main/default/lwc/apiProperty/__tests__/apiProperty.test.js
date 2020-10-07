@@ -52,4 +52,14 @@ describe('c-api-property', () => {
             expect(chartBarEl.percentage).toBe(PERCENTAGE_CUSTOM);
         });
     });
+
+    it('is accessible', () => {
+        const element = createElement('c-api-property', {
+            is: ApiProperty
+        });
+
+        document.body.appendChild(element);
+
+        return Promise.resolve().then(() => expect(element).toBeAccessible());
+    });
 });

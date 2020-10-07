@@ -27,4 +27,14 @@ describe('c-misc-static-resource', () => {
             'http://localhost/trailhead_characters/images/einstein.png'
         );
     });
+
+    it('is accessible', () => {
+        const element = createElement('c-misc-static-resource', {
+            is: MiscStaticResource
+        });
+
+        document.body.appendChild(element);
+
+        return Promise.resolve().then(() => expect(element).toBeAccessible());
+    });
 });

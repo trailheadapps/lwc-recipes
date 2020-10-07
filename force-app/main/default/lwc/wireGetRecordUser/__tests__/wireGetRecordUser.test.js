@@ -68,4 +68,30 @@ describe('c-wire-get-record-user', () => {
             });
         });
     });
+
+    it('is accessible when user is returned', () => {
+        // Create element
+        const element = createElement('c-wire-get-record-user', {
+            is: WireGetRecordUser
+        });
+        document.body.appendChild(element);
+
+        // Emit data from @wire
+        getRecordAdapter.emit(mockGetRecord);
+
+        return Promise.resolve().then(() => expect(element).toBeAccessible());
+    });
+
+    it('is accessible when error is returned', () => {
+        // Create element
+        const element = createElement('c-wire-get-record-user', {
+            is: WireGetRecordUser
+        });
+        document.body.appendChild(element);
+
+        // Emit error from @wire
+        getRecordAdapter.error();
+
+        return Promise.resolve().then(() => expect(element).toBeAccessible());
+    });
 });
