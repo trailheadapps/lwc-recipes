@@ -3,6 +3,6 @@
     xmlns="urn:metadata.tooling.soap.sforce.com"
     fqn="auraDomEventListener"
 >
-    <apiVersion>49.0</apiVersion>
+    <apiVersion>50.0</apiVersion>
     <description>A Lightning Component Bundle</description>
 </AuraDefinitionBundle>
