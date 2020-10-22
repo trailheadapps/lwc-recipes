@@ -90,13 +90,13 @@ jobs:
             - name: Install Salesforce CLI Scanner
               run: 'echo y | sfdx plugins:install @salesforce/sfdx-scanner'
 
-            # Run Salesforce CLI Scanner For Security checks
-            - name: Scan For Security Exceptions
-              run: 'sfdx scanner:run -c=Security -t=./force-app -f=json -v'
-
             # Checkout the code in the pull request
             - name: 'Checkout source code'
               uses: actions/checkout@v2
+
+            # Run Salesforce CLI Scanner For Security checks
+            - name: Scan For Security Exceptions
+              run: 'sfdx scanner:run -c=Security -t=./force-app -f=json -v'
 
             # Store secret for dev hub
             - name: 'Populate auth file with DEVHUB_SFDX_URL secret'
