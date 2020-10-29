@@ -19,7 +19,7 @@
     {
       "file": "force-app/main/default/lwc/helloBinding/helloBinding.js-meta.xml",
       "line": 1,
-      "description": "All the files of a LWC are contained in a single directory. Together they are called a component bundle. \n\nIn addition to the `.js` and `.html` files, this can also include CSS, submodules, alternate templates, and more. \n\nThis `.xml` file here defines how the LWC is used by the Salesforce platform. \n\nFor more details on component structure, check out the LWC developer [guide](https://developer.salesforce.com/docs/component-library/documentation/en/lwc). ",
+      "description": "All the files of a LWC are contained in a single directory. Together they are called a component bundle. \n\nIn addition to the `.js` and `.html` files, this can also include CSS, submodules, alternate templates, and more. \n\nThis `.xml` file here defines how the LWC is used by the Salesforce platform. \n\nFor more details on component structure, check out the LWC developer [guide](https://developer.salesforce.com/docs/component-library/documentation/en/lwc). "
     },
     {
       "file": "force-app/main/default/lwc/hello/__tests__/hello.test.js",
