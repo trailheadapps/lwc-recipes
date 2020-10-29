@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<LightningOnboardingConfig
+    xmlns="http://soap.sforce.com/2006/04/metadata"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+>
+    <collaborationGroup xsi:nil="true" />
+    <feedbackFormDaysFrequency xsi:nil="true" />
+    <isCustom>false</isCustom>
+    <masterLabel>LightningOnboardingConfig</masterLabel>
+    <promptDelayTime>0</promptDelayTime>
+    <sendFeedbackToSalesforce>false</sendFeedbackToSalesforce>
+</LightningOnboardingConfig>
