@@ -1,0 +1,18 @@
+<template>
+    <lightning-card title="User Search" icon-name="utility:search">
+
+        <template if:true={profiles}>
+            <lightning-combobox value={selectedProfile} placeholder="Select Profile" label="Select Profile"
+                options={profileOptions}>
+            </lightning-combobox>
+        </template>
+
+
+        <template if:false={profiles}>
+            <p>Data not received</p>
+        </template>
+
+
+    </lightning-card>
+
+</template>
