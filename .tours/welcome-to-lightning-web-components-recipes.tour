@@ -4,7 +4,7 @@
     {
       "file": "force-app/main/default/lwc/hello/hello.js",
       "line": 4,
-      "description": "Hello! \n\nWelcome to Lightning Web Components (LWC) Recipes sample app. \n\nThis demonstrates the use of LWC with a set of code recipes. Each recipe does this with a complete working example, using the minimum amount of code required, while still following best practices. \n\nThis tour will show you around the repo at a high level, and then give you suggestions of what to do next. \n\nIn this file, you can see our most simple \"Hello World\" recipe. "
+      "description": "Hello! \n\nWelcome to Lightning Web Components (LWC) Recipes sample app. \n\nThis project demonstrates the use of LWC with a set of code recipes. Each recipe does this with a complete working example, using the minimum amount of code required, while still following best practices. \n\nThis tour will show you around the repo at a high level, and then give you suggestions of what to do next. \n\nIn this file, you can see our most simple \"Hello World\" recipe. "
     },
     {
       "file": "force-app/main/default/lwc/helloBinding/helloBinding.js",
