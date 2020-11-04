@@ -1,18 +1,36 @@
 <template>
-    <lightning-card title="User Search" icon-name="utility:search">
+    <div class="c-container">
+        <lightning-layout>
+            <lightning-card title="User Search" icon-name="utility:search">
+                <lightning-layout-item flexibility="auto" padding="around-small">
+                    <lightning-layout>
 
-        <template if:true={profiles}>
-            <lightning-combobox value={selectedProfile} placeholder="Select Profile" label="Select Profile"
-                options={profileOptions}>
-            </lightning-combobox>
-        </template>
+                        <lightning-layout-item flexibility="auto" padding="around-small">
+                            <lightning-combobox value={selectedProfile} placeholder="Select Profile"
+                                label="Select Profile" options={profileOptions} onchange={profileSelectHandler}>
+                            </lightning-combobox>
+                        </lightning-layout-item>
 
+                        <lightning-layout-item flexibility="auto" padding="around-small">
+                            <lightning-combobox value={selectedRole} placeholder="Select Role" label="Select Role"
+                                options={rolesOptions} onchange={roleSelectHandler}>
+                            </lightning-combobox>
+                        </lightning-layout-item>
 
-        <template if:false={profiles}>
-            <p>Data not received</p>
-        </template>
+                        <lightning-layout-item flexibility="auto" padding="around-small">
+                            <lightning-input type="search" name="Name" label="Name" onchange={nameHandler}>
+                            </lightning-input>
+                        </lightning-layout-item>
 
+                        <lightning-layout-item flexibility="auto" padding="around-small">
+                            <lightning-button value="brand" label="Seach" title="search" onclick={searchHandler}
+                                class="slds-m-left_x-small">
+                            </lightning-button>
+                        </lightning-layout-item>
 
-    </lightning-card>
-
+                    </lightning-layout>
+                </lightning-layout-item>
+            </lightning-card>
+        </lightning-layout>
+    </div>
 </template>

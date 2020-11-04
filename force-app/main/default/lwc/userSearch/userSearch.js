@@ -1,42 +1,70 @@
 import getProfiles from '@salesforce/apex/UserSearchLWC.getProfiles';
+import getUserRoles from '@salesforce/apex/UserSearchLWC.getUserRoles';
 import { LightningElement, track, wire } from 'lwc';
 let i = 0;
 export default class UserSearch extends LightningElement {
 
     selectedProfile;
+    selectedRole;
+    selectedName;
 
     @track
     profiles = [];
-    selectOption = {};
+    pageErrors = '';
 
-    pros = [];
+    @track
+    rolesOptions = [];
+
     @wire(getProfiles) fetchProfiles({ error, data }) {
 
         if (data) {
             for (i = 0; i < data.length; i++) {
-                console.log('DDDDDD ' + data[i].Id);
-                this.profiles = [...this.profiles, { value: data[i].Id, label: data[i].Name }];
+                this.profiles = [...this.profiles, { value: data[i].Id, label: data[i].Name }];//used the spread oparator 
             }
 
         } else if (error) {
-            console.log('EEEEEEEEE')
+            this.pageErrors += error;
         }
 
-        /*
-        for (let key in JSON.parse(result.data)) {
-            // console.log('Profile Name ' + result.data[key].Id + ' ' + result.data[key].Name);
-            // this.profiles.push({ label: result.data[key].Id, value: result.data[key].Name });
-            // this.selectOption = { label: result.data[key].Id, value: result.data[key].Name };
-            // console.log('LLLLLLLLL ' + JSON.stringify(selectOption));
-            this.profiles.push({ key: key, value: result.data[key] });
-        }
-        this.profiles.push({ label: 'New', value: 'new' })
-        console.log('FFFFFFF ' + JSON.stringify(this.profiles));
-        */
     }
 
     get profileOptions() {
         return this.profiles;
+    }
+
+    profileSelectHandler(event) {
+
+        this.selectedProfile = event.detail.value;
+        console.log('HHHHHHH ' + this.selectedProfile);
+    }
+
+    @wire(getUserRoles) fetchUserRoles({ error, data }) {
+
+        if (data) {
+            for (i = 0; i < data.length; i++) {
+                this.rolesOptions = [...this.rolesOptions, { value: data[i].Id, label: data[i].Name }];//used the spread oparator 
+            }
+        } else if (error) {
+
+        }
+
+    }
+
+    roleSelectHandler(event) {
+        this.selectedRole = event.detail.value;
+        console.log('jjjjjjj ' + this.selectedRole);
+    }
+
+    nameHandler(event) {
+        this.selectedName = event.target.value;
+        console.log('FFFFFFFFF ' + event.target.value);
+    }
+
+    searchHandler(event) {
+
+        console.log('EEEEEEEEEEE' + this.selectedProfile);
+        console.log('EEEEEEEEEEE2' + this.selectedRole);
+        console.log('EEEEEEEEEEE3' + this.selectedName);
     }
     // fetchProfiles() {
     //     getProfiles()

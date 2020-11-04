@@ -13,4 +13,16 @@ public with sharing class UserSearchLWC {
         }
         return profiles;
     }
+
+
+    @AuraEnabled(cacheable=true)
+    public static List<UserRole> getUserRoles(){
+        List<UserRole> userRoles;
+        try {
+            userRoles = [SELECT Id,Name FROM UserRole];
+        } catch (Exception e) {
+            throw new AuraHandledException(e.getMessage());
+        }
+        return userRoles;
+    }
 }
