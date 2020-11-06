@@ -15,16 +15,16 @@
                 onchange={handlePriorityChange}
                 checked={priority}
             ></lightning-input>
-            <lightning-button
-                label="Add Todo"
-                variant="brand"
-                onclick={handleSave}
-                class="slds-show slds-var-p-vertical_small"
-            ></lightning-button>
-            <c-todo-list
-                class="slds-show slds-is-relative"
-                todos={todos}
-            ></c-todo-list>
+            <div class="slds-var-p-vertical_small">
+                <lightning-button
+                    label="Add Todo"
+                    variant="brand"
+                    onclick={handleSave}
+                ></lightning-button>
+            </div>
+            <div class="c-todo-list slds-is-relative">
+                <c-todo-list todos={todos}></c-todo-list>
+            </div>
         </div>
 
         <c-view-source source="lwc/apiSetterGetter" slot="footer">
