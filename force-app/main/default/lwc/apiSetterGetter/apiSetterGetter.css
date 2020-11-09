@@ -1,4 +1,4 @@
-.c-todo-list {
+.todo-list {
     border: solid var(--lwc-borderWidthThin, 1px) #ecebea;
     border-radius: var(--lwc-borderRadiusMedium, 4px);
     padding: 14px var(--lwc-varSpacingXSmall, 8px)
@@ -6,7 +6,7 @@
     margin-top: var(--lwc-varSpacingSmall, 12px);
 }
 
-.c-todo-list:before {
+.todo-list:before {
     content: 'c-todo-list';
     color: rgb(221, 219, 218);
     position: absolute;
