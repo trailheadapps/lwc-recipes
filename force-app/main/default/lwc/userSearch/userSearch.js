@@ -1,5 +1,6 @@
 import getProfiles from '@salesforce/apex/UserSearchLWC.getProfiles';
 import getUserRoles from '@salesforce/apex/UserSearchLWC.getUserRoles';
+import searchUsers from '@salesforce/apex/UserSearchLWC.searchUsers';
 import { LightningElement, track, wire } from 'lwc';
 let i = 0;
 export default class UserSearch extends LightningElement {
@@ -62,9 +63,27 @@ export default class UserSearch extends LightningElement {
 
     searchHandler(event) {
 
-        console.log('EEEEEEEEEEE' + this.selectedProfile);
-        console.log('EEEEEEEEEEE2' + this.selectedRole);
-        console.log('EEEEEEEEEEE3' + this.selectedName);
+        searchUsers({ profileId: this.selectedProfile, roleId: this.selectedRole, name: this.selectedName }).
+            then(result => {
+                if (result && result.length > 0 && Array.isArray(result)) {
+                    console.log('KDDDDDKKK ' + JSON.stringify(result));
+                    const searchEvent = new CustomEvent('usersearch', { detail: { data: result } });
+
+                    console.log('This is before the user search trigger the event');
+                    this.dispatchEvent(searchEvent);
+                    console.log('uuuuuuu')
+
+                } else {// No Results found
+
+
+                }
+
+            }).
+            catch(error => {
+                console.log('ERROR');
+            });
+
+
     }
     // fetchProfiles() {
     //     getProfiles()

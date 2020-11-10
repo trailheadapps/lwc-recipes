@@ -1,1 +1,1 @@
-SELECT Id FROM Account
+SELECT Id,Name FROM User WHere UserROleId =null AND Name LIKE '%Chat%'
