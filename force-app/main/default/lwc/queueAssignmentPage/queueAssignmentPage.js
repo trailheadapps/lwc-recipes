@@ -8,10 +8,11 @@ export default class QueueAssignmentPage extends LightningElement {
 
     searchedUsers(event) {
 
-        for (let user in event.detail.data) {
-            // console.log(`${user}: ${this.userData[user].Id}`);
-            // console.log(`${user}: ${this.userData[user].Name}`);//Template literals in Javascript
-            console.log(this.userData[user].Name);
+        for (let index in event.detail.data) {
+            let user = event.detail.data[index];
+            // console.log(`${index}: ${this.userData[index].Id}`);
+            // console.log(`${index}: ${this.userData[index].Name}`);//Template literals in Javascript
+            this.users = [...this.users, { Id: user.Id, Name: user.Name }]
         }
 
     }
