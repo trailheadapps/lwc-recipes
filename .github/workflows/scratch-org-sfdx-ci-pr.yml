@@ -82,7 +82,7 @@ jobs:
 
             # Install Salesforce CLI Scanner
             - name: Install Salesforce CLI Scanner
-              run: 'echo y | sfdx plugins:install @salesforce/sfdx-scanner'
+              run: 'sfdx plugins:install @salesforce/sfdx-scanner'
 
             # Checkout the code in the pull request
             - name: 'Checkout source code'
