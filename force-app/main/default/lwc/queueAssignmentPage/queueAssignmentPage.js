@@ -7,6 +7,7 @@ export default class QueueAssignmentPage extends LightningElement {
     userData = [];
 
     searchedUsers(event) {
+        this.users = [];
 
         for (let index in event.detail.data) {
             let user = event.detail.data[index];
