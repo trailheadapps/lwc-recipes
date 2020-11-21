@@ -4,7 +4,7 @@ export default class HelloForEach extends LightningElement {
     contacts = [
         {
             Id: '003171931112854375',
-            Name: 'Dastan Raimzhan',
+            Name: 'ARGEN TURATBEK',
             Title: 'CEO'
         },
         {
@@ -14,8 +14,10 @@ export default class HelloForEach extends LightningElement {
         },
         {
             Id: '003848991274589432',
+    
             Name: 'Jennifer Wu',
-            Title: 'CEO'
+            Title: 'CFO'
         }
     ];
+
 }
