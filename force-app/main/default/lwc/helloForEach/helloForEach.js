@@ -4,8 +4,8 @@ export default class HelloForEach extends LightningElement {
     contacts = [
         {
             Id: '003171931112854375',
-            Name: 'Amy Taylor',
-            Title: 'VP of Engineering'
+            Name: 'Dastan Raimzhan',
+            Title: 'CEO'
         },
         {
             Id: '003192301009134555',
