@@ -1,4 +1,6 @@
 #!/bin/bash
+SCRIPT_PATH=$( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )
+cd $SCRIPT_PATH/..
 
 # Set parameters
 ORG_ALIAS="recipes"

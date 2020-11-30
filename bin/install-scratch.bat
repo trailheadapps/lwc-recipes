@@ -1,4 +1,5 @@
 @echo OFF
+cd %CD%/..
 
 rem Set parameters
 set ORG_ALIAS=recipes
