@@ -38,7 +38,7 @@ rem Report install success if no error
 if ["%errorlevel%"]==["0"] (
   echo Installation completed.
   @echo:
-  cmd.exe /c sfdx force:org:open -p lightning/page/home
+  cmd.exe /c sfdx force:org:open -p lightning/n/Hello
 )
 
 :: ======== FN ======

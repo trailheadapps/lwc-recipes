@@ -31,7 +31,7 @@ sfdx force:data:tree:import -p data/data-plan.json && \
 echo "" && \
 
 echo "Opening org..." && \
-sfdx force:org:open -p /lightning/page/home && \
+sfdx force:org:open -p lightning/n/Hello && \
 echo ""
 
 EXIT_CODE="$?"
