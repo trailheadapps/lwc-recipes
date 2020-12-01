@@ -90,8 +90,6 @@ Make sure to start from a brand-new environment to avoid conflicts with previous
 
 1. Log in to your org
 
-1. If you are setting up a Developer Edition: go to **Setup**, under **My Domain**, [register a My Domain](https://help.salesforce.com/articleView?id=domain_name_setup.htm&type=5).
-
 1. Click [this link](https://login.salesforce.com/packaging/installPackage.apexp?p0=04t3t000002kqRdAAI) to install the Recipes unlocked package in your org.
 
 1. Select **Install for All Users**
