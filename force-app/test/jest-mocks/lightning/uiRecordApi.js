@@ -24,10 +24,13 @@ export const getFieldValue = jest.fn((data, fieldReference) => {
                 return fieldData.value;
             }
         } else {
-            const relationshipField = data.fields[fields[0]];
-            const fieldData = relationshipField.value.fields[fields[1]];
-            if (fieldData) {
-                return fieldData.value;
+            const field = data.fields[fields[0]];
+            if (!field.value.fields) {
+                return field.value;
+            }
+            const relationshipField = field.value.fields[fields[1]];
+            if (relationshipField) {
+                return relationshipField.value;
             }
         }
         return null;
