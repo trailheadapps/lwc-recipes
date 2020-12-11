@@ -15,9 +15,9 @@ const WIRE_INPUT = {
     someString: 'This is a string',
     someInteger: 20,
     someList: [
-        { someInnerString: 'This is a string', someInnerInteger: 20 },
-        { someInnerString: 'This is a string', someInnerInteger: 20 },
-        { someInnerString: 'This is a string', someInnerInteger: 20 }
+        { value: '1', label: 'Option 1' },
+        { value: '2', label: 'Option 2' },
+        { value: '3', label: 'Option 3' }
     ]
 };
 
@@ -92,7 +92,7 @@ describe('c-apex-wire-method-with-complex-params', () => {
 
             // Select input field for simulating list item user input
             const inputListItemEl = element.shadowRoot.querySelector(
-                'lightning-input[class="list-item-input"]'
+                'lightning-dual-listbox[class="list-input"]'
             );
             inputListItemEl.value = WIRE_INPUT.someList.length;
             inputListItemEl.dispatchEvent(new CustomEvent('change'));

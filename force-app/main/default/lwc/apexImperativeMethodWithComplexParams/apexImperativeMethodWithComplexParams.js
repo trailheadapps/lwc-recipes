@@ -2,9 +2,17 @@ import { LightningElement } from 'lwc';
 import checkApexTypes from '@salesforce/apex/ApexTypesController.checkApexTypes';
 
 export default class ApexImperativeMethodWithComplexParams extends LightningElement {
-    listItemValue = 4;
+    listValue = [];
     numberValue = 50;
     stringValue = 'Some string';
+
+    listOptions = [
+        { value: '1', label: 'Option 1' },
+        { value: '2', label: 'Option 2' },
+        { value: '3', label: 'Option 3' },
+        { value: '4', label: 'Option 4' },
+        { value: '5', label: 'Option 5' }
+    ];
 
     message;
     error;
@@ -17,8 +25,8 @@ export default class ApexImperativeMethodWithComplexParams extends LightningElem
         this.numberValue = event.target.value;
     }
 
-    handleListItemChange(event) {
-        this.listItemValue = event.target.value;
+    handleListOptionChange(event) {
+        this.listValue = event.detail.value;
     }
 
     handleButtonClick() {
@@ -27,15 +35,8 @@ export default class ApexImperativeMethodWithComplexParams extends LightningElem
         let parameterObject = {
             someString: this.stringValue,
             someInteger: this.numberValue,
-            someList: []
+            someList: this.listValue
         };
-        // Populating a list
-        for (let i = 0; i < this.listItemValue; i++) {
-            parameterObject.someList.push({
-                someInnerString: this.stringValue,
-                someInnerInteger: this.numberValue
-            });
-        }
 
         // Calling the imperative Apex method with the JSON
         // object as parameter.

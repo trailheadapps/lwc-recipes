@@ -2,14 +2,22 @@ import { LightningElement, wire } from 'lwc';
 import checkApexTypes from '@salesforce/apex/ApexTypesController.checkApexTypes';
 
 export default class ApexWireMethodWithComplexParams extends LightningElement {
-    listItemValue = 0;
     numberValue = 50;
     stringValue = 'Some string';
+    listValues = [];
+
+    listOptions = [
+        { value: '1', label: 'Option 1' },
+        { value: '2', label: 'Option 2' },
+        { value: '3', label: 'Option 3' },
+        { value: '4', label: 'Option 4' },
+        { value: '5', label: 'Option 5' }
+    ];
 
     parameterObject = {
         someString: this.stringValue,
         someInteger: this.numberValue,
-        someList: []
+        someList: this.listValues
     };
 
     @wire(checkApexTypes, { wrapper: '$parameterObject' })
@@ -29,17 +37,10 @@ export default class ApexWireMethodWithComplexParams extends LightningElement {
         };
     }
 
-    handleListItemChange(event) {
-        const someList = [];
-        for (let i = 0; i < event.target.value; i++) {
-            someList.push({
-                someInnerString: this.stringValue,
-                someInnerInteger: this.numberValue
-            });
-        }
+    handleListOptionChange(event) {
         this.parameterObject = {
             ...this.parameterObject,
-            someList
+            someList: (this.listValues = event.detail.value)
         };
     }
 }

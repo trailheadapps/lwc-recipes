@@ -20,15 +20,16 @@
                 class="number-input"
                 onchange={handleNumberChange}
             ></lightning-input>
-            <lightning-input
-                label="List items"
-                type="number"
-                min="0"
-                max="10"
-                value={listItemValue}
-                class="list-item-input"
-                onchange={handleListItemChange}
-            ></lightning-input>
+            <lightning-dual-listbox
+                id="selectOptions"
+                label="Build a List"
+                source-label="Available Options"
+                selected-label="Selected Options"
+                options={listOptions}
+                class="list-input"
+                onchange={handleListOptionChange}
+            >
+            </lightning-dual-listbox>
             <br />
             <template if:true={apexResponse.data}>
                 <p>{apexResponse.data}</p>

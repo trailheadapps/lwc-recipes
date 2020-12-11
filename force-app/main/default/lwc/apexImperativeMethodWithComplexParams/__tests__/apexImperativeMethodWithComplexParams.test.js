@@ -18,9 +18,9 @@ const APEX_PARAMETER = {
     someString: 'This is a string',
     someInteger: 20,
     someList: [
-        { someInnerString: 'This is a string', someInnerInteger: 20 },
-        { someInnerString: 'This is a string', someInnerInteger: 20 },
-        { someInnerString: 'This is a string', someInnerInteger: 20 }
+        { value: '1', label: 'Option 1' },
+        { value: '2', label: 'Option 2' },
+        { value: '3', label: 'Option 3' }
     ]
 };
 
@@ -84,9 +84,9 @@ describe('c-apex-imperative-method-with-complex-params', () => {
         inputNumberEl.value = APEX_PARAMETER.someInteger;
         inputNumberEl.dispatchEvent(new CustomEvent('change'));
 
-        // Select input field for simulating list item user input
+        // Select dual listbox for simulating list item user input
         const inputListItemEl = element.shadowRoot.querySelector(
-            'lightning-input[class="list-item-input"]'
+            'lightning-dual-listbox[class="list-input"]'
         );
         inputListItemEl.value = APEX_PARAMETER.someList.length;
         inputListItemEl.dispatchEvent(new CustomEvent('change'));
@@ -135,9 +135,9 @@ describe('c-apex-imperative-method-with-complex-params', () => {
         inputNumberEl.value = APEX_PARAMETER.someInteger;
         inputNumberEl.dispatchEvent(new CustomEvent('change'));
 
-        // Select input field for simulating list item user input
+        // Select dual listbox for simulating list item user input
         const inputListItemEl = element.shadowRoot.querySelector(
-            'lightning-input[class="list-item-input"]'
+            'lightning-dual-listbox[class="list-input"]'
         );
         inputListItemEl.value = APEX_PARAMETER.someList.length;
         inputListItemEl.dispatchEvent(new CustomEvent('change'));
