@@ -15,6 +15,11 @@
                 <componentName>apexWireMethodToFunction</componentName>
             </componentInstance>
         </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentName>apexStaticSchema</componentName>
+            </componentInstance>
+        </itemInstances>
         <name>region2</name>
         <type>Region</type>
     </flexiPageRegions>
@@ -26,7 +31,13 @@
         </itemInstances>
         <itemInstances>
             <componentInstance>
-                <componentName>apexStaticSchema</componentName>
+                <componentName>apexImperativeMethodWithParams</componentName>
+            </componentInstance>
+        </itemInstances>
+                <itemInstances>
+            <componentInstance>
+                <componentName
+                >apexImperativeMethodWithComplexParams</componentName>
             </componentInstance>
         </itemInstances>
         <name>region3</name>
@@ -40,18 +51,7 @@
         </itemInstances>
         <itemInstances>
             <componentInstance>
-                <componentName>apexImperativeMethodWithParams</componentName>
-            </componentInstance>
-        </itemInstances>
-        <itemInstances>
-            <componentInstance>
                 <componentName>apexWireMethodWithComplexParams</componentName>
-            </componentInstance>
-        </itemInstances>
-        <itemInstances>
-            <componentInstance>
-                <componentName
-                >apexImperativeMethodWithComplexParams</componentName>
             </componentInstance>
         </itemInstances>
         <name>region4</name>
