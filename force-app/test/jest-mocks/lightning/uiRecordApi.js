@@ -24,8 +24,9 @@ export const getFieldValue = jest.fn((data, fieldReference) => {
                 return fieldData.value;
             }
         } else {
-            const fieldData = fields.reduce((o, i) => o[i], data.fields);
-            if (fieldData && fieldData.value) {
+            const relationshipField = data.fields[fields[0]];
+            const fieldData = relationshipField.value.fields[fields[1]];
+            if (fieldData) {
                 return fieldData.value;
             }
         }
