@@ -1,0 +1,74 @@
+<template>
+    <section aria-label="Dialog title" aria-describedby="popover-body-id"
+        class="slds-popover slds-nubbin_right slds-popover_large" role="dialog">
+        <div class="slds-popover__body">
+            <template if:true={options}>
+                <lightning-layout vertical-align="space" multiple-rows="true" class="x-large">
+                    <lightning-layout-item flexibility="auto" size="12" padding="around-small">
+
+                        <lightning-combobox name="fields" label="Field" data-id="filterFieldId" value={FilterField}
+                            options={options} onchange={onClickFilterField}>
+                        </lightning-combobox>
+
+                    </lightning-layout-item>
+                    <lightning-layout-item flexibility="auto" size="12" padding="around-small">
+
+                        <lightning-combobox name="fields" data-id="filterOperatorId" label="Operator"
+                            value={selectedFilterOperatorvalue} options={filterOperatorOpts}>
+                        </lightning-combobox>
+
+                    </lightning-layout-item>
+                    <lightning-layout-item flexibility="auto" size="12" padding="around-small">
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label" for="combobox-id-7">value</label>
+                            <div class="slds-form-element__control">
+                                <div class="slds-combobox_container">
+                                    <div class="slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click slds-is-open"
+                                        aria-expanded="true" aria-haspopup="listbox" role="combobox">
+
+                                        <template if:true={getfilterValueOptions}>
+                                            <div class="slds-dropdown slds-dropdown_length-5 slds-dropdown_fluid"
+                                                role="listbox">
+                                                <ul class="slds-listbox slds-listbox_vertical" role="presentation">
+                                                    <template for:each={filterValueOptions} for:item="item">
+                                                        <li role="presentation" class="slds-listbox__item" key={item.Id}
+                                                            data-id={item.Id} onclick={handleselecteditem}>
+                                                            <div class="slds-media slds-listbox__option slds-listbox__option_plain slds-media_small"
+                                                                role="option" data-id={item.Id}>
+                                                                <span
+                                                                    class="slds-media__figure slds-listbox__option-icon"
+                                                                    data-id={item.Id}>
+                                                                    <template if:true={item.selected}>
+                                                                        <lightning-icon icon-name="utility:check"
+                                                                            alternative-text="check" title="check"
+                                                                            size="xx-small"></lightning-icon>
+                                                                    </template>
+                                                                </span>
+                                                                <span class="slds-media__body" data-id={item.Id}>
+                                                                    <span class="slds-truncate" title={item.Id}
+                                                                        data-id={item.Id}>{item.Name}</span>
+                                                                </span>
+                                                            </div>
+                                                        </li>
+                                                    </template>
+                                                </ul>
+                                            </div>
+                                        </template>
+
+                                        <input type="text" data-id="filtervalue"
+                                            class="slds-input slds-combobox__input slds-combobox__input-value"
+                                            id="combobox-id-7" aria-controls="listbox-id-7" role="textbox"
+                                            placeholder="Select an Option" readonly="" value="" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </lightning-layout-item>
+                </lightning-layout>
+
+                <lightning-button label="Done" onclick={onsaveFilter}>
+                </lightning-button>
+            </template>
+        </div>
+    </section>
+</template>

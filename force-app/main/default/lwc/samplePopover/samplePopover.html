@@ -1,0 +1,14 @@
+<template>
+    <div>
+        <template if:true={ranger}>
+            <lightning-record-view-form record-id={ranger} object-api-name="Contact">
+                <div class="potato slds-box" style={boxClass}>
+                    <lightning-output-field field-name="Name">
+                    </lightning-output-field>
+                    <lightning-output-field field-name="Email">
+                    </lightning-output-field>
+                </div>
+            </lightning-record-view-form>
+        </template>
+    </div>
+</template>

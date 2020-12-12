@@ -1,0 +1,13 @@
+<aura:component implements="lightning:utilityItem,force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId" access="global" >
+    <aura:attribute name="refreshInterval" type="Integer" 
+                    default="10" />
+    <aura:attribute name="refreshing" type="Boolean" 
+                    default="false" access="private" />
+    <aura:attribute name="intervalId" type="String" 
+                    access="private" />
+    <!-- Needed to refresh the list -->
+    <lightning:navigationItemAPI aura:id="navigationItemAPI"/>
+    <lightning:button label="{!if(v.refreshing, 'Stop', 'Start')}" 
+                      onclick="{!c.toggleAutoRefresh}">
+    </lightning:button>
+</aura:component>

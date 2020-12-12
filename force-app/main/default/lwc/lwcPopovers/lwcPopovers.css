@@ -1,0 +1,14 @@
+.slds-popover{
+    right: 300px !important;
+    position: absolute !important;
+    bottom: -85px !important;
+}
+
+.slds-dropdown--fluid, .slds-dropdown_fluid {
+    min-width: 0 !important;
+    max-width: 85% !important;
+    width: 100% !important;
+}
+.slds-dropdown-trigger .slds-dropdown {
+    top: 0%;
+}

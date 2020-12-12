@@ -1,0 +1,42 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId" controller="ContactsController">
+    <aura:attribute name="contacts" type="List" />
+    <aura:attribute name="conAccLst" type="List" />
+    <aura:attribute name="reId" type="Id" />
+    <aura:attribute name="mouseHoverData" type="object" />
+    <aura:attribute name="togglehover" type="boolean" default="false"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:attribute name="hoverRow" type="Integer" default="-1" />
+    <!-- Use a data table from the Lightning Design System: https://www.lightningdesignsystem.com/components/data-tables/ -->
+    <table class="slds-table slds-table_bordered slds-table_striped slds-table_cell-buffer slds-table_fixed-layout">
+        <thead>
+            <tr class="slds-text-heading_label">
+                <th scope="col"><div class="slds-truncate" title="Name" style="text-align: center">Contact Name</div></th>
+                <th scope="col"><div class="slds-truncate" title="Phone" style="text-align: center">Phone</div></th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Use the Apex model and controller to fetch server side data -->
+            <aura:iteration items="{!v.contacts}" var="contact" indexVar="index">
+                {!index}
+                <tr data-selected-Index="{!index}">
+                    <td><div class="slds-truncate" title="{!contact.Name}" style="text-align: center">
+                        <a id="{!contact.Id}" onmouseenter="{!c.handleMouseHover}" onmouseout="{!c.handleMouseOut}" data-index="{!index}" tabindex="-1">{!contact.Name}</a></div>
+                        {!v.hoverRow}
+                        
+                        <aura:if isTrue="{!v.hoverRow==index}">
+                            <aura:if isTrue="{!v.togglehover==true}">
+                                <div   class="slds-popover slds-nubbin_bottom"
+                                     role="tooltip" id="help" style="position: realtive; right: 225px; bottom: 100%; width: 22rem; padding: inherit;">
+                                    Account Name: {!v.mouseHoverData.Name}<br/>
+                                    Phone:{!v.mouseHoverData.Phone}<br/>
+                                    Type:{!v.mouseHoverData.Type}<br/>
+                                </div>
+                            </aura:if>
+                        </aura:if>
+                    </td>
+                    <td><div class="slds-truncate" title="{!contact.Phone}" style="text-align: center">{!contact.Phone}</div></td>
+                </tr>
+            </aura:iteration>
+        </tbody>
+    </table>
+</aura:component>

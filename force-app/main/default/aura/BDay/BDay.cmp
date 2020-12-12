@@ -1,0 +1,25 @@
+<aura:component controller="BirthDayWishesController"
+                implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    <!--Including Css File-->
+    <ltng:require styles="{!$Resource.BirthDayWish}"/>
+    
+    <!--Boolean attribute-->
+    <aura:attribute name="showBalloons" type="boolean" default="false"/>
+    
+    <!--Init handler to call the method on load of lightning component-->
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    
+    <!--This div show the balloons if showBalloons is true-->
+    <aura:if isTrue="{!v.showBalloons}">
+        <div class="container" style="top: 35%;width: 100%;left: 0;z-index: 1000000;">
+          <div class="balloon">
+            <div><span class="bspan">☺</span></div>
+            <div><span class="bspan">B</span></div>
+            <div><span class="bspan">D</span></div>
+            <div><span class="bspan">A</span></div>
+            <div><span class="bspan">Y</span></div>
+            <div><span class="bspan">!</span></div>
+          </div>
+        </div>
+    </aura:if>
+</aura:component>

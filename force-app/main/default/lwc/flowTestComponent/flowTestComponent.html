@@ -1,0 +1,44 @@
+<template>
+    <lightning-card title="Accounts List" icon-name="standard:account">
+        <div class="slds-p-around_x-small">
+            <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+                <thead>
+                    <tr class="slds-line-height_reset">
+                        <th class="" scope="col">
+                            <div class="slds-truncate" title="Edit">Select</div>
+                        </th>
+                        <th class="" scope="col">
+                            <div class="slds-truncate" title="Account Name">Account Name</div>
+                        </th>
+                        <th class="" scope="col">
+                            <div class="slds-truncate" title="Industry">Industry</div>
+                        </th>
+                        <th class="" scope="col">
+                            <div class="slds-truncate" title="Phone">Phone</div>
+                        </th>                        
+                    </tr>
+                </thead>
+                <tbody>
+                    <template for:each={Accs} for:item="acc"> 
+                        <tr key={acc.Id} class="slds-hint-parent">
+                            <td data-label="Prospecting">
+                                <div class="slds-truncate" title="Select">
+                                    <lightning-input type="checkbox-button" label="select" variant="label-hidden" onchange={handleCheck} name={acc.Id}></lightning-input>
+                                </div>
+                            </td>                                
+                            <td data-label="Prospecting">
+                                <div class="slds-truncate" title="Account Name">{acc.Name}</div>
+                            </td>
+                            <td data-label="Confidence">
+                                <div class="slds-truncate" title="Industry">{acc.Industry}</div>
+                            </td>
+                            <td data-label="Confidence">
+                                <div class="slds-truncate" title="Phone">{acc.Phone}</div>
+                            </td>
+                        </tr>
+                    </template>
+                </tbody>
+            </table>
+        </div>
+    </lightning-card>
+</template>

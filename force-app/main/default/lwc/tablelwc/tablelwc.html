@@ -1,0 +1,49 @@
+<template>
+    <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+        <thead>
+            <tr class="slds-line-height_reset">
+                <th class="slds-cell-buffer_right" scope="col">
+                    <div class="slds-truncate" title="Bear Name">Id</div>
+                </th>
+                <th class="slds-cell-buffer_right" scope="col">
+                    <div class="slds-truncate" title="Bear Name">Title</div>
+                </th>
+                <th class="slds-cell-buffer_right" scope="col">
+                    <div class="slds-truncate" title="Bear Name">F Name</div>
+                </th>
+                <th class="slds-cell-buffer_right" scope="col">
+                    <div class="slds-truncate" title="Bear Name">: Name</div>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <template if:true={bears}>
+                <div class="slds-m-around_medium">
+                    <template for:each={bears} for:item="bear" for:index="index">
+
+                        <tr class={assignClass} key={bear.Id} data-id={bear.Id} onmouseout={hideData}
+                            onmouseover={showData}>
+
+                            <td data-label="Bear Name" class="slds-cell-buffer_right">
+                                <div class=slds-truncate title="Bear Name">{bear.Id}</div>
+                            </td>
+                            <td data-label="Bear Name" class="slds-cell-buffer_right">
+                                <div class=slds-truncate title="Bear Name">{bear.Title}</div>
+                            </td>
+                            <td data-label="Bear Name" class="slds-cell-buffer_right">
+                                <div class=slds-truncate title="Bear Name">{bear.FirstName}</div>
+                            </td>
+                            <td data-label="Bear Name" class="slds-cell-buffer_right">
+                                <div class=slds-truncate title="Bear Name">{bear.LastName}</div>
+                            </td>
+                           
+                        </tr>
+
+                    </template>
+                </div>
+            </template>
+        </tbody>
+    </table>
+
+    <c-sample-popover topmargin={top} leftmargin={left} myranger={ranger}></c-sample-popover>
+</template>

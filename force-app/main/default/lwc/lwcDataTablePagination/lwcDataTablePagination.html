@@ -1,0 +1,170 @@
+<template>
+    <article class="slds-card">
+        <div class="slds-p-left_xx-large slds-p-right_xx-large slds-p-top_xx-large slds-p-bottom_xx-large">
+            <lightning-layout-item padding="around-small" size="12">
+                <lightning-combobox name="Sobjects" label="sobjects" value={selectedObject} placeholder="Select Sobject"
+                    options={comboboxoptions} onchange={handleChange}></lightning-combobox>
+            </lightning-layout-item>
+            <lightning-layout>
+                <lightning-layout-item padding="around-small" size="6">
+                    <lightning-dual-listbox name="Fields" label="Select Fields" source-label="Available"
+                        selected-label="Selected" field-level-help="Select your preferred Fields" options={options}
+                        value={selectedOptionsList} onchange={handleSelected}></lightning-dual-listbox>
+                </lightning-layout-item>
+                <lightning-layout-item padding="around-small" size="6">
+                    <lightning-button variant="brand" label="Search" title="Search" onclick={searchrecords}>
+                    </lightning-button>
+                </lightning-layout-item>
+            </lightning-layout>
+        </div>
+        <lightning-button-icon icon-name="utility:filterList" alternative-text="filter" size="medium"
+            onclick={activefilter}></lightning-button-icon>
+        <!--<div if:true={getRecords}>-->
+        <div class="c-container">
+            <div class="slds-grid slds-wrap">
+                <div class="slds-col slds-size_8-of-12">
+                    <lightning-datatable data={data} columns={columns} key-field="Id"
+                        default-sort-direction={defaultSortDirection} sorted-direction={sortDirection}
+                        sorted-by={sortedBy} onsort={onHandleSort} onsave={handleSave} show-row-number-column="false"
+                        draft-values={draftValues} selected-rows={selectedRows} onrowselection={handleOnRowselection}>
+                    </lightning-datatable>
+                </div>
+                <div class="slds-col slds-size_4-of-12">
+                    <div class="slds-size_medium slds-panel_docked slds-panel_docked-right slds-is-open slds-list_vertical slds-list_vertical-space"
+                        aria-hidden="false">
+                        <template if:false={addedNewFilters}>
+                            <div class="slds-panel__header">
+                                <h2 class="slds-panel__header-title slds-text-heading_small slds-truncate"
+                                    title="Filter">
+                                    Filter</h2>
+                                <lightning-button-icon icon-name="utility:close" variant="container"
+                                    alternative-text="Collapse Filter" class="slds-m-left_x-small" title="Close">
+                                </lightning-button-icon>
+                            </div>
+                        </template>
+
+                        <template if:true={addedNewFilters}>
+                            <div class="slds-border_bottom slds-panel__header_custom">
+                                <div class="slds-grid slds-grid_align-spread">
+                                    <div class="slds-col">
+                                        <button class="slds-button slds-button_neutral"
+                                            onclick={onfilterCancel}>Cancel</button>
+                                    </div>
+                                    <div class="slds-col">
+                                        <button class="slds-button slds-button_brand"
+                                            onclick={onfilterSave}>save</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </template>
+                        <div class="slds-panel__body">
+                            <div class="slds-filters slds-list_vertical slds-list_vertical-space">
+                                <ol class="slds-list_vertical slds-list_vertical-space">
+                                    <li class="slds-item slds-hint-parent">
+                                        <div class="slds-filters__item slds-grid slds-grid_vertical-align-center ">
+                                            <button class="slds-button_reset slds-grow slds-has-blur-focus">
+                                                <span class="slds-assistive-text">Edit filter:</span>
+                                                <span class="slds-show slds-text-body_small">Show Me</span>
+                                                <span class="slds-show">All Accounts</span>
+                                            </button>
+                                        </div>
+                                    </li>
+                                </ol>
+                                <h3 class="slds-text-body_small slds-m-vertical_x-small">Matching all these filters
+                                </h3>
+                                <ol class="slds-list_vertical slds-list_vertical-space">
+
+                                    <template for:each={listFilters} for:item="filter" for:index="index">
+                                        <li class="slds-item slds-hint-parent slds-list_vertical slds-list_vertical-space"
+                                            data-id={index} key={filter.indx} id={filter.Id}>
+
+                                            <template if:true={filter.openPopover}>
+                                                <c-lwc-popovers keyvalue={filter.indx} popover={filter.openPopover}
+                                                    selectedobject={selectedObject} options={options} key={filter.indx}
+                                                    onmycustomevent={hanldeSelectedFilter}>
+                                                </c-lwc-popovers>
+                                            </template>
+                                            <template if:true={filter.isNewFilter}>
+                                                <div
+                                                    class='slds-filters__item slds-grid slds-grid_vertical-align-center slds-is-new'>
+                                                    <button class="slds-button_reset slds-grow slds-has-blur-focus">
+                                                        <span class="slds-assistive-text">Edit filter:</span>
+                                                        <template if:true={filter.openPopover}>
+                                                            <span class="slds-show">New Filter</span>
+                                                        </template>
+                                                        <span
+                                                            class="slds-show slds-text-body_small">{filter.Field_Name__c}</span>
+                                                        <span class="slds-show">{filter.Operator_Label__c}
+                                                            {filter.Filter_Field_Value__c}</span>
+                                                    </button>
+                                                    <lightning-button-icon data-id={index} icon-name="utility:close"
+                                                        variant="container" alternative-text="Delete"
+                                                        class="slds-m-left_xx-small" title="Delete"
+                                                        onclick={removeFilter}>
+                                                        <span class="slds-assistive-text">Remove filter:
+                                                            {filter.Field_Name__c}
+                                                            {filter.Operator_Label__c}
+                                                            {filter.Filter_Field_Value__c}
+                                                        </span>
+                                                    </lightning-button-icon>
+                                                </div>
+                                            </template>
+                                            <template if:false={filter.isNewFilter}>
+                                                <div
+                                                    class='slds-filters__item slds-grid slds-grid_vertical-align-center'>
+                                                    <button class="slds-button_reset slds-grow slds-has-blur-focus"
+                                                        data-id={filter.indx} onclick={onEditFilter}>
+                                                        <span class="slds-assistive-text">Edit filter:</span>
+                                                        <span
+                                                            class="slds-show slds-text-body_small">{filter.Field_Name__c}</span>
+                                                        <span class="slds-show">{filter.Operator_Label__c}
+                                                            {filter.Filter_Field_Value__c}</span>
+                                                    </button>
+                                                    <lightning-button-icon data-id={index} icon-name="utility:close"
+                                                        variant="container" alternative-text="Delete"
+                                                        class="slds-m-left_xx-small" title="Delete"
+                                                        onclick={removeFilter}>
+                                                        <span class="slds-assistive-text">Remove filter:
+                                                            {filter.Field_Name__c}
+                                                            {filter.Operator_Label__c}
+                                                            {filter.Filter_Field_Value__c}
+                                                        </span>
+                                                    </lightning-button-icon>
+                                                </div>
+                                            </template>
+                                        </li>
+                                    </template>
+                                </ol>
+                                <div class="slds-filters__footer slds-grid slds-shrink-none">
+                                    <button class="slds-button_reset slds-text-link" onclick={addNewFilter}>Add
+                                        Filter</button>
+                                    <button class="slds-button_reset slds-text-link slds-col_bump-left"
+                                        onclick={removeAllFilters}>Remove All</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <lightning-layout>
+            <lightning-layout-item>
+                <lightning-button label="first" icon-name="utility:chevronleft" onclick={firstHandler}>
+                </lightning-button>
+            </lightning-layout-item>
+            <lightning-layout-item>
+                <lightning-button label="Previous" icon-name="utility:chevronleft" onclick={previousHandler}>
+                </lightning-button>
+            </lightning-layout-item>
+            <lightning-layout-item>
+                <lightning-button label="Next" icon-name="utility:chevronright" icon-position="right"
+                    onclick={nextHandler}></lightning-button>
+            </lightning-layout-item>
+            <lightning-layout-item>
+                <lightning-button label="last" icon-name="utility:chevronright" icon-position="right"
+                    onclick={lastHandler}></lightning-button>
+            </lightning-layout-item>
+        </lightning-layout>
+        <!-- </div> -->
+    </article>
+</template>

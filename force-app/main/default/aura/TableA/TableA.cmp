@@ -1,0 +1,76 @@
+<aura:component implements="force:appHostable,lightning:isUrlAddressable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId" access="global" >
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:handler event="force:showToast" action="{!c.redirectToNewRecord}"/>
+
+    <div class="c-container">
+        <div class="slds-scrollable_x">
+            
+            <div class="slds-scrollable_y" style="height:25rem;width:50rem">
+                
+                <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_col-bordered">
+                    <tbody>
+                        
+                        <tr class="slds-hint-parent">
+                            <td data-label="Table A" colspan="2">
+                                <div class="slds-truncate slds-align_absolute-center slds-text-title_bold" title="Table A">
+                                    Table A
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="slds-hint-parent">
+                            <td></td>
+                            <td data-label="Account">
+                                <div class="slds-truncate slds-align_absolute-center slds-text-title_bold" title="Account">
+                                    Account
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="slds-hint-parent">
+                            <td data-label="Account">
+                                <div class="slds-truncate" title="[File Turn] [Client Held]">[File Turn] [Client Held]</div><br></br>
+                                <div class="slds-truncate" title="Days">-- Days</div><br></br>
+                                <div class="slds-truncate" title="Payment Performance">Payment Performance</div><br></br>
+                            </td>
+                            <td data-label="Account">
+                                <div class="slds-truncate" title="Days">Max file trun</div><br></br>
+                            </td>
+                        </tr>
+                        <tr class="slds-hint-parent">
+                            <td data-label="Account">
+                                <div class="slds-truncate" title="[Annual] [Semi-Annual]">[Annual] [Semi-Annual]</div><br></br>
+                                <div class="slds-truncate" title="[Quarterly] [Monthly]">[Quarterly] [Monthly]</div><br></br>
+                                <div class="slds-truncate" title="Period">[Period]</div><br></br>
+                                <div class="slds-truncate" title="[Net Standard Charge">[Net Standard Charge</div><br></br>
+                                <div class="slds-truncate" title="Volume] [Combined Charge">Volume] [Combined Charge</div><br></br>
+                                <div class="slds-truncate" title="Volume]">Volume]</div><br></br>
+                                <div class="slds-truncate" title="Volume Test">Volume Test</div>
+                            </td>
+                            <td data-label="Account">
+                                <div class="slds-truncate" title="Days">volu min</div><br></br>
+                            </td>
+                        </tr>
+                        <tr class="slds-hint-parent">
+                            <td data-label="Account">
+                                <div class="slds-truncate" title="Average Transaction Size">Average Transaction Size</div>
+                            </td>
+                            <td data-label="Account">
+                                <div class="slds-truncate" title="Days">avg Tran Size</div><br></br>
+                            </td>
+                        </tr>
+                        <tr class="slds-hint-parent">
+                            <td data-label="Account">
+                                <div class="slds-truncate" title="Minimum Rebate Earned">Minimum Rebate Earned</div>
+                            </td>
+                            <td data-label="Account">
+                                <div class="slds-truncate" title="Days">min reb rate</div><br></br>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+        </div>
+        
+        
+    </div>
+</aura:component>

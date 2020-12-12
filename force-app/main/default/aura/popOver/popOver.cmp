@@ -1,0 +1,52 @@
+<aura:component controller="contactRecord" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    <aura:attribute name="contactList" type="object" description="Stores records displayed in the data table"/>
+    
+    <div >
+        <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+            <thead>
+                <tr class="slds-text-title_caps">
+                    <th scope="col">
+                        <div class="slds-truncate" title="Action"></div>
+                    </th>
+                    <th scope="col">
+                        <div class="slds-truncate" title="Account Name">Contact Name</div>
+                    </th>
+                    <th scope="col">
+                        <div class="slds-truncate" title="Account Name">Title</div>
+                    </th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                <aura:iteration items="{!v.contactList}" var="a">
+                    <tr>
+                        <td data-label="Contact Name">
+                            <div class="slds-truncate" title="" onmouseover="{!c.displayPopup}" onmouseout="{!c.hidePopup}" id="{!a.FirstName}">{!a.FirstName} {!a.LastName}</div>
+                            <div style="position:relative;display:none" id="{!a.FirstName+'contact'}">
+                                <div class="slds-popover slds-popover_tooltip slds-rise-from-ground" role="tooltip" id="help" style="position: absolute !important; top: 0px; rigt: 15px;z-index:1;width:200%">
+                                    <div class="slds-popover__body" style="word-wrap: break-word !important;white-space:normal !important">
+                                        <b>First Name : </b>{!a.FirstName}<br/>
+                                        <b>Last Name : </b>{!a.LastName}<br/>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td data-label="Industry">
+                            <div class="slds-truncate" title="">{!a.Title}</div>
+                        </td>
+                        
+                    </tr>
+                </aura:iteration>
+            </tbody>
+        </table>
+    </div>
+    <lightning:recordEditForm aura:id="myRecordForm" objectApiName="Account"
+                              onsubmit="{!c.handleSubmit}">
+        <lightning:messages />
+        <lightning:inputField fieldName="Name" />
+        <lightning:inputField fieldName="Phone" onchange="{!c.doInit}"/>
+        <lightning:inputField fieldName="BillingAddress" />
+        <lightning:button type="submit" name="Submit" label="submit" class="slds-m-top_medium"/>
+    </lightning:recordEditForm>
+</aura:component>

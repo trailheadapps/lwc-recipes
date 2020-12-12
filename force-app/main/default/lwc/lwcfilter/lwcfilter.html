@@ -1,0 +1,58 @@
+<template>
+    <div class="slds-grid slds-gutters">
+        <div class="slds-col">
+        </div>
+        <div class="slds-col">
+            <div class="slds-panel slds-size_medium slds-panel_docked slds-panel_docked-right slds-is-open"
+                aria-hidden="false">
+                <div class="slds-panel__header">
+                    <h2 class="slds-panel__header-title slds-text-heading_small slds-truncate" title="Filter">Filter
+                    </h2>
+                    <button class="slds-button slds-button_icon slds-button_icon-small slds-panel__close"
+                        title="Collapse Filter">
+                        <svg class="slds-button__icon" aria-hidden="true">
+                            <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#close"></use>
+                        </svg>
+                        <span class="slds-assistive-text">Collapse Filter</span>
+                    </button>
+                </div>
+                <div class="slds-panel__body">
+                    <div class="slds-filters">
+                        <ol class="slds-list_vertical slds-list_vertical-space">
+                            <li class="slds-item slds-hint-parent">
+                                <div class="slds-filters__item slds-grid slds-grid_vertical-align-center">
+                                    <button class="slds-button_reset slds-grow slds-has-blur-focus">
+                                        <span class="slds-assistive-text">Edit filter:</span>
+                                        <span class="slds-show slds-text-body_small">Show Me</span>
+                                        <span class="slds-show">All Products</span>
+                                    </button>
+                                </div>
+                            </li>
+                        </ol>
+                        <h3 class="slds-text-body_small slds-m-vertical_x-small">Matching all these filters</h3>
+                        <ol class="slds-list_vertical slds-list_vertical-space">
+                            <template for:each={ContactList} for:item="a" for:index="index">
+                                <div class="slds-truncate" key={a.FirstName} data-id={a.FirstName}
+                                    onmouseover={displayPopup} onmouseout={hidePopup}>{a.FirstName} {a.LastName}</div>
+                                <div style="position:relative;display:none" key={a.FirstName} class={tDisplayBlock} data-id={a.FirstName}>
+                                    <div class="slds-popover slds-popover_tooltip slds-rise-from-ground" role="tooltip"
+                                        style="position: absolute !important; top: 0px; right: 15px;z-index:1;width:200%">
+                                        <div class="slds-popover__body"
+                                            style="word-wrap: break-word !important;white-space:normal !important">
+                                            <b>First Name : </b>{a.FirstName}<br />
+                                            <b>Last Name : </b>{a.LastName}<br />
+                                        </div>
+                                    </div>
+                                </div>
+                            </template>
+                        </ol>
+                        <div class="slds-filters__footer slds-grid slds-shrink-none">
+                            <button class="slds-button_reset slds-text-link">Add Filter</button>
+                            <button class="slds-button_reset slds-text-link slds-col_bump-left">Remove All</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

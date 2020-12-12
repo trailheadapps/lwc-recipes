@@ -1,0 +1,224 @@
+<aura:component implements="force:lightningQuickAction,flexipage:availableForAllPageTypes,force:appHostable,lightning:availableForFlowScreens,flexipage:availableForRecordHome,force:hasRecordId,force:hasSObjectName" access="global" >
+    <aura:handler name="init" value="{!this}" action="{!c.init}"/>
+    <aura:attribute name="availableActions" type="String[]" default="['NEXT','BACK']" />
+    
+    <!-- Determine which actions are available -->
+    <aura:attribute name="canPause" type="Boolean" />
+    <aura:attribute name="canBack" type="Boolean" />
+    <aura:attribute name="canNext" type="Boolean" />
+    <aura:attribute name="canFinish" type="Boolean" />
+    
+    <!-- Design Attributes -->
+    
+    <aura:attribute name="FirstName" type="String"/>
+    <aura:attribute name="LastName" type="String"/>
+    <aura:attribute name="Gender" type="String"/>
+    <aura:attribute name="dob" type="string"/>
+    <aura:attribute name="Email" type="String"/>
+    <aura:attribute name="PersonMobilePhone" type="String"/>
+    
+    <aura:attribute name="ShippingStreet" type="String"/>
+    <aura:attribute name="ShippingCity" type="String"/>
+    <aura:attribute name="ShippingCountry" type="String" default="United States"/>
+    <aura:attribute name="ShippingState" type="String"/>
+    <aura:attribute name="ShippingPostalCode" type="String"/>
+    
+    
+    <aura:attribute name="haveAllergies" type="boolean" default="false" />
+    <aura:attribute name="AllergiesSelected" type="String"/>
+    
+    <aura:attribute name="PatientMobileNumber" type="String"/>
+    
+    <aura:attribute name="OtherAllergies" type="String"/>
+    
+    
+    
+    <aura:attribute name="options1" type="List" default="[
+                                                         {'label': 'M', 'value': 'M'},
+                                                         {'label': 'F', 'value': 'F'}
+                                                         ]"/>
+    
+    <aura:attribute name="options" type="List" default="[{'label': 'Yes', 'value': 'Yes'},{'label': 'No', 'value': 'No'}]"/>
+    
+    <aura:attribute name="PatientAllergies" type="List" default="[{'label': 'Yes', 'value': 'Yes'},{'label': 'No', 'value': 'No'}]"/>
+    
+    
+    
+    
+    <aura:attribute name="value" type="String" default=""/>
+    
+    <aura:attribute name="blnotherallergies" type="boolean" default=""/>
+    
+    <aura:attribute name="SelectedHaveAllergies" type="boolean" default=""/>
+    
+    <aura:attribute name="selectedAllergy" type="boolean" default=""/>
+    
+    <aura:attribute name="blnoa" type="boolean" default=""/>
+    
+    <aura:attribute name="blnPatientNumber" type="boolean" default=""/>
+    
+    <aura:attribute name="allergiesoptions" type="List" default="[
+                                                                 {'Id': 'Adhesives', 'Name': 'Adhesives'},
+                                                                 {'Id': 'Amoxicillin', 'Name': 'Amoxicillin'},
+                                                                 {'Id': 'Ampicillin', 'Name': 'Ampicillin'},
+                                                                 {'Id': 'Aspirin', 'Name': 'Aspirin'},
+                                                                 {'Id': 'Augmentin', 'Name': 'Augmentin'},
+                                                                 {'Id': 'Calcium', 'Name': 'Calcium'},
+                                                                 {'Id': 'Cipro', 'Name': 'Cipro'},
+                                                                 {'Id': 'Erythromycin', 'Name': 'Erythromycin'},
+                                                                 {'Id': 'Ibuprofen', 'Name': 'Ibuprofen'},
+                                                                 {'Id': 'Iodine', 'Name': 'Iodine'},
+                                                                 {'Id': 'IV Dyes', 'Name': 'IV Dyes'},
+                                                                 {'Id': 'Lisinopril', 'Name': 'Lisinopril'},
+                                                                 {'Id': 'Naproxen', 'Name': 'Naproxen'},
+                                                                 {'Id': 'Nickel', 'Name': 'Nickel'},
+                                                                 {'Id': 'NSAIDS', 'Name': 'NSAIDS'},
+                                                                 {'Id': 'Penicillins', 'Name': 'Penicillins'},
+                                                                 {'Id': 'Shellfish', 'Name': 'Shellfish'},
+                                                                 {'Id': 'Tetracycline', 'Name': 'Tetracycline'}]" />
+    
+    <div class="slds-page-header" role="banner">
+        <p class="slds-text-heading_label">Create Patient Information </p>
+    </div>
+    <!-- Display Lightning Data Service errors -->
+    <aura:if isTrue="false">
+        <div class="recordError">
+            <ui:message title="Error" severity="error" closable="true">
+                something went wrong
+            </ui:message>
+        </div>
+    </aura:if>
+    
+    <!-- Display the new Account form -->
+    <div class="c-container">
+        <lightning:layout multipleRows="true" >
+            
+            <lightning:layoutItem size="6" padding="around-small">
+                <div class="header-column">
+                    <lightning:input name="FirstName" label="First Name" value="{!v.FirstName}" required="true"/>
+                </div>
+            </lightning:layoutItem>
+            
+            <lightning:layoutItem size="6" padding="around-small">
+                <div class="header-column">
+                    <!-- {!v.simpleNewAccount.LastName} -->
+                    <lightning:input name="LastName" label="Last Name" value="{!v.LastName}" required="true"/>
+                </div>
+            </lightning:layoutItem>
+            
+            <lightning:layoutItem size="6" padding="around-small">
+                <div class="header-column">
+                    <lightning:combobox aura:id="select" name="select" label="Gender"
+                                        placeholder="Select Gender"
+                                        value="{!v.Gender}"
+                                        onchange="{!c.onChange}"
+                                        options="{!v.options1}"/>
+                    
+                </div>
+            </lightning:layoutItem>
+            
+            <lightning:layoutItem size="6" padding="around-small">
+                <div class="header-column">
+                    <lightning:input type="date" name="Date_of_Birth__c" label="Date of Birth" required="true" value="{!v.dob}" />
+                </div>
+            </lightning:layoutItem>
+            
+            <lightning:layoutItem size="6" padding="around-small">
+                <lightning:input type="Email" name="Email__c" label="Email" value="{!v.Email}" />
+            </lightning:layoutItem>
+            
+            <lightning:layoutItem size="6" padding="around-small">
+                <lightning:input type="text" name="PersonMobilePhone" label="Patient Phone Number" value="{!v.PersonMobilePhone}" />
+            </lightning:layoutItem>
+            
+            <lightning:layoutItem size="6" padding="around-small">
+                <lightning:inputAddress
+                                        addressLabel="Patient Shipping Address"
+                                        streetLabel="Street"
+                                        cityLabel="City"
+                                        provinceLabel="State"
+                                        postalCodeLabel="Postal Code"
+                                        CountryLabel="Country"
+                                        street="{!v.ShippingStreet}"
+                                        city="{!v.ShippingCity}"
+                                        country="{!v.ShippingCountry}"
+                                        province="{!v.ShippingState}"
+                                        postalCode="{!v.ShippingPostalCode}"
+                                        required="true"
+                                        fieldLevelHelp="Help Text for inputAddress field" >
+                </lightning:inputAddress>
+            </lightning:layoutItem>
+            
+            <lightning:layoutItem size="6" padding="around-small">
+                <lightning:radioGroup aura:id="radioGroupRequiredId"
+                                      name="radioGroupRequired"
+                                      label="Does the Patient have any allergies?"
+                                      options="{!v.PatientAllergies}"
+                                      value="{!v.haveAllergies }"
+                                      type="radio"
+                                      required="true"
+                                      onchange="{!c.handlerHaveAllergies}" />
+                
+                <aura:if isTrue="{!and(v.SelectedHaveAllergies, v.allergiesoptions.length > 0 )}" >
+                    
+                   <!-- <c:MultiSelectDropdownLC aura:id="jobLocationMS" mslabel="" msoptions="{!v.allergiesoptions}" />-->
+                    <!--<lightning:dualListbox aura:id="duallistId"
+name="Genre"
+label=""
+sourceLabel="Available"
+selectedLabel="Selected"
+options="{!v.allergiesoptions }"
+value="{!v.value}"
+onchange="{!c.handleAllergiesoptions}" size="3"/> -->
+                </aura:if>
+            </lightning:layoutItem>
+            
+            <lightning:layoutItem size="6" padding="around-small">
+                <lightning:radioGroup name="radioGroupRequired"
+                                      label="Entering a mobile phone number will expedite shipping. Does Patient have a Mobile Phone Number?"
+                                      options="{! v.options }"
+                                      value="{! v.value }"
+                                      type="radio"
+                                      required="true"
+                                      onchange="{!c.PatientMobileChange}"/>
+                <aura:if isTrue="{!v.blnPatientNumber}" >
+                    <lightning:input type="text" name="PatientMobileNumber" label="Patient Mobile Number" value="{!v.PatientMobileNumber}" />
+                </aura:if>
+            </lightning:layoutItem>
+            
+            <lightning:layoutItem size="6" padding="around-small">
+                <aura:if isTrue="{!and(v.SelectedHaveAllergies, v.allergiesoptions.length > 0 )}" >
+                    <lightning:input type="checkbox" name="" label="Are there other allergies not on this list?" aura:id="alCheckbox" value="{!v.blnoa}" onchange="{!c.doAllergiesCheck}"/>
+                    <aura:if isTrue="{!v.blnotherallergies}" >
+                        <lightning:textarea name="input4" value="{!v.OtherAllergies}" label="Other Allergies (please separate with commas)" />
+                    </aura:if>
+                </aura:if>
+            </lightning:layoutItem>
+        </lightning:layout>
+    </div>
+    
+    <div aura:id="actionButtonBar" class="slds-clearfix slds-p-top_medium">
+        <!-- If Previous is available, display to the left -->
+        <div class="slds-float_left">
+            <aura:if isTrue="{!v.canBack}">
+                <lightning:button aura:id="BACK" label="Previous"
+                                  variant="neutral" onclick="{!c.onButtonPressed}" />
+            </aura:if>
+        </div>
+        <div class="slds-float_right">
+            <!-- If Pause, Next, or Finish are available, display to the right -->
+            <aura:if isTrue="{!v.canPause}">
+                <lightning:button aura:id="PAUSE" label="Pause"
+                                  variant="neutral" onclick="{!c.onButtonPressed}" />
+            </aura:if>
+            <aura:if isTrue="{!v.canNext}">
+                <lightning:button aura:id="NEXT" label="Next"
+                                  variant="brand" onclick="{!c.onButtonPressed}" />
+            </aura:if>
+            <aura:if isTrue="{!v.canFinish}">
+                <lightning:button aura:id="FINISH" label="Done"
+                                  variant="brand" onclick="{!c.onButtonPressed}" />
+            </aura:if>
+        </div>
+    </div>
+</aura:component>

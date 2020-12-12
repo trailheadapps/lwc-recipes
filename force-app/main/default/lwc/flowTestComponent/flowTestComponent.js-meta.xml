@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+<apiVersion>49.0</apiVersion>
+<isExposed>true</isExposed>
+
+<targets>
+    <target>lightning__FlowScreen</target>
+    <target>lightning__AppPage</target>
+    <target>lightning__RecordPage</target>
+    <target>lightning__HomePage</target>
+</targets>
+
+<targetConfigs>
+    <targetConfig targets="lightning__FlowScreen">
+        <property name="Accs" type="@salesforce/schema/Account[]" label="Accounts" description="list of Accounts"/>
+        <property name="selectedAccs" type="String[]" label="Selected Accounts" description="Selected Account Ids"/>
+        <property name="selectedAccsString" type="String" label="Selected Accounts String" description="Selected Account Ids"/>
+    </targetConfig>
+</targetConfigs>  </LightningComponentBundle>

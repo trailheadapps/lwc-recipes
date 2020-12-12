@@ -1,0 +1,13 @@
+<template>
+    <lightning-button variant="brand" label="save" title="save"
+    onclick={removeRecord}>
+</lightning-button>   {count}
+    <div style="height: 300px;">
+    
+        <template if:true={getData}>
+
+        <lightning-datatable key-field="id" data={data} columns={columns}>
+        </lightning-datatable>
+        </template>
+    </div>
+</template>

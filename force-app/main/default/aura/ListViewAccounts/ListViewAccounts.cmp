@@ -1,0 +1,24 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes" access="global" >
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    
+    <aura:attribute name="refreshInterval" type="Integer" 
+                    default="15" />
+    
+    <aura:attribute name="refreshing" type="Boolean" 
+                    default="false" access="private" />
+    <aura:attribute name="intervalId" type="String" 
+                    access="private" />
+    <!-- Needed to refresh the list -->
+    <lightning:navigationItemAPI aura:id="navigationItemAPI"/>
+    
+    <lightning:listView aura:id="listViewAccounts"
+                        objectApiName="Account"
+                        listName="AllAccounts"
+                        rows="50"
+                        showSearchBar="true"
+                        showActionBar="true"
+                        enableInlineEdit="true"
+                        showRowLevelActions="true"
+                        />
+</aura:component>

@@ -1,0 +1,40 @@
+<template>
+    <article class="slds-card">
+        <div class="slds-p-left_xx-large slds-p-right_xx-large slds-p-top_xx-large slds-p-bottom_xx-large">
+            <lightning-layout-Item padding="around-small" size="12">
+                <lightning-combobox name="Sobjects" label="sobjects" value={value} placeholder="Select Sobject"
+                    options={comboboxoptions} onchange={handleChange}>
+                </lightning-combobox>
+            </lightning-layout-Item>
+            <lightning-layout>
+                <lightning-layout-Item padding="around-small" size="6">
+                    <lightning-dual-listbox name="Fields" label="Select Fields" source-label="Available"
+                        selected-label="Selected" field-level-help="Select your preferred Fields" options={options}
+                        value={selectedOptionsList} onchange={handleSelected}>
+                    </lightning-dual-listbox>
+                </lightning-layout-Item>
+                <lightning-layout-Item padding="around-small" size="6">
+                    <lightning-button variant="brand" label="Search" title="Search" onclick={searchrecords}>
+                    </lightning-button>
+                </lightning-layout-Item>
+            </lightning-layout>
+        </div>
+    </article>
+
+    <template if:true={Columns}>
+        <lightning-button-icon icon-name="utility:filterList" alternative-text="filter" size="medium"
+            onclick={activefilter}>
+        </lightning-button-icon>
+        <div class="c-container">
+            <div style="height: 300px">
+                <lightning-datatable class="contentClass" data={data} columns={Columns} key-field="Id"
+                    default-sort-direction={defaultSortDirection} sorted-direction={sortDirection} sorted-by={sortedBy}
+                    onsort={onHandleSort} enable-infinite-loading onloadmore={loadMoreData}
+                    show-row-number-column="false" draft-values={draftValues} onsave={handleSave}>
+                </lightning-datatable>
+                {loadMoreStatus}
+            </div>
+
+        </div>
+    </template>
+</template>
