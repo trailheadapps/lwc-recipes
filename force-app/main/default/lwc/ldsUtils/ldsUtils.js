@@ -31,7 +31,7 @@ export function reduceErrors(errors) {
                             e.pageErrors.forEach((pageError) => {
                                 pageErrors.push(pageError.message);
                             });
-                            return pageErrors;
+                            return pageErrors.join(' ');
                         }
                         return '';
                     });
