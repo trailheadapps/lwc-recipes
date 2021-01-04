@@ -27,11 +27,9 @@ export function reduceErrors(errors) {
                             e.pageErrors &&
                             Array.isArray(e.pageErrors)
                         ) {
-                            let pageErrors = [];
-                            e.pageErrors.forEach((pageError) => {
-                                pageErrors.push(pageError.message);
-                            });
-                            return pageErrors.join(' ');
+                            return e.pageErrors
+                                .map((pageError) => pageError.message)
+                                .join(' ');
                         }
                         return '';
                     });
