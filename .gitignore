@@ -35,4 +35,5 @@ ehthumbs.db
 $RECYCLE.BIN/
 
 # VS Code project settings
-.vscode/
+.vscode/*
+!.vscode/extensions.json

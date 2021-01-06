@@ -1,4 +1,5 @@
 public with sharing class CustomWrapper {
+    @TestVisible
     class InnerWrapper {
         @AuraEnabled
         public Integer someInnerInteger { get; set; }

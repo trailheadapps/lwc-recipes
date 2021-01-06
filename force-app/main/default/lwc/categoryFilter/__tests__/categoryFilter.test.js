@@ -44,4 +44,14 @@ describe('c-category-filter', () => {
             });
         });
     });
+
+    it('is accessible', () => {
+        const element = createElement('c-category-filter', {
+            is: CategoryFilter
+        });
+
+        document.body.appendChild(element);
+
+        return Promise.resolve().then(() => expect(element).toBeAccessible());
+    });
 });

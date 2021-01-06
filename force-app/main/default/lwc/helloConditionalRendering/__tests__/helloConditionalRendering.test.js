@@ -46,4 +46,29 @@ describe('c-hello-conditional-rendering', () => {
             expect(detailEl.textContent).toBe('These are the details!');
         });
     });
+
+    it('is accessible when details are visible', () => {
+        const element = createElement('c-hello-conditional-rendering', {
+            is: HelloConditionalRendering
+        });
+
+        document.body.appendChild(element);
+
+        // Toggle checkbox to show details
+        const inputEl = element.shadowRoot.querySelector('lightning-input');
+        inputEl.checked = true;
+        inputEl.dispatchEvent(new CustomEvent('change'));
+
+        return Promise.resolve().then(() => expect(element).toBeAccessible());
+    });
+
+    it('is accessible when details are not visible', () => {
+        const element = createElement('c-hello-conditional-rendering', {
+            is: HelloConditionalRendering
+        });
+
+        document.body.appendChild(element);
+
+        return Promise.resolve().then(() => expect(element).toBeAccessible());
+    });
 });

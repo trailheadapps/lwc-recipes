@@ -182,4 +182,34 @@ describe('c-apex-imperative-method-with-complex-params', () => {
             expect(errorPanelEl).not.toBeNull();
         });
     });
+
+    it('is accessible on initialization', () => {
+        const element = createElement(
+            'c-apex-imperative-method-with-complex-params',
+            {
+                is: ApexImperativeMethodWithComplexParams
+            }
+        );
+
+        document.body.appendChild(element);
+
+        return Promise.resolve().then(() => expect(element).toBeAccessible());
+    });
+
+    it('is accessible when error returned', () => {
+        // Assing mock value for rejected Apex promise
+        checkApexTypes.mockRejectedValue(APEX_ERROR);
+
+        // Create initial element
+        const element = createElement('c-apex-imperative-method-with-params', {
+            is: ApexImperativeMethodWithComplexParams
+        });
+        document.body.appendChild(element);
+
+        // Select button for executing Apex call
+        const buttonEl = element.shadowRoot.querySelector('lightning-button');
+        buttonEl.click();
+
+        return Promise.resolve().then(() => expect(element).toBeAccessible());
+    });
 });

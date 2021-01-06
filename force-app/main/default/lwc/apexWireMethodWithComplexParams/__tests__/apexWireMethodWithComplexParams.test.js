@@ -178,4 +178,36 @@ describe('c-apex-wire-method-with-complex-params', () => {
             });
         });
     });
+
+    it('is accessible when data returned', () => {
+        // Create initial element
+        const element = createElement(
+            'c-apex-wire-method-with-complex-params',
+            {
+                is: ApexWireMethodWithComplexParams
+            }
+        );
+        document.body.appendChild(element);
+
+        // Emit data from @wire
+        checkApexTypesAdapter.emit(mockCheckApexTypes);
+
+        return Promise.resolve().then(() => expect(element).toBeAccessible());
+    });
+
+    it('is accessible when error returned', () => {
+        // Create initial element
+        const element = createElement(
+            'c-apex-wire-method-with-complex-params',
+            {
+                is: ApexWireMethodWithComplexParams
+            }
+        );
+        document.body.appendChild(element);
+
+        // Simulate an Apex error
+        checkApexTypesAdapter.error();
+
+        return Promise.resolve().then(() => expect(element).toBeAccessible());
+    });
 });

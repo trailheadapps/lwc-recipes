@@ -27,17 +27,18 @@
         "npm": ">= 6.5.0"
     },
     "devDependencies": {
-        "@prettier/plugin-xml": "^0.7.2",
+        "@prettier/plugin-xml": "^0.12.0",
+        "@sa11y/jest": "^0.1.4-beta.0",
         "@salesforce/eslint-config-lwc": "^0.7.0",
         "@salesforce/eslint-plugin-aura": "^1.4.0",
-        "@salesforce/sfdx-lwc-jest": "^0.9.1",
-        "eslint": "^7.2.0",
-        "eslint-config-prettier": "^6.11.0",
-        "husky": "^4.2.5",
-        "jest-canvas-mock": "^2.2.0",
-        "lint-staged": "^10.2.11",
-        "prettier": "^2.0.5",
-        "prettier-plugin-apex": "^1.5.0",
+        "@salesforce/sfdx-lwc-jest": "^0.10.2",
+        "eslint": "^7.15.0",
+        "eslint-config-prettier": "^6.15.0",
+        "husky": "^4.3.0",
+        "jest-canvas-mock": "^2.3.0",
+        "lint-staged": "^10.5.2",
+        "prettier": "^2.2.1",
+        "prettier-plugin-apex": "^1.7.0",
         "semver": "^7.3.2"
     },
     "husky": {

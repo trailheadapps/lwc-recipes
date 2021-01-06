@@ -23,7 +23,7 @@
                 <p>{!contactRecord.Name}</p>
                 <p>{!contactRecord.Title}</p>
                 <p>
-                    <a href="tel:{!contactRecord.Phone}"
+                    <a href="tel:{!(contactRecord.Phone)}"
                         >{!contactRecord.Phone}</a
                     >
                 </p>

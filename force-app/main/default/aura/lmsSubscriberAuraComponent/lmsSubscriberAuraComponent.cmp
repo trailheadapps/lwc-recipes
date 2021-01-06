@@ -24,7 +24,7 @@
     />
 
     <lightning:card
-        title="LMSSubscriberAuraComponent"
+        title="LmsSubscriberAuraComponent"
         iconName="custom:custom30"
     >
         <aura:set attribute="actions">

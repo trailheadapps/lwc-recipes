@@ -27,4 +27,14 @@ describe('c-view-source', () => {
         const linkEl = element.shadowRoot.querySelector('a');
         expect(linkEl.href).toBe(RESULT);
     });
+
+    it('is accessible', () => {
+        const element = createElement('c-view-source', {
+            is: ViewSource
+        });
+
+        document.body.appendChild(element);
+
+        return Promise.resolve().then(() => expect(element).toBeAccessible());
+    });
 });

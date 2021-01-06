@@ -106,4 +106,30 @@ describe('c-libs-momentjs', () => {
             expect(errorPanelEl).not.toBeNull();
         });
     });
+
+    it('is accessible when library is loaded', () => {
+        // Enforcing to load the static resource via the overwritten function.
+        mockScriptSuccess = true;
+
+        const element = createElement('c-libs-momentjs', {
+            is: LibsMomentjs
+        });
+
+        document.body.appendChild(element);
+
+        return Promise.resolve().then(() => expect(element).toBeAccessible());
+    });
+
+    it('is accessible when there is an error loading library', () => {
+        // Enforcing to fail loading the static resource via the overwritten function.
+        mockScriptSuccess = false;
+
+        // Create initial element
+        const element = createElement('c-libs-momentjs', {
+            is: LibsMomentjs
+        });
+        document.body.appendChild(element);
+
+        return Promise.resolve().then(() => expect(element).toBeAccessible());
+    });
 });

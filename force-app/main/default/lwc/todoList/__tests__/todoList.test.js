@@ -62,4 +62,16 @@ describe('c-todo-list', () => {
             expect(outputEls[1].textContent).toBe(msg);
         });
     });
+
+    it('is accessible when todo items added', () => {
+        // Create initial element
+        const element = createElement('c-todo-list', {
+            is: TodoList
+        });
+        // Set public properties
+        element.todos = TODOS;
+        document.body.appendChild(element);
+
+        return Promise.resolve().then(() => expect(element).toBeAccessible());
+    });
 });

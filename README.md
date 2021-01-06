@@ -1,10 +1,18 @@
 # Lightning Web Components Recipes
 
-[![Github Workflow](<https://github.com/trailheadapps/lwc-recipes/workflows/Salesforce%20DX%20(scratch%20org)/badge.svg?branch=master>)](https://github.com/trailheadapps/lwc-recipes/actions?query=workflow%3A%22Salesforce+DX+%28scratch+org%29%22) [![Github Workflow](<https://github.com/trailheadapps/lwc-recipes/workflows/Salesforce%20DX%20(packaging)/badge.svg?branch=master>)](https://github.com/trailheadapps/lwc-recipes/actions?query=workflow%3A%22Salesforce+DX+%28packaging%29%22) [![codecov](https://codecov.io/gh/trailheadapps/lwc-recipes/branch/master/graph/badge.svg)](https://codecov.io/gh/trailheadapps/lwc-recipes)
+[![Github Workflow](<https://github.com/trailheadapps/lwc-recipes/workflows/Salesforce%20DX%20(scratch%20org)/badge.svg?branch=master>)](https://github.com/trailheadapps/lwc-recipes/actions?query=workflow%3A%22Salesforce+DX+%28scratch+org%29%22) [![Github Workflow](https://github.com/trailheadapps/lwc-recipes/workflows/Packaging/badge.svg?branch=master)](https://github.com/trailheadapps/lwc-recipes/actions?query=workflow%3A%22Packaging%22) [![codecov](https://codecov.io/gh/trailheadapps/lwc-recipes/branch/master/graph/badge.svg)](https://codecov.io/gh/trailheadapps/lwc-recipes)
 
 ![recipes-logo](recipes-logo.png)
 
-A collection of easy-to-digest code examples for Lightning Web Components. Each recipe demonstrates how to code a specific task in 30 lines of code or less. A View Source link takes you right to the code in GitHub. From Hello World to data access and third-party libraries, there is a recipe for that!
+A collection of easy-to-digest code examples for Lightning Web Components. Each recipe demonstrates how to code a specific task in the fewest lines of code possible, while following best practices. A View Source link takes you right to the code in GitHub. From Hello World to data access and third-party libraries, there is a recipe for that!
+
+<div>
+    <img src="https://res.cloudinary.com/hy4kyit2a/f_auto,fl_lossy,q_70,w_50/learn/projects/quick-start-lwc-recipes-app/bb501c3216ac163958f036fb90357955_badge.png" align="left" alt="Trailhead Badge"/>
+    Learn more about this app by completing the <a href="https://trailhead.salesforce.com/content/learn/projects/quick-start-lwc-recipes-app">Quick Start: Explore the LWC Recipes Sample App</a> Trailhead project.
+    <br/>
+    <br/>
+    <br/>
+</div>
 
 > This sample application is designed to run on Salesforce Platform. If you want to experience Lightning Web Components on any platform, please visit https://lwc.dev, and try out our Lightning Web Components sample application [LWC Recipes OSS](https://github.com/trailheadapps/lwc-recipes-oss).
 
@@ -17,6 +25,8 @@ A collection of easy-to-digest code examples for Lightning Web Components. Each 
 -   [Installing the app using a Developer Edition Org or a Trailhead Playground](#installing-the-app-using-a-developer-edition-org-or-a-trailhead-playground): Useful when tackling Trailhead Badges or if you want the app deployed to a more permanent environment than a Scratch org.
 
 -   [Optional installation instructions](#optional-installation-instructions)
+
+-   [Code tours](#code-tours)
 
 ## Installing the app using a Scratch Org
 
@@ -82,9 +92,7 @@ Make sure to start from a brand-new environment to avoid conflicts with previous
 
 1. Log in to your org
 
-1. If you are setting up a Developer Edition: go to **Setup**, under **My Domain**, [register a My Domain](https://help.salesforce.com/articleView?id=domain_name_setup.htm&type=5).
-
-1. Click [this link](https://login.salesforce.com/packaging/installPackage.apexp?p0=04tB0000000QJf6IAG) to install the Recipes unlocked package in your org.
+1. Click [this link](https://login.salesforce.com/packaging/installPackage.apexp?p0=04t3t000002kqRdAAI) to install the Recipes unlocked package in your org.
 
 1. Select **Install for All Users**
 
@@ -96,6 +104,13 @@ Make sure to start from a brand-new environment to avoid conflicts with previous
     - Click **Accounts and Contacts**, and click **Add New Records**.
     - Drag the **Accounts-Contacts.csv** file you just saved to the upload area.
     - Click **Next**, **Next**, and **Start Import**.
+
+1. If you're attempting the [Quick Start](https://trailhead.salesforce.com/en/content/learn/projects/quick-start-ebikes-sample-app) on Trailhead, this step is required, but otherwise, skip:
+
+    - Go to **Setup > Users > Permission Sets**.
+    - Click **recipes**.
+    - Click **Manage Assignments**.
+    - Check your user and click **Add Assignments**.
 
 1. In **Setup**, under **Themes and Branding**, activate the **Recipes Lite** or **Recipes Blue** theme.
 
@@ -121,8 +136,6 @@ Make sure to start from a brand-new environment to avoid conflicts with previous
     sfdx force:auth:web:login -s -a mydevorg
     ```
 
-1. If you are setting up a Developer Edition: go to **Setup**, under **My Domain**, [register a My Domain](https://help.salesforce.com/articleView?id=domain_name_setup.htm&type=5).
-
 1. Run this command in a terminal to deploy the app.
 
     ```
@@ -133,6 +146,14 @@ Make sure to start from a brand-new environment to avoid conflicts with previous
 
     ```
     sfdx force:user:permset:assign -n recipes
+    ```
+
+1. (Optional) Assign the `Walkthroughs` permission set to the default user.
+
+> Note: this will enable In App Guidance Walkthroughs, allowing you to be taken through a guided tour of the sample app.
+
+    ```
+    sfdx force:user:permset:assign -n Walkthroughs
     ```
 
 1. Import some sample data.
@@ -178,3 +199,7 @@ Prettier and ESLint will now run automatically every time you commit changes. Th
 npm run lint:lwc
 npm run prettier
 ```
+
+## Code Tours
+
+Code Tours are guided walkthroughs that will help you understand the app code better. To be able to run them, install the [CodeTour VSCode extension](https://marketplace.visualstudio.com/items?itemName=vsls-contrib.codetour).

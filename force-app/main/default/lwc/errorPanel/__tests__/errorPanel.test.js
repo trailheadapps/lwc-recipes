@@ -75,4 +75,44 @@ describe('c-error-panel', () => {
             expect(messageTexts).toEqual(ERROR_MESSAGES_OUTPUT);
         });
     });
+
+    it('is accessible when inline message', () => {
+        const ERROR_MESSAGES_INPUT = [
+            { statusText: 'First bad error' },
+            { statusText: 'Second bad error' }
+        ];
+
+        const element = createElement('c-error-panel', {
+            is: ErrorPanel
+        });
+
+        element.type = 'inlineMessage';
+        element.errors = ERROR_MESSAGES_INPUT;
+        document.body.appendChild(element);
+
+        // Click link to show details
+        element.shadowRoot.querySelector('a').click();
+
+        return Promise.resolve().then(() => expect(element).toBeAccessible());
+    });
+
+    it('is accessible when no data illustration', () => {
+        const ERROR_MESSAGES_INPUT = [
+            { statusText: 'First bad error' },
+            { statusText: 'Second bad error' }
+        ];
+
+        const element = createElement('c-error-panel', {
+            is: ErrorPanel
+        });
+
+        element.type = 'noDataIllustration';
+        element.errors = ERROR_MESSAGES_INPUT;
+        document.body.appendChild(element);
+
+        // Click link to show details
+        element.shadowRoot.querySelector('a').click();
+
+        return Promise.resolve().then(() => expect(element).toBeAccessible());
+    });
 });

@@ -13,7 +13,7 @@
     />
 
     <lightning:card
-        title="LMSPublisherAuraComponent"
+        title="LmsPublisherAuraComponent"
         iconName="custom:custom30"
     >
         <aura:set attribute="actions">

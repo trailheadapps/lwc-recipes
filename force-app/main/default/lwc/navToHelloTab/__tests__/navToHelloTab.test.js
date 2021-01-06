@@ -30,4 +30,14 @@ describe('c-nav-to-hello-tab', () => {
             expect(pageReference.attributes.apiName).toBe(NAV_API_NAME);
         });
     });
+
+    it('is accessible', () => {
+        const element = createElement('c-nav-to-hello-tab', {
+            is: NavToHelloTab
+        });
+
+        document.body.appendChild(element);
+
+        return Promise.resolve().then(() => expect(element).toBeAccessible());
+    });
 });

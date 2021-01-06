@@ -2,6 +2,7 @@
     "orgName": "LWC Recipes",
     "edition": "Developer",
     "hasSampleData": false,
+    "features": ["Walkthroughs"],
     "settings": {
         "lightningExperienceSettings": {
             "enableS1DesktopEnabled": true
@@ -13,6 +14,10 @@
         },
         "mobileSettings": {
             "enableS1EncryptedStoragePref2": false
+        },
+        "userEngagementSettings": {
+            "enableOrchestrationInSandbox": true,
+            "enableShowSalesforceUserAssist": false
         }
     }
 }
