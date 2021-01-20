@@ -39,7 +39,7 @@
         "lint-staged": "^10.5.2",
         "prettier": "^2.2.1",
         "prettier-plugin-apex": "^1.7.0",
-        "semver": "^7.3.2"
+        "semver": "^7.3.4"
     },
     "husky": {
         "hooks": {
