@@ -32,7 +32,7 @@
         "@salesforce/eslint-config-lwc": "^0.8.0",
         "@salesforce/eslint-plugin-aura": "^1.4.0",
         "@salesforce/sfdx-lwc-jest": "^0.10.2",
-        "eslint": "^7.15.0",
+        "eslint": "^7.18.0",
         "eslint-config-prettier": "^7.1.0",
         "husky": "^4.3.0",
         "jest-canvas-mock": "^2.3.0",
