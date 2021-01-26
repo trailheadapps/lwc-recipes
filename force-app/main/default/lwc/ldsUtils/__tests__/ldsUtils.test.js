@@ -57,5 +57,70 @@ describe('c-lds-utils', () => {
 
             expect(reduced).toStrictEqual(REDUCED_ERROR);
         });
+
+        it('reduces single error with message in body containing multiple messages', () => {
+            const FULL_ERROR = {
+                body: {
+                    message: [
+                        { message: 'mockError1' },
+                        { message: 'mockError2' }
+                    ]
+                }
+            };
+            const REDUCED_ERROR = [
+                FULL_ERROR.body.message[0].message,
+                FULL_ERROR.body.message[1].message
+            ];
+
+            const reduced = reduceErrors(FULL_ERROR);
+
+            expect(reduced).toStrictEqual(REDUCED_ERROR);
+        });
+
+        it('reduces single error with message in body containing multiple page errors', () => {
+            const FULL_ERROR = {
+                body: {
+                    message: [
+                        {
+                            pageErrors: [
+                                { message: 'mockError1' },
+                                { message: 'mockError2' }
+                            ]
+                        },
+                        {
+                            pageErrors: [
+                                { message: 'mockError3' },
+                                { message: 'mockError4' }
+                            ]
+                        }
+                    ]
+                }
+            };
+            const REDUCED_ERROR = [
+                FULL_ERROR.body.message[0].pageErrors[0].message +
+                    ' ' +
+                    FULL_ERROR.body.message[0].pageErrors[1].message,
+                FULL_ERROR.body.message[1].pageErrors[0].message +
+                    ' ' +
+                    FULL_ERROR.body.message[1].pageErrors[1].message
+            ];
+
+            const reduced = reduceErrors(FULL_ERROR);
+
+            expect(reduced).toStrictEqual(REDUCED_ERROR);
+        });
+
+        it('reduces single error with blank message in body containing multiple messages', () => {
+            const FULL_ERROR = {
+                body: {
+                    message: [{}, {}]
+                }
+            };
+            const REDUCED_ERROR = [];
+
+            const reduced = reduceErrors(FULL_ERROR);
+
+            expect(reduced).toStrictEqual(REDUCED_ERROR);
+        });
     });
 });
