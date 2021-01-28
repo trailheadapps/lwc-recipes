@@ -60,4 +60,24 @@ public with sharing class TestContactController {
             'The contact name should be: First 1 Last 1'
         );
     }
+
+    @isTest
+    static void getContactError() {
+        AuraHandledException testError;
+        String ERROR_MESSAGE = 'This is a custom Apex-generated error message.';
+        Test.startTest();
+        try {
+            ContactController.getContactError();
+        } catch (AuraHandledException e) {
+            testError = e;
+        }
+        Test.stopTest();
+
+        System.debug(testError);
+        System.assertEquals(
+            ERROR_MESSAGE,
+            testError.getMessage(),
+            'The expected error message was not received.'
+        );
+    }
 }

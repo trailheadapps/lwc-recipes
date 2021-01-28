@@ -36,9 +36,12 @@ public with sharing class ContactController {
     public static List<Contact> getContactError() {
         List<Contact> contactList = new List<Contact>();
         if (contactList.size() < 5) {
-            throw new AuraHandledException(
+            AuraHandledException e = new AuraHandledException(
                 'This is a custom Apex-generated error message.'
             );
+            // ensure we can test the correct message in Apex
+            e.setMessage('This is a custom Apex-generated error message.');
+            throw e;
         }
         return contactList;
     }
