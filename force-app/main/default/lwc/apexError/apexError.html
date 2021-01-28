@@ -1,0 +1,13 @@
+<template>
+    <lightning-card title="ApexError" icon-name="custom:custom63">
+        <template if:true={contact.data}>
+            <div class="slds-var-m-around_medium">This should not appear.</div>
+        </template>
+        <template if:true={contact.error}>
+            <c-error-panel errors={contact.error}></c-error-panel>
+        </template>
+        <c-view-source source="lwc/apexError" slot="footer">
+            Call Apex method and get error and display error image.
+        </c-view-source>
+    </lightning-card>
+</template>

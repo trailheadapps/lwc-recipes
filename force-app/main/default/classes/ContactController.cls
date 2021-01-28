@@ -31,4 +31,15 @@ public with sharing class ContactController {
             LIMIT 1
         ];
     }
+
+    @AuraEnabled(Cacheable=true)
+    public static List<Contact> getContactError() {
+        List<Contact> contactList = new List<Contact>();
+        if (contactList.size() < 5) {
+            throw new AuraHandledException(
+                'This is a custom Apex-generated error message.'
+            );
+        }
+        return contactList;
+    }
 }
