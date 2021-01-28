@@ -19,7 +19,24 @@ export function reduceErrors(errors) {
                     return error.body.map((e) => e.message);
                 }
                 // UI API DML, Apex and network errors
-                else if (error.body && typeof error.body.message === 'string') {
+                else if (error.body && Array.isArray(error.body.message)) {
+                    return error.body.message.map((e) => {
+                        if (e.message) {
+                            return e.message;
+                        } else if (
+                            e.pageErrors &&
+                            Array.isArray(e.pageErrors)
+                        ) {
+                            return e.pageErrors
+                                .map((pageError) => pageError.message)
+                                .join(' ');
+                        }
+                        return '';
+                    });
+                } else if (
+                    error.body &&
+                    typeof error.body.message === 'string'
+                ) {
                     return error.body.message;
                 }
                 // JS errors
