@@ -11,7 +11,7 @@
             </componentInstance>
         </itemInstances>
         <itemInstances>
-                <componentInstance>
+            <componentInstance>
                 <componentName>apexWireMethodToFunction</componentName>
             </componentInstance>
         </itemInstances>
@@ -27,6 +27,11 @@
         <itemInstances>
             <componentInstance>
                 <componentName>apexStaticSchema</componentName>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentName>apexError</componentName>
             </componentInstance>
         </itemInstances>
         <name>region3</name>
