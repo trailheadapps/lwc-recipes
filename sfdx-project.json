@@ -4,12 +4,12 @@
             "path": "force-app",
             "default": true,
             "package": "LWCRecipes",
-            "versionName": "Winter '21",
-            "versionNumber": "50.0.0.NEXT"
+            "versionName": "Spring '21",
+            "versionNumber": "51.0.0.NEXT"
         }
     ],
     "namespace": "",
-    "sourceApiVersion": "50.0",
+    "sourceApiVersion": "51.0",
     "sfdcLoginUrl": "https://login.salesforce.com",
     "packageAliases": {
         "LWCRecipes": "0Ho3t000000KywNCAS",
