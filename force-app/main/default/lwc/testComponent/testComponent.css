@@ -1,0 +1,10 @@
+.blue {
+    color: blue;
+    display: inline-block;
+}
+
+.age {
+    display: inline-block;
+    font-size: 40px;
+    color: green;
+}

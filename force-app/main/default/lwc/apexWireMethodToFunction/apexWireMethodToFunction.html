@@ -6,7 +6,7 @@
         <div class="slds-var-m-around_medium">
             <template if:true={contacts}>
                 <template for:each={contacts} for:item="contact">
-                    <p key={contact.Id}>{contact.Name}</p>
+                    <p key={contact.Id}>{contact.Name}, {contact.Title}, {contact.Email}</p>
                 </template>
             </template>
             <template if:true={error}>
@@ -17,6 +17,7 @@
         <c-view-source source="lwc/apexWireMethodToFunction" slot="footer">
             Call an Apex method that retrieves a list of records using @wire. In
             this recipe, the Apex method is @wired to a component function.
+            This is the footer.
         </c-view-source>
     </lightning-card>
 </template>

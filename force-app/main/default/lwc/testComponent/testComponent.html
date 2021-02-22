@@ -1,0 +1,18 @@
+<template>
+    <lightning-card
+        title="testComponent"
+        icon-name="custom:custom13"
+    >
+        <div class="slds-var-m-around_medium">
+            <lightning-input type="text" label="Player" onchange={handleChange}></lightning-input>
+            <br/>
+            My favorite catch phrase is "My favorite cricket player is <div class="blue">{player}</div>".
+        </div>
+        <div class="slds-var-m-around_medium">
+            Hi my name is <div style="display:inline-block; background-color:red; color:yellow;">Jacob Thompson</div>
+        </div>
+        <div class="slds-var-m-around_medium">
+            I am <div class="age">24</div> years old, and I am a Salesforce Developer!
+        </div>
+    </lightning-card>
+</template>

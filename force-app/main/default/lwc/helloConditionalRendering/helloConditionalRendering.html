@@ -1,7 +1,7 @@
 <template>
     <lightning-card
         title="HelloConditionalRendering"
-        icon-name="custom:custom14"
+        icon-name="custom:custom15"
     >
         <div class="slds-var-m-around_medium">
             <lightning-input
@@ -12,16 +12,16 @@
 
             <div class="slds-var-m-vertical_medium">
                 <template if:true={areDetailsVisible}>
-                    These are the details!
+                    Here are some details.
                 </template>
                 <template if:false={areDetailsVisible}>
-                    Not showing details.
+                    Alternative details.
                 </template>
             </div>
         </div>
 
         <c-view-source source="lwc/helloConditionalRendering" slot="footer">
-            Conditionally render elements.
+            Conditionally render elements. This is a footer.
         </c-view-source>
     </lightning-card>
 </template>
