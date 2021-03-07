@@ -30,7 +30,7 @@ jobs:
 
             # Authenticate dev hub
             - name: Authenticate Dev Hub
-              run: sfdx force:auth:sfdxurl:store -f ./DEVHUB_SFDX_URL.txt -a devhub -d
+              run: sfdx auth:sfdxurl:store -f ./DEVHUB_SFDX_URL.txt -a devhub -d
 
             # Remove auth file
             - name: Remove auth file

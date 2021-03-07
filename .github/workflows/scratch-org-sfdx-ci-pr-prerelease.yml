@@ -62,20 +62,16 @@ jobs:
         needs: formatting-and-linting
         steps:
             # Install Salesforce CLI
-            - name: Install Salesforce CLI
-              run: |
-                  wget https://developer.salesforce.com/media/salesforce-cli/sfdx-linux-amd64.tar.xz
-                  mkdir sfdx-cli
-                  tar xJf sfdx-linux-amd64.tar.xz -C sfdx-cli --strip-components 1
-                  ./sfdx-cli/install
-
-            # Checkout the code in the pull request
-            - name: 'Checkout source code'
-              uses: actions/checkout@v2
+            - name: 'Install Salesforce CLI'
+              run: 'sudo npm install -g sfdx-cli'
 
             # Install salesforcedx pre-release plugin
             - name: 'Install salesforcedx pre-release plugin'
               run: 'sfdx plugins:install salesforcedx@pre-release'
+
+            # Checkout the code in the pull request
+            - name: 'Checkout source code'
+              uses: actions/checkout@v2
 
             # Store secret for dev hub
             - name: 'Populate auth file with DEVHUB_PREREL_SFDX_URL secret'
@@ -84,7 +80,7 @@ jobs:
 
             # Authenticate dev hub
             - name: 'Authenticate Dev Hub'
-              run: 'sfdx force:auth:sfdxurl:store -f ./DEVHUB_SFDX_URL.txt -a devhub -d'
+              run: 'sfdx auth:sfdxurl:store -f ./DEVHUB_SFDX_URL.txt -a devhub -d'
 
             # Create scratch org
             - name: 'Create scratch org'

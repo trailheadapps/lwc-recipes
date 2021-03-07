@@ -4,16 +4,20 @@
             "path": "force-app",
             "default": true,
             "package": "LWCRecipes",
-            "versionName": "Winter '21",
-            "versionNumber": "50.0.0.NEXT"
+            "versionName": "Spring '21",
+            "versionNumber": "51.0.0.NEXT"
         }
     ],
     "namespace": "",
-    "sourceApiVersion": "50.0",
+    "sourceApiVersion": "51.0",
     "sfdcLoginUrl": "https://login.salesforce.com",
     "packageAliases": {
         "LWCRecipes": "0Ho3t000000KywNCAS",
         "LWCRecipes@50.0.0-1": "04t3t000002kqGUAAY",
-        "LWCRecipes@50.0.0-5": "04t3t000002kqK7AAI"
+        "LWCRecipes@50.0.0-5": "04t3t000002kqK7AAI",
+        "LWCRecipes@50.0.0-8": "04t3t000002kqPSAAY",
+        "LWCRecipes@50.0.0-11": "04t3t000002kqRdAAI",
+        "LWCRecipes@50.0.0-12": "04t3t000002kqvvAAA",
+        "LWCRecipes@51.0.0-1": "04t3t000002kr1FAAQ"
     }
 }
