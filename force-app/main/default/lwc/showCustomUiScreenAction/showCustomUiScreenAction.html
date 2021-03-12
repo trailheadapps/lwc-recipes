@@ -1,0 +1,34 @@
+<template>
+    <div class="window">
+        <div class="title-bar">
+            <div class="title-bar-text">
+                My LWC Custom Quick Action from 1998!
+            </div>
+        </div>
+        <div class="window-body">
+            <fieldset>
+                <div class="field-row">Select one:</div>
+                <div class="field-row">
+                    <input id="radio1" type="radio" name="fieldset-example" />
+                    <label for="radio1">{recordId}</label>
+                </div>
+                <div class="field-row">
+                    <input id="radio2" type="radio" name="fieldset-example" />
+                    <label for="radio2">New Account</label>
+                </div>
+            </fieldset>
+            <div class="field-row-stacked" style="width: 200px">
+                <label for="text3">Address (Line 1)</label>
+                <input id="text3" type="text" />
+            </div>
+            <div class="field-row-stacked" style="width: 200px">
+                <label for="text4">Address (Line 2)</label>
+                <input id="text4" type="text" />
+            </div>
+
+            <div style="display: flow-root">
+                <button style="float: right" onclick={handleOK}>OK</button>
+            </div>
+        </div>
+    </div>
+</template>
