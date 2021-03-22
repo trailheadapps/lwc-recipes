@@ -1,5 +1,5 @@
 # Unique name for this workflow
-name: Packaging on Pull Request
+name: Packaging on PR
 
 # Workflow starts when receiving custom event sent by CI workflow
 on:

@@ -1,5 +1,5 @@
 # Unique name for this workflow
-name: CI on Pre-release Pull Request
+name: CI on Pre-release PR
 
 # Definition when the workflow should run
 on:
