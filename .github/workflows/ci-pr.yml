@@ -136,7 +136,7 @@ jobs:
         runs-on: ubuntu-latest
         needs: scratch-org-test
         steps:
-            # Checkout the source code with history
+            # Checkout the source code
             - name: 'Checkout source code'
               uses: actions/checkout@v2
 
@@ -153,8 +153,8 @@ jobs:
                   fi
                   echo "::set-output name=hasChanges::$hasChanges"
 
-            # Trigger Packaging Master PR workflow
-            - name: 'Trigger Packaging Master PR workflow if needed'
+            # Trigger packaging PR workflow
+            - name: 'Trigger packaging PR workflow if needed'
               uses: peter-evans/repository-dispatch@v1.1.0
               if: ${{ steps.checkForChanges.outputs.hasChanges == 'true' }}
               with:
