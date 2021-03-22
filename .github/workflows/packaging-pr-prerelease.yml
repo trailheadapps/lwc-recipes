@@ -41,7 +41,7 @@ jobs:
               id: createPackageVersion
               run: |
                   set +e
-                  json=$(sfdx force:package:version:create -p LWCRecipes -x -w 20 -f config/project-scratch-def.json--json)
+                  json=$(sfdx force:package:version:create -p LWCRecipes -x -w 20 -f config/project-scratch-def.json --json)
                   echo $json
                   status=$(echo $json | jq '.status')
                   if [ $status == "0" ]; then
