@@ -12,7 +12,7 @@ on:
 
 # Jobs to be executed
 jobs:
-    formatting-and-lwc-tests:
+    format-lint-lwc-tests:
         runs-on: ubuntu-latest
         steps:
             # Checkout the source code
@@ -59,7 +59,7 @@ jobs:
 
     scratch-org-test:
         runs-on: ubuntu-latest
-        needs: formatting-and-lwc-tests
+        needs: format-lint-lwc-tests
         steps:
             # Install Salesforce CLI
             - name: 'Install Salesforce CLI'
