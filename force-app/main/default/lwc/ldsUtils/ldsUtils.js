@@ -19,8 +19,12 @@ export function reduceErrors(errors) {
                     return error.body.map((e) => e.message);
                 }
                 // UI API DML, Apex and network errors
-                else if (error.body && typeof error.body.message === 'string') {
-                    return error.body.message;
+                else if (error.body) {
+                    if (typeof error.body.message === 'string') {
+                        return error.body.message;
+                    } else if (error.body.pageErrors) {
+                        return error.body.pageErrors.map((e) => e.message);
+                    }
                 }
                 // JS errors
                 else if (typeof error.message === 'string') {
