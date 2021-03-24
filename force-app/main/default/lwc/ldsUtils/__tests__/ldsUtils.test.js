@@ -10,6 +10,25 @@ describe('c-lds-utils', () => {
 
             expect(reduced).toStrictEqual(REDUCED_ERROR);
         });
+        
+        it('reduces single error with single body but multiple pageErrors with messages', () => {
+            const FULL_ERROR = {
+                body: {
+                    pageErrors: [
+                        { message: 'mockError1' },
+                        { message: 'mockError2' }
+                    ]
+                }
+            };
+            const REDUCED_ERROR = [
+                FULL_ERROR.body.pageErrors[0].message,
+                FULL_ERROR.body.pageErrors[1].message
+            ];
+
+            const reduced = reduceErrors(FULL_ERROR);
+
+            expect(reduced).toStrictEqual(REDUCED_ERROR);
+        });
 
         it('reduces single error with multiple bodies with messages', () => {
             const FULL_ERROR = {
