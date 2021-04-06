@@ -5,7 +5,7 @@ name: Enforce branch naming
 on:
     push:
         branches-ignore:
-            - master
+            - main
 
 # Jobs to be executed
 jobs:
@@ -13,7 +13,7 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Validate branch name requirements
-              uses: deepakputhraya/action-branch-name@master
+              uses: deepakputhraya/action-branch-name@main
               with:
                   regex: '([a-zA-Z])+\/([a-zA-Z])+'
                   min_length: 6

@@ -1,6 +1,6 @@
 # Lightning Web Components Recipes
 
-[![CI Workflow](https://github.com/trailheadapps/lwc-recipes/workflows/CI/badge.svg)](https://github.com/trailheadapps/lwc-recipes/actions?query=workflow%3ACI) [![Packaging Workflow](https://github.com/trailheadapps/lwc-recipes/workflows/Packaging/badge.svg)](https://github.com/trailheadapps/lwc-recipes/actions?query=workflow%3A%22Packaging%22) [![codecov](https://codecov.io/gh/trailheadapps/lwc-recipes/branch/master/graph/badge.svg)](https://codecov.io/gh/trailheadapps/lwc-recipes)
+[![CI Workflow](https://github.com/trailheadapps/lwc-recipes/workflows/CI/badge.svg)](https://github.com/trailheadapps/lwc-recipes/actions?query=workflow%3ACI) [![Packaging Workflow](https://github.com/trailheadapps/lwc-recipes/workflows/Packaging/badge.svg)](https://github.com/trailheadapps/lwc-recipes/actions?query=workflow%3A%22Packaging%22) [![codecov](https://codecov.io/gh/trailheadapps/lwc-recipes/branch/main/graph/badge.svg)](https://codecov.io/gh/trailheadapps/lwc-recipes)
 
 ![recipes-logo](recipes-logo.png)
 
@@ -98,7 +98,7 @@ Make sure to start from a brand-new environment to avoid conflicts with previous
 
 1. Import Account and Contacts data:
 
-    - Click [here](https://raw.githubusercontent.com/trailheadapps/lwc-recipes/master/data/Accounts-Contacts.csv) to access the **Accounts-Contacts.csv** file. Right click on the browser window and save the file as **Accounts-Contacts.csv**.
+    - Click [here](https://raw.githubusercontent.com/trailheadapps/lwc-recipes/main/data/Accounts-Contacts.csv) to access the **Accounts-Contacts.csv** file. Right click on the browser window and save the file as **Accounts-Contacts.csv**.
     - In **Setup**, type **Data Import** in the Quick Find box and click **Data Import Wizard**.
     - Click **Launch Wizard**.
     - Click **Accounts and Contacts**, and click **Add New Records**.

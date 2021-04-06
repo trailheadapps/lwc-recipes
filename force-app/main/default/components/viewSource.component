@@ -12,7 +12,7 @@
     <p class="slds-text-align_left">
         <apex:outputLink
             styleClass="slds-text-link"
-            value="https://github.com/trailheadapps/lwc-recipes/tree/master/force-app/main/default/{!source}"
+            value="https://github.com/trailheadapps/lwc-recipes/tree/main/force-app/main/default/{!source}"
             >View Source</apex:outputLink
         >
     </p>

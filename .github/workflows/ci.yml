@@ -5,7 +5,7 @@ name: CI
 on:
     push:
         branches:
-            - master
+            - main
         paths-ignore:
             - 'sfdx-project.json'
             - 'README.md'
