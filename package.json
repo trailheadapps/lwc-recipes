@@ -29,16 +29,16 @@
     },
     "devDependencies": {
         "@prettier/plugin-xml": "^0.13.1",
-        "@sa11y/jest": "^0.3.0",
+        "@sa11y/jest": "^0.3.1",
         "@salesforce/eslint-config-lwc": "^0.11.0",
         "@salesforce/eslint-plugin-aura": "^2.0.0",
         "@salesforce/sfdx-lwc-jest": "^0.10.4",
-        "eslint": "^7.22.0",
-        "eslint-config-prettier": "^8.1.0",
+        "eslint": "^7.25.0",
+        "eslint-config-prettier": "^8.3.0",
         "husky": "^5.2.0",
         "jest-canvas-mock": "^2.3.1",
         "prettier": "^2.2.1",
         "prettier-plugin-apex": "^1.8.0",
-        "semver": "^7.3.4"
+        "semver": "^7.3.5"
     }
 }
