@@ -37,7 +37,7 @@
         "eslint-config-prettier": "^8.3.0",
         "husky": "^5.2.0",
         "jest-canvas-mock": "^2.3.1",
-        "prettier": "^2.2.1",
+        "prettier": "^2.3.0",
         "prettier-plugin-apex": "^1.9.1",
         "semver": "^7.3.5"
     }
