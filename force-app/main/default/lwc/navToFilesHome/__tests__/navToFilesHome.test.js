@@ -23,9 +23,8 @@ describe('c-nav-to-files-home', () => {
         // ending the test and fail the test if the promise rejects.
         return Promise.resolve().then(() => {
             // Get handle to button and fire click event
-            const buttonEl = element.shadowRoot.querySelector(
-                'lightning-button'
-            );
+            const buttonEl =
+                element.shadowRoot.querySelector('lightning-button');
             buttonEl.click();
 
             const { pageReference } = getNavigateCalledWith();

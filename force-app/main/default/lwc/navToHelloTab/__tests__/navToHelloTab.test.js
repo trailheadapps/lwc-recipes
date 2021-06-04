@@ -18,9 +18,8 @@ describe('c-nav-to-hello-tab', () => {
 
         return Promise.resolve().then(() => {
             // get handle to button and fire click event
-            const buttonEl = element.shadowRoot.querySelector(
-                'lightning-button'
-            );
+            const buttonEl =
+                element.shadowRoot.querySelector('lightning-button');
             buttonEl.click();
 
             const { pageReference } = getNavigateCalledWith();

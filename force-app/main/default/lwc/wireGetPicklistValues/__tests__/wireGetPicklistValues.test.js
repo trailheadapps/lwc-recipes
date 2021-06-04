@@ -33,9 +33,8 @@ describe('c-wire-get-picklist-values', () => {
             // ending the test and fail the test if the promise rejects.
             return Promise.resolve().then(() => {
                 // Select elements for validation
-                const checkboxEls = element.shadowRoot.querySelectorAll(
-                    'lightning-input'
-                );
+                const checkboxEls =
+                    element.shadowRoot.querySelectorAll('lightning-input');
                 expect(checkboxEls.length).toBe(
                     mockGetPicklistValues.values.length
                 );
@@ -62,9 +61,8 @@ describe('c-wire-get-picklist-values', () => {
             // will automatically wait for the Promise chain to complete before
             // ending the test and fail the test if the promise rejects.
             return Promise.resolve().then(() => {
-                const errorPanelEl = element.shadowRoot.querySelector(
-                    'c-error-panel'
-                );
+                const errorPanelEl =
+                    element.shadowRoot.querySelector('c-error-panel');
                 expect(errorPanelEl).not.toBeNull();
             });
         });

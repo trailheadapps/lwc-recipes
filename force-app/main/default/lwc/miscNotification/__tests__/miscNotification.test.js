@@ -41,9 +41,8 @@ describe('c-misc-notification', () => {
         inputMessageEl.dispatchEvent(new CustomEvent('change'));
 
         // Select combobox for simulating user input
-        const comboboxEl = element.shadowRoot.querySelector(
-            'lightning-combobox'
-        );
+        const comboboxEl =
+            element.shadowRoot.querySelector('lightning-combobox');
         comboboxEl.value = TOAST_VARIANT;
         comboboxEl.dispatchEvent(new CustomEvent('change'));
 

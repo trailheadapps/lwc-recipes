@@ -35,9 +35,8 @@ describe('c-api-property', () => {
         document.body.appendChild(element);
 
         // Select input field for simulating user input
-        const lightningInputEl = element.shadowRoot.querySelector(
-            'lightning-input'
-        );
+        const lightningInputEl =
+            element.shadowRoot.querySelector('lightning-input');
         lightningInputEl.value = PERCENTAGE_CUSTOM;
         lightningInputEl.dispatchEvent(new CustomEvent('change'));
 

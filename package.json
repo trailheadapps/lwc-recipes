@@ -30,14 +30,14 @@
     "devDependencies": {
         "@prettier/plugin-xml": "^0.13.1",
         "@sa11y/jest": "^0.3.1",
-        "@salesforce/eslint-config-lwc": "^0.11.0",
+        "@salesforce/eslint-config-lwc": "^2.0.0",
         "@salesforce/eslint-plugin-aura": "^2.0.0",
         "@salesforce/sfdx-lwc-jest": "^0.10.4",
         "eslint": "^7.25.0",
         "eslint-config-prettier": "^8.3.0",
         "husky": "^5.2.0",
         "jest-canvas-mock": "^2.3.1",
-        "prettier": "^2.2.1",
+        "prettier": "^2.3.0",
         "prettier-plugin-apex": "^1.9.1",
         "semver": "^7.3.5"
     }

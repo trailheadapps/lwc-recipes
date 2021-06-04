@@ -17,9 +17,8 @@ describe('c-composition-iteration', () => {
         document.body.appendChild(element);
 
         // Select rendered contact tile elements for length check
-        const contactTileEls = element.shadowRoot.querySelectorAll(
-            'c-contact-tile'
-        );
+        const contactTileEls =
+            element.shadowRoot.querySelectorAll('c-contact-tile');
         expect(contactTileEls.length).toBe(3);
     });
 

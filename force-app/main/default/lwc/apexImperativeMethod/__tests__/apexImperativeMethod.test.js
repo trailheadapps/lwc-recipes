@@ -80,9 +80,8 @@ describe('c-apex-imperative-method', () => {
         // the test if the promise ends in the rejected state.
         return flushPromises().then(() => {
             // Select div for validating conditionally changed text content
-            const detailEls = element.shadowRoot.querySelectorAll(
-                'p:not([class])'
-            );
+            const detailEls =
+                element.shadowRoot.querySelectorAll('p:not([class])');
             expect(detailEls.length).toBe(APEX_CONTACTS_SUCCESS.length);
             expect(detailEls[0].textContent).toBe(
                 APEX_CONTACTS_SUCCESS[0].Name
@@ -112,9 +111,8 @@ describe('c-apex-imperative-method', () => {
         // for the Promise chain to complete before ending the test and fail
         // the test if the promise ends in the rejected state.
         return flushPromises().then(() => {
-            const errorPanelEl = element.shadowRoot.querySelector(
-                'c-error-panel'
-            );
+            const errorPanelEl =
+                element.shadowRoot.querySelector('c-error-panel');
             expect(errorPanelEl).not.toBeNull();
         });
     });
