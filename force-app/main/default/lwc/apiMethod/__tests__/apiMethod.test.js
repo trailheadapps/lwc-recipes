@@ -1,11 +1,11 @@
 import { createElement } from 'lwc';
-import ApiFunction from 'c/apiFunction';
+import ApiMethod from 'c/apiMethod';
 
-describe('c-api-function', () => {
-    it('calls the public function "refresh" on the c-clock component', () => {
+describe('c-api-method', () => {
+    it('calls the public method "refresh" on the c-clock component', () => {
         // Create initial element
-        const element = createElement('c-api-function', {
-            is: ApiFunction
+        const element = createElement('c-api-method', {
+            is: ApiMethod
         });
         document.body.appendChild(element);
 
@@ -21,14 +21,14 @@ describe('c-api-function', () => {
         // will automatically wait for the Promise chain to complete before
         // ending the test and fail the test if the promise rejects.
         return Promise.resolve().then(() => {
-            // Compare if public function has been called
+            // Compare if public method has been called
             expect(clockEl.refresh).toHaveBeenCalled();
         });
     });
 
     it('is accessible', () => {
-        const element = createElement('c-api-function', {
-            is: ApiFunction
+        const element = createElement('c-api-method', {
+            is: ApiMethod
         });
 
         document.body.appendChild(element);
