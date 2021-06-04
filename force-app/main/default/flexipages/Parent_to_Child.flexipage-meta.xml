@@ -16,7 +16,7 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
-                <componentName>apiFunction</componentName>
+                <componentName>apiMethod</componentName>
             </componentInstance>
         </itemInstances>
         <name>region3</name>
