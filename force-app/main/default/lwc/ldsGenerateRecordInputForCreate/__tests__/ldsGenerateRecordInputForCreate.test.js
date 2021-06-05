@@ -76,12 +76,10 @@ describe('c-lds-generate-record-input-for-create', () => {
             // will automatically wait for the Promise chain to complete before
             // ending the test and fail the test if the promise rejects.
             return Promise.resolve().then(() => {
-                const inputEls = element.shadowRoot.querySelectorAll(
-                    'lightning-input'
-                );
-                const errorPanel = element.shadowRoot.querySelector(
-                    'c-error-panel'
-                );
+                const inputEls =
+                    element.shadowRoot.querySelectorAll('lightning-input');
+                const errorPanel =
+                    element.shadowRoot.querySelector('c-error-panel');
 
                 expect(inputEls.length).toBe(2);
                 expect(inputEls[1].value).toBe(
@@ -108,12 +106,10 @@ describe('c-lds-generate-record-input-for-create', () => {
             // will automatically wait for the Promise chain to complete before
             // ending the test and fail the test if the promise rejects.
             return Promise.resolve().then(() => {
-                const inputEls = element.shadowRoot.querySelectorAll(
-                    'lightning-input'
-                );
-                const errorPanel = element.shadowRoot.querySelector(
-                    'c-error-panel'
-                );
+                const inputEls =
+                    element.shadowRoot.querySelectorAll('lightning-input');
+                const errorPanel =
+                    element.shadowRoot.querySelector('c-error-panel');
 
                 expect(inputEls.length).toBe(2);
                 expect(inputEls[1].value).toBe(
@@ -142,12 +138,10 @@ describe('c-lds-generate-record-input-for-create', () => {
             // will automatically wait for the Promise chain to complete before
             // ending the test and fail the test if the promise rejects.
             return Promise.resolve().then(() => {
-                const inputEls = element.shadowRoot.querySelectorAll(
-                    'lightning-input'
-                );
-                const errorPanel = element.shadowRoot.querySelector(
-                    'c-error-panel'
-                );
+                const inputEls =
+                    element.shadowRoot.querySelectorAll('lightning-input');
+                const errorPanel =
+                    element.shadowRoot.querySelector('c-error-panel');
 
                 expect(inputEls.length).toBe(0);
                 expect(errorPanel).not.toBeNull();
@@ -190,9 +184,8 @@ describe('c-lds-generate-record-input-for-create', () => {
                 );
 
                 // Select button for simulating user interaction
-                const buttonEl = element.shadowRoot.querySelector(
-                    'lightning-button'
-                );
+                const buttonEl =
+                    element.shadowRoot.querySelector('lightning-button');
                 buttonEl.click();
 
                 // Return an immediate flushed promise (after the LDS call) to then
@@ -207,7 +200,8 @@ describe('c-lds-generate-record-input-for-create', () => {
                         ...mockGenerateRecordInputForCreate
                     };
                     expectedRecordInput.fields.Name = USER_INPUT_NAME;
-                    expectedRecordInput.fields.AreaNumber__c = USER_INPUT_AREANUMBER;
+                    expectedRecordInput.fields.AreaNumber__c =
+                        USER_INPUT_AREANUMBER;
                     expect(createRecord.mock.calls[0][0]).toEqual(
                         expectedRecordInput
                     );
@@ -245,9 +239,8 @@ describe('c-lds-generate-record-input-for-create', () => {
                 );
 
                 // Select button for simulating user interaction
-                const buttonEl = element.shadowRoot.querySelector(
-                    'lightning-button'
-                );
+                const buttonEl =
+                    element.shadowRoot.querySelector('lightning-button');
                 buttonEl.click();
 
                 return flushPromises().then(() => {
@@ -286,9 +279,8 @@ describe('c-lds-generate-record-input-for-create', () => {
                 simulateUserInput(element, NAME_FIELD.fieldApiName, 'invalid');
 
                 // Select button for simulating user interaction
-                const buttonEl = element.shadowRoot.querySelector(
-                    'lightning-button'
-                );
+                const buttonEl =
+                    element.shadowRoot.querySelector('lightning-button');
                 buttonEl.click();
 
                 return flushPromises().then(() => {

@@ -137,9 +137,8 @@ describe('c-apex-imperative-method-with-params', () => {
         // for the Promise chain to complete before ending the test and fail
         // the test if the promise ends in the rejected state.
         return flushPromises().then(() => {
-            const errorPanelEl = element.shadowRoot.querySelector(
-                'c-error-panel'
-            );
+            const errorPanelEl =
+                element.shadowRoot.querySelector('c-error-panel');
             expect(errorPanelEl).not.toBeNull();
         });
     });

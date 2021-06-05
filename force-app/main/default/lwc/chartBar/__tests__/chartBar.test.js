@@ -17,9 +17,8 @@ describe('c-chart-bar', () => {
         document.body.appendChild(element);
 
         // Query lightning-layout element
-        const lightningLayoutEl = element.shadowRoot.querySelector(
-            'lightning-layout'
-        );
+        const lightningLayoutEl =
+            element.shadowRoot.querySelector('lightning-layout');
         expect(lightningLayoutEl).not.toBeNull();
 
         // Query lightning-layout-item elements

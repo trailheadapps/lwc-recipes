@@ -12,13 +12,11 @@ describe('c-api-setter-getter', () => {
         document.body.appendChild(element);
 
         // Query lightning-input elements
-        const lightningInputEls = element.shadowRoot.querySelectorAll(
-            'lightning-input'
-        );
+        const lightningInputEls =
+            element.shadowRoot.querySelectorAll('lightning-input');
 
-        const todoCountPrevious = element.shadowRoot.querySelector(
-            'c-todo-list'
-        ).todos.length;
+        const todoCountPrevious =
+            element.shadowRoot.querySelector('c-todo-list').todos.length;
 
         // Select input fields for simulating user input
         lightningInputEls.forEach((el) => {

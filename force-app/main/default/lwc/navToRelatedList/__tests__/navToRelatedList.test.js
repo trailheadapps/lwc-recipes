@@ -34,9 +34,8 @@ describe('c-nav-to-related-list', () => {
 
         return Promise.resolve().then(() => {
             // Get handle to button and fire click event
-            const buttonEl = element.shadowRoot.querySelector(
-                'lightning-button'
-            );
+            const buttonEl =
+                element.shadowRoot.querySelector('lightning-button');
 
             buttonEl.click();
 
@@ -69,9 +68,8 @@ describe('c-nav-to-related-list', () => {
         // will automatically wait for the Promise chain to complete before
         // ending the test and fail the test if the promise rejects.
         return Promise.resolve().then(() => {
-            const errorPanelEl = element.shadowRoot.querySelector(
-                'c-error-panel'
-            );
+            const errorPanelEl =
+                element.shadowRoot.querySelector('c-error-panel');
             expect(errorPanelEl).not.toBeNull();
         });
     });
