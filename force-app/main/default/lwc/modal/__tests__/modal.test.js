@@ -88,9 +88,8 @@ describe('c-modal', () => {
         return Promise.resolve()
             .then(() => {
                 // Query modal container div element
-                const modalContainerElementShow = element.shadowRoot.querySelector(
-                    '.slds-modal__container'
-                );
+                const modalContainerElementShow =
+                    element.shadowRoot.querySelector('.slds-modal__container');
 
                 // validate we successfully found the modal container DOM element
                 expect(modalContainerElementShow.tagName).toBe('DIV');
@@ -100,9 +99,8 @@ describe('c-modal', () => {
             })
             .then(() => {
                 // Query modal container div element
-                const modalContainerElementHide = element.shadowRoot.querySelector(
-                    '.slds-modal__container'
-                );
+                const modalContainerElementHide =
+                    element.shadowRoot.querySelector('.slds-modal__container');
 
                 // validate we successfully removed the modal from the DOM
                 expect(modalContainerElementHide).toBeNull();

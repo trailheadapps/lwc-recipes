@@ -33,9 +33,8 @@ describe('c-wire-get-object-info', () => {
             inputEl.dispatchEvent(new CustomEvent('change'));
 
             // Select button for simulating user interaction
-            const buttonEl = element.shadowRoot.querySelector(
-                'lightning-button'
-            );
+            const buttonEl =
+                element.shadowRoot.querySelector('lightning-button');
             buttonEl.click();
 
             // Return a promise to wait for any asynchronous DOM updates. Jest
@@ -64,9 +63,8 @@ describe('c-wire-get-object-info', () => {
             inputEl.dispatchEvent(new CustomEvent('change'));
 
             // Select button for simulating user interaction
-            const buttonEl = element.shadowRoot.querySelector(
-                'lightning-button'
-            );
+            const buttonEl =
+                element.shadowRoot.querySelector('lightning-button');
             buttonEl.click();
 
             // Emit data from @wire
@@ -100,9 +98,8 @@ describe('c-wire-get-object-info', () => {
             // will automatically wait for the Promise chain to complete before
             // ending the test and fail the test if the promise rejects.
             return Promise.resolve().then(() => {
-                const errorPanelEl = element.shadowRoot.querySelector(
-                    'c-error-panel'
-                );
+                const errorPanelEl =
+                    element.shadowRoot.querySelector('c-error-panel');
                 expect(errorPanelEl).not.toBeNull();
             });
         });

@@ -65,9 +65,8 @@ describe('c-composition-contact-search', () => {
         document.body.appendChild(element);
 
         // Select rendered contact tile for length check
-        const contactTileEls = element.shadowRoot.querySelectorAll(
-            'c-contact-tile'
-        );
+        const contactTileEls =
+            element.shadowRoot.querySelectorAll('c-contact-tile');
         expect(contactTileEls.length).toBe(0);
     });
 
@@ -84,9 +83,8 @@ describe('c-composition-contact-search', () => {
         document.body.appendChild(element);
 
         // Query lightning-input field element
-        const inputFieldEl = element.shadowRoot.querySelector(
-            'lightning-input'
-        );
+        const inputFieldEl =
+            element.shadowRoot.querySelector('lightning-input');
         inputFieldEl.value = USER_INPUT;
         inputFieldEl.dispatchEvent(new CustomEvent('change'));
 
@@ -98,9 +96,8 @@ describe('c-composition-contact-search', () => {
         // for the Promise chain to complete before ending the test and fail
         // the test if the promise ends in the rejected state.
         return flushPromises().then(() => {
-            const contactTileEl = element.shadowRoot.querySelector(
-                'c-contact-tile'
-            );
+            const contactTileEl =
+                element.shadowRoot.querySelector('c-contact-tile');
             expect(contactTileEl).not.toBeNull();
             expect(contactTileEl.contact.Name).toBe(
                 APEX_CONTACTS_SUCCESS[0].Name
@@ -121,9 +118,8 @@ describe('c-composition-contact-search', () => {
         document.body.appendChild(element);
 
         // Query lightning-input field elements
-        const inputFieldEl = element.shadowRoot.querySelector(
-            'lightning-input'
-        );
+        const inputFieldEl =
+            element.shadowRoot.querySelector('lightning-input');
         inputFieldEl.value = USER_INPUT;
         inputFieldEl.dispatchEvent(new CustomEvent('change'));
 
@@ -135,9 +131,8 @@ describe('c-composition-contact-search', () => {
         // for the Promise chain to complete before ending the test and fail
         // the test if the promise ends in the rejected state.
         return flushPromises().then(() => {
-            const errorPanelEl = element.shadowRoot.querySelector(
-                'c-error-panel'
-            );
+            const errorPanelEl =
+                element.shadowRoot.querySelector('c-error-panel');
             expect(errorPanelEl).not.toBeNull();
         });
     });
@@ -155,9 +150,8 @@ describe('c-composition-contact-search', () => {
         document.body.appendChild(element);
 
         // Query lightning-input field element
-        const inputFieldEl = element.shadowRoot.querySelector(
-            'lightning-input'
-        );
+        const inputFieldEl =
+            element.shadowRoot.querySelector('lightning-input');
         inputFieldEl.value = USER_INPUT;
         inputFieldEl.dispatchEvent(new CustomEvent('change'));
 
@@ -186,9 +180,8 @@ describe('c-composition-contact-search', () => {
         document.body.appendChild(element);
 
         // Query lightning-input field elements
-        const inputFieldEl = element.shadowRoot.querySelector(
-            'lightning-input'
-        );
+        const inputFieldEl =
+            element.shadowRoot.querySelector('lightning-input');
         inputFieldEl.value = USER_INPUT;
         inputFieldEl.dispatchEvent(new CustomEvent('change'));
 

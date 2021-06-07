@@ -17,9 +17,8 @@ describe('c-event-simple', () => {
         document.body.appendChild(element);
 
         const paginatorEl = element.shadowRoot.querySelector('c-paginator');
-        const buttonEls = paginatorEl.shadowRoot.querySelectorAll(
-            'lightning-button'
-        );
+        const buttonEls =
+            paginatorEl.shadowRoot.querySelectorAll('lightning-button');
 
         // First click "Next", so that the page property increments to 2
         buttonEls.forEach((buttonEl) => {

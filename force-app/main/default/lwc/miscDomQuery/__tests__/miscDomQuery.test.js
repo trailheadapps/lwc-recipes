@@ -17,9 +17,8 @@ describe('c-misc-dom-query', () => {
         document.body.appendChild(element);
 
         // Query all lightning-input fields
-        const lightningInputCheckedEls = element.shadowRoot.querySelectorAll(
-            'lightning-input'
-        );
+        const lightningInputCheckedEls =
+            element.shadowRoot.querySelectorAll('lightning-input');
         lightningInputCheckedEls.forEach((input) => {
             expect(input.checked).toBeFalsy();
         });
@@ -33,9 +32,8 @@ describe('c-misc-dom-query', () => {
         document.body.appendChild(element);
 
         // Query all lightning-input fields
-        const lightningInputEls = element.shadowRoot.querySelectorAll(
-            'lightning-input'
-        );
+        const lightningInputEls =
+            element.shadowRoot.querySelectorAll('lightning-input');
         lightningInputEls[0].checked = true;
         lightningInputEls[0].dispatchEvent(new CustomEvent('change'));
 

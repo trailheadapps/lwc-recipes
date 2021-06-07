@@ -63,9 +63,8 @@ describe('c-misc-shared-java-script', () => {
         document.body.appendChild(element);
 
         // Select input fields for simulating user input
-        const lightningInputEls = element.shadowRoot.querySelectorAll(
-            'lightning-input'
-        );
+        const lightningInputEls =
+            element.shadowRoot.querySelectorAll('lightning-input');
 
         lightningInputEls.forEach((el) => {
             if (el.label === 'Rate') {
@@ -77,9 +76,8 @@ describe('c-misc-shared-java-script', () => {
         });
 
         // Select combobox for simulating user input
-        const lightningComboboxEl = element.shadowRoot.querySelector(
-            'lightning-combobox'
-        );
+        const lightningComboboxEl =
+            element.shadowRoot.querySelector('lightning-combobox');
         lightningComboboxEl.value = TERM_CUSTOM;
         lightningComboboxEl.dispatchEvent(new CustomEvent('change'));
 

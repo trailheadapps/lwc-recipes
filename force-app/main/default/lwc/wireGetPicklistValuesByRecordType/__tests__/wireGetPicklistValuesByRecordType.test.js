@@ -40,9 +40,8 @@ describe('c-wire-get-picklist-values-by-record-type', () => {
             // ending the test and fail the test if the promise rejects.
             return Promise.resolve().then(() => {
                 // Select elements for validation
-                const treeEl = element.shadowRoot.querySelector(
-                    'lightning-tree'
-                );
+                const treeEl =
+                    element.shadowRoot.querySelector('lightning-tree');
                 expect(treeEl).not.toBeNull();
             });
         });
@@ -66,9 +65,8 @@ describe('c-wire-get-picklist-values-by-record-type', () => {
             // will automatically wait for the Promise chain to complete before
             // ending the test and fail the test if the promise rejects.
             return Promise.resolve().then(() => {
-                const errorPanelEl = element.shadowRoot.querySelector(
-                    'c-error-panel'
-                );
+                const errorPanelEl =
+                    element.shadowRoot.querySelector('c-error-panel');
                 expect(errorPanelEl).not.toBeNull();
             });
         });
