@@ -47,12 +47,11 @@ describe('c-libs-momentjs', () => {
 
     // Helper function to wait until the microtask queue is empty. This is needed for promise
     // timing when the platformResourceLoader promises.
-    function flushPromises() {
-        // eslint-disable-next-line no-undef
-        return new Promise((resolve) => setImmediate(resolve));
+    async function flushPromises() {
+        return Promise.resolve();
     }
 
-    it('populates the disabled lightning-input fields with moment.js data based on user input', () => {
+    it('populates the disabled lightning-input fields with moment.js data based on user input', async () => {
         // Enforcing to load the static resource via the overwritten function.
         mockScriptSuccess = true;
 
@@ -73,20 +72,20 @@ describe('c-libs-momentjs', () => {
         inputEl.value = new Date(INPUT_RAW);
         inputEl.dispatchEvent(new CustomEvent('change'));
 
-        return Promise.resolve().then(() => {
-            // Querying all lightning-input fields, and populating the const
-            // based on the disabled property on each lightning-input field.
-            const values = Array.from(
-                element.shadowRoot.querySelectorAll('lightning-input')
-            )
-                .filter((input) => input.disabled)
-                .splice(0, 2)
-                .map((input) => input.value);
-            expect(values).toEqual(OUTPUT_EXPECTED);
-        });
+        await flushPromises();
+
+        // Querying all lightning-input fields, and populating the const
+        // based on the disabled property on each lightning-input field.
+        const values = Array.from(
+            element.shadowRoot.querySelectorAll('lightning-input')
+        )
+            .filter((input) => input.disabled)
+            .splice(0, 2)
+            .map((input) => input.value);
+        expect(values).toEqual(OUTPUT_EXPECTED);
     });
 
-    it('shows the error panel element on static resource load error', () => {
+    it('shows the error panel element on static resource load error', async () => {
         // Enforcing to fail loading the static resource via the overwritten function.
         mockScriptSuccess = false;
 
@@ -96,17 +95,16 @@ describe('c-libs-momentjs', () => {
         });
         document.body.appendChild(element);
 
-        // Return a promise to wait for any asynchronous DOM updates. Jest
+        // Wait for any asynchronous DOM updates. Jest
         // will automatically wait for the Promise chain to complete before
         // ending the test and fail the test if the promise rejects.
-        return flushPromises().then(() => {
-            const errorPanelEl =
-                element.shadowRoot.querySelector('c-error-panel');
-            expect(errorPanelEl).not.toBeNull();
-        });
+        await flushPromises();
+
+        const errorPanelEl = element.shadowRoot.querySelector('c-error-panel');
+        expect(errorPanelEl).not.toBeNull();
     });
 
-    it('is accessible when library is loaded', () => {
+    it('is accessible when library is loaded', async () => {
         // Enforcing to load the static resource via the overwritten function.
         mockScriptSuccess = true;
 
@@ -116,10 +114,12 @@ describe('c-libs-momentjs', () => {
 
         document.body.appendChild(element);
 
-        return Promise.resolve().then(() => expect(element).toBeAccessible());
+        await flushPromises();
+
+        expect(element).toBeAccessible();
     });
 
-    it('is accessible when there is an error loading library', () => {
+    it('is accessible when there is an error loading library', async () => {
         // Enforcing to fail loading the static resource via the overwritten function.
         mockScriptSuccess = false;
 
@@ -129,6 +129,8 @@ describe('c-libs-momentjs', () => {
         });
         document.body.appendChild(element);
 
-        return Promise.resolve().then(() => expect(element).toBeAccessible());
+        await flushPromises();
+
+        expect(element).toBeAccessible();
     });
 });

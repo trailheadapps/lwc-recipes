@@ -52,12 +52,11 @@ describe('c-apex-imperative-method-with-complex-params', () => {
 
     // Helper function to wait until the microtask queue is empty. This is needed for promise
     // timing when calling imperative Apex.
-    function flushPromises() {
-        // eslint-disable-next-line no-undef
-        return new Promise((resolve) => setImmediate(resolve));
+    async function flushPromises() {
+        return Promise.resolve();
     }
 
-    it('passes the user input to the Apex method correctly', () => {
+    it('passes the user input to the Apex method correctly', async () => {
         // Assign mock value for resolved Apex promise
         checkApexTypes.mockResolvedValue(APEX_SUCCESS);
 
@@ -95,20 +94,19 @@ describe('c-apex-imperative-method-with-complex-params', () => {
         const buttonEl = element.shadowRoot.querySelector('lightning-button');
         buttonEl.click();
 
-        // Return an immediate flushed promise (after the Apex call) to then
-        // wait for any asynchronous DOM updates. Jest will automatically wait
+        // Wait for any asynchronous DOM updates. Jest will automatically wait
         // for the Promise chain to complete before ending the test and fail
         // the test if the promise ends in the rejected state.
-        return flushPromises().then(() => {
-            // Validate parameters of mocked Apex call
-            expect(checkApexTypes.mock.calls.length).toBe(1);
-            expect(checkApexTypes.mock.calls[0][0]).toEqual({
-                wrapper: APEX_PARAMETER
-            });
+        await flushPromises();
+
+        // Validate parameters of mocked Apex call
+        expect(checkApexTypes.mock.calls.length).toBe(1);
+        expect(checkApexTypes.mock.calls[0][0]).toEqual({
+            wrapper: APEX_PARAMETER
         });
     });
 
-    it('renders one contact', () => {
+    it('renders one contact', async () => {
         // Assign mock value for resolved Apex promise
         checkApexTypes.mockResolvedValue(APEX_SUCCESS);
 
@@ -146,18 +144,17 @@ describe('c-apex-imperative-method-with-complex-params', () => {
         const buttonEl = element.shadowRoot.querySelector('lightning-button');
         buttonEl.click();
 
-        // Return an immediate flushed promise (after the Apex call) to then
-        // wait for any asynchronous DOM updates. Jest will automatically wait
+        // Wait for any asynchronous DOM updates. Jest will automatically wait
         // for the Promise chain to complete before ending the test and fail
         // the test if the promise ends in the rejected state.
-        return flushPromises().then(() => {
-            // Select p for validating conditionally changed text content
-            const detailEl = element.shadowRoot.querySelector('p');
-            expect(detailEl.textContent).toBe(APEX_SUCCESS);
-        });
+        await flushPromises();
+
+        // Select p for validating conditionally changed text content
+        const detailEl = element.shadowRoot.querySelector('p');
+        expect(detailEl.textContent).toBe(APEX_SUCCESS);
     });
 
-    it('renders the error panel when the Apex method returns an error', () => {
+    it('renders the error panel when the Apex method returns an error', async () => {
         // Assing mock value for rejected Apex promise
         checkApexTypes.mockRejectedValue(APEX_ERROR);
 
@@ -171,18 +168,16 @@ describe('c-apex-imperative-method-with-complex-params', () => {
         const buttonEl = element.shadowRoot.querySelector('lightning-button');
         buttonEl.click();
 
-        // Return an immediate flushed promise (after the Apex call) to then
-        // wait for any asynchronous DOM updates. Jest will automatically wait
+        // Wait for any asynchronous DOM updates. Jest will automatically wait
         // for the Promise chain to complete before ending the test and fail
         // the test if the promise ends in the rejected state.
-        return flushPromises().then(() => {
-            const errorPanelEl =
-                element.shadowRoot.querySelector('c-error-panel');
-            expect(errorPanelEl).not.toBeNull();
-        });
+        await flushPromises();
+
+        const errorPanelEl = element.shadowRoot.querySelector('c-error-panel');
+        expect(errorPanelEl).not.toBeNull();
     });
 
-    it('is accessible on initialization', () => {
+    it('is accessible on initialization', async () => {
         const element = createElement(
             'c-apex-imperative-method-with-complex-params',
             {
@@ -192,10 +187,12 @@ describe('c-apex-imperative-method-with-complex-params', () => {
 
         document.body.appendChild(element);
 
-        return Promise.resolve().then(() => expect(element).toBeAccessible());
+        await flushPromises();
+
+        expect(element).toBeAccessible();
     });
 
-    it('is accessible when error returned', () => {
+    it('is accessible when error returned', async () => {
         // Assing mock value for rejected Apex promise
         checkApexTypes.mockRejectedValue(APEX_ERROR);
 
@@ -209,6 +206,8 @@ describe('c-apex-imperative-method-with-complex-params', () => {
         const buttonEl = element.shadowRoot.querySelector('lightning-button');
         buttonEl.click();
 
-        return Promise.resolve().then(() => expect(element).toBeAccessible());
+        await flushPromises();
+
+        expect(element).toBeAccessible();
     });
 });
