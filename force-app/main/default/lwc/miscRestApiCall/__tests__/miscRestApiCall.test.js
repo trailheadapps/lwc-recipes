@@ -38,12 +38,12 @@ describe('c-misc-rest-api-call', () => {
 
     // Helper function to wait until the microtask queue is empty.
     // This is needed for promise timing.
-    function flushPromises() {
-        // eslint-disable-next-line no-undef
-        return new Promise((resolve) => setImmediate(resolve));
+    async function flushPromises() {
+        // eslint-disable-next-line @lwc/lwc/no-async-operation
+        return new Promise((resolve) => setTimeout(resolve, 0));
     }
 
-    it('calls the Google Books API based on user input', () => {
+    it('calls the Google Books API based on user input', async () => {
         const USER_INPUT = 'Harry Potter';
         const QUERY_INPUT = QUERY_URL + USER_INPUT;
 
@@ -67,12 +67,12 @@ describe('c-misc-rest-api-call', () => {
         const buttonEl = element.shadowRoot.querySelector('lightning-button');
         buttonEl.click();
 
-        return flushPromises().then(() => {
-            // Validating that fetch has been called with the
-            // expected parameter.
-            expect(fetch).toHaveBeenCalledTimes(1);
-            expect(fetch.mock.calls[0][0]).toBe(QUERY_INPUT);
-        });
+        await flushPromises();
+
+        // Validating that fetch has been called with the
+        // expected parameter.
+        expect(fetch).toHaveBeenCalledTimes(1);
+        expect(fetch.mock.calls[0][0]).toBe(QUERY_INPUT);
     });
 
     it('renders no book details on default', () => {
@@ -87,7 +87,7 @@ describe('c-misc-rest-api-call', () => {
         expect(detailEls.length).toBe(0);
     });
 
-    it('renders book details based on a user query', () => {
+    it('renders book details based on a user query', async () => {
         const USER_INPUT = 'Harry Potter';
         const BOOK_TITLES = FETCH_DATA.items.map(
             (book) => book.volumeInfo.title
@@ -111,17 +111,16 @@ describe('c-misc-rest-api-call', () => {
         const buttonEl = element.shadowRoot.querySelector('lightning-button');
         buttonEl.click();
 
-        return flushPromises().then(() => {
-            // Validating that as many p elements are rendered as book items are
-            // returned by fetch, and that they are populated with the book titles.
-            const EXPECTED = Array.from(
-                element.shadowRoot.querySelectorAll('p')
-            ).map((p) => p.textContent);
-            expect(EXPECTED).toEqual(BOOK_TITLES);
-        });
+        await flushPromises();
+        // Validating that as many p elements are rendered as book items are
+        // returned by fetch, and that they are populated with the book titles.
+        const EXPECTED = Array.from(
+            element.shadowRoot.querySelectorAll('p')
+        ).map((p) => p.textContent);
+        expect(EXPECTED).toEqual(BOOK_TITLES);
     });
 
-    it('renders an error message when the API request returns an error', () => {
+    it('renders an error message when the API request returns an error', async () => {
         // Create initial element
         const element = createElement('c-misc-rest-api-call', {
             is: MiscRestApiCall
@@ -135,18 +134,14 @@ describe('c-misc-rest-api-call', () => {
         const buttonEl = element.shadowRoot.querySelector('lightning-button');
         buttonEl.click();
 
-        // Return an immediate flushed promise (after the Apex call) to then
-        // wait for any asynchronous DOM updates. Jest will automatically wait
-        // for the Promise chain to complete before ending the test and fail
-        // the test if the promise ends in the rejected state
-        return flushPromises().then(() => {
-            const errorPanelEl =
-                element.shadowRoot.querySelector('c-error-panel');
-            expect(errorPanelEl).not.toBeNull();
-        });
+        // Wait for any asynchronous DOM updates.
+        await flushPromises();
+
+        const errorPanelEl = element.shadowRoot.querySelector('c-error-panel');
+        expect(errorPanelEl).not.toBeNull();
     });
 
-    it('is accessible when data is returned', () => {
+    it('is accessible when data is returned', async () => {
         // Create initial element
         const element = createElement('c-misc-rest-api-call', {
             is: MiscRestApiCall
@@ -160,10 +155,13 @@ describe('c-misc-rest-api-call', () => {
         const buttonEl = element.shadowRoot.querySelector('lightning-button');
         buttonEl.click();
 
-        return Promise.resolve().then(() => expect(element).toBeAccessible());
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
+
+        await expect(element).toBeAccessible();
     });
 
-    it('is accessible when error is returned', () => {
+    it('is accessible when error is returned', async () => {
         // Create initial element
         const element = createElement('c-misc-rest-api-call', {
             is: MiscRestApiCall
@@ -177,6 +175,9 @@ describe('c-misc-rest-api-call', () => {
         const buttonEl = element.shadowRoot.querySelector('lightning-button');
         buttonEl.click();
 
-        return Promise.resolve().then(() => expect(element).toBeAccessible());
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
+
+        await expect(element).toBeAccessible();
     });
 });

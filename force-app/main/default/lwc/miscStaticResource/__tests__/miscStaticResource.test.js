@@ -2,6 +2,13 @@ import { createElement } from 'lwc';
 import MiscStaticResource from 'c/miscStaticResource';
 
 describe('c-misc-static-resource', () => {
+    afterEach(() => {
+        // The jsdom instance is shared across test cases in a single file so reset the DOM
+        while (document.body.firstChild) {
+            document.body.removeChild(document.body.firstChild);
+        }
+    });
+
     it('sets img urls based on static resources', () => {
         // Create initial element
         const element = createElement('c-misc-static-resource', {
@@ -28,13 +35,13 @@ describe('c-misc-static-resource', () => {
         );
     });
 
-    it('is accessible', () => {
+    it('is accessible', async () => {
         const element = createElement('c-misc-static-resource', {
             is: MiscStaticResource
         });
 
         document.body.appendChild(element);
 
-        return Promise.resolve().then(() => expect(element).toBeAccessible());
+        await expect(element).toBeAccessible();
     });
 });

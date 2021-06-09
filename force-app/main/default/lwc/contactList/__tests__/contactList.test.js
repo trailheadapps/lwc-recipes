@@ -19,8 +19,14 @@ describe('c-contact-list', () => {
         jest.clearAllMocks();
     });
 
+    // Helper function to wait until the microtask queue is empty. This is needed for promise
+    // timing when calling imperative Apex.
+    async function flushPromises() {
+        return Promise.resolve();
+    }
+
     describe('getContactList @wire', () => {
-        it('renders contact data of six records when data returned', () => {
+        it('renders contact data of six records when data returned', async () => {
             // Create initial element
             const element = createElement('c-contact-list', {
                 is: ContactList
@@ -30,22 +36,20 @@ describe('c-contact-list', () => {
             // Emit data from @wire
             getContactListAdapter.emit(mockGetContactList);
 
-            // Return a promise to wait for any asynchronous DOM updates. Jest
-            // will automatically wait for the Promise chain to complete before
-            // ending the test and fail the test if the promise rejects.
-            return Promise.resolve().then(() => {
-                // Select elements for validation
-                const nameEls = element.shadowRoot.querySelectorAll('p');
-                expect(nameEls.length).toBe(mockGetContactList.length);
-                expect(nameEls[0].textContent).toBe(mockGetContactList[0].Name);
+            // Wait for any asynchronous DOM updates
+            await flushPromises();
 
-                const picEl = element.shadowRoot.querySelector('img');
-                expect(picEl.src).toBe(mockGetContactList[0].Picture__c);
-            });
+            // Select elements for validation
+            const nameEls = element.shadowRoot.querySelectorAll('p');
+            expect(nameEls.length).toBe(mockGetContactList.length);
+            expect(nameEls[0].textContent).toBe(mockGetContactList[0].Name);
+
+            const picEl = element.shadowRoot.querySelector('img');
+            expect(picEl.src).toBe(mockGetContactList[0].Picture__c);
         });
     });
 
-    it('sends custom event "contactselect" with contactId on click', () => {
+    it('sends custom event "contactselect" with contactId on click', async () => {
         const EVENT_DETAIL_PARAMETER = { contactId: '0031700000pJRRSAA4' };
 
         // Create initial element
@@ -62,25 +66,22 @@ describe('c-contact-list', () => {
         // Emit data from @wire
         getContactListAdapter.emit(mockGetContactList);
 
-        // Return a promise to wait for any asynchronous DOM updates. Jest
-        // will automatically wait for the Promise chain to complete before
-        // ending the test and fail the test if the promise rejects.
-        return Promise.resolve()
-            .then(() => {
-                // Select a href to simulate user interaction
-                const linkEl = element.shadowRoot.querySelector('a');
-                linkEl.click();
-            })
-            .then(() => {
-                // Validate if event got fired
-                expect(handler).toHaveBeenCalled();
-                expect(handler.mock.calls[0][0].detail).toEqual(
-                    EVENT_DETAIL_PARAMETER
-                );
-            });
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
+
+        // Select a href to simulate user interaction
+        const linkEl = element.shadowRoot.querySelector('a');
+        linkEl.click();
+
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
+
+        // Validate if event got fired
+        expect(handler).toHaveBeenCalled();
+        expect(handler.mock.calls[0][0].detail).toEqual(EVENT_DETAIL_PARAMETER);
     });
 
-    it('is accessible when data is returned', () => {
+    it('is accessible when data is returned', async () => {
         // Create initial element
         const element = createElement('c-contact-list', {
             is: ContactList
@@ -90,6 +91,9 @@ describe('c-contact-list', () => {
         // Emit data from @wire
         getContactListAdapter.emit(mockGetContactList);
 
-        return Promise.resolve().then(() => expect(element).toBeAccessible());
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
+
+        await expect(element).toBeAccessible();
     });
 });

@@ -28,6 +28,12 @@ describe('c-lms-subscriber-web-component', () => {
         }
     });
 
+    // Helper function to wait until the microtask queue is empty. This is needed for promise
+    // timing when calling imperative Apex.
+    async function flushPromises() {
+        return Promise.resolve();
+    }
+
     it('registers the LMS subscriber during the component lifecycle', () => {
         // Create initial element
         const element = createElement('c-lms-subscriber-web-component', {
@@ -40,7 +46,7 @@ describe('c-lms-subscriber-web-component', () => {
         expect(subscribe.mock.calls[0][1]).toBe(RECORD_SELECTED_CHANNEL);
     });
 
-    it('invokes getRecord with the published message payload value', () => {
+    it('invokes getRecord with the published message payload value', async () => {
         // Create element
         const element = createElement('c-lms-subscriber-web-component', {
             is: LmsSubscriberWebComponent
@@ -55,17 +61,18 @@ describe('c-lms-subscriber-web-component', () => {
             messagePayload
         );
 
-        return Promise.resolve().then(() => {
-            // The component subscription should cause getRecord to be invoked.
-            // Below we test that it is invoked with the messagePayload value
-            // that was published with the simulated publish invocation above.
-            const { recordId } = getRecordAdapter.getLastConfig();
-            expect(recordId).toEqual(messagePayload.recordId);
-        });
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
+
+        // The component subscription should cause getRecord to be invoked.
+        // Below we test that it is invoked with the messagePayload value
+        // that was published with the simulated publish invocation above.
+        const { recordId } = getRecordAdapter.getLastConfig();
+        expect(recordId).toEqual(messagePayload.recordId);
     });
 
     describe('getRecord @wire data', () => {
-        it('renders contact details with picture', () => {
+        it('renders contact details with picture', async () => {
             // Create element
             const element = createElement('c-lms-subscriber-web-component', {
                 is: LmsSubscriberWebComponent
@@ -75,38 +82,32 @@ describe('c-lms-subscriber-web-component', () => {
             // Emit data from @wire
             getRecordAdapter.emit(mockGetRecord);
 
-            // Return a promise to wait for any asynchronous DOM updates. Jest
-            // will automatically wait for the Promise chain to complete before
-            // ending the test and fail the test if the promise rejects.
-            return Promise.resolve().then(() => {
-                // Select elements for validation
-                const imgEl = element.shadowRoot.querySelector('img');
-                expect(imgEl.src).toBe(
-                    mockGetRecord.result.fields.Picture__c.value
-                );
+            // Wait for any asynchronous DOM updates
+            await flushPromises();
 
-                const nameEl = element.shadowRoot.querySelector('p');
-                expect(nameEl.textContent).toBe(
-                    mockGetRecord.result.fields.Name.value
-                );
+            // Select elements for validation
+            const imgEl = element.shadowRoot.querySelector('img');
+            expect(imgEl.src).toBe(
+                mockGetRecord.result.fields.Picture__c.value
+            );
 
-                const phoneEl = element.shadowRoot.querySelector(
-                    'lightning-formatted-phone'
-                );
-                expect(phoneEl.value).toBe(
-                    mockGetRecord.result.fields.Phone.value
-                );
+            const nameEl = element.shadowRoot.querySelector('p');
+            expect(nameEl.textContent).toBe(
+                mockGetRecord.result.fields.Name.value
+            );
 
-                const emailEl = element.shadowRoot.querySelector(
-                    'lightning-formatted-email'
-                );
-                expect(emailEl.value).toBe(
-                    mockGetRecord.result.fields.Email.value
-                );
-            });
+            const phoneEl = element.shadowRoot.querySelector(
+                'lightning-formatted-phone'
+            );
+            expect(phoneEl.value).toBe(mockGetRecord.result.fields.Phone.value);
+
+            const emailEl = element.shadowRoot.querySelector(
+                'lightning-formatted-email'
+            );
+            expect(emailEl.value).toBe(mockGetRecord.result.fields.Email.value);
         });
 
-        it('renders contact details without picture', () => {
+        it('renders contact details without picture', async () => {
             // Create element
             const element = createElement('c-lms-subscriber-web-component', {
                 is: LmsSubscriberWebComponent
@@ -116,38 +117,36 @@ describe('c-lms-subscriber-web-component', () => {
             // Emit data from @wire
             getRecordAdapter.emit(mockGetRecordNoPicture);
 
-            // Return a promise to wait for any asynchronous DOM updates. Jest
-            // will automatically wait for the Promise chain to complete before
-            // ending the test and fail the test if the promise rejects.
-            return Promise.resolve().then(() => {
-                // Select elements for validation
-                const imgEl = element.shadowRoot.querySelector('img');
-                expect(imgEl).toBeNull();
+            // Wait for any asynchronous DOM updates
+            await flushPromises();
 
-                const nameEl = element.shadowRoot.querySelector('p');
-                expect(nameEl.textContent).toBe(
-                    mockGetRecordNoPicture.result.fields.Name.value
-                );
+            // Select elements for validation
+            const imgEl = element.shadowRoot.querySelector('img');
+            expect(imgEl).toBeNull();
 
-                const phoneEl = element.shadowRoot.querySelector(
-                    'lightning-formatted-phone'
-                );
-                expect(phoneEl.value).toBe(
-                    mockGetRecordNoPicture.result.fields.Phone.value
-                );
+            const nameEl = element.shadowRoot.querySelector('p');
+            expect(nameEl.textContent).toBe(
+                mockGetRecordNoPicture.result.fields.Name.value
+            );
 
-                const emailEl = element.shadowRoot.querySelector(
-                    'lightning-formatted-email'
-                );
-                expect(emailEl.value).toBe(
-                    mockGetRecordNoPicture.result.fields.Email.value
-                );
-            });
+            const phoneEl = element.shadowRoot.querySelector(
+                'lightning-formatted-phone'
+            );
+            expect(phoneEl.value).toBe(
+                mockGetRecordNoPicture.result.fields.Phone.value
+            );
+
+            const emailEl = element.shadowRoot.querySelector(
+                'lightning-formatted-email'
+            );
+            expect(emailEl.value).toBe(
+                mockGetRecordNoPicture.result.fields.Email.value
+            );
         });
     });
 
     describe('getRecord @wire error', () => {
-        it('displays a toast message', () => {
+        it('displays a toast message', async () => {
             // Create initial element
             const element = createElement('c-lms-subscriber-web-component', {
                 is: LmsSubscriberWebComponent
@@ -162,16 +161,14 @@ describe('c-lms-subscriber-web-component', () => {
             // Emit error from @wire
             getRecordAdapter.error();
 
-            // Return a promise to wait for any asynchronous DOM updates. Jest
-            // will automatically wait for the Promise chain to complete before
-            // ending the test and fail the test if the promise rejects.
-            return Promise.resolve().then(() => {
-                expect(handler).toHaveBeenCalled();
-            });
+            // Wait for any asynchronous DOM updates
+            await flushPromises();
+
+            expect(handler).toHaveBeenCalled();
         });
     });
 
-    it('is accessible when contacts returned with picture', () => {
+    it('is accessible when contacts returned with picture', async () => {
         // Create element
         const element = createElement('c-lms-subscriber-web-component', {
             is: LmsSubscriberWebComponent
@@ -181,10 +178,13 @@ describe('c-lms-subscriber-web-component', () => {
         // Emit data from @wire
         getRecordAdapter.emit(mockGetRecord);
 
-        return Promise.resolve().then(() => expect(element).toBeAccessible());
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
+
+        await expect(element).toBeAccessible();
     });
 
-    it('is accessible when contacts returned without picture', () => {
+    it('is accessible when contacts returned without picture', async () => {
         // Create element
         const element = createElement('c-lms-subscriber-web-component', {
             is: LmsSubscriberWebComponent
@@ -194,10 +194,13 @@ describe('c-lms-subscriber-web-component', () => {
         // Emit data from @wire
         getRecordAdapter.emit(mockGetRecordNoPicture);
 
-        return Promise.resolve().then(() => expect(element).toBeAccessible());
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
+
+        await expect(element).toBeAccessible();
     });
 
-    it('is accessible when error returned', () => {
+    it('is accessible when error returned', async () => {
         // Create element
         const element = createElement('c-lms-subscriber-web-component', {
             is: LmsSubscriberWebComponent
@@ -207,6 +210,9 @@ describe('c-lms-subscriber-web-component', () => {
         // Emit error from @wire
         getRecordAdapter.error();
 
-        return Promise.resolve().then(() => expect(element).toBeAccessible());
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
+
+        await expect(element).toBeAccessible();
     });
 });

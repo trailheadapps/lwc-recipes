@@ -6,7 +6,20 @@ import { getNavigateCalledWith } from 'lightning/navigation';
 // and see jest.config.js for jest config to use the mock
 
 describe('c-nav-to-files-home', () => {
-    it('navigates to files home tab', () => {
+    afterEach(() => {
+        // The jsdom instance is shared across test cases in a single file so reset the DOM
+        while (document.body.firstChild) {
+            document.body.removeChild(document.body.firstChild);
+        }
+    });
+
+    // Helper function to wait until the microtask queue is empty. This is needed for promise
+    // timing when calling imperative Apex.
+    async function flushPromises() {
+        return Promise.resolve();
+    }
+
+    it('navigates to files home tab', async () => {
         // Nav param values to test later
         const NAV_TYPE = 'standard__objectPage';
         const NAV_OBJECT_API_NAME = 'ContentDocument';
@@ -18,33 +31,30 @@ describe('c-nav-to-files-home', () => {
         });
         document.body.appendChild(element);
 
-        // Return a promise to wait for any asynchronous DOM updates. Jest
-        // will automatically wait for the Promise chain to complete before
-        // ending the test and fail the test if the promise rejects.
-        return Promise.resolve().then(() => {
-            // Get handle to button and fire click event
-            const buttonEl =
-                element.shadowRoot.querySelector('lightning-button');
-            buttonEl.click();
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
 
-            const { pageReference } = getNavigateCalledWith();
+        // Get handle to button and fire click event
+        const buttonEl = element.shadowRoot.querySelector('lightning-button');
+        buttonEl.click();
 
-            // Verify component called with correct event type and params
-            expect(pageReference.type).toBe(NAV_TYPE);
-            expect(pageReference.attributes.objectApiName).toBe(
-                NAV_OBJECT_API_NAME
-            );
-            expect(pageReference.attributes.actionName).toBe(NAV_ACTION_NAME);
-        });
+        const { pageReference } = getNavigateCalledWith();
+
+        // Verify component called with correct event type and params
+        expect(pageReference.type).toBe(NAV_TYPE);
+        expect(pageReference.attributes.objectApiName).toBe(
+            NAV_OBJECT_API_NAME
+        );
+        expect(pageReference.attributes.actionName).toBe(NAV_ACTION_NAME);
     });
 
-    it('is accessible', () => {
+    it('is accessible', async () => {
         const element = createElement('c-nav-to-files-home', {
             is: NavToFilesHome
         });
 
         document.body.appendChild(element);
 
-        return Promise.resolve().then(() => expect(element).toBeAccessible());
+        await expect(element).toBeAccessible();
     });
 });

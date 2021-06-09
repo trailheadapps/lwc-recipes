@@ -9,7 +9,13 @@ describe('c-category-filter', () => {
         }
     });
 
-    it('sends checkbox labels on click as CustomEvent details', () => {
+    // Helper function to wait until the microtask queue is empty. This is needed for promise
+    // timing when calling imperative Apex.
+    async function flushPromises() {
+        return Promise.resolve();
+    }
+
+    it('sends checkbox labels on click as CustomEvent details', async () => {
         // Create initial element
         const element = createElement('c-category-filter', {
             is: CategoryFilter
@@ -29,29 +35,27 @@ describe('c-category-filter', () => {
                 checkbox.dispatchEvent(new CustomEvent('change'));
             });
 
-        // Return a promise to wait for any asynchronous DOM updates. Jest
-        // will automatically wait for the Promise chain to complete before
-        // ending the test and fail the test if the promise rejects.
-        return Promise.resolve().then(() => {
-            const inputValues = Array.from(
-                element.shadowRoot.querySelectorAll('lightning-input')
-            ).map((checkbox) => checkbox.label);
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
 
-            // Validate filterchange event
-            expect(handler.mock.calls.length).toBe(inputValues.length);
-            expect(handler.mock.calls[1][0].detail).toEqual({
-                filters: inputValues
-            });
+        const inputValues = Array.from(
+            element.shadowRoot.querySelectorAll('lightning-input')
+        ).map((checkbox) => checkbox.label);
+
+        // Validate filterchange event
+        expect(handler.mock.calls.length).toBe(inputValues.length);
+        expect(handler.mock.calls[1][0].detail).toEqual({
+            filters: inputValues
         });
     });
 
-    it('is accessible', () => {
+    it('is accessible', async () => {
         const element = createElement('c-category-filter', {
             is: CategoryFilter
         });
 
         document.body.appendChild(element);
 
-        return Promise.resolve().then(() => expect(element).toBeAccessible());
+        await expect(element).toBeAccessible();
     });
 });

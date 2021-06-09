@@ -21,8 +21,14 @@ describe('c-event-bubbling', () => {
         }
     });
 
+    // Helper function to wait until the microtask queue is empty. This is needed for promise
+    // timing when calling imperative Apex.
+    async function flushPromises() {
+        return Promise.resolve();
+    }
+
     describe('getContactList @wire data', () => {
-        it('renders two c-contact-list-item-bubbling elements', () => {
+        it('renders two c-contact-list-item-bubbling elements', async () => {
             // Create initial element
             const element = createElement('c-event-bubbling', {
                 is: EventBubbling
@@ -32,21 +38,17 @@ describe('c-event-bubbling', () => {
             // Emit data from @wire
             getContactListAdapter.emit(mockGetContactList);
 
-            // Return a promise to wait for any asynchronous DOM updates. Jest
-            // will automatically wait for the Promise chain to complete before
-            // ending the test and fail the test if the promise rejects.
-            return Promise.resolve().then(() => {
-                // Select elements for validation
-                const contactListItemEls = element.shadowRoot.querySelectorAll(
-                    'c-contact-list-item-bubbling'
-                );
-                expect(contactListItemEls.length).toBe(
-                    mockGetContactList.length
-                );
-            });
+            // Wait for any asynchronous DOM updates
+            await flushPromises();
+
+            // Select elements for validation
+            const contactListItemEls = element.shadowRoot.querySelectorAll(
+                'c-contact-list-item-bubbling'
+            );
+            expect(contactListItemEls.length).toBe(mockGetContactList.length);
         });
 
-        it('renders no c-contact-list-item-bubbling elements when no data', () => {
+        it('renders no c-contact-list-item-bubbling elements when no data', async () => {
             // Create initial element
             const element = createElement('c-event-bubbling', {
                 is: EventBubbling
@@ -56,23 +58,21 @@ describe('c-event-bubbling', () => {
             // Emit data from @wire
             getContactListAdapter.emit(mockGetContactListNoRecords);
 
-            // Return a promise to wait for any asynchronous DOM updates. Jest
-            // will automatically wait for the Promise chain to complete before
-            // ending the test and fail the test if the promise rejects.
-            return Promise.resolve().then(() => {
-                // Select elements for validation
-                const contactListItemEls = element.shadowRoot.querySelectorAll(
-                    'c-contact-list-item-bubbling'
-                );
-                expect(contactListItemEls.length).toBe(
-                    mockGetContactListNoRecords.length
-                );
-            });
+            // Wait for any asynchronous DOM updates
+            await flushPromises();
+
+            // Select elements for validation
+            const contactListItemEls = element.shadowRoot.querySelectorAll(
+                'c-contact-list-item-bubbling'
+            );
+            expect(contactListItemEls.length).toBe(
+                mockGetContactListNoRecords.length
+            );
         });
     });
 
     describe('getContactList @wire error', () => {
-        it('shows error panel element', () => {
+        it('shows error panel element', async () => {
             // Create initial element
             const element = createElement('c-event-bubbling', {
                 is: EventBubbling
@@ -82,18 +82,16 @@ describe('c-event-bubbling', () => {
             // Emit error from @wire
             getContactListAdapter.error();
 
-            // Return a promise to wait for any asynchronous DOM updates. Jest
-            // will automatically wait for the Promise chain to complete before
-            // ending the test and fail the test if the promise rejects.
-            return Promise.resolve().then(() => {
-                const errorPanelEl =
-                    element.shadowRoot.querySelector('c-error-panel');
-                expect(errorPanelEl).not.toBeNull();
-            });
+            // Wait for any asynchronous DOM updates
+            await flushPromises();
+
+            const errorPanelEl =
+                element.shadowRoot.querySelector('c-error-panel');
+            expect(errorPanelEl).not.toBeNull();
         });
     });
 
-    it('shows selected contact data after bubbled event', () => {
+    it('shows selected contact data after bubbled event', async () => {
         const CONTACT = {
             Id: '0031700000pJRRSAA4',
             Name: 'Amy Taylor',
@@ -113,29 +111,29 @@ describe('c-event-bubbling', () => {
         // Emit data from @wire
         getContactListAdapter.emit(mockGetContactList);
 
-        return Promise.resolve()
-            .then(() => {
-                // Select element for validation
-                const contactListItemEls = element.shadowRoot.querySelectorAll(
-                    'c-contact-list-item-bubbling'
-                );
-                expect(contactListItemEls.length).toBe(
-                    mockGetContactList.length
-                );
-                // Dispatch event from child element to validate
-                // behavior in current component.
-                contactListItemEls[0].dispatchEvent(
-                    new CustomEvent('contactselect', {
-                        detail: CONTACT,
-                        bubbles: true
-                    })
-                );
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
+
+        // Select element for validation
+        const contactListItemEls = element.shadowRoot.querySelectorAll(
+            'c-contact-list-item-bubbling'
+        );
+        expect(contactListItemEls.length).toBe(mockGetContactList.length);
+        // Dispatch event from child element to validate
+        // behavior in current component.
+        contactListItemEls[0].dispatchEvent(
+            new CustomEvent('contactselect', {
+                detail: CONTACT,
+                bubbles: true
             })
-            .then(() => {
-                // Select element for validation
-                const contactNameEl = element.shadowRoot.querySelector('p');
-                expect(contactNameEl.textContent).toBe(CONTACT.Name);
-            });
+        );
+
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
+
+        // Select element for validation
+        const contactNameEl = element.shadowRoot.querySelector('p');
+        expect(contactNameEl.textContent).toBe(CONTACT.Name);
     });
 
     it('is accessible when data is returned', () => {
@@ -148,10 +146,12 @@ describe('c-event-bubbling', () => {
         // Emit data from @wire
         getContactListAdapter.emit(mockGetContactList);
 
-        return Promise.resolve().then(() => expect(element).toBeAccessible());
+        return flushPromises().then(() => {
+            expect(element).toBeAccessible();
+        });
     });
 
-    it('is accessible when error is returned', () => {
+    it('is accessible when error is returned', async () => {
         // Create initial element
         const element = createElement('c-event-bubbling', {
             is: EventBubbling
@@ -161,10 +161,12 @@ describe('c-event-bubbling', () => {
         // Emit error from @wire
         getContactListAdapter.error();
 
-        return Promise.resolve().then(() => expect(element).toBeAccessible());
+        return flushPromises().then(() => {
+            expect(element).toBeAccessible();
+        });
     });
 
-    it('is accessible when a contact is selected', () => {
+    it('is accessible when a contact is selected', async () => {
         const CONTACT = {
             Id: '0031700000pJRRSAA4',
             Name: 'Amy Taylor',
@@ -184,24 +186,26 @@ describe('c-event-bubbling', () => {
         // Emit data from @wire
         getContactListAdapter.emit(mockGetContactList);
 
-        return Promise.resolve()
-            .then(() => {
-                // Select element for validation
-                const contactListItemEls = element.shadowRoot.querySelectorAll(
-                    'c-contact-list-item-bubbling'
-                );
-                expect(contactListItemEls.length).toBe(
-                    mockGetContactList.length
-                );
-                // Dispatch event from child element to validate
-                // behavior in current component.
-                contactListItemEls[0].dispatchEvent(
-                    new CustomEvent('contactselect', {
-                        detail: CONTACT,
-                        bubbles: true
-                    })
-                );
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
+
+        // Select element for validation
+        const contactListItemEls = element.shadowRoot.querySelectorAll(
+            'c-contact-list-item-bubbling'
+        );
+        expect(contactListItemEls.length).toBe(mockGetContactList.length);
+        // Dispatch event from child element to validate
+        // behavior in current component.
+        contactListItemEls[0].dispatchEvent(
+            new CustomEvent('contactselect', {
+                detail: CONTACT,
+                bubbles: true
             })
-            .then(() => expect(element).toBeAccessible());
+        );
+
+        // Wait for any asynchronous DOM updates and test acccessibility
+        return flushPromises().then(() => {
+            expect(element).toBeAccessible();
+        });
     });
 });

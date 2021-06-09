@@ -21,13 +21,13 @@ describe('c-hello', () => {
         expect(div.textContent).toBe('Hello, World!');
     });
 
-    it('is accessible', () => {
+    it('is accessible', async () => {
         const element = createElement('c-hello', {
             is: Hello
         });
 
         document.body.appendChild(element);
 
-        return Promise.resolve().then(() => expect(element).toBeAccessible());
+        await expect(element).toBeAccessible();
     });
 });

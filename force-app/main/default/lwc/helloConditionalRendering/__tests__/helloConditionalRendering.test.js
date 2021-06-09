@@ -9,6 +9,12 @@ describe('c-hello-conditional-rendering', () => {
         }
     });
 
+    // Helper function to wait until the microtask queue is empty. This is needed for promise
+    // timing when calling imperative Apex.
+    async function flushPromises() {
+        return Promise.resolve();
+    }
+
     it('does not show details by default', () => {
         // Create element
         const element = createElement('c-hello-conditional-rendering', {
@@ -23,7 +29,7 @@ describe('c-hello-conditional-rendering', () => {
         expect(detailEl.textContent).toBe('Not showing details.');
     });
 
-    it('shows details when checkbox toggled', () => {
+    it('shows details when checkbox toggled', async () => {
         // Create element
         const element = createElement('c-hello-conditional-rendering', {
             is: HelloConditionalRendering
@@ -35,19 +41,17 @@ describe('c-hello-conditional-rendering', () => {
         inputEl.checked = true;
         inputEl.dispatchEvent(new CustomEvent('change'));
 
-        // Return a promise to wait for any asynchronous DOM updates. Jest
-        // will automatically wait for the Promise chain to complete before
-        // ending the test and fail the test if the promise rejects.
-        return Promise.resolve().then(() => {
-            // Verify displayed message
-            const detailEl = element.shadowRoot.querySelector(
-                '.slds-var-m-vertical_medium'
-            );
-            expect(detailEl.textContent).toBe('These are the details!');
-        });
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
+
+        // Verify displayed message
+        const detailEl = element.shadowRoot.querySelector(
+            '.slds-var-m-vertical_medium'
+        );
+        expect(detailEl.textContent).toBe('These are the details!');
     });
 
-    it('is accessible when details are visible', () => {
+    it('is accessible when details are visible', async () => {
         const element = createElement('c-hello-conditional-rendering', {
             is: HelloConditionalRendering
         });
@@ -59,16 +63,19 @@ describe('c-hello-conditional-rendering', () => {
         inputEl.checked = true;
         inputEl.dispatchEvent(new CustomEvent('change'));
 
-        return Promise.resolve().then(() => expect(element).toBeAccessible());
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
+
+        await expect(element).toBeAccessible();
     });
 
-    it('is accessible when details are not visible', () => {
+    it('is accessible when details are not visible', async () => {
         const element = createElement('c-hello-conditional-rendering', {
             is: HelloConditionalRendering
         });
 
         document.body.appendChild(element);
 
-        return Promise.resolve().then(() => expect(element).toBeAccessible());
+        await expect(element).toBeAccessible();
     });
 });

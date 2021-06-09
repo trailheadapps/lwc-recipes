@@ -9,6 +9,12 @@ describe('c-modal', () => {
         }
     });
 
+    // Helper function to wait until the microtask queue is empty. This is needed for promise
+    // timing when calling imperative Apex.
+    async function flushPromises() {
+        return Promise.resolve();
+    }
+
     it('renders the header content based on a public property and doesn not render the header slot', () => {
         const HEADER = 'The modal header';
 
@@ -37,7 +43,7 @@ describe('c-modal', () => {
 
     // sfdx-lwc-jest cannot validate slotchange events. We're only checking
     // here if the empty h2 div is rendered.
-    it('renders the header slot when no public header property is set', () => {
+    it('renders the header slot when no public header property is set', async () => {
         // Create initial element
         const element = createElement('c-modal', {
             is: Modal
@@ -45,16 +51,14 @@ describe('c-modal', () => {
         element.show();
         document.body.appendChild(element);
 
-        // Return a promise to wait for any asynchronous DOM updates. Jest
-        // will automatically wait for the Promise chain to complete before
-        // ending the test and fail the test if the promise rejects.
-        return Promise.resolve().then(() => {
-            // Query header slot element
-            const headerSlotEl = element.shadowRoot.querySelector(
-                'slot[name="header"]'
-            );
-            expect(headerSlotEl).not.toBeNull();
-        });
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
+
+        // Query header slot element
+        const headerSlotEl = element.shadowRoot.querySelector(
+            'slot[name="header"]'
+        );
+        expect(headerSlotEl).not.toBeNull();
     });
 
     it('hides the modal as default based on a CSS class', () => {
@@ -72,7 +76,7 @@ describe('c-modal', () => {
         expect(modalContainerElement).toBeNull();
     });
 
-    it('changes the modal CSS class based on public function calls', () => {
+    it('changes the modal CSS class based on public function calls', async () => {
         // Create initial element
         const element = createElement('c-modal', {
             is: Modal
@@ -82,32 +86,33 @@ describe('c-modal', () => {
         // Call `show` to change showModal to true
         element.show();
 
-        // Return a promise to wait for any asynchronous DOM updates. Jest
-        // will automatically wait for the Promise chain to complete before
-        // ending the test and fail the test if the promise rejects.
-        return Promise.resolve()
-            .then(() => {
-                // Query modal container div element
-                const modalContainerElementShow =
-                    element.shadowRoot.querySelector('.slds-modal__container');
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
 
-                // validate we successfully found the modal container DOM element
-                expect(modalContainerElementShow.tagName).toBe('DIV');
+        // Query modal container div element
+        const modalContainerElementShow = element.shadowRoot.querySelector(
+            '.slds-modal__container'
+        );
 
-                // Call 'hide' to set showModal to false
-                element.hide();
-            })
-            .then(() => {
-                // Query modal container div element
-                const modalContainerElementHide =
-                    element.shadowRoot.querySelector('.slds-modal__container');
+        // validate we successfully found the modal container DOM element
+        expect(modalContainerElementShow.tagName).toBe('DIV');
 
-                // validate we successfully removed the modal from the DOM
-                expect(modalContainerElementHide).toBeNull();
-            });
+        // Call 'hide' to set showModal to false
+        element.hide();
+
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
+
+        // Query modal container div element
+        const modalContainerElementHide = element.shadowRoot.querySelector(
+            '.slds-modal__container'
+        );
+
+        // validate we successfully removed the modal from the DOM
+        expect(modalContainerElementHide).toBeNull();
     });
 
-    it('is accessible when modal shown and public header property is set', () => {
+    it('is accessible when modal shown and public header property is set', async () => {
         const HEADER = 'The modal header';
 
         // Create initial element
@@ -118,7 +123,7 @@ describe('c-modal', () => {
         element.show();
         document.body.appendChild(element);
 
-        return Promise.resolve().then(() => expect(element).toBeAccessible());
+        await expect(element).toBeAccessible();
     });
 
     /**

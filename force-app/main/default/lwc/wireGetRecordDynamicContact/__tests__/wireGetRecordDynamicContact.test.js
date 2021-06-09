@@ -17,8 +17,14 @@ describe('c-wire-get-record-dynamic-contact', () => {
         }
     });
 
+    // Helper function to wait until the microtask queue is empty. This is needed for promise
+    // timing when calling imperative Apex.
+    async function flushPromises() {
+        return Promise.resolve();
+    }
+
     describe('getRecord @wire data', () => {
-        it('renders contact details', () => {
+        it('renders contact details', async () => {
             // Create element
             const element = createElement('c-wire-get-record-dynamic-contact', {
                 is: WireGetRecordDynamicContact
@@ -28,32 +34,27 @@ describe('c-wire-get-record-dynamic-contact', () => {
             // Emit data from @wire
             getRecordAdapter.emit(mockGetRecord);
 
-            // Return a promise to wait for any asynchronous DOM updates. Jest
-            // will automatically wait for the Promise chain to complete before
-            // ending the test and fail the test if the promise rejects.
-            //return flushPromises().then(() => {
-            return Promise.resolve().then(() => {
-                // Select elements for validation
-                const nameEl = element.shadowRoot.querySelector('p');
-                expect(nameEl.textContent).toBe(
-                    mockGetRecord.fields.Name.value
-                );
+            // Wait for any asynchronous DOM updates
+            await flushPromises();
 
-                const phoneEl = element.shadowRoot.querySelector(
-                    'lightning-formatted-phone'
-                );
-                expect(phoneEl.value).toBe(mockGetRecord.fields.Phone.value);
+            // Select elements for validation
+            const nameEl = element.shadowRoot.querySelector('p');
+            expect(nameEl.textContent).toBe(mockGetRecord.fields.Name.value);
 
-                const emailEl = element.shadowRoot.querySelector(
-                    'lightning-formatted-email'
-                );
-                expect(emailEl.value).toBe(mockGetRecord.fields.Email.value);
-            });
+            const phoneEl = element.shadowRoot.querySelector(
+                'lightning-formatted-phone'
+            );
+            expect(phoneEl.value).toBe(mockGetRecord.fields.Phone.value);
+
+            const emailEl = element.shadowRoot.querySelector(
+                'lightning-formatted-email'
+            );
+            expect(emailEl.value).toBe(mockGetRecord.fields.Email.value);
         });
     });
 
     describe('getRecord @wire error', () => {
-        it('shows error panel element', () => {
+        it('shows error panel element', async () => {
             // Create initial element
             const element = createElement('c-wire-get-record-dynamic-contact', {
                 is: WireGetRecordDynamicContact
@@ -63,18 +64,16 @@ describe('c-wire-get-record-dynamic-contact', () => {
             // Emit error from @wire
             getRecordAdapter.error();
 
-            // Return a promise to wait for any asynchronous DOM updates. Jest
-            // will automatically wait for the Promise chain to complete before
-            // ending the test and fail the test if the promise rejects.
-            return Promise.resolve().then(() => {
-                const errorPanelEl =
-                    element.shadowRoot.querySelector('c-error-panel');
-                expect(errorPanelEl).not.toBeNull();
-            });
+            // Wait for any asynchronous DOM updates
+            await flushPromises();
+
+            const errorPanelEl =
+                element.shadowRoot.querySelector('c-error-panel');
+            expect(errorPanelEl).not.toBeNull();
         });
     });
 
-    it('is accessible when data is returned', () => {
+    it('is accessible when data is returned', async () => {
         // Create element
         const element = createElement('c-wire-get-record-dynamic-contact', {
             is: WireGetRecordDynamicContact
@@ -84,10 +83,13 @@ describe('c-wire-get-record-dynamic-contact', () => {
         // Emit data from @wire
         getRecordAdapter.emit(mockGetRecord);
 
-        return Promise.resolve().then(() => expect(element).toBeAccessible());
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
+
+        await expect(element).toBeAccessible();
     });
 
-    it('is accessible when error is returned', () => {
+    it('is accessible when error is returned', async () => {
         // Create element
         const element = createElement('c-wire-get-record-dynamic-contact', {
             is: WireGetRecordDynamicContact
@@ -97,6 +99,9 @@ describe('c-wire-get-record-dynamic-contact', () => {
         // Emit data from @wire
         getRecordAdapter.error();
 
-        return Promise.resolve().then(() => expect(element).toBeAccessible());
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
+
+        await expect(element).toBeAccessible();
     });
 });

@@ -23,9 +23,9 @@ describe('c-libs-d3', () => {
 
     // Helper function to wait until the microtask queue is empty. This is needed for promise
     // timing when the platformResourceLoader promises.
-    function flushPromises() {
-        // eslint-disable-next-line no-undef
-        return new Promise((resolve) => setImmediate(resolve));
+    async function flushPromises() {
+        // eslint-disable-next-line @lwc/lwc/no-async-operation
+        return new Promise((resolve) => setTimeout(resolve, 0));
     }
 
     it('contains a svg element for D3', () => {
@@ -60,7 +60,7 @@ describe('c-libs-d3', () => {
         expect(loadStyle.mock.calls[0][1]).toEqual(D3_CSS);
     });
 
-    it('fires a toast event if the static resource cannot be loaded', () => {
+    it('fires a toast event if the static resource cannot be loaded', async () => {
         const TOAST_MESSAGE = 'Error loading D3';
         const TOAST_VARIANT = 'error';
 
@@ -77,25 +77,22 @@ describe('c-libs-d3', () => {
         // Add event listener to catch toast event
         element.addEventListener(ShowToastEventName, handler);
 
-        // Return a promise to wait for any asynchronous DOM updates. Jest
-        // will automatically wait for the Promise chain to complete before
-        // ending the test and fail the test if the promise ends in the
-        // rejected state
-        return flushPromises().then(() => {
-            // Check if toast event has been fired
-            expect(handler).toHaveBeenCalled();
-            expect(handler.mock.calls[0][0].detail.title).toBe(TOAST_MESSAGE);
-            expect(handler.mock.calls[0][0].detail.variant).toBe(TOAST_VARIANT);
-        });
+        // Wait for any asynchronous DOM updates.
+        await flushPromises();
+
+        // Check if toast event has been fired
+        expect(handler).toHaveBeenCalled();
+        expect(handler.mock.calls[0][0].detail.title).toBe(TOAST_MESSAGE);
+        expect(handler.mock.calls[0][0].detail.variant).toBe(TOAST_VARIANT);
     });
 
-    it('is accessible', () => {
+    it('is accessible', async () => {
         const element = createElement('c-libs-d3', {
             is: LibsD3
         });
 
         document.body.appendChild(element);
 
-        return Promise.resolve().then(() => expect(element).toBeAccessible());
+        await expect(element).toBeAccessible();
     });
 });

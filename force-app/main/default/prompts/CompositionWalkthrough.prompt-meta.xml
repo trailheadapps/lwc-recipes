@@ -4,6 +4,7 @@
     <promptVersions>
         <body
         >Larger components are made of more atomic components. This is called &quot;composition&quot;. This page has several basic composition examples. Search in the CompositionContactSearch component and notice the child components. Then click &quot;Next&quot;.</body>
+        <customApplication>LWC_Recipes</customApplication>
         <delayDays>1</delayDays>
         <description
         >Walkthrough of composition, events, navigation, aura interop, and message service.</description>
@@ -12,12 +13,11 @@
         <displayType>FloatingPanel</displayType>
         <isPublished>true</isPublished>
         <masterLabel>Composition Walkthrough Step 1</masterLabel>
-        <publishedDate>2020-08-06</publishedDate>
+        <publishedDate>2021-06-07</publishedDate>
         <shouldDisplayActionButton>false</shouldDisplayActionButton>
         <shouldIgnoreGlobalDelay>false</shouldIgnoreGlobalDelay>
         <startDate>2020-08-06</startDate>
         <stepNumber>1</stepNumber>
-        <targetAppDeveloperName>LWC_Recipes</targetAppDeveloperName>
         <targetPageKey1>Composition</targetPageKey1>
         <targetPageType>standard__navItemPage</targetPageType>
         <timesToDisplay>1</timesToDisplay>
@@ -29,6 +29,7 @@
     <promptVersions>
         <body
         >Child components fire standard and custom DOM events to notify their parents of changes.  Click on a contact in one of the lists to see this in action. Then click &quot;Next&quot;.</body>
+        <customApplication>LWC_Recipes</customApplication>
         <dismissButtonLabel>Close</dismissButtonLabel>
         <displayPosition>TopLeft</displayPosition>
         <displayType>FloatingPanel</displayType>
@@ -37,7 +38,6 @@
         <shouldDisplayActionButton>false</shouldDisplayActionButton>
         <shouldIgnoreGlobalDelay>false</shouldIgnoreGlobalDelay>
         <stepNumber>2</stepNumber>
-        <targetAppDeveloperName>LWC_Recipes</targetAppDeveloperName>
         <targetPageKey1>Events</targetPageKey1>
         <targetPageType>standard__navItemPage</targetPageType>
         <title>From Child to Parent</title>
@@ -48,6 +48,7 @@
     <promptVersions>
         <body
         >This page demonstrates how a parent component can pass data to a child component&apos;s public properties. Try changing the &quot;Percentage&quot; in the ApiProperty component to see this. Then click &quot;Next&quot;.</body>
+        <customApplication>LWC_Recipes</customApplication>
         <dismissButtonLabel>Close</dismissButtonLabel>
         <displayPosition>TopCenter</displayPosition>
         <displayType>FloatingPanel</displayType>
@@ -56,7 +57,6 @@
         <shouldDisplayActionButton>false</shouldDisplayActionButton>
         <shouldIgnoreGlobalDelay>false</shouldIgnoreGlobalDelay>
         <stepNumber>3</stepNumber>
-        <targetAppDeveloperName>LWC_Recipes</targetAppDeveloperName>
         <targetPageKey1>Parent_to_Child</targetPageKey1>
         <targetPageType>standard__navItemPage</targetPageType>
         <title>From Parent to Child</title>
@@ -67,7 +67,7 @@
     <promptVersions>
         <body
         >&lt;p&gt;The navigation service has many ways to navigate to different parts of the Salesforce UI. Click &quot;Go to New Contact&quot; on the NavToNewRecord component. Create a new contact, (or dismiss the popup). Then click &quot;Next&quot;.&lt;/p&gt;</body>
-        <displayPosition>BottomCenter</displayPosition>
+        <customApplication>LWC_Recipes</customApplication>
         <displayType>DockedComposer</displayType>
         <header>Getting Around the UI</header>
         <isPublished>false</isPublished>
@@ -75,7 +75,6 @@
         <shouldDisplayActionButton>false</shouldDisplayActionButton>
         <shouldIgnoreGlobalDelay>false</shouldIgnoreGlobalDelay>
         <stepNumber>4</stepNumber>
-        <targetAppDeveloperName>LWC_Recipes</targetAppDeveloperName>
         <targetPageKey1>Navigation</targetPageKey1>
         <targetPageType>standard__navItemPage</targetPageType>
         <title>Navigation</title>
@@ -86,6 +85,7 @@
     <promptVersions>
         <body
         >You can also add Lightning Web Components as children to your Aura components. Click the list to see how a LWC child component can interact with a parent Aura component. Then click &quot;Next&quot;.</body>
+        <customApplication>LWC_Recipes</customApplication>
         <dismissButtonLabel>Close</dismissButtonLabel>
         <displayPosition>BottomLeft</displayPosition>
         <displayType>FloatingPanel</displayType>
@@ -94,7 +94,6 @@
         <shouldDisplayActionButton>false</shouldDisplayActionButton>
         <shouldIgnoreGlobalDelay>false</shouldIgnoreGlobalDelay>
         <stepNumber>5</stepNumber>
-        <targetAppDeveloperName>LWC_Recipes</targetAppDeveloperName>
         <targetPageKey1>Aura_Interoperability</targetPageKey1>
         <targetPageType>standard__navItemPage</targetPageType>
         <title>LWC in Aura</title>
@@ -105,6 +104,7 @@
     <promptVersions>
         <body
         >Lightning Message Service is a client-side service that sends messages across DOM branches. LMS works seamlessly between LWC, Aura, and Visualforce. Click a contact in the list to see it appear in a subscriber, then click &quot;Next&quot;.</body>
+        <customApplication>LWC_Recipes</customApplication>
         <dismissButtonLabel>Close</dismissButtonLabel>
         <displayPosition>TopCenter</displayPosition>
         <displayType>FloatingPanel</displayType>
@@ -113,7 +113,6 @@
         <shouldDisplayActionButton>false</shouldDisplayActionButton>
         <shouldIgnoreGlobalDelay>false</shouldIgnoreGlobalDelay>
         <stepNumber>6</stepNumber>
-        <targetAppDeveloperName>LWC_Recipes</targetAppDeveloperName>
         <targetPageKey1>Message_Service</targetPageKey1>
         <targetPageType>standard__navItemPage</targetPageType>
         <title>Lightning Message Service</title>
@@ -122,22 +121,22 @@
         <versionNumber>1</versionNumber>
     </promptVersions>
     <promptVersions>
-        <actionButtonLabel>Next Tour</actionButtonLabel>
-        <actionButtonLink>/lightning/n/X3rd_Party_Libs</actionButtonLink>
+        <actionButtonLabel>GitHub</actionButtonLabel>
+        <actionButtonLink
+        >https://github.com/trailheadapps/lwc-recipes</actionButtonLink>
         <body
-        >&lt;p&gt;This tour walked through the key features that bring single components together into a whole user interface, including composition, events, navigation, and cross-DOM messaging. You also saw how your Aura components can make use of new Lightning Web Components.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;There&apos;s one more tour available in this app. Click &quot;Next Tour&quot; to check it out.&lt;/p&gt;</body>
-        <displayPosition>BottomCenter</displayPosition>
+        >&lt;p&gt;You&apos;ve now completed your harbor tour of the LWC Recipes sample app.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;We hope you enjoyed the trip and that you feel empowered to build something with LWC.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;If you have an idea for a recipe, visit the GitHub repo and share it with us using GitHub issues. Remember, LWC recipes are meant to highlight granular LWC-specific APIs and features using a minimal amount of code.&lt;/p&gt;</body>
+        <customApplication>LWC_Recipes</customApplication>
         <displayType>DockedComposer</displayType>
-        <header>Building your UI</header>
+        <header>Wrapping it up</header>
         <isPublished>false</isPublished>
         <masterLabel>Composition Walkthrough Step 7</masterLabel>
         <shouldDisplayActionButton>true</shouldDisplayActionButton>
         <shouldIgnoreGlobalDelay>false</shouldIgnoreGlobalDelay>
         <stepNumber>7</stepNumber>
-        <targetAppDeveloperName>LWC_Recipes</targetAppDeveloperName>
         <targetPageKey1>Message_Service</targetPageKey1>
         <targetPageType>standard__navItemPage</targetPageType>
-        <title>Composition, Events, and Messaging</title>
+        <title>Your Tour Is Complete</title>
         <userAccess>Everyone</userAccess>
         <userProfileAccess>Everyone</userProfileAccess>
         <versionNumber>1</versionNumber>

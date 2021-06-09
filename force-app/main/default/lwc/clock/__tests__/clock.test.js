@@ -2,7 +2,20 @@ import { createElement } from 'lwc';
 import Clock from 'c/clock';
 
 describe('c-clock', () => {
-    it('sets current date/time after public function call', () => {
+    afterEach(() => {
+        // The jsdom instance is shared across test cases in a single file so reset the DOM
+        while (document.body.firstChild) {
+            document.body.removeChild(document.body.firstChild);
+        }
+    });
+
+    // Helper function to wait until the microtask queue is empty. This is needed for promise
+    // timing when calling imperative Apex.
+    async function flushPromises() {
+        return Promise.resolve();
+    }
+
+    it('sets current date/time after public function call', async () => {
         // Create initial element
         const element = createElement('c-clock', {
             is: Clock
@@ -18,22 +31,20 @@ describe('c-clock', () => {
         // Call public function on element
         element.refresh();
 
-        // Return a promise to wait for any asynchronous DOM updates. Jest
-        // will automatically wait for the Promise chain to complete before
-        // ending the test and fail the test if the promise rejects.
-        return Promise.resolve().then(() => {
-            // Compare if tracked property has been assigned a new value.
-            expect(lightningDateTimeEl.value).not.toBe(currentDateTimeVal);
-        });
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
+
+        // Compare if tracked property has been assigned a new value.
+        expect(lightningDateTimeEl.value).not.toBe(currentDateTimeVal);
     });
 
-    it('is accessible', () => {
+    it('is accessible', async () => {
         const element = createElement('c-clock', {
             is: Clock
         });
 
         document.body.appendChild(element);
 
-        return Promise.resolve().then(() => expect(element).toBeAccessible());
+        await expect(element).toBeAccessible();
     });
 });

@@ -10,7 +10,13 @@ describe('c-misc-notification', () => {
         }
     });
 
-    it('shows custom toast events based on user input', () => {
+    // Helper function to wait until the microtask queue is empty. This is needed for promise
+    // timing when calling imperative Apex.
+    async function flushPromises() {
+        return Promise.resolve();
+    }
+
+    it('shows custom toast events based on user input', async () => {
         const TOAST_TITLE = 'The Title';
         const TOAST_MESSAGE = 'The Message';
         const TOAST_VARIANT = 'warning';
@@ -50,26 +56,23 @@ describe('c-misc-notification', () => {
         const buttonEl = element.shadowRoot.querySelector('lightning-button');
         buttonEl.click();
 
-        // Return a promise to wait for any asynchronous DOM updates. Jest
-        // will automatically wait for the Promise chain to complete before
-        // ending the test and fail the test if the promise ends in the
-        // rejected state
-        return Promise.resolve().then(() => {
-            // Check if toast event has been fired
-            expect(handler).toHaveBeenCalled();
-            expect(handler.mock.calls[0][0].detail.title).toBe(TOAST_TITLE);
-            expect(handler.mock.calls[0][0].detail.message).toBe(TOAST_MESSAGE);
-            expect(handler.mock.calls[0][0].detail.variant).toBe(TOAST_VARIANT);
-        });
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
+
+        // Check if toast event has been fired
+        expect(handler).toHaveBeenCalled();
+        expect(handler.mock.calls[0][0].detail.title).toBe(TOAST_TITLE);
+        expect(handler.mock.calls[0][0].detail.message).toBe(TOAST_MESSAGE);
+        expect(handler.mock.calls[0][0].detail.variant).toBe(TOAST_VARIANT);
     });
 
-    it('is accessible', () => {
+    it('is accessible', async () => {
         const element = createElement('c-misc-notification', {
             is: MiscNotification
         });
 
         document.body.appendChild(element);
 
-        return Promise.resolve().then(() => expect(element).toBeAccessible());
+        await expect(element).toBeAccessible();
     });
 });

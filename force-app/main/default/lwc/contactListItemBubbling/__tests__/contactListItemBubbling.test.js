@@ -56,7 +56,7 @@ describe('c-contact-list-item-bubbling', () => {
         expect(selectEvent.bubbles).toBeTruthy();
     });
 
-    it('is accessible', () => {
+    it('is accessible', async () => {
         const element = createElement('c-contact-list-item-bubbling', {
             is: ContactListItemBubbling
         });
@@ -64,6 +64,6 @@ describe('c-contact-list-item-bubbling', () => {
         element.contact = CONTACT;
         document.body.appendChild(element);
 
-        return Promise.resolve().then(() => expect(element).toBeAccessible());
+        await expect(element).toBeAccessible();
     });
 });

@@ -17,6 +17,12 @@ describe('c-wire-get-picklist-values', () => {
         }
     });
 
+    // Helper function to wait until the microtask queue is empty. This is needed for promise
+    // timing when calling imperative Apex.
+    async function flushPromises() {
+        return Promise.resolve();
+    }
+
     describe('getPicklistValues @wire data', () => {
         it('renders seven lightning-input fields of type checkbox', () => {
             // Create element
@@ -47,7 +53,7 @@ describe('c-wire-get-picklist-values', () => {
     });
 
     describe('getObjectInfo @wire error', () => {
-        it('shows error panel element', () => {
+        it('shows error panel element', async () => {
             // Create initial element
             const element = createElement('c-wire-get-picklist-values', {
                 is: WireGetPicklistValues
@@ -57,18 +63,16 @@ describe('c-wire-get-picklist-values', () => {
             // Emit error from @wire
             getPicklistValuesAdapter.error();
 
-            // Return a promise to wait for any asynchronous DOM updates. Jest
-            // will automatically wait for the Promise chain to complete before
-            // ending the test and fail the test if the promise rejects.
-            return Promise.resolve().then(() => {
-                const errorPanelEl =
-                    element.shadowRoot.querySelector('c-error-panel');
-                expect(errorPanelEl).not.toBeNull();
-            });
+            // Wait for any asynchronous DOM updates
+            await flushPromises();
+
+            const errorPanelEl =
+                element.shadowRoot.querySelector('c-error-panel');
+            expect(errorPanelEl).not.toBeNull();
         });
     });
 
-    it('is accessible when picklist values are returned', () => {
+    it('is accessible when picklist values are returned', async () => {
         // Create element
         const element = createElement('c-wire-get-picklist-values', {
             is: WireGetPicklistValues
@@ -78,10 +82,13 @@ describe('c-wire-get-picklist-values', () => {
         // Emit data from @wire
         getPicklistValuesAdapter.emit(mockGetPicklistValues);
 
-        return Promise.resolve().then(() => expect(element).toBeAccessible());
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
+
+        await expect(element).toBeAccessible();
     });
 
-    it('is accessible when error is returned', () => {
+    it('is accessible when error is returned', async () => {
         // Create element
         const element = createElement('c-wire-get-picklist-values', {
             is: WireGetPicklistValues
@@ -91,6 +98,9 @@ describe('c-wire-get-picklist-values', () => {
         // Emit error from @wire
         getPicklistValuesAdapter.error();
 
-        return Promise.resolve().then(() => expect(element).toBeAccessible());
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
+
+        await expect(element).toBeAccessible();
     });
 });

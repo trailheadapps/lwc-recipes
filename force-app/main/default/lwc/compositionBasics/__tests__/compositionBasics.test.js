@@ -39,13 +39,13 @@ describe('c-composition-basics', () => {
         expect(contactTileEl.contact.Title).toBe(TITLE_RESULT);
     });
 
-    it('is accessible', () => {
+    it('is accessible', async () => {
         const element = createElement('c-composition-basics', {
             is: CompositionBasics
         });
 
         document.body.appendChild(element);
 
-        return Promise.resolve().then(() => expect(element).toBeAccessible());
+        await expect(element).toBeAccessible();
     });
 });
