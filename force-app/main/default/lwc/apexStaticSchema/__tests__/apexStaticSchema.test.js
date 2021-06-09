@@ -79,6 +79,9 @@ describe('c-apex-static-schema', () => {
         // Emit data from @wire
         getSingleContactAdapter.emit(mockGetSingleContact);
 
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
+
         await expect(element).toBeAccessible();
     });
 
@@ -91,6 +94,9 @@ describe('c-apex-static-schema', () => {
 
         // Emit error from @wire
         getSingleContactAdapter.error();
+
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
 
         await expect(element).toBeAccessible();
     });

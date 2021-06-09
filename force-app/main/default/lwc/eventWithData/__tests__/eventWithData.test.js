@@ -182,6 +182,9 @@ describe('c-event-with-data', () => {
             })
         );
 
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
+
         await expect(element).toBeAccessible();
     });
 });

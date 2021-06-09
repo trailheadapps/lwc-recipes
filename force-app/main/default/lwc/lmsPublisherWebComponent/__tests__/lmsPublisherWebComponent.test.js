@@ -110,6 +110,9 @@ describe('c-lms-publisher-web-component', () => {
         // Emit data from @wire
         getContactListAdapter.emit(mockGetContactList);
 
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
+
         await expect(element).toBeAccessible();
     });
 });

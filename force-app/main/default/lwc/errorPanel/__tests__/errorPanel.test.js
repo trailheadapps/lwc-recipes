@@ -97,6 +97,9 @@ describe('c-error-panel', () => {
         // Click link to show details
         element.shadowRoot.querySelector('a').click();
 
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
+
         await expect(element).toBeAccessible();
     });
 
@@ -116,6 +119,9 @@ describe('c-error-panel', () => {
 
         // Click link to show details
         element.shadowRoot.querySelector('a').click();
+
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
 
         await expect(element).toBeAccessible();
     });

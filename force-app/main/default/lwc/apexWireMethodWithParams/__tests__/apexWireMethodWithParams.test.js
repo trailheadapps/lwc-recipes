@@ -89,7 +89,6 @@ describe('c-apex-wire-method-with-params', () => {
             const detailEls = element.shadowRoot.querySelectorAll('p');
             expect(detailEls.length).toBe(mockFindContacts.length);
             expect(detailEls[0].textContent).toBe(mockFindContacts[0].Name);
-            expect(element).toBeAccessible();
         });
     });
 

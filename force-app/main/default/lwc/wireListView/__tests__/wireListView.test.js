@@ -76,6 +76,9 @@ describe('c-wire-list-view', () => {
         // Emit data from @wire
         getListUiAdapter.emit(mockGetListUi);
 
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
+
         await expect(element).toBeAccessible();
     });
 
@@ -88,6 +91,9 @@ describe('c-wire-list-view', () => {
 
         // Emit error from @wire
         getListUiAdapter.error();
+
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
 
         await expect(element).toBeAccessible();
     });

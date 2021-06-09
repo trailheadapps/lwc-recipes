@@ -83,6 +83,9 @@ describe('c-wire-get-record-dynamic-contact', () => {
         // Emit data from @wire
         getRecordAdapter.emit(mockGetRecord);
 
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
+
         await expect(element).toBeAccessible();
     });
 
@@ -95,6 +98,9 @@ describe('c-wire-get-record-dynamic-contact', () => {
 
         // Emit data from @wire
         getRecordAdapter.error();
+
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
 
         await expect(element).toBeAccessible();
     });

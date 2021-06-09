@@ -88,6 +88,9 @@ describe('c-wire-get-picklist-values-by-record-type', () => {
             mockGetPicklistValuesByRecordType
         );
 
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
+
         await expect(element).toBeAccessible();
     });
 
@@ -103,6 +106,9 @@ describe('c-wire-get-picklist-values-by-record-type', () => {
 
         // Emit error from @wire
         getPicklistValuesByRecordTypeAdapter.error();
+
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
 
         await expect(element).toBeAccessible();
     });

@@ -147,7 +147,7 @@ describe('c-apex-imperative-method-with-params', () => {
         // Wait for any asynchronous DOM updates
         await flushPromises();
 
-        expect(element).toBeAccessible();
+        await expect(element).toBeAccessible();
     });
 
     it('is accessible when error is returned', async () => {
@@ -167,6 +167,6 @@ describe('c-apex-imperative-method-with-params', () => {
         // Wait for any asynchronous DOM updates
         await flushPromises();
 
-        expect(element).toBeAccessible();
+        await expect(element).toBeAccessible();
     });
 });

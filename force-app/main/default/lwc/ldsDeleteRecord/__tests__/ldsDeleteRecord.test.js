@@ -141,6 +141,9 @@ describe('c-lds-delete-record', () => {
         // Emit data from @wire
         getAccountListAdapter.emit(mockGetAccountList);
 
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
+
         await expect(element).toBeAccessible();
     });
 
@@ -153,6 +156,9 @@ describe('c-lds-delete-record', () => {
 
         // Emit error from @wire
         getAccountListAdapter.error();
+
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
 
         await expect(element).toBeAccessible();
     });

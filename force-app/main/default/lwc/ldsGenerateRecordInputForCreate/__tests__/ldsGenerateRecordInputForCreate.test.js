@@ -281,6 +281,9 @@ describe('c-lds-generate-record-input-for-create', () => {
 
         generateMockRecordInput();
 
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
+
         await expect(element).toBeAccessible();
     });
 
@@ -297,6 +300,9 @@ describe('c-lds-generate-record-input-for-create', () => {
 
         // Emit error from @wire
         getRecordCreateDefaultsAdapter.error();
+
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
 
         await expect(element).toBeAccessible();
     });

@@ -114,6 +114,9 @@ describe('c-misc-multiple-templates', () => {
         const button = element.shadowRoot.querySelector('lightning-button');
         button.click();
 
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
+
         await expect(element).toBeAccessible();
     });
 });

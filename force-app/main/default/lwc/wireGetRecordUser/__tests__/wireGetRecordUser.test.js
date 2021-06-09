@@ -73,6 +73,9 @@ describe('c-wire-get-record-user', () => {
         // Emit data from @wire
         getRecordAdapter.emit(mockGetRecord);
 
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
+
         await expect(element).toBeAccessible();
     });
 
@@ -85,6 +88,9 @@ describe('c-wire-get-record-user', () => {
 
         // Emit error from @wire
         getRecordAdapter.error();
+
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
 
         await expect(element).toBeAccessible();
     });

@@ -63,6 +63,9 @@ describe('c-hello-conditional-rendering', () => {
         inputEl.checked = true;
         inputEl.dispatchEvent(new CustomEvent('change'));
 
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
+
         await expect(element).toBeAccessible();
     });
 

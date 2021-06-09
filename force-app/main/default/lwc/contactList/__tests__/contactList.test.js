@@ -91,6 +91,9 @@ describe('c-contact-list', () => {
         // Emit data from @wire
         getContactListAdapter.emit(mockGetContactList);
 
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
+
         await expect(element).toBeAccessible();
     });
 });

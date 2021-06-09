@@ -125,6 +125,6 @@ describe('c-libs-momentjs', () => {
         });
         document.body.appendChild(element);
 
-        expect(element).toBeAccessible();
+        await expect(element).toBeAccessible();
     });
 });

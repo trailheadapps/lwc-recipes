@@ -73,6 +73,9 @@ describe('c-apex-wire-method-to-property', () => {
         // Emit data from @wire
         getContactListAdapter.emit(mockGetContactList);
 
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
+
         await expect(element).toBeAccessible();
     });
 
@@ -85,6 +88,9 @@ describe('c-apex-wire-method-to-property', () => {
 
         // Emit error from @wire
         getContactListAdapter.error();
+
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
 
         await expect(element).toBeAccessible();
     });
