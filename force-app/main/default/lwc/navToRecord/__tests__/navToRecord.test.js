@@ -24,7 +24,13 @@ describe('c-nav-to-record', () => {
         jest.clearAllMocks();
     });
 
-    it('navigates to record view', () => {
+    // Helper function to wait until the microtask queue is empty. This is needed for promise
+    // timing when calling imperative Apex.
+    async function flushPromises() {
+        return Promise.resolve();
+    }
+
+    it('navigates to record view', async () => {
         // Nav param values to test later
         const NAV_TYPE = 'standard__recordPage';
         const NAV_OBJECT_API_NAME = 'Contact';
@@ -40,29 +46,27 @@ describe('c-nav-to-record', () => {
         // Simulate the data sent over wire adapter to hydrate the wired property
         getSingleContactAdapter.emit(mockGetSingleContact);
 
-        // Return a promise to wait for any asynchronous DOM updates. Jest
-        // will automatically wait for the Promise chain to complete before
-        // ending the test and fail the test if the promise rejects.
-        return Promise.resolve().then(() => {
-            // Get handle to view button and fire click event
-            const buttonEl = element.shadowRoot.querySelector(
-                'lightning-button.slds-var-m-right_x-small'
-            );
-            buttonEl.click();
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
 
-            const { pageReference } = getNavigateCalledWith();
+        // Get handle to view button and fire click event
+        const buttonEl = element.shadowRoot.querySelector(
+            'lightning-button.slds-var-m-right_x-small'
+        );
+        buttonEl.click();
 
-            // Verify component called with correct event type and params
-            expect(pageReference.type).toBe(NAV_TYPE);
-            expect(pageReference.attributes.objectApiName).toBe(
-                NAV_OBJECT_API_NAME
-            );
-            expect(pageReference.attributes.actionName).toBe(NAV_ACTION_NAME);
-            expect(pageReference.attributes.recordId).toBe(NAV_RECORD_ID);
-        });
+        const { pageReference } = getNavigateCalledWith();
+
+        // Verify component called with correct event type and params
+        expect(pageReference.type).toBe(NAV_TYPE);
+        expect(pageReference.attributes.objectApiName).toBe(
+            NAV_OBJECT_API_NAME
+        );
+        expect(pageReference.attributes.actionName).toBe(NAV_ACTION_NAME);
+        expect(pageReference.attributes.recordId).toBe(NAV_RECORD_ID);
     });
 
-    it('navigates to record edit', () => {
+    it('navigates to record edit', async () => {
         // Nav param values to test later
         const NAV_TYPE = 'standard__recordPage';
         const NAV_OBJECT_API_NAME = 'Contact';
@@ -78,31 +82,29 @@ describe('c-nav-to-record', () => {
         // Simulate the data sent over wire adapter to hydrate the wired property
         getSingleContactAdapter.emit(mockGetSingleContact);
 
-        // Return a promise to wait for any asynchronous DOM updates. Jest
-        // will automatically wait for the Promise chain to complete before
-        // ending the test and fail the test if the promise rejects.
-        return Promise.resolve().then(() => {
-            // Get handle to edit button and fire click event
-            const buttonEl = element.shadowRoot.querySelector(
-                'lightning-button:not(.slds-var-m-right_x-small)'
-            );
-            // Selector for no class could also be 'lightning-button:not([class])'
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
 
-            buttonEl.click();
+        // Get handle to edit button and fire click event
+        const buttonEl = element.shadowRoot.querySelector(
+            'lightning-button:not(.slds-var-m-right_x-small)'
+        );
+        // Selector for no class could also be 'lightning-button:not([class])'
 
-            const { pageReference } = getNavigateCalledWith();
+        buttonEl.click();
 
-            // Verify component called with correct event type and params
-            expect(pageReference.type).toBe(NAV_TYPE);
-            expect(pageReference.attributes.objectApiName).toBe(
-                NAV_OBJECT_API_NAME
-            );
-            expect(pageReference.attributes.actionName).toBe(NAV_ACTION_NAME);
-            expect(pageReference.attributes.recordId).toBe(NAV_RECORD_ID);
-        });
+        const { pageReference } = getNavigateCalledWith();
+
+        // Verify component called with correct event type and params
+        expect(pageReference.type).toBe(NAV_TYPE);
+        expect(pageReference.attributes.objectApiName).toBe(
+            NAV_OBJECT_API_NAME
+        );
+        expect(pageReference.attributes.actionName).toBe(NAV_ACTION_NAME);
+        expect(pageReference.attributes.recordId).toBe(NAV_RECORD_ID);
     });
 
-    it('shows error panel when there is an error', () => {
+    it('shows error panel when there is an error', async () => {
         // Create initial lwc element and attach to virtual DOM
         const element = createElement('c-nav-to-record', {
             is: NavToRecord
@@ -112,17 +114,14 @@ describe('c-nav-to-record', () => {
         // Emit error from @wire
         getSingleContactAdapter.error();
 
-        // Return a promise to wait for any asynchronous DOM updates. Jest
-        // will automatically wait for the Promise chain to complete before
-        // ending the test and fail the test if the promise rejects.
-        return Promise.resolve().then(() => {
-            const errorPanelEl =
-                element.shadowRoot.querySelector('c-error-panel');
-            expect(errorPanelEl).not.toBeNull();
-        });
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
+
+        const errorPanelEl = element.shadowRoot.querySelector('c-error-panel');
+        expect(errorPanelEl).not.toBeNull();
     });
 
-    it('is accessible when data is returned', () => {
+    it('is accessible when data is returned', async () => {
         // Create initial lwc element and attach to virtual DOM
         const element = createElement('c-nav-to-record', {
             is: NavToRecord
@@ -132,10 +131,13 @@ describe('c-nav-to-record', () => {
         // Simulate the data sent over wire adapter to hydrate the wired property
         getSingleContactAdapter.emit(mockGetSingleContact);
 
-        return Promise.resolve().then(() => expect(element).toBeAccessible());
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
+
+        await expect(element).toBeAccessible();
     });
 
-    it('is accessible when error is returned', () => {
+    it('is accessible when error is returned', async () => {
         // Create initial lwc element and attach to virtual DOM
         const element = createElement('c-nav-to-record', {
             is: NavToRecord
@@ -145,6 +147,9 @@ describe('c-nav-to-record', () => {
         // Emit error from @wire
         getSingleContactAdapter.error();
 
-        return Promise.resolve().then(() => expect(element).toBeAccessible());
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
+
+        await expect(element).toBeAccessible();
     });
 });

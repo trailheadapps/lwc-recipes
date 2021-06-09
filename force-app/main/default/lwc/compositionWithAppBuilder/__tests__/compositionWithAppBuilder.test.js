@@ -9,6 +9,12 @@ describe('c-composition-with-app-builder', () => {
         }
     });
 
+    // Helper function to wait until the microtask queue is empty. This is needed for promise
+    // timing when calling imperative Apex.
+    async function flushPromises() {
+        return Promise.resolve();
+    }
+
     it('reflects public property values', () => {
         // Create initial element
         const element = createElement('c-composition-with-app-builder', {
@@ -25,7 +31,7 @@ describe('c-composition-with-app-builder', () => {
         expect(element.numberValue).toBe(99);
     });
 
-    it('is accessible', () => {
+    it('is accessible', async () => {
         const element = createElement('c-composition-with-app-builder', {
             is: CompositionWithAppBuilder
         });
@@ -35,6 +41,9 @@ describe('c-composition-with-app-builder', () => {
         element.numberValue = 99;
         document.body.appendChild(element);
 
-        return Promise.resolve().then(() => expect(element).toBeAccessible());
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
+
+        await expect(element).toBeAccessible();
     });
 });

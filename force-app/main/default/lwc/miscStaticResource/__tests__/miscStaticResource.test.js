@@ -2,6 +2,19 @@ import { createElement } from 'lwc';
 import MiscStaticResource from 'c/miscStaticResource';
 
 describe('c-misc-static-resource', () => {
+    afterEach(() => {
+        // The jsdom instance is shared across test cases in a single file so reset the DOM
+        while (document.body.firstChild) {
+            document.body.removeChild(document.body.firstChild);
+        }
+    });
+
+    // Helper function to wait until the microtask queue is empty. This is needed for promise
+    // timing when calling imperative Apex.
+    async function flushPromises() {
+        return Promise.resolve();
+    }
+
     it('sets img urls based on static resources', () => {
         // Create initial element
         const element = createElement('c-misc-static-resource', {
@@ -28,13 +41,16 @@ describe('c-misc-static-resource', () => {
         );
     });
 
-    it('is accessible', () => {
+    it('is accessible', async () => {
         const element = createElement('c-misc-static-resource', {
             is: MiscStaticResource
         });
 
         document.body.appendChild(element);
 
-        return Promise.resolve().then(() => expect(element).toBeAccessible());
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
+
+        await expect(element).toBeAccessible();
     });
 });

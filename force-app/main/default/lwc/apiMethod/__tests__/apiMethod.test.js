@@ -2,7 +2,20 @@ import { createElement } from 'lwc';
 import ApiMethod from 'c/apiMethod';
 
 describe('c-api-method', () => {
-    it('calls the public method "refresh" on the c-clock component', () => {
+    afterEach(() => {
+        // The jsdom instance is shared across test cases in a single file so reset the DOM
+        while (document.body.firstChild) {
+            document.body.removeChild(document.body.firstChild);
+        }
+    });
+
+    // Helper function to wait until the microtask queue is empty. This is needed for promise
+    // timing when calling imperative Apex.
+    async function flushPromises() {
+        return Promise.resolve();
+    }
+
+    it('calls the public method "refresh" on the c-clock component', async () => {
         // Create initial element
         const element = createElement('c-api-method', {
             is: ApiMethod
@@ -17,22 +30,23 @@ describe('c-api-method', () => {
         const buttonEl = element.shadowRoot.querySelector('lightning-button');
         buttonEl.click();
 
-        // Return a promise to wait for any asynchronous DOM updates. Jest
-        // will automatically wait for the Promise chain to complete before
-        // ending the test and fail the test if the promise rejects.
-        return Promise.resolve().then(() => {
-            // Compare if public method has been called
-            expect(clockEl.refresh).toHaveBeenCalled();
-        });
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
+
+        // Compare if public method has been called
+        expect(clockEl.refresh).toHaveBeenCalled();
     });
 
-    it('is accessible', () => {
+    it('is accessible', async () => {
         const element = createElement('c-api-method', {
             is: ApiMethod
         });
 
         document.body.appendChild(element);
 
-        return Promise.resolve().then(() => expect(element).toBeAccessible());
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
+
+        await expect(element).toBeAccessible();
     });
 });

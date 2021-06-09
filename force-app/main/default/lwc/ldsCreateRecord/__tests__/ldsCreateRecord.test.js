@@ -45,9 +45,7 @@ describe('c-lds-create-record', () => {
         const buttonEl = element.shadowRoot.querySelector('lightning-button');
         buttonEl.click();
 
-        // Wait for any asynchronous DOM updates. Jest
-        // will automatically wait for the Promise chain to complete before
-        // ending the test and fail the test if the promise rejects.
+        // Wait for any asynchronous DOM updates.
         await flushPromises();
 
         // Validate createRecord call
@@ -78,9 +76,7 @@ describe('c-lds-create-record', () => {
         const buttonEl = element.shadowRoot.querySelector('lightning-button');
         buttonEl.click();
 
-        // Wait for any asynchronous DOM updates. Jest will automatically wait
-        // for the Promise chain to complete before ending the test and fail
-        // the test if the promise ends in the rejected state.
+        // Wait for any asynchronous DOM updates.
         await flushPromises();
 
         // Select element for validation
@@ -118,9 +114,7 @@ describe('c-lds-create-record', () => {
         const buttonEl = element.shadowRoot.querySelector('lightning-button');
         buttonEl.click();
 
-        // Wait for any asynchronous DOM updates. Jest
-        // will automatically wait for the Promise chain to complete before
-        // ending the test and fail the test if the promise rejects.
+        // Wait for any asynchronous DOM updates.
         await flushPromises();
 
         // Check if toast event has been fired
@@ -156,9 +150,7 @@ describe('c-lds-create-record', () => {
         const buttonEl = element.shadowRoot.querySelector('lightning-button');
         buttonEl.click();
 
-        // Wait for any asynchronous DOM updates. Jest will automatically wait
-        // for the Promise chain to complete before ending the test and fail
-        // the test if the promise ends in the rejected state.
+        // Wait for any asynchronous DOM updates.
         await flushPromises();
 
         // Check if toast event has been fired
@@ -175,6 +167,6 @@ describe('c-lds-create-record', () => {
 
         await flushPromises();
 
-        expect(element).toBeAccessible();
+        await expect(element).toBeAccessible();
     });
 });

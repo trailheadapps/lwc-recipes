@@ -9,6 +9,12 @@ describe('c-hello-iterator', () => {
         }
     });
 
+    // Helper function to wait until the microtask queue is empty. This is needed for promise
+    // timing when calling imperative Apex.
+    async function flushPromises() {
+        return Promise.resolve();
+    }
+
     it('displays contacts in specific order', () => {
         const EXPECTED = [
             'Amy Taylor, VP of Engineering',
@@ -49,13 +55,16 @@ describe('c-hello-iterator', () => {
         expect(element.shadowRoot.querySelectorAll('li > div')).toHaveLength(2);
     });
 
-    it('is accessible on initialization', () => {
+    it('is accessible on initialization', async () => {
         const element = createElement('c-hello-iterator', {
             is: HelloIterator
         });
 
         document.body.appendChild(element);
 
-        return Promise.resolve().then(() => expect(element).toBeAccessible());
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
+
+        await expect(element).toBeAccessible();
     });
 });

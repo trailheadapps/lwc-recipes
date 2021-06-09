@@ -21,6 +21,12 @@ describe('c-misc-permission-based-u-i', () => {
         }
     });
 
+    // Helper function to wait until the microtask queue is empty. This is needed for promise
+    // timing when calling imperative Apex.
+    async function flushPromises() {
+        return Promise.resolve();
+    }
+
     it('displays the correct UI when custom permission is true', () => {
         const element = createElement('c-misc-permission-based-u-i', {
             is: MiscPermissionBasedUI
@@ -47,7 +53,7 @@ describe('c-misc-permission-based-u-i', () => {
         expect(pEl.textContent).toBe('The permission set is assigned');
     });
 
-    it('is accessible when custom permission is true', () => {
+    it('is accessible when custom permission is true', async () => {
         const element = createElement('c-misc-permission-based-u-i', {
             is: MiscPermissionBasedUI
         });
@@ -56,10 +62,13 @@ describe('c-misc-permission-based-u-i', () => {
 
         document.body.appendChild(element);
 
-        return Promise.resolve().then(() => expect(element).toBeAccessible());
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
+
+        await expect(element).toBeAccessible();
     });
 
-    it('is accessible when custom permission is false', () => {
+    it('is accessible when custom permission is false', async () => {
         const element = createElement('c-misc-permission-based-u-i', {
             is: MiscPermissionBasedUI
         });
@@ -68,6 +77,9 @@ describe('c-misc-permission-based-u-i', () => {
 
         document.body.appendChild(element);
 
-        return Promise.resolve().then(() => expect(element).toBeAccessible());
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
+
+        await expect(element).toBeAccessible();
     });
 });

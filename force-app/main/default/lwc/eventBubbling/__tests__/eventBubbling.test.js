@@ -201,5 +201,6 @@ describe('c-event-bubbling', () => {
                 bubbles: true
             })
         );
+        await expect(element).toBeAccessible();
     });
 });

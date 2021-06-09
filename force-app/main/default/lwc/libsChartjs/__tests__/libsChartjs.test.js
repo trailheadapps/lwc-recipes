@@ -66,9 +66,7 @@ describe('c-libs-chartjs', () => {
         });
         document.body.appendChild(element);
 
-        // Wait for any asynchronous DOM updates. Jest
-        // will automatically wait for the Promise chain to complete before
-        // ending the test and fail the test if the promise rejects.
+        // Wait for any asynchronous DOM updates.
         await flushPromises();
 
         const errorPanelEl = element.shadowRoot.querySelector('c-error-panel');
@@ -84,7 +82,7 @@ describe('c-libs-chartjs', () => {
 
         await flushPromises();
 
-        expect(element).toBeAccessible();
+        await expect(element).toBeAccessible();
     });
 
     it('is accessible when there is an error loading library', async () => {
@@ -98,6 +96,6 @@ describe('c-libs-chartjs', () => {
 
         await flushPromises();
 
-        expect(element).toBeAccessible();
+        await expect(element).toBeAccessible();
     });
 });

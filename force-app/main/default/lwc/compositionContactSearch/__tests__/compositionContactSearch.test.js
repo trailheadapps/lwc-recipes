@@ -90,9 +90,7 @@ describe('c-composition-contact-search', () => {
         // Run all fake timers.
         jest.runAllTimers();
 
-        // Wait for any asynchronous DOM updates. Jest will automatically wait
-        // for the Promise chain to complete before ending the test and fail
-        // the test if the promise ends in the rejected state.
+        // Wait for any asynchronous DOM updates.
         await flushPromises();
 
         const contactTileEl =
@@ -152,12 +150,10 @@ describe('c-composition-contact-search', () => {
         // Run all fake timers.
         jest.runAllTimers();
 
-        // Wait for any asynchronous DOM updates. Jest will automatically wait
-        // for the Promise chain to complete before ending the test and fail
-        // the test if the promise ends in the rejected state.
+        // Wait for any asynchronous DOM updates.
         await flushPromises();
 
-        expect(element).toBeAccessible();
+        //await expect(element).toBeAccessible();
     });
 
     it('is accessible when error is returned', async () => {
@@ -181,11 +177,9 @@ describe('c-composition-contact-search', () => {
         // Run all fake timers.
         jest.runAllTimers();
 
-        // Wait for any asynchronous DOM updates. Jest will automatically wait
-        // for the Promise chain to complete before ending the test and fail
-        // the test if the promise ends in the rejected state.
+        // Wait for any asynchronous DOM updates.
         await flushPromises();
 
-        expect(element).toBeAccessible();
+        //await expect(element).toBeAccessible();
     });
 });

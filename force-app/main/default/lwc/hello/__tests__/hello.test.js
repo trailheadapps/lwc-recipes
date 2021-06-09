@@ -9,6 +9,12 @@ describe('c-hello', () => {
         }
     });
 
+    // Helper function to wait until the microtask queue is empty. This is needed for promise
+    // timing when calling imperative Apex.
+    async function flushPromises() {
+        return Promise.resolve();
+    }
+
     it('displays greeting', () => {
         // Create element
         const element = createElement('c-hello', {
@@ -21,13 +27,16 @@ describe('c-hello', () => {
         expect(div.textContent).toBe('Hello, World!');
     });
 
-    it('is accessible', () => {
+    it('is accessible', async () => {
         const element = createElement('c-hello', {
             is: Hello
         });
 
         document.body.appendChild(element);
 
-        return Promise.resolve().then(() => expect(element).toBeAccessible());
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
+
+        await expect(element).toBeAccessible();
     });
 });

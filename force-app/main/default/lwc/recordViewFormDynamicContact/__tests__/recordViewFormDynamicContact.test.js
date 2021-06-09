@@ -9,6 +9,12 @@ describe('c-record-view-form-dynamic-contact', () => {
         }
     });
 
+    // Helper function to wait until the microtask queue is empty. This is needed for promise
+    // timing when calling imperative Apex.
+    async function flushPromises() {
+        return Promise.resolve();
+    }
+
     it('renders lightning-record-view-form with given input values', () => {
         const RECORD_ID_INPUT = '0031700000pJRRSAA4';
         const OBJECT_API_NAME_INPUT = 'Contact';
@@ -50,13 +56,16 @@ describe('c-record-view-form-dynamic-contact', () => {
         expect(outputFieldNames).toEqual(OUTPUT_FIELDS);
     });
 
-    it('is accessible', () => {
+    it('is accessible', async () => {
         const element = createElement('c-record-view-form-dynamic-contact', {
             is: RecordViewFormDynamicContact
         });
 
         document.body.appendChild(element);
 
-        return Promise.resolve().then(() => expect(element).toBeAccessible());
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
+
+        await expect(element).toBeAccessible();
     });
 });

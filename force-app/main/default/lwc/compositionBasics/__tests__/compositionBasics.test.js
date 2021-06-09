@@ -9,6 +9,12 @@ describe('c-composition-basics', () => {
         }
     });
 
+    // Helper function to wait until the microtask queue is empty. This is needed for promise
+    // timing when calling imperative Apex.
+    async function flushPromises() {
+        return Promise.resolve();
+    }
+
     it('renders one contact tile', () => {
         // Create initial element
         const element = createElement('c-composition-basics', {
@@ -39,13 +45,16 @@ describe('c-composition-basics', () => {
         expect(contactTileEl.contact.Title).toBe(TITLE_RESULT);
     });
 
-    it('is accessible', () => {
+    it('is accessible', async () => {
         const element = createElement('c-composition-basics', {
             is: CompositionBasics
         });
 
         document.body.appendChild(element);
 
-        return Promise.resolve().then(() => expect(element).toBeAccessible());
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
+
+        await expect(element).toBeAccessible();
     });
 });

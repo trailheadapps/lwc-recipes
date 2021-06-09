@@ -19,6 +19,12 @@ describe('c-contact-tile', () => {
         }
     });
 
+    // Helper function to wait until the microtask queue is empty. This is needed for promise
+    // timing when calling imperative Apex.
+    async function flushPromises() {
+        return Promise.resolve();
+    }
+
     it('renders picture, name, title, and phone number based on public property input', () => {
         // Create initial element
         const element = createElement('c-contact-tile', {
@@ -56,7 +62,7 @@ describe('c-contact-tile', () => {
         expect(detailEl.textContent).toBe(MESSAGE);
     });
 
-    it('is accessible', () => {
+    it('is accessible', async () => {
         const element = createElement('c-contact-tile', {
             is: ContactTile
         });
@@ -64,6 +70,9 @@ describe('c-contact-tile', () => {
         element.contact = CONTACT_INPUT;
         document.body.appendChild(element);
 
-        return Promise.resolve().then(() => expect(element).toBeAccessible());
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
+
+        await expect(element).toBeAccessible();
     });
 });

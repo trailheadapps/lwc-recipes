@@ -8,6 +8,19 @@ import { getNavigateCalledWith } from 'lightning/navigation';
 // and see jest.config.js for jest config to use the mock
 
 describe('c-nav-to-new-record', () => {
+    afterEach(() => {
+        // The jsdom instance is shared across test cases in a single file so reset the DOM
+        while (document.body.firstChild) {
+            document.body.removeChild(document.body.firstChild);
+        }
+    });
+
+    // Helper function to wait until the microtask queue is empty. This is needed for promise
+    // timing when calling imperative Apex.
+    async function flushPromises() {
+        return Promise.resolve();
+    }
+
     it('navigates to new record with default values', () => {
         // Currently creating a component importing from the lightning/pageReferenceUtils library
         // causes tests to automatically fail. Code that should work to test in the future has been
@@ -68,13 +81,16 @@ describe('c-nav-to-new-record', () => {
         */
     });
 
-    it('is accessible', () => {
+    it('is accessible', async () => {
         const element = createElement('c-nav-to-new-record-with-defaults', {
             is: NavToNewRecordWithDefaults
         });
 
         document.body.appendChild(element);
 
-        return Promise.resolve().then(() => expect(element).toBeAccessible());
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
+
+        await expect(element).toBeAccessible();
     });
 });

@@ -34,9 +34,7 @@ describe('c-wire-get-record-user', () => {
             // Emit data from @wire
             getRecordAdapter.emit(mockGetRecord);
 
-            // Wait for any asynchronous DOM updates. Jest
-            // will automatically wait for the Promise chain to complete before
-            // ending the test and fail the test if the promise rejects.
+            // Wait for any asynchronous DOM updates.
             await flushPromises();
 
             const userEls = element.shadowRoot.querySelectorAll('p');
@@ -56,14 +54,12 @@ describe('c-wire-get-record-user', () => {
             // Emit error from @wire
             getRecordAdapter.error();
 
-            // Wait for any asynchronous DOM updates. Jest
-            // will automatically wait for the Promise chain to complete before
-            // ending the test and fail the test if the promise rejects.
+            // Wait for any asynchronous DOM updates.
             await flushPromises();
 
             const errorPanelEl =
                 element.shadowRoot.querySelector('c-error-panel');
-            expect(errorPanelEl).not.toBeNull();
+            await expect(errorPanelEl).not.toBeNull();
         });
     });
 
@@ -79,7 +75,7 @@ describe('c-wire-get-record-user', () => {
 
         await flushPromises();
 
-        expect(element).toBeAccessible();
+        await expect(element).toBeAccessible();
     });
 
     it('is accessible when error is returned', async () => {
@@ -94,6 +90,6 @@ describe('c-wire-get-record-user', () => {
 
         await flushPromises();
 
-        expect(element).toBeAccessible();
+        await expect(element).toBeAccessible();
     });
 });

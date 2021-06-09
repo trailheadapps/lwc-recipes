@@ -72,9 +72,7 @@ describe('c-apex-imperative-method-with-params', () => {
         const buttonEl = element.shadowRoot.querySelector('lightning-button');
         buttonEl.click();
 
-        // Wait for any asynchronous DOM updates. Jest will automatically wait
-        // for the Promise chain to complete before ending the test and fail
-        // the test if the promise ends in the rejected state.
+        // Wait for any asynchronous DOM updates
         await flushPromises();
 
         // Validate parameters of mocked Apex call
@@ -102,9 +100,7 @@ describe('c-apex-imperative-method-with-params', () => {
         const buttonEl = element.shadowRoot.querySelector('lightning-button');
         buttonEl.click();
 
-        // Wait for any asynchronous DOM updates. Jest will automatically wait
-        // for the Promise chain to complete before ending the test and fail
-        // the test if the promise ends in the rejected state.
+        // Wait for any asynchronous DOM updates
         await flushPromises();
 
         // Select div for validating conditionally changed text content
@@ -127,9 +123,7 @@ describe('c-apex-imperative-method-with-params', () => {
         const buttonEl = element.shadowRoot.querySelector('lightning-button');
         buttonEl.click();
 
-        // Wait for any asynchronous DOM updates. Jest will automatically wait
-        // for the Promise chain to complete before ending the test and fail
-        // the test if the promise ends in the rejected state.
+        // Wait for any asynchronous DOM updates
         await flushPromises();
 
         const errorPanelEl = element.shadowRoot.querySelector('c-error-panel');
@@ -150,6 +144,7 @@ describe('c-apex-imperative-method-with-params', () => {
         const buttonEl = element.shadowRoot.querySelector('lightning-button');
         buttonEl.click();
 
+        // Wait for any asynchronous DOM updates
         await flushPromises();
 
         expect(element).toBeAccessible();
@@ -169,6 +164,7 @@ describe('c-apex-imperative-method-with-params', () => {
         const buttonEl = element.shadowRoot.querySelector('lightning-button');
         buttonEl.click();
 
+        // Wait for any asynchronous DOM updates
         await flushPromises();
 
         expect(element).toBeAccessible();

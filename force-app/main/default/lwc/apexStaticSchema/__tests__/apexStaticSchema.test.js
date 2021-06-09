@@ -19,8 +19,14 @@ describe('c-apex-static-schema', () => {
         jest.clearAllMocks();
     });
 
+    // Helper function to wait until the microtask queue is empty. This is needed for promise
+    // timing when calling imperative Apex.
+    async function flushPromises() {
+        return Promise.resolve();
+    }
+
     describe('getSingleContact @wire', () => {
-        it('renders single record when data returned', () => {
+        it('renders single record when data returned', async () => {
             // Create initial element
             const element = createElement('c-apex-static-schema', {
                 is: ApexStaticSchema
@@ -30,27 +36,21 @@ describe('c-apex-static-schema', () => {
             // Emit data from @wire
             getSingleContactAdapter.emit(mockGetSingleContact);
 
-            // Return a promise to wait for any asynchronous DOM updates. Jest
-            // will automatically wait for the Promise chain to complete before
-            // ending the test and fail the test if the promise rejects.
-            return Promise.resolve().then(() => {
-                // Select elements for validation
-                const detailEls = element.shadowRoot.querySelectorAll('p');
-                expect(detailEls[0].textContent).toBe(
-                    mockGetSingleContact.Name
-                );
-                expect(detailEls[1].textContent).toBe(
-                    mockGetSingleContact.Title
-                );
+            // Wait for any asynchronous DOM updates
+            await flushPromises();
 
-                const emailEl = element.shadowRoot.querySelector(
-                    'lightning-formatted-email'
-                );
-                expect(emailEl.value).toBe(mockGetSingleContact.Email);
-            });
+            // Select elements for validation
+            const detailEls = element.shadowRoot.querySelectorAll('p');
+            expect(detailEls[0].textContent).toBe(mockGetSingleContact.Name);
+            expect(detailEls[1].textContent).toBe(mockGetSingleContact.Title);
+
+            const emailEl = element.shadowRoot.querySelector(
+                'lightning-formatted-email'
+            );
+            expect(emailEl.value).toBe(mockGetSingleContact.Email);
         });
 
-        it('shows error panel element when error returned', () => {
+        it('shows error panel element when error returned', async () => {
             // Create initial element
             const element = createElement('c-apex-static-schema', {
                 is: ApexStaticSchema
@@ -63,15 +63,16 @@ describe('c-apex-static-schema', () => {
             // Return a promise to wait for any asynchronous DOM updates. Jest
             // will automatically wait for the Promise chain to complete before
             // ending the test and fail the test if the promise rejects.
-            return Promise.resolve().then(() => {
-                const errorPanelEl =
-                    element.shadowRoot.querySelector('c-error-panel');
-                expect(errorPanelEl).not.toBeNull();
-            });
+            // Wait for any asynchronous DOM updates
+            await flushPromises();
+
+            const errorPanelEl =
+                element.shadowRoot.querySelector('c-error-panel');
+            expect(errorPanelEl).not.toBeNull();
         });
     });
 
-    it('is accessible when data is returned', () => {
+    it('is accessible when data is returned', async () => {
         // Create initial element
         const element = createElement('c-apex-static-schema', {
             is: ApexStaticSchema
@@ -81,10 +82,13 @@ describe('c-apex-static-schema', () => {
         // Emit data from @wire
         getSingleContactAdapter.emit(mockGetSingleContact);
 
-        return Promise.resolve().then(() => expect(element).toBeAccessible());
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
+
+        await expect(element).toBeAccessible();
     });
 
-    it('is accessible when error is returned', () => {
+    it('is accessible when error is returned', async () => {
         // Create initial element
         const element = createElement('c-apex-static-schema', {
             is: ApexStaticSchema
@@ -94,6 +98,9 @@ describe('c-apex-static-schema', () => {
         // Emit error from @wire
         getSingleContactAdapter.error();
 
-        return Promise.resolve().then(() => expect(element).toBeAccessible());
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
+
+        await expect(element).toBeAccessible();
     });
 });

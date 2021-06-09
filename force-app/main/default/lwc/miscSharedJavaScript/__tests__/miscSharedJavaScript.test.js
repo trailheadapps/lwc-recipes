@@ -30,7 +30,12 @@ describe('c-misc-shared-java-script', () => {
         jest.clearAllMocks();
     });
 
-    it('calculates mortgage with default values', () => {
+    // Helper function to wait until the microtask queue is empty. This is needed for promise
+    // timing when calling imperative Apex.
+    async function flushPromises() {
+        return Promise.resolve();
+    }
+    it('calculates mortgage with default values', async () => {
         // Create initial element
         const element = createElement('c-misc-shared-java-script', {
             is: MiscSharedJavaScript
@@ -41,21 +46,18 @@ describe('c-misc-shared-java-script', () => {
         const buttonEl = element.shadowRoot.querySelector('lightning-button');
         buttonEl.click();
 
-        // Return a promise to wait for any asynchronous DOM updates. Jest
-        // will automatically wait for the Promise chain to complete before
-        // ending the test and fail the test if the promise ends in the
-        // rejected state
-        return Promise.resolve().then(() => {
-            // Check if default values for principal, term, and rate are used for mortgage calculcation
-            expect(calculateMonthlyPayment).toHaveBeenCalledWith(
-                PRINCIPAL_DEFAULT,
-                TERM_DEFAULT,
-                RATE_DEFAULT
-            );
-        });
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
+
+        // Check if default values for principal, term, and rate are used for mortgage calculcation
+        expect(calculateMonthlyPayment).toHaveBeenCalledWith(
+            PRINCIPAL_DEFAULT,
+            TERM_DEFAULT,
+            RATE_DEFAULT
+        );
     });
 
-    it('calculates mortgage with custom values', () => {
+    it('calculates mortgage with custom values', async () => {
         // Create initial element
         const element = createElement('c-misc-shared-java-script', {
             is: MiscSharedJavaScript
@@ -85,27 +87,27 @@ describe('c-misc-shared-java-script', () => {
         const buttonEl = element.shadowRoot.querySelector('lightning-button');
         buttonEl.click();
 
-        // Return a promise to wait for any asynchronous DOM updates. Jest
-        // will automatically wait for the Promise chain to complete before
-        // ending the test and fail the test if the promise ends in the
-        // rejected state
-        return Promise.resolve().then(() => {
-            // Check if default values for principal, term, and rate are used for mortgage calculcation
-            expect(calculateMonthlyPayment).toHaveBeenCalledWith(
-                PRINCIPAL_CUSTOM,
-                TERM_CUSTOM,
-                RATE_CUSTOM
-            );
-        });
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
+
+        // Check if default values for principal, term, and rate are used for mortgage calculcation
+        expect(calculateMonthlyPayment).toHaveBeenCalledWith(
+            PRINCIPAL_CUSTOM,
+            TERM_CUSTOM,
+            RATE_CUSTOM
+        );
     });
 
-    it('is accessible', () => {
+    it('is accessible', async () => {
         const element = createElement('c-misc-shared-java-script', {
             is: MiscSharedJavaScript
         });
 
         document.body.appendChild(element);
 
-        return Promise.resolve().then(() => expect(element).toBeAccessible());
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
+
+        await expect(element).toBeAccessible();
     });
 });

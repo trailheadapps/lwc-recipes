@@ -77,10 +77,7 @@ describe('c-libs-d3', () => {
         // Add event listener to catch toast event
         element.addEventListener(ShowToastEventName, handler);
 
-        // Wait for any asynchronous DOM updates. Jest
-        // will automatically wait for the Promise chain to complete before
-        // ending the test and fail the test if the promise ends in the
-        // rejected state
+        // Wait for any asynchronous DOM updates.
         await flushPromises();
 
         // Check if toast event has been fired
@@ -98,6 +95,6 @@ describe('c-libs-d3', () => {
 
         await flushPromises();
 
-        expect(element).toBeAccessible();
+        await expect(element).toBeAccessible();
     });
 });

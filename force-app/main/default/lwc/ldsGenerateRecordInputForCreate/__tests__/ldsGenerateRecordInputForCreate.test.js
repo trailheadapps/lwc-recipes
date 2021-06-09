@@ -71,9 +71,7 @@ describe('c-lds-generate-record-input-for-create', () => {
 
             generateMockRecordInput();
 
-            // Wait for any asynchronous DOM updates. Jest
-            // will automatically wait for the Promise chain to complete before
-            // ending the test and fail the test if the promise rejects.
+            // Wait for any asynchronous DOM updates.
             await flushPromises();
 
             const inputEls =
@@ -101,9 +99,7 @@ describe('c-lds-generate-record-input-for-create', () => {
             delete mockGenerateRecordInputForCreate.AreaNumber__c;
             generateMockRecordInput();
 
-            // Wait for any asynchronous DOM updates. Jest
-            // will automatically wait for the Promise chain to complete before
-            // ending the test and fail the test if the promise rejects.
+            // Wait for any asynchronous DOM updates.
             await flushPromises();
 
             const inputEls =
@@ -133,9 +129,7 @@ describe('c-lds-generate-record-input-for-create', () => {
             // Emit error from @wire
             getRecordCreateDefaultsAdapter.error();
 
-            // Return a promise to wait for any asynchronous DOM updates. Jest
-            // will automatically wait for the Promise chain to complete before
-            // ending the test and fail the test if the promise rejects.
+            // Wait for any asynchronous DOM updates.
             await flushPromises();
 
             const inputEls =
@@ -164,10 +158,9 @@ describe('c-lds-generate-record-input-for-create', () => {
 
             generateMockRecordInput();
 
-            // Return a promise to wait for any asynchronous DOM updates. Jest
-            // will automatically wait for the Promise chain to complete before
-            // ending the test and fail the test if the promise rejects.
+            // Wait for any asynchronous DOM updates.
             await flushPromises();
+
             const USER_INPUT_NAME = 'Gomez Inc.';
             const USER_INPUT_AREANUMBER = 2000;
 
@@ -187,10 +180,7 @@ describe('c-lds-generate-record-input-for-create', () => {
                 element.shadowRoot.querySelector('lightning-button');
             buttonEl.click();
 
-            // Return an immediate flushed promise (after the LDS call) to then
-            // wait for any asynchronous DOM updates. Jest will automatically wait
-            // for the Promise chain to complete before ending the test and fail
-            // the test if the promise ends in the rejected state.
+            // Wait for any asynchronous DOM updates.
             await flushPromises();
 
             // Validate parameters of mocked LDS call
@@ -223,10 +213,9 @@ describe('c-lds-generate-record-input-for-create', () => {
             const handler = jest.fn();
             element.addEventListener(ShowToastEventName, handler);
 
-            // Return a promise to wait for any asynchronous DOM updates. Jest
-            // will automatically wait for the Promise chain to complete before
-            // ending the test and fail the test if the promise rejects.
+            // Wait for any asynchronous DOM updates.
             await flushPromises();
+
             simulateUserInput(element, NAME_FIELD.fieldApiName, 'Gomez Inc.');
 
             // Select button for simulating user interaction
@@ -260,9 +249,7 @@ describe('c-lds-generate-record-input-for-create', () => {
             const handler = jest.fn();
             element.addEventListener(ShowToastEventName, handler);
 
-            // Wait for any asynchronous DOM updates. Jest
-            // will automatically wait for the Promise chain to complete before
-            // ending the test and fail the test if the promise rejects.
+            // Wait for any asynchronous DOM updates.
             await flushPromises();
 
             simulateUserInput(element, NAME_FIELD.fieldApiName, 'invalid');
@@ -296,7 +283,7 @@ describe('c-lds-generate-record-input-for-create', () => {
 
         await flushPromises();
 
-        expect(element).toBeAccessible();
+        await expect(element).toBeAccessible();
     });
 
     it('is accessible when error is returned', async () => {
@@ -315,6 +302,6 @@ describe('c-lds-generate-record-input-for-create', () => {
 
         await flushPromises();
 
-        expect(element).toBeAccessible();
+        await expect(element).toBeAccessible();
     });
 });
