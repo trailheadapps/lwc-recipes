@@ -60,9 +60,6 @@ describe('c-apex-static-schema', () => {
             // Emit error from @wire
             getSingleContactAdapter.error();
 
-            // Return a promise to wait for any asynchronous DOM updates. Jest
-            // will automatically wait for the Promise chain to complete before
-            // ending the test and fail the test if the promise rejects.
             // Wait for any asynchronous DOM updates
             await flushPromises();
 
