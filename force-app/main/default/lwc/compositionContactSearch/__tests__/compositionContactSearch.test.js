@@ -129,7 +129,7 @@ describe('c-composition-contact-search', () => {
         expect(errorPanelEl).not.toBeNull();
     });
 
-    it('is accessible when data is returned', async () => {
+    it('is accessible when data is returned', () => {
         const USER_INPUT = 'Amy';
 
         // Assign mock value for resolved Apex promise
@@ -150,13 +150,17 @@ describe('c-composition-contact-search', () => {
         // Run all fake timers.
         jest.runAllTimers();
 
-        // Wait for any asynchronous DOM updates.
-        await flushPromises();
-
-        //await expect(element).toBeAccessible();
+        // Return an immediate flushed promise (after the Apex call) to then
+        // wait for any asynchronous DOM updates. Jest will automatically wait
+        // for the Promise chain to complete before ending the test and fail
+        // the test if the promise ends in the rejected state.
+        // Cannot use async/await with timers because of https://github.com/facebook/jest/issues/4928
+        return flushPromises().then(() => {
+            expect(element).toBeAccessible();
+        });
     });
 
-    it('is accessible when error is returned', async () => {
+    it('is accessible when error is returned', () => {
         const USER_INPUT = 'invalid';
 
         // Assign mock value for rejected Apex promise
@@ -177,9 +181,13 @@ describe('c-composition-contact-search', () => {
         // Run all fake timers.
         jest.runAllTimers();
 
-        // Wait for any asynchronous DOM updates.
-        await flushPromises();
-
-        //await expect(element).toBeAccessible();
+        // Return an immediate flushed promise (after the Apex call) to then
+        // wait for any asynchronous DOM updates. Jest will automatically wait
+        // for the Promise chain to complete before ending the test and fail
+        // the test if the promise ends in the rejected state.
+        // Cannot use async/await with timers because of https://github.com/facebook/jest/issues/4928
+        return flushPromises().then(() => {
+            expect(element).toBeAccessible();
+        });
     });
 });
