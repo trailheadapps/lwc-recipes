@@ -93,8 +93,6 @@ describe('c-libs-d3', () => {
 
         document.body.appendChild(element);
 
-        await flushPromises();
-
         await expect(element).toBeAccessible();
     });
 });

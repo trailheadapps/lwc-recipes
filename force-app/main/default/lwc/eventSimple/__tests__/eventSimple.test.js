@@ -37,6 +37,7 @@ describe('c-event-simple', () => {
 
         // Wait for any asynchronous DOM updates
         await flushPromises();
+
         // Verify that property is correctly incremented.
         expect(pageEl.textContent).toBe('Page 2');
 
@@ -46,6 +47,7 @@ describe('c-event-simple', () => {
                 buttonEl.click();
             }
         });
+
         // Wait for any asynchronous DOM updates
         await flushPromises();
 
@@ -61,17 +63,18 @@ describe('c-event-simple', () => {
 
         // Wait for any asynchronous DOM updates
         await flushPromises();
+
         // Verify that property is not decremented, and the initial value stays on 1.
         expect(pageEl.textContent).toBe('Page 1');
     });
 
-    it('is accessible', () => {
+    it('is accessible', async () => {
         const element = createElement('c-event-simple', {
             is: EventSimple
         });
 
         document.body.appendChild(element);
 
-        return Promise.resolve().then(() => expect(element).toBeAccessible());
+        await expect(element).toBeAccessible();
     });
 });

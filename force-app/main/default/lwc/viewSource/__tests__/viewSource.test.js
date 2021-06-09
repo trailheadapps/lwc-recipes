@@ -9,12 +9,6 @@ describe('c-view-source', () => {
         }
     });
 
-    // Helper function to wait until the microtask queue is empty. This is needed for promise
-    // timing when calling imperative Apex.
-    async function flushPromises() {
-        return Promise.resolve();
-    }
-
     it('renders an a href that points to the LWC Recipes GitHub repo', () => {
         const BASE_URL =
             'https://github.com/trailheadapps/lwc-recipes/tree/main/force-app/main/default/';
@@ -40,9 +34,6 @@ describe('c-view-source', () => {
         });
 
         document.body.appendChild(element);
-
-        // Wait for any asynchronous DOM updates
-        await flushPromises();
 
         await expect(element).toBeAccessible();
     });

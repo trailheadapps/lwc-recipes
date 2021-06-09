@@ -115,9 +115,6 @@ describe('c-wire-get-object-info', () => {
         // Emit data from @wire
         getObjectInfoAdapter.emit(mockGetObjectInfo);
 
-        // Wait for any asynchronous DOM updates
-        await flushPromises();
-
         await expect(element).toBeAccessible();
     });
 
@@ -130,9 +127,6 @@ describe('c-wire-get-object-info', () => {
 
         // Emit error from @wire
         getObjectInfoAdapter.error();
-
-        // Wait for any asynchronous DOM updates
-        await flushPromises();
 
         await expect(element).toBeAccessible();
     });

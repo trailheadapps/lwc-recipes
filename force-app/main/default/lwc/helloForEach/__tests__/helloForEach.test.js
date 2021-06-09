@@ -9,12 +9,6 @@ describe('c-hello-for-each', () => {
         }
     });
 
-    // Helper function to wait until the microtask queue is empty. This is needed for promise
-    // timing when calling imperative Apex.
-    async function flushPromises() {
-        return Promise.resolve();
-    }
-
     it('displays contacts in specific order', () => {
         const EXPECTED = [
             'Amy Taylor, VP of Engineering',
@@ -41,9 +35,6 @@ describe('c-hello-for-each', () => {
         });
 
         document.body.appendChild(element);
-
-        // Wait for any asynchronous DOM updates
-        await flushPromises();
 
         await expect(element).toBeAccessible();
     });

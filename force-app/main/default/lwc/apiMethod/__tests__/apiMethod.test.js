@@ -9,12 +9,6 @@ describe('c-api-method', () => {
         }
     });
 
-    // Helper function to wait until the microtask queue is empty. This is needed for promise
-    // timing when calling imperative Apex.
-    async function flushPromises() {
-        return Promise.resolve();
-    }
-
     it('calls the public method "refresh" on the c-clock component', async () => {
         // Create initial element
         const element = createElement('c-api-method', {
@@ -30,9 +24,6 @@ describe('c-api-method', () => {
         const buttonEl = element.shadowRoot.querySelector('lightning-button');
         buttonEl.click();
 
-        // Wait for any asynchronous DOM updates
-        await flushPromises();
-
         // Compare if public method has been called
         expect(clockEl.refresh).toHaveBeenCalled();
     });
@@ -43,9 +34,6 @@ describe('c-api-method', () => {
         });
 
         document.body.appendChild(element);
-
-        // Wait for any asynchronous DOM updates
-        await flushPromises();
 
         await expect(element).toBeAccessible();
     });

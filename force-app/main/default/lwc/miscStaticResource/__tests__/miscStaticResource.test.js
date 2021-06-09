@@ -9,12 +9,6 @@ describe('c-misc-static-resource', () => {
         }
     });
 
-    // Helper function to wait until the microtask queue is empty. This is needed for promise
-    // timing when calling imperative Apex.
-    async function flushPromises() {
-        return Promise.resolve();
-    }
-
     it('sets img urls based on static resources', () => {
         // Create initial element
         const element = createElement('c-misc-static-resource', {
@@ -47,9 +41,6 @@ describe('c-misc-static-resource', () => {
         });
 
         document.body.appendChild(element);
-
-        // Wait for any asynchronous DOM updates
-        await flushPromises();
 
         await expect(element).toBeAccessible();
     });

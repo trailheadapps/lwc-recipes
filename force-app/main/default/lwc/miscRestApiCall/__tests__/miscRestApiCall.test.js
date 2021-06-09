@@ -155,8 +155,6 @@ describe('c-misc-rest-api-call', () => {
         const buttonEl = element.shadowRoot.querySelector('lightning-button');
         buttonEl.click();
 
-        await flushPromises();
-
         await expect(element).toBeAccessible();
     });
 
@@ -173,8 +171,6 @@ describe('c-misc-rest-api-call', () => {
         // Query the button for simulating the user action.
         const buttonEl = element.shadowRoot.querySelector('lightning-button');
         buttonEl.click();
-
-        await flushPromises();
 
         await expect(element).toBeAccessible();
     });

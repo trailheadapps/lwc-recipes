@@ -53,9 +53,6 @@ describe('c-wire-current-page-reference', () => {
 
         document.body.appendChild(element);
 
-        // Wait for any asynchronous DOM updates
-        await flushPromises();
-
         await expect(element).toBeAccessible();
     });
 });

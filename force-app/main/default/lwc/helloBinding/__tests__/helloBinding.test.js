@@ -40,13 +40,13 @@ describe('c-hello-binding', () => {
         expect(div.textContent).toBe(`Hello, ${EXPECTED}!`);
     });
 
-    it('is accessible', () => {
+    it('is accessible', async () => {
         const element = createElement('c-hello-binding', {
             is: HelloBinding
         });
 
         document.body.appendChild(element);
 
-        return Promise.resolve().then(() => expect(element).toBeAccessible());
+        await expect(element).toBeAccessible();
     });
 });

@@ -186,6 +186,7 @@ describe('c-event-bubbling', () => {
         // Emit data from @wire
         getContactListAdapter.emit(mockGetContactList);
 
+        // Wait for any asynchronous DOM updates
         await flushPromises();
 
         // Select element for validation

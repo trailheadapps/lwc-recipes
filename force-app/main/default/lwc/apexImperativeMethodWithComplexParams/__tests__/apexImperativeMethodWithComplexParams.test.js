@@ -181,9 +181,6 @@ describe('c-apex-imperative-method-with-complex-params', () => {
 
         document.body.appendChild(element);
 
-        // Wait for any asynchronous DOM updates
-        await flushPromises();
-
         await expect(element).toBeAccessible();
     });
 
@@ -200,9 +197,6 @@ describe('c-apex-imperative-method-with-complex-params', () => {
         // Select button for executing Apex call
         const buttonEl = element.shadowRoot.querySelector('lightning-button');
         buttonEl.click();
-
-        // Wait for any asynchronous DOM updates
-        await flushPromises();
 
         await expect(element).toBeAccessible();
     });

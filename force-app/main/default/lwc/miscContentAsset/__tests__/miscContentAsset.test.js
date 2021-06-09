@@ -9,12 +9,6 @@ describe('c-misc-content-asset', () => {
         }
     });
 
-    // Helper function to wait until the microtask queue is empty. This is needed for promise
-    // timing when calling imperative Apex.
-    async function flushPromises() {
-        return Promise.resolve();
-    }
-
     it('sets img url based on content asset', () => {
         // Create initial element
         const element = createElement('c-misc-content-asset', {
@@ -37,9 +31,6 @@ describe('c-misc-content-asset', () => {
         });
 
         document.body.appendChild(element);
-
-        // Wait for any asynchronous DOM updates
-        await flushPromises();
 
         await expect(element).toBeAccessible();
     });

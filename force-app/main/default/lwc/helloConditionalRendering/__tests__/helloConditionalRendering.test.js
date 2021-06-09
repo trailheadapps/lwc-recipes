@@ -63,9 +63,6 @@ describe('c-hello-conditional-rendering', () => {
         inputEl.checked = true;
         inputEl.dispatchEvent(new CustomEvent('change'));
 
-        // Wait for any asynchronous DOM updates
-        await flushPromises();
-
         await expect(element).toBeAccessible();
     });
 
@@ -75,9 +72,6 @@ describe('c-hello-conditional-rendering', () => {
         });
 
         document.body.appendChild(element);
-
-        // Wait for any asynchronous DOM updates
-        await flushPromises();
 
         await expect(element).toBeAccessible();
     });

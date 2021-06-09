@@ -178,9 +178,6 @@ describe('c-lms-subscriber-web-component', () => {
         // Emit data from @wire
         getRecordAdapter.emit(mockGetRecord);
 
-        // Wait for any asynchronous DOM updates
-        await flushPromises();
-
         await expect(element).toBeAccessible();
     });
 
@@ -193,9 +190,6 @@ describe('c-lms-subscriber-web-component', () => {
 
         // Emit data from @wire
         getRecordAdapter.emit(mockGetRecordNoPicture);
-
-        // Wait for any asynchronous DOM updates
-        await flushPromises();
 
         await expect(element).toBeAccessible();
     });
@@ -210,8 +204,6 @@ describe('c-lms-subscriber-web-component', () => {
         // Emit error from @wire
         getRecordAdapter.error();
 
-        // Wait for any asynchronous DOM updates
-        await flushPromises();
         await expect(element).toBeAccessible();
     });
 });

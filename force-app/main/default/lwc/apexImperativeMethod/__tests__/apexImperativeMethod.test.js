@@ -117,9 +117,6 @@ describe('c-apex-imperative-method', () => {
         const buttonEl = element.shadowRoot.querySelector('lightning-button');
         buttonEl.click();
 
-        // Wait for any asynchronous DOM updates
-        await flushPromises();
-
         await expect(element).toBeAccessible();
     });
 
@@ -136,9 +133,6 @@ describe('c-apex-imperative-method', () => {
         // Select button for executing Apex call
         const buttonEl = element.shadowRoot.querySelector('lightning-button');
         buttonEl.click();
-
-        // Wait for any asynchronous DOM updates
-        await flushPromises();
 
         await expect(element).toBeAccessible();
     });

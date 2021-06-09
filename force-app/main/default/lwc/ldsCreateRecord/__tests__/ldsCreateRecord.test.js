@@ -165,8 +165,6 @@ describe('c-lds-create-record', () => {
 
         document.body.appendChild(element);
 
-        await flushPromises();
-
         await expect(element).toBeAccessible();
     });
 });

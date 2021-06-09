@@ -100,9 +100,6 @@ describe('c-misc-multiple-templates', () => {
 
         document.body.appendChild(element);
 
-        // Wait for any asynchronous DOM updates
-        await flushPromises();
-
         await expect(element).toBeAccessible();
     });
 
@@ -116,9 +113,6 @@ describe('c-misc-multiple-templates', () => {
         // Simulate user click
         const button = element.shadowRoot.querySelector('lightning-button');
         button.click();
-
-        // Wait for any asynchronous DOM updates
-        await flushPromises();
 
         await expect(element).toBeAccessible();
     });

@@ -80,8 +80,6 @@ describe('c-libs-chartjs', () => {
 
         document.body.appendChild(element);
 
-        await flushPromises();
-
         await expect(element).toBeAccessible();
     });
 
@@ -93,8 +91,6 @@ describe('c-libs-chartjs', () => {
         });
 
         document.body.appendChild(element);
-
-        await flushPromises();
 
         await expect(element).toBeAccessible();
     });

@@ -189,9 +189,6 @@ describe('c-apex-wire-method-with-complex-params', () => {
         // Emit data from @wire
         checkApexTypesAdapter.emit(mockCheckApexTypes);
 
-        // Wait for any asynchronous DOM updates
-        await flushPromises();
-
         await expect(element).toBeAccessible();
     });
 
@@ -208,8 +205,6 @@ describe('c-apex-wire-method-with-complex-params', () => {
         // Simulate an Apex error
         checkApexTypesAdapter.error();
 
-        // Wait for any asynchronous DOM updates
-        await flushPromises();
         await expect(element).toBeAccessible();
     });
 });

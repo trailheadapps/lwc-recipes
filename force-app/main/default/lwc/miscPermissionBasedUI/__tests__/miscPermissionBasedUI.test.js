@@ -21,12 +21,6 @@ describe('c-misc-permission-based-u-i', () => {
         }
     });
 
-    // Helper function to wait until the microtask queue is empty. This is needed for promise
-    // timing when calling imperative Apex.
-    async function flushPromises() {
-        return Promise.resolve();
-    }
-
     it('displays the correct UI when custom permission is true', () => {
         const element = createElement('c-misc-permission-based-u-i', {
             is: MiscPermissionBasedUI
@@ -62,9 +56,6 @@ describe('c-misc-permission-based-u-i', () => {
 
         document.body.appendChild(element);
 
-        // Wait for any asynchronous DOM updates
-        await flushPromises();
-
         await expect(element).toBeAccessible();
     });
 
@@ -76,9 +67,6 @@ describe('c-misc-permission-based-u-i', () => {
         hasAccessRestrictedUI.mockReturnValueOnce(undefined);
 
         document.body.appendChild(element);
-
-        // Wait for any asynchronous DOM updates
-        await flushPromises();
 
         await expect(element).toBeAccessible();
     });

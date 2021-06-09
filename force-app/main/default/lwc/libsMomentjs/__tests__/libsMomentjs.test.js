@@ -112,8 +112,6 @@ describe('c-libs-momentjs', () => {
 
         document.body.appendChild(element);
 
-        await flushPromises();
-
         await expect(element).toBeAccessible();
     });
 
@@ -126,8 +124,6 @@ describe('c-libs-momentjs', () => {
             is: LibsMomentjs
         });
         document.body.appendChild(element);
-
-        await flushPromises();
 
         expect(element).toBeAccessible();
     });

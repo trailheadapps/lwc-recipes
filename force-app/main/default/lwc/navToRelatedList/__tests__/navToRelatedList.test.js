@@ -94,9 +94,6 @@ describe('c-nav-to-related-list', () => {
         // Simulate the data sent over wire adapter to hydrate the wired property
         getSingleAccountAdapter.emit(mockGetSingleAccount);
 
-        // Wait for any asynchronous DOM updates
-        await flushPromises();
-
         await expect(element).toBeAccessible();
     });
 
@@ -109,9 +106,6 @@ describe('c-nav-to-related-list', () => {
 
         // Emit error from @wire
         getSingleAccountAdapter.error();
-
-        // Wait for any asynchronous DOM updates
-        await flushPromises();
 
         await expect(element).toBeAccessible();
     });

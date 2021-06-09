@@ -131,9 +131,6 @@ describe('c-nav-to-record', () => {
         // Simulate the data sent over wire adapter to hydrate the wired property
         getSingleContactAdapter.emit(mockGetSingleContact);
 
-        // Wait for any asynchronous DOM updates
-        await flushPromises();
-
         await expect(element).toBeAccessible();
     });
 
@@ -146,9 +143,6 @@ describe('c-nav-to-record', () => {
 
         // Emit error from @wire
         getSingleContactAdapter.error();
-
-        // Wait for any asynchronous DOM updates
-        await flushPromises();
 
         await expect(element).toBeAccessible();
     });

@@ -9,12 +9,6 @@ describe('c-record-form-static-contact', () => {
         }
     });
 
-    // Helper function to wait until the microtask queue is empty. This is needed for promise
-    // timing when calling imperative Apex.
-    async function flushPromises() {
-        return Promise.resolve();
-    }
-
     it('renders lightning-record-form with given input values', () => {
         const RECORD_FIELDS_INPUT = [
             {
@@ -65,9 +59,6 @@ describe('c-record-form-static-contact', () => {
         });
 
         document.body.appendChild(element);
-
-        // Wait for any asynchronous DOM updates
-        await flushPromises();
 
         await expect(element).toBeAccessible();
     });

@@ -82,9 +82,6 @@ describe('c-wire-get-picklist-values', () => {
         // Emit data from @wire
         getPicklistValuesAdapter.emit(mockGetPicklistValues);
 
-        // Wait for any asynchronous DOM updates
-        await flushPromises();
-
         await expect(element).toBeAccessible();
     });
 
@@ -97,9 +94,6 @@ describe('c-wire-get-picklist-values', () => {
 
         // Emit error from @wire
         getPicklistValuesAdapter.error();
-
-        // Wait for any asynchronous DOM updates
-        await flushPromises();
 
         await expect(element).toBeAccessible();
     });
