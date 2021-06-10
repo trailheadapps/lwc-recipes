@@ -4,7 +4,11 @@
             <lightning-layout-item flexibility="auto" padding="around-small" size="12">
 
                 <c-user-search onusersearch={searchedUsers}></c-user-search>
-                <c-user-resut-table users={users}></c-user-resut-table>
+                <c-user-resut-table users={users} onassignequeues={selectedUsers}></c-user-resut-table>
+                <!-- <c-queue-select selectedusers={selectedUsers}></c-queue-select> -->
+                <!-- <c-queue-select users={selectedUsers}></c-queue-select> -->
+
+
 
             </lightning-layout-item>
 

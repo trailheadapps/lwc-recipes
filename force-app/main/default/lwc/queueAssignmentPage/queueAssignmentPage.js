@@ -5,6 +5,7 @@ export default class QueueAssignmentPage extends LightningElement {
     @track users = [];
 
     userData = [];
+    @track selectedUsers = [];
 
     searchedUsers(event) {
         this.users = [];

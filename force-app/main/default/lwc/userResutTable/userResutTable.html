@@ -1,23 +1,26 @@
 <template>
-    <lightning-card>
-        <lightning-layout horizontal-align="spread" multiple-rows="false">
+    <template if:true={hasUsers}>
+        <lightning-card>
+            <lightning-layout horizontal-align="spread" multiple-rows="false">
 
-            <!-- <lightning-input type="checkbox-button" label="Input Two" name="input2" checked required> -->
-            <!-- </lightning-input> -->
-            <template for:each={users} for:item="user">
-                <lightning-layout-item key={user.Id} size="6">
-                    <lightning-input type="checkbox-button" label={user.name} name={user.name}
-                        onclick={toggleUserSelect} data-user-id={user.Id}>
-                    </lightning-input>
-                    {user.Name}
+                <!-- <lightning-input type="checkbox-button" label="Input Two" name="input2" checked required> -->
+                <!-- </lightning-input> -->
+                <template for:each={users} for:item="user">
+                    <lightning-layout-item key={user.Id} size="6">
+                        <lightning-input type="checkbox-button" label={user.name} name={user.name}
+                            onchange={toggleUserSelect} data-user-id={user.Id}>
+                        </lightning-input>
+                        {user.Name}
+                    </lightning-layout-item>
+                </template>
+
+            </lightning-layout>
+            <lightning-layout>
+                <lightning-layout-item>
+                    <lightning-button variant="brand" label="Next" onclick={passToQueueAssignment}></lightning-button>
                 </lightning-layout-item>
-            </template>
+            </lightning-layout>
+        </lightning-card>
+    </template>
 
-        </lightning-layout>
-        <lightning-layout>
-            <lightning-layout-item>
-                <lightning-button variant="brand" label="Next" onclick={passToQueueAssignment}></lightning-button>
-            </lightning-layout-item>
-        </lightning-layout>
-    </lightning-card>
 </template>
