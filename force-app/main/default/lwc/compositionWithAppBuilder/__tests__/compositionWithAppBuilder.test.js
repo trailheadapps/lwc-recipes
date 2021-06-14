@@ -25,7 +25,7 @@ describe('c-composition-with-app-builder', () => {
         expect(element.numberValue).toBe(99);
     });
 
-    it('is accessible', () => {
+    it('is accessible', async () => {
         const element = createElement('c-composition-with-app-builder', {
             is: CompositionWithAppBuilder
         });
@@ -35,6 +35,6 @@ describe('c-composition-with-app-builder', () => {
         element.numberValue = 99;
         document.body.appendChild(element);
 
-        return Promise.resolve().then(() => expect(element).toBeAccessible());
+        await expect(element).toBeAccessible();
     });
 });

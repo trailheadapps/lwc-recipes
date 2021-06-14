@@ -19,7 +19,13 @@ describe('c-apex-wire-method-with-params-accessibility', () => {
         jest.clearAllMocks();
     });
 
-    it('is accessible when data is returned', () => {
+    // Helper function to wait until the microtask queue is empty. This is needed for promise
+    // timing when calling imperative Apex.
+    async function flushPromises() {
+        return Promise.resolve();
+    }
+
+    it('is accessible when data is returned', async () => {
         // Create initial element
         const element = createElement('c-apex-wire-method-with-params', {
             is: ApexWireMethodWithParams
@@ -30,10 +36,13 @@ describe('c-apex-wire-method-with-params-accessibility', () => {
         // Emit data from @wire
         findContactsAdapter.emit(mockFindContacts);
 
-        return Promise.resolve().then(() => expect(element).toBeAccessible());
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
+
+        await expect(element).toBeAccessible();
     });
 
-    it('is accessible when error is returned', () => {
+    it('is accessible when error is returned', async () => {
         // Create initial element
         const element = createElement('c-apex-wire-method-with-params', {
             is: ApexWireMethodWithParams
@@ -44,6 +53,9 @@ describe('c-apex-wire-method-with-params-accessibility', () => {
         // Emit error from @wire
         findContactsAdapter.error();
 
-        return Promise.resolve().then(() => expect(element).toBeAccessible());
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
+
+        await expect(element).toBeAccessible();
     });
 });

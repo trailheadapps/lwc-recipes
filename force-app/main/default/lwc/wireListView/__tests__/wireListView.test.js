@@ -17,8 +17,14 @@ describe('c-wire-list-view', () => {
         }
     });
 
+    // Helper function to wait until the microtask queue is empty. This is needed for promise
+    // timing when calling imperative Apex.
+    async function flushPromises() {
+        return Promise.resolve();
+    }
+
     describe('getListUi @wire data', () => {
-        it('renders contacts from listView', () => {
+        it('renders contacts from listView', async () => {
             // Create element
             const element = createElement('c-wire-list-view', {
                 is: WireListView
@@ -28,22 +34,20 @@ describe('c-wire-list-view', () => {
             // Emit data from @wire
             getListUiAdapter.emit(mockGetListUi);
 
-            // Return a promise to wait for any asynchronous DOM updates. Jest
-            // will automatically wait for the Promise chain to complete before
-            // ending the test and fail the test if the promise rejects.
-            return Promise.resolve().then(() => {
-                // Select elements for validation
-                const contactEls = element.shadowRoot.querySelectorAll('p');
-                expect(contactEls.length).toBe(mockGetListUi.records.count);
-                expect(contactEls[0].textContent).toBe(
-                    mockGetListUi.records.records[0].fields.Name.value
-                );
-            });
+            // Wait for any asynchronous DOM updates
+            await flushPromises();
+
+            // Select elements for validation
+            const contactEls = element.shadowRoot.querySelectorAll('p');
+            expect(contactEls.length).toBe(mockGetListUi.records.count);
+            expect(contactEls[0].textContent).toBe(
+                mockGetListUi.records.records[0].fields.Name.value
+            );
         });
     });
 
     describe('getListUi @wire error', () => {
-        it('shows error panel element', () => {
+        it('shows error panel element', async () => {
             // Create initial element
             const element = createElement('c-wire-list-view', {
                 is: WireListView
@@ -53,18 +57,16 @@ describe('c-wire-list-view', () => {
             // Emit error from @wire
             getListUiAdapter.error();
 
-            // Return a promise to wait for any asynchronous DOM updates. Jest
-            // will automatically wait for the Promise chain to complete before
-            // ending the test and fail the test if the promise rejects.
-            return Promise.resolve().then(() => {
-                const errorPanelEl =
-                    element.shadowRoot.querySelector('c-error-panel');
-                expect(errorPanelEl).not.toBeNull();
-            });
+            // Wait for any asynchronous DOM updates
+            await flushPromises();
+
+            const errorPanelEl =
+                element.shadowRoot.querySelector('c-error-panel');
+            expect(errorPanelEl).not.toBeNull();
         });
     });
 
-    it('is accessible when list view is returned', () => {
+    it('is accessible when list view is returned', async () => {
         // Create element
         const element = createElement('c-wire-list-view', {
             is: WireListView
@@ -74,10 +76,13 @@ describe('c-wire-list-view', () => {
         // Emit data from @wire
         getListUiAdapter.emit(mockGetListUi);
 
-        return Promise.resolve().then(() => expect(element).toBeAccessible());
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
+
+        await expect(element).toBeAccessible();
     });
 
-    it('is accessible when error is returned', () => {
+    it('is accessible when error is returned', async () => {
         // Create element
         const element = createElement('c-wire-list-view', {
             is: WireListView
@@ -87,6 +92,9 @@ describe('c-wire-list-view', () => {
         // Emit error from @wire
         getListUiAdapter.error();
 
-        return Promise.resolve().then(() => expect(element).toBeAccessible());
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
+
+        await expect(element).toBeAccessible();
     });
 });

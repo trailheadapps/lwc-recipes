@@ -9,7 +9,13 @@ describe('c-hello-binding', () => {
         }
     });
 
-    it('displays greeting specified by change event target', () => {
+    // Helper function to wait until the microtask queue is empty. This is needed for promise
+    // timing when calling imperative Apex.
+    async function flushPromises() {
+        return Promise.resolve();
+    }
+
+    it('displays greeting specified by change event target', async () => {
         const EXPECTED = 'Test';
 
         // Create element
@@ -27,22 +33,20 @@ describe('c-hello-binding', () => {
         inputEl.value = EXPECTED;
         inputEl.dispatchEvent(new CustomEvent('change'));
 
-        // Return a promise to wait for any asynchronous DOM updates. Jest
-        // will automatically wait for the Promise chain to complete before
-        // ending the test and fail the test if the promise rejects.
-        return Promise.resolve().then(() => {
-            // Verify displayed greeting
-            expect(div.textContent).toBe(`Hello, ${EXPECTED}!`);
-        });
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
+
+        // Verify displayed greeting
+        expect(div.textContent).toBe(`Hello, ${EXPECTED}!`);
     });
 
-    it('is accessible', () => {
+    it('is accessible', async () => {
         const element = createElement('c-hello-binding', {
             is: HelloBinding
         });
 
         document.body.appendChild(element);
 
-        return Promise.resolve().then(() => expect(element).toBeAccessible());
+        await expect(element).toBeAccessible();
     });
 });

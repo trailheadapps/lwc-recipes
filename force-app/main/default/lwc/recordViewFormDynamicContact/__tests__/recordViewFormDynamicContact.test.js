@@ -50,13 +50,13 @@ describe('c-record-view-form-dynamic-contact', () => {
         expect(outputFieldNames).toEqual(OUTPUT_FIELDS);
     });
 
-    it('is accessible', () => {
+    it('is accessible', async () => {
         const element = createElement('c-record-view-form-dynamic-contact', {
             is: RecordViewFormDynamicContact
         });
 
         document.body.appendChild(element);
 
-        return Promise.resolve().then(() => expect(element).toBeAccessible());
+        await expect(element).toBeAccessible();
     });
 });

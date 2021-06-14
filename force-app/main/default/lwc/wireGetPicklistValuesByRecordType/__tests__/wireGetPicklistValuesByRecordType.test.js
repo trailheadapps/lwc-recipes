@@ -19,8 +19,14 @@ describe('c-wire-get-picklist-values-by-record-type', () => {
         }
     });
 
+    // Helper function to wait until the microtask queue is empty. This is needed for promise
+    // timing when calling imperative Apex.
+    async function flushPromises() {
+        return Promise.resolve();
+    }
+
     describe('getPicklistValuesByRecordType @wire data', () => {
-        it('renders a lightning-tree with eight entries', () => {
+        it('renders a lightning-tree with eight entries', async () => {
             // Create element
             const element = createElement(
                 'c-wire-get-picklist-values-by-record-type',
@@ -35,20 +41,17 @@ describe('c-wire-get-picklist-values-by-record-type', () => {
                 mockGetPicklistValuesByRecordType
             );
 
-            // Return a promise to wait for any asynchronous DOM updates. Jest
-            // will automatically wait for the Promise chain to complete before
-            // ending the test and fail the test if the promise rejects.
-            return Promise.resolve().then(() => {
-                // Select elements for validation
-                const treeEl =
-                    element.shadowRoot.querySelector('lightning-tree');
-                expect(treeEl).not.toBeNull();
-            });
+            // Wait for any asynchronous DOM updates
+            await flushPromises();
+
+            // Select elements for validation
+            const treeEl = element.shadowRoot.querySelector('lightning-tree');
+            expect(treeEl).not.toBeNull();
         });
     });
 
     describe('getPicklistValuesByRecordType @wire error', () => {
-        it('shows error panel element', () => {
+        it('shows error panel element', async () => {
             // Create initial element
             const element = createElement(
                 'c-wire-get-picklist-values-by-record-type',
@@ -61,18 +64,16 @@ describe('c-wire-get-picklist-values-by-record-type', () => {
             // Emit error from @wire
             getPicklistValuesByRecordTypeAdapter.error();
 
-            // Return a promise to wait for any asynchronous DOM updates. Jest
-            // will automatically wait for the Promise chain to complete before
-            // ending the test and fail the test if the promise rejects.
-            return Promise.resolve().then(() => {
-                const errorPanelEl =
-                    element.shadowRoot.querySelector('c-error-panel');
-                expect(errorPanelEl).not.toBeNull();
-            });
+            // Wait for any asynchronous DOM updates
+            await flushPromises();
+
+            const errorPanelEl =
+                element.shadowRoot.querySelector('c-error-panel');
+            expect(errorPanelEl).not.toBeNull();
         });
     });
 
-    it('is accessible when picklist values are returned', () => {
+    it('is accessible when picklist values are returned', async () => {
         // Create element
         const element = createElement(
             'c-wire-get-picklist-values-by-record-type',
@@ -87,10 +88,13 @@ describe('c-wire-get-picklist-values-by-record-type', () => {
             mockGetPicklistValuesByRecordType
         );
 
-        return Promise.resolve().then(() => expect(element).toBeAccessible());
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
+
+        await expect(element).toBeAccessible();
     });
 
-    it('is accessible when error is returned', () => {
+    it('is accessible when error is returned', async () => {
         // Create element
         const element = createElement(
             'c-wire-get-picklist-values-by-record-type',
@@ -103,6 +107,9 @@ describe('c-wire-get-picklist-values-by-record-type', () => {
         // Emit error from @wire
         getPicklistValuesByRecordTypeAdapter.error();
 
-        return Promise.resolve().then(() => expect(element).toBeAccessible());
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
+
+        await expect(element).toBeAccessible();
     });
 });

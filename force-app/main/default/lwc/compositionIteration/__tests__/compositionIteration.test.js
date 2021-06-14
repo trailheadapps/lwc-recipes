@@ -41,13 +41,13 @@ describe('c-composition-iteration', () => {
         expect(contactTileNames).toEqual(CONTACT_LIST_EXPECTED);
     });
 
-    it('is accessible on initialization', () => {
+    it('is accessible on initialization', async () => {
         const element = createElement('c-composition-iteration', {
             is: CompositionIteration
         });
 
         document.body.appendChild(element);
 
-        return Promise.resolve().then(() => expect(element).toBeAccessible());
+        await expect(element).toBeAccessible();
     });
 });

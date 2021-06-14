@@ -17,8 +17,14 @@ describe('c-wire-get-object-info', () => {
         }
     });
 
+    // Helper function to wait until the microtask queue is empty. This is needed for promise
+    // timing when calling imperative Apex.
+    async function flushPromises() {
+        return Promise.resolve();
+    }
+
     describe('getObjectInfo @wire data', () => {
-        it('gets called with value from lightning-input field', () => {
+        it('gets called with value from lightning-input field', async () => {
             const USER_INPUT = 'Account';
 
             // Create element
@@ -37,17 +43,15 @@ describe('c-wire-get-object-info', () => {
                 element.shadowRoot.querySelector('lightning-button');
             buttonEl.click();
 
-            // Return a promise to wait for any asynchronous DOM updates. Jest
-            // will automatically wait for the Promise chain to complete before
-            // ending the test and fail the test if the promise rejects.
-            return Promise.resolve().then(() => {
-                expect(getObjectInfoAdapter.getLastConfig()).toEqual({
-                    objectApiName: USER_INPUT
-                });
+            // Wait for any asynchronous DOM updates
+            await flushPromises();
+
+            expect(getObjectInfoAdapter.getLastConfig()).toEqual({
+                objectApiName: USER_INPUT
             });
         });
 
-        it('renders the object info value in the pre tag', () => {
+        it('renders the object info value in the pre tag', async () => {
             const USER_INPUT = 'Account';
 
             // Create element
@@ -70,21 +74,19 @@ describe('c-wire-get-object-info', () => {
             // Emit data from @wire
             getObjectInfoAdapter.emit(mockGetObjectInfo);
 
-            // Return a promise to wait for any asynchronous DOM updates. Jest
-            // will automatically wait for the Promise chain to complete before
-            // ending the test and fail the test if the promise rejects.
-            return Promise.resolve().then(() => {
-                // Select element for validation
-                const preEl = element.shadowRoot.querySelector('pre');
-                expect(preEl.textContent).toEqual(
-                    JSON.stringify(mockGetObjectInfo, null, 2)
-                );
-            });
+            // Wait for any asynchronous DOM updates
+            await flushPromises();
+
+            // Select element for validation
+            const preEl = element.shadowRoot.querySelector('pre');
+            expect(preEl.textContent).toEqual(
+                JSON.stringify(mockGetObjectInfo, null, 2)
+            );
         });
     });
 
     describe('getObjectInfo @wire error', () => {
-        it('shows error panel element', () => {
+        it('shows error panel element', async () => {
             // Create initial element
             const element = createElement('c-wire-get-object-info', {
                 is: WireGetObjectInfo
@@ -94,18 +96,16 @@ describe('c-wire-get-object-info', () => {
             // Emit error from @wire
             getObjectInfoAdapter.error();
 
-            // Return a promise to wait for any asynchronous DOM updates. Jest
-            // will automatically wait for the Promise chain to complete before
-            // ending the test and fail the test if the promise rejects.
-            return Promise.resolve().then(() => {
-                const errorPanelEl =
-                    element.shadowRoot.querySelector('c-error-panel');
-                expect(errorPanelEl).not.toBeNull();
-            });
+            // Wait for any asynchronous DOM updates
+            await flushPromises();
+
+            const errorPanelEl =
+                element.shadowRoot.querySelector('c-error-panel');
+            expect(errorPanelEl).not.toBeNull();
         });
     });
 
-    it('is accessible when object info returned', () => {
+    it('is accessible when object info returned', async () => {
         // Create element
         const element = createElement('c-wire-get-object-info', {
             is: WireGetObjectInfo
@@ -115,10 +115,13 @@ describe('c-wire-get-object-info', () => {
         // Emit data from @wire
         getObjectInfoAdapter.emit(mockGetObjectInfo);
 
-        return Promise.resolve().then(() => expect(element).toBeAccessible());
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
+
+        await expect(element).toBeAccessible();
     });
 
-    it('is accessible when error returned', () => {
+    it('is accessible when error returned', async () => {
         // Create element
         const element = createElement('c-wire-get-object-info', {
             is: WireGetObjectInfo
@@ -128,6 +131,9 @@ describe('c-wire-get-object-info', () => {
         // Emit error from @wire
         getObjectInfoAdapter.error();
 
-        return Promise.resolve().then(() => expect(element).toBeAccessible());
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
+
+        await expect(element).toBeAccessible();
     });
 });

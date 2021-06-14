@@ -28,13 +28,13 @@ describe('c-view-source', () => {
         expect(linkEl.href).toBe(RESULT);
     });
 
-    it('is accessible', () => {
+    it('is accessible', async () => {
         const element = createElement('c-view-source', {
             is: ViewSource
         });
 
         document.body.appendChild(element);
 
-        return Promise.resolve().then(() => expect(element).toBeAccessible());
+        await expect(element).toBeAccessible();
     });
 });

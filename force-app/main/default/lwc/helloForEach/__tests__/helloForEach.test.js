@@ -29,13 +29,13 @@ describe('c-hello-for-each', () => {
         expect(contacts).toEqual(EXPECTED);
     });
 
-    it('is accessible on initialization', () => {
+    it('is accessible on initialization', async () => {
         const element = createElement('c-hello-for-each', {
             is: HelloForEach
         });
 
         document.body.appendChild(element);
 
-        return Promise.resolve().then(() => expect(element).toBeAccessible());
+        await expect(element).toBeAccessible();
     });
 });

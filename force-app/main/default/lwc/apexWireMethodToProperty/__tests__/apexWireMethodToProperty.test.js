@@ -19,8 +19,14 @@ describe('c-apex-wire-method-to-property', () => {
         jest.clearAllMocks();
     });
 
+    // Helper function to wait until the microtask queue is empty. This is needed for promise
+    // timing when calling imperative Apex.
+    async function flushPromises() {
+        return Promise.resolve();
+    }
+
     describe('getContactList @wire', () => {
-        it('renders six records when data returned', () => {
+        it('renders six records when data returned', async () => {
             // Create initial element
             const element = createElement('c-apex-wire-method-to-property', {
                 is: ApexWireMethodToProperty
@@ -30,19 +36,15 @@ describe('c-apex-wire-method-to-property', () => {
             // Emit data from @wire
             getContactListAdapter.emit(mockGetContactList);
 
-            // Return a promise to wait for any asynchronous DOM updates. Jest
-            // will automatically wait for the Promise chain to complete before
-            // ending the test and fail the test if the promise rejects.
-            return Promise.resolve().then(() => {
-                // Select elements for validation
-                const detailEls = element.shadowRoot.querySelectorAll('p');
-                expect(detailEls.length).toBe(mockGetContactList.length);
-                expect(detailEls[0].textContent).toBe(
-                    mockGetContactList[0].Name
-                );
-            });
+            // Wait for any asynchronous DOM updates
+            await flushPromises();
+
+            // Select elements for validation
+            const detailEls = element.shadowRoot.querySelectorAll('p');
+            expect(detailEls.length).toBe(mockGetContactList.length);
+            expect(detailEls[0].textContent).toBe(mockGetContactList[0].Name);
         });
-        it('shows error panel element when error returned', () => {
+        it('shows error panel element when error returned', async () => {
             // Create initial element
             const element = createElement('c-apex-wire-method-to-property', {
                 is: ApexWireMethodToProperty
@@ -52,18 +54,16 @@ describe('c-apex-wire-method-to-property', () => {
             // Emit error from @wire
             getContactListAdapter.error();
 
-            // Return a promise to wait for any asynchronous DOM updates. Jest
-            // will automatically wait for the Promise chain to complete before
-            // ending the test and fail the test if the promise rejects.
-            return Promise.resolve().then(() => {
-                const errorPanelEl =
-                    element.shadowRoot.querySelector('c-error-panel');
-                expect(errorPanelEl).not.toBeNull();
-            });
+            // Wait for any asynchronous DOM updates
+            await flushPromises();
+
+            const errorPanelEl =
+                element.shadowRoot.querySelector('c-error-panel');
+            expect(errorPanelEl).not.toBeNull();
         });
     });
 
-    it('is accessible when data is returned', () => {
+    it('is accessible when data is returned', async () => {
         // Create initial element
         const element = createElement('c-apex-wire-method-to-property', {
             is: ApexWireMethodToProperty
@@ -73,10 +73,13 @@ describe('c-apex-wire-method-to-property', () => {
         // Emit data from @wire
         getContactListAdapter.emit(mockGetContactList);
 
-        return Promise.resolve().then(() => expect(element).toBeAccessible());
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
+
+        await expect(element).toBeAccessible();
     });
 
-    it('is accessible when error is returned', () => {
+    it('is accessible when error is returned', async () => {
         // Create initial element
         const element = createElement('c-apex-wire-method-to-property', {
             is: ApexWireMethodToProperty
@@ -86,6 +89,9 @@ describe('c-apex-wire-method-to-property', () => {
         // Emit error from @wire
         getContactListAdapter.error();
 
-        return Promise.resolve().then(() => expect(element).toBeAccessible());
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
+
+        await expect(element).toBeAccessible();
     });
 });

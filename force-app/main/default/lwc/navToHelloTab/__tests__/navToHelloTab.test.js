@@ -6,7 +6,20 @@ import { getNavigateCalledWith } from 'lightning/navigation';
 // and see jest.config.js for jest config to use the mock
 
 describe('c-nav-to-hello-tab', () => {
-    it('navigates to hello tab', () => {
+    afterEach(() => {
+        // The jsdom instance is shared across test cases in a single file so reset the DOM
+        while (document.body.firstChild) {
+            document.body.removeChild(document.body.firstChild);
+        }
+    });
+
+    // Helper function to wait until the microtask queue is empty. This is needed for promise
+    // timing when calling imperative Apex.
+    async function flushPromises() {
+        return Promise.resolve();
+    }
+
+    it('navigates to hello tab', async () => {
         const NAV_TYPE = 'standard__navItemPage';
         const NAV_API_NAME = 'Hello';
 
@@ -16,27 +29,27 @@ describe('c-nav-to-hello-tab', () => {
         });
         document.body.appendChild(element);
 
-        return Promise.resolve().then(() => {
-            // get handle to button and fire click event
-            const buttonEl =
-                element.shadowRoot.querySelector('lightning-button');
-            buttonEl.click();
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
 
-            const { pageReference } = getNavigateCalledWith();
+        // get handle to button and fire click event
+        const buttonEl = element.shadowRoot.querySelector('lightning-button');
+        buttonEl.click();
 
-            // verify component called with correct event type
-            expect(pageReference.type).toBe(NAV_TYPE);
-            expect(pageReference.attributes.apiName).toBe(NAV_API_NAME);
-        });
+        const { pageReference } = getNavigateCalledWith();
+
+        // verify component called with correct event type
+        expect(pageReference.type).toBe(NAV_TYPE);
+        expect(pageReference.attributes.apiName).toBe(NAV_API_NAME);
     });
 
-    it('is accessible', () => {
+    it('is accessible', async () => {
         const element = createElement('c-nav-to-hello-tab', {
             is: NavToHelloTab
         });
 
         document.body.appendChild(element);
 
-        return Promise.resolve().then(() => expect(element).toBeAccessible());
+        await expect(element).toBeAccessible();
     });
 });

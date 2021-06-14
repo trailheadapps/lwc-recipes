@@ -49,13 +49,13 @@ describe('c-hello-iterator', () => {
         expect(element.shadowRoot.querySelectorAll('li > div')).toHaveLength(2);
     });
 
-    it('is accessible on initialization', () => {
+    it('is accessible on initialization', async () => {
         const element = createElement('c-hello-iterator', {
             is: HelloIterator
         });
 
         document.body.appendChild(element);
 
-        return Promise.resolve().then(() => expect(element).toBeAccessible());
+        await expect(element).toBeAccessible();
     });
 });

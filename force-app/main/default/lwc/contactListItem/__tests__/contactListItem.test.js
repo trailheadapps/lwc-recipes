@@ -56,7 +56,7 @@ describe('c-contact-list-item', () => {
         expect(selectEvent.detail).toBe(CONTACT.Id);
     });
 
-    it('is accessible', () => {
+    it('is accessible', async () => {
         const element = createElement('c-contact-list-item', {
             is: ContactListItem
         });
@@ -64,6 +64,6 @@ describe('c-contact-list-item', () => {
         element.contact = CONTACT;
         document.body.appendChild(element);
 
-        return Promise.resolve().then(() => expect(element).toBeAccessible());
+        await expect(element).toBeAccessible();
     });
 });

@@ -14,6 +14,12 @@ describe('c-todo-list', () => {
         }
     });
 
+    // Helper function to wait until the microtask queue is empty. This is needed for promise
+    // timing when calling imperative Apex.
+    async function flushPromises() {
+        return Promise.resolve();
+    }
+
     it('renders without any list items as default', () => {
         // Create initial element
         const element = createElement('c-todo-list', {
@@ -42,7 +48,7 @@ describe('c-todo-list', () => {
         expect(listItemEls.length).toBe(todosLength);
     });
 
-    it('renders the content of the first todo item', () => {
+    it('renders the content of the first todo item', async () => {
         // Create initial element
         const element = createElement('c-todo-list', {
             is: TodoList
@@ -51,19 +57,17 @@ describe('c-todo-list', () => {
         element.todos = TODOS;
         document.body.appendChild(element);
 
-        // Return a promise to wait for any asynchronous DOM updates. Jest
-        // will automatically wait for the Promise chain to complete before
-        // ending the test and fail the test if the promise rejects.
-        return Promise.resolve().then(() => {
-            // Validate rendered output for first todo object
-            let outputEls = element.shadowRoot.querySelectorAll('p');
-            expect(outputEls[0].textContent).toBe(TODOS[0].description);
-            const msg = `Priority: ${TODOS[0].priority}`;
-            expect(outputEls[1].textContent).toBe(msg);
-        });
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
+
+        // Validate rendered output for first todo object
+        let outputEls = element.shadowRoot.querySelectorAll('p');
+        expect(outputEls[0].textContent).toBe(TODOS[0].description);
+        const msg = `Priority: ${TODOS[0].priority}`;
+        expect(outputEls[1].textContent).toBe(msg);
     });
 
-    it('is accessible when todo items added', () => {
+    it('is accessible when todo items added', async () => {
         // Create initial element
         const element = createElement('c-todo-list', {
             is: TodoList
@@ -72,6 +76,6 @@ describe('c-todo-list', () => {
         element.todos = TODOS;
         document.body.appendChild(element);
 
-        return Promise.resolve().then(() => expect(element).toBeAccessible());
+        await expect(element).toBeAccessible();
     });
 });

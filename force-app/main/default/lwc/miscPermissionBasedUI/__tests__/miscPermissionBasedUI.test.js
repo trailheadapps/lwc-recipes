@@ -47,7 +47,7 @@ describe('c-misc-permission-based-u-i', () => {
         expect(pEl.textContent).toBe('The permission set is assigned');
     });
 
-    it('is accessible when custom permission is true', () => {
+    it('is accessible when custom permission is true', async () => {
         const element = createElement('c-misc-permission-based-u-i', {
             is: MiscPermissionBasedUI
         });
@@ -56,10 +56,10 @@ describe('c-misc-permission-based-u-i', () => {
 
         document.body.appendChild(element);
 
-        return Promise.resolve().then(() => expect(element).toBeAccessible());
+        await expect(element).toBeAccessible();
     });
 
-    it('is accessible when custom permission is false', () => {
+    it('is accessible when custom permission is false', async () => {
         const element = createElement('c-misc-permission-based-u-i', {
             is: MiscPermissionBasedUI
         });
@@ -68,6 +68,6 @@ describe('c-misc-permission-based-u-i', () => {
 
         document.body.appendChild(element);
 
-        return Promise.resolve().then(() => expect(element).toBeAccessible());
+        await expect(element).toBeAccessible();
     });
 });

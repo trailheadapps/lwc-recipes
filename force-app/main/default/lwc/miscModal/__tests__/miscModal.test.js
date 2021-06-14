@@ -9,7 +9,13 @@ describe('c-misc-modal', () => {
         }
     });
 
-    it('sets the public properties of the modal component based on default values', () => {
+    // Helper function to wait until the microtask queue is empty. This is needed for promise
+    // timing when calling imperative Apex.
+    async function flushPromises() {
+        return Promise.resolve();
+    }
+
+    it('sets the public properties of the modal component based on default values', async () => {
         const DEFAULT_HEADER = 'The modal header';
         const DEFAULT_CONTENT = 'The modal content';
 
@@ -23,17 +29,15 @@ describe('c-misc-modal', () => {
         const modalEl = element.shadowRoot.querySelector('c-modal');
         modalEl.show();
 
-        // Return a promise to wait for any asynchronous DOM updates. Jest
-        // will automatically wait for the Promise chain to complete before
-        // ending the test and fail the test if the promise rejects.
-        return Promise.resolve().then(() => {
-            // Compare if public properties on the modal component have been set
-            expect(modalEl.header).toBe(DEFAULT_HEADER);
-            expect(modalEl.textContent).toBe(DEFAULT_CONTENT);
-        });
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
+
+        // Compare if public properties on the modal component have been set
+        expect(modalEl.header).toBe(DEFAULT_HEADER);
+        expect(modalEl.textContent).toBe(DEFAULT_CONTENT);
     });
 
-    it('sets the public properties of the modal component based on user input', () => {
+    it('sets the public properties of the modal component based on user input', async () => {
         const CUSTOM_HEADER = 'A custom header';
         const CUSTOM_CONTENT = 'Some custom content';
 
@@ -61,17 +65,15 @@ describe('c-misc-modal', () => {
         const modalEl = element.shadowRoot.querySelector('c-modal');
         modalEl.show();
 
-        // Return a promise to wait for any asynchronous DOM updates. Jest
-        // will automatically wait for the Promise chain to complete before
-        // ending the test and fail the test if the promise rejects.
-        return Promise.resolve().then(() => {
-            // Compare if public properties on the modal component have been set
-            expect(modalEl.header).toBe(CUSTOM_HEADER);
-            expect(modalEl.textContent).toBe(CUSTOM_CONTENT);
-        });
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
+
+        // Compare if public properties on the modal component have been set
+        expect(modalEl.header).toBe(CUSTOM_HEADER);
+        expect(modalEl.textContent).toBe(CUSTOM_CONTENT);
     });
 
-    it('calls the public function "show" on the c-modal component', () => {
+    it('calls the public function "show" on the c-modal component', async () => {
         // Create initial element
         const element = createElement('c-misc-modal', {
             is: MiscModal
@@ -86,22 +88,20 @@ describe('c-misc-modal', () => {
         const buttonEl = element.shadowRoot.querySelector('lightning-button');
         buttonEl.click();
 
-        // Return a promise to wait for any asynchronous DOM updates. Jest
-        // will automatically wait for the Promise chain to complete before
-        // ending the test and fail the test if the promise rejects.
-        return Promise.resolve().then(() => {
-            // Compare if public function has been called
-            expect(modalEl.show).toHaveBeenCalled();
-        });
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
+
+        // Compare if public function has been called
+        expect(modalEl.show).toHaveBeenCalled();
     });
 
-    it('is accessible', () => {
+    it('is accessible', async () => {
         const element = createElement('c-misc-modal', {
             is: MiscModal
         });
 
         document.body.appendChild(element);
 
-        return Promise.resolve().then(() => expect(element).toBeAccessible());
+        await expect(element).toBeAccessible();
     });
 });

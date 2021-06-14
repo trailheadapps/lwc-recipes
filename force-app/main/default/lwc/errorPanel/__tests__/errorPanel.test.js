@@ -9,6 +9,12 @@ describe('c-error-panel', () => {
         }
     });
 
+    // Helper function to wait until the microtask queue is empty. This is needed for promise
+    // timing when calling imperative Apex.
+    async function flushPromises() {
+        return Promise.resolve();
+    }
+
     it('displays a default friendly message', () => {
         const MESSAGE = 'Error retrieving data';
 
@@ -47,7 +53,7 @@ describe('c-error-panel', () => {
         expect(inputEl).toBeNull();
     });
 
-    it('displays error details when errors are passed as parameters', () => {
+    it('displays error details when errors are passed as parameters', async () => {
         const ERROR_MESSAGES_INPUT = [
             { statusText: 'First bad error' },
             { statusText: 'Second bad error' }
@@ -65,18 +71,16 @@ describe('c-error-panel', () => {
         inputEl.checked = true;
         inputEl.dispatchEvent(new CustomEvent('click'));
 
-        // Return a promise to wait for any asynchronous DOM updates. Jest
-        // will automatically wait for the Promise chain to complete before
-        // ending the test and fail the test if the promise rejects.
-        return Promise.resolve().then(() => {
-            const messageTexts = Array.from(
-                element.shadowRoot.querySelectorAll('p')
-            ).map((errorMessage) => (errorMessage = errorMessage.textContent));
-            expect(messageTexts).toEqual(ERROR_MESSAGES_OUTPUT);
-        });
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
+
+        const messageTexts = Array.from(
+            element.shadowRoot.querySelectorAll('p')
+        ).map((errorMessage) => (errorMessage = errorMessage.textContent));
+        expect(messageTexts).toEqual(ERROR_MESSAGES_OUTPUT);
     });
 
-    it('is accessible when inline message', () => {
+    it('is accessible when inline message', async () => {
         const ERROR_MESSAGES_INPUT = [
             { statusText: 'First bad error' },
             { statusText: 'Second bad error' }
@@ -93,10 +97,13 @@ describe('c-error-panel', () => {
         // Click link to show details
         element.shadowRoot.querySelector('a').click();
 
-        return Promise.resolve().then(() => expect(element).toBeAccessible());
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
+
+        await expect(element).toBeAccessible();
     });
 
-    it('is accessible when no data illustration', () => {
+    it('is accessible when no data illustration', async () => {
         const ERROR_MESSAGES_INPUT = [
             { statusText: 'First bad error' },
             { statusText: 'Second bad error' }
@@ -113,6 +120,9 @@ describe('c-error-panel', () => {
         // Click link to show details
         element.shadowRoot.querySelector('a').click();
 
-        return Promise.resolve().then(() => expect(element).toBeAccessible());
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
+
+        await expect(element).toBeAccessible();
     });
 });
