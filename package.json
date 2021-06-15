@@ -15,7 +15,18 @@
         "prettier": "prettier --write \"**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,xml,yaml,yml}\"",
         "prettier:verify": "prettier --list-different \"**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,xml,yaml,yml}\"",
         "postinstall": "node bin/check-version.js && husky install",
-        "precommit": "npm run prettier:verify && [ $? -eq 0 ] && (npm run lint && npm run test) || exit -1"
+        "precommit": "lint-staged"
+    },
+    "lint-staged": {
+        "**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,xml,yaml,yml}": [
+            "prettier --write"
+        ],
+        "**/{aura,lwc}/**": [
+            "eslint"
+        ],
+        "**/lwc/**": [
+            "sfdx-lwc-jest --skipApiVersionCheck -- --bail --findRelatedTests"
+        ]
     },
     "author": "salesforce.com",
     "license": "CC0-1.0",
@@ -41,6 +52,7 @@
         "eslint-plugin-jest": "^23.8.2",
         "husky": "^5.2.0",
         "jest-canvas-mock": "^2.3.1",
+        "lint-staged": "^11.0.0",
         "prettier": "^2.3.0",
         "prettier-plugin-apex": "^1.9.1",
         "semver": "^7.3.5"
