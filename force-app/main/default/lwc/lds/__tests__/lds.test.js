@@ -1,14 +1,10 @@
 import { createElement } from 'lwc';
 import Lds from 'c/lds';
-import { registerApexTestWireAdapter } from '@salesforce/sfdx-lwc-jest';
 import { getNavigateCalledWith } from 'lightning/navigation';
 import getSingleContact from '@salesforce/apex/ContactController.getSingleContact';
 
 // Realistic data with a single record
 const mockGetSingleContact = require('./data/getSingleContact.json');
-
-// Register as Apex wire adapter. Some tests verify that provisioned values trigger desired behavior.
-const getSingleContactAdapter = registerApexTestWireAdapter(getSingleContact);
 
 describe('c-lds', () => {
     afterEach(() => {
@@ -35,7 +31,7 @@ describe('c-lds', () => {
             document.body.appendChild(element);
 
             // Emit data from @wire
-            getSingleContactAdapter.emit(mockGetSingleContact);
+            getSingleContact.emit(mockGetSingleContact);
 
             // Wait for any asynchronous DOM updates
             await flushPromises();
@@ -57,7 +53,7 @@ describe('c-lds', () => {
             document.body.appendChild(element);
 
             // Emit data from @wire
-            getSingleContactAdapter.emit(mockGetSingleContact);
+            getSingleContact.emit(mockGetSingleContact);
 
             // Wait for any asynchronous DOM updates
             await flushPromises();
@@ -87,7 +83,7 @@ describe('c-lds', () => {
             document.body.appendChild(element);
 
             // Emit error from @wire
-            getSingleContactAdapter.error();
+            getSingleContact.error();
 
             // Wait for any asynchronous DOM updates
             await flushPromises();

@@ -1,7 +1,6 @@
 import { createElement } from 'lwc';
 import LdsDeleteRecord from 'c/ldsDeleteRecord';
 import { deleteRecord } from 'lightning/uiRecordApi';
-import { registerApexTestWireAdapter } from '@salesforce/sfdx-lwc-jest';
 import getAccountList from '@salesforce/apex/AccountController.getAccountList';
 
 // Realistic data with a list of contacts
@@ -9,9 +8,6 @@ const mockGetAccountList = require('./data/getAccountList.json');
 // An empty list of records to verify the component does something reasonable
 // when there is no data to display
 const mockGetAccountListNoRecords = require('./data/getAccountListNoRecords.json');
-
-// Register as Apex wire adapter. Some tests verify that provisioned values trigger desired behavior.
-const getAccountListAdapter = registerApexTestWireAdapter(getAccountList);
 
 describe('c-lds-delete-record', () => {
     afterEach(() => {
@@ -38,7 +34,7 @@ describe('c-lds-delete-record', () => {
             document.body.appendChild(element);
 
             // Emit data from @wire
-            getAccountListAdapter.emit(mockGetAccountList);
+            getAccountList.emit(mockGetAccountList);
 
             // Wait for any asynchronous DOM updates
             await flushPromises();
@@ -66,7 +62,7 @@ describe('c-lds-delete-record', () => {
             document.body.appendChild(element);
 
             // Emit data from @wire
-            getAccountListAdapter.emit(mockGetAccountListNoRecords);
+            getAccountList.emit(mockGetAccountListNoRecords);
 
             // Wait for any asynchronous DOM updates
             await flushPromises();
@@ -93,7 +89,7 @@ describe('c-lds-delete-record', () => {
             document.body.appendChild(element);
 
             // Emit error from @wire
-            getAccountListAdapter.error();
+            getAccountList.error();
 
             // Wait for any asynchronous DOM updates
             await flushPromises();
@@ -112,7 +108,7 @@ describe('c-lds-delete-record', () => {
         document.body.appendChild(element);
 
         // Emit data from @wire
-        getAccountListAdapter.emit(mockGetAccountList);
+        getAccountList.emit(mockGetAccountList);
 
         // Wait for any asynchronous DOM updates
         await flushPromises();
@@ -139,7 +135,7 @@ describe('c-lds-delete-record', () => {
         document.body.appendChild(element);
 
         // Emit data from @wire
-        getAccountListAdapter.emit(mockGetAccountList);
+        getAccountList.emit(mockGetAccountList);
 
         // Wait for any asynchronous DOM updates
         await flushPromises();
@@ -155,7 +151,7 @@ describe('c-lds-delete-record', () => {
         document.body.appendChild(element);
 
         // Emit error from @wire
-        getAccountListAdapter.error();
+        getAccountList.error();
 
         // Wait for any asynchronous DOM updates
         await flushPromises();

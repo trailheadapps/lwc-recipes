@@ -1,23 +1,12 @@
 import { createElement } from 'lwc';
 import LmsPublisherWebComponent from 'c/lmsPublisherWebComponent';
-import { publish, MessageContext } from 'lightning/messageService';
+import { publish } from 'lightning/messageService';
 import RECORD_SELECTED_CHANNEL from '@salesforce/messageChannel/Record_Selected__c';
 
-import {
-    registerApexTestWireAdapter,
-    registerTestWireAdapter
-} from '@salesforce/sfdx-lwc-jest';
 import getContactList from '@salesforce/apex/ContactController.getContactList';
 
 // Realistic data with a list of contacts
 const mockGetContactList = require('./data/getContactList.json');
-
-// Register as Apex wire adapter. Some tests verify that data is retrieved.
-const getContactListAdapter = registerApexTestWireAdapter(getContactList);
-
-// Register as a standard wire adapter because the component under test requires this adapter.
-// We don't exercise this wire adapter in the tests.
-registerTestWireAdapter(MessageContext);
 
 describe('c-lms-publisher-web-component', () => {
     afterEach(() => {
@@ -42,7 +31,7 @@ describe('c-lms-publisher-web-component', () => {
             document.body.appendChild(element);
 
             // Emit data from @wire
-            getContactListAdapter.emit(mockGetContactList);
+            getContactList.emit(mockGetContactList);
 
             // Wait for any asynchronous DOM updates
             await flushPromises();
@@ -75,7 +64,7 @@ describe('c-lms-publisher-web-component', () => {
         document.body.appendChild(element);
 
         // Emit data from @wire
-        getContactListAdapter.emit(mockGetContactList);
+        getContactList.emit(mockGetContactList);
 
         // Wait for any asynchronous DOM updates
         await flushPromises();
@@ -108,7 +97,7 @@ describe('c-lms-publisher-web-component', () => {
         document.body.appendChild(element);
 
         // Emit data from @wire
-        getContactListAdapter.emit(mockGetContactList);
+        getContactList.emit(mockGetContactList);
 
         // Wait for any asynchronous DOM updates
         await flushPromises();

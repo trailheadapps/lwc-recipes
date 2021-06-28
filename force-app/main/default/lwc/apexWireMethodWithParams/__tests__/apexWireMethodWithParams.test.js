@@ -6,14 +6,10 @@
  **/
 import { createElement } from 'lwc';
 import ApexWireMethodWithParams from 'c/apexWireMethodWithParams';
-import { registerApexTestWireAdapter } from '@salesforce/sfdx-lwc-jest';
 import findContacts from '@salesforce/apex/ContactController.findContacts';
 
 // Realistic data with a list of contacts
 const mockFindContacts = require('./data/findContacts.json');
-
-// Register as Apex wire adapter. Some tests verify that provisioned values trigger desired behavior.
-const findContactsAdapter = registerApexTestWireAdapter(findContacts);
 
 describe('c-apex-wire-method-with-params', () => {
     beforeAll(() => {
@@ -58,8 +54,8 @@ describe('c-apex-wire-method-with-params', () => {
             // Wait for any asynchronous DOM updates
             await flushPromises();
 
-            // Validate parameters of wire adapter
-            expect(findContactsAdapter.getLastConfig()).toEqual(WIRE_PARAMETER);
+            // Validate parameters of @wire
+            expect(findContacts.getLastConfig()).toEqual(WIRE_PARAMETER);
         });
 
         it('renders data of one record', async () => {
@@ -80,7 +76,7 @@ describe('c-apex-wire-method-with-params', () => {
             jest.runAllTimers();
 
             // Emit data from @wire
-            findContactsAdapter.emit(mockFindContacts);
+            findContacts.emit(mockFindContacts);
 
             // Wait for any asynchronous DOM updates
             await flushPromises();
@@ -101,7 +97,7 @@ describe('c-apex-wire-method-with-params', () => {
             document.body.appendChild(element);
 
             // Emit error from @wire
-            findContactsAdapter.error();
+            findContacts.error();
 
             // Wait for any asynchronous DOM updates
             await flushPromises();

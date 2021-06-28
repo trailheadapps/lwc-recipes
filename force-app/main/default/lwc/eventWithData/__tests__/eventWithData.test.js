@@ -1,6 +1,5 @@
 import { createElement } from 'lwc';
 import EventWithData from 'c/eventWithData';
-import { registerApexTestWireAdapter } from '@salesforce/sfdx-lwc-jest';
 import getContactList from '@salesforce/apex/ContactController.getContactList';
 
 // Realistic data with a list of records
@@ -9,9 +8,6 @@ const mockGetContactList = require('./data/getContactList.json');
 // An empty list of records to verify the component does something reasonable
 // when there is no data to display
 const mockGetContactListNoRecords = require('./data/getContactListNoRecords.json');
-
-// Register as Apex wire adapter. Some tests verify that provisioned values trigger desired behavior.
-const getContactListAdapter = registerApexTestWireAdapter(getContactList);
 
 describe('c-event-with-data', () => {
     afterEach(() => {
@@ -36,7 +32,7 @@ describe('c-event-with-data', () => {
             document.body.appendChild(element);
 
             // Emit data from @wire
-            getContactListAdapter.emit(mockGetContactList);
+            getContactList.emit(mockGetContactList);
 
             // Wait for any asynchronous DOM updates
             await flushPromises();
@@ -56,7 +52,7 @@ describe('c-event-with-data', () => {
             document.body.appendChild(element);
 
             // Emit data from @wire
-            getContactListAdapter.emit(mockGetContactListNoRecords);
+            getContactList.emit(mockGetContactListNoRecords);
 
             // Wait for any asynchronous DOM updates
             await flushPromises();
@@ -80,7 +76,7 @@ describe('c-event-with-data', () => {
             document.body.appendChild(element);
 
             // Emit error from @wire
-            getContactListAdapter.error();
+            getContactList.error();
 
             // Wait for any asynchronous DOM updates
             await flushPromises();
@@ -99,7 +95,7 @@ describe('c-event-with-data', () => {
         document.body.appendChild(element);
 
         // Emit data from @wire
-        getContactListAdapter.emit(mockGetContactList);
+        getContactList.emit(mockGetContactList);
 
         // Wait for any asynchronous DOM updates
         await flushPromises();
@@ -132,7 +128,7 @@ describe('c-event-with-data', () => {
         document.body.appendChild(element);
 
         // Emit data from @wire
-        getContactListAdapter.emit(mockGetContactList);
+        getContactList.emit(mockGetContactList);
 
         // Wait for any asynchronous DOM updates
         await flushPromises();
@@ -148,7 +144,7 @@ describe('c-event-with-data', () => {
         document.body.appendChild(element);
 
         // Emit error from @wire
-        getContactListAdapter.error();
+        getContactList.error();
 
         // Wait for any asynchronous DOM updates
         await flushPromises();
@@ -164,7 +160,7 @@ describe('c-event-with-data', () => {
         document.body.appendChild(element);
 
         // Emit data from @wire
-        getContactListAdapter.emit(mockGetContactList);
+        getContactList.emit(mockGetContactList);
 
         // Wait for any asynchronous DOM updates
         await flushPromises();

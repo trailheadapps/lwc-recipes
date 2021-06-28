@@ -1,13 +1,9 @@
 import { createElement } from 'lwc';
 import ApexWireMethodWithParams from 'c/apexWireMethodWithParams';
-import { registerApexTestWireAdapter } from '@salesforce/sfdx-lwc-jest';
 import findContacts from '@salesforce/apex/ContactController.findContacts';
 
 // Realistic data with a list of contacts
 const mockFindContacts = require('./data/findContacts.json');
-
-// Register as Apex wire adapter. Some tests verify that provisioned values trigger desired behavior.
-const findContactsAdapter = registerApexTestWireAdapter(findContacts);
 
 describe('c-apex-wire-method-with-params-accessibility', () => {
     afterEach(() => {
@@ -34,7 +30,7 @@ describe('c-apex-wire-method-with-params-accessibility', () => {
         document.body.appendChild(element);
 
         // Emit data from @wire
-        findContactsAdapter.emit(mockFindContacts);
+        findContacts.emit(mockFindContacts);
 
         // Wait for any asynchronous DOM updates
         await flushPromises();
@@ -51,7 +47,7 @@ describe('c-apex-wire-method-with-params-accessibility', () => {
         document.body.appendChild(element);
 
         // Emit error from @wire
-        findContactsAdapter.error();
+        findContacts.error();
 
         // Wait for any asynchronous DOM updates
         await flushPromises();
