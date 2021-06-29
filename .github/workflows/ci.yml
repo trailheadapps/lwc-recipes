@@ -3,6 +3,7 @@ name: CI
 
 # Definition when the workflow should run
 on:
+    workflow_dispatch:
     push:
         branches:
             - main
