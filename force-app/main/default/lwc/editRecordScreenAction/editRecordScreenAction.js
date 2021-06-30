@@ -2,18 +2,18 @@ import { LightningElement, api, wire } from "lwc";
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import { CloseActionScreenEvent } from 'lightning/actions';
 import { getRecord, updateRecord } from 'lightning/uiRecordApi';
-import ID_FIELD from '@salesforce/schema/Account.Id';
-import NAME_FIELD from '@salesforce/schema/Account.Name';
+import ID_FIELD from '@salesforce/schema/Contact.Id';
+import NAME_FIELD from '@salesforce/schema/Contact.Name';
 
 export default class EditRecordScreenAction extends LightningElement {
     @api recordId;
     @api objectApiName;
 
     @wire(getRecord, { recordId: '$recordId', fields: [ NAME_FIELD ] })
-    account;
+    contact;
 
     get name() {
-        return this.account.data ? this.account.data.fields.Name.value : null;
+        return this.contact.data ? this.contact.data.fields.Name.value : null;
     }
 
     handleSave() {
@@ -28,7 +28,7 @@ export default class EditRecordScreenAction extends LightningElement {
             this.dispatchEvent(
                 new ShowToastEvent({
                     title: 'Success',
-                    message: 'Account updated',
+                    message: 'Contact updated',
                     variant: 'success'
                 })
             );
