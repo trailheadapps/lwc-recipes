@@ -10,16 +10,13 @@
                             <value>Contact.EditRecordAction</value>
                         </valueListItems>
                         <valueListItems>
+                            <value>Contact.DispatchEventAction</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>Contact.NavigateToRecordAction</value>
+                        </valueListItems>
+                        <valueListItems>
                             <value>Edit</value>
-                        </valueListItems>
-                        <valueListItems>
-                            <value>ChangeRecordType</value>
-                        </valueListItems>
-                        <valueListItems>
-                            <value>Global.NewCase</value>
-                        </valueListItems>
-                        <valueListItems>
-                            <value>FeedItem.ContentNote</value>
                         </valueListItems>
                         <valueListItems>
                             <value>Delete</value>
@@ -43,7 +40,6 @@
                     <value>10</value>
                 </componentInstanceProperties>
                 <componentName>force:highlightsPanel</componentName>
-                <identifier>force_highlightsPanel</identifier>
             </componentInstance>
         </itemInstances>
         <mode>Replace</mode>
@@ -170,11 +166,6 @@
         <itemInstances>
             <componentInstance>
                 <componentName>recordEditFormDynamicContact</componentName>
-            </componentInstance>
-        </itemInstances>
-        <itemInstances>
-            <componentInstance>
-                <componentName>wireGetRecordDynamicContact</componentName>
             </componentInstance>
         </itemInstances>
         <name>Facet-53b6ec73-0326-418b-aa0d-6b5969da2ca3</name>
