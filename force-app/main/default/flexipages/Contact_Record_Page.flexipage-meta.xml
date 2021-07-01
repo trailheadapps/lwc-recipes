@@ -168,6 +168,11 @@
                 <componentName>recordEditFormDynamicContact</componentName>
             </componentInstance>
         </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentName>wireGetRecordDynamicContact</componentName>
+            </componentInstance>
+        </itemInstances>
         <name>Facet-53b6ec73-0326-418b-aa0d-6b5969da2ca3</name>
         <type>Facet</type>
     </flexiPageRegions>
