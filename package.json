@@ -54,7 +54,7 @@
         "jest-canvas-mock": "^2.3.1",
         "lint-staged": "^11.0.0",
         "prettier": "^2.3.0",
-        "prettier-plugin-apex": "^1.9.1",
+        "prettier-plugin-apex": "^1.10.0",
         "semver": "^7.3.5"
     }
 }
