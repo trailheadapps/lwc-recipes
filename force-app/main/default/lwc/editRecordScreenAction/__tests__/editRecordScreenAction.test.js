@@ -6,7 +6,7 @@ import { getRecord, updateRecord } from 'lightning/uiRecordApi';
 import { registerLdsTestWireAdapter } from '@salesforce/sfdx-lwc-jest';
 
 const RECORD_ID = 'a00xx000000bqqDAAQ';
-const TOAST_MESSAGE = 'Account updated';
+const TOAST_MESSAGE = 'Contact updated';
 
 // Mock realistic data
 const mockGetRecord = require('./data/getRecord.json');
