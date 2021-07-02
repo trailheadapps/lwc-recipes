@@ -125,10 +125,4 @@ describe('c-modal', () => {
 
         await expect(element).toBeAccessible();
     });
-
-    /**
-     * It's not currently possible to pass HTML into a slot
-     * on component creation (createElement), so omitting this use case.
-     */
-    // it('is accessible when modal shown and it no public header property is set', () => {});
 });
