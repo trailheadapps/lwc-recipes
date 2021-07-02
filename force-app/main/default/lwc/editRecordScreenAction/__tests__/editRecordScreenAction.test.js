@@ -14,7 +14,7 @@ const mockGetRecord = require('./data/getRecord.json');
 // Register as an LDS wire adapter. Some tests verify the provisioned values trigger desired behavior.
 const getRecordAdapter = registerLdsTestWireAdapter(getRecord);
 
-describe('c-editRecordScreenAction', () =>{
+describe('c-editRecordScreenAction', () => {
     afterEach(() => {
         // The jsdom instance is shared across test cases in a single file so reset the DOM
         while (document.body.firstChild) {
@@ -32,10 +32,10 @@ describe('c-editRecordScreenAction', () =>{
         // Emit data from @wire
         getRecordAdapter.emit(mockGetRecord);
 
-        // Return a promise to wait for any asynchronous DOM updates. 
+        // Return a promise to wait for any asynchronous DOM updates.
         return Promise.resolve().then(() => {
-            expect(inputEl.value).toBe("User User");
-        });       
+            expect(inputEl.value).toBe('User User');
+        });
     });
 
     it('Test update record from updateRecord wire on save', async () => {
@@ -55,16 +55,25 @@ describe('c-editRecordScreenAction', () =>{
         const inputEl = element.shadowRoot.querySelectorAll('lightning-button');
         inputEl[1].click();
 
-        // Return a promise to wait for any asynchronous DOM updates. 
-        return Promise.resolve().then(() => {
-            const expectedFields = {"fields": {"Id": RECORD_ID, "Name": mockGetRecord.fields.Name.value }};
-            expect(updateRecord).toBeCalledTimes(1);
-            expect(updateRecord).toBeCalledWith(expectedFields);
-        }).then(() => {
-            // Check if toast event has been fired
-            expect(handler).toHaveBeenCalled();
-            expect(handler.mock.calls[0][0].detail.message).toBe(TOAST_MESSAGE);
-        });       
+        // Return a promise to wait for any asynchronous DOM updates.
+        return Promise.resolve()
+            .then(() => {
+                const expectedFields = {
+                    fields: {
+                        Id: RECORD_ID,
+                        Name: mockGetRecord.fields.Name.value
+                    }
+                };
+                expect(updateRecord).toBeCalledTimes(1);
+                expect(updateRecord).toBeCalledWith(expectedFields);
+            })
+            .then(() => {
+                // Check if toast event has been fired
+                expect(handler).toHaveBeenCalled();
+                expect(handler.mock.calls[0][0].detail.message).toBe(
+                    TOAST_MESSAGE
+                );
+            });
     });
 
     it('Test close screen on Cancel', async () => {

@@ -14,7 +14,7 @@ export default class DispatchEventHeadlessAction extends LightningElement {
         await this.sleep(2000);
         // Fire Toast message
         event = new ShowToastEvent({
-            title: 'I am a headless action on record with id '+ this.recordId,
+            title: 'I am a headless action on record with id ' + this.recordId,
             message: 'All done!'
         });
         this.dispatchEvent(event);

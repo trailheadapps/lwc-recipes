@@ -1,10 +1,22 @@
 <template>
-  <lightning-quick-action-panel header="Edit contact name">
-    <lightning-input label="Name" value={name} data-field="Name"></lightning-input>
+    <lightning-quick-action-panel header="Edit contact name">
+        <lightning-input
+            label="Name"
+            value={name}
+            data-field="Name"
+        ></lightning-input>
 
-    <div slot="footer">
-        <lightning-button variant="neutral" label="Cancel" onclick={handleCancel}></lightning-button>
-        <lightning-button variant="brand" label="Save" onclick={handleSave}></lightning-button>
-    </div>
-  </lightning-quick-action-panel>
+        <div slot="footer">
+            <lightning-button
+                variant="neutral"
+                label="Cancel"
+                onclick={handleCancel}
+            ></lightning-button>
+            <lightning-button
+                variant="brand"
+                label="Save"
+                onclick={handleSave}
+            ></lightning-button>
+        </div>
+    </lightning-quick-action-panel>
 </template>
