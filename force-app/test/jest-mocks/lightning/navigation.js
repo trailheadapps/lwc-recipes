@@ -3,7 +3,9 @@
  * @salesforce/sfdx-lwc-jest, see:
  * https://github.com/salesforce/sfdx-lwc-jest/blob/master/src/lightning-stubs/navigation/navigation.js
  */
-export const CurrentPageReference = jest.fn();
+
+import { createTestWireAdapter } from '@salesforce/wire-service-jest-util';
+export const CurrentPageReference = createTestWireAdapter(jest.fn());
 
 let _navigatePageReference, _generatePageReference, _replace;
 

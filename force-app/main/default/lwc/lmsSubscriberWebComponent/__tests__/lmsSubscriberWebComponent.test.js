@@ -2,23 +2,11 @@ import { createElement } from 'lwc';
 import LmsSubscriberWebComponent from 'c/lmsSubscriberWebComponent';
 import { ShowToastEventName } from 'lightning/platformShowToastEvent';
 import { getRecord } from 'lightning/uiRecordApi';
-import {
-    registerLdsTestWireAdapter,
-    registerTestWireAdapter
-} from '@salesforce/sfdx-lwc-jest';
-
 import { subscribe, MessageContext, publish } from 'lightning/messageService';
 import RECORD_SELECTED_CHANNEL from '@salesforce/messageChannel/Record_Selected__c';
 
 const mockGetRecord = require('./data/getRecord.json');
 const mockGetRecordNoPicture = require('./data/getRecordNoPicture.json');
-
-// Register as a LDS wire adapter. Some tests verify the provisioned values trigger desired behavior.
-const getRecordAdapter = registerLdsTestWireAdapter(getRecord);
-
-// Register as a standard wire adapter because the component under test requires this adapter.
-// We don't exercise this wire adapter in the tests.
-const messageContextWireAdapter = registerTestWireAdapter(MessageContext);
 
 describe('c-lms-subscriber-web-component', () => {
     afterEach(() => {
@@ -55,11 +43,7 @@ describe('c-lms-subscriber-web-component', () => {
 
         // Simulate pulishing a message using RECORD_SELECTED_CHANNEL message channel
         const messagePayload = { recordId: '001' };
-        publish(
-            messageContextWireAdapter,
-            RECORD_SELECTED_CHANNEL,
-            messagePayload
-        );
+        publish(MessageContext, RECORD_SELECTED_CHANNEL, messagePayload);
 
         // Wait for any asynchronous DOM updates
         await flushPromises();
@@ -67,7 +51,7 @@ describe('c-lms-subscriber-web-component', () => {
         // The component subscription should cause getRecord to be invoked.
         // Below we test that it is invoked with the messagePayload value
         // that was published with the simulated publish invocation above.
-        const { recordId } = getRecordAdapter.getLastConfig();
+        const { recordId } = getRecord.getLastConfig();
         expect(recordId).toEqual(messagePayload.recordId);
     });
 
@@ -80,7 +64,7 @@ describe('c-lms-subscriber-web-component', () => {
             document.body.appendChild(element);
 
             // Emit data from @wire
-            getRecordAdapter.emit(mockGetRecord);
+            getRecord.emit(mockGetRecord);
 
             // Wait for any asynchronous DOM updates
             await flushPromises();
@@ -115,7 +99,7 @@ describe('c-lms-subscriber-web-component', () => {
             document.body.appendChild(element);
 
             // Emit data from @wire
-            getRecordAdapter.emit(mockGetRecordNoPicture);
+            getRecord.emit(mockGetRecordNoPicture);
 
             // Wait for any asynchronous DOM updates
             await flushPromises();
@@ -159,7 +143,7 @@ describe('c-lms-subscriber-web-component', () => {
             element.addEventListener(ShowToastEventName, handler);
 
             // Emit error from @wire
-            getRecordAdapter.error();
+            getRecord.error();
 
             // Wait for any asynchronous DOM updates
             await flushPromises();
@@ -176,7 +160,7 @@ describe('c-lms-subscriber-web-component', () => {
         document.body.appendChild(element);
 
         // Emit data from @wire
-        getRecordAdapter.emit(mockGetRecord);
+        getRecord.emit(mockGetRecord);
 
         // Wait for any asynchronous DOM updates
         await flushPromises();
@@ -192,7 +176,7 @@ describe('c-lms-subscriber-web-component', () => {
         document.body.appendChild(element);
 
         // Emit data from @wire
-        getRecordAdapter.emit(mockGetRecordNoPicture);
+        getRecord.emit(mockGetRecordNoPicture);
 
         // Wait for any asynchronous DOM updates
         await flushPromises();
@@ -208,7 +192,7 @@ describe('c-lms-subscriber-web-component', () => {
         document.body.appendChild(element);
 
         // Emit error from @wire
-        getRecordAdapter.error();
+        getRecord.error();
 
         // Wait for any asynchronous DOM updates
         await flushPromises();

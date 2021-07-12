@@ -1,13 +1,9 @@
 import { createElement } from 'lwc';
 import WireGetObjectInfo from 'c/wireGetObjectInfo';
-import { registerLdsTestWireAdapter } from '@salesforce/sfdx-lwc-jest';
 import { getObjectInfo } from 'lightning/uiObjectInfoApi';
 
 // Mock realistic data
 const mockGetObjectInfo = require('./data/getObjectInfo.json');
-
-// Register as an LDS wire adapter. Some tests verify the provisioned values trigger desired behavior.
-const getObjectInfoAdapter = registerLdsTestWireAdapter(getObjectInfo);
 
 describe('c-wire-get-object-info', () => {
     afterEach(() => {
@@ -46,7 +42,7 @@ describe('c-wire-get-object-info', () => {
             // Wait for any asynchronous DOM updates
             await flushPromises();
 
-            expect(getObjectInfoAdapter.getLastConfig()).toEqual({
+            expect(getObjectInfo.getLastConfig()).toEqual({
                 objectApiName: USER_INPUT
             });
         });
@@ -72,7 +68,7 @@ describe('c-wire-get-object-info', () => {
             buttonEl.click();
 
             // Emit data from @wire
-            getObjectInfoAdapter.emit(mockGetObjectInfo);
+            getObjectInfo.emit(mockGetObjectInfo);
 
             // Wait for any asynchronous DOM updates
             await flushPromises();
@@ -94,7 +90,7 @@ describe('c-wire-get-object-info', () => {
             document.body.appendChild(element);
 
             // Emit error from @wire
-            getObjectInfoAdapter.error();
+            getObjectInfo.error();
 
             // Wait for any asynchronous DOM updates
             await flushPromises();
@@ -113,7 +109,7 @@ describe('c-wire-get-object-info', () => {
         document.body.appendChild(element);
 
         // Emit data from @wire
-        getObjectInfoAdapter.emit(mockGetObjectInfo);
+        getObjectInfo.emit(mockGetObjectInfo);
 
         // Wait for any asynchronous DOM updates
         await flushPromises();
@@ -129,7 +125,7 @@ describe('c-wire-get-object-info', () => {
         document.body.appendChild(element);
 
         // Emit error from @wire
-        getObjectInfoAdapter.error();
+        getObjectInfo.error();
 
         // Wait for any asynchronous DOM updates
         await flushPromises();

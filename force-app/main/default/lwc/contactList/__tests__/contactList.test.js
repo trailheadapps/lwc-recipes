@@ -1,13 +1,9 @@
 import { createElement } from 'lwc';
 import ContactList from 'c/contactList';
-import { registerApexTestWireAdapter } from '@salesforce/sfdx-lwc-jest';
 import getContactList from '@salesforce/apex/ContactController.getContactList';
 
 // Realistic data with a list of contacts
 const mockGetContactList = require('./data/getContactList.json');
-
-// Register as Apex wire adapter. Some tests verify that provisioned values trigger desired behavior.
-const getContactListAdapter = registerApexTestWireAdapter(getContactList);
 
 describe('c-contact-list', () => {
     afterEach(() => {
@@ -34,7 +30,7 @@ describe('c-contact-list', () => {
             document.body.appendChild(element);
 
             // Emit data from @wire
-            getContactListAdapter.emit(mockGetContactList);
+            getContactList.emit(mockGetContactList);
 
             // Wait for any asynchronous DOM updates
             await flushPromises();
@@ -64,7 +60,7 @@ describe('c-contact-list', () => {
         element.addEventListener('contactselect', handler);
 
         // Emit data from @wire
-        getContactListAdapter.emit(mockGetContactList);
+        getContactList.emit(mockGetContactList);
 
         // Wait for any asynchronous DOM updates
         await flushPromises();
@@ -89,7 +85,7 @@ describe('c-contact-list', () => {
         document.body.appendChild(element);
 
         // Emit data from @wire
-        getContactListAdapter.emit(mockGetContactList);
+        getContactList.emit(mockGetContactList);
 
         // Wait for any asynchronous DOM updates
         await flushPromises();

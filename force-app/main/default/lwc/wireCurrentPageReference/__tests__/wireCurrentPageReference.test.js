@@ -1,14 +1,9 @@
 import { createElement } from 'lwc';
 import WireCurrentPageReference from 'c/wireCurrentPageReference';
 import { CurrentPageReference } from 'lightning/navigation';
-import { registerTestWireAdapter } from '@salesforce/sfdx-lwc-jest';
 
 // Mock realistic data
 const mockCurrentPageReference = require('./data/CurrentPageReference.json');
-
-// Register as an standard test wire adapter. Some tests verify the provisioned values trigger desired behavior.
-const currentPageReferenceAdapter =
-    registerTestWireAdapter(CurrentPageReference);
 
 describe('c-wire-current-page-reference', () => {
     afterEach(() => {
@@ -36,7 +31,7 @@ describe('c-wire-current-page-reference', () => {
         expect(preEl).not.toBeNull();
 
         // Emit data from @wire
-        currentPageReferenceAdapter.emit(mockCurrentPageReference);
+        CurrentPageReference.emit(mockCurrentPageReference);
 
         // Wait for any asynchronous DOM updates
         await flushPromises();

@@ -1,13 +1,9 @@
 import { createElement } from 'lwc';
 import WireGetPicklistValues from 'c/wireGetPicklistValues';
-import { registerLdsTestWireAdapter } from '@salesforce/sfdx-lwc-jest';
 import { getPicklistValues } from 'lightning/uiObjectInfoApi';
 
 // Mock realistic data
 const mockGetPicklistValues = require('./data/getPicklistValues.json');
-
-// Register as an LDS wire adapter. Some tests verify the provisioned values trigger desired behavior.
-const getPicklistValuesAdapter = registerLdsTestWireAdapter(getPicklistValues);
 
 describe('c-wire-get-picklist-values', () => {
     afterEach(() => {
@@ -32,7 +28,7 @@ describe('c-wire-get-picklist-values', () => {
             document.body.appendChild(element);
 
             // Emit data from @wire
-            getPicklistValuesAdapter.emit(mockGetPicklistValues);
+            getPicklistValues.emit(mockGetPicklistValues);
 
             // Return a promise to wait for any asynchronous DOM updates. Jest
             // will automatically wait for the Promise chain to complete before
@@ -61,7 +57,7 @@ describe('c-wire-get-picklist-values', () => {
             document.body.appendChild(element);
 
             // Emit error from @wire
-            getPicklistValuesAdapter.error();
+            getPicklistValues.error();
 
             // Wait for any asynchronous DOM updates
             await flushPromises();
@@ -80,7 +76,7 @@ describe('c-wire-get-picklist-values', () => {
         document.body.appendChild(element);
 
         // Emit data from @wire
-        getPicklistValuesAdapter.emit(mockGetPicklistValues);
+        getPicklistValues.emit(mockGetPicklistValues);
 
         // Wait for any asynchronous DOM updates
         await flushPromises();
@@ -96,7 +92,7 @@ describe('c-wire-get-picklist-values', () => {
         document.body.appendChild(element);
 
         // Emit error from @wire
-        getPicklistValuesAdapter.error();
+        getPicklistValues.error();
 
         // Wait for any asynchronous DOM updates
         await flushPromises();

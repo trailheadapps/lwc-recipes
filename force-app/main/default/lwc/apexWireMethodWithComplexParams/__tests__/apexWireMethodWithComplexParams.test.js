@@ -1,6 +1,5 @@
 import { createElement } from 'lwc';
 import ApexWireMethodWithComplexParams from 'c/apexWireMethodWithComplexParams';
-import { registerApexTestWireAdapter } from '@salesforce/sfdx-lwc-jest';
 import checkApexTypes from '@salesforce/apex/ApexTypesController.checkApexTypes';
 
 // Sample default values for wired Apex call
@@ -30,9 +29,6 @@ const mockCheckApexTypes =
     '" as Integer value. The list contained ' +
     WIRE_INPUT.someList.length +
     ' items.';
-
-// Register as Apex wire adapter. Some tests verify that provisioned values trigger desired behavior.
-const checkApexTypesAdapter = registerApexTestWireAdapter(checkApexTypes);
 
 describe('c-apex-wire-method-with-complex-params', () => {
     afterEach(() => {
@@ -65,7 +61,7 @@ describe('c-apex-wire-method-with-complex-params', () => {
             await flushPromises();
 
             // Check if the default object is passed as parameter
-            expect(checkApexTypesAdapter.getLastConfig()).toEqual({
+            expect(checkApexTypes.getLastConfig()).toEqual({
                 wrapper: WIRE_INPUT_DEFAULT
             });
         });
@@ -105,7 +101,7 @@ describe('c-apex-wire-method-with-complex-params', () => {
             await flushPromises();
 
             // Validate parameters of mocked Apex call
-            expect(checkApexTypesAdapter.getLastConfig()).toEqual({
+            expect(checkApexTypes.getLastConfig()).toEqual({
                 wrapper: WIRE_INPUT
             });
         });
@@ -142,7 +138,7 @@ describe('c-apex-wire-method-with-complex-params', () => {
             inputListItemEl.dispatchEvent(new CustomEvent('change'));
 
             // Emit data from @wire
-            checkApexTypesAdapter.emit(mockCheckApexTypes);
+            checkApexTypes.emit(mockCheckApexTypes);
 
             // Wait for any asynchronous DOM updates
             await flushPromises();
@@ -165,7 +161,7 @@ describe('c-apex-wire-method-with-complex-params', () => {
             document.body.appendChild(element);
 
             // Simulate an Apex error
-            checkApexTypesAdapter.error();
+            checkApexTypes.error();
 
             // Wait for any asynchronous DOM updates
             await flushPromises();
@@ -187,7 +183,7 @@ describe('c-apex-wire-method-with-complex-params', () => {
         document.body.appendChild(element);
 
         // Emit data from @wire
-        checkApexTypesAdapter.emit(mockCheckApexTypes);
+        checkApexTypes.emit(mockCheckApexTypes);
 
         // Wait for any asynchronous DOM updates
         await flushPromises();
@@ -206,7 +202,7 @@ describe('c-apex-wire-method-with-complex-params', () => {
         document.body.appendChild(element);
 
         // Simulate an Apex error
-        checkApexTypesAdapter.error();
+        checkApexTypes.error();
 
         // Wait for any asynchronous DOM updates
         await flushPromises();

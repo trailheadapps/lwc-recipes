@@ -1,13 +1,9 @@
 import { createElement } from 'lwc';
 import ApexWireMethodToProperty from 'c/apexWireMethodToProperty';
-import { registerApexTestWireAdapter } from '@salesforce/sfdx-lwc-jest';
 import getContactList from '@salesforce/apex/ContactController.getContactList';
 
 // Realistic data with a list of contacts
 const mockGetContactList = require('./data/getContactList.json');
-
-// Register as Apex wire adapter. Some tests verify that provisioned values trigger desired behavior.
-const getContactListAdapter = registerApexTestWireAdapter(getContactList);
 
 describe('c-apex-wire-method-to-property', () => {
     afterEach(() => {
@@ -34,7 +30,7 @@ describe('c-apex-wire-method-to-property', () => {
             document.body.appendChild(element);
 
             // Emit data from @wire
-            getContactListAdapter.emit(mockGetContactList);
+            getContactList.emit(mockGetContactList);
 
             // Wait for any asynchronous DOM updates
             await flushPromises();
@@ -52,7 +48,7 @@ describe('c-apex-wire-method-to-property', () => {
             document.body.appendChild(element);
 
             // Emit error from @wire
-            getContactListAdapter.error();
+            getContactList.error();
 
             // Wait for any asynchronous DOM updates
             await flushPromises();
@@ -71,7 +67,7 @@ describe('c-apex-wire-method-to-property', () => {
         document.body.appendChild(element);
 
         // Emit data from @wire
-        getContactListAdapter.emit(mockGetContactList);
+        getContactList.emit(mockGetContactList);
 
         // Wait for any asynchronous DOM updates
         await flushPromises();
@@ -87,7 +83,7 @@ describe('c-apex-wire-method-to-property', () => {
         document.body.appendChild(element);
 
         // Emit error from @wire
-        getContactListAdapter.error();
+        getContactList.error();
 
         // Wait for any asynchronous DOM updates
         await flushPromises();
