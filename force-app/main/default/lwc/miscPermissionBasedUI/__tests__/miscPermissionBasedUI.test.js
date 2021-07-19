@@ -3,7 +3,7 @@ import MiscPermissionBasedUI from 'c/miscPermissionBasedUI';
 
 // Mocking custom permission module
 const mockModule = {
-    __esModule: true,
+    __esModule: true
 };
 
 const mockPermission = jest.fn();
@@ -30,7 +30,7 @@ describe('c-misc-permission-based-u-i', () => {
 
         mockPermission.mockReturnValueOnce({
             ...mockModule,
-            default: true,
+            default: true
         });
 
         document.body.appendChild(element);
@@ -48,7 +48,7 @@ describe('c-misc-permission-based-u-i', () => {
 
         mockPermission.mockReturnValueOnce({
             ...mockModule,
-            default: undefined,
+            default: undefined
         });
 
         document.body.appendChild(element);
@@ -66,7 +66,7 @@ describe('c-misc-permission-based-u-i', () => {
 
         mockPermission.mockReturnValueOnce({
             ...mockModule,
-            default: false,
+            default: false
         });
 
         document.body.appendChild(element);
@@ -84,7 +84,7 @@ describe('c-misc-permission-based-u-i', () => {
 
         mockPermission.mockReturnValueOnce({
             ...mockModule,
-            default: true,
+            default: true
         });
 
         document.body.appendChild(element);
@@ -99,7 +99,7 @@ describe('c-misc-permission-based-u-i', () => {
 
         mockPermission.mockReturnValueOnce({
             ...mockModule,
-            default: undefined,
+            default: undefined
         });
 
         document.body.appendChild(element);
