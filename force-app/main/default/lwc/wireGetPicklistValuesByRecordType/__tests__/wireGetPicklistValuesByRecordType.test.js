@@ -1,15 +1,9 @@
 import { createElement } from 'lwc';
 import WireGetPicklistValuesByRecordType from 'c/wireGetPicklistValuesByRecordType';
-import { registerLdsTestWireAdapter } from '@salesforce/sfdx-lwc-jest';
 import { getPicklistValuesByRecordType } from 'lightning/uiObjectInfoApi';
 
 // Mock realistic data
 const mockGetPicklistValuesByRecordType = require('./data/getPicklistValuesByRecordType.json');
-
-// Register as an LDS wire adapter. Some tests verify the provisioned values trigger desired behavior.
-const getPicklistValuesByRecordTypeAdapter = registerLdsTestWireAdapter(
-    getPicklistValuesByRecordType
-);
 
 describe('c-wire-get-picklist-values-by-record-type', () => {
     afterEach(() => {
@@ -37,7 +31,7 @@ describe('c-wire-get-picklist-values-by-record-type', () => {
             document.body.appendChild(element);
 
             // Emit data from @wire
-            getPicklistValuesByRecordTypeAdapter.emit(
+            getPicklistValuesByRecordType.emit(
                 mockGetPicklistValuesByRecordType
             );
 
@@ -62,7 +56,7 @@ describe('c-wire-get-picklist-values-by-record-type', () => {
             document.body.appendChild(element);
 
             // Emit error from @wire
-            getPicklistValuesByRecordTypeAdapter.error();
+            getPicklistValuesByRecordType.error();
 
             // Wait for any asynchronous DOM updates
             await flushPromises();
@@ -84,9 +78,7 @@ describe('c-wire-get-picklist-values-by-record-type', () => {
         document.body.appendChild(element);
 
         // Emit data from @wire
-        getPicklistValuesByRecordTypeAdapter.emit(
-            mockGetPicklistValuesByRecordType
-        );
+        getPicklistValuesByRecordType.emit(mockGetPicklistValuesByRecordType);
 
         // Wait for any asynchronous DOM updates
         await flushPromises();
@@ -105,7 +97,7 @@ describe('c-wire-get-picklist-values-by-record-type', () => {
         document.body.appendChild(element);
 
         // Emit error from @wire
-        getPicklistValuesByRecordTypeAdapter.error();
+        getPicklistValuesByRecordType.error();
 
         // Wait for any asynchronous DOM updates
         await flushPromises();

@@ -1,15 +1,24 @@
 import { createElement } from 'lwc';
 import Lds from 'c/lds';
-import { registerApexTestWireAdapter } from '@salesforce/sfdx-lwc-jest';
 import { getNavigateCalledWith } from 'lightning/navigation';
 import getSingleContact from '@salesforce/apex/ContactController.getSingleContact';
 
 // Realistic data with a single record
 const mockGetSingleContact = require('./data/getSingleContact.json');
 
-// Register as Apex wire adapter. Some tests verify that provisioned values trigger desired behavior.
-const getSingleContactAdapter = registerApexTestWireAdapter(getSingleContact);
-
+// Mock getSingleContact Apex wire adapter
+jest.mock(
+    '@salesforce/apex/ContactController.getSingleContact',
+    () => {
+        const {
+            createApexTestWireAdapter
+        } = require('@salesforce/sfdx-lwc-jest');
+        return {
+            default: createApexTestWireAdapter(jest.fn())
+        };
+    },
+    { virtual: true }
+);
 describe('c-lds', () => {
     afterEach(() => {
         // The jsdom instance is shared across test cases in a single file so reset the DOM
@@ -35,7 +44,7 @@ describe('c-lds', () => {
             document.body.appendChild(element);
 
             // Emit data from @wire
-            getSingleContactAdapter.emit(mockGetSingleContact);
+            getSingleContact.emit(mockGetSingleContact);
 
             // Wait for any asynchronous DOM updates
             await flushPromises();
@@ -57,7 +66,7 @@ describe('c-lds', () => {
             document.body.appendChild(element);
 
             // Emit data from @wire
-            getSingleContactAdapter.emit(mockGetSingleContact);
+            getSingleContact.emit(mockGetSingleContact);
 
             // Wait for any asynchronous DOM updates
             await flushPromises();
@@ -87,7 +96,7 @@ describe('c-lds', () => {
             document.body.appendChild(element);
 
             // Emit error from @wire
-            getSingleContactAdapter.error();
+            getSingleContact.error();
 
             // Wait for any asynchronous DOM updates
             await flushPromises();

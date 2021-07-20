@@ -1,13 +1,9 @@
 import { createElement } from 'lwc';
 import WireListView from 'c/wireListView';
 import { getListUi } from 'lightning/uiListApi';
-import { registerLdsTestWireAdapter } from '@salesforce/sfdx-lwc-jest';
 
 // Mock realistic data
 const mockGetListUi = require('./data/getListUi.json');
-
-// Register as an LDS wire adapter. Some tests verify the provisioned values trigger desired behavior.
-const getListUiAdapter = registerLdsTestWireAdapter(getListUi);
 
 describe('c-wire-list-view', () => {
     afterEach(() => {
@@ -32,7 +28,7 @@ describe('c-wire-list-view', () => {
             document.body.appendChild(element);
 
             // Emit data from @wire
-            getListUiAdapter.emit(mockGetListUi);
+            getListUi.emit(mockGetListUi);
 
             // Wait for any asynchronous DOM updates
             await flushPromises();
@@ -55,7 +51,7 @@ describe('c-wire-list-view', () => {
             document.body.appendChild(element);
 
             // Emit error from @wire
-            getListUiAdapter.error();
+            getListUi.error();
 
             // Wait for any asynchronous DOM updates
             await flushPromises();
@@ -74,7 +70,7 @@ describe('c-wire-list-view', () => {
         document.body.appendChild(element);
 
         // Emit data from @wire
-        getListUiAdapter.emit(mockGetListUi);
+        getListUi.emit(mockGetListUi);
 
         // Wait for any asynchronous DOM updates
         await flushPromises();
@@ -90,7 +86,7 @@ describe('c-wire-list-view', () => {
         document.body.appendChild(element);
 
         // Emit error from @wire
-        getListUiAdapter.error();
+        getListUi.error();
 
         // Wait for any asynchronous DOM updates
         await flushPromises();
