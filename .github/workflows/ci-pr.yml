@@ -3,6 +3,7 @@ name: CI on PR
 
 # Definition when the workflow should run
 on:
+    workflow_dispatch:
     pull_request:
         types: [opened, edited, synchronize, reopened]
         branches-ignore:
