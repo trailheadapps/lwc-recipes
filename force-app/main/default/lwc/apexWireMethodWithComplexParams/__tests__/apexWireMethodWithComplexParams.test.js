@@ -2,6 +2,20 @@ import { createElement } from 'lwc';
 import ApexWireMethodWithComplexParams from 'c/apexWireMethodWithComplexParams';
 import checkApexTypes from '@salesforce/apex/ApexTypesController.checkApexTypes';
 
+// Mock Apex wire adapter
+jest.mock(
+    '@salesforce/apex/ApexTypesController.checkApexTypes',
+    () => {
+        const {
+            createApexTestWireAdapter
+        } = require('@salesforce/sfdx-lwc-jest');
+        return {
+            default: createApexTestWireAdapter(jest.fn())
+        };
+    },
+    { virtual: true }
+);
+
 // Sample default values for wired Apex call
 const WIRE_INPUT_DEFAULT = {
     someString: 'Some string',

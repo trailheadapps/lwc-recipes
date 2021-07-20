@@ -10,6 +10,20 @@ import getSingleAccount from '@salesforce/apex/AccountController.getSingleAccoun
 // Mocked single account record Id is only field required
 const mockGetSingleAccount = require('./data/getSingleAccount.json');
 
+// Mock Apex wire adapter
+jest.mock(
+    '@salesforce/apex/AccountController.getSingleAccount',
+    () => {
+        const {
+            createApexTestWireAdapter
+        } = require('@salesforce/sfdx-lwc-jest');
+        return {
+            default: createApexTestWireAdapter(jest.fn())
+        };
+    },
+    { virtual: true }
+);
+
 describe('c-nav-to-related-list', () => {
     afterEach(() => {
         // The jsdom instance is shared across test cases in a single file so reset the DOM

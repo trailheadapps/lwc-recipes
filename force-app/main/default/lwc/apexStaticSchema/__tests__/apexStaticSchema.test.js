@@ -5,6 +5,20 @@ import getSingleContact from '@salesforce/apex/ContactController.getSingleContac
 // Realistic data with a single record
 const mockGetSingleContact = require('./data/getSingleContact.json');
 
+// Mock Apex wire adapter
+jest.mock(
+    '@salesforce/apex/ContactController.getSingleContact',
+    () => {
+        const {
+            createApexTestWireAdapter
+        } = require('@salesforce/sfdx-lwc-jest');
+        return {
+            default: createApexTestWireAdapter(jest.fn())
+        };
+    },
+    { virtual: true }
+);
+
 describe('c-apex-static-schema', () => {
     afterEach(() => {
         // The jsdom instance is shared across test cases in a single file so reset the DOM

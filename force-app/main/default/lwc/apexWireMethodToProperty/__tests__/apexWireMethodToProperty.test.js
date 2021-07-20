@@ -5,6 +5,20 @@ import getContactList from '@salesforce/apex/ContactController.getContactList';
 // Realistic data with a list of contacts
 const mockGetContactList = require('./data/getContactList.json');
 
+// Mock getContactList Apex wire adapter
+jest.mock(
+    '@salesforce/apex/ContactController.getContactList',
+    () => {
+        const {
+            createApexTestWireAdapter
+        } = require('@salesforce/sfdx-lwc-jest');
+        return {
+            default: createApexTestWireAdapter(jest.fn())
+        };
+    },
+    { virtual: true }
+);
+
 describe('c-apex-wire-method-to-property', () => {
     afterEach(() => {
         // The jsdom instance is shared across test cases in a single file so reset the DOM

@@ -11,6 +11,20 @@ import findContacts from '@salesforce/apex/ContactController.findContacts';
 // Realistic data with a list of contacts
 const mockFindContacts = require('./data/findContacts.json');
 
+// Mock Apex wire adapter
+jest.mock(
+    '@salesforce/apex/ContactController.findContacts',
+    () => {
+        const {
+            createApexTestWireAdapter
+        } = require('@salesforce/sfdx-lwc-jest');
+        return {
+            default: createApexTestWireAdapter(jest.fn())
+        };
+    },
+    { virtual: true }
+);
+
 describe('c-apex-wire-method-with-params', () => {
     beforeAll(() => {
         // We use fake timers as setTimeout is used in the JavaScript file.
