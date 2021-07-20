@@ -1,9 +1,8 @@
 import { createElement } from 'lwc';
 import NavToRelatedList from 'c/navToRelatedList';
 import { getNavigateCalledWith } from 'lightning/navigation';
-import { registerApexTestWireAdapter } from '@salesforce/sfdx-lwc-jest';
 import getSingleAccount from '@salesforce/apex/AccountController.getSingleAccount';
-// This test uses a mocked navigation plugin and mocked apex wire adapter.
+// This test uses a mocked navigation plugin and mocked apex wire.
 // See force-app/test/jest-mocks/navigation.js for the navigation mock,
 // the apex mock is standard with sfdx-lwc-jest,
 // and see jest.config.js for jest config to use the mocks
@@ -11,8 +10,19 @@ import getSingleAccount from '@salesforce/apex/AccountController.getSingleAccoun
 // Mocked single account record Id is only field required
 const mockGetSingleAccount = require('./data/getSingleAccount.json');
 
-// Register getSingleAccount as Apex wire adapter. Tests require mocked Account Id
-const getSingleAccountAdapter = registerApexTestWireAdapter(getSingleAccount);
+// Mock Apex wire adapter
+jest.mock(
+    '@salesforce/apex/AccountController.getSingleAccount',
+    () => {
+        const {
+            createApexTestWireAdapter
+        } = require('@salesforce/sfdx-lwc-jest');
+        return {
+            default: createApexTestWireAdapter(jest.fn())
+        };
+    },
+    { virtual: true }
+);
 
 describe('c-nav-to-related-list', () => {
     afterEach(() => {
@@ -42,8 +52,8 @@ describe('c-nav-to-related-list', () => {
         });
         document.body.appendChild(element);
 
-        // Simulate the data sent over wire adapter to hydrate the wired property
-        getSingleAccountAdapter.emit(mockGetSingleAccount);
+        // Simulate the data sent over wire to hydrate the wired property
+        getSingleAccount.emit(mockGetSingleAccount);
 
         // Wait for any asynchronous DOM updates
         await flushPromises();
@@ -75,7 +85,7 @@ describe('c-nav-to-related-list', () => {
         document.body.appendChild(element);
 
         // Emit error from @wire
-        getSingleAccountAdapter.error();
+        getSingleAccount.error();
 
         // Wait for any asynchronous DOM updates
         await flushPromises();
@@ -91,8 +101,8 @@ describe('c-nav-to-related-list', () => {
         });
         document.body.appendChild(element);
 
-        // Simulate the data sent over wire adapter to hydrate the wired property
-        getSingleAccountAdapter.emit(mockGetSingleAccount);
+        // Simulate the data sent over wire to hydrate the wired property
+        getSingleAccount.emit(mockGetSingleAccount);
 
         // Wait for any asynchronous DOM updates
         await flushPromises();
@@ -108,7 +118,7 @@ describe('c-nav-to-related-list', () => {
         document.body.appendChild(element);
 
         // Emit error from @wire
-        getSingleAccountAdapter.error();
+        getSingleAccount.error();
 
         // Wait for any asynchronous DOM updates
         await flushPromises();

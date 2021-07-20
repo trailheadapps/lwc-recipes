@@ -1,9 +1,8 @@
 import { createElement } from 'lwc';
 import NavToRecord from 'c/navToRecord';
 import { getNavigateCalledWith } from 'lightning/navigation';
-import { registerApexTestWireAdapter } from '@salesforce/sfdx-lwc-jest';
 import getSingleContact from '@salesforce/apex/ContactController.getSingleContact';
-// This test uses a mocked navigation plugin and mocked apex wire adapter.
+// This test uses a mocked navigation plugin and mocked apex wire.
 // See force-app/test/jest-mocks/navigation.js for the navigation mock,
 // the apex mock is standard with sfdx-lwc-jest,
 // and see jest.config.js for jest config to use the mocks
@@ -11,8 +10,19 @@ import getSingleContact from '@salesforce/apex/ContactController.getSingleContac
 // Mocked single contact record Id is only field required
 const mockGetSingleContact = require('./data/getSingleContact.json');
 
-// Register getSingleContact as Apex wire adapter. Tests require mocked Contact Id
-const getSingleContactAdapter = registerApexTestWireAdapter(getSingleContact);
+// Mock Apex wire adapter
+jest.mock(
+    '@salesforce/apex/ContactController.getSingleContact',
+    () => {
+        const {
+            createApexTestWireAdapter
+        } = require('@salesforce/sfdx-lwc-jest');
+        return {
+            default: createApexTestWireAdapter(jest.fn())
+        };
+    },
+    { virtual: true }
+);
 
 describe('c-nav-to-record', () => {
     afterEach(() => {
@@ -43,8 +53,8 @@ describe('c-nav-to-record', () => {
         });
         document.body.appendChild(element);
 
-        // Simulate the data sent over wire adapter to hydrate the wired property
-        getSingleContactAdapter.emit(mockGetSingleContact);
+        // Simulate the data sent over wire to hydrate the wired property
+        getSingleContact.emit(mockGetSingleContact);
 
         // Wait for any asynchronous DOM updates
         await flushPromises();
@@ -79,8 +89,8 @@ describe('c-nav-to-record', () => {
         });
         document.body.appendChild(element);
 
-        // Simulate the data sent over wire adapter to hydrate the wired property
-        getSingleContactAdapter.emit(mockGetSingleContact);
+        // Simulate the data sent over wire to hydrate the wired property
+        getSingleContact.emit(mockGetSingleContact);
 
         // Wait for any asynchronous DOM updates
         await flushPromises();
@@ -112,7 +122,7 @@ describe('c-nav-to-record', () => {
         document.body.appendChild(element);
 
         // Emit error from @wire
-        getSingleContactAdapter.error();
+        getSingleContact.error();
 
         // Wait for any asynchronous DOM updates
         await flushPromises();
@@ -128,8 +138,8 @@ describe('c-nav-to-record', () => {
         });
         document.body.appendChild(element);
 
-        // Simulate the data sent over wire adapter to hydrate the wired property
-        getSingleContactAdapter.emit(mockGetSingleContact);
+        // Simulate the data sent over wire to hydrate the wired property
+        getSingleContact.emit(mockGetSingleContact);
 
         // Wait for any asynchronous DOM updates
         await flushPromises();
@@ -145,7 +155,7 @@ describe('c-nav-to-record', () => {
         document.body.appendChild(element);
 
         // Emit error from @wire
-        getSingleContactAdapter.error();
+        getSingleContact.error();
 
         // Wait for any asynchronous DOM updates
         await flushPromises();
