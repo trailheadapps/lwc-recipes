@@ -41,11 +41,11 @@
     "devDependencies": {
         "@lwc/eslint-plugin-lwc": "^1.0.1",
         "@prettier/plugin-xml": "^0.13.1",
-        "@sa11y/jest": "^0.3.1",
+        "@sa11y/jest": "^0.4.3",
         "@salesforce/eslint-config-lwc": "^2.0.0",
         "@salesforce/eslint-plugin-aura": "^2.0.0",
         "@salesforce/eslint-plugin-lightning": "^0.1.1",
-        "@salesforce/sfdx-lwc-jest": "^0.12.6",
+        "@salesforce/sfdx-lwc-jest": "^0.14.0",
         "eslint": "^7.25.0",
         "eslint-config-prettier": "^8.3.0",
         "eslint-plugin-import": "^2.22.1",
