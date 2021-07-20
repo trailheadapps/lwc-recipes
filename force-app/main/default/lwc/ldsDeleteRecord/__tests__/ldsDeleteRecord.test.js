@@ -9,6 +9,19 @@ const mockGetAccountList = require('./data/getAccountList.json');
 // when there is no data to display
 const mockGetAccountListNoRecords = require('./data/getAccountListNoRecords.json');
 
+// Mock getAccountList Apex wire adapter
+jest.mock(
+    '@salesforce/apex/AccountController.getAccountList',
+    () => {
+        const {
+            createApexTestWireAdapter
+        } = require('@salesforce/sfdx-lwc-jest');
+        return {
+            default: createApexTestWireAdapter(jest.fn())
+        };
+    },
+    { virtual: true }
+);
 describe('c-lds-delete-record', () => {
     afterEach(() => {
         // The jsdom instance is shared across test cases in a single file so reset the DOM

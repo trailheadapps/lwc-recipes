@@ -9,6 +9,20 @@ const mockGetContactList = require('./data/getContactList.json');
 // when there is no data to display
 const mockGetContactListNoRecords = require('./data/getContactListNoRecords.json');
 
+// Mock getContactList Apex wire adapter
+jest.mock(
+    '@salesforce/apex/ContactController.getContactList',
+    () => {
+        const {
+            createApexTestWireAdapter
+        } = require('@salesforce/sfdx-lwc-jest');
+        return {
+            default: createApexTestWireAdapter(jest.fn())
+        };
+    },
+    { virtual: true }
+);
+
 describe('c-event-bubbling', () => {
     afterEach(() => {
         // The jsdom instance is shared across test cases in a single file so reset the DOM
