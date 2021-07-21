@@ -14,7 +14,7 @@
         "test:unit:coverage": "sfdx-lwc-jest --coverage --skipApiVersionCheck",
         "prettier": "prettier --write \"**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,xml,yaml,yml}\"",
         "prettier:verify": "prettier --list-different \"**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,xml,yaml,yml}\"",
-        "postinstall": "node bin/check-version.js && husky install",
+        "postinstall": "husky install",
         "precommit": "lint-staged"
     },
     "lint-staged": {
@@ -34,10 +34,6 @@
         "type": "git",
         "url": "git+https://github.com/trailheadapps/lwc-recipes"
     },
-    "engines": {
-        "node": ">= 10.13.0",
-        "npm": ">= 6.5.0"
-    },
     "devDependencies": {
         "@lwc/eslint-plugin-lwc": "^1.0.1",
         "@prettier/plugin-xml": "^0.13.1",
@@ -54,7 +50,10 @@
         "jest-canvas-mock": "^2.3.1",
         "lint-staged": "^11.0.0",
         "prettier": "^2.3.0",
-        "prettier-plugin-apex": "^1.9.1",
-        "semver": "^7.3.5"
+        "prettier-plugin-apex": "^1.9.1"
+    },
+    "volta": {
+        "node": "14.17.3",
+        "npm": "6.14.13"
     }
 }
