@@ -12,7 +12,7 @@ describe('c-misc-get-user-id', () => {
         }
     });
 
-    it('renders with default user id ', () => {
+    it('renders with default user id', () => {
         // Create initial element
         const element = createElement('c-misc-get-user-id', {
             is: MiscGetUserId

@@ -3,16 +3,12 @@ import { CloseScreenEventName } from 'lightning/actions';
 import EditRecordScreenAction from '../editRecordScreenAction';
 import { ShowToastEventName } from 'lightning/platformShowToastEvent';
 import { getRecord, updateRecord } from 'lightning/uiRecordApi';
-import { registerLdsTestWireAdapter } from '@salesforce/sfdx-lwc-jest';
 
 const RECORD_ID = 'a00xx000000bqqDAAQ';
 const TOAST_MESSAGE = 'Contact updated';
 
 // Mock realistic data
 const mockGetRecord = require('./data/getRecord.json');
-
-// Register as an LDS wire adapter. Some tests verify the provisioned values trigger desired behavior.
-const getRecordAdapter = registerLdsTestWireAdapter(getRecord);
 
 describe('c-editRecordScreenAction', () => {
     afterEach(() => {
@@ -30,7 +26,7 @@ describe('c-editRecordScreenAction', () => {
         document.body.appendChild(element);
         const inputEl = element.shadowRoot.querySelector('lightning-input');
         // Emit data from @wire
-        getRecordAdapter.emit(mockGetRecord);
+        getRecord.emit(mockGetRecord);
 
         // Return a promise to wait for any asynchronous DOM updates.
         return Promise.resolve().then(() => {
@@ -50,7 +46,7 @@ describe('c-editRecordScreenAction', () => {
         element.addEventListener(ShowToastEventName, handler);
 
         // Emit data from @wire to populate name field
-        await getRecordAdapter.emit(mockGetRecord);
+        await getRecord.emit(mockGetRecord);
         // Find the save button and click
         const inputEl = element.shadowRoot.querySelectorAll('lightning-button');
         inputEl[1].click();

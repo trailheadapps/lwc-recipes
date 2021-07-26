@@ -41,16 +41,16 @@
         "@salesforce/eslint-config-lwc": "^2.0.0",
         "@salesforce/eslint-plugin-aura": "^2.0.0",
         "@salesforce/eslint-plugin-lightning": "^0.1.1",
-        "@salesforce/sfdx-lwc-jest": "^0.14.0",
-        "eslint": "^7.25.0",
+        "@salesforce/sfdx-lwc-jest": "^1.0.0",
+        "eslint": "^7.31.0",
         "eslint-config-prettier": "^8.3.0",
         "eslint-plugin-import": "^2.22.1",
-        "eslint-plugin-jest": "^23.8.2",
-        "husky": "^5.2.0",
+        "eslint-plugin-jest": "^24.3.7",
+        "husky": "^7.0.1",
         "jest-canvas-mock": "^2.3.1",
         "lint-staged": "^11.0.0",
-        "prettier": "^2.3.0",
-        "prettier-plugin-apex": "^1.9.1"
+        "prettier": "^2.3.2",
+        "prettier-plugin-apex": "^1.10.0"
     },
     "volta": {
         "node": "14.17.3",
