@@ -72,6 +72,7 @@ jobs:
     scratch-org-test:
         runs-on: ubuntu-latest
         needs: format-lint-lwc-tests
+        if: ${{ github.actor != 'dependabot[bot]' }}
         steps:
             # Install Salesforce CLI
             - name: 'Install Salesforce CLI'
