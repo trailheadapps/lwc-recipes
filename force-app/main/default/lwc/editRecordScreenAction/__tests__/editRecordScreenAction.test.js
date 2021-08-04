@@ -24,13 +24,19 @@ describe('c-editRecordScreenAction', () => {
             is: EditRecordScreenAction
         });
         document.body.appendChild(element);
-        const inputEl = element.shadowRoot.querySelector('lightning-input');
+        const firstNameEl = element.shadowRoot.querySelector(
+            "[data-field='FirstName']"
+        );
+        const lastNameEl = element.shadowRoot.querySelector(
+            "[data-field='LastName']"
+        );
         // Emit data from @wire
-        getRecord.emit(mockGetRecord);
+        await getRecord.emit(mockGetRecord);
 
         // Return a promise to wait for any asynchronous DOM updates.
         return Promise.resolve().then(() => {
-            expect(inputEl.value).toBe('User User');
+            expect(firstNameEl.value).toBe('User');
+            expect(lastNameEl.value).toBe('User');
         });
     });
 
@@ -57,7 +63,8 @@ describe('c-editRecordScreenAction', () => {
                 const expectedFields = {
                     fields: {
                         Id: RECORD_ID,
-                        Name: mockGetRecord.fields.Name.value
+                        FirstName: mockGetRecord.fields.FirstName.value,
+                        LastName: mockGetRecord.fields.FirstName.value
                     }
                 };
                 expect(updateRecord).toBeCalledTimes(1);

@@ -7,9 +7,13 @@
             "displayValue": null,
             "value": "user@demo.net"
         },
-        "Name": {
+        "FirstName": {
             "displayValue": null,
-            "value": "User User"
+            "value": "User"
+        },
+        "LastName": {
+            "displayValue": null,
+            "value": "User"
         }
     },
     "id": "00517000002fESIAA2",

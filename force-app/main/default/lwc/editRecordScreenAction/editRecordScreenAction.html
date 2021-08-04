@@ -1,9 +1,15 @@
 <template>
     <lightning-quick-action-panel header="Edit contact name">
         <lightning-input
-            label="Name"
-            value={name}
-            data-field="Name"
+            label="First Name"
+            value={firstname}
+            data-field="FirstName"
+        ></lightning-input>
+
+        <lightning-input
+            label="Last Name"
+            value={lastname}
+            data-field="LastName"
         ></lightning-input>
 
         <div slot="footer">
