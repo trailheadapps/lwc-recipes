@@ -1,5 +1,4 @@
 import { createElement } from 'lwc';
-import MiscPermissionBasedUI from 'c/miscPermissionBasedUI';
 
 // Mocking custom permission module
 const mockModule = {
@@ -23,68 +22,97 @@ describe('c-misc-permission-based-u-i', () => {
         jest.clearAllMocks();
     });
 
-    it('displays the correct UI when custom permission is true', () => {
-        const element = createElement('c-misc-permission-based-u-i', {
-            is: MiscPermissionBasedUI
-        });
+    // Helper function to wait until the microtask queue is empty. This is needed for promise
+    // timing when calling imperative Apex.
+    async function flushPromises() {
+        return Promise.resolve();
+    }
 
+    it('displays the correct UI when custom permission is true', async () => {
         mockPermission.mockReturnValueOnce({
             ...mockModule,
             default: true
         });
 
-        document.body.appendChild(element);
-
-        return Promise.resolve(() => {
-            const pEl = element.shadowRoot.querySelector('p');
-            expect(pEl.textContent).toBe('The permission set is assigned');
+        let MiscPermissionBasedUI;
+        jest.isolateModules(() => {
+            MiscPermissionBasedUI = require('../miscPermissionBasedUI').default;
         });
-    });
 
-    it('displays the correct UI when custom permission is undefined', () => {
         const element = createElement('c-misc-permission-based-u-i', {
             is: MiscPermissionBasedUI
         });
 
+        document.body.appendChild(element);
+
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
+
+        const pEl = element.shadowRoot.querySelector('p');
+        expect(pEl.textContent).toBe('The permission set is assigned');
+    });
+
+    it('displays the correct UI when custom permission is undefined', async () => {
         mockPermission.mockReturnValueOnce({
             ...mockModule,
             default: undefined
         });
 
-        document.body.appendChild(element);
-
-        return Promise.resolve(() => {
-            const pEl = element.shadowRoot.querySelector('p');
-            expect(pEl.textContent).toBe('The permission set is not assigned');
+        let MiscPermissionBasedUI;
+        jest.isolateModules(() => {
+            MiscPermissionBasedUI = require('../miscPermissionBasedUI').default;
         });
-    });
 
-    it('displays the correct UI when custom permission is false', () => {
         const element = createElement('c-misc-permission-based-u-i', {
             is: MiscPermissionBasedUI
         });
 
+        document.body.appendChild(element);
+
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
+
+        const pEl = element.shadowRoot.querySelector('p');
+        expect(pEl.textContent).toBe('The permission set is not assigned');
+    });
+
+    it('displays the correct UI when custom permission is false', async () => {
         mockPermission.mockReturnValueOnce({
             ...mockModule,
             default: false
         });
 
-        document.body.appendChild(element);
-
-        return Promise.resolve(() => {
-            const pEl = element.shadowRoot.querySelector('p');
-            expect(pEl.textContent).toBe('The permission set is not assigned');
+        let MiscPermissionBasedUI;
+        jest.isolateModules(() => {
+            MiscPermissionBasedUI = require('../miscPermissionBasedUI').default;
         });
-    });
 
-    it('is accessible when custom permission is true', async () => {
         const element = createElement('c-misc-permission-based-u-i', {
             is: MiscPermissionBasedUI
         });
 
+        document.body.appendChild(element);
+
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
+
+        const pEl = element.shadowRoot.querySelector('p');
+        expect(pEl.textContent).toBe('The permission set is not assigned');
+    });
+
+    it('is accessible when custom permission is true', async () => {
         mockPermission.mockReturnValueOnce({
             ...mockModule,
             default: true
+        });
+
+        let MiscPermissionBasedUI;
+        jest.isolateModules(() => {
+            MiscPermissionBasedUI = require('../miscPermissionBasedUI').default;
+        });
+
+        const element = createElement('c-misc-permission-based-u-i', {
+            is: MiscPermissionBasedUI
         });
 
         document.body.appendChild(element);
@@ -93,13 +121,18 @@ describe('c-misc-permission-based-u-i', () => {
     });
 
     it('is accessible when custom permission is false', async () => {
-        const element = createElement('c-misc-permission-based-u-i', {
-            is: MiscPermissionBasedUI
-        });
-
         mockPermission.mockReturnValueOnce({
             ...mockModule,
             default: undefined
+        });
+
+        let MiscPermissionBasedUI;
+        jest.isolateModules(() => {
+            MiscPermissionBasedUI = require('../miscPermissionBasedUI').default;
+        });
+
+        const element = createElement('c-misc-permission-based-u-i', {
+            is: MiscPermissionBasedUI
         });
 
         document.body.appendChild(element);
