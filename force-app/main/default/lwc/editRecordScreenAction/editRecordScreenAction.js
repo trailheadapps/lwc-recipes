@@ -3,26 +3,41 @@ import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import { CloseActionScreenEvent } from 'lightning/actions';
 import { getRecord, updateRecord } from 'lightning/uiRecordApi';
 import ID_FIELD from '@salesforce/schema/Contact.Id';
-import NAME_FIELD from '@salesforce/schema/Contact.Name';
+import FIRSTNAME_FIELD from '@salesforce/schema/Contact.FirstName';
+import LASTNAME_FIELD from '@salesforce/schema/Contact.LastName';
 
 export default class EditRecordScreenAction extends LightningElement {
     @api recordId;
     @api objectApiName;
 
-    @wire(getRecord, { recordId: '$recordId', fields: [NAME_FIELD] })
+    @wire(getRecord, {
+        recordId: '$recordId',
+        fields: [FIRSTNAME_FIELD, LASTNAME_FIELD]
+    })
     contact;
 
-    get name() {
-        return this.contact.data ? this.contact.data.fields.Name.value : null;
+    get firstname() {
+        return this.contact.data
+            ? this.contact.data.fields.FirstName.value
+            : null;
+    }
+
+    get lastname() {
+        return this.contact.data
+            ? this.contact.data.fields.LastName.value
+            : null;
     }
 
     handleSave() {
         const fields = {};
         fields[ID_FIELD.fieldApiName] = this.recordId;
-        fields[NAME_FIELD.fieldApiName] = this.template.querySelector(
-            "[data-field='Name']"
+        fields[FIRSTNAME_FIELD.fieldApiName] = this.template.querySelector(
+            "[data-field='FirstName']"
         ).value;
-
+        fields[LASTNAME_FIELD.fieldApiName] = this.template.querySelector(
+            "[data-field='LastName']"
+        ).value;
+        console.dir(fields);
         const recordInput = { fields };
 
         updateRecord(recordInput)
