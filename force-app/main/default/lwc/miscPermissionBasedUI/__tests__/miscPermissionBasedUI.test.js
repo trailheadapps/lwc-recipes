@@ -1,5 +1,7 @@
 import { createElement } from 'lwc';
 
+const miscPermissionBasedUIModulePath = '../miscPermissionBasedUI';
+
 // Mocking custom permission module
 const mockModule = {
     __esModule: true
@@ -28,20 +30,30 @@ describe('c-misc-permission-based-u-i', () => {
         return Promise.resolve();
     }
 
+    function createIsolatedElement(tagName, options, modulePath) {
+        let module;
+
+        jest.isolateModules(() => {
+            module = require(modulePath).default;
+        });
+
+        return createElement(tagName, {
+            ...options,
+            is: module
+        });
+    }
+
     it('displays the correct UI when custom permission is true', async () => {
         mockPermission.mockReturnValueOnce({
             ...mockModule,
             default: true
         });
 
-        let MiscPermissionBasedUI;
-        jest.isolateModules(() => {
-            MiscPermissionBasedUI = require('../miscPermissionBasedUI').default;
-        });
-
-        const element = createElement('c-misc-permission-based-u-i', {
-            is: MiscPermissionBasedUI
-        });
+        const element = createIsolatedElement(
+            'c-misc-permission-based-u-i',
+            {},
+            miscPermissionBasedUIModulePath
+        );
 
         document.body.appendChild(element);
 
@@ -58,14 +70,11 @@ describe('c-misc-permission-based-u-i', () => {
             default: undefined
         });
 
-        let MiscPermissionBasedUI;
-        jest.isolateModules(() => {
-            MiscPermissionBasedUI = require('../miscPermissionBasedUI').default;
-        });
-
-        const element = createElement('c-misc-permission-based-u-i', {
-            is: MiscPermissionBasedUI
-        });
+        const element = createIsolatedElement(
+            'c-misc-permission-based-u-i',
+            {},
+            miscPermissionBasedUIModulePath
+        );
 
         document.body.appendChild(element);
 
@@ -82,14 +91,11 @@ describe('c-misc-permission-based-u-i', () => {
             default: false
         });
 
-        let MiscPermissionBasedUI;
-        jest.isolateModules(() => {
-            MiscPermissionBasedUI = require('../miscPermissionBasedUI').default;
-        });
-
-        const element = createElement('c-misc-permission-based-u-i', {
-            is: MiscPermissionBasedUI
-        });
+        const element = createIsolatedElement(
+            'c-misc-permission-based-u-i',
+            {},
+            miscPermissionBasedUIModulePath
+        );
 
         document.body.appendChild(element);
 
@@ -106,14 +112,11 @@ describe('c-misc-permission-based-u-i', () => {
             default: true
         });
 
-        let MiscPermissionBasedUI;
-        jest.isolateModules(() => {
-            MiscPermissionBasedUI = require('../miscPermissionBasedUI').default;
-        });
-
-        const element = createElement('c-misc-permission-based-u-i', {
-            is: MiscPermissionBasedUI
-        });
+        const element = createIsolatedElement(
+            'c-misc-permission-based-u-i',
+            {},
+            miscPermissionBasedUIModulePath
+        );
 
         document.body.appendChild(element);
 
@@ -126,14 +129,11 @@ describe('c-misc-permission-based-u-i', () => {
             default: undefined
         });
 
-        let MiscPermissionBasedUI;
-        jest.isolateModules(() => {
-            MiscPermissionBasedUI = require('../miscPermissionBasedUI').default;
-        });
-
-        const element = createElement('c-misc-permission-based-u-i', {
-            is: MiscPermissionBasedUI
-        });
+        const element = createIsolatedElement(
+            'c-misc-permission-based-u-i',
+            {},
+            miscPermissionBasedUIModulePath
+        );
 
         document.body.appendChild(element);
 
