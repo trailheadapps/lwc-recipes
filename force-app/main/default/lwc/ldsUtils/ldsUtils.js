@@ -18,6 +18,14 @@ export function reduceErrors(errors) {
                 if (Array.isArray(error.body)) {
                     return error.body.map((e) => e.message);
                 }
+                //fieldErrors from UI API DML
+                else if (error.body.output.fieldErrors) {
+                    let errorText = "";
+                    for (const [key, value] of Object.entries(error.body.output.fieldErrors)) {
+                        value.forEach(element => errorText+= element.message + "\n");
+                    }      
+                    return errorText;                
+                }               
                 // UI API DML, Apex and network errors
                 else if (error.body && typeof error.body.message === 'string') {
                     return error.body.message;
