@@ -71,7 +71,6 @@ describe('c-lds-utils', () => {
 
         it('reduces array of fieldErrors with error message string', () => {
             const FULL_ERROR = [
-                //error.body.output.fieldErrors["Number_of_Waves__c"][0].message
                 {
                     body: {
                         output: {
