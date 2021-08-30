@@ -76,7 +76,7 @@ describe('c-lds-utils', () => {
                         output: {
                             fieldErrors: {
                                 field1: [{ message: 'mockError1' }],
-                                field2: [{ message: 'mockError3' }]
+                                field2: [{ message: 'mockError2' }]
                             }
                         }
                     }
