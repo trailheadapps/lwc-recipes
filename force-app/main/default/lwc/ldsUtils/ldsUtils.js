@@ -20,9 +20,7 @@ export function reduceErrors(errors) {
                 }
                 //fieldErrors from UI API DML
                 else if (
-                    error.body &&
-                    error.body.output &&
-                    error.body.output.fieldErrors &&
+                    error?.body?.output?.fieldErrors &&
                     Object.keys(error.body.output.fieldErrors).length > 0
                 ) {
                     const fieldErrors = [];
