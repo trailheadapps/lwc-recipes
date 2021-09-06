@@ -18,14 +18,14 @@ export function reduceErrors(errors) {
                 if (Array.isArray(error.body)) {
                     return error.body.map((e) => e.message);
                 }
-                // Errors from page level errors
+                // Page level errors
                 else if (
                     error?.body?.pageErrors &&
                     error.body.pageErrors.length > 0
                 ) {
                     return error.body.pageErrors.map((e) => e.message);
                 }
-                // Errors from field level errors
+                // Field level errors
                 else if (
                     error?.body?.fieldErrors &&
                     Object.keys(error.body.fieldErrors).length > 0
@@ -40,14 +40,14 @@ export function reduceErrors(errors) {
                     );
                     return fieldErrors;
                 }
-                // Errors from UI API DML page level errors
+                // UI API DML page level errors
                 else if (
                     error?.body?.output?.errors &&
                     error.body.output.errors.length > 0
                 ) {
                     return error.body.output.errors.map((e) => e.message);
                 }
-                // Errors from UI API DML field level errors - PR 556
+                // UI API DML field level errors
                 else if (
                     error?.body?.output?.fieldErrors &&
                     Object.keys(error.body.output.fieldErrors).length > 0
