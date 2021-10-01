@@ -36,7 +36,7 @@
     },
     "devDependencies": {
         "@lwc/eslint-plugin-lwc": "^1.0.1",
-        "@prettier/plugin-xml": "^1.0.2",
+        "@prettier/plugin-xml": "^1.1.0",
         "@sa11y/jest": "^1.0.0",
         "@salesforce/eslint-config-lwc": "^2.1.1",
         "@salesforce/eslint-plugin-aura": "^2.0.0",
