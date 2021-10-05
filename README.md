@@ -33,7 +33,7 @@ A collection of easy-to-digest code examples for Lightning Web Components. Each 
 1. Set up your environment. Follow the steps in the [Quick Start: Lightning Web Components](https://trailhead.salesforce.com/content/learn/projects/quick-start-lightning-web-components/) Trailhead project. The steps include:
 
     - Enable Dev Hub in your Trailhead Playground
-    - Install Salesforce CLI
+    - Install Salesforce CLI (https://developer.salesforce.com/docs/atlas.en-us.234.0.sfdx_setup.meta/sfdx_setup/sfdx_setup_install_cli.htm)
     - Install Visual Studio Code
     - Install the Visual Studio Code Salesforce extensions, including the Lightning Web Components extension
 
