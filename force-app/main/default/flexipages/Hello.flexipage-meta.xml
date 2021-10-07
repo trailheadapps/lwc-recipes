@@ -7,12 +7,14 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
-                <componentName>hello</componentName>
+                <identifier>hello</identifier>
+<componentName>hello</componentName>
             </componentInstance>
         </itemInstances>
         <itemInstances>
             <componentInstance>
-                <componentName>helloBinding</componentName>
+                <identifier>helloBinding</identifier>
+<componentName>helloBinding</componentName>
             </componentInstance>
         </itemInstances>
         <name>region2</name>
@@ -21,12 +23,14 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
-                <componentName>helloExpressions</componentName>
+                <identifier>helloExpressions</identifier>
+<componentName>helloExpressions</componentName>
             </componentInstance>
         </itemInstances>
         <itemInstances>
             <componentInstance>
-                <componentName>helloConditionalRendering</componentName>
+                <identifier>helloConditionalRendering</identifier>
+<componentName>helloConditionalRendering</componentName>
             </componentInstance>
         </itemInstances>
         <name>region3</name>
@@ -35,12 +39,14 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
-                <componentName>helloForEach</componentName>
+                <identifier>helloForEach</identifier>
+<componentName>helloForEach</componentName>
             </componentInstance>
         </itemInstances>
         <itemInstances>
             <componentInstance>
-                <componentName>helloIterator</componentName>
+                <identifier>helloIterator</identifier>
+<componentName>helloIterator</componentName>
             </componentInstance>
         </itemInstances>
         <name>region4</name>

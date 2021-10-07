@@ -7,17 +7,20 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
-                <componentName>apexWireMethodToProperty</componentName>
+                <identifier>apexWireMethodToProperty</identifier>
+<componentName>apexWireMethodToProperty</componentName>
             </componentInstance>
         </itemInstances>
         <itemInstances>
             <componentInstance>
-                <componentName>apexWireMethodToFunction</componentName>
+                <identifier>apexWireMethodToFunction</identifier>
+<componentName>apexWireMethodToFunction</componentName>
             </componentInstance>
         </itemInstances>
         <itemInstances>
             <componentInstance>
-                <componentName>apexWireMethodWithParams</componentName>
+                <identifier>apexWireMethodWithParams</identifier>
+<componentName>apexWireMethodWithParams</componentName>
             </componentInstance>
         </itemInstances>
         <name>region2</name>
@@ -26,17 +29,20 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
-                <componentName>wireGetRecordUser</componentName>
+                <identifier>wireGetRecordUser</identifier>
+<componentName>wireGetRecordUser</componentName>
             </componentInstance>
         </itemInstances>
         <itemInstances>
             <componentInstance>
-                <componentName>wireGetObjectInfo</componentName>
+                <identifier>wireGetObjectInfo</identifier>
+<componentName>wireGetObjectInfo</componentName>
             </componentInstance>
         </itemInstances>
         <itemInstances>
             <componentInstance>
-                <componentName>wireCurrentPageReference</componentName>
+                <identifier>wireCurrentPageReference</identifier>
+<componentName>wireCurrentPageReference</componentName>
             </componentInstance>
         </itemInstances>
         <name>region3</name>
@@ -45,17 +51,20 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
-                <componentName>wireListView</componentName>
+                <identifier>wireListView</identifier>
+<componentName>wireListView</componentName>
             </componentInstance>
         </itemInstances>
         <itemInstances>
             <componentInstance>
-                <componentName>wireGetPicklistValues</componentName>
+                <identifier>wireGetPicklistValues</identifier>
+<componentName>wireGetPicklistValues</componentName>
             </componentInstance>
         </itemInstances>
         <itemInstances>
             <componentInstance>
-                <componentName>wireGetPicklistValuesByRecordType</componentName>
+                <identifier>wireGetPicklistValuesByRecordType</identifier>
+<componentName>wireGetPicklistValuesByRecordType</componentName>
             </componentInstance>
         </itemInstances>
         <name>region4</name>
