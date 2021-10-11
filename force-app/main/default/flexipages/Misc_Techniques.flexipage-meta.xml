@@ -7,22 +7,26 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
-                <componentName>miscPermissionBasedUI</componentName>
+                <identifier>miscPermissionBasedUI</identifier>
+<componentName>miscPermissionBasedUI</componentName>
             </componentInstance>
         </itemInstances>
         <itemInstances>
             <componentInstance>
-                <componentName>miscGetUserId</componentName>
+                <identifier>miscGetUserId</identifier>
+<componentName>miscGetUserId</componentName>
             </componentInstance>
         </itemInstances>
         <itemInstances>
             <componentInstance>
-                <componentName>miscNotification</componentName>
+                <identifier>miscNotification</identifier>
+<componentName>miscNotification</componentName>
             </componentInstance>
         </itemInstances>
         <itemInstances>
             <componentInstance>
-                <componentName>miscModal</componentName>
+                <identifier>miscModal</identifier>
+<componentName>miscModal</componentName>
             </componentInstance>
         </itemInstances>
         <name>region2</name>
@@ -31,17 +35,20 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
-                <componentName>miscSharedJavaScript</componentName>
+                <identifier>miscSharedJavaScript</identifier>
+<componentName>miscSharedJavaScript</componentName>
             </componentInstance>
         </itemInstances>
         <itemInstances>
             <componentInstance>
-                <componentName>miscRestApiCall</componentName>
+                <identifier>miscRestApiCall</identifier>
+<componentName>miscRestApiCall</componentName>
             </componentInstance>
         </itemInstances>
         <itemInstances>
             <componentInstance>
-                <componentName>miscDomQuery</componentName>
+                <identifier>miscDomQuery</identifier>
+<componentName>miscDomQuery</componentName>
             </componentInstance>
         </itemInstances>
         <name>region3</name>
@@ -50,17 +57,20 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
-                <componentName>miscStaticResource</componentName>
+                <identifier>miscStaticResource</identifier>
+<componentName>miscStaticResource</componentName>
             </componentInstance>
         </itemInstances>
         <itemInstances>
             <componentInstance>
-                <componentName>miscContentAsset</componentName>
+                <identifier>miscContentAsset</identifier>
+<componentName>miscContentAsset</componentName>
             </componentInstance>
         </itemInstances>
         <itemInstances>
             <componentInstance>
-                <componentName>miscMultipleTemplates</componentName>
+                <identifier>miscMultipleTemplates</identifier>
+<componentName>miscMultipleTemplates</componentName>
             </componentInstance>
         </itemInstances>
         <name>region4</name>
