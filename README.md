@@ -188,7 +188,7 @@ To set up the formatting and linting pre-commit hook:
 Prettier and ESLint will now run automatically every time you commit changes. The commit will fail if linting errors are detected. You can also run the formatting and linting from the command line using the following commands (check out [package.json](./package.json) for the full list):
 
 ```
-npm run lint:lwc
+npm run lint
 npm run prettier
 ```
 
