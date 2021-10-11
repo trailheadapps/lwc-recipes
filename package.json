@@ -4,9 +4,7 @@
     "version": "0.1.0",
     "description": "Lightning Web Components Recipes",
     "scripts": {
-        "lint": "npm run lint:lwc && npm run lint:aura",
-        "lint:lwc": "eslint **/lwc/**",
-        "lint:aura": "eslint **/aura/**",
+        "lint": "eslint **/{lwc,aura}/**/*.js",
         "test": "npm run test:unit",
         "test:unit": "sfdx-lwc-jest --skipApiVersionCheck",
         "test:unit:watch": "sfdx-lwc-jest --watch --skipApiVersionCheck",
@@ -21,7 +19,7 @@
         "**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,xml,yaml,yml}": [
             "prettier --write"
         ],
-        "**/{aura,lwc}/**": [
+        "**/{aura,lwc}/**/*.js": [
             "eslint"
         ],
         "**/lwc/**": [
