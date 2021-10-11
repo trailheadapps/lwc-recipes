@@ -1,6 +1,5 @@
 import { createElement } from 'lwc';
 import LdsGenerateRecordInputForCreate from 'c/ldsGenerateRecordInputForCreate';
-import { registerLdsTestWireAdapter } from '@salesforce/sfdx-lwc-jest';
 import {
     getRecordCreateDefaults,
     generateRecordInputForCreate,
@@ -14,11 +13,6 @@ import AREANUMBER_FIELD from '@salesforce/schema/Account.AreaNumber__c';
 const mockGetRecordCreateDefaults = require('./data/getRecordCreateDefaults.json');
 const mockGenerateRecordInputForCreate = require('./data/generateRecordInputForCreate.json');
 const mockCreateRecord = require('./data/createRecord.json');
-
-// Register as an LDS wire adapter. Some tests verify the provisioned values trigger desired behavior.
-const getRecordCreateDefaultsAdapter = registerLdsTestWireAdapter(
-    getRecordCreateDefaults
-);
 
 describe('c-lds-generate-record-input-for-create', () => {
     afterEach(() => {
@@ -44,8 +38,8 @@ describe('c-lds-generate-record-input-for-create', () => {
             mockGenerateRecordInputForCreate
         );
 
-        // Emit mock data in adapter
-        getRecordCreateDefaultsAdapter.emit(mockGetRecordCreateDefaults);
+        // Emit mock data from @wire
+        getRecordCreateDefaults.emit(mockGetRecordCreateDefaults);
     }
 
     // Helper function to simulate user input on a field
@@ -127,7 +121,7 @@ describe('c-lds-generate-record-input-for-create', () => {
             document.body.appendChild(element);
 
             // Emit error from @wire
-            getRecordCreateDefaultsAdapter.error();
+            getRecordCreateDefaults.error();
 
             // Wait for any asynchronous DOM updates.
             await flushPromises();
@@ -299,7 +293,7 @@ describe('c-lds-generate-record-input-for-create', () => {
         document.body.appendChild(element);
 
         // Emit error from @wire
-        getRecordCreateDefaultsAdapter.error();
+        getRecordCreateDefaults.error();
 
         // Wait for any asynchronous DOM updates
         await flushPromises();

@@ -92,7 +92,7 @@ Make sure to start from a brand-new environment to avoid conflicts with previous
 
 1. Log in to your org
 
-1. Click [this link](https://login.salesforce.com/packaging/installPackage.apexp?p0=04t3t000002sBACAA2) to install the Recipes unlocked package in your org.
+1. Click [this link](https://login.salesforce.com/packaging/installPackage.apexp?p0=04t3t000001sOHGAA2) to install the Recipes unlocked package in your org.
 
 1. Select **Install for All Users**
 
@@ -188,7 +188,7 @@ To set up the formatting and linting pre-commit hook:
 Prettier and ESLint will now run automatically every time you commit changes. The commit will fail if linting errors are detected. You can also run the formatting and linting from the command line using the following commands (check out [package.json](./package.json) for the full list):
 
 ```
-npm run lint:lwc
+npm run lint
 npm run prettier
 ```
 

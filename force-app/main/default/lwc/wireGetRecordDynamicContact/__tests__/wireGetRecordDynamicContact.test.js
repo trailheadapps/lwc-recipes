@@ -1,13 +1,9 @@
 import { createElement } from 'lwc';
 import WireGetRecordDynamicContact from 'c/wireGetRecordDynamicContact';
 import { getRecord } from 'lightning/uiRecordApi';
-import { registerLdsTestWireAdapter } from '@salesforce/sfdx-lwc-jest';
 
 // Mock realistic data
 const mockGetRecord = require('./data/getRecord.json');
-
-// Register as an LDS wire adapter. Some tests verify the provisioned values trigger desired behavior.
-const getRecordAdapter = registerLdsTestWireAdapter(getRecord);
 
 describe('c-wire-get-record-dynamic-contact', () => {
     afterEach(() => {
@@ -32,7 +28,7 @@ describe('c-wire-get-record-dynamic-contact', () => {
             document.body.appendChild(element);
 
             // Emit data from @wire
-            getRecordAdapter.emit(mockGetRecord);
+            getRecord.emit(mockGetRecord);
 
             // Wait for any asynchronous DOM updates
             await flushPromises();
@@ -62,7 +58,7 @@ describe('c-wire-get-record-dynamic-contact', () => {
             document.body.appendChild(element);
 
             // Emit error from @wire
-            getRecordAdapter.error();
+            getRecord.error();
 
             // Wait for any asynchronous DOM updates
             await flushPromises();
@@ -81,7 +77,7 @@ describe('c-wire-get-record-dynamic-contact', () => {
         document.body.appendChild(element);
 
         // Emit data from @wire
-        getRecordAdapter.emit(mockGetRecord);
+        getRecord.emit(mockGetRecord);
 
         // Wait for any asynchronous DOM updates
         await flushPromises();
@@ -97,7 +93,7 @@ describe('c-wire-get-record-dynamic-contact', () => {
         document.body.appendChild(element);
 
         // Emit data from @wire
-        getRecordAdapter.error();
+        getRecord.error();
 
         // Wait for any asynchronous DOM updates
         await flushPromises();

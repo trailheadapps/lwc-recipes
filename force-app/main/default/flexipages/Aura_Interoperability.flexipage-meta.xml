@@ -3,7 +3,8 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
-                <componentName>auraEmbeddedLWC</componentName>
+                <identifier>auraEmbeddedLWC</identifier>
+<componentName>auraEmbeddedLWC</componentName>
             </componentInstance>
         </itemInstances>
         <name>region1</name>

@@ -7,17 +7,20 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
-                <componentName>navToHome</componentName>
+                <identifier>navToHome</identifier>
+<componentName>navToHome</componentName>
             </componentInstance>
         </itemInstances>
         <itemInstances>
             <componentInstance>
-                <componentName>navToChatterHome</componentName>
+                <identifier>navToChatterHome</identifier>
+<componentName>navToChatterHome</componentName>
             </componentInstance>
         </itemInstances>
         <itemInstances>
             <componentInstance>
-                <componentName>navToFilesHome</componentName>
+                <identifier>navToFilesHome</identifier>
+<componentName>navToFilesHome</componentName>
             </componentInstance>
         </itemInstances>
         <name>region2</name>
@@ -26,17 +29,20 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
-                <componentName>navToHelloTab</componentName>
+                <identifier>navToHelloTab</identifier>
+<componentName>navToHelloTab</componentName>
             </componentInstance>
         </itemInstances>
         <itemInstances>
             <componentInstance>
-                <componentName>navToListView</componentName>
+                <identifier>navToListView</identifier>
+<componentName>navToListView</componentName>
             </componentInstance>
         </itemInstances>
         <itemInstances>
             <componentInstance>
-                <componentName>navToRelatedList</componentName>
+                <identifier>navToRelatedList</identifier>
+<componentName>navToRelatedList</componentName>
             </componentInstance>
         </itemInstances>
         <name>region3</name>
@@ -45,17 +51,20 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
-                <componentName>navToNewRecord</componentName>
+                <identifier>navToNewRecord</identifier>
+<componentName>navToNewRecord</componentName>
             </componentInstance>
         </itemInstances>
         <itemInstances>
             <componentInstance>
-                <componentName>navToNewRecordWithDefaults</componentName>
+                <identifier>navToNewRecordWithDefaults</identifier>
+<componentName>navToNewRecordWithDefaults</componentName>
             </componentInstance>
         </itemInstances>
         <itemInstances>
             <componentInstance>
-                <componentName>navToRecord</componentName>
+                <identifier>navToRecord</identifier>
+<componentName>navToRecord</componentName>
             </componentInstance>
         </itemInstances>
         <name>region4</name>

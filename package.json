@@ -4,9 +4,7 @@
     "version": "0.1.0",
     "description": "Lightning Web Components Recipes",
     "scripts": {
-        "lint": "npm run lint:lwc && npm run lint:aura",
-        "lint:lwc": "eslint **/lwc/**",
-        "lint:aura": "eslint **/aura/**",
+        "lint": "eslint **/{lwc,aura}/**/*.js",
         "test": "npm run test:unit",
         "test:unit": "sfdx-lwc-jest --skipApiVersionCheck",
         "test:unit:watch": "sfdx-lwc-jest --watch --skipApiVersionCheck",
@@ -14,14 +12,14 @@
         "test:unit:coverage": "sfdx-lwc-jest --coverage --skipApiVersionCheck",
         "prettier": "prettier --write \"**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,xml,yaml,yml}\"",
         "prettier:verify": "prettier --list-different \"**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,xml,yaml,yml}\"",
-        "postinstall": "node bin/check-version.js && husky install",
+        "postinstall": "husky install",
         "precommit": "lint-staged"
     },
     "lint-staged": {
         "**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,xml,yaml,yml}": [
             "prettier --write"
         ],
-        "**/{aura,lwc}/**": [
+        "**/{aura,lwc}/**/*.js": [
             "eslint"
         ],
         "**/lwc/**": [
@@ -34,27 +32,26 @@
         "type": "git",
         "url": "git+https://github.com/trailheadapps/lwc-recipes"
     },
-    "engines": {
-        "node": ">= 10.13.0",
-        "npm": ">= 6.5.0"
-    },
     "devDependencies": {
-        "@lwc/eslint-plugin-lwc": "^1.0.1",
-        "@prettier/plugin-xml": "^0.13.1",
-        "@sa11y/jest": "^0.3.1",
-        "@salesforce/eslint-config-lwc": "^2.0.0",
+        "@lwc/eslint-plugin-lwc": "^1.1.0",
+        "@prettier/plugin-xml": "^1.1.0",
+        "@sa11y/jest": "^3.0.0",
+        "@salesforce/eslint-config-lwc": "^3.0.0",
         "@salesforce/eslint-plugin-aura": "^2.0.0",
         "@salesforce/eslint-plugin-lightning": "^0.1.1",
-        "@salesforce/sfdx-lwc-jest": "^0.10.4",
-        "eslint": "^7.25.0",
+        "@salesforce/sfdx-lwc-jest": "^1.0.0",
+        "eslint": "^7.32.0",
         "eslint-config-prettier": "^8.3.0",
-        "eslint-plugin-import": "^2.22.1",
-        "eslint-plugin-jest": "^23.8.2",
-        "husky": "^5.2.0",
+        "eslint-plugin-import": "^2.24.2",
+        "eslint-plugin-jest": "^24.5.0",
+        "husky": "^7.0.2",
         "jest-canvas-mock": "^2.3.1",
-        "lint-staged": "^11.0.0",
-        "prettier": "^2.3.0",
-        "prettier-plugin-apex": "^1.9.1",
-        "semver": "^7.3.5"
+        "lint-staged": "^11.1.2",
+        "prettier": "^2.4.1",
+        "prettier-plugin-apex": "^1.10.0"
+    },
+    "volta": {
+        "node": "14.17.3",
+        "npm": "6.14.13"
     }
 }

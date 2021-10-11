@@ -3,7 +3,8 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
-                <componentName>lds</componentName>
+                <identifier>lds</identifier>
+<componentName>lds</componentName>
             </componentInstance>
         </itemInstances>
         <name>region1</name>
@@ -12,12 +13,14 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
-                <componentName>ldsCreateRecord</componentName>
+                <identifier>ldsCreateRecord</identifier>
+<componentName>ldsCreateRecord</componentName>
             </componentInstance>
         </itemInstances>
         <itemInstances>
             <componentInstance>
-                <componentName>ldsGenerateRecordInputForCreate</componentName>
+                <identifier>ldsGenerateRecordInputForCreate</identifier>
+<componentName>ldsGenerateRecordInputForCreate</componentName>
             </componentInstance>
         </itemInstances>
         <name>region2</name>
@@ -26,7 +29,8 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
-                <componentName>ldsDeleteRecord</componentName>
+                <identifier>ldsDeleteRecord</identifier>
+<componentName>ldsDeleteRecord</componentName>
             </componentInstance>
         </itemInstances>
         <name>region3</name>

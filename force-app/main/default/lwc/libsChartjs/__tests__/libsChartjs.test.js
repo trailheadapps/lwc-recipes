@@ -1,6 +1,6 @@
 import { createElement } from 'lwc';
 import LibsChartjs from 'c/libsChartjs';
-import { loadScript, loadStyle } from 'lightning/platformResourceLoader';
+import { loadScript } from 'lightning/platformResourceLoader';
 
 // Sample error for loadScript error
 const LOAD_SCRIPT_ERROR = {
@@ -40,8 +40,7 @@ describe('c-libs-chartjs', () => {
     });
 
     it('loads the ChartJS javascript and css static resources', () => {
-        const CHARTJS_JS = 'chartJs/Chart.min.js';
-        const CHARTJS_CSS = 'chartJs/Chart.min.css';
+        const CHARTJS_JS = 'chartJs';
 
         // Create initial element
         const element = createElement('c-libs-chartjs', {
@@ -51,10 +50,8 @@ describe('c-libs-chartjs', () => {
 
         // Validation that the loadScript and loadStyle promises are each called once.
         expect(loadScript.mock.calls.length).toBe(1);
-        expect(loadStyle.mock.calls.length).toBe(1);
         // Validation that the chartjs js and css static resources are each passed as parameters.
         expect(loadScript.mock.calls[0][1]).toEqual(CHARTJS_JS);
-        expect(loadStyle.mock.calls[0][1]).toEqual(CHARTJS_CSS);
     });
 
     it('shows the error panel element on static resource load error', async () => {

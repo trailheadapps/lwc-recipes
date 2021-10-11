@@ -1,13 +1,23 @@
 import { createElement } from 'lwc';
 import ApexStaticSchema from 'c/apexStaticSchema';
-import { registerApexTestWireAdapter } from '@salesforce/sfdx-lwc-jest';
 import getSingleContact from '@salesforce/apex/ContactController.getSingleContact';
 
 // Realistic data with a single record
 const mockGetSingleContact = require('./data/getSingleContact.json');
 
-// Register as Apex wire adapter. Some tests verify that provisioned values trigger desired behavior.
-const getSingleContactAdapter = registerApexTestWireAdapter(getSingleContact);
+// Mock Apex wire adapter
+jest.mock(
+    '@salesforce/apex/ContactController.getSingleContact',
+    () => {
+        const {
+            createApexTestWireAdapter
+        } = require('@salesforce/sfdx-lwc-jest');
+        return {
+            default: createApexTestWireAdapter(jest.fn())
+        };
+    },
+    { virtual: true }
+);
 
 describe('c-apex-static-schema', () => {
     afterEach(() => {
@@ -34,7 +44,7 @@ describe('c-apex-static-schema', () => {
             document.body.appendChild(element);
 
             // Emit data from @wire
-            getSingleContactAdapter.emit(mockGetSingleContact);
+            getSingleContact.emit(mockGetSingleContact);
 
             // Wait for any asynchronous DOM updates
             await flushPromises();
@@ -58,7 +68,7 @@ describe('c-apex-static-schema', () => {
             document.body.appendChild(element);
 
             // Emit error from @wire
-            getSingleContactAdapter.error();
+            getSingleContact.error();
 
             // Wait for any asynchronous DOM updates
             await flushPromises();
@@ -77,7 +87,7 @@ describe('c-apex-static-schema', () => {
         document.body.appendChild(element);
 
         // Emit data from @wire
-        getSingleContactAdapter.emit(mockGetSingleContact);
+        getSingleContact.emit(mockGetSingleContact);
 
         // Wait for any asynchronous DOM updates
         await flushPromises();
@@ -93,7 +103,7 @@ describe('c-apex-static-schema', () => {
         document.body.appendChild(element);
 
         // Emit error from @wire
-        getSingleContactAdapter.error();
+        getSingleContact.error();
 
         // Wait for any asynchronous DOM updates
         await flushPromises();
