@@ -7,7 +7,8 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
-                <componentName>compositionBasics</componentName>
+                <identifier>compositionBasics</identifier>
+<componentName>compositionBasics</componentName>
             </componentInstance>
         </itemInstances>
         <name>region2</name>
@@ -16,7 +17,8 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
-                <componentName>compositionIteration</componentName>
+                <identifier>compositionIteration</identifier>
+<componentName>compositionIteration</componentName>
             </componentInstance>
         </itemInstances>
         <name>region3</name>
@@ -25,7 +27,8 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
-                <componentName>compositionContactSearch</componentName>
+                <identifier>compositionContactSearch</identifier>
+<componentName>compositionContactSearch</componentName>
             </componentInstance>
         </itemInstances>
         <itemInstances>
@@ -38,7 +41,8 @@
                     <name>picklistValue</name>
                     <value>Option One</value>
                 </componentInstanceProperties>
-                <componentName>compositionWithAppBuilder</componentName>
+                <identifier>compositionWithAppBuilder</identifier>
+<componentName>compositionWithAppBuilder</componentName>
             </componentInstance>
         </itemInstances>
         <name>region4</name>
