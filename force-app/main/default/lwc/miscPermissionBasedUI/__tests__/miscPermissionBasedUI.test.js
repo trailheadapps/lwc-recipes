@@ -1,6 +1,5 @@
-import { createElement } from 'lwc';
-
-const miscPermissionBasedUIModulePath = '../miscPermissionBasedUI';
+const lwcModulePath = 'lwc';
+const miscPermissionBasedUIModulePath = 'c/miscPermissionBasedUI';
 
 // Mocking custom permission module
 const mockModule = {
@@ -31,9 +30,11 @@ describe('c-misc-permission-based-u-i', () => {
     }
 
     function createIsolatedElement(tagName, options, modulePath) {
+        let createElement;
         let module;
 
         jest.isolateModules(() => {
+            createElement = require(lwcModulePath).createElement;
             module = require(modulePath).default;
         });
 
