@@ -44,7 +44,7 @@
         "eslint-config-prettier": "^8.3.0",
         "eslint-plugin-import": "^2.24.2",
         "eslint-plugin-jest": "^24.5.0",
-        "husky": "^7.0.2",
+        "husky": "^7.0.4",
         "jest-canvas-mock": "^2.3.1",
         "lint-staged": "^11.1.2",
         "prettier": "^2.4.1",
