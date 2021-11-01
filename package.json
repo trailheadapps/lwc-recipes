@@ -43,7 +43,7 @@
         "eslint": "^7.32.0",
         "eslint-config-prettier": "^8.3.0",
         "eslint-plugin-import": "^2.24.2",
-        "eslint-plugin-jest": "^24.5.0",
+        "eslint-plugin-jest": "^25.2.2",
         "husky": "^7.0.2",
         "jest-canvas-mock": "^2.3.1",
         "lint-staged": "^11.1.2",
