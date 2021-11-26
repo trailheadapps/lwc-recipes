@@ -89,4 +89,49 @@ public with sharing class TestContactController {
             'The contact first names should be prefixed with Changed'
         );
     }
+
+    @isTest
+    public static void updateContactList_Negative() {
+        TestContactController.createContacts(2);
+        List<Contact> conts = [SELECT Id, FirstName FROM Contact];
+        JSONGenerator gen = JSON.createGenerator(true);
+        gen.writeStartArray();
+        gen.writeStartObject();
+        gen.writeStringField('Id', conts[0].Id);
+        gen.writeStringField('FirstName', 'Changed ' + conts[0].FirstName);
+        gen.writeEndObject();
+        gen.writeStartObject();
+        gen.writeStringField('Id', conts[1].Id);
+        gen.writeStringField('FirstName', 'Changed ' + conts[1].FirstName);
+        gen.writeEndObject();
+        gen.writeEndArray();
+        String contactsJson = gen.getAsString();
+
+        //Create Test User
+        User u = new User(
+            ProfileId = [SELECT Id FROM Profile WHERE Name = 'Standard User']
+            .Id,
+            LastName = 'last',
+            Email = 'testUser@test.com',
+            UserName = 'Test.User' + DateTime.now().getTime() + '@test.com',
+            Alias = 'alias',
+            TimeZoneSidKey = 'America/Los_Angeles',
+            EmailEncodingKey = 'UTF-8',
+            LanguageLocaleKey = 'en_US',
+            LocaleSidKey = 'en_US'
+        );
+
+        System.runAs(u) {
+            Test.startTest();
+            String response = ContactController.updateContacts(
+                JSON.deserializeUntyped(contactsJson)
+            );
+            Test.stopTest();
+            System.assertNotEquals(
+                response,
+                'Success: contacts updated successfully',
+                'The updateContacts method fails with exception'
+            );
+        }
+    }
 }
