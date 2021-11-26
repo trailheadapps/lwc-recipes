@@ -60,4 +60,33 @@ public with sharing class TestContactController {
             'The contact name should be: First 1 Last 1'
         );
     }
+
+    @isTest
+    public static void updateContactList() {
+        TestContactController.createContacts(2);
+        List<Contact> conts = [SELECT Id, FirstName FROM Contact];
+        JSONGenerator gen = JSON.createGenerator(true);
+        gen.writeStartArray();
+        gen.writeStartObject();
+        gen.writeStringField('Id', conts[0].Id);
+        gen.writeStringField('FirstName', 'Changed ' + conts[0].FirstName);
+        gen.writeEndObject();
+        gen.writeStartObject();
+        gen.writeStringField('Id', conts[1].Id);
+        gen.writeStringField('FirstName', 'Changed ' + conts[1].FirstName);
+        gen.writeEndObject();
+        gen.writeEndArray();
+        String contactsJson = gen.getAsString();
+
+        Test.startTest();
+        String response = ContactController.updateContacts(
+            JSON.deserializeUntyped(contactsJson)
+        );
+        Test.stopTest();
+        System.assertEquals(
+            response,
+            'Success: contacts updated successfully',
+            'The contact first names should be prefixed with Changed'
+        );
+    }
 }

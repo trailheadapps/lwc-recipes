@@ -25,6 +25,7 @@
     <navType>Standard</navType>
     <tabs>Hello</tabs>
     <tabs>Data_Service</tabs>
+    <tabs>Datatable</tabs>
     <tabs>Apex</tabs>
     <tabs>standard-Contact</tabs>
     <tabs>Composition</tabs>

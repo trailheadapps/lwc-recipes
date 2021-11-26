@@ -1,0 +1,26 @@
+<!-- sldsValidatorIgnore -->
+<template>
+    <lightning-card title="Datatable Inline Edit" icon-name="custom:custom62">
+        <template if:true={contacts.data}>
+            <div class="slds-var-m-around_medium">
+                <lightning-datatable
+                    key-field="Id"
+                    data={contacts.data}
+                    columns={columns}
+                    onsave={handleSave}
+                    draft-values={draftValues}
+                    hide-checkbox-column
+                    show-row-number-column
+                >
+                </lightning-datatable>
+            </div>
+        </template>
+
+        <template if:true={contacts.error}>
+            <c-error-panel errors={contacts.error}></c-error-panel>
+        </template>
+        <c-view-source source="lwc/datatableInlineEdit" slot="footer">
+            Display data in a table with inline editing.
+        </c-view-source>
+    </lightning-card>
+</template>
