@@ -91,7 +91,7 @@ public with sharing class TestContactController {
     }
 
     @isTest
-    public static void updateContactList_Negative() {
+    public static void updateContactListNegative() {
         TestContactController.createContacts(2);
         List<Contact> conts = [SELECT Id, FirstName FROM Contact];
         JSONGenerator gen = JSON.createGenerator(true);

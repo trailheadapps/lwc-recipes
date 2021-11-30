@@ -3,6 +3,7 @@ import DatatableMultilineEdit from 'c/datatableMultilineEdit';
 import getContacts from '@salesforce/apex/ContactController.getContactList';
 import updateContacts from '@salesforce/apex/ContactController.updateContacts';
 import { ShowToastEventName } from 'lightning/platformShowToastEvent';
+import { refreshApex } from '@salesforce/apex';
 
 // Realistic data with a list of contacts
 const mockGetContactList = require('./data/getContactList.json');
@@ -32,6 +33,16 @@ jest.mock(
                 });
                 return response;
             })
+        };
+    },
+    { virtual: true }
+);
+
+jest.mock(
+    '@salesforce/apex',
+    () => {
+        return {
+            refreshApex: jest.fn(() => Promise.resolve())
         };
     },
     { virtual: true }
@@ -172,6 +183,9 @@ describe('c-datatable-multiline-edit', () => {
 
         expect(toastHandler).toHaveBeenCalled();
         expect(toastHandler.mock.calls[0][0].detail.variant).toBe('success');
+        //Validate refreshApex is called and the draft values are reset
+        expect(refreshApex).toHaveBeenCalled();
+        expect(tableEl.draftValues).toEqual([]);
     });
 
     it('displays an error toast on update record error', async () => {

@@ -3,6 +3,7 @@ import DatatableInlineEdit from 'c/datatableInlineEdit';
 import getContacts from '@salesforce/apex/ContactController.getContactList';
 import { updateRecord } from 'lightning/uiRecordApi';
 import { ShowToastEventName } from 'lightning/platformShowToastEvent';
+import { refreshApex } from '@salesforce/apex';
 
 // Realistic data with a list of contacts
 const mockGetContactList = require('./data/getContactList.json');
@@ -16,6 +17,16 @@ jest.mock(
         } = require('@salesforce/sfdx-lwc-jest');
         return {
             default: createApexTestWireAdapter(jest.fn())
+        };
+    },
+    { virtual: true }
+);
+
+jest.mock(
+    '@salesforce/apex',
+    () => {
+        return {
+            refreshApex: jest.fn(() => Promise.resolve())
         };
     },
     { virtual: true }
@@ -149,6 +160,9 @@ describe('c-datatable-inline-edit', () => {
 
         expect(toastHandler).toHaveBeenCalled();
         expect(toastHandler.mock.calls[0][0].detail.variant).toBe('success');
+        //Validate refreshApex is called and the draft values are reset
+        expect(refreshApex).toHaveBeenCalled();
+        expect(tableEl.draftValues).toEqual([]);
     });
 
     it('displays an error toast on update record error', async () => {
