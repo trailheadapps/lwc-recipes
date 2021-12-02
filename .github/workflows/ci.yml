@@ -20,6 +20,10 @@ jobs:
             - name: 'Checkout source code'
               uses: actions/checkout@v2
 
+            # Install Volta to enforce proper node and package manager versions
+            - name: 'Install Volta'
+              uses: volta-cli/action@v1
+
             # Cache node_modules to speed up the process
             - name: 'Restore node_modules cache'
               id: cache-npm
