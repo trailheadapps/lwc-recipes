@@ -1,6 +1,5 @@
 import { createElement } from 'lwc';
-import LibsD3 from 'c/libsD3';
-import { ShowToastEventName } from 'lightning/platformShowToastEvent';
+import LibsFullCalendar from 'c/libsFullCalendar';
 import { loadScript, loadStyle } from 'lightning/platformResourceLoader';
 
 // Sample error for loadScript error
@@ -11,7 +10,7 @@ const LOAD_SCRIPT_ERROR = {
     statusText: 'Bad Request'
 };
 
-describe('c-libs-d3', () => {
+describe('c-libs-full-calendar', () => {
     afterEach(() => {
         // The jsdom instance is shared across test cases in a single file so reset the DOM
         while (document.body.firstChild) {
@@ -28,25 +27,25 @@ describe('c-libs-d3', () => {
         return new Promise((resolve) => setTimeout(resolve, 0));
     }
 
-    it('contains a svg element for D3', () => {
+    it('contains a div element for FullCalendar', () => {
         // Create initial element
-        const element = createElement('c-libs-d3', {
-            is: LibsD3
+        const element = createElement('c-libs-full-calendar', {
+            is: LibsFullCalendar
         });
         document.body.appendChild(element);
 
         // Querying the DOM element that has the lwc:dom directive set.
-        const domEl = element.shadowRoot.querySelector('svg.d3');
+        const domEl = element.shadowRoot.querySelector('div.calendar');
         expect(domEl).not.toBeNull();
     });
 
-    it('loads the D3 javascript and css static resources', () => {
-        const D3_JS = 'd3/d3.v5.min.js';
-        const D3_CSS = 'd3/style.css';
+    it('loads the FullCalendar javascript and css static resources', () => {
+        const FULL_CALENDAR_JS = 'fullCalendar/main.min.js';
+        const FULL_CALENDAR_CSS = 'fullCalendar/main.min.css';
 
         // Create initial element
-        const element = createElement('c-libs-d3', {
-            is: LibsD3
+        const element = createElement('c-libs-full-calendar', {
+            is: LibsFullCalendar
         });
         document.body.appendChild(element);
 
@@ -55,40 +54,46 @@ describe('c-libs-d3', () => {
         expect(loadScript.mock.calls.length).toBe(1);
         expect(loadStyle.mock.calls.length).toBe(1);
 
-        // Validation that the D3 JS and CSS files are passed as parameters.
-        expect(loadScript.mock.calls[0][1]).toEqual(D3_JS);
-        expect(loadStyle.mock.calls[0][1]).toEqual(D3_CSS);
+        // Validation that the JS and CSS files are passed as parameters.
+        expect(loadScript.mock.calls[0][1]).toEqual(FULL_CALENDAR_JS);
+        expect(loadStyle.mock.calls[0][1]).toEqual(FULL_CALENDAR_CSS);
     });
 
-    it('fires a toast event if the static resource cannot be loaded', async () => {
-        const TOAST_MESSAGE = 'Error loading D3';
-        const TOAST_VARIANT = 'error';
-
+    it('displays error panel if the static resource cannot be loaded', async () => {
         loadScript.mockRejectedValue(LOAD_SCRIPT_ERROR);
 
         // Create initial element
-        const element = createElement('c-libs-d3', {
-            is: LibsD3
+        const element = createElement('c-libs-full-calendar', {
+            is: LibsFullCalendar
         });
         document.body.appendChild(element);
-
-        // Mock handler for toast event
-        const handler = jest.fn();
-        // Add event listener to catch toast event
-        element.addEventListener(ShowToastEventName, handler);
 
         // Wait for any asynchronous DOM updates.
         await flushPromises();
 
-        // Check if toast event has been fired
-        expect(handler).toHaveBeenCalled();
-        expect(handler.mock.calls[0][0].detail.title).toBe(TOAST_MESSAGE);
-        expect(handler.mock.calls[0][0].detail.variant).toBe(TOAST_VARIANT);
+        // Check if error panel is displayed
+        const errorPanelEl = element.shadowRoot.querySelector('c-error-panel');
+        expect(errorPanelEl).not.toBeNull();
     });
 
-    it('is accessible', async () => {
-        const element = createElement('c-libs-d3', {
-            is: LibsD3
+    it('is accessible when error', async () => {
+        loadScript.mockRejectedValue(LOAD_SCRIPT_ERROR);
+
+        const element = createElement('c-libs-full-calendar', {
+            is: LibsFullCalendar
+        });
+
+        document.body.appendChild(element);
+
+        // Wait for any asynchronous DOM updates.
+        await flushPromises();
+
+        await expect(element).toBeAccessible();
+    });
+
+    it('is accessible when no error', async () => {
+        const element = createElement('c-libs-full-calendar', {
+            is: LibsFullCalendar
         });
 
         document.body.appendChild(element);
