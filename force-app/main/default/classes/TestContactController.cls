@@ -16,6 +16,22 @@ public with sharing class TestContactController {
         insert contacts;
     }
 
+    public static User createUser(String profile) {
+        //Create Test User
+        return new User(
+            ProfileId = [SELECT Id FROM Profile WHERE Name = :profile]
+            .Id,
+            LastName = 'last',
+            Email = 'testUser@test.com',
+            UserName = 'Test.User' + DateTime.now().getTime() + '@test.com',
+            Alias = 'alias',
+            TimeZoneSidKey = 'America/Los_Angeles',
+            EmailEncodingKey = 'UTF-8',
+            LanguageLocaleKey = 'en_US',
+            LocaleSidKey = 'en_US'
+        );
+    }
+
     @isTest
     static void getContactList() {
         TestContactController.createContacts(10);
@@ -65,27 +81,16 @@ public with sharing class TestContactController {
     public static void updateContactList() {
         TestContactController.createContacts(2);
         List<Contact> conts = [SELECT Id, FirstName FROM Contact];
-        JSONGenerator gen = JSON.createGenerator(true);
-        gen.writeStartArray();
-        gen.writeStartObject();
-        gen.writeStringField('Id', conts[0].Id);
-        gen.writeStringField('FirstName', 'Changed ' + conts[0].FirstName);
-        gen.writeEndObject();
-        gen.writeStartObject();
-        gen.writeStringField('Id', conts[1].Id);
-        gen.writeStringField('FirstName', 'Changed ' + conts[1].FirstName);
-        gen.writeEndObject();
-        gen.writeEndArray();
-        String contactsJson = gen.getAsString();
+        conts[0].FirstName = 'Changed ' + conts[0].FirstName;
+        conts[1].FirstName = 'Changed ' + conts[1].FirstName;
 
         Test.startTest();
-        String response = ContactController.updateContacts(
-            JSON.deserializeUntyped(contactsJson)
-        );
+        ContactController.updateContacts(conts);
+        List<Contact> updatedConts = [SELECT Id, FirstName FROM Contact];
         Test.stopTest();
         System.assertEquals(
-            response,
-            'Success: contacts updated successfully',
+            'Changed First 1',
+            updatedConts[0].FirstName,
             'The contact first names should be prefixed with Changed'
         );
     }
@@ -94,44 +99,24 @@ public with sharing class TestContactController {
     public static void updateContactListNegative() {
         TestContactController.createContacts(2);
         List<Contact> conts = [SELECT Id, FirstName FROM Contact];
-        JSONGenerator gen = JSON.createGenerator(true);
-        gen.writeStartArray();
-        gen.writeStartObject();
-        gen.writeStringField('Id', conts[0].Id);
-        gen.writeStringField('FirstName', 'Changed ' + conts[0].FirstName);
-        gen.writeEndObject();
-        gen.writeStartObject();
-        gen.writeStringField('Id', conts[1].Id);
-        gen.writeStringField('FirstName', 'Changed ' + conts[1].FirstName);
-        gen.writeEndObject();
-        gen.writeEndArray();
-        String contactsJson = gen.getAsString();
+        conts[0].FirstName = 'Changed ' + conts[0].FirstName;
+        conts[1].FirstName = 'Changed ' + conts[1].FirstName;
 
-        //Create Test User
-        User u = new User(
-            ProfileId = [SELECT Id FROM Profile WHERE Name = 'Standard User']
-            .Id,
-            LastName = 'last',
-            Email = 'testUser@test.com',
-            UserName = 'Test.User' + DateTime.now().getTime() + '@test.com',
-            Alias = 'alias',
-            TimeZoneSidKey = 'America/Los_Angeles',
-            EmailEncodingKey = 'UTF-8',
-            LanguageLocaleKey = 'en_US',
-            LocaleSidKey = 'en_US'
-        );
-
-        System.runAs(u) {
+        User u1 = createUser('Minimum Access - Salesforce');
+        System.runAs(u1) {
             Test.startTest();
-            String response = ContactController.updateContacts(
-                JSON.deserializeUntyped(contactsJson)
-            );
+            try {
+                ContactController.updateContacts(conts);
+            } catch (Exception e) {
+                String errorMsg = e.getMessage();
+                system.assertEquals(
+                    errorMsg,
+                    'Insufficient permissions to update contacts',
+                    'The updateContacts method fails with exception'
+                );
+            }
             Test.stopTest();
-            System.assertNotEquals(
-                response,
-                'Success: contacts updated successfully',
-                'The updateContacts method fails with exception'
-            );
         }
+
     }
 }

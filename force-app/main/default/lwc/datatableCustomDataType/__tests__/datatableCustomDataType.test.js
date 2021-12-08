@@ -33,6 +33,7 @@ describe('c-datatable-inline-edit', () => {
     async function flushPromises() {
         return Promise.resolve();
     }
+
     it('renders six rows in the lightning datatable', async () => {
         const element = createElement('c-datatable-custom-data-type', {
             is: DatatableCustomDataType

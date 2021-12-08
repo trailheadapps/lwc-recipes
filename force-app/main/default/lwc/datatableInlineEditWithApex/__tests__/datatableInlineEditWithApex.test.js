@@ -1,5 +1,5 @@
 import { createElement } from 'lwc';
-import DatatableMultilineEdit from 'c/datatableMultilineEdit';
+import DatatableInlineEditWithApex from 'c/datatableInlineEditWithApex';
 import getContacts from '@salesforce/apex/ContactController.getContactList';
 import updateContacts from '@salesforce/apex/ContactController.updateContacts';
 import { ShowToastEventName } from 'lightning/platformShowToastEvent';
@@ -27,12 +27,7 @@ jest.mock(
     '@salesforce/apex/ContactController.updateContacts',
     () => {
         return {
-            default: jest.fn((payload) => {
-                const response = payload.records.map((record, index) => {
-                    return Object.assign({ Id: 'TEST_ID ' + index }, record);
-                });
-                return response;
-            })
+            default: jest.fn(() => Promise.resolve())
         };
     },
     { virtual: true }
@@ -74,7 +69,8 @@ const UPDATE_CONTACTS_ERROR = {
     status: 400,
     statusText: 'Bad Request'
 };
-describe('c-datatable-multiline-edit', () => {
+
+describe('c-datatable-inline-edit-with-apex', () => {
     afterEach(() => {
         // The jsdom instance is shared across test cases in a single file so reset the DOM
         while (document.body.firstChild) {
@@ -90,8 +86,8 @@ describe('c-datatable-multiline-edit', () => {
     }
 
     it('renders six rows in the lightning datatable', async () => {
-        const element = createElement('c-datatable-multiline-edit', {
-            is: DatatableMultilineEdit
+        const element = createElement('c-datatable-inline-edit-with-apex', {
+            is: DatatableInlineEditWithApex
         });
         document.body.appendChild(element);
 
@@ -107,11 +103,11 @@ describe('c-datatable-multiline-edit', () => {
     });
 
     it('updates a record on Save', async () => {
-        const INPUT_PARAMETERS = [{ data: DRAFT_VALUES }];
+        const INPUT_PARAMETERS = [{ contactsForUpdate: DRAFT_VALUES }];
 
         // Create initial element
-        const element = createElement('c-datatable-multiline-edit', {
-            is: DatatableMultilineEdit
+        const element = createElement('c-datatable-inline-edit-with-apex', {
+            is: DatatableInlineEditWithApex
         });
         document.body.appendChild(element);
 
@@ -126,6 +122,7 @@ describe('c-datatable-multiline-edit', () => {
         // Wait for any asynchronous DOM updates
         await flushPromises();
 
+        //Update multiple records with the INPUT_PARAMETERS and simulate the Save event
         const tableEl = element.shadowRoot.querySelector('lightning-datatable');
         tableEl.dispatchEvent(
             new CustomEvent('save', {
@@ -145,14 +142,14 @@ describe('c-datatable-multiline-edit', () => {
 
     it('displays a success toast after record is updated', async () => {
         //Update all the records in the Draft Values
-        const INPUT_PARAMETERS = [{ data: DRAFT_VALUES }];
+        const INPUT_PARAMETERS = [{ contactsForUpdate: DRAFT_VALUES }];
 
         // Assign mock value for resolved updateContacts promise
         updateContacts.mockResolvedValue(INPUT_PARAMETERS);
 
         // Create initial element
-        const element = createElement('c-datatable-multiline-edit', {
-            is: DatatableMultilineEdit
+        const element = createElement('c-datatable-inline-edit-with-apex', {
+            is: DatatableInlineEditWithApex
         });
         document.body.appendChild(element);
 
@@ -190,8 +187,8 @@ describe('c-datatable-multiline-edit', () => {
 
     it('displays an error toast on update record error', async () => {
         // Create initial element
-        const element = createElement('c-datatable-multiline-edit', {
-            is: DatatableMultilineEdit
+        const element = createElement('c-datatable-inline-edit-with-apex', {
+            is: DatatableInlineEditWithApex
         });
         document.body.appendChild(element);
 
@@ -212,6 +209,7 @@ describe('c-datatable-multiline-edit', () => {
         // Assign mock value for rejected updateContacts promise
         updateContacts.mockRejectedValue(UPDATE_CONTACTS_ERROR);
 
+        //Update multiple records with the INPUT_PARAMETERS and simulate the Save event
         const tableEl = element.shadowRoot.querySelector('lightning-datatable');
         tableEl.dispatchEvent(
             new CustomEvent('save', {
@@ -226,9 +224,10 @@ describe('c-datatable-multiline-edit', () => {
         expect(toastHandler).toHaveBeenCalled();
         expect(toastHandler.mock.calls[0][0].detail.variant).toBe('error');
     });
+
     it('is accessible when data is returned', async () => {
-        const element = createElement('c-datatable-multiline-edit', {
-            is: DatatableMultilineEdit
+        const element = createElement('c-datatable-inline-edit-with-apex', {
+            is: DatatableInlineEditWithApex
         });
         document.body.appendChild(element);
 
@@ -243,8 +242,8 @@ describe('c-datatable-multiline-edit', () => {
 
     it('is accessible when error is returned', async () => {
         // Create initial element
-        const element = createElement('c-datatable-multiline-edit', {
-            is: DatatableMultilineEdit
+        const element = createElement('c-datatable-inline-edit-with-apex', {
+            is: DatatableInlineEditWithApex
         });
         document.body.appendChild(element);
 

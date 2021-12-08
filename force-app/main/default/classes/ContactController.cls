@@ -41,20 +41,13 @@ public with sharing class ContactController {
     }
 
     @AuraEnabled
-    public static string updateContacts(Object data) {
-        List<Contact> contactsForUpdate = (List<Contact>) JSON.deserialize(
-            JSON.serialize(data),
-            List<Contact>.class
-        );
-        try {
-            // Make sure we can update the database before even trying
-            if (!Schema.sObjectType.Contact.isUpdateable()) {
-                return null;
-            }
-            update contactsForUpdate;
-            return 'Success: contacts updated successfully';
-        } catch (Exception e) {
-            return 'The following exception has occurred: ' + e.getMessage();
+    public static void updateContacts(List<Contact> contactsForUpdate) {
+        // Make sure we can update the database before trying to update
+        if (!Schema.sObjectType.Contact.isUpdateable()) {
+            throw new SecurityException(
+                'Insufficient permissions to update contacts'
+            );
         }
+        update contactsForUpdate;
     }
 }

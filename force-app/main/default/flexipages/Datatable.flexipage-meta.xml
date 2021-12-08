@@ -3,14 +3,14 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
-                <componentName>datatableInlineEdit</componentName>
-                <identifier>c_datatableInlineEdit1</identifier>
+                <componentName>datatableInlineEditWithUiApi</componentName>
+                <identifier>c_datatableInlineEditWithUiApi1</identifier>
             </componentInstance>
         </itemInstances>
         <itemInstances>
             <componentInstance>
-                <componentName>datatableMultilineEdit</componentName>
-                <identifier>c_datatableMultilineEdit1</identifier>
+                <componentName>datatableInlineEditWithApex</componentName>
+                <identifier>c_datatableInlineEditWithApex1</identifier>
             </componentInstance>
         </itemInstances>
         <itemInstances>

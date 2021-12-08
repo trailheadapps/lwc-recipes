@@ -18,7 +18,7 @@ const COLS = [
     { label: 'Phone', fieldName: 'Phone', type: 'phone', editable: true },
     { label: 'Email', fieldName: 'Email', type: 'email', editable: true }
 ];
-export default class DatatableInlineEdit extends LightningElement {
+export default class DatatableInlineEditWithUiApi extends LightningElement {
     columns = COLS;
     draftValues = [];
 
@@ -57,7 +57,7 @@ export default class DatatableInlineEdit extends LightningElement {
                 this.dispatchEvent(
                     new ShowToastEvent({
                         title: 'Error updating or reloading record',
-                        message: error.message,
+                        message: error.body.message,
                         variant: 'error'
                     })
                 );

@@ -12,7 +12,7 @@ const COLS = [
     { label: 'Email', fieldName: 'Email', type: 'email', editable: true }
 ];
 
-export default class DatatableMultilineEdit extends LightningElement {
+export default class DatatableInlineEditWithApex extends LightningElement {
     columns = COLS;
     draftValues = [];
 
@@ -23,11 +23,11 @@ export default class DatatableMultilineEdit extends LightningElement {
 
         try {
             // Pass edited fields to the updateContacts Apex controller
-            await updateContacts({ data: updatedFields });
+            await updateContacts({ contactsForUpdate: updatedFields });
             this.dispatchEvent(
                 new ShowToastEvent({
                     title: 'Success',
-                    message: 'Contact updated',
+                    message: 'Contact(s) updated',
                     variant: 'success'
                 })
             );
@@ -41,7 +41,7 @@ export default class DatatableMultilineEdit extends LightningElement {
             this.dispatchEvent(
                 new ShowToastEvent({
                     title: 'Error updating or refreshing records',
-                    message: error.message,
+                    message: error.body.message,
                     variant: 'error'
                 })
             );

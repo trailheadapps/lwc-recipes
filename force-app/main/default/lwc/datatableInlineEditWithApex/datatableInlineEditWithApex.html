@@ -1,7 +1,7 @@
-<!-- sldsValidatorIgnore -->
+<!-- sldsValidatorIgnore - hiding datatable accessibility warning -->
 <template>
     <lightning-card
-        title="Datatable Multiline Edit"
+        title="Datatable Inline Edit With Apex"
         icon-name="custom:custom62"
     >
         <div class="slds-var-m-around_medium">
@@ -12,7 +12,7 @@
                     columns={columns}
                     onsave={handleSave}
                     draft-values={draftValues}
-                    hide-checkbox-column="true"
+                    hide-checkbox-column
                 >
                 </lightning-datatable>
             </template>

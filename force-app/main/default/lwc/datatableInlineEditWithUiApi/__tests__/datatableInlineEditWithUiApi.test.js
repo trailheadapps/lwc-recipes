@@ -1,5 +1,5 @@
 import { createElement } from 'lwc';
-import DatatableInlineEdit from 'c/datatableInlineEdit';
+import DatatableInlineEditWithUiApi from 'c/datatableInlineEditWithUiApi';
 import getContacts from '@salesforce/apex/ContactController.getContactList';
 import { updateRecord } from 'lightning/uiRecordApi';
 import { ShowToastEventName } from 'lightning/platformShowToastEvent';
@@ -50,7 +50,8 @@ const DRAFT_VALUES = [
         Email: 'michael@new_demo.net'
     }
 ];
-describe('c-datatable-inline-edit', () => {
+
+describe('c-datatable-inline-edit-with-ui-api', () => {
     afterEach(() => {
         // The jsdom instance is shared across test cases in a single file so reset the DOM
         while (document.body.firstChild) {
@@ -66,8 +67,8 @@ describe('c-datatable-inline-edit', () => {
     }
 
     it('renders six rows in the lightning datatable', async () => {
-        const element = createElement('c-datatable-inline-edit', {
-            is: DatatableInlineEdit
+        const element = createElement('c-datatable-inline-edit-with-ui-api', {
+            is: DatatableInlineEditWithUiApi
         });
         document.body.appendChild(element);
 
@@ -87,8 +88,8 @@ describe('c-datatable-inline-edit', () => {
         const INPUT_PARAMETERS = [{ fields: DRAFT_VALUES[0] }];
 
         // Create initial element
-        const element = createElement('c-datatable-inline-edit', {
-            is: DatatableInlineEdit
+        const element = createElement('c-datatable-inline-edit-with-ui-api', {
+            is: DatatableInlineEditWithUiApi
         });
         document.body.appendChild(element);
 
@@ -103,6 +104,7 @@ describe('c-datatable-inline-edit', () => {
         // Wait for any asynchronous DOM updates
         await flushPromises();
 
+        //Update the record with the INPUT_PARAMETERS and simulate the Save event
         const tableEl = element.shadowRoot.querySelector('lightning-datatable');
         tableEl.dispatchEvent(
             new CustomEvent('save', {
@@ -128,8 +130,8 @@ describe('c-datatable-inline-edit', () => {
         updateRecord.mockResolvedValue(INPUT_PARAMETERS);
 
         // Create initial element
-        const element = createElement('c-datatable-inline-edit', {
-            is: DatatableInlineEdit
+        const element = createElement('c-datatable-inline-edit-with-ui-api', {
+            is: DatatableInlineEditWithUiApi
         });
         document.body.appendChild(element);
 
@@ -147,6 +149,7 @@ describe('c-datatable-inline-edit', () => {
         // Wait for any asynchronous DOM updates
         await flushPromises();
 
+        //Update the record with the INPUT_PARAMETERS and simulate the Save event
         const tableEl = element.shadowRoot.querySelector('lightning-datatable');
         tableEl.dispatchEvent(
             new CustomEvent('save', {
@@ -167,13 +170,15 @@ describe('c-datatable-inline-edit', () => {
 
     it('displays an error toast on update record error', async () => {
         // Assign mock value for rejected updateRecord promise
-        updateRecord.mockRejectedValue(
-            new Error('Error updating or reloading record')
-        );
+        updateRecord.mockRejectedValue({
+            body: {
+                message: 'Error updating or reloading record'
+            }
+        });
 
         // Create initial element
-        const element = createElement('c-datatable-inline-edit', {
-            is: DatatableInlineEdit
+        const element = createElement('c-datatable-inline-edit-with-ui-api', {
+            is: DatatableInlineEditWithUiApi
         });
         document.body.appendChild(element);
 
@@ -205,10 +210,11 @@ describe('c-datatable-inline-edit', () => {
         expect(toastHandler).toHaveBeenCalled();
         expect(toastHandler.mock.calls[0][0].detail.variant).toBe('error');
     });
+
     it('is accessible when data is returned', async () => {
         // Create initial element
-        const element = createElement('c-datatable-inline-edit', {
-            is: DatatableInlineEdit
+        const element = createElement('c-datatable-inline-edit-with-ui-api', {
+            is: DatatableInlineEditWithUiApi
         });
         document.body.appendChild(element);
 
@@ -223,8 +229,8 @@ describe('c-datatable-inline-edit', () => {
 
     it('is accessible when error is returned', async () => {
         // Create initial element
-        const element = createElement('c-datatable-inline-edit', {
-            is: DatatableInlineEdit
+        const element = createElement('c-datatable-inline-edit-with-ui-api', {
+            is: DatatableInlineEditWithUiApi
         });
         document.body.appendChild(element);
 
