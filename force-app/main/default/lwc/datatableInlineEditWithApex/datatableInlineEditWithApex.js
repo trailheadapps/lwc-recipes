@@ -18,6 +18,7 @@ export default class DatatableInlineEditWithApex extends LightningElement {
 
     @wire(getContacts)
     contacts;
+
     async handleSave(event) {
         const updatedFields = event.detail.draftValues;
 

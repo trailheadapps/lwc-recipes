@@ -111,11 +111,6 @@ describe('c-datatable-inline-edit-with-apex', () => {
         });
         document.body.appendChild(element);
 
-        // Mock handler for save event
-        const handler = jest.fn();
-        // Add event listener to catch save event
-        element.addEventListener('save', handler);
-
         // Emit data from @wire
         getContacts.emit(mockGetContactList);
 
@@ -153,9 +148,6 @@ describe('c-datatable-inline-edit-with-apex', () => {
         });
         document.body.appendChild(element);
 
-        const handler = jest.fn();
-        element.addEventListener('save', handler);
-
         // Mock handler for toast event
         const toastHandler = jest.fn();
         // Add event listener to catch toast event
@@ -191,9 +183,6 @@ describe('c-datatable-inline-edit-with-apex', () => {
             is: DatatableInlineEditWithApex
         });
         document.body.appendChild(element);
-
-        const handler = jest.fn();
-        element.addEventListener('save', handler);
 
         // Mock handler for toast event
         const toastHandler = jest.fn();

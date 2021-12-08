@@ -93,11 +93,6 @@ describe('c-datatable-inline-edit-with-ui-api', () => {
         });
         document.body.appendChild(element);
 
-        // Mock handler for save event
-        const handler = jest.fn();
-        // Add event listener to catch save event
-        element.addEventListener('save', handler);
-
         // Emit data from @wire
         getContacts.emit(mockGetContactList);
 
@@ -134,9 +129,6 @@ describe('c-datatable-inline-edit-with-ui-api', () => {
             is: DatatableInlineEditWithUiApi
         });
         document.body.appendChild(element);
-
-        const handler = jest.fn();
-        element.addEventListener('save', handler);
 
         // Mock handler for toast event
         const toastHandler = jest.fn();
@@ -181,9 +173,6 @@ describe('c-datatable-inline-edit-with-ui-api', () => {
             is: DatatableInlineEditWithUiApi
         });
         document.body.appendChild(element);
-
-        const handler = jest.fn();
-        element.addEventListener('save', handler);
 
         // Mock handler for toast event
         const toastHandler = jest.fn();
