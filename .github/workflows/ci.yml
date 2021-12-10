@@ -63,8 +63,10 @@ jobs:
             - name: 'Install PMD'
               run: |
                   wget https://github.com/pmd/pmd/releases/download/pmd_releases%2F${{ secrets.PMD_VERSION }}/pmd-bin-${{ secrets.PMD_VERSION }}.zip
-                  unzip pmd-bin-${{ secrets.PMD_VERSION }}.zip
-                  alias pmd="$HOME/pmd-bin-${{ secrets.PMD_VERSION }}/bin/run.sh pmd"
+                  mkdir ~/pmd
+                  unzip pmd-bin-${{ secrets.PMD_VERSION }}.zip ~/pmd
+                  ls ~/pmd
+                  alias pmd="~/pmd/bin/run.sh pmd"
                   pmd --version
 
             # Checkout the source code
