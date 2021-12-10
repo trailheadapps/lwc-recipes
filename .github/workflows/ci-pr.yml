@@ -73,9 +73,8 @@ jobs:
             # Install PMD
             - name: 'Install PMD'
               run: |
-                  wget https://github.com/pmd/pmd/releases/download/pmd_releases%2F${{ secrets.PMD_VERSION }}/pmd-bin-${{ secrets.PMD_VERSION }}.zip
-                  mkdir ~/pmd
-                  unzip pmd-bin-${{ secrets.PMD_VERSION }}.zip -d ~/pmd
+                  wget -O pmd.zip https://github.com/pmd/pmd/releases/download/pmd_releases%2F${{ secrets.PMD_VERSION }}/pmd-bin-${{ secrets.PMD_VERSION }}.zip
+                  unzip pmd.zip
                   ls ~/pmd
                   alias pmd="~/pmd/bin/run.sh pmd"
                   pmd --version
