@@ -56,6 +56,15 @@ describe('c-composition-contact-search', () => {
         return Promise.resolve();
     }
 
+    // Helper function to wait for a duration.
+    // This is used for accessibility tests where fake timers aren't supported.
+    async function wait(duration) {
+        return new Promise((resolve) => {
+            // eslint-disable-next-line @lwc/lwc/no-async-operation
+            setTimeout(() => resolve(), duration);
+        });
+    }
+
     it('does not render contact tiles by default', () => {
         // Create initial element
         const element = createElement('c-composition-contact-search', {
@@ -133,7 +142,9 @@ describe('c-composition-contact-search', () => {
         expect(errorPanelEl).not.toBeNull();
     });
 
-    it('is accessible when data is returned', () => {
+    it('is accessible when data is returned', async () => {
+        jest.useRealTimers();
+
         const USER_INPUT = 'Amy';
 
         // Assign mock value for resolved Apex promise
@@ -151,20 +162,15 @@ describe('c-composition-contact-search', () => {
         inputFieldEl.value = USER_INPUT;
         inputFieldEl.dispatchEvent(new CustomEvent('change'));
 
-        // Run all fake timers.
-        jest.runAllTimers();
+        // Wait for component update
+        await wait(400);
 
-        // Return an immediate flushed promise (after the Apex call) to then
-        // wait for any asynchronous DOM updates. Jest will automatically wait
-        // for the Promise chain to complete before ending the test and fail
-        // the test if the promise ends in the rejected state.
-        // Cannot use async/await with timers because of https://github.com/facebook/jest/issues/4928
-        return flushPromises().then(() => {
-            expect(element).toBeAccessible();
-        });
+        await expect(element).toBeAccessible();
     });
 
-    it('is accessible when error is returned', () => {
+    it('is accessible when error is returned', async () => {
+        jest.useRealTimers();
+
         const USER_INPUT = 'invalid';
 
         // Assign mock value for rejected Apex promise
@@ -182,16 +188,9 @@ describe('c-composition-contact-search', () => {
         inputFieldEl.value = USER_INPUT;
         inputFieldEl.dispatchEvent(new CustomEvent('change'));
 
-        // Run all fake timers.
-        jest.runAllTimers();
+        // Wait for component update
+        await wait(400);
 
-        // Return an immediate flushed promise (after the Apex call) to then
-        // wait for any asynchronous DOM updates. Jest will automatically wait
-        // for the Promise chain to complete before ending the test and fail
-        // the test if the promise ends in the rejected state.
-        // Cannot use async/await with timers because of https://github.com/facebook/jest/issues/4928
-        return flushPromises().then(() => {
-            expect(element).toBeAccessible();
-        });
+        await expect(element).toBeAccessible();
     });
 });

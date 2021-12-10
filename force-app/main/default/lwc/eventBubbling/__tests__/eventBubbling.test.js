@@ -146,7 +146,7 @@ describe('c-event-bubbling', () => {
         expect(contactNameEl.textContent).toBe(CONTACT.Name);
     });
 
-    it('is accessible when data is returned', () => {
+    it('is accessible when data is returned', async () => {
         // Create initial element
         const element = createElement('c-event-bubbling', {
             is: EventBubbling
@@ -156,9 +156,9 @@ describe('c-event-bubbling', () => {
         // Emit data from @wire
         getContactList.emit(mockGetContactList);
 
-        return flushPromises().then(() => {
-            expect(element).toBeAccessible();
-        });
+        // Wait for any asynchronous DOM updates and test acccessibility
+        await flushPromises();
+        await expect(element).toBeAccessible();
     });
 
     it('is accessible when error is returned', async () => {
@@ -171,9 +171,9 @@ describe('c-event-bubbling', () => {
         // Emit error from @wire
         getContactList.error();
 
-        return flushPromises().then(() => {
-            expect(element).toBeAccessible();
-        });
+        // Wait for any asynchronous DOM updates and test acccessibility
+        await flushPromises();
+        await expect(element).toBeAccessible();
     });
 
     it('is accessible when a contact is selected', async () => {
@@ -214,8 +214,7 @@ describe('c-event-bubbling', () => {
         );
 
         // Wait for any asynchronous DOM updates and test acccessibility
-        return flushPromises().then(() => {
-            expect(element).toBeAccessible();
-        });
+        await flushPromises();
+        await expect(element).toBeAccessible();
     });
 });
