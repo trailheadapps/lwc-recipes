@@ -84,7 +84,7 @@ jobs:
 
             # Run PMD scan
             - name: 'Run PMD scan'
-              run: ~/pmd/bin/run.sh pmd -d /force-app -R rulesets.xml -f text
+              run: ~/pmd/bin/run.sh pmd -d /force-app -R ruleset.xml -f text
 
             # Install Salesforce CLI
             - name: 'Install Salesforce CLI'
