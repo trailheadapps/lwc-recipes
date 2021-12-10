@@ -12,11 +12,29 @@ import PHONE_FIELD from '@salesforce/schema/Contact.Phone';
 import EMAIL_FIELD from '@salesforce/schema/Contact.Email';
 
 const COLS = [
-    { label: 'First Name', fieldName: 'FirstName', editable: true },
-    { label: 'Last Name', fieldName: 'LastName', editable: true },
-    { label: 'Title', fieldName: 'Title', editable: true },
-    { label: 'Phone', fieldName: 'Phone', type: 'phone', editable: true },
-    { label: 'Email', fieldName: 'Email', type: 'email', editable: true }
+    {
+        label: 'First Name',
+        fieldName: FIRSTNAME_FIELD.fieldApiName,
+        editable: true
+    },
+    {
+        label: 'Last Name',
+        fieldName: LASTNAME_FIELD.fieldApiName,
+        editable: true
+    },
+    { label: 'Title', fieldName: TITLE_FIELD.fieldApiName, editable: true },
+    {
+        label: 'Phone',
+        fieldName: PHONE_FIELD.fieldApiName,
+        type: 'phone',
+        editable: true
+    },
+    {
+        label: 'Email',
+        fieldName: EMAIL_FIELD.fieldApiName,
+        type: 'email',
+        editable: true
+    }
 ];
 export default class DatatableInlineEditWithUiApi extends LightningElement {
     columns = COLS;
