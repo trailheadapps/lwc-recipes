@@ -98,11 +98,15 @@ describe('c-datatable-inline-edit-with-apex', () => {
         await flushPromises();
 
         const tableEl = element.shadowRoot.querySelector('lightning-datatable');
+
+        //Validate the datatable is populated with correct number of records
         expect(tableEl.data.length).toBe(mockGetContactList.length);
+
+        //Validate the record to have rendered with correct data
         expect(tableEl.data[0].FirstName).toBe(mockGetContactList[0].FirstName);
     });
 
-    it('updates a record on Save', async () => {
+    it('updates the records on Save', async () => {
         const INPUT_PARAMETERS = [{ contactsForUpdate: DRAFT_VALUES }];
 
         // Create initial element
@@ -131,7 +135,8 @@ describe('c-datatable-inline-edit-with-apex', () => {
 
         // Validate updateContacts call
         expect(updateContacts).toHaveBeenCalled();
-        //Validate the update call is made for only one record
+
+        //Validate the update call is made with correct input parameters
         expect(updateContacts.mock.calls[0]).toEqual(INPUT_PARAMETERS);
     });
 
@@ -159,6 +164,7 @@ describe('c-datatable-inline-edit-with-apex', () => {
         // Wait for any asynchronous DOM updates
         await flushPromises();
 
+        //Update multiple records with the INPUT_PARAMETERS and simulate the Save event
         const tableEl = element.shadowRoot.querySelector('lightning-datatable');
         tableEl.dispatchEvent(
             new CustomEvent('save', {
@@ -170,8 +176,10 @@ describe('c-datatable-inline-edit-with-apex', () => {
         // Wait for any asynchronous DOM updates
         await flushPromises();
 
+        //Validate the toast event is called with success
         expect(toastHandler).toHaveBeenCalled();
         expect(toastHandler.mock.calls[0][0].detail.variant).toBe('success');
+
         //Validate refreshApex is called and the draft values are reset
         expect(refreshApex).toHaveBeenCalled();
         expect(tableEl.draftValues).toEqual([]);
@@ -210,6 +218,7 @@ describe('c-datatable-inline-edit-with-apex', () => {
         // Wait for any asynchronous DOM updates
         await flushPromises();
 
+        //Validate the toast event is called with error
         expect(toastHandler).toHaveBeenCalled();
         expect(toastHandler.mock.calls[0][0].detail.variant).toBe('error');
     });
