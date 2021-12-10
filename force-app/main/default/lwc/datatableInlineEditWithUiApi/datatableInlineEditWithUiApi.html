@@ -1,0 +1,27 @@
+<!-- sldsValidatorIgnore - hiding datatable accessibility warning -->
+<template>
+    <lightning-card
+        title="Datatable Inline Edit With UI API"
+        icon-name="custom:custom62"
+    >
+        <div class="slds-var-m-around_medium">
+            <template if:true={contacts.data}>
+                <lightning-datatable
+                    key-field="Id"
+                    data={contacts.data}
+                    columns={columns}
+                    onsave={handleSave}
+                    draft-values={draftValues}
+                    hide-checkbox-column
+                >
+                </lightning-datatable>
+            </template>
+            <template if:true={contacts.error}>
+                <c-error-panel errors={contacts.error}></c-error-panel>
+            </template>
+        </div>
+        <c-view-source source="lwc/datatableInlineEditWithUiApi" slot="footer">
+            Display data in a table with inline editing with the UI API.
+        </c-view-source>
+    </lightning-card>
+</template>

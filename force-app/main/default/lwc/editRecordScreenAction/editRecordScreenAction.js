@@ -37,7 +37,6 @@ export default class EditRecordScreenAction extends LightningElement {
         fields[LASTNAME_FIELD.fieldApiName] = this.template.querySelector(
             "[data-field='LastName']"
         ).value;
-        console.dir(fields);
         const recordInput = { fields };
 
         updateRecord(recordInput)
