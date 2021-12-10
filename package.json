@@ -33,9 +33,9 @@
         "url": "git+https://github.com/trailheadapps/lwc-recipes"
     },
     "devDependencies": {
-        "@lwc/eslint-plugin-lwc": "^1.1.0",
+        "@lwc/eslint-plugin-lwc": "^1.1.1",
         "@prettier/plugin-xml": "^1.1.0",
-        "@sa11y/jest": "^3.0.1",
+        "@sa11y/jest": "^3.1.0",
         "@salesforce/eslint-config-lwc": "^3.0.0",
         "@salesforce/eslint-plugin-aura": "^2.0.0",
         "@salesforce/eslint-plugin-lightning": "^0.1.1",
@@ -43,11 +43,11 @@
         "eslint": "^7.32.0",
         "eslint-config-prettier": "^8.3.0",
         "eslint-plugin-import": "^2.25.2",
-        "eslint-plugin-jest": "^25.2.2",
+        "eslint-plugin-jest": "^25.3.0",
         "husky": "^7.0.4",
         "jest-canvas-mock": "^2.3.1",
-        "lint-staged": "^12.0.2",
-        "prettier": "^2.4.1",
+        "lint-staged": "^12.1.2",
+        "prettier": "^2.5.0",
         "prettier-plugin-apex": "^1.10.0"
     },
     "volta": {
