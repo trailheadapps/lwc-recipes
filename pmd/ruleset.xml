@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ruleset
+    name="Apex Security"
+    xmlns="http://pmd.sourceforge.net/ruleset/2.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 https://pmd.sourceforge.io/ruleset_2_0_0.xsd"
+>
+   <description>Security Rules for Apex</description>
+
+   <rule
+        ref="category/apex/security.xml/ApexSharingViolations"
+        message="Apex classes should declare a sharing model if DML or SOQL is used"
+    >
+      <priority>3</priority>
+   </rule>
+   <rule
+        ref="category/apex/security.xml/ApexInsecureEndpoint"
+        message="Apex callouts should use encrypted communication channels"
+    >
+      <priority>3</priority>
+   </rule>
+   <rule ref="category/apex/errorprone.xml/ApexCSRF">
+      <priority>3</priority>
+   </rule>
+   <rule
+        ref="category/apex/security.xml/ApexOpenRedirect"
+        message="Apex classes should safely redirect to a known location"
+    >
+      <priority>3</priority>
+   </rule>
+   <rule
+        ref="category/apex/security.xml/ApexSOQLInjection"
+        message="Apex classes should escape variables merged in DML query"
+    >
+      <priority>3</priority>
+   </rule>
+   <rule
+        ref="category/apex/security.xml/ApexXSSFromURLParam"
+        message="Apex classes should escape Strings obtained from URL parameters"
+    >
+      <priority>3</priority>
+   </rule>
+   <rule
+        ref="category/apex/security.xml/ApexXSSFromEscapeFalse"
+        message="Apex classes should escape addError strings"
+    >
+      <priority>3</priority>
+   </rule>
+   <rule
+        ref="category/apex/security.xml/ApexBadCrypto"
+        message="Apex Crypto should use random IV/key"
+    >
+      <priority>3</priority>
+   </rule>
+  <rule
+        ref="category/apex/security.xml/ApexCRUDViolation"
+        message="Validate CRUD permission before SOQL/DML operation"
+    >
+      <priority>3</priority>
+   </rule>
+   <rule
+        ref="category/apex/security.xml/ApexDangerousMethods"
+        message="Calling potentially dangerous method"
+    >
+      <priority>3</priority>
+   </rule>
+   <rule
+        ref="category/apex/security.xml/ApexSuggestUsingNamedCred"
+        message="Consider using named credentials for authenticated callouts"
+    >
+      <priority>3</priority>
+   </rule>
+</ruleset>
