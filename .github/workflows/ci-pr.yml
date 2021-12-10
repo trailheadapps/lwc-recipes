@@ -75,8 +75,8 @@ jobs:
               run: |
                   wget https://github.com/pmd/pmd/releases/download/pmd_releases%2F${{ secrets.PMD_VERSION }}/pmd-bin-${{ secrets.PMD_VERSION }}.zip
                   unzip pmd-bin-${{ secrets.PMD_VERSION }}.zip -d ~
-                  alias pmd="~/pmd-bin-${{ secrets.PMD_VERSION }}/bin/run.sh pmd"
-                  pmd --version
+                  mv ~/pmd-bin-${{ secrets.PMD_VERSION }} ~/pmd
+                  ~/pmd/bin/run.sh pmd --version
 
             # Checkout the source code
             - name: 'Checkout source code'
@@ -84,7 +84,7 @@ jobs:
 
             # Run PMD scan
             - name: 'Run PMD scan'
-              run: pmd -d /force-app -R rulesets.xml -f text
+              run: ~/pmd/bin/run.sh pmd -d /force-app -R rulesets.xml -f text
 
             # Install Salesforce CLI
             - name: 'Install Salesforce CLI'
