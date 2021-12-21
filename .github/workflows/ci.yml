@@ -20,6 +20,10 @@ jobs:
             - name: 'Checkout source code'
               uses: actions/checkout@v2
 
+            # Install Volta to enforce proper node and package manager versions
+            - name: 'Install Volta'
+              uses: volta-cli/action@v1
+
             # Cache node_modules to speed up the process
             - name: 'Restore node_modules cache'
               id: cache-npm
@@ -59,6 +63,23 @@ jobs:
         needs: format-lint-lwc-tests
         if: ${{ github.actor != 'dependabot[bot]' }}
         steps:
+            # Checkout the source code
+            - name: 'Checkout source code'
+              uses: actions/checkout@v2
+
+            # Install PMD
+            - name: 'Install PMD'
+              run: |
+                  PMD_VERSION=`cat pmd/pmd-version.txt`
+                  wget https://github.com/pmd/pmd/releases/download/pmd_releases%2F$PMD_VERSION/pmd-bin-$PMD_VERSION.zip
+                  unzip pmd-bin-$PMD_VERSION.zip -d ~
+                  mv ~/pmd-bin-$PMD_VERSION ~/pmd
+                  ~/pmd/bin/run.sh pmd --version
+
+            # Run PMD scan
+            - name: 'Run PMD scan'
+              run: ~/pmd/bin/run.sh pmd -d force-app -R pmd/ruleset.xml -f text
+
             # Install Salesforce CLI
             - name: 'Install Salesforce CLI'
               run: |
@@ -67,10 +88,6 @@ jobs:
                   tar xJf sfdx-linux-x64.tar.xz -C ~/sfdx --strip-components 1
                   echo "$HOME/sfdx/bin" >> $GITHUB_PATH
                   ~/sfdx/bin/sfdx version
-
-            # Checkout the source code
-            - name: 'Checkout source code'
-              uses: actions/checkout@v2
 
             # Store secret for dev hub
             - name: 'Populate auth file with DEVHUB_SFDX_URL secret'
