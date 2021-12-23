@@ -79,8 +79,6 @@ describe('c-composition-contact-search', () => {
     });
 
     it('renders one contact tile based on user input', async () => {
-        jest.useFakeTimers();
-
         const USER_INPUT = 'Amy';
 
         // Assign mock value for resolved Apex promise
@@ -111,8 +109,6 @@ describe('c-composition-contact-search', () => {
     });
 
     it('renders the error panel when the Apex method returns an error', async () => {
-        jest.useFakeTimers();
-
         const USER_INPUT = 'invalid';
 
         // Assign mock value for rejected Apex promise
