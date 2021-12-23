@@ -20,11 +20,7 @@
 
                     <template if:true={hasHeaderString}>
                         <h2
-                            class="
-                                slds-text-heading_medium
-                                slds-hyphenate
-                                header-string
-                            "
+                            class="slds-text-heading_medium slds-hyphenate header-string"
                         >
                             {header}
                         </h2>
@@ -34,11 +30,7 @@
                             pass in some content into the header slot, so that the component
                             is accessible, as empty headings are considered not accessible. -->
                         <h2
-                            class="
-                                slds-text-heading_medium
-                                slds-hyphenate
-                                header-slot
-                            "
+                            class="slds-text-heading_medium slds-hyphenate header-slot"
                         >
                             <slot name="header"></slot>
                         </h2>
