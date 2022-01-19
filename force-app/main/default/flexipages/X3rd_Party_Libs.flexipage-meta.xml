@@ -7,8 +7,8 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
+                <componentName>libsD3</componentName>
                 <identifier>libsD3</identifier>
-<componentName>libsD3</componentName>
             </componentInstance>
         </itemInstances>
         <name>region2</name>
@@ -17,14 +17,20 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
+                <componentName>libsChartjs</componentName>
                 <identifier>libsChartjs</identifier>
-<componentName>libsChartjs</componentName>
             </componentInstance>
         </itemInstances>
         <name>region3</name>
         <type>Region</type>
     </flexiPageRegions>
     <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentName>libsFullCalendar</componentName>
+                <identifier>c_libsFullCalendar1</identifier>
+            </componentInstance>
+        </itemInstances>
         <name>region4</name>
         <type>Region</type>
     </flexiPageRegions>
