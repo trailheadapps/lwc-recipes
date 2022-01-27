@@ -32,12 +32,10 @@ export default class DatatableInlineEditWithApex extends LightningElement {
                     variant: 'success'
                 })
             );
-
             // Display fresh data in the datatable
-            await refreshApex(this.contacts).then(() => {
-                // Clear all draft values in the datatable
-                this.draftValues = [];
-            });
+            await refreshApex(this.contacts);
+            // Clear all draft values in the datatable
+            this.draftValues = [];
         } catch (error) {
             this.dispatchEvent(
                 new ShowToastEvent({
