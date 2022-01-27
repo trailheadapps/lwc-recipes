@@ -4,7 +4,6 @@ import { refreshApex } from '@salesforce/apex';
 import { updateRecord } from 'lightning/uiRecordApi';
 
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
-import ID_FIELD from '@salesforce/schema/Contact.Id';
 import FIRSTNAME_FIELD from '@salesforce/schema/Contact.FirstName';
 import LASTNAME_FIELD from '@salesforce/schema/Contact.LastName';
 import TITLE_FIELD from '@salesforce/schema/Contact.Title';
@@ -45,14 +44,8 @@ export default class DatatableInlineEditWithUiApi extends LightningElement {
 
     async handleSave(event) {
         // Convert datatable draft values into record objects
-        const records = event.detail.draftValues.map((draftValue) => {
-            const fields = {};
-            fields[ID_FIELD.fieldApiName] = draftValue.Id;
-            fields[FIRSTNAME_FIELD.fieldApiName] = draftValue.FirstName;
-            fields[LASTNAME_FIELD.fieldApiName] = draftValue.LastName;
-            fields[TITLE_FIELD.fieldApiName] = draftValue.Title;
-            fields[PHONE_FIELD.fieldApiName] = draftValue.Phone;
-            fields[EMAIL_FIELD.fieldApiName] = draftValue.Email;
+        const records = event.detail.draftValues.slice().map((draftValue) => {
+            const fields = Object.assign({}, draftValue);
             return { fields };
         });
 
