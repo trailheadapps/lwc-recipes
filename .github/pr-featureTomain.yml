@@ -1,0 +1,45 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the master branch
+  pull_request:
+    branches: [ master ]
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      # Runs a single command using the runners shell
+      - name: Run a one-line script
+        run: echo Hello, world!
+
+       # Install Salesforce CLI
+      - name: 'Install Salesforce CLI'
+        run: |
+            wget https://developer.salesforce.com/media/salesforce-cli/sfdx/channels/stable/sfdx-linux-x64.tar.xz
+            mkdir ~/sfdx
+            tar xJf sfdx-linux-x64.tar.xz -C ~/sfdx --strip-components 1
+            echo "$HOME/sfdx/bin" >> $GITHUB_PATH
+            ~/sfdx/bin/sfdx version
+      # Decrypt Server Key
+      #- name: 'Decrypt Server Key'
+      #  run: openssl enc -iter 5 -aes-256-cbc -d -in assets/server.key.enc -out server.key -base64 -K ${{secrets.DECRYPTION_KEY}} -iv ${{secrets.DECRYPTION_IV}}
+      
+      # Authenticate with Dev-Hub
+      - name: 'Authenticate with Dev-hub'
+        run: sfdx force:auth:jwt:grant --clientid ${{secrets.CONSUMER_KEY}}.9 --jwtkeyfile ${{secrets.SERVER_KEY}} --username ${{secrets.USERNAME}} --setalias mydevhubTP --setdefaultdevhubusername
+        
+      # Validate
+      - name: 'Validate Metadata'
+        run: sfdx force:org:deploy -p force-app/main/default --testlevel=RunLocalTests --checkonly -u devhubTP
