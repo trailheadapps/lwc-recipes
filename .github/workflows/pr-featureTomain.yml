@@ -42,4 +42,4 @@ jobs:
         
       # Validate
       - name: 'Validate Metadata'
-        run: sfdx force:org:deploy -p force-app/main/default --testlevel=RunLocalTests --checkonly -u devhubTP
+        run: sfdx force:source:deploy -p force-app/main/default --testlevel=RunLocalTests --checkonly -u mydevhubTP
