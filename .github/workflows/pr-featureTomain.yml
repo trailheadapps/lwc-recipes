@@ -41,5 +41,9 @@ jobs:
         run: sfdx force:auth:jwt:grant --clientid ${{secrets.CONSUMER_KEY}} --jwtkeyfile assets/server.key --username ${{secrets.USERNAME}} --setalias mydevhubTP --setdefaultdevhubusername
         
       # Validate
-      - name: 'Validate Metadata'
-        run: sfdx force:source:deploy -p force-app/main/default --testlevel=RunLocalTests --checkonly -u mydevhubTP
+      #- name: 'Validate Metadata'
+      #  run: sfdx force:source:deploy -p force-app/main/default --testlevel=RunLocalTests --checkonly -u mydevhubTP
+
+      # Run Apex tests 
+      - name: 'Run Apex tests'
+        run: sfdx force:apex:test:run -c -r human -d ./tests/apex -w 20
