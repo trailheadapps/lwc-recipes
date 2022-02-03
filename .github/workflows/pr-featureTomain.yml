@@ -46,4 +46,4 @@ jobs:
 
       # Run Apex tests 
       - name: 'Run Apex tests'
-        run: sfdx force:apex:test:run -c -r human -d ./tests/apex -w 20
+        run: sfdx force:apex:test:run -c -r human -d ./tests/apex -w 20 -u mydevhubTP
