@@ -3,5 +3,15 @@
 }
 
 .description {
-    color: #706e6b;
+    /* Use custom styling hook with a fallback value */
+    color: var(--source-text-color, #706e6b);
+}
+
+a {
+    /* Use custom styling hook with no fallback value */
+    color: var(--source-link-color);
+}
+a:hover {
+    /* Use custom styling hook with no fallback value */
+    color: var(--source-link-color-hover);
 }
