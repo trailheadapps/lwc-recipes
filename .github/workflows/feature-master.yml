@@ -47,67 +47,9 @@ jobs:
       - name: 'Authenticate with Dev-hub'
         run: sfdx force:auth:jwt:grant --clientid ${{secrets.CONSUMER_KEY}} --jwtkeyfile assets/server.key --username ${{secrets.USERNAME}} --setalias mydevhubTP --setdefaultdevhubusername
         
-      # Validate
-      #- name: 'Validate Metadata'
-      #  run: sfdx force:source:deploy -p force-app/main/default --testlevel=RunLocalTests --checkonly -u mydevhubTP
+      # Deploy
+      - name: 'Deploy Metadata'
+        run: sfdx force:source:deploy -p force-app/main/default --testlevel=RunLocalTests -u mydevhubTP
 
-      # Create scratch org
-      - name: 'Create scratch org'
-        run: sfdx force:org:create -f config/project-scratch-def.json -a scratch-org -s -d 1 release=Preview
-
-      # Deploy source to scratch org
-      - name: 'Push source to scratch org'
-        run: sfdx force:source:push
-
-      # Assign permissionset
-      - name: 'Assign permissionset to default user'
-        run: sfdx force:user:permset:assign -n recipes
-
-      # Import sample data
-      - name: 'Import sample data'
-        run: sfdx force:data:tree:import -p ./data/data-plan.json
-
-      # Run Apex tests in scratch org
-      - name: 'Run Apex tests'
-        run: sfdx force:apex:test:run -c -r human -d ./tests/apex -w 20
-
-      # Delete temporary test file that Codecov is unable to parse
-      - name: 'Delete coverage file (temporary step)'
-        run: rm ./tests/apex/test-result-707*-codecoverage.json
-
-      # Upload code coverage data
-      - name: 'Upload code coverage for Apex to Codecov.io'
-        uses: codecov/codecov-action@v2.0.2
-        with:
-            flags: Apex
-
-      # Housekeeping
-      - name: 'Delete scratch org'
-        if: always()
-        run: sfdx force:org:delete -p -u scratch-org
-
-  deploy:
-    runs-on: ubuntu-latest
-    needs: build
-    steps: 
-      # Checkout the source code
-      - name: 'Checkout source code'
-        uses: actions/checkout@v2
-
-      # Install Salesforce CLI
-      - name: 'Install Salesforce CLI'
-        run: |
-            wget https://developer.salesforce.com/media/salesforce-cli/sfdx/channels/stable/sfdx-linux-x64.tar.xz
-            mkdir ~/sfdx
-            tar xJf sfdx-linux-x64.tar.xz -C ~/sfdx --strip-components 1
-            echo "$HOME/sfdx/bin" >> $GITHUB_PATH
-            ~/sfdx/bin/sfdx version
-
-      # Authenticate with Dev-Hub
-      - name: 'Authenticate with Dev-hub'
-        run: sfdx force:auth:jwt:grant --clientid ${{secrets.CONSUMER_KEY}} --jwtkeyfile assets/server.key --username ${{secrets.USERNAME}} --setalias mydevhubTP --setdefaultdevhubusername
-      
-      # Validate
-      - name: 'Validate Metadata'
-        run: sfdx force:source:deploy -p force-app/main/default --testlevel=RunLocalTests -u mydevhubTP 
+     
      
