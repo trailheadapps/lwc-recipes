@@ -56,7 +56,8 @@ jobs:
                 ]' > unsignedPluginAllowList.json
 
       # Install the 'sfdx-git-delta' plugin and Create Delta
-      - name: |
+      - name: 'Install plugin and Create Delta'
+        run : |
             sfdx plugins:install sfdx-git-delta
             git config remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*'
             git fetch --all
