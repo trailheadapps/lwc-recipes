@@ -50,8 +50,8 @@ jobs:
       # Create allow list to install unsigned plugins
       - name: 'Create allow list'
         run:  |
-          cd $HOME/.config/sfdx
-          echo '[
+          cd $HOME/sfdx
+          sudo echo '[
                     "sfdx-git-delta"
                 ]' > unsignedPluginAllowList.json
 
@@ -69,6 +69,20 @@ jobs:
       # Validate
       - name: 'Validate Metadata'
         run: sfdx force:source:deploy --manifest package/package.xml --testlevel=RunLocalTests --checkonly -u mydevhubTP -w 30
+
+      - name: 'Explore'
+        if: always()
+        run: |
+          pwd
+          cd $HOME
+          pwd
+          ls
+          cd $HOME/.config
+          pwd
+          ls
+          
+
+
 
   #     # Create scratch org
   #     - name: 'Create scratch org'
