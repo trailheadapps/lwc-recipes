@@ -65,7 +65,7 @@ jobs:
             git fetch --all
             git checkout -b feature-pr
             git --no-pager diff --name-status feature-pr origin/master
-            sfdx sgd:source:delta --to feature-pr --from origin/master --repo . --output "."
+            sfdx sgd:source:delta --to feature-pr --from origin/master --ignore .diffignore --repo . --output "."
             cat package/package.xml
 
       # Validate
