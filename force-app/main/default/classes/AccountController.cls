@@ -1,4 +1,4 @@
-/* Adding Comments again*/
+/* Adding Comments 2*/
 public with sharing class AccountController {
     @AuraEnabled(cacheable=true)
     public static List<Account> getAccountList() {

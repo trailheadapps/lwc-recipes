@@ -64,8 +64,9 @@ jobs:
             sfdx plugins:install sfdx-git-delta
             git config remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*'
             git fetch --all
-            git --no-pager diff --name-status HEAD origin/master
-            sfdx sgd:source:delta --to HEAD --from origin/master --ignore .diffignore --repo . --output "."
+            git checkout -b feature-pr
+            git --no-pager diff --name-status feature-pr origin/master
+            sfdx sgd:source:delta --to feature-pr --from origin/master --ignore .diffignore --repo . --output "."
             cat package/package.xml
 
       # Deploy
