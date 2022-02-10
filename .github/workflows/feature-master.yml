@@ -65,7 +65,7 @@ jobs:
             git config remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*'
             git fetch --all
             git --no-pager diff --name-status feature/delta origin/master
-            sfdx sgd:source:delta --to feature/delta --from origin/master --repo . --output "."
+            sfdx sgd:source:delta --to feature/delta --from origin/master --ignore .diffignore --repo . --output "."
             cat package/package.xml
 
       # Deploy
