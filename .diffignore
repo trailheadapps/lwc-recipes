@@ -1,0 +1,7 @@
+# .forceignore v2
+# List files or directories below to ignore them when running sfdx sgd:source:delta --ignore
+# More information: https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_exclude_source.htm
+#
+
+# Github workflows
+.github/workflows/*
