@@ -50,7 +50,9 @@ jobs:
       # Create allow list to install unsigned plugins
       - name: 'Create allow list'
         run:  |
-          cd $HOME/sfdx
+          cd $HOME/.config
+          mkdir sfdx
+          cd sfdx
           sudo echo '[
                     "sfdx-git-delta"
                 ]' > unsignedPluginAllowList.json
