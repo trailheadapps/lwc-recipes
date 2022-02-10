@@ -3,7 +3,7 @@
     <fullName>AreaNumber__c</fullName>
     <defaultValue>1000</defaultValue>
     <externalId>false</externalId>
-    <label>Area #</label>
+    <label>Area ##</label>
     <precision>18</precision>
     <required>false</required>
     <scale>0</scale>
