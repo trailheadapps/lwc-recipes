@@ -65,23 +65,13 @@ jobs:
             git fetch --all
             git checkout -b feature-pr
             git --no-pager diff --name-status feature-pr origin/master
-            sfdx sgd:source:delta --to feature-pr --from origin/master --ignore .github/workflows/* --repo . --output "."
+            sfdx sgd:source:delta --to feature-pr --from origin/master --repo . --output "."
             cat package/package.xml
 
-      # Validate
-      - name: 'Validate Metadata'
-        run: sfdx force:source:deploy --manifest package/package.xml --testlevel=RunLocalTests --checkonly -u mydevhubTP -w 30
+      # # Validate
+      # - name: 'Validate Metadata'
+      #   run: sfdx force:source:deploy --manifest package/package.xml --testlevel=RunLocalTests --checkonly -u mydevhubTP -w 30
 
-      - name: 'Explore'
-        if: always()
-        run: |
-          pwd
-          cd $HOME
-          pwd
-          ls
-          cd $HOME/.config
-          pwd
-          ls
           
 
 

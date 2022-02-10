@@ -22,17 +22,17 @@ jobs:
         uses: actions/checkout@v2
 
       # Install PMD
-      - name: 'Install PMD'
-        run: |
-            PMD_VERSION=`cat pmd/pmd-version.txt`
-            wget https://github.com/pmd/pmd/releases/download/pmd_releases%2F$PMD_VERSION/pmd-bin-$PMD_VERSION.zip
-            unzip pmd-bin-$PMD_VERSION.zip -d ~
-            mv ~/pmd-bin-$PMD_VERSION ~/pmd
-            ~/pmd/bin/run.sh pmd --version
+      # - name: 'Install PMD'
+      #   run: |
+      #       PMD_VERSION=`cat pmd/pmd-version.txt`
+      #       wget https://github.com/pmd/pmd/releases/download/pmd_releases%2F$PMD_VERSION/pmd-bin-$PMD_VERSION.zip
+      #       unzip pmd-bin-$PMD_VERSION.zip -d ~
+      #       mv ~/pmd-bin-$PMD_VERSION ~/pmd
+      #       ~/pmd/bin/run.sh pmd --version
 
-      # Run PMD scan
-      - name: 'Run PMD scan'
-        run: ~/pmd/bin/run.sh pmd -d force-app -R pmd/ruleset.xml -f text
+      # # Run PMD scan
+      # - name: 'Run PMD scan'
+      #   run: ~/pmd/bin/run.sh pmd -d force-app -R pmd/ruleset.xml -f text
 
        # Install Salesforce CLI
       - name: 'Install Salesforce CLI'
@@ -50,10 +50,13 @@ jobs:
       # Create allow list to install unsigned plugins
       - name: 'Create allow list'
         run:  |
-          cd $HOME/.config/sfdx
-          echo '[
+          cd $HOME/.config
+          mkdir sfdx
+          cd sfdx
+          sudo echo '[
                     "sfdx-git-delta"
                 ]' > unsignedPluginAllowList.json
+
 
       # Install the 'sfdx-git-delta' plugin and Create Delta
       - name: 'Install plugin and Create Delta'
