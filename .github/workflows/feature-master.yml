@@ -70,7 +70,7 @@ jobs:
 
       # Deploy
       - name: 'Deploy Metadata'
-        run: sfdx force:source:deploy --manifest package/package.xml --testlevel=RunLocalTests -u mydevhubTP -w 30
+        run: sfdx force:source:deploy --manifest package/package.xml --testlevel=RunLocalTests -u mydevhubTP -w 30 -o
 
      
      

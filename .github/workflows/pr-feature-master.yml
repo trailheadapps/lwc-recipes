@@ -68,9 +68,9 @@ jobs:
             sfdx sgd:source:delta --to feature-pr --from origin/master --repo . --output "."
             cat package/package.xml
 
-      # # Validate
-      # - name: 'Validate Metadata'
-      #   run: sfdx force:source:deploy --manifest package/package.xml --testlevel=RunLocalTests --checkonly -u mydevhubTP -w 30
+      # Validate
+      - name: 'Validate Metadata'
+        run: sfdx force:source:deploy --manifest package/package.xml --testlevel=RunLocalTests --checkonly -u mydevhubTP -w 30 -o
 
           
 
