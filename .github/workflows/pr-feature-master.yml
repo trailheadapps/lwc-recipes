@@ -21,20 +21,20 @@ jobs:
       - name: 'Checkout source code'
         uses: actions/checkout@v2
 
-      # # Install PMD
-      # - name: 'Install PMD'
-      #   run: |
-      #       PMD_VERSION=`cat pmd/pmd-version.txt`
-      #       wget https://github.com/pmd/pmd/releases/download/pmd_releases%2F$PMD_VERSION/pmd-bin-$PMD_VERSION.zip
-      #       unzip pmd-bin-$PMD_VERSION.zip -d ~
-      #       mv ~/pmd-bin-$PMD_VERSION ~/pmd
-      #       ~/pmd/bin/run.sh pmd --version
+      # Install PMD
+      - name: 'Install PMD'
+        run: |
+            PMD_VERSION=`cat pmd/pmd-version.txt`
+            wget https://github.com/pmd/pmd/releases/download/pmd_releases%2F$PMD_VERSION/pmd-bin-$PMD_VERSION.zip
+            unzip pmd-bin-$PMD_VERSION.zip -d ~
+            mv ~/pmd-bin-$PMD_VERSION ~/pmd
+            ~/pmd/bin/run.sh pmd --version
 
-      # # Run PMD scan
-      # - name: 'Run PMD scan'
-      #   run: ~/pmd/bin/run.sh pmd -d force-app -R pmd/ruleset.xml -f text
+      # Run PMD scan
+      - name: 'Run PMD scan'
+        run: ~/pmd/bin/run.sh pmd -d force-app -R pmd/ruleset.xml -f text
 
-       # Install Salesforce CLI
+       Install Salesforce CLI
       - name: 'Install Salesforce CLI'
         run: |
             wget https://developer.salesforce.com/media/salesforce-cli/sfdx/channels/stable/sfdx-linux-x64.tar.xz
