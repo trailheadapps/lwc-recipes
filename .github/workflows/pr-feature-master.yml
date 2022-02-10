@@ -46,10 +46,28 @@ jobs:
       # Authenticate with Dev-Hub
       - name: 'Authenticate with Dev-hub'
         run: sfdx force:auth:jwt:grant --clientid ${{secrets.CONSUMER_KEY}} --jwtkeyfile assets/server.key --username ${{secrets.USERNAME}} --setalias mydevhubTP --setdefaultdevhubusername
-        
+
+      # Create allow list to install unsigned plugins
+      - name: 'Create allow list'
+        run:  |
+          cd $HOME/.config/sfdx
+          echo '[
+                    "sfdx-git-delta"
+                ]' > unsignedPluginAllowList.json
+
+      # Install the 'sfdx-git-delta' plugin and Create Delta
+      - name: |
+            sfdx plugins:install sfdx-git-delta
+            git config remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*'
+            git fetch --all
+            git checkout -b feature-pr
+            git --no-pager diff --name-status feature-pr origin/master
+            sfdx sgd:source:delta --to feature-pr --from origin/master --repo . --output "."
+            cat package/package.xml
+
       # Validate
       - name: 'Validate Metadata'
-        run: sfdx force:source:deploy -p force-app/main/default --testlevel=RunLocalTests --checkonly -u mydevhubTP
+        run: sfdx force:source:deploy --manifest package/package.xml --testlevel=RunLocalTests --checkonly -u mydevhubTP -w 30
 
   #     # Create scratch org
   #     - name: 'Create scratch org'
