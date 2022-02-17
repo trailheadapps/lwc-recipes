@@ -65,6 +65,7 @@ describe('c-contact-selector', () => {
         const selectEvent = mockSelectHandler.mock.calls[0][0];
         expect(selectEvent.detail).toEqual(PAYLOAD);
     });
+
     it('shows error panel element when error returned', async () => {
         // Create initial element
         const element = createElement('c-contact-selector', {
@@ -82,6 +83,7 @@ describe('c-contact-selector', () => {
         const errorPanelEl = element.shadowRoot.querySelector('c-error-panel');
         expect(errorPanelEl).not.toBeNull();
     });
+
     it('is accessible when data is returned', async () => {
         // Create initial element
         const element = createElement('c-contact-selector', {
