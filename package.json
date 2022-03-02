@@ -46,7 +46,7 @@
         "eslint-plugin-jest": "^26.0.0",
         "husky": "^7.0.4",
         "jest-canvas-mock": "^2.3.1",
-        "lint-staged": "^12.3.3",
+        "lint-staged": "^12.3.4",
         "prettier": "^2.5.1",
         "prettier-plugin-apex": "^1.10.0"
     },
