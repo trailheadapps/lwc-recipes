@@ -22,24 +22,28 @@ export default class DatatableInlineEditWithApex extends LightningElement {
     async handleSave(event) {
         const updatedFields = event.detail.draftValues;
 
+        // Clear all datatable draft values
+        this.draftValues = [];
+
         try {
             // Pass edited fields to the updateContacts Apex controller
             await updateContacts({ contactsForUpdate: updatedFields });
+
+            // Report success with a toast
             this.dispatchEvent(
                 new ShowToastEvent({
                     title: 'Success',
-                    message: 'Contact(s) updated',
+                    message: 'Contacts updated',
                     variant: 'success'
                 })
             );
+
             // Display fresh data in the datatable
             await refreshApex(this.contacts);
-            // Clear all draft values in the datatable
-            this.draftValues = [];
         } catch (error) {
             this.dispatchEvent(
                 new ShowToastEvent({
-                    title: 'Error updating or refreshing records',
+                    title: 'Error while updating or refreshing records',
                     message: error.body.message,
                     variant: 'error'
                 })

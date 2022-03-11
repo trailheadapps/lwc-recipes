@@ -39,6 +39,7 @@ export default class DatatableInlineEditWithUiApi extends LightningElement {
     columns = COLS;
     draftValues = [];
 
+    // Using Apex to fetch records while waiting for a replacement to getListUi() which is deprecated
     @wire(getContacts)
     contacts;
 
@@ -73,7 +74,7 @@ export default class DatatableInlineEditWithUiApi extends LightningElement {
         } catch (error) {
             this.dispatchEvent(
                 new ShowToastEvent({
-                    title: 'Error updating or reloading contacts',
+                    title: 'Error while updating or refreshing records',
                     message: error.body.message,
                     variant: 'error'
                 })
