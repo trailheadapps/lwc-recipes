@@ -3,6 +3,7 @@
 # For useful gitignore templates see: https://github.com/github/gitignore
 
 # Salesforce dev
+.sf/
 .sfdx/
 .localdevserver/
 
