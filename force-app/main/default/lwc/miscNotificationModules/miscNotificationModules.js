@@ -10,7 +10,7 @@ export default class MiscNotificationModules extends LightningElement {
     async handleAlertClick() {
         await LightningAlert.open({
             message: 'This is an alert message',
-            theme: 'info', // info, error, warning, success
+            theme: 'info',
             label: 'Alert!'
         });
     }

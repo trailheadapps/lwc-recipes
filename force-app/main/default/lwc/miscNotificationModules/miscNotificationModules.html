@@ -8,6 +8,7 @@
                 <lightning-button
                     onclick={handleAlertClick}
                     label="Open Alert Modal"
+                    class="alertButton"
                 >
                 </lightning-button>
             </div>
@@ -18,9 +19,12 @@
                 <lightning-button
                     onclick={handleConfirmClick}
                     label="Open Confirm Modal"
+                    class="confirmButton"
                 >
                 </lightning-button>
-                <p class="slds-m-top_small">Confirm Status: {confirmStatus}</p>
+                <p class="slds-m-top_small confirmResult">
+                    Confirm Status: {confirmStatus}
+                </p>
             </div>
 
             <div class="slds-box slds-box_x-small slds-m-top_small">
@@ -30,9 +34,12 @@
                 <lightning-button
                     onclick={handlePromptClick}
                     label="Open Prompt Modal"
+                    class="promptButton"
                 >
                 </lightning-button>
-                <p class="slds-m-top_small">Entered value is: {promptValue}</p>
+                <p class="slds-m-top_small promptResult">
+                    Entered value is: {promptValue}
+                </p>
             </div>
         </div>
         <c-view-source source="lwc/miscNotificationModules" slot="footer">
