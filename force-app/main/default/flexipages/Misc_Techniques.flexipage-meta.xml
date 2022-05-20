@@ -35,6 +35,12 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
+                <componentName>miscNotificationModules</componentName>
+                <identifier>c_miscNotificationModules</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
                 <componentName>miscSharedJavaScript</componentName>
                 <identifier>miscSharedJavaScript</identifier>
             </componentInstance>
