@@ -33,7 +33,8 @@ export default class MiscNotificationModules extends LightningElement {
         LightningPrompt.open({
             message: 'Please enter a value',
             label: 'Please Respond',
-            defaultValue: 'initial value'
+            defaultValue: 'initial value',
+            theme: 'shade'
         }).then((result) => {
             //result is input text if OK clicked and null if cancel was clicked
             this.promptValue = result;
