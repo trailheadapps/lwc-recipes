@@ -1,7 +1,7 @@
 import { LightningElement } from 'lwc';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 
-export default class MiscNotification extends LightningElement {
+export default class MiscToastNotification extends LightningElement {
     titleText = 'Sample Title';
     messageText = 'Sample Message';
     variant = 'error';

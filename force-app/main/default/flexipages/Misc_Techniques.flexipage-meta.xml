@@ -19,8 +19,8 @@
         </itemInstances>
         <itemInstances>
             <componentInstance>
-                <componentName>miscNotification</componentName>
-                <identifier>miscNotification</identifier>
+                <componentName>miscToastNotification</componentName>
+                <identifier>miscToastNotification</identifier>
             </componentInstance>
         </itemInstances>
         <itemInstances>
