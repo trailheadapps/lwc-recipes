@@ -1,6 +1,6 @@
 import { createElement } from 'lwc';
 import { ShowToastEventName } from 'lightning/platformShowToastEvent';
-import MiscNotification from 'c/miscNotification';
+import MiscToastNotification from 'c/miscToastNotification';
 
 describe('c-misc-notification', () => {
     afterEach(() => {
@@ -22,8 +22,8 @@ describe('c-misc-notification', () => {
         const TOAST_VARIANT = 'warning';
 
         // Create initial element
-        const element = createElement('c-misc-notification', {
-            is: MiscNotification
+        const element = createElement('c-misc-toast-notification', {
+            is: MiscToastNotification
         });
         document.body.appendChild(element);
 
@@ -67,8 +67,8 @@ describe('c-misc-notification', () => {
     });
 
     it('is accessible', async () => {
-        const element = createElement('c-misc-notification', {
-            is: MiscNotification
+        const element = createElement('c-misc-toast-notification', {
+            is: MiscToastNotification
         });
 
         document.body.appendChild(element);

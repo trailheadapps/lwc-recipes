@@ -1,5 +1,5 @@
 <template>
-    <lightning-card title="MiscNotification" icon-name="custom:custom19">
+    <lightning-card title="MiscToastNotification" icon-name="custom:custom19">
         <div class="slds-var-m-around_medium">
             <lightning-input
                 label="Title"
@@ -22,13 +22,13 @@
             </lightning-combobox>
             <p class="slds-var-m-vertical_small">
                 <lightning-button
-                    label="Show Notification"
+                    label="Show Toast Notification"
                     onclick={showNotification}
                 ></lightning-button>
             </p>
         </div>
 
-        <c-view-source source="lwc/miscNotification" slot="footer">
+        <c-view-source source="lwc/miscToastNotification" slot="footer">
             Display a toast notification.
         </c-view-source>
     </lightning-card>
