@@ -1,0 +1,50 @@
+<template>
+    <lightning-card title="MiscNotificationModules" icon-name="custom:custom19">
+        <div class="slds-p-around_medium">
+            <div class="slds-box slds-box_x-small">
+                <p class="slds-m-bottom_small">
+                    Use LightningAlert instead of window.alert()
+                </p>
+                <lightning-button
+                    onclick={handleAlertClick}
+                    label="Open Alert Modal"
+                    class="alertButton"
+                >
+                </lightning-button>
+            </div>
+            <div class="slds-box slds-box_x-small slds-m-top_small">
+                <p class="slds-m-bottom_small">
+                    Use LightningConfirm instead of window.confirm()
+                </p>
+                <lightning-button
+                    onclick={handleConfirmClick}
+                    label="Open Confirm Modal"
+                    class="confirmButton"
+                >
+                </lightning-button>
+                <p class="slds-m-top_small confirmResult">
+                    Confirm Status: {confirmStatus}
+                </p>
+            </div>
+
+            <div class="slds-box slds-box_x-small slds-m-top_small">
+                <p class="slds-m-bottom_small">
+                    Use LightningPrompt instead of window.prompt()
+                </p>
+                <lightning-button
+                    onclick={handlePromptClick}
+                    label="Open Prompt Modal"
+                    class="promptButton"
+                >
+                </lightning-button>
+                <p class="slds-m-top_small promptResult">
+                    Entered value is: {promptValue}
+                </p>
+            </div>
+        </div>
+        <c-view-source source="lwc/miscNotificationModules" slot="footer">
+            Use Notification modules to replace alert(), confirm(), and prompt()
+            APIs
+        </c-view-source>
+    </lightning-card>
+</template>
