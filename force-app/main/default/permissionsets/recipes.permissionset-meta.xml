@@ -193,6 +193,10 @@
         <visibility>Visible</visibility>
     </tabSettings>
     <tabSettings>
+        <tab>Light_DOM</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+    <tabSettings>
         <tab>Message_Service</tab>
         <visibility>Visible</visibility>
     </tabSettings>
