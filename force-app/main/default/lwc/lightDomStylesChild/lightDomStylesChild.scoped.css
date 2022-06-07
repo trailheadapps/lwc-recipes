@@ -1,0 +1,4 @@
+/* These styles apply only to this Light DOM component */
+.scoped {
+    background: rgb(212, 255, 195);
+}
