@@ -38,8 +38,7 @@ describe('c-misc-notification-modules', () => {
         await flushPromises();
 
         // Check if event has been fired
-        expect(LightningAlert.open).toHaveBeenCalled();
-        expect(LightningAlert.open.mock.calls).toHaveLength(1);
+        expect(LightningAlert.open).toHaveBeenCalledTimes(1);
     });
 
     it('shows a confirm notification and text when ok', async () => {
@@ -67,8 +66,7 @@ describe('c-misc-notification-modules', () => {
         const confirmResult =
             element.shadowRoot.querySelector('p.confirmResult');
 
-        expect(LightningConfirm.open).toHaveBeenCalled();
-        expect(LightningConfirm.open.mock.calls).toHaveLength(1);
+        expect(LightningConfirm.open).toHaveBeenCalledTimes(1);
         expect(confirmResult.textContent).toBe(
             'Confirm Status: Ok was clicked'
         );
@@ -99,8 +97,7 @@ describe('c-misc-notification-modules', () => {
         const confirmResult =
             element.shadowRoot.querySelector('p.confirmResult');
 
-        expect(LightningConfirm.open).toHaveBeenCalled();
-        expect(LightningConfirm.open.mock.calls).toHaveLength(1);
+        expect(LightningConfirm.open).toHaveBeenCalledTimes(1);
         expect(confirmResult.textContent).toBe(
             'Confirm Status: Cancel was clicked'
         );
@@ -132,8 +129,7 @@ describe('c-misc-notification-modules', () => {
         // Check if event has been fired
         const promptResult = element.shadowRoot.querySelector('p.promptResult');
 
-        expect(LightningPrompt.open).toHaveBeenCalled();
-        expect(LightningPrompt.open.mock.calls).toHaveLength(1);
+        expect(LightningPrompt.open).toHaveBeenCalledTimes(1);
         expect(promptResult.textContent).toBe(
             'Entered value is: ' + PROMPT_VALUE
         );
@@ -163,8 +159,7 @@ describe('c-misc-notification-modules', () => {
         // Check if event has been fired
         const promptResult = element.shadowRoot.querySelector('p.promptResult');
 
-        expect(LightningPrompt.open).toHaveBeenCalled();
-        expect(LightningPrompt.open.mock.calls).toHaveLength(1);
+        expect(LightningPrompt.open).toHaveBeenCalledTimes(1);
         expect(promptResult.textContent).toBe('Entered value is: ');
     });
 
