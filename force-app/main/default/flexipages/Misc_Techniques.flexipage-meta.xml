@@ -19,8 +19,8 @@
         </itemInstances>
         <itemInstances>
             <componentInstance>
-                <componentName>miscNotification</componentName>
-                <identifier>miscNotification</identifier>
+                <componentName>miscToastNotification</componentName>
+                <identifier>miscToastNotification</identifier>
             </componentInstance>
         </itemInstances>
         <itemInstances>
@@ -33,6 +33,12 @@
         <type>Region</type>
     </flexiPageRegions>
     <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentName>miscNotificationModules</componentName>
+                <identifier>c_miscNotificationModules</identifier>
+            </componentInstance>
+        </itemInstances>
         <itemInstances>
             <componentInstance>
                 <componentName>miscSharedJavaScript</componentName>

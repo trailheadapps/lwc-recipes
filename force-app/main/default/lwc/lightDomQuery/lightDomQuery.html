@@ -1,0 +1,20 @@
+<template>
+    <lightning-card title="LightDomQuery" icon-name="custom:custom5">
+        <div class="slds-var-m-around_medium">
+            <lightning-button
+                onclick={handleButtonClick}
+                label="Change Text on Child"
+            ></lightning-button>
+        </div>
+
+        <div class="slds-var-m-around_medium">
+            <c-light-dom-query-child
+                class="slds-show slds-is-relative"
+            ></c-light-dom-query-child>
+        </div>
+
+        <c-view-source source="lwc/lightDomQuery" slot="footer">
+            Use query selectors access nodes inside a Light DOM component.
+        </c-view-source>
+    </lightning-card>
+</template>
