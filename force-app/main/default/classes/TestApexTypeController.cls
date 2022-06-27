@@ -5,7 +5,7 @@ public with sharing class TestApexTypeController {
         CustomWrapper wrapper = new CustomWrapper();
         wrapper.someInteger = 33;
         wrapper.someString = 'someMockString';
-        wrapper.someList = new List<CustomWrapper.InnerWrapper>();
+        wrapper.someList = new List<String>();
 
         Test.startTest();
         String result = ApexTypesController.checkApexTypes(wrapper);

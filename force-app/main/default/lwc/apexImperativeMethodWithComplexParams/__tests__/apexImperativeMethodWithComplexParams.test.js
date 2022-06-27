@@ -17,11 +17,7 @@ jest.mock(
 const APEX_PARAMETER = {
     someString: 'This is a string',
     someInteger: 20,
-    someList: [
-        { someInnerString: 'This is a string', someInnerInteger: 20 },
-        { someInnerString: 'This is a string', someInnerInteger: 20 },
-        { someInnerString: 'This is a string', someInnerInteger: 20 }
-    ]
+    someList: ['This is a string', 'This is a string', 'This is a string']
 };
 
 // Sample data for imperative Apex call
