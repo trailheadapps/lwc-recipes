@@ -27,11 +27,7 @@ const WIRE_INPUT_DEFAULT = {
 const WIRE_INPUT = {
     someString: 'This is a string',
     someInteger: 20,
-    someList: [
-        { someInnerString: 'This is a string', someInnerInteger: 20 },
-        { someInnerString: 'This is a string', someInnerInteger: 20 },
-        { someInnerString: 'This is a string', someInnerInteger: 20 }
-    ]
+    someList: ['This is a string', 'This is a string', 'This is a string']
 };
 
 // Response data for successful custom Apex call
