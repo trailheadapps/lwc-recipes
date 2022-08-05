@@ -1,11 +1,11 @@
 import { createElement } from 'lwc';
-import WireGetRecord from 'c/wireGetRecord';
-import { getRecord } from 'lightning/uiRecordApi';
+import WireGetRecords from 'c/wireGetRecords';
+import { getRecords } from 'lightning/uiRecordApi';
 
 // Mock realistic data
-const mockGetRecord = require('./data/wireGetRecordResponse.json');
+const mockGetRecords = require('./data/wireGetRecordsResponse.json');
 
-describe('c-wire-get-record', () => {
+describe('c-wire-get-records', () => {
     afterEach(() => {
         // The jsdom instance is shared across test cases in a single file so reset the DOM
         while (document.body.firstChild) {
@@ -19,16 +19,16 @@ describe('c-wire-get-record', () => {
         return Promise.resolve();
     }
 
-    describe('getRecord @wire data', () => {
-        it('renders the record value in the pre tag', async () => {
+    describe('getRecords @wire data', () => {
+        it('renders the records value in the pre tag', async () => {
             // Create element
-            const element = createElement('c-wire-get-record', {
-                is: WireGetRecord
+            const element = createElement('c-wire-get-records', {
+                is: WireGetRecords
             });
             document.body.appendChild(element);
 
             // Emit data from @wire
-            getRecord.emit(mockGetRecord);
+            getRecords.emit(mockGetRecords);
 
             // Wait for any asynchronous DOM updates
             await flushPromises();
@@ -36,21 +36,21 @@ describe('c-wire-get-record', () => {
             // Select element for validation
             const preEl = element.shadowRoot.querySelector('pre');
             expect(preEl.textContent).toEqual(
-                JSON.stringify(mockGetRecord, null, 2)
+                JSON.stringify(mockGetRecords, null, 2)
             );
         });
     });
 
-    describe('getRecord @wire error', () => {
+    describe('getRecords @wire error', () => {
         it('shows error panel element', async () => {
             // Create initial element
-            const element = createElement('c-wire-get-record', {
-                is: WireGetRecord
+            const element = createElement('c-wire-get-records', {
+                is: WireGetRecords
             });
             document.body.appendChild(element);
 
             // Emit error from @wire
-            getRecord.error();
+            getRecords.error();
 
             // Wait for any asynchronous DOM updates
             await flushPromises();
@@ -61,15 +61,15 @@ describe('c-wire-get-record', () => {
         });
     });
 
-    it('is accessible when record returned', async () => {
+    it('is accessible when records returned', async () => {
         // Create element
-        const element = createElement('c-wire-get-record', {
-            is: WireGetRecord
+        const element = createElement('c-wire-get-records', {
+            is: WireGetRecords
         });
         document.body.appendChild(element);
 
         // Emit data from @wire
-        getRecord.emit(mockGetRecord);
+        getRecords.emit(mockGetRecords);
 
         // Wait for any asynchronous DOM updates
         await flushPromises();
@@ -79,13 +79,13 @@ describe('c-wire-get-record', () => {
 
     it('is accessible when error returned', async () => {
         // Create element
-        const element = createElement('c-wire-get-record', {
-            is: WireGetRecord
+        const element = createElement('c-wire-get-records', {
+            is: WireGetRecords
         });
         document.body.appendChild(element);
 
         // Emit error from @wire
-        getRecord.error();
+        getRecords.error();
 
         // Wait for any asynchronous DOM updates
         await flushPromises();

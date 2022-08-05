@@ -1,0 +1,6 @@
+.scroller {
+    height: 220px;
+    overflow: auto;
+    padding: var(--lwc-varSpacingXSmall, 8px);
+    border: solid var(--lwc-borderWidthThin, 1px) #eee;
+}
