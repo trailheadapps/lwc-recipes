@@ -10,11 +10,13 @@ export default class WireGetRecords extends LightningElement {
     @wire(getContactList)
     wiredContacts({ error, data }) {
         if (data) {
-            this.records = [{
-                recordIds: [data[0].Id, data[1].Id],
-                fields: [NAME_FIELD], 
-                optionalFields: [EMAIL_FIELD]
-            }];   
+            this.records = [
+                {
+                    recordIds: [data[0].Id, data[1].Id],
+                    fields: [NAME_FIELD],
+                    optionalFields: [EMAIL_FIELD]
+                }
+            ];
             this.error = undefined;
         } else if (error) {
             this.error = error;
@@ -22,12 +24,13 @@ export default class WireGetRecords extends LightningElement {
         }
     }
 
-    @wire(getRecords, { 
+    @wire(getRecords, {
         records: '$records'
-    }) recordResults;
+    })
+    recordResults;
 
     get recordStr() {
-        return this.records
+        return this.recordResults
             ? JSON.stringify(this.recordResults.data, null, 2)
             : '';
     }

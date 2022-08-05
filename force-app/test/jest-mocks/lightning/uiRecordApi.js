@@ -1,5 +1,6 @@
 import { createLdsTestWireAdapter } from '@salesforce/wire-service-jest-util';
 export const getRecord = createLdsTestWireAdapter(jest.fn());
+export const getRecords = createLdsTestWireAdapter(jest.fn());
 export const getRecordCreateDefaults = createLdsTestWireAdapter(jest.fn());
 export const updateRecord = jest.fn().mockResolvedValue({});
 export const createRecord = jest.fn().mockResolvedValue({});
