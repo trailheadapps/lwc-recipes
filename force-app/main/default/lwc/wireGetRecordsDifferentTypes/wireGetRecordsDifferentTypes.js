@@ -6,18 +6,21 @@ import ACCOUNT_NAME_FIELD from '@salesforce/schema/Account.Name';
 import getContactList from '@salesforce/apex/ContactController.getContactList';
 import getAccountList from '@salesforce/apex/AccountController.getAccountList';
 
-
 export default class WireGetRecordsDifferentTypes extends LightningElement {
     records = [];
 
     @wire(getAccountList)
     wiredAccounts({ error, data }) {
         if (data) {
-            const accountRecord = [{
-                recordIds: [data[0].Id],
-                fields: [ACCOUNT_NAME_FIELD], 
-            }];
-            this.records = this.records ? this.records.concat(accountRecord) : accountRecord;
+            const accountRecord = [
+                {
+                    recordIds: [data[0].Id],
+                    fields: [ACCOUNT_NAME_FIELD]
+                }
+            ];
+            this.records = this.records
+                ? this.records.concat(accountRecord)
+                : accountRecord;
             this.error = undefined;
         } else if (error) {
             this.error = error;
@@ -27,12 +30,16 @@ export default class WireGetRecordsDifferentTypes extends LightningElement {
     @wire(getContactList)
     wiredContacts({ error, data }) {
         if (data) {
-            const contactRecord = [{
-                recordIds: [data[0].Id],
-                fields: [NAME_FIELD], 
-                optionalFields: [EMAIL_FIELD]
-            }]
-            this.records = this.records ? this.records.concat(contactRecord) : contactRecord;
+            const contactRecord = [
+                {
+                    recordIds: [data[0].Id],
+                    fields: [NAME_FIELD],
+                    optionalFields: [EMAIL_FIELD]
+                }
+            ];
+            this.records = this.records
+                ? this.records.concat(contactRecord)
+                : contactRecord;
             this.error = undefined;
         } else if (error) {
             this.error = error;
@@ -40,9 +47,10 @@ export default class WireGetRecordsDifferentTypes extends LightningElement {
         }
     }
 
-    @wire(getRecords, { 
+    @wire(getRecords, {
         records: '$records'
-    }) recordResults;
+    })
+    recordResults;
 
     get recordStr() {
         return this.recordResults

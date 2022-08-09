@@ -22,9 +22,12 @@ describe('c-wire-get-records-different-types', () => {
     describe('getRecords @wire data', () => {
         it('renders the records value in the pre tag', async () => {
             // Create element
-            const element = createElement('c-wire-get-records-different-types', {
-                is: WireGetRecordsDifferentTypes
-            });
+            const element = createElement(
+                'c-wire-get-records-different-types',
+                {
+                    is: WireGetRecordsDifferentTypes
+                }
+            );
             document.body.appendChild(element);
 
             // Emit data from @wire
@@ -44,9 +47,12 @@ describe('c-wire-get-records-different-types', () => {
     describe('getRecords @wire error', () => {
         it('shows error panel element', async () => {
             // Create initial element
-            const element = createElement('c-wire-get-records-different-types', {
-                is: WireGetRecordsDifferentTypes
-            });
+            const element = createElement(
+                'c-wire-get-records-different-types',
+                {
+                    is: WireGetRecordsDifferentTypes
+                }
+            );
             document.body.appendChild(element);
 
             // Emit error from @wire
