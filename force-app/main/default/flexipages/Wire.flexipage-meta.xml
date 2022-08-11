@@ -67,6 +67,24 @@
 <componentName>wireGetPicklistValuesByRecordType</componentName>
             </componentInstance>
         </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <identifier>wireGetRecord</identifier>
+<componentName>wireGetRecord</componentName>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <identifier>wireGetRecords</identifier>
+<componentName>wireGetRecords</componentName>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <identifier>wireGetRecordsDifferentTypes</identifier>
+<componentName>wireGetRecordsDifferentTypes</componentName>
+            </componentInstance>
+        </itemInstances>
         <name>region4</name>
         <type>Region</type>
     </flexiPageRegions>

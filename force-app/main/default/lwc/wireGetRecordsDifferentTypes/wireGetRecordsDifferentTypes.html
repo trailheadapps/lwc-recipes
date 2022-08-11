@@ -1,0 +1,20 @@
+<template>
+    <lightning-card
+        title="WireGetRecordsDifferentTypes"
+        icon-name="custom:custom67"
+    >
+        <div class="slds-var-m-horizontal_medium">
+            <template if:true={recordResults.data}>
+                <div class="scroller">
+                    <pre>{recordStr}</pre>
+                </div>
+            </template>
+        </div>
+        <template if:true={recordResults.error}>
+            <c-error-panel errors={recordResults.error}></c-error-panel>
+        </template>
+        <c-view-source source="lwc/wireGetRecordsDifferentTypes" slot="footer">
+            Get the data of multiple records with different types using @wire
+        </c-view-source>
+    </lightning-card>
+</template>
