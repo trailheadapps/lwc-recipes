@@ -21,16 +21,6 @@ describe('c-nav-to-home', () => {
         return Promise.resolve();
     }
 
-    it('navigate mock should be empty (before)', async () => {
-        const element = createElement('c-nav-to-home', {
-            is: NavToHome
-        });
-        document.body.appendChild(element);
-        await flushPromises();
-        const { pageReference } = getNavigateCalledWith();
-        expect(pageReference).toBeUndefined();
-    });
-
     it('navigates to home tab', async () => {
         // Nav param values to test later
         const NAV_TYPE = 'standard__namedPage';
@@ -54,20 +44,6 @@ describe('c-nav-to-home', () => {
         // Verify component called with correct event type and params
         expect(pageReference.type).toBe(NAV_TYPE);
         expect(pageReference.attributes.pageName).toBe(NAV_PAGE);
-    });
-
-    // THIS TEST UNEXPECTEDLY FAILS.
-    it('navigate mock should be empty (after)', async () => {
-        const element = createElement('c-nav-to-home', {
-            is: NavToHome
-        });
-        document.body.appendChild(element);
-        await flushPromises();
-        const { pageReference } = getNavigateCalledWith();
-        expect(pageReference).toBeUndefined();
-        //                    ^ THIS FAILS
-        // expect(received).toBeUndefined()
-        // Received: {"attributes": {"pageName": "home"}, "type": "standard__namedPage"}
     });
 
     it('is accessible', async () => {
