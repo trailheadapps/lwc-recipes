@@ -20,7 +20,6 @@ describe('c-nav-to-home', () => {
     async function flushPromises() {
         return Promise.resolve();
     }
-
     it('navigates to home tab', async () => {
         // Nav param values to test later
         const NAV_TYPE = 'standard__namedPage';

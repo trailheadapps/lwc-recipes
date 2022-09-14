@@ -11,19 +11,19 @@ const Navigate = Symbol('Navigate');
 const GenerateUrl = Symbol('GenerateUrl');
 
 // We need the mock to reset between tests, so we hold the state in jest.fn() objects.
-// We use Jest's reflection methods to implement the two CalledWith helpers below so we need to update all the existing tests.
+// We use Jest's reflection methods to implement the two CalledWith helpers below so we don't need to update all the existing tests.
 // A cleaner implementation would just export these two mocks directly for consumption by the test authors to verify the state.
 export const mockNavigate = jest.fn();
 export const mockGenerate = jest.fn();
 
-export const NavigationMixin = Base => {
+export const NavigationMixin = (Base) => {
     return class extends Base {
         [Navigate](pageReference, replace) {
             mockNavigate({ pageReference, replace });
         }
         [GenerateUrl](pageReference) {
             mockGenerate({ pageReference });
-            return new Promise(resolve => resolve('https://www.example.com'));
+            return new Promise((resolve) => resolve('https://www.example.com'));
         }
     };
 };
