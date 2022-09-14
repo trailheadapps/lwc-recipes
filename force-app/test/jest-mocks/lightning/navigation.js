@@ -46,7 +46,7 @@ export const getNavigateCalledWith = () => {
         };
     }
 
-    // If the mock was called (with one object), get the last call and return it.
+    // The mock was called, so return the most recent last call.
     // Because the mock is called with a single object, it's at the zero index.
     return mockNavigate.mock.lastCall[0];
 };
@@ -61,7 +61,7 @@ export const getGenerateUrlCalledWith = () => {
         };
     }
 
-    // If the mock was called (with one object), get the last call and return it.
+    // The mock was called, so return the most recent last call.
     // Because the mock is called with a single object, it's at the zero index.
     return mockGenerate.mock.lastCall[0];
 };
