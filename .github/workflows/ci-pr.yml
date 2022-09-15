@@ -16,7 +16,7 @@ jobs:
     # Dummy job used to skip CI run on automated PRs
     skip-ci:
         if: "github.actor == 'trailheadapps-bot'"
-        runs-on: ubuntu-latest
+        runs-on: trailheadapps-Ubuntu
         steps:
             - name: Noop
               run: |
@@ -25,7 +25,7 @@ jobs:
     # Formatting and linting only runs on human-submitted PRs
     format-lint-lwc-tests:
         if: "github.actor != 'trailheadapps-bot'"
-        runs-on: ubuntu-latest
+        runs-on: trailheadapps-Ubuntu
         steps:
             # Checkout the source code
             - name: 'Checkout source code'
@@ -75,7 +75,7 @@ jobs:
     dependabot-auto-merge:
         # Only run for Dependabot PRs
         if: ${{ github.actor == 'dependabot[bot]' }}
-        runs-on: ubuntu-latest
+        runs-on: trailheadapps-Ubuntu
         needs: format-lint-lwc-tests
         permissions:
             pull-requests: write
@@ -107,7 +107,7 @@ jobs:
                   PR_URL: ${{ github.event.pull_request.html_url }}
 
     scratch-org-test:
-        runs-on: ubuntu-latest
+        runs-on: trailheadapps-Ubuntu
         needs: format-lint-lwc-tests
         if: ${{ github.actor != 'dependabot[bot]' }}
         steps:
@@ -188,7 +188,7 @@ jobs:
               run: sfdx force:org:delete -p -u scratch-org
 
     trigger-packaging:
-        runs-on: ubuntu-latest
+        runs-on: trailheadapps-Ubuntu
         needs: scratch-org-test
         steps:
             # Checkout the source code

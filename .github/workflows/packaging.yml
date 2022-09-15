@@ -9,7 +9,7 @@ on:
 # Jobs to be executed
 jobs:
     release-package-version:
-        runs-on: ubuntu-latest
+        runs-on: trailheadapps-Ubuntu
         steps:
             # Install Salesforce CLI
             - name: 'Install Salesforce CLI'

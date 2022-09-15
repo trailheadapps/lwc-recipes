@@ -14,7 +14,7 @@ on:
 # Jobs to be executed
 jobs:
     format-lint-lwc-tests:
-        runs-on: ubuntu-latest
+        runs-on: trailheadapps-Ubuntu
         steps:
             # Checkout the source code
             - name: 'Checkout source code'
@@ -59,7 +59,7 @@ jobs:
                   flags: LWC
 
     scratch-org-test:
-        runs-on: ubuntu-latest
+        runs-on: trailheadapps-Ubuntu
         needs: format-lint-lwc-tests
         if: ${{ github.actor != 'dependabot[bot]' }}
         steps:
@@ -140,7 +140,7 @@ jobs:
               run: sfdx force:org:delete -p -u scratch-org
 
     trigger-packaging:
-        runs-on: ubuntu-latest
+        runs-on: trailheadapps-Ubuntu
         needs: scratch-org-test
         steps:
             # Checkout the source code
