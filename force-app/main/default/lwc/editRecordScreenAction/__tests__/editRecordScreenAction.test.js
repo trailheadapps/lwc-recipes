@@ -67,8 +67,8 @@ describe('c-editRecordScreenAction', () => {
                         LastName: mockGetRecord.fields.FirstName.value
                     }
                 };
-                expect(updateRecord).toBeCalledTimes(1);
-                expect(updateRecord).toBeCalledWith(expectedFields);
+                expect(updateRecord).toHaveBeenCalledTimes(1);
+                expect(updateRecord).toHaveBeenCalledWith(expectedFields);
             })
             .then(() => {
                 // Check if toast event has been fired
