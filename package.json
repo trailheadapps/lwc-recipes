@@ -23,7 +23,7 @@
             "eslint"
         ],
         "**/lwc/**": [
-            "sfdx-lwc-jest --skipApiVersionCheck -- --bail --findRelatedTests"
+            "sfdx-lwc-jest --skipApiVersionCheck -- --bail --findRelatedTests --passWithNoTests"
         ]
     },
     "author": "salesforce.com",
