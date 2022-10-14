@@ -2,7 +2,7 @@
     "orgName": "LWC Recipes",
     "edition": "Developer",
     "hasSampleData": false,
-    "features": ["Walkthroughs", "EnableSetPasswordInApi"],
+    
     "settings": {
         "lightningExperienceSettings": {
             "enableS1DesktopEnabled": true
