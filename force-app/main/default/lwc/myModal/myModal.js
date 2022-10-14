@@ -5,12 +5,9 @@ export default class MyModal extends LightningModal {
     @api header;
     @api content;
 
-    //This is same as closing the modal with the default close button, the X at the top right corner
-    handleCancel() {
-        this.close();
-    }
-
+    // Return a custom value when the modal is closed with the Close button.
+    // If no value is returned in the close method, then undefined is returned(Same as closing with the X button).
     handleClose() {
-        this.close('close');
+        this.close('return value');
     }
 }

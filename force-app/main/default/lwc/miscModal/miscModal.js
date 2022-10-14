@@ -13,9 +13,8 @@ export default class MiscModal extends LightningElement {
         this.content = event.target.value;
     }
 
-    // if modal closed with X button or Cancel button, promise returns result = 'undefined'
-    // if modal closed with Close button, promise returns result = 'close'
-    // You can use the result value for further processing
+    // If modal is closed with the standard X button, promise returns undefined
+    // If modal is closed with the custom Close button, promise returns the value sent by the close method in myModal.js
     async handleShowModal() {
         this.result = await MyModal.open({
             size: 'small',
