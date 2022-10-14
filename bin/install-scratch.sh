@@ -5,9 +5,7 @@ cd $SCRIPT_PATH/..
 # Set parameters
 ORG_ALIAS="recipes"
 
-echo ""
-echo "Installing LWC Recipes scratch org ($ORG_ALIAS)"
-echo ""
+
 
 # Install script
 echo "Cleaning previous scratch org..."
