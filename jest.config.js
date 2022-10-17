@@ -22,7 +22,9 @@ module.exports = {
         '^lightning/confirm$':
             '<rootDir>/force-app/test/jest-mocks/lightning/confirm',
         '^lightning/prompt$':
-            '<rootDir>/force-app/test/jest-mocks/lightning/prompt'
+            '<rootDir>/force-app/test/jest-mocks/lightning/prompt',
+        '^lightning/modal*':
+            '<rootDir>/force-app/test/jest-mocks/lightning/modal'
     },
     setupFiles: ['jest-canvas-mock'],
     setupFilesAfterEnv,
