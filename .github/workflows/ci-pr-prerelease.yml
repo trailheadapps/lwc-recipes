@@ -162,7 +162,7 @@ jobs:
 
             # Trigger packaging pre-release PR workflow
             - name: 'Trigger packaging pre-release PR workflow if needed'
-              uses: peter-evans/repository-dispatch@v1.1.0
+              uses: peter-evans/repository-dispatch@v2
               if: ${{ steps.checkForChanges.outputs.hasChanges == 'true' }}
               with:
                   token: ${{ secrets.BOT_ACCESS_TOKEN }}

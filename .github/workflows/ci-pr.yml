@@ -83,7 +83,7 @@ jobs:
         steps:
             - name: 'Fetch Dependabot metadata'
               id: dependabot
-              uses: dependabot/fetch-metadata@v1.3.1
+              uses: dependabot/fetch-metadata@v1
 
             - name: 'Check auto merge conditions'
               id: auto-merge
@@ -210,7 +210,7 @@ jobs:
 
             # Trigger packaging PR workflow
             - name: 'Trigger packaging PR workflow if needed'
-              uses: peter-evans/repository-dispatch@v1.1.0
+              uses: peter-evans/repository-dispatch@v2
               if: ${{ steps.checkForChanges.outputs.hasChanges == 'true' }}
               with:
                   token: ${{ secrets.BOT_ACCESS_TOKEN }}
