@@ -9,6 +9,9 @@ export const createMessageContext = jest.fn();
 export const MessageContext = jest.fn();
 export const releaseMessageContext = jest.fn();
 
+// Counter that keeps track of mock subscription IDs
+let mockSubsriptionId = 0;
+
 // Assigns a handler for each channel subscribed, so that multiple channels can be subscribed to
 // within the same test execution context
 const handlers = {};
@@ -21,7 +24,7 @@ export const publish = jest.fn((messageContext, messageChannel, message) => {
 
 export const subscribe = jest.fn(
     (messageContext, messageChannel, messageHandler) => {
-        const subscriptionId = crypto.randomUUID();
+        const subscriptionId = mockSubsriptionId++;
 
         if (!handlers[messageChannel]) {
             handlers[messageChannel] = [];
