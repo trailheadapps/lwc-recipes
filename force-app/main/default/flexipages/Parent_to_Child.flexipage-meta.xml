@@ -7,7 +7,8 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
-                <componentName>apiProperty</componentName>
+                <identifier>apiProperty</identifier>
+<componentName>apiProperty</componentName>
             </componentInstance>
         </itemInstances>
         <name>region2</name>
@@ -16,7 +17,8 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
-                <componentName>apiFunction</componentName>
+                <identifier>apiMethod</identifier>
+<componentName>apiMethod</componentName>
             </componentInstance>
         </itemInstances>
         <name>region3</name>
@@ -25,7 +27,8 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
-                <componentName>apiSetterGetter</componentName>
+                <identifier>apiSetterGetter</identifier>
+<componentName>apiSetterGetter</componentName>
             </componentInstance>
         </itemInstances>
         <name>region4</name>

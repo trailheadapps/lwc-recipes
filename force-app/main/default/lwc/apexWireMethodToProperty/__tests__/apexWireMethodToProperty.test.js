@@ -1,17 +1,23 @@
 import { createElement } from 'lwc';
 import ApexWireMethodToProperty from 'c/apexWireMethodToProperty';
-import { registerApexTestWireAdapter } from '@salesforce/sfdx-lwc-jest';
 import getContactList from '@salesforce/apex/ContactController.getContactList';
 
 // Realistic data with a list of contacts
 const mockGetContactList = require('./data/getContactList.json');
 
-// An empty list of records to verify the component does something reasonable
-// when there is no data to display
-const mockGetContactListNoRecords = require('./data/getContactListNoRecords.json');
-
-// Register as Apex wire adapter. Some tests verify that provisioned values trigger desired behavior.
-const getContactListAdapter = registerApexTestWireAdapter(getContactList);
+// Mock getContactList Apex wire adapter
+jest.mock(
+    '@salesforce/apex/ContactController.getContactList',
+    () => {
+        const {
+            createApexTestWireAdapter
+        } = require('@salesforce/sfdx-lwc-jest');
+        return {
+            default: createApexTestWireAdapter(jest.fn())
+        };
+    },
+    { virtual: true }
+);
 
 describe('c-apex-wire-method-to-property', () => {
     afterEach(() => {
@@ -23,8 +29,14 @@ describe('c-apex-wire-method-to-property', () => {
         jest.clearAllMocks();
     });
 
-    describe('getContactList @wire data', () => {
-        it('renders six records', () => {
+    // Helper function to wait until the microtask queue is empty. This is needed for promise
+    // timing when calling imperative Apex.
+    async function flushPromises() {
+        return Promise.resolve();
+    }
+
+    describe('getContactList @wire', () => {
+        it('renders six records when data returned', async () => {
             // Create initial element
             const element = createElement('c-apex-wire-method-to-property', {
                 is: ApexWireMethodToProperty
@@ -32,46 +44,17 @@ describe('c-apex-wire-method-to-property', () => {
             document.body.appendChild(element);
 
             // Emit data from @wire
-            getContactListAdapter.emit(mockGetContactList);
+            getContactList.emit(mockGetContactList);
 
-            // Return a promise to wait for any asynchronous DOM updates. Jest
-            // will automatically wait for the Promise chain to complete before
-            // ending the test and fail the test if the promise rejects.
-            return Promise.resolve().then(() => {
-                // Select elements for validation
-                const detailEls = element.shadowRoot.querySelectorAll('p');
-                expect(detailEls.length).toBe(mockGetContactList.length);
-                expect(detailEls[0].textContent).toBe(
-                    mockGetContactList[0].Name
-                );
-            });
+            // Wait for any asynchronous DOM updates
+            await flushPromises();
+
+            // Select elements for validation
+            const detailEls = element.shadowRoot.querySelectorAll('p');
+            expect(detailEls.length).toBe(mockGetContactList.length);
+            expect(detailEls[0].textContent).toBe(mockGetContactList[0].Name);
         });
-
-        it('renders no items when no records are available', () => {
-            // Create initial element
-            const element = createElement('c-apex-wire-method-to-property', {
-                is: ApexWireMethodToProperty
-            });
-            document.body.appendChild(element);
-
-            // Emit data from @wire
-            getContactListAdapter.emit(mockGetContactListNoRecords);
-
-            // Return a promise to wait for any asynchronous DOM updates. Jest
-            // will automatically wait for the Promise chain to complete before
-            // ending the test and fail the test if the promise rejects.
-            return Promise.resolve().then(() => {
-                // Select elements for validation
-                const detailEls = element.shadowRoot.querySelectorAll('p');
-                expect(detailEls.length).toBe(
-                    mockGetContactListNoRecords.length
-                );
-            });
-        });
-    });
-
-    describe('getContactList @wire error', () => {
-        it('shows error panel element', () => {
+        it('shows error panel element when error returned', async () => {
             // Create initial element
             const element = createElement('c-apex-wire-method-to-property', {
                 is: ApexWireMethodToProperty
@@ -79,17 +62,46 @@ describe('c-apex-wire-method-to-property', () => {
             document.body.appendChild(element);
 
             // Emit error from @wire
-            getContactListAdapter.error();
+            getContactList.error();
 
-            // Return a promise to wait for any asynchronous DOM updates. Jest
-            // will automatically wait for the Promise chain to complete before
-            // ending the test and fail the test if the promise rejects.
-            return Promise.resolve().then(() => {
-                const errorPanelEl = element.shadowRoot.querySelector(
-                    'c-error-panel'
-                );
-                expect(errorPanelEl).not.toBeNull();
-            });
+            // Wait for any asynchronous DOM updates
+            await flushPromises();
+
+            const errorPanelEl =
+                element.shadowRoot.querySelector('c-error-panel');
+            expect(errorPanelEl).not.toBeNull();
         });
+    });
+
+    it('is accessible when data is returned', async () => {
+        // Create initial element
+        const element = createElement('c-apex-wire-method-to-property', {
+            is: ApexWireMethodToProperty
+        });
+        document.body.appendChild(element);
+
+        // Emit data from @wire
+        getContactList.emit(mockGetContactList);
+
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
+
+        await expect(element).toBeAccessible();
+    });
+
+    it('is accessible when error is returned', async () => {
+        // Create initial element
+        const element = createElement('c-apex-wire-method-to-property', {
+            is: ApexWireMethodToProperty
+        });
+        document.body.appendChild(element);
+
+        // Emit error from @wire
+        getContactList.error();
+
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
+
+        await expect(element).toBeAccessible();
     });
 });

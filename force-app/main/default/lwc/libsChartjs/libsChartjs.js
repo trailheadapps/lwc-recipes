@@ -1,5 +1,5 @@
 import { LightningElement } from 'lwc';
-import { loadScript, loadStyle } from 'lightning/platformResourceLoader';
+import { loadScript } from 'lightning/platformResourceLoader';
 import chartjs from '@salesforce/resourceUrl/chartJs';
 
 const generateRandomNumber = () => {
@@ -36,9 +36,11 @@ export default class LibsChartjs extends LightningElement {
             labels: ['Red', 'Orange', 'Yellow', 'Green', 'Blue']
         },
         options: {
-            responsive: true,
-            legend: {
-                position: 'right'
+            responsive: false,
+            plugins: {
+                legend: {
+                    position: 'right'
+                }
             },
             animation: {
                 animateScale: true,
@@ -53,14 +55,8 @@ export default class LibsChartjs extends LightningElement {
         }
         this.chartjsInitialized = true;
 
-        Promise.all([
-            loadScript(this, chartjs + '/Chart.min.js'),
-            loadStyle(this, chartjs + '/Chart.min.css')
-        ])
+        loadScript(this, chartjs)
             .then(() => {
-                // disable Chart.js CSS injection
-                window.Chart.platform.disableCSSInjection = true;
-
                 const canvas = document.createElement('canvas');
                 this.template.querySelector('div.chart').appendChild(canvas);
                 const ctx = canvas.getContext('2d');

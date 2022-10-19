@@ -2,10 +2,11 @@
 # More information: https://prettier.io/docs/en/ignore.html
 #
 
-.localdevserver
-.sfdx
+.localdevserver/
+.sf/
+.sfdx/
 coverage/
-.vscode
+.vscode/
 jsconfig.json
 
 # Only prettify specifc static resources

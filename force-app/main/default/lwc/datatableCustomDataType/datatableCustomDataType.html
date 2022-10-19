@@ -1,0 +1,25 @@
+<template>
+    <lightning-card
+        title="Datatable Custom Data Type"
+        icon-name="custom:custom62"
+    >
+        <div class="slds-var-m-around_medium">
+            <template if:true={contacts.data}>
+                <c-custom-data-types
+                    key-field="Id"
+                    data={contacts.data}
+                    columns={columns}
+                    hide-checkbox-column="true"
+                >
+                </c-custom-data-types>
+            </template>
+            <template if:true={contacts.error}>
+                <c-error-panel errors={contacts.error}></c-error-panel>
+            </template>
+        </div>
+        <c-view-source source="lwc/datatableCustomDataType" slot="footer">
+            Display data in a table with a custom data type: a contact picture
+            (see customDataTypes component).
+        </c-view-source>
+    </lightning-card>
+</template>

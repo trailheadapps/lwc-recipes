@@ -7,12 +7,14 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
-                <componentName>apexWireMethodToProperty</componentName>
+                <identifier>apexWireMethodToProperty</identifier>
+<componentName>apexWireMethodToProperty</componentName>
             </componentInstance>
         </itemInstances>
         <itemInstances>
                 <componentInstance>
-                <componentName>apexWireMethodToFunction</componentName>
+                <identifier>apexWireMethodToFunction</identifier>
+<componentName>apexWireMethodToFunction</componentName>
             </componentInstance>
         </itemInstances>
         <name>region2</name>
@@ -21,12 +23,14 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
-                <componentName>apexImperativeMethod</componentName>
+                <identifier>apexImperativeMethod</identifier>
+<componentName>apexImperativeMethod</componentName>
             </componentInstance>
         </itemInstances>
         <itemInstances>
             <componentInstance>
-                <componentName>apexStaticSchema</componentName>
+                <identifier>apexStaticSchema</identifier>
+<componentName>apexStaticSchema</componentName>
             </componentInstance>
         </itemInstances>
         <name>region3</name>
@@ -35,21 +39,25 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
-                <componentName>apexWireMethodWithParams</componentName>
+                <identifier>apexWireMethodWithParams</identifier>
+<componentName>apexWireMethodWithParams</componentName>
             </componentInstance>
         </itemInstances>
         <itemInstances>
             <componentInstance>
-                <componentName>apexImperativeMethodWithParams</componentName>
+                <identifier>apexImperativeMethodWithParams</identifier>
+<componentName>apexImperativeMethodWithParams</componentName>
             </componentInstance>
         </itemInstances>
         <itemInstances>
             <componentInstance>
-                <componentName>apexWireMethodWithComplexParams</componentName>
+                <identifier>apexWireMethodWithComplexParams</identifier>
+<componentName>apexWireMethodWithComplexParams</componentName>
             </componentInstance>
         </itemInstances>
         <itemInstances>
             <componentInstance>
+                <identifier>apexImperativeMethodWithComplexParams</identifier>
                 <componentName
                 >apexImperativeMethodWithComplexParams</componentName>
             </componentInstance>

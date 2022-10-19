@@ -1,7 +1,6 @@
 import { createElement } from 'lwc';
 import LdsDeleteRecord from 'c/ldsDeleteRecord';
 import { deleteRecord } from 'lightning/uiRecordApi';
-import { registerApexTestWireAdapter } from '@salesforce/sfdx-lwc-jest';
 import getAccountList from '@salesforce/apex/AccountController.getAccountList';
 
 // Realistic data with a list of contacts
@@ -10,9 +9,19 @@ const mockGetAccountList = require('./data/getAccountList.json');
 // when there is no data to display
 const mockGetAccountListNoRecords = require('./data/getAccountListNoRecords.json');
 
-// Register as Apex wire adapter. Some tests verify that provisioned values trigger desired behavior.
-const getAccountListAdapter = registerApexTestWireAdapter(getAccountList);
-
+// Mock getAccountList Apex wire adapter
+jest.mock(
+    '@salesforce/apex/AccountController.getAccountList',
+    () => {
+        const {
+            createApexTestWireAdapter
+        } = require('@salesforce/sfdx-lwc-jest');
+        return {
+            default: createApexTestWireAdapter(jest.fn())
+        };
+    },
+    { virtual: true }
+);
 describe('c-lds-delete-record', () => {
     afterEach(() => {
         // The jsdom instance is shared across test cases in a single file so reset the DOM
@@ -23,8 +32,14 @@ describe('c-lds-delete-record', () => {
         jest.clearAllMocks();
     });
 
+    // Helper function to wait until the microtask queue is empty. This is needed for promise
+    // timing when calling imperative Apex.
+    async function flushPromises() {
+        return Promise.resolve();
+    }
+
     describe('getAccountList @wire data', () => {
-        it('renders seven records with name and lightning-button-icon', () => {
+        it('renders seven records with name and lightning-button-icon', async () => {
             // Create initial element
             const element = createElement('c-lds-delete-record', {
                 is: LdsDeleteRecord
@@ -32,29 +47,27 @@ describe('c-lds-delete-record', () => {
             document.body.appendChild(element);
 
             // Emit data from @wire
-            getAccountListAdapter.emit(mockGetAccountList);
+            getAccountList.emit(mockGetAccountList);
 
-            // Return a promise to wait for any asynchronous DOM updates. Jest
-            // will automatically wait for the Promise chain to complete before
-            // ending the test and fail the test if the promise rejects.
-            return Promise.resolve().then(() => {
-                // Select elements for validation
-                const nameEl = element.shadowRoot.querySelector(
-                    'lightning-layout-item'
-                );
-                expect(nameEl.textContent).toBe(mockGetAccountList[0].Name);
+            // Wait for any asynchronous DOM updates
+            await flushPromises();
 
-                const buttonEls = element.shadowRoot.querySelectorAll(
-                    'lightning-button-icon'
-                );
-                expect(buttonEls.length).toBe(mockGetAccountList.length);
-                expect(buttonEls[0].dataset.recordid).toBe(
-                    mockGetAccountList[0].Id
-                );
-            });
+            // Select elements for validation
+            const nameEl = element.shadowRoot.querySelector(
+                'lightning-layout-item'
+            );
+            expect(nameEl.textContent).toBe(mockGetAccountList[0].Name);
+
+            const buttonEls = element.shadowRoot.querySelectorAll(
+                'lightning-button-icon'
+            );
+            expect(buttonEls.length).toBe(mockGetAccountList.length);
+            expect(buttonEls[0].dataset.recordid).toBe(
+                mockGetAccountList[0].Id
+            );
         });
 
-        it('renders no buttons when no record exists', () => {
+        it('renders no buttons when no record exists', async () => {
             // Create initial element
             const element = createElement('c-lds-delete-record', {
                 is: LdsDeleteRecord
@@ -62,30 +75,26 @@ describe('c-lds-delete-record', () => {
             document.body.appendChild(element);
 
             // Emit data from @wire
-            getAccountListAdapter.emit(mockGetAccountListNoRecords);
+            getAccountList.emit(mockGetAccountListNoRecords);
 
-            // Return a promise to wait for any asynchronous DOM updates. Jest
-            // will automatically wait for the Promise chain to complete before
-            // ending the test and fail the test if the promise rejects.
-            return Promise.resolve().then(() => {
-                // Select elements for validation
-                const nameEl = element.shadowRoot.querySelector(
-                    'lightning-button-icon'
-                );
-                expect(nameEl).toBeNull();
+            // Wait for any asynchronous DOM updates
+            await flushPromises();
 
-                const detailEls = element.shadowRoot.querySelectorAll(
-                    'lightning-button-icon'
-                );
-                expect(detailEls.length).toBe(
-                    mockGetAccountListNoRecords.length
-                );
-            });
+            // Select elements for validation
+            const nameEl = element.shadowRoot.querySelector(
+                'lightning-button-icon'
+            );
+            expect(nameEl).toBeNull();
+
+            const detailEls = element.shadowRoot.querySelectorAll(
+                'lightning-button-icon'
+            );
+            expect(detailEls.length).toBe(mockGetAccountListNoRecords.length);
         });
     });
 
     describe('getAccountList @wire error', () => {
-        it('shows error panel element', () => {
+        it('shows error panel element', async () => {
             // Create initial element
             const element = createElement('c-apex-wire-method-to-function', {
                 is: LdsDeleteRecord
@@ -93,21 +102,18 @@ describe('c-lds-delete-record', () => {
             document.body.appendChild(element);
 
             // Emit error from @wire
-            getAccountListAdapter.error();
+            getAccountList.error();
 
-            // Return a promise to wait for any asynchronous DOM updates. Jest
-            // will automatically wait for the Promise chain to complete before
-            // ending the test and fail the test if the promise rejects.
-            return Promise.resolve().then(() => {
-                const errorPanelEl = element.shadowRoot.querySelector(
-                    'c-error-panel'
-                );
-                expect(errorPanelEl).not.toBeNull();
-            });
+            // Wait for any asynchronous DOM updates
+            await flushPromises();
+
+            const errorPanelEl =
+                element.shadowRoot.querySelector('c-error-panel');
+            expect(errorPanelEl).not.toBeNull();
         });
     });
 
-    it('deletes the first entry of the account list on button click', () => {
+    it('deletes the first entry of the account list on button click', async () => {
         // Create initial element
         const element = createElement('c-lds-delete-record', {
             is: LdsDeleteRecord
@@ -115,26 +121,52 @@ describe('c-lds-delete-record', () => {
         document.body.appendChild(element);
 
         // Emit data from @wire
-        getAccountListAdapter.emit(mockGetAccountList);
+        getAccountList.emit(mockGetAccountList);
 
-        // Return a promise to wait for any asynchronous DOM updates. Jest
-        // will automatically wait for the Promise chain to complete before
-        // ending the test and fail the test if the promise rejects.
-        // Return a promise to wait for any asynchronous DOM updates.
-        return Promise.resolve()
-            .then(() => {
-                // Select button for simulating user interaction
-                const buttonEl = element.shadowRoot.querySelector(
-                    'lightning-button-icon'
-                );
-                buttonEl.click();
-            })
-            .then(() => {
-                // Validate if deleteRecord has been called
-                expect(deleteRecord).toHaveBeenCalled();
-                expect(deleteRecord.mock.calls[0][0]).toEqual(
-                    mockGetAccountList[0].Id
-                );
-            });
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
+
+        // Select button for simulating user interaction
+        const buttonEl = element.shadowRoot.querySelector(
+            'lightning-button-icon'
+        );
+        buttonEl.click();
+
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
+
+        // Validate if deleteRecord has been called
+        expect(deleteRecord).toHaveBeenCalled();
+        expect(deleteRecord.mock.calls[0][0]).toEqual(mockGetAccountList[0].Id);
+    });
+
+    it('is accessible when data is returned', async () => {
+        // Create initial element
+        const element = createElement('c-lds-delete-record', {
+            is: LdsDeleteRecord
+        });
+        document.body.appendChild(element);
+
+        // Emit data from @wire
+        getAccountList.emit(mockGetAccountList);
+
+        // Wait for any asynchronous DOM updates and test acccessibility
+        await flushPromises();
+        await expect(element).toBeAccessible();
+    });
+
+    it('is accessible when error is returned', async () => {
+        // Create initial element
+        const element = createElement('c-lds-delete-record', {
+            is: LdsDeleteRecord
+        });
+        document.body.appendChild(element);
+
+        // Emit error from @wire
+        getAccountList.error();
+
+        // Wait for any asynchronous DOM updates and test acccessibility
+        await flushPromises();
+        await expect(element).toBeAccessible();
     });
 });

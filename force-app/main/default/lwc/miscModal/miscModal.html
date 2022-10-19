@@ -17,28 +17,16 @@
             ></lightning-input>
             <br />
             <lightning-button
-                label="Show modal"
                 onclick={handleShowModal}
-            ></lightning-button>
-            <c-modal header={header}
-                >{content}
-                <div slot="footer">
-                    <lightning-button
-                        label="Cancel"
-                        variant="neutral"
-                        onclick={handleCancelModal}
-                    ></lightning-button>
-                    <lightning-button
-                        label="Close"
-                        variant="brand"
-                        onclick={handleCloseModal}
-                    ></lightning-button>
-                </div>
-            </c-modal>
+                aria-haspopup="true"
+                label="Show modal"
+            >
+            </lightning-button>
         </div>
 
         <c-view-source source="lwc/miscModal" slot="footer">
-            Use query selectors to access DOM elements.
+            Create a message modal overlayed on the current app window (see
+            myModal component).
         </c-view-source>
     </lightning-card>
 </template>

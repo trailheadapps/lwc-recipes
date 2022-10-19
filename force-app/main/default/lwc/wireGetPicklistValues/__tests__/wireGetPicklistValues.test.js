@@ -1,13 +1,9 @@
 import { createElement } from 'lwc';
 import WireGetPicklistValues from 'c/wireGetPicklistValues';
-import { registerLdsTestWireAdapter } from '@salesforce/sfdx-lwc-jest';
 import { getPicklistValues } from 'lightning/uiObjectInfoApi';
 
 // Mock realistic data
 const mockGetPicklistValues = require('./data/getPicklistValues.json');
-
-// Register as an LDS wire adapter. Some tests verify the provisioned values trigger desired behavior.
-const getPicklistValuesAdapter = registerLdsTestWireAdapter(getPicklistValues);
 
 describe('c-wire-get-picklist-values', () => {
     afterEach(() => {
@@ -16,6 +12,12 @@ describe('c-wire-get-picklist-values', () => {
             document.body.removeChild(document.body.firstChild);
         }
     });
+
+    // Helper function to wait until the microtask queue is empty. This is needed for promise
+    // timing when calling imperative Apex.
+    async function flushPromises() {
+        return Promise.resolve();
+    }
 
     describe('getPicklistValues @wire data', () => {
         it('renders seven lightning-input fields of type checkbox', () => {
@@ -26,16 +28,15 @@ describe('c-wire-get-picklist-values', () => {
             document.body.appendChild(element);
 
             // Emit data from @wire
-            getPicklistValuesAdapter.emit(mockGetPicklistValues);
+            getPicklistValues.emit(mockGetPicklistValues);
 
             // Return a promise to wait for any asynchronous DOM updates. Jest
             // will automatically wait for the Promise chain to complete before
             // ending the test and fail the test if the promise rejects.
             return Promise.resolve().then(() => {
                 // Select elements for validation
-                const checkboxEls = element.shadowRoot.querySelectorAll(
-                    'lightning-input'
-                );
+                const checkboxEls =
+                    element.shadowRoot.querySelectorAll('lightning-input');
                 expect(checkboxEls.length).toBe(
                     mockGetPicklistValues.values.length
                 );
@@ -48,7 +49,7 @@ describe('c-wire-get-picklist-values', () => {
     });
 
     describe('getObjectInfo @wire error', () => {
-        it('shows error panel element', () => {
+        it('shows error panel element', async () => {
             // Create initial element
             const element = createElement('c-wire-get-picklist-values', {
                 is: WireGetPicklistValues
@@ -56,17 +57,46 @@ describe('c-wire-get-picklist-values', () => {
             document.body.appendChild(element);
 
             // Emit error from @wire
-            getPicklistValuesAdapter.error();
+            getPicklistValues.error();
 
-            // Return a promise to wait for any asynchronous DOM updates. Jest
-            // will automatically wait for the Promise chain to complete before
-            // ending the test and fail the test if the promise rejects.
-            return Promise.resolve().then(() => {
-                const errorPanelEl = element.shadowRoot.querySelector(
-                    'c-error-panel'
-                );
-                expect(errorPanelEl).not.toBeNull();
-            });
+            // Wait for any asynchronous DOM updates
+            await flushPromises();
+
+            const errorPanelEl =
+                element.shadowRoot.querySelector('c-error-panel');
+            expect(errorPanelEl).not.toBeNull();
         });
+    });
+
+    it('is accessible when picklist values are returned', async () => {
+        // Create element
+        const element = createElement('c-wire-get-picklist-values', {
+            is: WireGetPicklistValues
+        });
+        document.body.appendChild(element);
+
+        // Emit data from @wire
+        getPicklistValues.emit(mockGetPicklistValues);
+
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
+
+        await expect(element).toBeAccessible();
+    });
+
+    it('is accessible when error is returned', async () => {
+        // Create element
+        const element = createElement('c-wire-get-picklist-values', {
+            is: WireGetPicklistValues
+        });
+        document.body.appendChild(element);
+
+        // Emit error from @wire
+        getPicklistValues.error();
+
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
+
+        await expect(element).toBeAccessible();
     });
 });

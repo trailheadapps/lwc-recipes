@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Prompt xmlns="http://soap.sforce.com/2006/04/metadata">
+    <masterLabel>Hello Walk Through</masterLabel>
+    <promptVersions>
+        <body
+        >Welcome to the Lightning Web Components (LWC) Recipes App. To begin, enter some text into the HelloBinding and HelloExpressions tiles and click &quot;Next&quot;.</body>
+        <delayDays>1</delayDays>
+        <description
+        >Walk through that launches on the Hello tab of LWC Recipes.</description>
+        <dismissButtonLabel>Close</dismissButtonLabel>
+        <displayPosition>TopLeft</displayPosition>
+        <displayType>FloatingPanel</displayType>
+        <isPublished>true</isPublished>
+        <masterLabel>Hello Walk Through Step 1</masterLabel>
+        <publishedDate>2020-08-06</publishedDate>
+        <shouldDisplayActionButton>false</shouldDisplayActionButton>
+        <shouldIgnoreGlobalDelay>false</shouldIgnoreGlobalDelay>
+        <startDate>2020-08-06</startDate>
+        <stepNumber>1</stepNumber>
+        <targetAppDeveloperName>LWC_Recipes</targetAppDeveloperName>
+        <targetPageKey1>Hello</targetPageKey1>
+        <targetPageType>standard__navItemPage</targetPageType>
+        <timesToDisplay>1</timesToDisplay>
+        <title>Hello</title>
+        <userAccess>Everyone</userAccess>
+        <userProfileAccess>Everyone</userProfileAccess>
+        <versionNumber>1</versionNumber>
+    </promptVersions>
+    <promptVersions>
+        <body
+        >Recipes are code samples that illustrate the implementation of a single API or feature. They attempt to use the minimum lines of code required to follow best practices.</body>
+        <dismissButtonLabel>Close</dismissButtonLabel>
+        <displayPosition>TopCenter</displayPosition>
+        <displayType>FloatingPanel</displayType>
+        <isPublished>false</isPublished>
+        <masterLabel>Hello Walk Through Step 2</masterLabel>
+        <shouldDisplayActionButton>false</shouldDisplayActionButton>
+        <shouldIgnoreGlobalDelay>false</shouldIgnoreGlobalDelay>
+        <stepNumber>2</stepNumber>
+        <targetAppDeveloperName>LWC_Recipes</targetAppDeveloperName>
+        <targetPageKey1>Hello</targetPageKey1>
+        <targetPageType>standard__navItemPage</targetPageType>
+        <title>What are recipes?</title>
+        <userAccess>Everyone</userAccess>
+        <userProfileAccess>Everyone</userProfileAccess>
+        <versionNumber>1</versionNumber>
+    </promptVersions>
+    <promptVersions>
+        <body
+        >The recipes application tabs above ☝️ identify the features explored on each tab. You&apos;ll find other walk throughs in other tabs.</body>
+        <dismissButtonLabel>Close</dismissButtonLabel>
+        <displayPosition>TopLeft</displayPosition>
+        <displayType>FloatingPanel</displayType>
+        <isPublished>false</isPublished>
+        <masterLabel>Hello Walk Through Step 3</masterLabel>
+        <shouldDisplayActionButton>false</shouldDisplayActionButton>
+        <shouldIgnoreGlobalDelay>false</shouldIgnoreGlobalDelay>
+        <stepNumber>3</stepNumber>
+        <targetAppDeveloperName>LWC_Recipes</targetAppDeveloperName>
+        <targetPageKey1>Hello</targetPageKey1>
+        <targetPageType>standard__navItemPage</targetPageType>
+        <title>Recipes tabs</title>
+        <userAccess>Everyone</userAccess>
+        <userProfileAccess>Everyone</userProfileAccess>
+        <versionNumber>1</versionNumber>
+    </promptVersions>
+    <promptVersions>
+        <body
+        >Since recipes are code samples, finding the code is simple. Click the &quot;View Source&quot; link on any recipe card and you will be taken to it&apos;s location on GitHub. (Just don&apos;t forget to come back!)</body>
+        <dismissButtonLabel>Close</dismissButtonLabel>
+        <displayPosition>BottomLeft</displayPosition>
+        <displayType>FloatingPanel</displayType>
+        <isPublished>false</isPublished>
+        <masterLabel>Hello Walk Through Step 4</masterLabel>
+        <shouldDisplayActionButton>false</shouldDisplayActionButton>
+        <shouldIgnoreGlobalDelay>false</shouldIgnoreGlobalDelay>
+        <stepNumber>4</stepNumber>
+        <targetAppDeveloperName>LWC_Recipes</targetAppDeveloperName>
+        <targetPageKey1>Composition</targetPageKey1>
+        <targetPageType>standard__navItemPage</targetPageType>
+        <title>Easy access to source</title>
+        <userAccess>Everyone</userAccess>
+        <userProfileAccess>Everyone</userProfileAccess>
+        <versionNumber>1</versionNumber>
+    </promptVersions>
+    <promptVersions>
+        <actionButtonLabel>Next Tour</actionButtonLabel>
+        <actionButtonLink>/lightning/n/Data_Service</actionButtonLink>
+        <body
+        >&lt;p&gt;Congrats! You&apos;ve finished the first walkthrough tour of &lt;b&gt;LWC Recipes&lt;/b&gt;. If you want to learn more about all the recipes in this app, you can click &quot;Next Tour&quot; below, and you&apos;ll move on to another. &lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;In all there are four walkthroughs in LWC Recipes, each to give you a taste of different types of recipes in this app. &lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Of course, you can also click &quot;Finish&quot;, and jump right to a specific recipe tab. &lt;/p&gt;</body>
+        <displayPosition>BottomCenter</displayPosition>
+        <displayType>DockedComposer</displayType>
+        <header>You&apos;re Just Getting Started</header>
+        <isPublished>false</isPublished>
+        <masterLabel>Hello Walk Through Step 5</masterLabel>
+        <shouldDisplayActionButton>true</shouldDisplayActionButton>
+        <shouldIgnoreGlobalDelay>false</shouldIgnoreGlobalDelay>
+        <stepNumber>5</stepNumber>
+        <targetAppDeveloperName>LWC_Recipes</targetAppDeveloperName>
+        <targetPageKey1>Hello</targetPageKey1>
+        <targetPageType>standard__navItemPage</targetPageType>
+        <title>So much more to see!</title>
+        <userAccess>Everyone</userAccess>
+        <userProfileAccess>Everyone</userProfileAccess>
+        <versionNumber>1</versionNumber>
+    </promptVersions>
+</Prompt>

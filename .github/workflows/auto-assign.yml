@@ -6,7 +6,7 @@ on:
 
 jobs:
     auto-assign:
-        runs-on: ubuntu-latest
+        runs-on: trailheadapps-Ubuntu
         steps:
             - name: 'Auto-assign issue'
               uses: pozil/auto-assign-issue@v1

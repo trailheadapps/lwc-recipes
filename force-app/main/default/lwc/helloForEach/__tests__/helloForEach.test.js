@@ -28,4 +28,14 @@ describe('c-hello-for-each', () => {
         ).map((li) => li.textContent);
         expect(contacts).toEqual(EXPECTED);
     });
+
+    it('is accessible on initialization', async () => {
+        const element = createElement('c-hello-for-each', {
+            is: HelloForEach
+        });
+
+        document.body.appendChild(element);
+
+        await expect(element).toBeAccessible();
+    });
 });

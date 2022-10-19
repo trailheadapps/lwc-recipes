@@ -71,4 +71,14 @@ describe('c-record-view-form-static-contact', () => {
         ).map((outputField) => outputField.fieldName);
         expect(outputFieldNames).toEqual(OUTPUT_FIELDS);
     });
+
+    it('is accessible', async () => {
+        const element = createElement('c-record-view-form-static-contact', {
+            is: RecordViewFormStaticContact
+        });
+
+        document.body.appendChild(element);
+
+        await expect(element).toBeAccessible();
+    });
 });

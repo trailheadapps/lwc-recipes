@@ -8,21 +8,25 @@
         <itemInstances>
             <componentInstance>
                 <componentName>miscPermissionBasedUI</componentName>
+                <identifier>miscPermissionBasedUI</identifier>
             </componentInstance>
         </itemInstances>
         <itemInstances>
             <componentInstance>
                 <componentName>miscGetUserId</componentName>
+                <identifier>miscGetUserId</identifier>
             </componentInstance>
         </itemInstances>
         <itemInstances>
             <componentInstance>
-                <componentName>miscNotification</componentName>
+                <componentName>miscToastNotification</componentName>
+                <identifier>miscToastNotification</identifier>
             </componentInstance>
         </itemInstances>
         <itemInstances>
             <componentInstance>
                 <componentName>miscModal</componentName>
+                <identifier>miscModal</identifier>
             </componentInstance>
         </itemInstances>
         <name>region2</name>
@@ -31,17 +35,26 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
+                <componentName>miscNotificationModules</componentName>
+                <identifier>c_miscNotificationModules</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
                 <componentName>miscSharedJavaScript</componentName>
+                <identifier>miscSharedJavaScript</identifier>
             </componentInstance>
         </itemInstances>
         <itemInstances>
             <componentInstance>
                 <componentName>miscRestApiCall</componentName>
+                <identifier>miscRestApiCall</identifier>
             </componentInstance>
         </itemInstances>
         <itemInstances>
             <componentInstance>
                 <componentName>miscDomQuery</componentName>
+                <identifier>miscDomQuery</identifier>
             </componentInstance>
         </itemInstances>
         <name>region3</name>
@@ -50,17 +63,26 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
+                <componentName>miscStylingHooks</componentName>
+                <identifier>c_miscStylingHooks1</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
                 <componentName>miscStaticResource</componentName>
+                <identifier>miscStaticResource</identifier>
             </componentInstance>
         </itemInstances>
         <itemInstances>
             <componentInstance>
                 <componentName>miscContentAsset</componentName>
+                <identifier>miscContentAsset</identifier>
             </componentInstance>
         </itemInstances>
         <itemInstances>
             <componentInstance>
                 <componentName>miscMultipleTemplates</componentName>
+                <identifier>miscMultipleTemplates</identifier>
             </componentInstance>
         </itemInstances>
         <name>region4</name>

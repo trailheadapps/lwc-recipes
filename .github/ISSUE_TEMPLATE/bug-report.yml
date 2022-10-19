@@ -1,0 +1,68 @@
+name: Bug Report
+description: File a bug report
+labels: ['bug']
+body:
+    - type: markdown
+      attributes:
+          value: |
+              **NOTICE:** Please use this form only for reporting bugs on the application itself.
+
+              For general questions about our technologies (Apex, Lightning Web Components...) use the existing channels:
+
+              - [Trailblazer Community](https://trailhead.salesforce.com/trailblazer-community/groups/0F93A000000DJbJSAW?tab=discussion)
+              - [Salesforce Stack Exchange](https://salesforce.stackexchange.com/)
+    - type: textarea
+      attributes:
+          label: Summary
+          description: Short summary of what is going on or to provide context
+      validations:
+          required: true
+    - type: dropdown
+      id: orgType
+      attributes:
+          label: Salesforce Org Type
+          description: What type of Salesforce org are you deploying to?
+          options:
+              - Scratch Org
+              - Developer Edition Org
+              - Trailhead Playground
+              - Sandbox
+              - Production Org
+      validations:
+          required: true
+    - type: textarea
+      attributes:
+          label: Steps To Reproduce
+          description: Steps to reproduce the issue.
+          placeholder: |
+              1. In this environment...
+              2. With this config...
+              3. Run '...'
+      validations:
+          required: false
+    - type: textarea
+      attributes:
+          label: Current Behavior
+          description: A concise description of what you're experiencing.
+      validations:
+          required: false
+    - type: textarea
+      attributes:
+          label: Expected Behavior
+          description: A concise description of what you expected to happen.
+      validations:
+          required: false
+    - type: textarea
+      id: logs
+      attributes:
+          label: Relevant Log Output
+          description: Please copy and paste any relevant log output. This will be automatically formatted into code.
+          render: shell
+    - type: checkboxes
+      id: terms
+      attributes:
+          label: Code of Conduct
+          description: By submitting this issue, you agree to follow our [Code of Conduct](../blob/main/CODE_OF_CONDUCT.md)
+          options:
+              - label: I agree to follow this project's Code of Conduct
+                required: true

@@ -55,4 +55,15 @@ describe('c-contact-tile', () => {
         const detailEl = element.shadowRoot.querySelector('p');
         expect(detailEl.textContent).toBe(MESSAGE);
     });
+
+    it('is accessible', async () => {
+        const element = createElement('c-contact-tile', {
+            is: ContactTile
+        });
+
+        element.contact = CONTACT_INPUT;
+        document.body.appendChild(element);
+
+        await expect(element).toBeAccessible();
+    });
 });

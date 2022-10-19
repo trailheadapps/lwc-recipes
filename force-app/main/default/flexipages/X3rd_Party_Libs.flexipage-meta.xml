@@ -8,6 +8,7 @@
         <itemInstances>
             <componentInstance>
                 <componentName>libsD3</componentName>
+                <identifier>libsD3</identifier>
             </componentInstance>
         </itemInstances>
         <name>region2</name>
@@ -17,6 +18,7 @@
         <itemInstances>
             <componentInstance>
                 <componentName>libsChartjs</componentName>
+                <identifier>libsChartjs</identifier>
             </componentInstance>
         </itemInstances>
         <name>region3</name>
@@ -25,7 +27,8 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
-                <componentName>libsMomentjs</componentName>
+                <componentName>libsFullCalendar</componentName>
+                <identifier>c_libsFullCalendar1</identifier>
             </componentInstance>
         </itemInstances>
         <name>region4</name>

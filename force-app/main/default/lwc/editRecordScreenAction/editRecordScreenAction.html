@@ -1,0 +1,28 @@
+<template>
+    <lightning-quick-action-panel header="Edit contact name">
+        <lightning-input
+            label="First Name"
+            value={firstname}
+            data-field="FirstName"
+        ></lightning-input>
+
+        <lightning-input
+            label="Last Name"
+            value={lastname}
+            data-field="LastName"
+        ></lightning-input>
+
+        <div slot="footer">
+            <lightning-button
+                variant="neutral"
+                label="Cancel"
+                onclick={handleCancel}
+            ></lightning-button>
+            <lightning-button
+                variant="brand"
+                label="Save"
+                onclick={handleSave}
+            ></lightning-button>
+        </div>
+    </lightning-quick-action-panel>
+</template>

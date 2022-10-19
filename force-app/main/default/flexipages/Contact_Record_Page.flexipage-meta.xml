@@ -4,9 +4,42 @@
         <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>
+                    <name>actionNames</name>
+                    <valueList>
+                        <valueListItems>
+                            <value>Contact.EditRecordAction</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>Contact.DispatchEventAction</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>Contact.NavigateToRecordAction</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>Edit</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>Delete</value>
+                        </valueListItems>
+                    </valueList>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>collapsed</name>
                     <value>false</value>
                 </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>enableActionsConfiguration</name>
+                    <value>true</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>hideChatterActions</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>numVisibleActions</name>
+                    <value>10</value>
+                </componentInstanceProperties>
+                <identifier>forceHighlightsPanel</identifier>
                 <componentName>force:highlightsPanel</componentName>
             </componentInstance>
         </itemInstances>
@@ -21,6 +54,8 @@
                     <name>displayOption</name>
                     <value>BOTH</value>
                 </componentInstanceProperties>
+                <identifier
+                >runtimeSalesMergeMergeCandidatesPreviewCard</identifier>
                 <componentName
                 >runtime_sales_merge:mergeCandidatesPreviewCard</componentName>
             </componentInstance>
@@ -31,6 +66,7 @@
                     <name>relatedListComponentOverride</name>
                     <value>NONE</value>
                 </componentInstanceProperties>
+                <identifier>forceRelatedListContainer</identifier>
                 <componentName>force:relatedListContainer</componentName>
             </componentInstance>
         </itemInstances>
@@ -41,6 +77,7 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
+                <identifier>forceDetailPanel</identifier>
                 <componentName>force:detailPanel</componentName>
             </componentInstance>
         </itemInstances>
@@ -51,6 +88,7 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
+                <identifier>runtimeSalesSocialSocialPanel</identifier>
                 <componentName>runtime_sales_social:socialPanel</componentName>
             </componentInstance>
         </itemInstances>
@@ -73,6 +111,7 @@
                     <name>title</name>
                     <value>Standard.Tab.relatedLists</value>
                 </componentInstanceProperties>
+                <identifier>flexipageTab1</identifier>
                 <componentName>flexipage:tab</componentName>
             </componentInstance>
         </itemInstances>
@@ -86,6 +125,7 @@
                     <name>title</name>
                     <value>Standard.Tab.detail</value>
                 </componentInstanceProperties>
+                <identifier>flexipageTab2</identifier>
                 <componentName>flexipage:tab</componentName>
             </componentInstance>
         </itemInstances>
@@ -99,6 +139,7 @@
                     <name>title</name>
                     <value>Standard.Tab.news</value>
                 </componentInstanceProperties>
+                <identifier>flexipageTab3</identifier>
                 <componentName>flexipage:tab</componentName>
             </componentInstance>
         </itemInstances>
@@ -113,6 +154,7 @@
                     <name>tabs</name>
                     <value>maintabs</value>
                 </componentInstanceProperties>
+                <identifier>flexipageTabset1</identifier>
                 <componentName>flexipage:tabset</componentName>
             </componentInstance>
         </itemInstances>
@@ -123,22 +165,26 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
-                <componentName>recordFormDynamicContact</componentName>
+                <identifier>recordFormDynamicContact</identifier>
+<componentName>recordFormDynamicContact</componentName>
             </componentInstance>
         </itemInstances>
         <itemInstances>
             <componentInstance>
-                <componentName>recordViewFormDynamicContact</componentName>
+                <identifier>recordViewFormDynamicContact</identifier>
+<componentName>recordViewFormDynamicContact</componentName>
             </componentInstance>
         </itemInstances>
         <itemInstances>
             <componentInstance>
-                <componentName>recordEditFormDynamicContact</componentName>
+                <identifier>recordEditFormDynamicContact</identifier>
+<componentName>recordEditFormDynamicContact</componentName>
             </componentInstance>
         </itemInstances>
         <itemInstances>
             <componentInstance>
-                <componentName>wireGetRecordDynamicContact</componentName>
+                <identifier>wireGetRecordDynamicContact</identifier>
+<componentName>wireGetRecordDynamicContact</componentName>
             </componentInstance>
         </itemInstances>
         <name>Facet-53b6ec73-0326-418b-aa0d-6b5969da2ca3</name>
@@ -147,22 +193,26 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
-                <componentName>recordFormStaticContact</componentName>
+                <identifier>recordFormStaticContact</identifier>
+<componentName>recordFormStaticContact</componentName>
             </componentInstance>
         </itemInstances>
         <itemInstances>
             <componentInstance>
-                <componentName>recordViewFormStaticContact</componentName>
+                <identifier>recordViewFormStaticContact</identifier>
+<componentName>recordViewFormStaticContact</componentName>
             </componentInstance>
         </itemInstances>
         <itemInstances>
             <componentInstance>
-                <componentName>recordEditFormStaticContact</componentName>
+                <identifier>recordEditFormStaticContact</identifier>
+<componentName>recordEditFormStaticContact</componentName>
             </componentInstance>
         </itemInstances>
         <itemInstances>
             <componentInstance>
-                <componentName>wireGetRecordStaticContact</componentName>
+                <identifier>wireGetRecordStaticContact</identifier>
+<componentName>wireGetRecordStaticContact</componentName>
             </componentInstance>
         </itemInstances>
         <name>Facet-035a5aa2-eb3b-45ae-a237-629b97b78d69</name>
@@ -183,6 +233,7 @@
                     <name>title</name>
                     <value>Dynamic Schema</value>
                 </componentInstanceProperties>
+                <identifier>flexipageTab4</identifier>
                 <componentName>flexipage:tab</componentName>
             </componentInstance>
         </itemInstances>
@@ -196,6 +247,7 @@
                     <name>title</name>
                     <value>Static Schema</value>
                 </componentInstanceProperties>
+                <identifier>flexipageTab5</identifier>
                 <componentName>flexipage:tab</componentName>
             </componentInstance>
         </itemInstances>
@@ -209,6 +261,7 @@
                     <name>tabs</name>
                     <value>Facet-aeb4b43b-d4b5-43f4-9d10-b889712a7383</value>
                 </componentInstanceProperties>
+                <identifier>flexipageTabset2</identifier>
                 <componentName>flexipage:tabset</componentName>
             </componentInstance>
         </itemInstances>

@@ -9,7 +9,13 @@ describe('c-event-simple', () => {
         }
     });
 
-    it('increments and decrements the page value by 1 on button click', () => {
+    // Helper function to wait until the microtask queue is empty. This is needed for promise
+    // timing when calling imperative Apex.
+    async function flushPromises() {
+        return Promise.resolve();
+    }
+
+    it('increments and decrements the page value by 1 on button click', async () => {
         // Create initial element
         const element = createElement('c-event-simple', {
             is: EventSimple
@@ -17,9 +23,8 @@ describe('c-event-simple', () => {
         document.body.appendChild(element);
 
         const paginatorEl = element.shadowRoot.querySelector('c-paginator');
-        const buttonEls = paginatorEl.shadowRoot.querySelectorAll(
-            'lightning-button'
-        );
+        const buttonEls =
+            paginatorEl.shadowRoot.querySelectorAll('lightning-button');
 
         // First click "Next", so that the page property increments to 2
         buttonEls.forEach((buttonEl) => {
@@ -30,35 +35,46 @@ describe('c-event-simple', () => {
 
         const pageEl = element.shadowRoot.querySelector('p');
 
-        // Return a promise to wait for any asynchronous DOM updates. Jest
-        // will automatically wait for the Promise chain to complete before
-        // ending the test and fail the test if the promise rejects.
-        return Promise.resolve()
-            .then(() => {
-                // Verify that property is correctly incremented.
-                expect(pageEl.textContent).toBe('Page 2');
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
 
-                // Now click "Previous", so that the page property decrements to 1
-                buttonEls.forEach((buttonEl) => {
-                    if (buttonEl.label === 'Previous') {
-                        buttonEl.click();
-                    }
-                });
-            })
-            .then(() => {
-                // Verify that property is correctly incremented.
-                expect(pageEl.textContent).toBe('Page 1');
+        // Verify that property is correctly incremented.
+        expect(pageEl.textContent).toBe('Page 2');
 
-                // Decrement again
-                buttonEls.forEach((buttonEl) => {
-                    if (buttonEl.label === 'Previous') {
-                        buttonEl.click();
-                    }
-                });
-            })
-            .then(() => {
-                // Verify that property is not decremented, and the initial value stays on 1.
-                expect(pageEl.textContent).toBe('Page 1');
-            });
+        // Now click "Previous", so that the page property decrements to 1
+        buttonEls.forEach((buttonEl) => {
+            if (buttonEl.label === 'Previous') {
+                buttonEl.click();
+            }
+        });
+
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
+
+        // Verify that property is correctly incremented.
+        expect(pageEl.textContent).toBe('Page 1');
+
+        // Decrement again
+        buttonEls.forEach((buttonEl) => {
+            if (buttonEl.label === 'Previous') {
+                buttonEl.click();
+            }
+        });
+
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
+
+        // Verify that property is not decremented, and the initial value stays on 1.
+        expect(pageEl.textContent).toBe('Page 1');
+    });
+
+    it('is accessible', async () => {
+        const element = createElement('c-event-simple', {
+            is: EventSimple
+        });
+
+        document.body.appendChild(element);
+
+        await expect(element).toBeAccessible();
     });
 });

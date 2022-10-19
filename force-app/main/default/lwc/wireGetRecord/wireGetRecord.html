@@ -1,0 +1,17 @@
+<template>
+    <lightning-card title="WireGetRecord" icon-name="custom:custom67">
+        <div class="slds-var-m-horizontal_medium">
+            <template if:true={record.data}>
+                <div class="scroller">
+                    <pre>{recordStr}</pre>
+                </div>
+            </template>
+        </div>
+        <template if:true={record.error}>
+            <c-error-panel errors={record.error}></c-error-panel>
+        </template>
+        <c-view-source source="lwc/wireGetRecord" slot="footer">
+            Get a record's data using @wire
+        </c-view-source>
+    </lightning-card>
+</template>

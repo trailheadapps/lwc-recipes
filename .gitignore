@@ -3,6 +3,7 @@
 # For useful gitignore templates see: https://github.com/github/gitignore
 
 # Salesforce dev
+.sf/
 .sfdx/
 .localdevserver/
 
@@ -35,4 +36,5 @@ ehthumbs.db
 $RECYCLE.BIN/
 
 # VS Code project settings
-.vscode/
+.vscode/*
+!.vscode/extensions.json

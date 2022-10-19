@@ -73,7 +73,7 @@
             "AccountId": "@AccountRef2",
             "FirstName": "Jonathan",
             "LastName": "Bradley",
-            "Title": "VP of Opearations",
+            "Title": "VP of Operations",
             "Email": "jonathan@demo.net",
             "Phone": "4158885522",
             "Picture__c": "https://s3-us-west-1.amazonaws.com/sfdc-demo/people/jonathan_bradley.jpg"

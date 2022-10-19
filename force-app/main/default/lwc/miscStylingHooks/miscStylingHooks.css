@@ -1,0 +1,54 @@
+:host {
+    /* Custom CSS variables for reusing style in this component and child components */
+    --primary-color: #e3df00;
+    --primary-color-alt-shade: #a7a400;
+    --secondary-color: #020024;
+    --secondary-color-alt-shade: #343304;
+
+    /* Card styling hooks */
+    --sds-c-card-color-background: linear-gradient(
+        115deg,
+        var(--secondary-color) 60%,
+        var(--primary-color-alt-shade) 100%
+    );
+    --sds-c-card-text-color: var(--primary-color);
+    --sds-c-card-radius-border: 1.5rem 0;
+    --sds-c-card-color-border: var(--primary-color);
+    --sds-c-card-footer-color-border: var(--primary-color-alt-shade);
+
+    /* Toggle styling hooks */
+    --sds-c-checkbox-toggle-color-border-checked: #009900;
+    --sds-c-checkbox-toggle-color-background-checked: #009900;
+    --sds-c-checkbox-toggle-color-background-checked-focus: #00cc00;
+    --sds-c-checkbox-toggle-color-background-hover: var(
+        --primary-color-alt-shade
+    );
+    --sds-c-checkbox-toggle-color-border-hover: var(--primary-color);
+
+    /* Button styling hooks */
+    --sds-c-button-text-color: var(--primary-color);
+    --sds-c-button-text-color-hover: var(--primary-color-alt-shade);
+    --sds-c-button-text-color-active: var(--secondary-color);
+    --sds-c-button-neutral-color-background: var(--secondary-color);
+    --sds-c-button-neutral-color-background-hover: var(
+        --secondary-color-alt-shade
+    );
+    --sds-c-button-neutral-color-background-active: var(--primary-color);
+    --sds-c-button-neutral-color-border: var(--primary-color);
+    --sds-c-button-neutral-color-border-hover: var(--primary-color-alt-shade);
+    --sds-c-button-neutral-color-border-active: var(
+        --secondary-color-alt-shade
+    );
+
+    /* View source component styling hooks */
+    --source-text-color: #ffffff;
+    --source-link-color: var(--primary-color);
+    --source-link-color-hover: var(--primary-color-alt-shade);
+}
+
+/* A specific style for a toggle base component */
+.toggle-red {
+    --sds-c-checkbox-toggle-color-border-checked: #990000;
+    --sds-c-checkbox-toggle-color-background-checked: #990000;
+    --sds-c-checkbox-toggle-color-background-checked-focus: #cc0000;
+}

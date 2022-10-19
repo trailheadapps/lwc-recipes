@@ -31,10 +31,7 @@ export default class ApexImperativeMethodWithComplexParams extends LightningElem
         };
         // Populating a list
         for (let i = 0; i < this.listItemValue; i++) {
-            parameterObject.someList.push({
-                someInnerString: this.stringValue,
-                someInnerInteger: this.numberValue
-            });
+            parameterObject.someList.push(this.stringValue);
         }
 
         // Calling the imperative Apex method with the JSON
