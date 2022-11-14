@@ -8,31 +8,29 @@ export default class MiscRestCall extends LightningElement {
     searchKey = 'Harry Potter';
     books;
     error;
+    isLoading = false;
 
     handleSearchKeyChange(event) {
         this.searchKey = event.target.value;
     }
 
-    handleSearchClick() {
-        // The Fetch API is currently not polyfilled for usage in IE11.
-        // Use XMLHttpRequest instead in that case.
-        fetch(QUERY_URL + this.searchKey)
-            .then((response) => {
-                // fetch isn't throwing an error if the request fails.
-                // Therefore we have to check the ok property.
-                // The thrown error will be caught on the catch() method
-                if (!response.ok) {
-                    throw Error(response);
-                } else {
-                    return response.json();
-                }
-            })
-            .then((jsonResponse) => {
-                this.books = jsonResponse;
-            })
-            .catch((error) => {
-                this.error = error;
-                this.books = undefined;
-            });
+    async handleSearchClick() {
+        try {
+            this.isLoading = true;
+            const response = await fetch(QUERY_URL + this.searchKey);
+            // fetch isn't throwing an error if the request fails.
+            // Therefore we have to check the ok property.
+            // The thrown error will be caught on the catch() method
+            if (!response.ok) {
+                throw Error(response);
+            }
+            this.books = await response.json();
+        } catch (error) {
+            this.error = error;
+            this.books = undefined;
+        } finally {
+            // Remove spinner once we're done regardless of whether the operation succeeded or not
+            this.isLoading = false;
+        }
     }
 }

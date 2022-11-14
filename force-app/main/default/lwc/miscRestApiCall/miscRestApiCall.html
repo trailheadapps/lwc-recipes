@@ -28,6 +28,10 @@
             <template if:true={error}>
                 <c-error-panel errors={error}></c-error-panel>
             </template>
+            <lightning-spinner
+                if:true={isLoading}
+                alternative-text="Loading records"
+            ></lightning-spinner>
         </div>
 
         <c-view-source source="lwc/miscRestApiCall" slot="footer">
