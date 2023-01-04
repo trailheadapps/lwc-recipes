@@ -7,11 +7,18 @@ on:
 jobs:
     codetour-watch:
         runs-on: trailheadapps-Ubuntu
+        if: ${{ github.actor != 'dependabot[bot]' && github.actor != 'dependabot[bot]' }}
         steps:
             - name: 'Checkout source code'
               uses: actions/checkout@v3
 
             - name: 'Watch CodeTour changes'
               uses: pozil/codetour-watch@v1.6.3
-              with:
-                  repo-token: ${{ secrets.GITHUB_TOKEN }}
+
+    skip-codetour-watch:
+        if: ${{ github.actor == 'trailheadapps-bot' || github.actor == 'dependabot[bot]' }}
+        runs-on: trailheadapps-Ubuntu
+        steps:
+            - name: Noop
+              run: |
+                  echo "Skipping workflow run for automated PRs."
