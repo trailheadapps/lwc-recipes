@@ -7,7 +7,7 @@ on:
 jobs:
     codetour-watch:
         runs-on: trailheadapps-Ubuntu
-        if: ${{ github.actor != 'dependabot[bot]' && github.actor != 'dependabot[bot]' }}
+        if: ${{ github.actor != 'trailheadapps-bot' && github.actor != 'dependabot[bot]' }}
         steps:
             - name: 'Checkout source code'
               uses: actions/checkout@v3
