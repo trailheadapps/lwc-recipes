@@ -69,7 +69,7 @@ jobs:
 
             # Run PMD scan
             - name: 'Run PMD scan'
-              uses: pmd/pmd-github-action@v1
+              uses: pmd/pmd-github-action@v1.3.0
               id: pmd
               with:
                   sourcePath: 'force-app'
