@@ -158,7 +158,7 @@ jobs:
                   if [ $(echo "$changedPaths" | grep -c '^force-app') == 1 ]; then
                       hasChanges='true'
                   fi
-                  echo "::set-output name=hasChanges::$hasChanges"
+                  echo "hasChanges=$hasChanges" >> $GITHUB_OUTPUT
 
             # Trigger packaging pre-release PR workflow
             - name: 'Trigger packaging pre-release PR workflow if needed'
