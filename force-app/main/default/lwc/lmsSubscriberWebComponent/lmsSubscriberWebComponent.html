@@ -4,7 +4,7 @@
         icon-name="custom:custom30"
     >
         <div class="slds-m-around_medium">
-            <template if:true={Picture__c}>
+            <template lwc:if={Picture__c}>
                 <img src={Picture__c} alt="Profile photo" />
             </template>
             <p>{Name}</p>

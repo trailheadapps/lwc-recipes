@@ -2,12 +2,12 @@
     <div class="slds-var-m-vertical_small">
         <span class="slds-text-color_destructive">
             {friendlyMessage}.
-            <template if:true={errorMessages.length}>
+            <template lwc:if={errorMessages.length}>
                 <a onclick={handleShowDetailsClick}> Show details.</a>
             </template>
         </span>
-        <template if:true={errorMessages.length}>
-            <template if:true={viewDetails}>
+        <template lwc:if={errorMessages.length}>
+            <template lwc:if={viewDetails}>
                 <template for:each={errorMessages} for:item="message">
                     <p class="slds-text-body_regular" key={message}>
                         {message}

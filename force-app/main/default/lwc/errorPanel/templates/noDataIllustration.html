@@ -242,9 +242,9 @@
         </svg>
         <div class="slds-text-longform">
             <h3 class="slds-text-heading_medium">{friendlyMessage}</h3>
-            <template if:true={errorMessages.length}>
+            <template lwc:if={errorMessages.length}>
                 <a onclick={handleShowDetailsClick}>Show details</a>
-                <template if:true={viewDetails}>
+                <template lwc:if={viewDetails}>
                     <template for:each={errorMessages} for:item="message">
                         <p class="slds-text-body_regular" key={message}>
                             {message}

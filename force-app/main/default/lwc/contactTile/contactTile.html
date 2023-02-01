@@ -1,5 +1,5 @@
 <template>
-    <template if:true={contact}>
+    <template lwc:if={contact}>
         <lightning-layout vertical-align="center">
             <lightning-layout-item>
                 <img src={contact.Picture__c} alt="Profile photo" />
@@ -15,5 +15,5 @@
             </lightning-layout-item>
         </lightning-layout>
     </template>
-    <template if:false={contact}><p>No contact data available.</p></template>
+    <template lwc:else><p>No contact data available.</p></template>
 </template>

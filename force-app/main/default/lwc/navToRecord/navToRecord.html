@@ -1,6 +1,6 @@
 <template>
     <lightning-card title="NavToRecord" icon-name="custom:custom96">
-        <template if:true={contact.data}>
+        <template lwc:if={contact.data}>
             <div class="slds-var-m-around_medium">
                 Example Contact:
                 <p>{contact.data.Name}</p>
@@ -21,7 +21,7 @@
                 ></lightning-button>
             </div>
         </template>
-        <template if:true={contact.error}>
+        <template lwc:elseif={contact.error}>
             <c-error-panel errors={contact.error}></c-error-panel>
         </template>
         <c-view-source source="lwc/navToRecord" slot="footer">

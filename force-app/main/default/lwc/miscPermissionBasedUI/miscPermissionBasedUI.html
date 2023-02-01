@@ -1,10 +1,10 @@
 <template>
     <lightning-card title="MiscPermissionBasedUI" icon-name="custom:custom77">
         <div class="slds-var-m-around_medium">
-            <template if:true={isRestrictedUIAccessible}>
+            <template lwc:if={isRestrictedUIAccessible}>
                 <p>The permission set is assigned</p>
             </template>
-            <template if:false={isRestrictedUIAccessible}>
+            <template lwc:else>
                 <p>The permission set is not assigned</p>
             </template>
         </div>

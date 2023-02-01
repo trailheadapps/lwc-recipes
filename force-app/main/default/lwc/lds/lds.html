@@ -1,6 +1,6 @@
 <template>
     <lightning-card title="Lightning Data Service" icon-name="custom:custom42">
-        <template if:true={contact.data}>
+        <template lwc:if={contact.data}>
             <div class="slds-text-align_center slds-var-m-around_medium">
                 The best place to see the Lightning Data Service components in
                 action is on a record page.
@@ -20,7 +20,7 @@
                 </p>
             </div>
         </template>
-        <template if:true={contact.error}>
+        <template lwc:elseif={contact.error}>
             <c-error-panel errors={contact.error}></c-error-panel>
         </template>
     </lightning-card>
