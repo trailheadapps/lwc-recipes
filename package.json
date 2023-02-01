@@ -50,7 +50,7 @@
         "prettier-plugin-apex": "^1.12.0"
     },
     "volta": {
-        "node": "14.17.3",
+        "node": "16.2.0",
         "npm": "6.14.13"
     }
 }
