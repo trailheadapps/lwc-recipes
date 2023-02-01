@@ -42,7 +42,7 @@
         "@salesforce/sfdx-lwc-jest": "^1.2.1",
         "eslint": "^8.31.0",
         "eslint-plugin-import": "^2.27.5",
-        "eslint-plugin-jest": "^27.2.0",
+        "eslint-plugin-jest": "^27.2.1",
         "husky": "^8.0.2",
         "jest-canvas-mock": "^2.4.0",
         "lint-staged": "^13.1.0",
