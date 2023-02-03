@@ -2,6 +2,17 @@
 import { LightningElement } from 'lwc';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import { loadScript, loadStyle } from 'lightning/platformResourceLoader';
+/**
+ * When using this component in an LWR site, please import the below custom implementation of 'loadScript' module
+ * instead of the one from 'lightning/platformResourceLoader'
+ *
+ * import { loadScript } from 'c/resourceLoader';
+ *
+ * This workaround is implemented to get around a limitation of the Lightning Locker library in LWR sites.
+ * Read more about it in the "Lightning Locker Limitations" section of the documentation
+ * https://developer.salesforce.com/docs/atlas.en-us.exp_cloud_lwr.meta/exp_cloud_lwr/template_limitations.htm
+ */
+
 import D3 from '@salesforce/resourceUrl/d3';
 import DATA from './data';
 
