@@ -43,7 +43,8 @@ describe('c-hello-iterator', () => {
         ).toBe('DIV');
         // Verify last li's last child is a div
         expect(
-            element.shadowRoot.querySelector('li:last-child').children[0].tagName
+            element.shadowRoot.querySelector('li:last-child').children[0]
+                .tagName
         ).toBe('DIV');
         // Verify no other divs
         expect(element.shadowRoot.querySelectorAll('li > div')).toHaveLength(2);
