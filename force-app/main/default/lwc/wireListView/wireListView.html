@@ -1,6 +1,6 @@
 <template>
     <lightning-card title="WireListView" icon-name="custom:custom67">
-        <template if:true={listView.data}>
+        <template lwc:if={listView.data}>
             <div class="slds-var-m-around_medium">
                 <template for:each={contacts} for:item="contact">
                     <p key={contact.fields.Id.value}>
@@ -9,7 +9,7 @@
                 </template>
             </div>
         </template>
-        <template if:true={listView.error}>
+        <template lwc:elseif={listView.error}>
             <c-error-panel errors={listView.error}></c-error-panel>
         </template>
         <c-view-source source="lwc/wireListView" slot="footer">

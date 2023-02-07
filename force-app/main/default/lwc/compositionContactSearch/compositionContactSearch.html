@@ -10,7 +10,7 @@
                 class="slds-show slds-is-relative slds-var-m-bottom_small"
                 label="Search"
             ></lightning-input>
-            <template if:true={contacts}>
+            <template lwc:if={contacts}>
                 <template for:each={contacts} for:item="contact">
                     <c-contact-tile
                         class="slds-show slds-is-relative"
@@ -20,7 +20,7 @@
                 </template>
             </template>
         </div>
-        <template if:true={error}>
+        <template lwc:if={error}>
             <c-error-panel errors={error}></c-error-panel>
         </template>
         <c-view-source source="lwc/compositionContactSearch" slot="footer">

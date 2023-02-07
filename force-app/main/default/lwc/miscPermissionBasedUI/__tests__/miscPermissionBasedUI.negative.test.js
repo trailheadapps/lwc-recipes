@@ -5,7 +5,7 @@ jest.mock(
     '@salesforce/customPermission/accessRestrictedUIPermission',
     () => ({
         __esModule: true,
-        default: true
+        default: false
     }),
     { virtual: true }
 );
@@ -25,7 +25,7 @@ describe('c-misc-permission-based-u-i', () => {
         return Promise.resolve();
     }
 
-    it('displays the correct UI when custom permission is true', async () => {
+    it('displays the correct UI when custom permission is false', async () => {
         const element = createElement('c-misc-permission-based-u-i', {
             is: MiscPermissionBasedUI
         });
@@ -36,10 +36,10 @@ describe('c-misc-permission-based-u-i', () => {
         await flushPromises();
 
         const pEl = element.shadowRoot.querySelector('p');
-        expect(pEl.textContent).toBe('The permission set is assigned');
+        expect(pEl.textContent).toBe('The permission set is not assigned');
     });
 
-    it('is accessible when custom permission is true', async () => {
+    it('is accessible when custom permission is false', async () => {
         const element = createElement('c-misc-permission-based-u-i', {
             is: MiscPermissionBasedUI
         });

@@ -4,7 +4,7 @@
         icon-name="custom:custom62"
     >
         <div class="slds-var-m-around_medium">
-            <template if:true={contacts.data}>
+            <template lwc:if={contacts.data}>
                 <c-custom-data-types
                     key-field="Id"
                     data={contacts.data}
@@ -13,7 +13,7 @@
                 >
                 </c-custom-data-types>
             </template>
-            <template if:true={contacts.error}>
+            <template lwc:elseif={contacts.error}>
                 <c-error-panel errors={contacts.error}></c-error-panel>
             </template>
         </div>

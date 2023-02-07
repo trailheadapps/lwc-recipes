@@ -1,6 +1,6 @@
 <template>
     <lightning-card title="LdsDeleteRecord" icon-name="standard:record">
-        <template if:true={accounts}>
+        <template lwc:if={accounts}>
             <div class="slds-var-m-around_medium">
                 <template for:each={accounts} for:item="account">
                     <lightning-layout
@@ -21,7 +21,7 @@
                 </template>
             </div>
         </template>
-        <template if:true={error}>
+        <template lwc:elseif={error}>
             <c-error-panel errors={error}></c-error-panel>
         </template>
 

@@ -3,7 +3,7 @@
         title="WireGetPicklistValuesByRecordType"
         icon-name="custom:custom67"
     >
-        <template if:true={treeModel}>
+        <template lwc:if={treeModel}>
             <lightning-layout class="slds-var-m-around_medium">
                 <lightning-tree
                     items={treeModel}
@@ -11,7 +11,7 @@
                 ></lightning-tree>
             </lightning-layout>
         </template>
-        <template if:true={error}>
+        <template lwc:elseif={error}>
             <c-error-panel errors={error}></c-error-panel>
         </template>
         <c-view-source

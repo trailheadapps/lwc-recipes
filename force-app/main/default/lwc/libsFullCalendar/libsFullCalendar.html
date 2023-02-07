@@ -2,7 +2,7 @@
     <lightning-card title="LibsFullCalendar" icon-name="custom:custom19">
         <div class="slds-var-m-around_medium">
             <div class="calendar" lwc:dom="manual"></div>
-            <template if:true={error}>
+            <template lwc:if={error}>
                 <c-error-panel
                     errors={error}
                     friendly-message="Failed to display FullCalendar"
