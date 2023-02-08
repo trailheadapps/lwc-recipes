@@ -52,9 +52,13 @@ public with sharing class ContactController {
     }
 
     @AuraEnabled
-    public static void updateContact(Id id, String firstName, String lastName) {
+    public static void updateContact(
+        Id recordId,
+        String firstName,
+        String lastName
+    ) {
         Contact contact = new Contact(
-            Id = id,
+            Id = recordId,
             FirstName = firstName,
             LastName = lastName
         );

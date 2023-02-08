@@ -26,9 +26,9 @@ export default class LdsNotifyRecordUpdateAvailable extends LightningElement {
         return getFieldValue(this.contact.data, LASTNAME_FIELD);
     }
 
-    updateContact() {
+    handleContactUpdate() {
         updateContact({
-            id: this.recordId,
+            recordId: this.recordId,
             firstName: this.refs.firstName.value,
             lastName: this.refs.lastName.value
         })

@@ -9,6 +9,8 @@ export const generateRecordInputForCreate = jest.fn();
 export const generateRecordInputForUpdate = jest.fn();
 export const createRecordInputFilteredByEditedFields = jest.fn();
 export const refresh = jest.fn().mockResolvedValue();
+export const notifyRecordUpdateAvailable = jest.fn().mockResolvedValue();
+
 export const getFieldValue = jest.fn((data, fieldReference) => {
     if (data) {
         const fields = fieldReference.fieldApiName.split('.');

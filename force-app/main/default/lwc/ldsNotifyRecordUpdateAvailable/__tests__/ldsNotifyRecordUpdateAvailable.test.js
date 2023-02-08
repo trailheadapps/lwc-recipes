@@ -2,7 +2,7 @@ import { createElement } from 'lwc';
 import LdsNotifyRecordUpdateAvailable from 'c/ldsNotifyRecordUpdateAvailable';
 import { getRecord } from 'lightning/uiRecordApi';
 import updateContact from '@salesforce/apex/ContactController.updateContact';
-import { ShowToastEvent } from 'lightning/platformShowToastEvent';
+import { ShowToastEventName } from 'lightning/platformShowToastEvent';
 
 // Mock realistic data
 const mockGetRecord = require('./data/getRecord.json');
@@ -17,14 +17,6 @@ jest.mock(
     },
     { virtual: true }
 );
-
-// // Sample error for Apex call
-// const UPDATE_CONTACTS_ERROR = {
-//     body: { message: 'An internal server error has occurred' },
-//     ok: false,
-//     status: 400,
-//     statusText: 'Bad Request'
-// };
 
 describe('c-notify-contact-update-available', () => {
     afterEach(() => {
@@ -63,15 +55,7 @@ describe('c-notify-contact-update-available', () => {
         });
     });
 
-    it.skip('should update contact and call notifyRecordUpdateAvailable', async () => {
-        //Update all the records in the Draft Values
-        const INPUT_PARAMETERS = [
-            { id: '0031700000pHcf8AAC', firstName: 'John', lastName: 'Doe' }
-        ];
-
-        // Assign mock value for resolved updateContact promise
-        updateContact.mockResolvedValue(INPUT_PARAMETERS);
-
+    it('should update contact and call notifyRecordUpdateAvailable', async () => {
         // Create element
         const element = createElement('c-lds-notify-record-update-available', {
             is: LdsNotifyRecordUpdateAvailable
@@ -81,7 +65,7 @@ describe('c-notify-contact-update-available', () => {
         // Mock handler for toast event
         const toastHandler = jest.fn();
         // Add event listener to catch toast event
-        element.addEventListener(ShowToastEvent, toastHandler);
+        element.addEventListener(ShowToastEventName, toastHandler);
 
         // Emit data from @wire
         getRecord.emit(mockGetRecord);
@@ -97,22 +81,22 @@ describe('c-notify-contact-update-available', () => {
         );
         firstNameEl.value = 'John';
         lastNameEl.value = 'Doe';
+
         // Find the save button and click
         const inputEl = element.shadowRoot.querySelector('lightning-button');
-        //inputEl.click();
-
-        inputEl.dispatchEvent(new CustomEvent('click'));
+        inputEl.click();
 
         // Wait for any asynchronous DOM updates
         await flushPromises();
 
         // Return a promise to wait for any asynchronous DOM updates.
-        return Promise.resolve().then(() => {
-            expect(updateContact).toHaveBeenCalledTimes(1);
-        });
-
-        // Wait for any asynchronous DOM updates
-        // expect(toastHandler).toHaveBeenCalledTimes(1);
+        return Promise.resolve()
+            .then(() => {
+                expect(updateContact).toHaveBeenCalledTimes(1);
+            })
+            .then(() => {
+                expect(toastHandler).toHaveBeenCalledTimes(1);
+            });
     });
 
     it('is accessible when data is returned', async () => {
