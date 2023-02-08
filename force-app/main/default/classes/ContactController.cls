@@ -50,4 +50,14 @@ public with sharing class ContactController {
         }
         update contactsForUpdate;
     }
+
+    @AuraEnabled
+    public static void updateContact(Id id, String firstName, String lastName) {
+        Contact contact = new Contact(
+            Id = id,
+            FirstName = firstName,
+            LastName = lastName
+        );
+        update contact;
+    }
 }

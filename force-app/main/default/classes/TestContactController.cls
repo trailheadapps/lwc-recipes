@@ -117,6 +117,34 @@ public with sharing class TestContactController {
             }
             Test.stopTest();
         }
+    }
 
+    @isTest
+    static void updateContact() {
+        TestContactController.createContacts(1);
+        Contact contact = [SELECT Id, FirstName, LastName FROM Contact LIMIT 1];
+        String firstName = 'Changed ' + contact.FirstName;
+        String lastName = 'Changed ' + contact.LastName;
+
+        Test.startTest();
+        ContactController.updateContact(contact.Id, firstName, lastName);
+        Contact updatedContact = [
+            SELECT Id, FirstName, LastName
+            FROM Contact
+            WHERE Id = :contact.Id
+        ];
+        Test.stopTest();
+
+        System.assertEquals(
+            'Changed First 1',
+            updatedContact.FirstName,
+            'The contact first names should be prefixed with Changed'
+        );
+
+        System.assertEquals(
+            'Changed Last 1',
+            updatedContact.LastName,
+            'The contact last names should be prefixed with Changed'
+        );
     }
 }
