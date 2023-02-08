@@ -81,6 +81,7 @@ describe('c-lds-notify-record-update-available', () => {
         // Wait for any asynchronous DOM updates
         await flushPromises();
 
+        //Assign values to be updated in the input elements
         const firstNameEl = element.shadowRoot.querySelector(
             'lightning-input[class="first-name"]'
         );
@@ -90,7 +91,7 @@ describe('c-lds-notify-record-update-available', () => {
         firstNameEl.value = 'John';
         lastNameEl.value = 'Doe';
 
-        // Find the save button and click
+        // Find the update button and click
         const inputEl = element.shadowRoot.querySelector('lightning-button');
         inputEl.click();
 
@@ -136,7 +137,7 @@ describe('c-lds-notify-record-update-available', () => {
         // Wait for any asynchronous DOM updates
         await flushPromises();
 
-        // Assign mock value for rejected updateContacts promise
+        // Assign mock value for rejected updateContact promise
         updateContact.mockRejectedValue(UPDATE_CONTACT_ERROR);
 
         // Find the save button and click
@@ -148,7 +149,7 @@ describe('c-lds-notify-record-update-available', () => {
 
         // Return a promise to wait for any asynchronous DOM updates.
         return Promise.resolve().then(() => {
-            //Validate success toast handler is called
+            //Validate error toast handler is called
             expect(toastHandler).toHaveBeenCalledTimes(1);
             expect(toastHandler.mock.calls[0][0].detail.variant).toBe('error');
         });
