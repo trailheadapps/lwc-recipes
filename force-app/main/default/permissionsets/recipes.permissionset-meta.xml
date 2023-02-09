@@ -185,6 +185,10 @@
         <visibility>Visible</visibility>
     </tabSettings>
     <tabSettings>
+        <tab>Dynamic_Interactions</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+    <tabSettings>
         <tab>Events</tab>
         <visibility>Visible</visibility>
     </tabSettings>
@@ -213,15 +217,15 @@
         <visibility>Visible</visibility>
     </tabSettings>
     <tabSettings>
+        <tab>Refresh_View</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+    <tabSettings>
         <tab>Wire</tab>
         <visibility>Visible</visibility>
     </tabSettings>
     <tabSettings>
         <tab>X3rd_Party_Libs</tab>
-        <visibility>Visible</visibility>
-    </tabSettings>
-    <tabSettings>
-        <tab>Dynamic_Interactions</tab>
         <visibility>Visible</visibility>
     </tabSettings>
 </PermissionSet>
