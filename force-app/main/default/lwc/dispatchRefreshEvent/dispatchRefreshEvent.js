@@ -27,10 +27,6 @@ export default class DispatchRefreshEvent extends LightningElement {
         const inputFields = this.template.querySelectorAll(
             'lightning-input-field'
         );
-        if (inputFields) {
-            inputFields.forEach((field) => {
-                field.reset();
-            });
-        }
+        inputFields?.forEach((field) => field.reset());
     }
 }

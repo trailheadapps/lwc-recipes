@@ -25,11 +25,11 @@ private class TestLMSVisualforceController {
     static void testInitialPageRender() {
         LMSVisualforceController controller = new LMSVisualforceController();
 
-        System.assert(
+        Assert.isTrue(
             controller.contactRecord != null,
             'Contact should initialize on class instantiation'
         );
-        System.assertEquals(
+        Assert.areEqual(
             controller.contactRecord.Id,
             null,
             'Contact Id should not be initialized or have a value'
@@ -51,7 +51,7 @@ private class TestLMSVisualforceController {
         insert testContact;
 
         // Verify that test data is all ready to go
-        System.assertNotEquals(
+        Assert.areNotEqual(
             testContact.Id,
             null,
             'Test failed to setup correctly, test record should have an Id after save.'
@@ -78,32 +78,32 @@ private class TestLMSVisualforceController {
             testContact.LastName;
 
         // Verify matching record values when retrieved via the controller
-        System.assertEquals(
+        Assert.areEqual(
             testContact.Id,
             controller.contactRecord.Id,
             'actual controller.contactRecord.Id should match expected testContact.Id'
         );
-        System.assertEquals(
+        Assert.areEqual(
             testContactName,
             controller.contactRecord.Name,
             'actual controller.contactRecord.Name should match expected testContactName'
         );
-        System.assertEquals(
+        Assert.areEqual(
             testContact.Title,
             controller.contactRecord.Title,
             'actual controller.contactRecord.Title should match expected testContact.Title'
         );
-        System.assertEquals(
+        Assert.areEqual(
             testContact.Phone,
             controller.contactRecord.Phone,
             'actual controller.contactRecord.Phone should match expected testContact.Phone'
         );
-        System.assertEquals(
+        Assert.areEqual(
             testContact.Email,
             controller.contactRecord.Email,
             'actual controller.contactRecord.Email should match expected testContact.Email'
         );
-        System.assertEquals(
+        Assert.areEqual(
             testContact.Picture__c,
             controller.contactRecord.Picture__c,
             'actual controller.contactRecord.Picture__c should match expected testContact.Picture__c'
