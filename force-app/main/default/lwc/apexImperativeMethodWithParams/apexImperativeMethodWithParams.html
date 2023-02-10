@@ -28,10 +28,10 @@
                     <p key={contact.Id}>{contact.Name}</p>
                 </template>
             </template>
+            <template lwc:elseif={error}>
+                <c-error-panel errors={error}></c-error-panel>
+            </template>
         </div>
-        <template lwc:if={error}>
-            <c-error-panel errors={error}></c-error-panel>
-        </template>
         <c-view-source
             source="lwc/apexImperativeMethodWithParams"
             slot="footer"

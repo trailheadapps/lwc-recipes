@@ -33,10 +33,10 @@
             <template lwc:if={apexResponse.data}>
                 <p>{apexResponse.data}</p>
             </template>
+            <template lwc:elseif={apexResponse.error}>
+                <c-error-panel errors={error}></c-error-panel>
+            </template>
         </div>
-        <template lwc:if={apexResponse.error}>
-            <c-error-panel errors={error}></c-error-panel>
-        </template>
         <c-view-source
             source="lwc/apexWireMethodWithComplexParams"
             slot="footer"

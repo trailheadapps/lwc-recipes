@@ -6,10 +6,10 @@
                     <pre>{recordStr}</pre>
                 </div>
             </template>
+            <template lwc:elseif={recordResults.error}>
+                <c-error-panel errors={recordResults.error}></c-error-panel>
+            </template>
         </div>
-        <template lwc:if={recordResults.error}>
-            <c-error-panel errors={recordResults.error}></c-error-panel>
-        </template>
         <c-view-source source="lwc/wireGetRecords" slot="footer">
             Get the data of multiple records using @wire
         </c-view-source>
