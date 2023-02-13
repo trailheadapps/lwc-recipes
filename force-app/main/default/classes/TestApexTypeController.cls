@@ -12,8 +12,8 @@ public with sharing class TestApexTypeController {
         Test.stopTest();
 
         Assert.areEqual(
-            result,
             'You entered "someMockString" as String, and "33" as Integer value. The list contained 0 items.',
+            result,
             'checkApexTypes doesn\'t return the expected string'
         );
     }
