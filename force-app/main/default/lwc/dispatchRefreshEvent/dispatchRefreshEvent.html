@@ -1,5 +1,8 @@
 <template>
-    <lightning-card title="DispatchRefreshEvent" icon-name="standard:account">
+    <lightning-card
+        title="DispatchRefreshEvent (Beta)"
+        icon-name="standard:account"
+    >
         <div class="slds-var-m-around_medium">
             <lightning-record-edit-form
                 object-api-name="Account"
@@ -30,7 +33,13 @@
         </div>
 
         <c-view-source source="lwc/dispatchRefreshEvent" slot="footer">
-            Refresh data in a view without reloading the page.
+            Refresh data in a view without reloading the page thanks to the
+            <a
+                href="https://developer.salesforce.com/docs/component-library/documentation/en/lwc/lwc.data_refreshview"
+                target="_blank"
+                noopener
+                >Refresh API (Beta)</a
+            >.
         </c-view-source>
     </lightning-card>
 </template>
