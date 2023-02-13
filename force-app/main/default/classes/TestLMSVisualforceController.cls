@@ -30,8 +30,8 @@ private class TestLMSVisualforceController {
             'Contact should initialize on class instantiation'
         );
         Assert.areEqual(
-            controller.contactRecord.Id,
             null,
+            controller.contactRecord.Id,
             'Contact Id should not be initialized or have a value'
         );
     }
@@ -52,8 +52,8 @@ private class TestLMSVisualforceController {
 
         // Verify that test data is all ready to go
         Assert.areNotEqual(
-            testContact.Id,
             null,
+            testContact.Id,
             'Test failed to setup correctly, test record should have an Id after save.'
         );
 

@@ -106,8 +106,8 @@ public with sharing class TestContactController {
             } catch (Exception e) {
                 String errorMsg = e.getMessage();
                 Assert.areEqual(
-                    errorMsg,
                     'Insufficient permissions to update contacts',
+                    errorMsg,
                     'The updateContacts method fails with exception'
                 );
             }
