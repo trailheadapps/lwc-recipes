@@ -1,0 +1,40 @@
+<template>
+    <lightning-card
+        title="LdsNotifyRecordUpdateAvailable"
+        icon-name="standard:contact"
+    >
+        <div class="slds-var-p-around_medium">
+            <lightning-input
+                lwc:ref="firstName"
+                label="First Name"
+                name="FirstName"
+                value={firstName}
+                class="first-name"
+            ></lightning-input>
+            <lightning-input
+                lwc:ref="lastName"
+                label="Last Name"
+                name="LastName"
+                value={lastName}
+                class="last-name"
+            ></lightning-input>
+            <div class="slds-var-m-top_medium">
+                <lightning-button
+                    variant="brand"
+                    label="Update Contact"
+                    onclick={handleContactUpdate}
+                    class="update"
+                ></lightning-button>
+            </div>
+        </div>
+
+        <c-view-source
+            source="lwc/ldsNotifyRecordUpdateAvailable"
+            slot="footer"
+        >
+            This recipe informs Lightning Data Service that record data has
+            changed so that Lightning Data Service can take the appropriate
+            actions to keep wire adapters updated with the latest record data.
+        </c-view-source>
+    </lightning-card>
+</template>

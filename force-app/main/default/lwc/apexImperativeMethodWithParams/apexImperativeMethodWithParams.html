@@ -23,15 +23,15 @@
                     ></lightning-button>
                 </lightning-layout-item>
             </lightning-layout>
-            <template if:true={contacts}>
+            <template lwc:if={contacts}>
                 <template for:each={contacts} for:item="contact">
                     <p key={contact.Id}>{contact.Name}</p>
                 </template>
             </template>
+            <template lwc:elseif={error}>
+                <c-error-panel errors={error}></c-error-panel>
+            </template>
         </div>
-        <template if:true={error}>
-            <c-error-panel errors={error}></c-error-panel>
-        </template>
         <c-view-source
             source="lwc/apexImperativeMethodWithParams"
             slot="footer"

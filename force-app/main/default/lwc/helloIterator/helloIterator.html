@@ -3,9 +3,9 @@
         <ul class="slds-var-m-around_medium">
             <template iterator:it={contacts}>
                 <li key={it.value.Id}>
-                    <div if:true={it.first} class="list-first"></div>
+                    <div lwc:if={it.first} class="list-first"></div>
                     {it.value.Name}, {it.value.Title}
-                    <div if:true={it.last} class="list-last"></div>
+                    <div lwc:if={it.last} class="list-last"></div>
                 </li>
             </template>
         </ul>

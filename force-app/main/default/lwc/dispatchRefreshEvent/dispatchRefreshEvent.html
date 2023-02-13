@@ -1,0 +1,36 @@
+<template>
+    <lightning-card title="DispatchRefreshEvent" icon-name="standard:account">
+        <div class="slds-var-m-around_medium">
+            <lightning-record-edit-form
+                object-api-name="Account"
+                onsuccess={handleSuccess}
+            >
+                <lightning-messages></lightning-messages>
+                <lightning-input-field
+                    field-name={nameField}
+                    class="name"
+                ></lightning-input-field>
+                <lightning-input-field
+                    field-name={phoneField}
+                    class="phone"
+                ></lightning-input-field>
+                <lightning-input-field
+                    field-name={typeField}
+                    class="type"
+                ></lightning-input-field>
+                <div class="slds-var-m-top_medium">
+                    <lightning-button
+                        variant="brand"
+                        type="submit"
+                        name="save"
+                        label="Save"
+                    ></lightning-button>
+                </div>
+            </lightning-record-edit-form>
+        </div>
+
+        <c-view-source source="lwc/dispatchRefreshEvent" slot="footer">
+            Refresh data in a view without reloading the page.
+        </c-view-source>
+    </lightning-card>
+</template>

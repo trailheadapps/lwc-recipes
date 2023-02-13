@@ -12,15 +12,15 @@
                     onclick={handleBtnClick}
                 ></lightning-button>
             </p>
-            <template if:true={objectInfo.data}>
+            <template lwc:if={objectInfo.data}>
                 <div class="scroller">
                     <pre>{objectInfoStr}</pre>
                 </div>
             </template>
+            <template lwc:elseif={objectInfo.error}>
+                <c-error-panel errors={objectInfo.error}></c-error-panel>
+            </template>
         </div>
-        <template if:true={objectInfo.error}>
-            <c-error-panel errors={objectInfo.error}></c-error-panel>
-        </template>
         <c-view-source source="lwc/wireGetObjectInfo" slot="footer">
             Get metadata about a specific object. The metadata includes fields,
             child relationships, record type, and theme. Enter an object name

@@ -1,6 +1,6 @@
 <template>
     <lightning-card title="EventBubbling" icon-name="standard:logging">
-        <template if:true={contacts.data}>
+        <template lwc:if={contacts.data}>
             <lightning-layout class="slds-var-m-around_medium">
                 <!-- c-contact-list-item-bubbling emits a bubbling event so a single listener on a containing element works -->
                 <lightning-layout-item
@@ -16,7 +16,7 @@
                     </template>
                 </lightning-layout-item>
                 <lightning-layout-item class="slds-var-m-left_medium">
-                    <template if:true={selectedContact}>
+                    <template lwc:if={selectedContact}>
                         <img
                             src={selectedContact.Picture__c}
                             alt="Profile photo"
@@ -37,7 +37,7 @@
                 </lightning-layout-item>
             </lightning-layout>
         </template>
-        <template if:true={contacts.error}>
+        <template lwc:elseif={contacts.error}>
             <c-error-panel errors={contacts.error}></c-error-panel>
         </template>
         <c-view-source source="lwc/eventBubbling" slot="footer">

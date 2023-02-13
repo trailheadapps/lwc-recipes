@@ -10,7 +10,7 @@
                 class="slds-show slds-is-relative slds-var-m-bottom_small"
                 label="Search"
             ></lightning-input>
-            <template if:true={contacts}>
+            <template lwc:if={contacts}>
                 <template for:each={contacts} for:item="contact">
                     <c-contact-tile
                         class="slds-show slds-is-relative"
@@ -19,10 +19,10 @@
                     ></c-contact-tile>
                 </template>
             </template>
+            <template lwc:elseif={error}>
+                <c-error-panel errors={error}></c-error-panel>
+            </template>
         </div>
-        <template if:true={error}>
-            <c-error-panel errors={error}></c-error-panel>
-        </template>
         <c-view-source source="lwc/compositionContactSearch" slot="footer">
             Create an experience component by assembling multiple child
             components. Type a few characters in the search bar to experience

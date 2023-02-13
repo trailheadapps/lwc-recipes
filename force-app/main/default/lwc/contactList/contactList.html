@@ -1,5 +1,5 @@
 <template>
-    <template if:true={contacts.data}>
+    <template lwc:if={contacts.data}>
         <template for:each={contacts.data} for:item="contact">
             <a
                 href="#"

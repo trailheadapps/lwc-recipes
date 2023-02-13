@@ -4,12 +4,12 @@
         icon-name="custom:custom63"
     >
         <div class="slds-var-m-around_medium">
-            <template if:true={contacts.data}>
+            <template lwc:if={contacts.data}>
                 <template for:each={contacts.data} for:item="contact">
                     <p key={contact.Id}>{contact.Name}</p>
                 </template>
             </template>
-            <template if:true={contacts.error}>
+            <template lwc:elseif={contacts.error}>
                 <c-error-panel errors={contacts.error}></c-error-panel>
             </template>
         </div>

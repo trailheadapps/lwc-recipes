@@ -26,7 +26,7 @@ describe('c-hello-conditional-rendering', () => {
         const detailEl = element.shadowRoot.querySelector(
             '.slds-var-m-vertical_medium'
         );
-        expect(detailEl.textContent).toBe('Not showing details.');
+        expect(detailEl.textContent.trim()).toBe('Not showing details.');
     });
 
     it('shows details when checkbox toggled', async () => {

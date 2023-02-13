@@ -1,6 +1,6 @@
 <template>
     <lightning-card title="WireGetRecordUser" icon-name="custom:custom67">
-        <template if:true={user.data}>
+        <template lwc:if={user.data}>
             <div class="slds-var-m-around_medium">
                 <p>Id: {userId}</p>
                 <p>Name: {name}</p>
@@ -11,7 +11,7 @@
                 </p>
             </div>
         </template>
-        <template if:true={user.error}>
+        <template lwc:elseif={user.error}>
             <c-error-panel errors={user.error}></c-error-panel>
         </template>
         <c-view-source source="lwc/wireGetRecordUser" slot="footer">

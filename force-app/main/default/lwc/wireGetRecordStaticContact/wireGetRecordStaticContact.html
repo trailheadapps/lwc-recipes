@@ -3,7 +3,7 @@
         title="WireGetRecordStaticContact"
         icon-name="standard:contact"
     >
-        <template if:true={contact.data}>
+        <template lwc:if={contact.data}>
             <div class="slds-var-m-around_medium">
                 <p>{name}</p>
                 <p>{title}</p>
@@ -19,7 +19,7 @@
                 </p>
             </div>
         </template>
-        <template if:true={contact.error}>
+        <template lwc:elseif={contact.error}>
             <c-error-panel errors={contact.error}></c-error-panel>
         </template>
         <c-view-source source="lwc/wireGetRecordStaticContact" slot="footer">

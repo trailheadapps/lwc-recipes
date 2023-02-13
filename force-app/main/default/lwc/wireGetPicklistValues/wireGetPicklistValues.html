@@ -1,6 +1,6 @@
 <template>
     <lightning-card title="WireGetPicklistValues" icon-name="custom:custom67">
-        <template if:true={picklistValues.data}>
+        <template lwc:if={picklistValues.data}>
             <div class="slds-var-m-around_medium">
                 <template for:each={picklistValues.data.values} for:item="item">
                     <lightning-input
@@ -13,7 +13,7 @@
                 </template>
             </div>
         </template>
-        <template if:true={picklistValues.error}>
+        <template lwc:elseif={picklistValues.error}>
             <c-error-panel errors={picklistValues.error}></c-error-panel>
         </template>
 

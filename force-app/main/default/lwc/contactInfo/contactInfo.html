@@ -1,9 +1,9 @@
 <template>
     <lightning-card title="ContactInfo" icon-name="custom:custom30">
-        <template if:true={contact.data}>
+        <template lwc:if={contact.data}>
             <div class="slds-align_absolute-center">
                 <div class="slds-var-m-around_medium slds-text-align_center">
-                    <template if:true={picture}>
+                    <template lwc:if={picture}>
                         <img
                             src={picture}
                             class="slds-avatar slds-avatar_circle slds-avatar_large"
@@ -25,7 +25,7 @@
                 </div>
             </div>
         </template>
-        <template if:true={contact.error}>
+        <template lwc:elseif={contact.error}>
             <c-error-panel errors={error}></c-error-panel>
         </template>
 

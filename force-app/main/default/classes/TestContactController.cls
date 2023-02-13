@@ -40,11 +40,7 @@ public with sharing class TestContactController {
         List<Contact> conts = ContactController.getContactList();
         Test.stopTest();
 
-        System.assertEquals(
-            10,
-            conts.size(),
-            'The contact list size should be 10'
-        );
+        Assert.areEqual(10, conts.size(), 'The contact list size should be 10');
     }
 
     @isTest
@@ -55,7 +51,7 @@ public with sharing class TestContactController {
         List<Contact> conts = ContactController.findContacts('Last');
         Test.stopTest();
 
-        System.assertEquals(
+        Assert.areEqual(
             10,
             conts.size(),
             'The contacts retrieved by search should be 10'
@@ -70,7 +66,7 @@ public with sharing class TestContactController {
         Contact cont = ContactController.getSingleContact();
         Test.stopTest();
 
-        System.assertEquals(
+        Assert.areEqual(
             'First 1 Last 1',
             cont.Name,
             'The contact name should be: First 1 Last 1'
@@ -88,7 +84,7 @@ public with sharing class TestContactController {
         ContactController.updateContacts(conts);
         List<Contact> updatedConts = [SELECT Id, FirstName FROM Contact];
         Test.stopTest();
-        System.assertEquals(
+        Assert.areEqual(
             'Changed First 1',
             updatedConts[0].FirstName,
             'The contact first names should be prefixed with Changed'
@@ -109,14 +105,42 @@ public with sharing class TestContactController {
                 ContactController.updateContacts(conts);
             } catch (Exception e) {
                 String errorMsg = e.getMessage();
-                system.assertEquals(
-                    errorMsg,
+                Assert.areEqual(
                     'Insufficient permissions to update contacts',
+                    errorMsg,
                     'The updateContacts method fails with exception'
                 );
             }
             Test.stopTest();
         }
+    }
 
+    @isTest
+    static void updateContact() {
+        TestContactController.createContacts(1);
+        Contact contact = [SELECT Id, FirstName, LastName FROM Contact LIMIT 1];
+        String firstName = 'Changed ' + contact.FirstName;
+        String lastName = 'Changed ' + contact.LastName;
+
+        Test.startTest();
+        ContactController.updateContact(contact.Id, firstName, lastName);
+        Contact updatedContact = [
+            SELECT Id, FirstName, LastName
+            FROM Contact
+            WHERE Id = :contact.Id
+        ];
+        Test.stopTest();
+
+        Assert.areEqual(
+            'Changed First 1',
+            updatedContact.FirstName,
+            'The contact first names should be prefixed with Changed'
+        );
+
+        Assert.areEqual(
+            'Changed Last 1',
+            updatedContact.LastName,
+            'The contact last names should be prefixed with Changed'
+        );
     }
 }
