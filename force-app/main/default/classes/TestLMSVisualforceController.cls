@@ -50,7 +50,7 @@ private class TestLMSVisualforceController {
         insert testContact;
 
         // Verify that test data is all ready to go
-        Assert.isNull(
+        Assert.isNotNull(
             testContact.Id,
             'Test failed to setup correctly, test record should have an Id after save.'
         );
