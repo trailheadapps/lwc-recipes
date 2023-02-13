@@ -40,11 +40,7 @@ public with sharing class TestContactController {
         List<Contact> conts = ContactController.getContactList();
         Test.stopTest();
 
-        System.assertEquals(
-            10,
-            conts.size(),
-            'The contact list size should be 10'
-        );
+        Assert.areEqual(10, conts.size(), 'The contact list size should be 10');
     }
 
     @isTest
@@ -55,7 +51,7 @@ public with sharing class TestContactController {
         List<Contact> conts = ContactController.findContacts('Last');
         Test.stopTest();
 
-        System.assertEquals(
+        Assert.areEqual(
             10,
             conts.size(),
             'The contacts retrieved by search should be 10'
@@ -70,7 +66,7 @@ public with sharing class TestContactController {
         Contact cont = ContactController.getSingleContact();
         Test.stopTest();
 
-        System.assertEquals(
+        Assert.areEqual(
             'First 1 Last 1',
             cont.Name,
             'The contact name should be: First 1 Last 1'
@@ -88,7 +84,7 @@ public with sharing class TestContactController {
         ContactController.updateContacts(conts);
         List<Contact> updatedConts = [SELECT Id, FirstName FROM Contact];
         Test.stopTest();
-        System.assertEquals(
+        Assert.areEqual(
             'Changed First 1',
             updatedConts[0].FirstName,
             'The contact first names should be prefixed with Changed'
@@ -109,9 +105,9 @@ public with sharing class TestContactController {
                 ContactController.updateContacts(conts);
             } catch (Exception e) {
                 String errorMsg = e.getMessage();
-                system.assertEquals(
-                    errorMsg,
+                Assert.areEqual(
                     'Insufficient permissions to update contacts',
+                    errorMsg,
                     'The updateContacts method fails with exception'
                 );
             }
@@ -135,13 +131,13 @@ public with sharing class TestContactController {
         ];
         Test.stopTest();
 
-        System.assertEquals(
+        Assert.areEqual(
             'Changed First 1',
             updatedContact.FirstName,
             'The contact first names should be prefixed with Changed'
         );
 
-        System.assertEquals(
+        Assert.areEqual(
             'Changed Last 1',
             updatedContact.LastName,
             'The contact last names should be prefixed with Changed'

@@ -27,6 +27,8 @@ export default class LdsNotifyRecordUpdateAvailable extends LightningElement {
     }
 
     handleContactUpdate() {
+        //Here we are using an imperative apex call for a simple update only to show the usage of notifyRecordUpdateAvailable
+        //It is preferred to use updateRecord from the UI API for a simple update.
         updateContact({
             recordId: this.recordId,
             firstName: this.refs.firstName.value,
