@@ -25,12 +25,11 @@ private class TestLMSVisualforceController {
     static void testInitialPageRender() {
         LMSVisualforceController controller = new LMSVisualforceController();
 
-        Assert.isTrue(
-            controller.contactRecord != null,
+        Assert.isNotNull(
+            controller.contactRecord,
             'Contact should initialize on class instantiation'
         );
-        Assert.areEqual(
-            null,
+        Assert.isNull(
             controller.contactRecord.Id,
             'Contact Id should not be initialized or have a value'
         );
@@ -51,8 +50,7 @@ private class TestLMSVisualforceController {
         insert testContact;
 
         // Verify that test data is all ready to go
-        Assert.areNotEqual(
-            null,
+        Assert.isNull(
             testContact.Id,
             'Test failed to setup correctly, test record should have an Id after save.'
         );
