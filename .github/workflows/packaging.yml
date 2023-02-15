@@ -85,7 +85,7 @@ jobs:
             # Create PR for new package version
             - name: 'Create PR for new package version'
               id: create-pr
-              uses: peter-evans/create-pull-request@v3
+              uses: peter-evans/create-pull-request@v4
               with:
                   title: 'Released new package version ${{ steps.createPackageVersion.outputs.packageVersionId }}'
                   body: 'Released new package version ${{ steps.createPackageVersion.outputs.packageVersionId }}'
@@ -96,7 +96,7 @@ jobs:
 
             # Approve pull request
             - name: 'Approve pull request'
-              uses: juliangruber/approve-pull-request-action@v1
+              uses: juliangruber/approve-pull-request-action@v2
               with:
                   github-token: ${{ secrets.GITHUB_TOKEN }}
                   number: ${{ steps.create-pr.outputs.pull-request-number }}
