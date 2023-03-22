@@ -11,7 +11,7 @@
             "Title": "VP of Engineering",
             "Email": "amy@demo.net",
             "Phone": "4152568563",
-            "Picture__c": "https://s3-us-west-1.amazonaws.com/sfdc-demo/people/amy_taylor.jpg"
+            "Picture__c": "https://s3-us-west-2.amazonaws.com/dev-or-devrl-s3-bucket/sample-apps/people/amy_taylor.jpg"
         },
         {
             "attributes": {
@@ -24,7 +24,7 @@
             "Title": "VP of Sales",
             "Email": "michael@demo.net",
             "Phone": "4158526633",
-            "Picture__c": "https://s3-us-west-1.amazonaws.com/sfdc-demo/people/michael_jones.jpg"
+            "Picture__c": "https://s3-us-west-2.amazonaws.com/dev-or-devrl-s3-bucket/sample-apps/people/michael_jones.jpg"
         },
         {
             "attributes": {
@@ -37,7 +37,7 @@
             "Title": "CEO",
             "Email": "jennifer@demo.net",
             "Phone": "4158521463",
-            "Picture__c": "https://s3-us-west-1.amazonaws.com/sfdc-demo/people/jennifer_wu.jpg"
+            "Picture__c": "https://s3-us-west-2.amazonaws.com/dev-or-devrl-s3-bucket/sample-apps/people/jennifer_wu.jpg"
         },
         {
             "attributes": {
@@ -50,7 +50,7 @@
             "Title": "VP of Products",
             "Email": "anup@demo.net",
             "Phone": "4158526398",
-            "Picture__c": "https://s3-us-west-1.amazonaws.com/sfdc-demo/people/anup_gupta.jpg"
+            "Picture__c": "https://s3-us-west-2.amazonaws.com/dev-or-devrl-s3-bucket/sample-apps/people/anup_gupta.jpg"
         },
         {
             "attributes": {
@@ -63,7 +63,7 @@
             "Title": "VP of Technology",
             "Email": "caroline@demo.net",
             "Phone": "4158753654",
-            "Picture__c": "https://s3-us-west-1.amazonaws.com/sfdc-demo/people/caroline_kingsley.jpg"
+            "Picture__c": "https://s3-us-west-2.amazonaws.com/dev-or-devrl-s3-bucket/sample-apps/people/caroline_kingsley.jpg"
         },
         {
             "attributes": {
@@ -76,7 +76,7 @@
             "Title": "VP of Operations",
             "Email": "jonathan@demo.net",
             "Phone": "4158885522",
-            "Picture__c": "https://s3-us-west-1.amazonaws.com/sfdc-demo/people/jonathan_bradley.jpg"
+            "Picture__c": "https://s3-us-west-2.amazonaws.com/dev-or-devrl-s3-bucket/sample-apps/people/jonathan_bradley.jpg"
         }
     ]
 }

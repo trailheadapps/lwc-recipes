@@ -6,6 +6,6 @@ export default class CompositionParent extends LightningElement {
         Title: 'VP of Engineering',
         Phone: '6172559632',
         Picture__c:
-            'https://s3-us-west-1.amazonaws.com/sfdc-demo/people/amy_taylor.jpg'
+            'https://s3-us-west-2.amazonaws.com/dev-or-devrl-s3-bucket/sample-apps/people/amy_taylor.jpg'
     };
 }

@@ -22,7 +22,7 @@ const APEX_CONTACTS_SUCCESS = [
         Phone: '4152568563',
         Email: 'amy@demo.net',
         Picture__c:
-            'https://s3-us-west-1.amazonaws.com/sfdc-demo/people/amy_taylor.jpg'
+            'https://s3-us-west-2.amazonaws.com/dev-or-devrl-s3-bucket/sample-apps/people/amy_taylor.jpg'
     },
     {
         Id: '0031700000pJRRTAA4',
@@ -31,7 +31,7 @@ const APEX_CONTACTS_SUCCESS = [
         Phone: '4158526633',
         Email: 'michael@demo.net',
         Picture__c:
-            'https://s3-us-west-1.amazonaws.com/sfdc-demo/people/michael_jones.jpg'
+            'https://s3-us-west-2.amazonaws.com/dev-or-devrl-s3-bucket/sample-apps/people/michael_jones.jpg'
     }
 ];
 
