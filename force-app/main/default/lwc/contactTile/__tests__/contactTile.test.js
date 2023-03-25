@@ -8,7 +8,7 @@ const CONTACT_INPUT = {
     Phone: '4152568563',
     Email: 'amy@demo.net',
     Picture__c:
-        'https://s3-us-west-1.amazonaws.com/sfdc-demo/people/amy_taylor.jpg'
+        'https://s3-us-west-2.amazonaws.com/dev-or-devrl-s3-bucket/sample-apps/people/amy_taylor.jpg'
 };
 
 describe('c-contact-tile', () => {
@@ -54,5 +54,16 @@ describe('c-contact-tile', () => {
         // Select element for validation
         const detailEl = element.shadowRoot.querySelector('p');
         expect(detailEl.textContent).toBe(MESSAGE);
+    });
+
+    it('is accessible', async () => {
+        const element = createElement('c-contact-tile', {
+            is: ContactTile
+        });
+
+        element.contact = CONTACT_INPUT;
+        document.body.appendChild(element);
+
+        await expect(element).toBeAccessible();
     });
 });

@@ -9,7 +9,13 @@ describe('c-paginator', () => {
         }
     });
 
-    it('sends "next" and "previous" events on button click', () => {
+    // Helper function to wait until the microtask queue is empty. This is needed for promise
+    // timing when calling imperative Apex.
+    async function flushPromises() {
+        return Promise.resolve();
+    }
+
+    it('sends "next" and "previous" events on button click', async () => {
         // Create initial element
         const element = createElement('c-paginator', {
             is: Paginator
@@ -25,17 +31,25 @@ describe('c-paginator', () => {
 
         element.shadowRoot
             .querySelectorAll('lightning-button')
-            .forEach(button => {
+            .forEach((button) => {
                 button.click();
             });
 
-        // Return a promise to wait for any asynchronous DOM updates. Jest
-        // will automatically wait for the Promise chain to complete before
-        // ending the test and fail the test if the promise rejects.
-        return Promise.resolve().then(() => {
-            // Validate if mocked events got fired
-            expect(handlerPrevious.mock.calls.length).toBe(1);
-            expect(handlerNext.mock.calls.length).toBe(1);
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
+
+        // Validate if mocked events got fired
+        expect(handlerPrevious.mock.calls.length).toBe(1);
+        expect(handlerNext.mock.calls.length).toBe(1);
+    });
+
+    it('is accessible', async () => {
+        const element = createElement('c-paginator', {
+            is: Paginator
         });
+
+        document.body.appendChild(element);
+
+        await expect(element).toBeAccessible();
     });
 });

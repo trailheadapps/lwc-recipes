@@ -25,7 +25,7 @@ describe('c-hello-iterator', () => {
         // Verify displayed list
         const contacts = Array.from(
             element.shadowRoot.querySelectorAll('li')
-        ).map(li => li.textContent);
+        ).map((li) => li.textContent);
         expect(contacts).toEqual(EXPECTED);
     });
 
@@ -38,14 +38,25 @@ describe('c-hello-iterator', () => {
 
         // Verify first li's first child is a div
         expect(
-            element.shadowRoot.querySelector('li:first-child').firstChild
+            element.shadowRoot.querySelector('li:first-child').children[0]
                 .tagName
         ).toBe('DIV');
         // Verify last li's last child is a div
         expect(
-            element.shadowRoot.querySelector('li:last-child').lastChild.tagName
+            element.shadowRoot.querySelector('li:last-child').children[0]
+                .tagName
         ).toBe('DIV');
         // Verify no other divs
         expect(element.shadowRoot.querySelectorAll('li > div')).toHaveLength(2);
+    });
+
+    it('is accessible on initialization', async () => {
+        const element = createElement('c-hello-iterator', {
+            is: HelloIterator
+        });
+
+        document.body.appendChild(element);
+
+        await expect(element).toBeAccessible();
     });
 });

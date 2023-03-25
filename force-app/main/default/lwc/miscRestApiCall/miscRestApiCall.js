@@ -1,36 +1,36 @@
-import { LightningElement, track } from 'lwc';
+import { LightningElement } from 'lwc';
 
 // The base URL (in this case https://www.googleapis.com/ must be added to the CSP Trusted Sites in Setup)
 const QUERY_URL =
     'https://www.googleapis.com/books/v1/volumes?langRestrict=en&q=';
 
 export default class MiscRestCall extends LightningElement {
-    @track searchKey = 'Harry Potter';
-    @track books;
-    @track error;
+    searchKey = 'Harry Potter';
+    books;
+    error;
+    isLoading = false;
 
     handleSearchKeyChange(event) {
         this.searchKey = event.target.value;
     }
 
-    handleSearchClick() {
-        // The Fetch API is currently not polyfilled for usage in IE11.
-        // Use XMLHttpRequest instead in that case.
-        fetch(QUERY_URL + this.searchKey)
-            .then(response => {
-                // fetch isn't throwing an error if the request fails.
-                // Therefore we have to check the ok property.
-                if (!response.ok) {
-                    this.error = response;
-                }
-                return response.json();
-            })
-            .then(jsonResponse => {
-                this.books = jsonResponse;
-            })
-            .catch(error => {
-                this.error = error;
-                this.books = undefined;
-            });
+    async handleSearchClick() {
+        try {
+            this.isLoading = true;
+            const response = await fetch(QUERY_URL + this.searchKey);
+            // fetch isn't throwing an error if the request fails.
+            // Therefore we have to check the ok property.
+            // The thrown error will be caught on the catch() method
+            if (!response.ok) {
+                throw Error(response);
+            }
+            this.books = await response.json();
+        } catch (error) {
+            this.error = error;
+            this.books = undefined;
+        } finally {
+            // Remove spinner once we're done regardless of whether the operation succeeded or not
+            this.isLoading = false;
+        }
     }
 }

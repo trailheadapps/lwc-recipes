@@ -1,9 +1,9 @@
-import { LightningElement, wire, track } from 'lwc';
+import { LightningElement, wire } from 'lwc';
 import getContactList from '@salesforce/apex/ContactController.getContactList';
 
 export default class ApexWireMethodToFunction extends LightningElement {
-    @track contacts;
-    @track error;
+    contacts;
+    error;
 
     @wire(getContactList)
     wiredContacts({ error, data }) {

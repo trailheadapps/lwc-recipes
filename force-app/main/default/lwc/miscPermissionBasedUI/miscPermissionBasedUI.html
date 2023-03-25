@@ -1,0 +1,18 @@
+<template>
+    <lightning-card title="MiscPermissionBasedUI" icon-name="custom:custom77">
+        <div class="slds-var-m-around_medium">
+            <template lwc:if={isRestrictedUIAccessible}>
+                <p>The permission set is assigned</p>
+            </template>
+            <template lwc:else>
+                <p>The permission set is not assigned</p>
+            </template>
+        </div>
+        <c-view-source source="lwc/miscPermissionBasedUI" slot="footer">
+            Use custom permission to conditionally render UI. To change the
+            rendered UI assign
+            the&nbsp;<strong>Access_Restricted_UI</strong>&nbsp;permission set
+            to this user and refresh the page.
+        </c-view-source>
+    </lightning-card>
+</template>

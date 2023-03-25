@@ -18,7 +18,7 @@ public class TestAccountController {
         List<Account> accts = AccountController.getAccountList();
         Test.stopTest();
 
-        System.assertEquals(accts.size(), 10);
+        Assert.areEqual(10, accts.size());
     }
 
     @isTest
@@ -29,6 +29,6 @@ public class TestAccountController {
         Account acc = AccountController.getSingleAccount();
         Test.stopTest();
 
-        System.assertEquals(acc.Name, 'Name 1');
+        Assert.areEqual('Name 1', acc.Name);
     }
 }

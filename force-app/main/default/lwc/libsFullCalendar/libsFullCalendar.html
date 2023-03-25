@@ -1,0 +1,23 @@
+<template>
+    <lightning-card title="LibsFullCalendar" icon-name="custom:custom19">
+        <div class="slds-var-m-around_medium">
+            <div class="calendar" lwc:dom="manual"></div>
+            <template lwc:if={error}>
+                <c-error-panel
+                    errors={error}
+                    friendly-message="Failed to display FullCalendar"
+                ></c-error-panel>
+            </template>
+        </div>
+
+        <c-view-source source="lwc/libsFullCalendar" slot="footer">
+            Integrate FullCalendar into a Lightning Web component. This example
+            requires that you&nbsp;
+            <a
+                href="https://developer.salesforce.com/docs/component-library/documentation/en/lwc/lwc.security_lwsec_enable"
+                target="source"
+                >enable Lightning Web Security</a
+            >.
+        </c-view-source>
+    </lightning-card>
+</template>

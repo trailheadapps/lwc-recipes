@@ -1,10 +1,10 @@
 ﻿Account: Account Name,Account: Type,Account: Phone,Contact: First Name,Contact: Last Name,Contact: Title,Contact: Phone,Contact: Email,Contact: Picture
-Alpha Dynamics,Technology Partner,3362227000,Amy,Taylor,VP of Engineering,4152568563,amy@demo.net,https://s3-us-west-1.amazonaws.com/sfdc-demo/people/amy_taylor.jpg
-Alpha Dynamics,Technology Partner,3362227000,Jennifer,Wu,CEO,4158521463,jennifer@demo.net,https://s3-us-west-1.amazonaws.com/sfdc-demo/people/jennifer_wu.jpg
-Alpha Dynamics,Technology Partner,3362227000,Caroline,Kingsley,VP of Technology,4158753654,caroline@demo.net,https://s3-us-west-1.amazonaws.com/sfdc-demo/people/caroline_kingsley.jpg
-Madison Investments,Customer - Direct,7227003362,Michael,Jones,VP of Sales,4158526633,michael@demo.net,https://s3-us-west-1.amazonaws.com/sfdc-demo/people/michael_jones.jpg
-Madison Investments,Customer - Direct,7227003362,Anup,Gupta,VP of Products,4158526398,anup@demo.net,https://s3-us-west-1.amazonaws.com/sfdc-demo/people/anup_gupta.jpg
-Madison Investments,Customer - Direct,7227003362,Jonathan,Bradley,VP of Operations,4158885522,jonathan@demo.net,https://s3-us-west-1.amazonaws.com/sfdc-demo/people/jonathan_bradley.jpg
+Alpha Dynamics,Technology Partner,3362227000,Amy,Taylor,VP of Engineering,4152568563,amy@demo.net,https://s3-us-west-2.amazonaws.com/dev-or-devrl-s3-bucket/sample-apps/people/amy_taylor.jpg
+Alpha Dynamics,Technology Partner,3362227000,Jennifer,Wu,CEO,4158521463,jennifer@demo.net,https://s3-us-west-2.amazonaws.com/dev-or-devrl-s3-bucket/sample-apps/people/jennifer_wu.jpg
+Alpha Dynamics,Technology Partner,3362227000,Caroline,Kingsley,VP of Technology,4158753654,caroline@demo.net,https://s3-us-west-2.amazonaws.com/dev-or-devrl-s3-bucket/sample-apps/people/caroline_kingsley.jpg
+Madison Investments,Customer - Direct,7227003362,Michael,Jones,VP of Sales,4158526633,michael@demo.net,https://s3-us-west-2.amazonaws.com/dev-or-devrl-s3-bucket/sample-apps/people/michael_jones.jpg
+Madison Investments,Customer - Direct,7227003362,Anup,Gupta,VP of Products,4158526398,anup@demo.net,https://s3-us-west-2.amazonaws.com/dev-or-devrl-s3-bucket/sample-apps/people/anup_gupta.jpg
+Madison Investments,Customer - Direct,7227003362,Jonathan,Bradley,VP of Operations,4158885522,jonathan@demo.net,https://s3-us-west-2.amazonaws.com/dev-or-devrl-s3-bucket/sample-apps/people/jonathan_bradley.jpg
 Burlington Textiles,Customer - Direct,6179658855
 GenePoint,Customer - Direct,7819662255
 OpenFloor Furniture,Customer - Direct,9782554185

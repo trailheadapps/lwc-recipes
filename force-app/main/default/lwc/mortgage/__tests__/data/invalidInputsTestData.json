@@ -1,0 +1,25 @@
+{
+    "inputs": [
+        {
+            "principal": false,
+            "years": 1,
+            "rate": 1
+        },
+        {
+            "principal": 1,
+            "years": false,
+            "rate": 1
+        },
+        {
+            "principal": 1,
+            "years": 1,
+            "rate": false
+        },
+        {
+            "principal": 1,
+            "years": 1,
+            "rate": 0
+        }
+    ],
+    "expectedResults": [0, 0, 0, 0]
+}

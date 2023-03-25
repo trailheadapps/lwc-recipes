@@ -1,0 +1,16 @@
+c-light-dom-query-child {
+    border: solid var(--lwc-borderWidthThin, 1px) #ecebea;
+    border-radius: var(--lwc-borderRadiusMedium, 4px);
+    padding: var(--lwc-squareIconXSmallContent, 0.5rem)
+        var(--lwc-varSpacingXxxSmall, 2px);
+}
+
+c-light-dom-query-child:before {
+    content: 'c-light-dom-query-child';
+    color: rgb(221, 219, 218);
+    position: absolute;
+    top: -9px;
+    left: var(--lwc-varSpacingXxSmall, 4px);
+    background-color: var(--lwc-colorBackgroundAlt, #ffffff);
+    padding: 0 var(--lwc-varSpacingXxSmall, 4px);
+}

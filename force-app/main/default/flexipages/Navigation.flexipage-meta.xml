@@ -1,42 +1,72 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <FlexiPage xmlns="http://soap.sforce.com/2006/04/metadata">
     <flexiPageRegions>
         <name>region1</name>
         <type>Region</type>
     </flexiPageRegions>
     <flexiPageRegions>
-        <componentInstances>
-            <componentName>navToHome</componentName>
-        </componentInstances>
-        <componentInstances>
-            <componentName>navToChatterHome</componentName>
-        </componentInstances>
-        <componentInstances>
-            <componentName>navToFilesHome</componentName>
-        </componentInstances>
+        <itemInstances>
+            <componentInstance>
+                <identifier>navToHome</identifier>
+<componentName>navToHome</componentName>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <identifier>navToChatterHome</identifier>
+<componentName>navToChatterHome</componentName>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <identifier>navToFilesHome</identifier>
+<componentName>navToFilesHome</componentName>
+            </componentInstance>
+        </itemInstances>
         <name>region2</name>
         <type>Region</type>
     </flexiPageRegions>
     <flexiPageRegions>
-        <componentInstances>
-            <componentName>navToHelloTab</componentName>
-        </componentInstances>
-        <componentInstances>
-            <componentName>navToListView</componentName>
-        </componentInstances>
-        <componentInstances>
-            <componentName>navToRelatedList</componentName>
-        </componentInstances>
+        <itemInstances>
+            <componentInstance>
+                <identifier>navToHelloTab</identifier>
+<componentName>navToHelloTab</componentName>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <identifier>navToListView</identifier>
+<componentName>navToListView</componentName>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <identifier>navToRelatedList</identifier>
+<componentName>navToRelatedList</componentName>
+            </componentInstance>
+        </itemInstances>
         <name>region3</name>
         <type>Region</type>
     </flexiPageRegions>
     <flexiPageRegions>
-        <componentInstances>
-            <componentName>navToNewRecord</componentName>
-        </componentInstances>
-        <componentInstances>
-            <componentName>navToRecord</componentName>
-        </componentInstances>
+        <itemInstances>
+            <componentInstance>
+                <identifier>navToNewRecord</identifier>
+<componentName>navToNewRecord</componentName>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <identifier>navToNewRecordWithDefaults</identifier>
+<componentName>navToNewRecordWithDefaults</componentName>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <identifier>navToRecord</identifier>
+<componentName>navToRecord</componentName>
+            </componentInstance>
+        </itemInstances>
         <name>region4</name>
         <type>Region</type>
     </flexiPageRegions>

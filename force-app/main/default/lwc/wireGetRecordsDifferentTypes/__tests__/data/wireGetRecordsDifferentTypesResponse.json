@@ -1,0 +1,41 @@
+{
+    "results": [
+        {
+            "apiName": "User",
+            "childRelationships": {},
+            "fields": {
+                "Name": {
+                    "displayValue": null,
+                    "value": "User User"
+                },
+                "Email": {
+                    "displayValue": null,
+                    "value": "someuser@salesforce.com"
+                }
+            },
+            "id": "005xx000001X83aAAC",
+            "lastModifiedById": "005xx000001X83aAAC",
+            "lastModifiedDate": "2022-02-09T08:46:27.000Z",
+            "recordTypeId": null,
+            "recordTypeInfo": null,
+            "systemModstamp": "2022-02-09T08:46:27.000Z"
+        },
+        {
+            "apiName": "Account",
+            "childRelationships": {},
+            "fields": {
+                "Name": {
+                    "displayValue": null,
+                    "value": "Account Account"
+                }
+            },
+            "id": "005xx000001X8BdAAK",
+            "lastModifiedById": "005xx000001X8BdAAK",
+            "lastModifiedDate": "2022-02-09T08:46:27.000Z",
+            "recordTypeId": null,
+            "recordTypeInfo": null,
+            "systemModstamp": "2022-02-09T08:46:27.000Z"
+        }
+    ],
+    "hasErrors": {}
+}

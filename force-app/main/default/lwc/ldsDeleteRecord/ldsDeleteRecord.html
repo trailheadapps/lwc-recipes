@@ -1,11 +1,11 @@
 <template>
     <lightning-card title="LdsDeleteRecord" icon-name="standard:record">
-        <template if:true={accounts}>
-            <div class="slds-m-around_medium">
+        <template lwc:if={accounts}>
+            <div class="slds-var-m-around_medium">
                 <template for:each={accounts} for:item="account">
                     <lightning-layout
                         key={account.Id}
-                        class="slds-m-vertical_x-small"
+                        class="slds-var-m-vertical_x-small"
                     >
                         <lightning-layout-item flexibility="grow">
                             {account.Name}
@@ -21,7 +21,7 @@
                 </template>
             </div>
         </template>
-        <template if:true={error}>
+        <template lwc:elseif={error}>
             <c-error-panel errors={error}></c-error-panel>
         </template>
 

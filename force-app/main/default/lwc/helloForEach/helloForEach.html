@@ -1,10 +1,8 @@
 <template>
     <lightning-card title="HelloForEach" icon-name="custom:custom14">
-        <ul class="slds-m-around_medium">
+        <ul class="slds-var-m-around_medium">
             <template for:each={contacts} for:item="contact">
-                <li key={contact.Id}>
-                    {contact.Name}, {contact.Title}
-                </li>
+                <li key={contact.Id}>{contact.Name}, {contact.Title}</li>
             </template>
         </ul>
         <c-view-source source="lwc/helloForEach" slot="footer">

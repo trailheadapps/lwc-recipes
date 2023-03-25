@@ -46,7 +46,17 @@ describe('c-record-view-form-dynamic-contact', () => {
 
         const outputFieldNames = Array.from(
             element.shadowRoot.querySelectorAll('lightning-output-field')
-        ).map(outputField => outputField.fieldName);
+        ).map((outputField) => outputField.fieldName);
         expect(outputFieldNames).toEqual(OUTPUT_FIELDS);
+    });
+
+    it('is accessible', async () => {
+        const element = createElement('c-record-view-form-dynamic-contact', {
+            is: RecordViewFormDynamicContact
+        });
+
+        document.body.appendChild(element);
+
+        await expect(element).toBeAccessible();
     });
 });

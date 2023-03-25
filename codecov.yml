@@ -1,0 +1,16 @@
+coverage:
+    status:
+        project:
+            default:
+                flags:
+                    - LWC
+                    - Apex
+            LWC:
+                flags:
+                    - LWC
+            Apex:
+                flags:
+                    - Apex
+        patch: off
+ignore:
+    - 'force-app/main/default/staticresources/**'

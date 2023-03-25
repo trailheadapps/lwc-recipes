@@ -1,4 +1,4 @@
-import { LightningElement, track } from 'lwc';
+import { LightningElement } from 'lwc';
 import checkApexTypes from '@salesforce/apex/ApexTypesController.checkApexTypes';
 
 export default class ApexImperativeMethodWithComplexParams extends LightningElement {
@@ -6,8 +6,8 @@ export default class ApexImperativeMethodWithComplexParams extends LightningElem
     numberValue = 50;
     stringValue = 'Some string';
 
-    @track message;
-    @track error;
+    message;
+    error;
 
     handleStringChange(event) {
         this.stringValue = event.target.value;
@@ -31,20 +31,17 @@ export default class ApexImperativeMethodWithComplexParams extends LightningElem
         };
         // Populating a list
         for (let i = 0; i < this.listItemValue; i++) {
-            parameterObject.someList.push({
-                someInnerString: this.stringValue,
-                someInnerInteger: this.numberValue
-            });
+            parameterObject.someList.push(this.stringValue);
         }
 
         // Calling the imperative Apex method with the JSON
         // object as parameter.
         checkApexTypes({ wrapper: parameterObject })
-            .then(result => {
+            .then((result) => {
                 this.message = result;
                 this.error = undefined;
             })
-            .catch(error => {
+            .catch((error) => {
                 this.message = undefined;
                 this.error = error;
             });

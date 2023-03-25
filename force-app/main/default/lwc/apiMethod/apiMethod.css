@@ -1,0 +1,17 @@
+c-clock {
+    border: solid var(--lwc-borderWidthThin, 1px) #ecebea;
+    border-radius: var(--lwc-borderRadiusMedium, 4px);
+    padding: 14px var(--lwc-varSpacingXSmall, 8px)
+        var(--lwc-varSpacingXSmall, 8px) var(--lwc-varSpacingXSmall, 8px);
+    margin-top: var(--lwc-varSpacingSmall, 12px);
+}
+
+c-clock:before {
+    content: 'c-clock';
+    color: rgb(221, 219, 218);
+    position: absolute;
+    top: -10px;
+    left: var(--lwc-varSpacingXxSmall, 4px);
+    background-color: var(--lwc-colorBackgroundAlt, #ffffff);
+    padding: 0 var(--lwc-varSpacingXxSmall, 4px);
+}

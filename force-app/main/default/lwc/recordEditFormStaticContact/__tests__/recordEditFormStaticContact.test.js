@@ -73,7 +73,17 @@ describe('c-record-edit-form-static-contact', () => {
         // Select elements for validation
         const outputFieldNames = Array.from(
             element.shadowRoot.querySelectorAll('lightning-input-field')
-        ).map(outputField => outputField.fieldName);
+        ).map((outputField) => outputField.fieldName);
         expect(outputFieldNames).toEqual(INPUT_FIELDS);
+    });
+
+    it('is accessible', async () => {
+        const element = createElement('c-record-edit-form-static-contact', {
+            is: RecordEditFormStaticContact
+        });
+
+        document.body.appendChild(element);
+
+        await expect(element).toBeAccessible();
     });
 });

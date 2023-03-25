@@ -2,6 +2,17 @@
 import { LightningElement } from 'lwc';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import { loadScript, loadStyle } from 'lightning/platformResourceLoader';
+/**
+ * When using this component in an LWR site, please import the below custom implementation of 'loadScript' module
+ * instead of the one from 'lightning/platformResourceLoader'
+ *
+ * import { loadScript } from 'c/resourceLoader';
+ *
+ * This workaround is implemented to get around a limitation of the Lightning Locker library in LWR sites.
+ * Read more about it in the "Lightning Locker Limitations" section of the documentation
+ * https://developer.salesforce.com/docs/atlas.en-us.exp_cloud_lwr.meta/exp_cloud_lwr/template_limitations.htm
+ */
+
 import D3 from '@salesforce/resourceUrl/d3';
 import DATA from './data';
 
@@ -24,7 +35,7 @@ export default class LibsD3 extends LightningElement {
             .then(() => {
                 this.initializeD3();
             })
-            .catch(error => {
+            .catch((error) => {
                 this.dispatchEvent(
                     new ShowToastEvent({
                         title: 'Error loading D3',
@@ -46,7 +57,7 @@ export default class LibsD3 extends LightningElement {
             .forceSimulation()
             .force(
                 'link',
-                d3.forceLink().id(d => {
+                d3.forceLink().id((d) => {
                     return d.id;
                 })
             )
@@ -60,7 +71,7 @@ export default class LibsD3 extends LightningElement {
             .data(DATA.links)
             .enter()
             .append('line')
-            .attr('stroke-width', d => {
+            .attr('stroke-width', (d) => {
                 return Math.sqrt(d.value);
             });
 
@@ -72,7 +83,7 @@ export default class LibsD3 extends LightningElement {
             .enter()
             .append('circle')
             .attr('r', 5)
-            .attr('fill', d => {
+            .attr('fill', (d) => {
                 return color(d.group);
             })
             .call(
@@ -83,7 +94,7 @@ export default class LibsD3 extends LightningElement {
                     .on('end', dragended)
             );
 
-        node.append('title').text(d => {
+        node.append('title').text((d) => {
             return d.id;
         });
 
@@ -92,11 +103,11 @@ export default class LibsD3 extends LightningElement {
         simulation.force('link').links(DATA.links);
 
         function ticked() {
-            link.attr('x1', d => d.source.x)
-                .attr('y1', d => d.source.y)
-                .attr('x2', d => d.target.x)
-                .attr('y2', d => d.target.y);
-            node.attr('cx', d => d.x).attr('cy', d => d.y);
+            link.attr('x1', (d) => d.source.x)
+                .attr('y1', (d) => d.source.y)
+                .attr('x2', (d) => d.target.x)
+                .attr('y2', (d) => d.target.y);
+            node.attr('cx', (d) => d.x).attr('cy', (d) => d.y);
         }
 
         function dragstarted(d) {

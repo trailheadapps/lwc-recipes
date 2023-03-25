@@ -1,7 +1,20 @@
 import { createElement } from 'lwc';
 import ApexWireMethodWithComplexParams from 'c/apexWireMethodWithComplexParams';
-import { registerApexTestWireAdapter } from '@salesforce/sfdx-lwc-jest';
 import checkApexTypes from '@salesforce/apex/ApexTypesController.checkApexTypes';
+
+// Mock Apex wire adapter
+jest.mock(
+    '@salesforce/apex/ApexTypesController.checkApexTypes',
+    () => {
+        const {
+            createApexTestWireAdapter
+        } = require('@salesforce/sfdx-lwc-jest');
+        return {
+            default: createApexTestWireAdapter(jest.fn())
+        };
+    },
+    { virtual: true }
+);
 
 // Sample default values for wired Apex call
 const WIRE_INPUT_DEFAULT = {
@@ -14,11 +27,7 @@ const WIRE_INPUT_DEFAULT = {
 const WIRE_INPUT = {
     someString: 'This is a string',
     someInteger: 20,
-    someList: [
-        { someInnerString: 'This is a string', someInnerInteger: 50 },
-        { someInnerString: 'This is a string', someInnerInteger: 50 },
-        { someInnerString: 'This is a string', someInnerInteger: 50 }
-    ]
+    someList: ['This is a string', 'This is a string', 'This is a string']
 };
 
 // Response data for successful custom Apex call
@@ -31,9 +40,6 @@ const mockCheckApexTypes =
     WIRE_INPUT.someList.length +
     ' items.';
 
-// Register as Apex wire adapter. Some tests verify that provisioned values trigger desired behavior.
-const checkApexTypesAdapter = registerApexTestWireAdapter(checkApexTypes);
-
 describe('c-apex-wire-method-with-complex-params', () => {
     afterEach(() => {
         // The jsdom instance is shared across test cases in a single file so reset the DOM
@@ -44,8 +50,14 @@ describe('c-apex-wire-method-with-complex-params', () => {
         jest.clearAllMocks();
     });
 
+    // Helper function to wait until the microtask queue is empty. This is needed for promise
+    // timing when calling imperative Apex.
+    async function flushPromises() {
+        return Promise.resolve();
+    }
+
     describe('checkApexTypes @wire data', () => {
-        it('gets called with a default configuration', () => {
+        it('gets called with a default configuration', async () => {
             // Create initial element
             const element = createElement(
                 'c-apex-wire-method-with-complex-params',
@@ -55,18 +67,16 @@ describe('c-apex-wire-method-with-complex-params', () => {
             );
             document.body.appendChild(element);
 
-            // Return a promise to wait for any asynchronous DOM updates. Jest
-            // will automatically wait for the Promise chain to complete before
-            // ending the test and fail the test if the promise rejects.
-            return Promise.resolve().then(() => {
-                // Check if the default object is passed as parameter
-                expect(checkApexTypesAdapter.getLastConfig()).toEqual({
-                    wrapper: WIRE_INPUT_DEFAULT
-                });
+            // Wait for any asynchronous DOM updates
+            await flushPromises();
+
+            // Check if the default object is passed as parameter
+            expect(checkApexTypes.getLastConfig()).toEqual({
+                wrapper: WIRE_INPUT_DEFAULT
             });
         });
 
-        it('updates the wire parameter based on user input', () => {
+        it('updates the wire parameter based on user input', async () => {
             // Create initial element
             const element = createElement(
                 'c-apex-wire-method-with-complex-params',
@@ -97,18 +107,16 @@ describe('c-apex-wire-method-with-complex-params', () => {
             inputListItemEl.value = WIRE_INPUT.someList.length;
             inputListItemEl.dispatchEvent(new CustomEvent('change'));
 
-            // Return a promise to wait for any asynchronous DOM updates. Jest
-            // will automatically wait for the Promise chain to complete before
-            // ending the test and fail the test if the promise rejects.
-            return Promise.resolve().then(() => {
-                // Validate parameters of mocked Apex call
-                expect(checkApexTypesAdapter.getLastConfig()).toEqual({
-                    wrapper: WIRE_INPUT
-                });
+            // Wait for any asynchronous DOM updates
+            await flushPromises();
+
+            // Validate parameters of mocked Apex call
+            expect(checkApexTypes.getLastConfig()).toEqual({
+                wrapper: WIRE_INPUT
             });
         });
 
-        it('returns a string value based on user input values', () => {
+        it('returns a string value based on user input values', async () => {
             // Create initial element
             const element = createElement(
                 'c-apex-wire-method-with-complex-params',
@@ -140,21 +148,19 @@ describe('c-apex-wire-method-with-complex-params', () => {
             inputListItemEl.dispatchEvent(new CustomEvent('change'));
 
             // Emit data from @wire
-            checkApexTypesAdapter.emit(mockCheckApexTypes);
+            checkApexTypes.emit(mockCheckApexTypes);
 
-            // Return a promise to wait for any asynchronous DOM updates. Jest
-            // will automatically wait for the Promise chain to complete before
-            // ending the test and fail the test if the promise rejects.
-            return Promise.resolve().then(() => {
-                // Select element for validation
-                const detailEl = element.shadowRoot.querySelector('p');
-                expect(detailEl.textContent).toBe(mockCheckApexTypes);
-            });
+            // Wait for any asynchronous DOM updates
+            await flushPromises();
+
+            // Select element for validation
+            const detailEl = element.shadowRoot.querySelector('p');
+            expect(detailEl.textContent).toBe(mockCheckApexTypes);
         });
     });
 
     describe('checkApexTypes @wire error', () => {
-        it('renders the error panel when the Apex method returns an error', () => {
+        it('renders the error panel when the Apex method returns an error', async () => {
             // Create initial element
             const element = createElement(
                 'c-apex-imperative-method-with-params',
@@ -165,17 +171,52 @@ describe('c-apex-wire-method-with-complex-params', () => {
             document.body.appendChild(element);
 
             // Simulate an Apex error
-            checkApexTypesAdapter.error();
+            checkApexTypes.error();
 
-            // Return a promise to wait for any asynchronous DOM updates. Jest
-            // will automatically wait for the Promise chain to complete before
-            // ending the test and fail the test if the promise rejects.
-            return Promise.resolve().then(() => {
-                const errorPanelEl = element.shadowRoot.querySelector(
-                    'c-error-panel'
-                );
-                expect(errorPanelEl).not.toBeNull();
-            });
+            // Wait for any asynchronous DOM updates
+            await flushPromises();
+
+            const errorPanelEl =
+                element.shadowRoot.querySelector('c-error-panel');
+            expect(errorPanelEl).not.toBeNull();
         });
+    });
+
+    it('is accessible when data returned', async () => {
+        // Create initial element
+        const element = createElement(
+            'c-apex-wire-method-with-complex-params',
+            {
+                is: ApexWireMethodWithComplexParams
+            }
+        );
+        document.body.appendChild(element);
+
+        // Emit data from @wire
+        checkApexTypes.emit(mockCheckApexTypes);
+
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
+
+        await expect(element).toBeAccessible();
+    });
+
+    it('is accessible when error returned', async () => {
+        // Create initial element
+        const element = createElement(
+            'c-apex-wire-method-with-complex-params',
+            {
+                is: ApexWireMethodWithComplexParams
+            }
+        );
+        document.body.appendChild(element);
+
+        // Simulate an Apex error
+        checkApexTypes.error();
+
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
+
+        await expect(element).toBeAccessible();
     });
 });

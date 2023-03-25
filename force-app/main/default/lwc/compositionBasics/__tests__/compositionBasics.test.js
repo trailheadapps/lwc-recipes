@@ -17,9 +17,8 @@ describe('c-composition-basics', () => {
         document.body.appendChild(element);
 
         // Select rendered contact tile for length check
-        const contactTileEls = element.shadowRoot.querySelectorAll(
-            'c-contact-tile'
-        );
+        const contactTileEls =
+            element.shadowRoot.querySelectorAll('c-contact-tile');
         expect(contactTileEls.length).toBe(1);
     });
 
@@ -34,10 +33,19 @@ describe('c-composition-basics', () => {
         document.body.appendChild(element);
 
         // Select contact tile for public property check
-        const contactTileEl = element.shadowRoot.querySelector(
-            'c-contact-tile'
-        );
+        const contactTileEl =
+            element.shadowRoot.querySelector('c-contact-tile');
         expect(contactTileEl.contact.Name).toBe(USER_RESULT);
         expect(contactTileEl.contact.Title).toBe(TITLE_RESULT);
+    });
+
+    it('is accessible', async () => {
+        const element = createElement('c-composition-basics', {
+            is: CompositionBasics
+        });
+
+        document.body.appendChild(element);
+
+        await expect(element).toBeAccessible();
     });
 });

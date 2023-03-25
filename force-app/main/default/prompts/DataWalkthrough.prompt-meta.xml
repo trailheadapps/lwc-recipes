@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Prompt xmlns="http://soap.sforce.com/2006/04/metadata">
+    <masterLabel>Data Walkthrough</masterLabel>
+    <promptVersions>
+        <body
+        >Lightning Data Service (LDS) allows interaction with the database without writing any server-side (Apex) code. Create a record using the LdsCreate component to see it at work. Then click &quot;Next&quot;.</body>
+        <delayDays>1</delayDays>
+        <description
+        >Walkthrough for data through Lightning Data Service and Apex.</description>
+        <dismissButtonLabel>Close</dismissButtonLabel>
+        <displayPosition>TopLeft</displayPosition>
+        <displayType>FloatingPanel</displayType>
+        <isPublished>true</isPublished>
+        <masterLabel>Data Walkthrough Step 1</masterLabel>
+        <publishedDate>2020-08-06</publishedDate>
+        <shouldDisplayActionButton>false</shouldDisplayActionButton>
+        <shouldIgnoreGlobalDelay>false</shouldIgnoreGlobalDelay>
+        <startDate>2020-08-06</startDate>
+        <stepNumber>1</stepNumber>
+        <targetAppDeveloperName>LWC_Recipes</targetAppDeveloperName>
+        <targetPageKey1>Data_Service</targetPageKey1>
+        <targetPageType>standard__navItemPage</targetPageType>
+        <timesToDisplay>1</timesToDisplay>
+        <title>Data Access</title>
+        <userAccess>Everyone</userAccess>
+        <userProfileAccess>Everyone</userProfileAccess>
+        <versionNumber>1</versionNumber>
+    </promptVersions>
+    <promptVersions>
+        <body
+        >LDS also has built in features that make implementing components for record pages simple. Click between the &quot;Dynamic Schema&quot; and &quot;Static Schema&quot; tabs 👉 to see example components for record pages. Then click &quot;Next&quot;.</body>
+        <dismissButtonLabel>Close</dismissButtonLabel>
+        <displayPosition>TopCenter</displayPosition>
+        <displayType>FloatingPanel</displayType>
+        <isPublished>false</isPublished>
+        <masterLabel>Data Walkthrough Step 2</masterLabel>
+        <shouldDisplayActionButton>false</shouldDisplayActionButton>
+        <shouldIgnoreGlobalDelay>false</shouldIgnoreGlobalDelay>
+        <stepNumber>2</stepNumber>
+        <targetAppDeveloperName>LWC_Recipes</targetAppDeveloperName>
+        <targetPageKey1>Contact</targetPageKey1>
+        <targetPageKey2>view</targetPageKey2>
+        <targetPageType>standard__recordPage</targetPageType>
+        <title>On the record page</title>
+        <userAccess>Everyone</userAccess>
+        <userProfileAccess>Everyone</userProfileAccess>
+        <versionNumber>1</versionNumber>
+    </promptVersions>
+    <promptVersions>
+        <body
+        >When LDS won&apos;t work, these Apex examples will show you how to fall back to Apex. Click on &quot;Load Contacts&quot; and perform a search, then click &quot;Next&quot;.</body>
+        <dismissButtonLabel>Close</dismissButtonLabel>
+        <displayPosition>BottomCenter</displayPosition>
+        <displayType>FloatingPanel</displayType>
+        <isPublished>false</isPublished>
+        <masterLabel>Data Walkthrough Step 3</masterLabel>
+        <shouldDisplayActionButton>false</shouldDisplayActionButton>
+        <shouldIgnoreGlobalDelay>false</shouldIgnoreGlobalDelay>
+        <stepNumber>3</stepNumber>
+        <targetAppDeveloperName>LWC_Recipes</targetAppDeveloperName>
+        <targetPageKey1>Apex</targetPageKey1>
+        <targetPageType>standard__navItemPage</targetPageType>
+        <title>Data Through Apex</title>
+        <userAccess>Everyone</userAccess>
+        <userProfileAccess>Everyone</userProfileAccess>
+        <versionNumber>1</versionNumber>
+    </promptVersions>
+    <promptVersions>
+        <body
+        >The wire service is critical for using both LDS and Apex. But the wire service can access other org features and data. Click &quot;Get Object Info&quot; to retrieve describe information about the Account object. Then click &quot;Next&quot;.</body>
+        <dismissButtonLabel>Close</dismissButtonLabel>
+        <displayPosition>TopRight</displayPosition>
+        <displayType>FloatingPanel</displayType>
+        <isPublished>false</isPublished>
+        <masterLabel>Data Walkthrough Step 4</masterLabel>
+        <shouldDisplayActionButton>false</shouldDisplayActionButton>
+        <shouldIgnoreGlobalDelay>false</shouldIgnoreGlobalDelay>
+        <stepNumber>4</stepNumber>
+        <targetAppDeveloperName>LWC_Recipes</targetAppDeveloperName>
+        <targetPageKey1>Wire</targetPageKey1>
+        <targetPageType>standard__navItemPage</targetPageType>
+        <title>Wiring It Up</title>
+        <userAccess>Everyone</userAccess>
+        <userProfileAccess>Everyone</userProfileAccess>
+        <versionNumber>1</versionNumber>
+    </promptVersions>
+    <promptVersions>
+        <actionButtonLabel>Next Tour</actionButtonLabel>
+        <actionButtonLink>/lightning/n/Composition</actionButtonLink>
+        <body
+        >&lt;p&gt;In this tour, you got to see how Lightning Data Service and Apex both allow you to interact with data on the server. You also learned how the wire service works with LDS, Apex, and other important data on the server.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;The next tour will take you through features that allow you to pull together many components to compose your UI. You&apos;ll also see how those components can interact with other components in Lightning Experience, including standard navigation, Aura components, and Visualforce pages.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;To go to the next walkthrough, click &quot;Next Tour&quot;.&lt;/p&gt;</body>
+        <displayPosition>BottomCenter</displayPosition>
+        <displayType>DockedComposer</displayType>
+        <header>Interacting with the server</header>
+        <isPublished>false</isPublished>
+        <masterLabel>Data Walkthrough Step 5</masterLabel>
+        <shouldDisplayActionButton>true</shouldDisplayActionButton>
+        <shouldIgnoreGlobalDelay>false</shouldIgnoreGlobalDelay>
+        <stepNumber>5</stepNumber>
+        <targetAppDeveloperName>LWC_Recipes</targetAppDeveloperName>
+        <targetPageKey1>Wire</targetPageKey1>
+        <targetPageType>standard__navItemPage</targetPageType>
+        <title>Data Service, Apex, and Wire Service</title>
+        <userAccess>Everyone</userAccess>
+        <userProfileAccess>Everyone</userProfileAccess>
+        <versionNumber>1</versionNumber>
+    </promptVersions>
+</Prompt>

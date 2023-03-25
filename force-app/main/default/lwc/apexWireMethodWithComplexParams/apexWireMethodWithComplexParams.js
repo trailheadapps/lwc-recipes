@@ -25,17 +25,14 @@ export default class ApexWireMethodWithComplexParams extends LightningElement {
     handleNumberChange(event) {
         this.parameterObject = {
             ...this.parameterObject,
-            someInteger: (this.someInteger = event.target.value)
+            someInteger: (this.numberValue = parseInt(event.target.value, 10))
         };
     }
 
     handleListItemChange(event) {
         const someList = [];
         for (let i = 0; i < event.target.value; i++) {
-            someList.push({
-                someInnerString: this.stringValue,
-                someInnerInteger: this.numberValue
-            });
+            someList.push(this.stringValue);
         }
         this.parameterObject = {
             ...this.parameterObject,

@@ -8,9 +8,8 @@ export default class WireGetObjectInfo extends LightningElement {
     objectInfo;
 
     handleBtnClick() {
-        this.objectApiName = this.template.querySelector(
-            'lightning-input'
-        ).value;
+        this.objectApiName =
+            this.template.querySelector('lightning-input').value;
     }
 
     get objectInfoStr() {

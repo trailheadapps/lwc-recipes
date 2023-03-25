@@ -9,6 +9,12 @@ describe('c-chart-bar', () => {
         }
     });
 
+    // Helper function to wait until the microtask queue is empty. This is needed for promise
+    // timing when calling imperative Apex.
+    async function flushPromises() {
+        return Promise.resolve();
+    }
+
     it('renders a lightning-layout with two lightning-layout-items', () => {
         // Create initial element
         const element = createElement('c-chart-bar', {
@@ -17,9 +23,8 @@ describe('c-chart-bar', () => {
         document.body.appendChild(element);
 
         // Query lightning-layout element
-        const lightningLayoutEl = element.shadowRoot.querySelector(
-            'lightning-layout'
-        );
+        const lightningLayoutEl =
+            element.shadowRoot.querySelector('lightning-layout');
         expect(lightningLayoutEl).not.toBeNull();
 
         // Query lightning-layout-item elements
@@ -29,7 +34,7 @@ describe('c-chart-bar', () => {
         expect(lightningLayoutItemEls.length).toBe(2);
     });
 
-    it('renders a div with the percentage value as style attribute', () => {
+    it('renders a div with the percentage value as style attribute', async () => {
         // Create initial element
         const element = createElement('c-chart-bar', {
             is: ChartBar
@@ -47,12 +52,21 @@ describe('c-chart-bar', () => {
         // Set public property
         element.percentage = 60;
 
-        // Return a promise to wait for any asynchronous DOM updates. Jest
-        // will automatically wait for the Promise chain to complete before
-        // ending the test and fail the test if the promise rejects.
-        return Promise.resolve().then(() => {
-            // Query div for validating computed style attribute value on public property change
-            expect(divEl.style._values.width).toBe('60%');
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
+
+        // Query div for validating computed style attribute value on public property change
+        expect(divEl.style._values.width).toBe('60%');
+    });
+
+    it('is accessible', async () => {
+        const element = createElement('c-chart-bar', {
+            is: ChartBar
         });
+
+        element.percentage = 40;
+        document.body.appendChild(element);
+
+        await expect(element).toBeAccessible();
     });
 });

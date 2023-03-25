@@ -1,12 +1,12 @@
-import { LightningElement, track } from 'lwc';
+import { LightningElement } from 'lwc';
 import findContacts from '@salesforce/apex/ContactController.findContacts';
 
 /** The delay used when debouncing event handlers before invoking Apex. */
 const DELAY = 350;
 
 export default class CompositionContactSearch extends LightningElement {
-    @track contacts;
-    @track error;
+    contacts;
+    error;
 
     handleKeyChange(event) {
         // Debouncing this method: Do not actually invoke the Apex call as long as this function is
@@ -16,11 +16,11 @@ export default class CompositionContactSearch extends LightningElement {
         // eslint-disable-next-line @lwc/lwc/no-async-operation
         this.delayTimeout = setTimeout(() => {
             findContacts({ searchKey })
-                .then(result => {
+                .then((result) => {
                     this.contacts = result;
                     this.error = undefined;
                 })
-                .catch(error => {
+                .catch((error) => {
                     this.error = error;
                     this.contacts = undefined;
                 });

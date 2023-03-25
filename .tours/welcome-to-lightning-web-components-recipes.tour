@@ -1,0 +1,42 @@
+{
+  "title": "Welcome to Lightning Web Components Recipes",
+  "steps": [
+    {
+      "title": "Hello",
+      "file": "force-app/main/default/lwc/hello/hello.js",
+      "line": 4,
+      "description": "Hello! \n\nWelcome to Lightning Web Components (LWC) Recipes sample app. \n\nThis project demonstrates the use of LWC with a set of code recipes. Each recipe does this with a complete working example, using the minimum amount of code required, while still following best practices. \n\nThis tour will show you around the repo at a high level, and then give you suggestions of what to do next. \n\nIn this file, you can see our most simple \"Hello World\" recipe. "
+    },
+    {
+      "title": "Recipe files - JS",
+      "file": "force-app/main/default/lwc/helloBinding/helloBinding.js",
+      "line": 1,
+      "description": "Recipes can be very simple. For instance all the \"Hello\" themed recipes demonstrate basic primitives for how LWC works. \n\nThe core file for any LWC is its JavaScript module, which you can see here for the `helloBinding` LWC. "
+    },
+    {
+      "title": "Recipe files - HTML",
+      "file": "force-app/main/default/lwc/helloBinding/helloBinding.html",
+      "line": 7,
+      "description": "The template for an LWC is contained in a `.html` file that shares a name with the JavaScript module file. \n\nProperties and functions from the JavaScript are referenced in the template with `{brackets}`, like you see here with `{greeting}` and `{handleChange}`. "
+    },
+    {
+      "title": "Recipe files - metadata and bundles",
+      "file": "force-app/main/default/lwc/helloBinding/helloBinding.js-meta.xml",
+      "line": 1,
+      "description": "All the files of a LWC are contained in a single directory. Together they are called a component bundle. \n\nIn addition to the `.js` and `.html` files, this can also include CSS, submodules, alternate templates, and more. \n\nThis `.xml` file here defines how the LWC is used by the Salesforce platform. \n\nFor more details on component structure, check out the LWC developer [guide](https://developer.salesforce.com/docs/component-library/documentation/en/lwc). "
+    },
+    {
+      "title": "Recipe tests",
+      "file": "force-app/main/default/lwc/hello/__tests__/hello.test.js",
+      "line": 1,
+      "description": "In an effort to follow best practices, every LWC recipe contains a unit test. LWC is closely aligned to Jest as a testing framework, including supported Jest extensions to make use of this popular testing framework easy with LWC. \n\nThe developer [guide](https://developer.salesforce.com/docs/component-library/documentation/en/lwc/lwc.testing) also has information on testing your LWC's with Jest. "
+    },
+    {
+      "title": "Much more to explore...",
+      "file": "force-app/main/default/lwc/ldsGenerateRecordInputForCreate/ldsGenerateRecordInputForCreate.js",
+      "line": 1,
+      "description": "Though some recipes demonstrate basic LWC primitives, the examples in the sample app are extensive. Some also demonstrate following best practices of some of the more advanced features of LWC. \n\nHere, the `ldsGenerateRecordInputForCreate` component demonstrates how LWC can behave in a way that is aware of your Salesforce org's built in or custom behaviors, such as generating default values for a new record based on org configurations. \n\nWhile there is a lot to get to know in LWC recipes, and a lot of code, we'd like to leave off the code tour at this point and suggest you explore the app further in a couple of other ways. \n- One way you can do this is to use our [Quick Start](https://trailhead.salesforce.com/en/content/learn/projects/quick-start-lwc-recipes-app) on Trailhead. This will walk you through deploying the app and getting to know it a bit, as well as explore some of the other code samples. \n- But if you prefer to take yourself through the app, you can skip right to the installation instructions that are available in the git repo's [README](https://github.com/trailheadapps/lwc-recipes#installing-the-app-using-a-scratch-org) file. From there you can explore the examples bit by bit. There is also an in-app tour that will familiarize you with the broad categories of recipes available. \n- If you're interested in using LWC independent of the Salesforce platform, be sure to check out the [lwc.dev](https://lwc.dev) website and the open source LWC Recipes OSS [sample app](https://github.com/trailheadapps/lwc-recipes-oss).\n- Lastly, if you've looked around and don't see something you think should be a recipe, please open an [issue](https://github.com/trailheadapps/lwc-recipes/issues/new?template=Feature_Request.md) and let us know your idea. We'd love to discuss it with you. \n\nThanks! And enjoy the LWC Recipes sample app. "
+    }
+  ],
+  "isPrimary": true
+}

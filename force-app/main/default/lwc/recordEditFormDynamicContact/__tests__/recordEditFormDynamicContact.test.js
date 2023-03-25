@@ -52,7 +52,17 @@ describe('c-record-edit-form-dynamic-contact', () => {
         // Select elements for validation
         const outputFieldNames = Array.from(
             element.shadowRoot.querySelectorAll('lightning-input-field')
-        ).map(outputField => outputField.fieldName);
+        ).map((outputField) => outputField.fieldName);
         expect(outputFieldNames).toEqual(INPUT_FIELDS);
+    });
+
+    it('is accessible', async () => {
+        const element = createElement('c-record-edit-form-dynamic-contact', {
+            is: RecordEditFormDynamicContact
+        });
+
+        document.body.appendChild(element);
+
+        await expect(element).toBeAccessible();
     });
 });

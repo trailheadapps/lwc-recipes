@@ -25,7 +25,17 @@ describe('c-hello-for-each', () => {
         // Verify displayed list
         const contacts = Array.from(
             element.shadowRoot.querySelectorAll('li')
-        ).map(li => li.textContent);
+        ).map((li) => li.textContent);
         expect(contacts).toEqual(EXPECTED);
+    });
+
+    it('is accessible on initialization', async () => {
+        const element = createElement('c-hello-for-each', {
+            is: HelloForEach
+        });
+
+        document.body.appendChild(element);
+
+        await expect(element).toBeAccessible();
     });
 });

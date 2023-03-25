@@ -1,17 +1,29 @@
+/**
+ * Accessibility tests reside in a different test file in this case
+ * because there's an open issue on jest (https://github.com/facebook/jest/issues/8726)
+ * because of which fake timers leak into all the tests in the same file,
+ * while Axe doen't work when using fake timers.
+ **/
 import { createElement } from 'lwc';
 import ApexWireMethodWithParams from 'c/apexWireMethodWithParams';
-import { registerApexTestWireAdapter } from '@salesforce/sfdx-lwc-jest';
 import findContacts from '@salesforce/apex/ContactController.findContacts';
 
 // Realistic data with a list of contacts
 const mockFindContacts = require('./data/findContacts.json');
 
-// An empty list of records to verify the component does something reasonable
-// when there is no data to display
-const mockFindContactsNoRecords = require('./data/findContactsNoRecords.json');
-
-// Register as Apex wire adapter. Some tests verify that provisioned values trigger desired behavior.
-const findContactsAdapter = registerApexTestWireAdapter(findContacts);
+// Mock Apex wire adapter
+jest.mock(
+    '@salesforce/apex/ContactController.findContacts',
+    () => {
+        const {
+            createApexTestWireAdapter
+        } = require('@salesforce/sfdx-lwc-jest');
+        return {
+            default: createApexTestWireAdapter(jest.fn())
+        };
+    },
+    { virtual: true }
+);
 
 describe('c-apex-wire-method-with-params', () => {
     beforeAll(() => {
@@ -28,8 +40,14 @@ describe('c-apex-wire-method-with-params', () => {
         jest.clearAllMocks();
     });
 
+    // Helper function to wait until the microtask queue is empty. This is needed for promise
+    // timing when calling imperative Apex.
+    async function flushPromises() {
+        return Promise.resolve();
+    }
+
     describe('findContacts @wire data', () => {
-        it('gets called with data from user input', () => {
+        it('gets called with data from user input', async () => {
             const USER_INPUT = 'Amy';
             const WIRE_PARAMETER = { searchKey: USER_INPUT };
 
@@ -47,18 +65,14 @@ describe('c-apex-wire-method-with-params', () => {
             // Run all fake timers.
             jest.runAllTimers();
 
-            // Return a promise to wait for any asynchronous DOM updates. Jest
-            // will automatically wait for the Promise chain to complete before
-            // ending the test and fail the test if the promise rejects.
-            return Promise.resolve().then(() => {
-                // Validate parameters of wire adapter
-                expect(findContactsAdapter.getLastConfig()).toEqual(
-                    WIRE_PARAMETER
-                );
-            });
+            // Wait for any asynchronous DOM updates
+            await flushPromises();
+
+            // Validate parameters of @wire
+            expect(findContacts.getLastConfig()).toEqual(WIRE_PARAMETER);
         });
 
-        it('renders data of one record', () => {
+        it('renders data of one record', async () => {
             const USER_INPUT = 'Amy';
 
             // Create initial element
@@ -76,51 +90,20 @@ describe('c-apex-wire-method-with-params', () => {
             jest.runAllTimers();
 
             // Emit data from @wire
-            findContactsAdapter.emit(mockFindContacts);
+            findContacts.emit(mockFindContacts);
 
-            // Return a promise to wait for any asynchronous DOM updates. Jest
-            // will automatically wait for the Promise chain to complete before
-            // ending the test and fail the test if the promise rejects.
-            return Promise.resolve().then(() => {
-                // Select elements for validation
-                const detailEls = element.shadowRoot.querySelectorAll('p');
-                expect(detailEls.length).toBe(mockFindContacts.length);
-                expect(detailEls[0].textContent).toBe(mockFindContacts[0].Name);
-            });
-        });
+            // Wait for any asynchronous DOM updates
+            await flushPromises();
 
-        it('renders no items when no record is available', () => {
-            const USER_INPUT = 'does not exist';
-
-            // Create initial element
-            const element = createElement('c-apex-wire-method-with-params', {
-                is: ApexWireMethodWithParams
-            });
-            document.body.appendChild(element);
-
-            // Select input field for simulating user input
-            const inputEl = element.shadowRoot.querySelector('lightning-input');
-            inputEl.value = USER_INPUT;
-            inputEl.dispatchEvent(new CustomEvent('change'));
-
-            // Run all fake timers.
-            jest.runAllTimers();
-
-            // Emit data from @wire
-            findContactsAdapter.emit(mockFindContactsNoRecords);
-
-            // Return a promise to wait for any asynchronous DOM updates. Jest
-            // will automatically wait for the Promise chain to complete before
-            // ending the test and fail the test if the promise rejects.
-            return Promise.resolve().then(() => {
-                const detailEls = element.shadowRoot.querySelectorAll('p');
-                expect(detailEls.length).toBe(mockFindContactsNoRecords.length);
-            });
+            // Select elements for validation
+            const detailEls = element.shadowRoot.querySelectorAll('p');
+            expect(detailEls.length).toBe(mockFindContacts.length);
+            expect(detailEls[0].textContent).toBe(mockFindContacts[0].Name);
         });
     });
 
     describe('findContacts @wire error', () => {
-        it('shows error panel element', () => {
+        it('shows error panel element', async () => {
             // Create initial element
             const element = createElement('c-apex-wire-method-with-params', {
                 is: ApexWireMethodWithParams
@@ -128,17 +111,14 @@ describe('c-apex-wire-method-with-params', () => {
             document.body.appendChild(element);
 
             // Emit error from @wire
-            findContactsAdapter.error();
+            findContacts.error();
 
-            // Return a promise to wait for any asynchronous DOM updates. Jest
-            // will automatically wait for the Promise chain to complete before
-            // ending the test and fail the test if the promise rejects.
-            return Promise.resolve().then(() => {
-                const errorPanelEl = element.shadowRoot.querySelector(
-                    'c-error-panel'
-                );
-                expect(errorPanelEl).not.toBeNull();
-            });
+            // Wait for any asynchronous DOM updates
+            await flushPromises();
+
+            const errorPanelEl =
+                element.shadowRoot.querySelector('c-error-panel');
+            expect(errorPanelEl).not.toBeNull();
         });
     });
 });

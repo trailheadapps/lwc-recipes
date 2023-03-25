@@ -1,0 +1,35 @@
+<template>
+    <lightning-card title="MiscToastNotification" icon-name="custom:custom19">
+        <div class="slds-var-m-around_medium">
+            <lightning-input
+                label="Title"
+                value={titleText}
+                data-id="titleInput"
+                onchange={titleChange}
+            ></lightning-input>
+            <lightning-input
+                label="Message"
+                value={messageText}
+                data-id="messageInput"
+                onchange={messageChange}
+            ></lightning-input>
+            <lightning-combobox
+                label="Variant"
+                value={variant}
+                onchange={variantChange}
+                options={variantOptions}
+            >
+            </lightning-combobox>
+            <p class="slds-var-m-vertical_small">
+                <lightning-button
+                    label="Show Toast Notification"
+                    onclick={showNotification}
+                ></lightning-button>
+            </p>
+        </div>
+
+        <c-view-source source="lwc/miscToastNotification" slot="footer">
+            Display a toast notification.
+        </c-view-source>
+    </lightning-card>
+</template>

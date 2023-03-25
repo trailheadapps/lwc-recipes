@@ -5,41 +5,86 @@
         <type>Region</type>
     </flexiPageRegions>
     <flexiPageRegions>
-        <componentInstances>
-            <componentName>miscGetUserId</componentName>
-        </componentInstances>
-        <componentInstances>
-            <componentName>miscNotification</componentName>
-        </componentInstances>
-        <componentInstances>
-            <componentName>miscModal</componentName>
-        </componentInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentName>miscPermissionBasedUI</componentName>
+                <identifier>miscPermissionBasedUI</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentName>miscGetUserId</componentName>
+                <identifier>miscGetUserId</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentName>miscToastNotification</componentName>
+                <identifier>miscToastNotification</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentName>miscModal</componentName>
+                <identifier>miscModal</identifier>
+            </componentInstance>
+        </itemInstances>
         <name>region2</name>
         <type>Region</type>
     </flexiPageRegions>
     <flexiPageRegions>
-        <componentInstances>
-            <componentName>miscSharedJavaScript</componentName>
-        </componentInstances>
-        <componentInstances>
-            <componentName>miscRestApiCall</componentName>
-        </componentInstances>
-        <componentInstances>
-            <componentName>miscDomQuery</componentName>
-        </componentInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentName>miscNotificationModules</componentName>
+                <identifier>c_miscNotificationModules</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentName>miscSharedJavaScript</componentName>
+                <identifier>miscSharedJavaScript</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentName>miscRestApiCall</componentName>
+                <identifier>miscRestApiCall</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentName>miscDomQuery</componentName>
+                <identifier>miscDomQuery</identifier>
+            </componentInstance>
+        </itemInstances>
         <name>region3</name>
         <type>Region</type>
     </flexiPageRegions>
     <flexiPageRegions>
-        <componentInstances>
-            <componentName>miscStaticResource</componentName>
-        </componentInstances>
-        <componentInstances>
-            <componentName>miscContentAsset</componentName>
-        </componentInstances>
-        <componentInstances>
-            <componentName>miscMultipleTemplates</componentName>
-        </componentInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentName>miscStylingHooks</componentName>
+                <identifier>c_miscStylingHooks1</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentName>miscStaticResource</componentName>
+                <identifier>miscStaticResource</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentName>miscContentAsset</componentName>
+                <identifier>miscContentAsset</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentName>miscMultipleTemplates</componentName>
+                <identifier>miscMultipleTemplates</identifier>
+            </componentInstance>
+        </itemInstances>
         <name>region4</name>
         <type>Region</type>
     </flexiPageRegions>

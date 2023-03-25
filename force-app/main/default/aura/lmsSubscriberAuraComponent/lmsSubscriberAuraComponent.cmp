@@ -1,0 +1,62 @@
+<aura:component
+    controller="ContactController"
+    implements="flexipage:availableForAllPageTypes"
+>
+    <aura:attribute name="contactId" type="Id" />
+    <aura:attribute name="contact" type="Object" />
+
+    <!-- 
+        Adding the lightning:messageChannel markup to the component 
+        automatically subscribes to the message channel specified in 
+        type and assigns the onMessage handler.
+    -->
+    <lightning:messageChannel
+        type="Record_Selected__c"
+        aura:id="recordSelected"
+        onMessage="{!c.handleMessage}"
+    />
+
+    <force:recordData
+        aura:id="service"
+        recordId="{!v.contactId}"
+        fields="['Name', 'Title', 'Phone', 'Email', 'Picture__c']"
+        targetFields="{!v.contact}"
+    />
+
+    <lightning:card
+        title="LmsSubscriberAuraComponent"
+        iconName="custom:custom30"
+    >
+        <aura:set attribute="actions">
+            <span class="aura">Aura Component</span>
+        </aura:set>
+
+        <div class="slds-m-around_medium">
+            <aura:if isTrue="{!v.contact}">
+                <img src="{!v.contact.Picture__c}" alt="Profile photo" />
+                <p>{!v.contact.Name}</p>
+                <p>{!v.contact.Title}</p>
+                <p><lightning:formattedPhone value="{!v.contact.Phone}" /></p>
+                <p><lightning:formattedEmail value="{!v.contact.Email}" /></p>
+            </aura:if>
+        </div>
+
+        <aura:set attribute="footer">
+            <div class="slds-text-align_left slds-color__text_gray-9">
+                Subscribe to a Lightning Message Service channel that another
+                Aura component, LWC, or Visualforce page publishes. This LWC
+                subscribes to the <strong>Record_Selected__c</strong> event.
+                Selecting a contact in one of the contact lists above publishes
+                the event.
+                <p>
+                    <a
+                        class="slds-text-link"
+                        href="https://github.com/trailheadapps/lwc-recipes/tree/main/force-app/main/default/aura/lmsSubscriberAuraComponent"
+                        target="source"
+                        >View Source</a
+                    >
+                </p>
+            </div>
+        </aura:set>
+    </lightning:card>
+</aura:component>

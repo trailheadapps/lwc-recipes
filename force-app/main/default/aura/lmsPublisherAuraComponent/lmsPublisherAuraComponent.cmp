@@ -1,0 +1,56 @@
+<aura:component
+    controller="ContactController"
+    implements="flexipage:availableForAllPageTypes"
+>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+    <aura:attribute name="contacts" type="Contact[]" />
+
+    <!-- Including lightning:messageChannel makes it available to publish to from this component -->
+    <lightning:messageChannel
+        type="Record_Selected__c"
+        aura:id="recordSelected"
+    />
+
+    <lightning:card
+        title="LmsPublisherAuraComponent"
+        iconName="custom:custom30"
+    >
+        <aura:set attribute="actions">
+            <span class="aura">Aura Component</span>
+        </aura:set>
+
+        <div
+            class="slds-m-around_medium"
+            oncontactselect="{!c.handleContactSelect}"
+        >
+            <aura:if isTrue="{!v.contacts}">
+                <aura:iteration items="{!v.contacts}" var="contact">
+                    <c:contactListItemBubbling
+                        key="{!contact.Id}"
+                        contact="{!contact}"
+                    />
+                </aura:iteration>
+            </aura:if>
+        </div>
+
+        <aura:set attribute="footer">
+            <div class="slds-text-align_left slds-color__text_gray-9">
+                Publish a Lightning Message Service message for other Aura
+                components, LWCs, and Visualforce pages to respond to. This
+                component publishes the
+                <strong>Record_Selected__c</strong> event. Click a contact in
+                the list to notify subscribers on this page. The selected
+                contact detail should then appear in the subscribers.
+                <p>
+                    <a
+                        class="slds-text-link"
+                        href="https://github.com/trailheadapps/lwc-recipes/tree/main/force-app/main/default/aura/lmsPublisherAuraComponent"
+                        target="source"
+                        >View Source</a
+                    >
+                </p>
+            </div>
+        </aura:set>
+    </lightning:card>
+</aura:component>

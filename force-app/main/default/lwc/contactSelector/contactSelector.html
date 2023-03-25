@@ -1,0 +1,24 @@
+<template>
+    <lightning-card title="ContactSelector" icon-name="custom:custom29">
+        <div class="slds-card__body slds-card__body_inner">
+            <template lwc:if={contactOptions}>
+                <lightning-combobox
+                    label="Select a Contact"
+                    options={contactOptions}
+                    onchange={handleRecordSelected}
+                    field-level-help="Only the first ten records are displayed to keep it simple"
+                    class="slds-var-m-bottom_medium"
+                    required
+                ></lightning-combobox>
+            </template>
+            <template lwc:elseif={error}>
+                <c-error-panel errors={error}></c-error-panel>
+            </template>
+        </div>
+        <c-view-source source="lwc/contactSelector" slot="footer">
+            Configure Interactions in the Lightning App Builder. This component
+            fires a custom event that can be handled by a target component (see
+            contactInfo component).
+        </c-view-source>
+    </lightning-card>
+</template>

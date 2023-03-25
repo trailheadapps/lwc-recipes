@@ -52,4 +52,14 @@ describe('c-record-form-static-contact', () => {
         expect(formEl.recordId).toBe(RECORD_ID_INPUT);
         expect(formEl.objectApiName).toBe(OBJECT_API_NAME_INPUT);
     });
+
+    it('is accessible', async () => {
+        const element = createElement('c-record-form-static-contact', {
+            is: RecordFormStaticContact
+        });
+
+        document.body.appendChild(element);
+
+        await expect(element).toBeAccessible();
+    });
 });
