@@ -13,7 +13,7 @@
             ></lightning-input>
             <template lwc:if={contacts.data}>
                 <template for:each={contacts.data.uiapi.query.Contact.edges} for:item="contact">
-                    <p key={contact.node.Id.value}>
+                    <p key={contact.node.Id}>
                         {contact.node.Name.value}
                     </p>
                 </template>
