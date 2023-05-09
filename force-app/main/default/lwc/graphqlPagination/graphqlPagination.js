@@ -49,13 +49,13 @@ export default class GraphqlPagination extends LightningElement {
         return this.totalCount === 0 ? 0 : this.pageNumber;
     }
 
-    get isNotFirstPage() {
-        return this.contacts.data?.uiapi.query.Contact.pageInfo.hasPreviousPage;
+    get isFirstPage() {
+        return ! this.contacts.data?.uiapi.query.Contact.pageInfo.hasPreviousPage;
         
     }
 
-    get isNotLastPage() {
-        return this.contacts.data?.uiapi.query.Contact.pageInfo.hasNextPage;
+    get isLastPage() {
+        return ! this.contacts.data?.uiapi.query.Contact.pageInfo.hasNextPage;
     }
 
     get totalCount() {

@@ -13,7 +13,7 @@
                 <div class="slds-grid slds-grid_vertical-align-center slds-var-m-horizontal_x-small">
                     <div class="slds-col slds-size_2-of-12">
                         <lightning-button-icon
-                            lwc:if={isNotFirstPage}
+                            disabled={isFirstPage}
                             icon-name="utility:skip_back"
                             onclick={handleReset}
                             ><label>Restart</label></lightning-button-icon
@@ -24,7 +24,7 @@
                     </div>
                     <div class="slds-col slds-size_2-of-12 slds-text-align_right">
                         <lightning-button-icon
-                            lwc:if={isNotLastPage}
+                            disabled={isLastPage}
                             class="next"
                             icon-name="utility:chevronright"
                             onclick={handleNext}
