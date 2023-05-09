@@ -225,6 +225,10 @@
         <visibility>Visible</visibility>
     </tabSettings>
     <tabSettings>
+        <tab>GraphQL</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+    <tabSettings>
         <tab>X3rd_Party_Libs</tab>
         <visibility>Visible</visibility>
     </tabSettings>
