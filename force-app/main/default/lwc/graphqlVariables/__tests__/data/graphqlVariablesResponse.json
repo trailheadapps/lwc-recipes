@@ -1,0 +1,50 @@
+{
+    "uiapi": {
+        "query": {
+            "Contact": {
+                "edges": [
+                    {
+                        "node": {
+                            "Id": "003xx000004WhR6AAK",
+                            "Name": {
+                                "value": "Amy Taylor"
+                            }
+                        }
+                    },
+                    {
+                        "node": {
+                            "Id": "003xx000004WhR9AAK",
+                            "Name": {
+                                "value": "Anup Gupta"
+                            }
+                        }
+                    },
+                    {
+                        "node": {
+                            "Id": "003xx000004WhPVAA0",
+                            "Name": {
+                                "value": "Carole White"
+                            }
+                        }
+                    },
+                    {
+                        "node": {
+                            "Id": "003xx000004WhRAAA0",
+                            "Name": {
+                                "value": "Caroline Kingsley"
+                            }
+                        }
+                    },
+                    {
+                        "node": {
+                            "Id": "003xx000004WhPXAA0",
+                            "Name": {
+                                "value": "Edward Stamos"
+                            }
+                        }
+                    }
+                ]
+            }
+        }
+    }
+}
