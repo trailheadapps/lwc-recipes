@@ -9,12 +9,14 @@ export default class GraphqlPagination extends LightningElement {
 
     @wire(graphql, {
         query: gql`
-            query searchContacts ($after: String, $pageSize: Int!) {
+            query searchContacts($after: String, $pageSize: Int!) {
                 uiapi {
                     query {
-                        Contact (first: $pageSize,
-                                 after: $after,
-                                 orderBy: { Name: { order: ASC } }) {
+                        Contact(
+                            first: $pageSize
+                            after: $after
+                            orderBy: { Name: { order: ASC } }
+                        ) {
                             edges {
                                 node {
                                     Id
@@ -28,6 +30,8 @@ export default class GraphqlPagination extends LightningElement {
                                 hasNextPage
                                 hasPreviousPage
                             }
+                            # Requesting totalCount can have performance implications
+                            # for large and/or complex queries. Use with caution.
                             totalCount
                         }
                     }
@@ -50,12 +54,12 @@ export default class GraphqlPagination extends LightningElement {
     }
 
     get isFirstPage() {
-        return ! this.contacts.data?.uiapi.query.Contact.pageInfo.hasPreviousPage;
-        
+        return !this.contacts.data?.uiapi.query.Contact.pageInfo
+            .hasPreviousPage;
     }
 
     get isLastPage() {
-        return ! this.contacts.data?.uiapi.query.Contact.pageInfo.hasNextPage;
+        return !this.contacts.data?.uiapi.query.Contact.pageInfo.hasNextPage;
     }
 
     get totalCount() {
@@ -66,14 +70,15 @@ export default class GraphqlPagination extends LightningElement {
         return Math.ceil(this.totalCount / pageSize);
     }
 
-    handleNext(event) {
+    handleNext() {
         if (this.contacts.data?.uiapi.query.Contact.pageInfo.hasNextPage) {
-            this.after = this.contacts.data.uiapi.query.Contact.pageInfo.endCursor;
+            this.after =
+                this.contacts.data.uiapi.query.Contact.pageInfo.endCursor;
             this.pageNumber++;
         }
     }
 
-    handleReset(event) {
+    handleReset() {
         this.after = null;
         this.pageNumber = 1;
     }

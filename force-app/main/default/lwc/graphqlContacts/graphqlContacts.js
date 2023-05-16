@@ -21,13 +21,11 @@ export default class GraphqlContacts extends LightningElement {
                                     Phone {
                                         value
                                     }
-
                                     # We specify an alias for this custom field to ensure
                                     # that we can find it in the result even if Salesforce's
-                                    # referential integrity logic changes the name. API names
+                                    # referential integrity logic updates the name. API names
                                     # for standard fields do not change, so no aliases are
                                     # needed for those.
-
                                     Picture__c: Picture__c {
                                         value
                                     }

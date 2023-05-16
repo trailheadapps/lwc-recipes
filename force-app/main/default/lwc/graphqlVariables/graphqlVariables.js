@@ -9,12 +9,14 @@ export default class GraphqlVariables extends LightningElement {
 
     @wire(graphql, {
         query: gql`
-            query searchContacts ($searchKey: String!, $limit: Int = 5) {
+            query searchContacts($searchKey: String!, $limit: Int = 5) {
                 uiapi {
                     query {
-                        Contact (where: { Name: { like: $searchKey } },
-                                 first: $limit,
-                                 orderBy: { Name: { order: ASC } }) {
+                        Contact(
+                            where: { Name: { like: $searchKey } }
+                            first: $limit
+                            orderBy: { Name: { order: ASC } }
+                        ) {
                             edges {
                                 node {
                                     Id
@@ -32,8 +34,16 @@ export default class GraphqlVariables extends LightningElement {
     })
     contacts;
 
+    /**
+     * Since GraphQL variable values are nested within an object, a getter function
+     * must be used to make the variables reactive. LWC will re-run this function &
+     * re-evaluate the GraphQL query when the component properties referenced in
+     * this function change.
+     */
     get variables() {
-        return { searchKey: this.searchKey === '' ? '%' : `%${this.searchKey}%` };
+        return {
+            searchKey: this.searchKey === '' ? '%' : `%${this.searchKey}%`
+        };
     }
 
     handleKeyChange(event) {
