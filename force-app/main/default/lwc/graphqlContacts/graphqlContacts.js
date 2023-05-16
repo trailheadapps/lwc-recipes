@@ -7,9 +7,11 @@ export default class GraphqlContacts extends LightningElement {
             query getContacts {
                 uiapi {
                     query {
-                        Contact (where: { Picture__c: { ne: null } },
-                                 first: 5,
-                                 orderBy: { Name: { order: ASC } }) {
+                        Contact(
+                            where: { Picture__c: { ne: null } }
+                            first: 5
+                            orderBy: { Name: { order: ASC } }
+                        ) {
                             edges {
                                 node {
                                     Id
@@ -19,6 +21,13 @@ export default class GraphqlContacts extends LightningElement {
                                     Phone {
                                         value
                                     }
+
+                                    # We specify an alias for this custom field to ensure
+                                    # that we can find it in the result even if Salesforce's
+                                    # referential integrity logic changes the name. API names
+                                    # for standard fields do not change, so no aliases are
+                                    # needed for those.
+
                                     Picture__c: Picture__c {
                                         value
                                     }
@@ -28,7 +37,7 @@ export default class GraphqlContacts extends LightningElement {
                                 }
                             }
                         }
-                    } 
+                    }
                 }
             }
         `
@@ -36,7 +45,7 @@ export default class GraphqlContacts extends LightningElement {
     graphql;
 
     get contacts() {
-        return this.graphql.data.uiapi.query.Contact.edges.map(edge => ({
+        return this.graphql.data.uiapi.query.Contact.edges.map((edge) => ({
             Id: edge.node.Id,
             Name: edge.node.Name.value,
             Phone: edge.node.Phone.value,
