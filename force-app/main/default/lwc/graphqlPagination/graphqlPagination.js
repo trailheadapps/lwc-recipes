@@ -9,7 +9,7 @@ export default class GraphqlPagination extends LightningElement {
 
     @wire(graphql, {
         query: gql`
-            query searchContacts($after: String, $pageSize: Int!) {
+            query paginatedContacts($after: String, $pageSize: Int!) {
                 uiapi {
                     query {
                         Contact(
