@@ -34,7 +34,7 @@
         <name>region4</name>
         <type>Region</type>
     </flexiPageRegions>
-    <masterLabel>GraphQL</masterLabel>
+    <masterLabel>GraphQL (Beta)</masterLabel>
     <template>
         <name>flexipage:appHomeTemplateHeaderThreeColumns</name>
     </template>
