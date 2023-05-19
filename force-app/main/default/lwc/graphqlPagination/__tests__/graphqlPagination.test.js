@@ -3,7 +3,8 @@ import GraphqlPagination from 'c/graphqlPagination';
 import { graphql } from 'lightning/uiGraphQLApi';
 
 // Mock realistic data
-const mockGraphQL = require('./data/graphqlPaginationResponse.json');
+const mockGraphQLFirstPage = require('./data/graphqlPaginationResponseFirstPage.json');
+const mockGraphQLLastPage = require('./data/graphqlPaginationResponseLastPage.json');
 
 describe('c-graphql-pagination', () => {
     afterEach(() => {
@@ -28,7 +29,7 @@ describe('c-graphql-pagination', () => {
             document.body.appendChild(element);
 
             // Emit data from @wire
-            graphql.emit(mockGraphQL);
+            graphql.emit(mockGraphQLFirstPage);
 
             // Wait for any asynchronous DOM updates
             await flushPromises();
@@ -36,8 +37,69 @@ describe('c-graphql-pagination', () => {
             // Select paragraphs for length check
             const contactEls = element.shadowRoot.querySelectorAll('p');
             expect(contactEls.length).toBe(
-                mockGraphQL.uiapi.query.Contact.edges.length
+                mockGraphQLFirstPage.uiapi.query.Contact.edges.length
             );
+
+            // Reset button should be disabled
+            const resetButtonEl = element.shadowRoot.querySelector('.reset');
+            expect(resetButtonEl.disabled).toBe(true);
+
+            // Validate status text
+            const statusEl = element.shadowRoot.querySelector('.status');
+            // eslint-disable-next-line @lwc/lwc/no-inner-html
+            expect(statusEl.innerHTML).toEqual('4 items • page 1 of 2');
+
+            // Next button should be enabled
+            const nextButtonEl = element.shadowRoot.querySelector('.next');
+            expect(nextButtonEl.disabled).toBe(false);
+        });
+
+        it('pages forward correctly', async () => {
+            // Create element
+            const element = createElement('c-graphql-pagination', {
+                is: GraphqlPagination
+            });
+            document.body.appendChild(element);
+
+            // Emit data from @wire
+            graphql.emit(mockGraphQLFirstPage);
+
+            // Wait for any asynchronous DOM updates
+            await flushPromises();
+
+            // Advance to the next page
+            const buttonEl = element.shadowRoot.querySelector('.next');
+            buttonEl.click();
+
+            // Wait for wire config to update
+            await flushPromises();
+
+            expect(graphql.getLastConfig().variables.after).toEqual(
+                mockGraphQLFirstPage.uiapi.query.Contact.pageInfo.endCursor
+            );
+            graphql.emit(mockGraphQLLastPage);
+
+            // Wait for any asynchronous DOM updates
+            await flushPromises();
+
+            // Select paragraphs for length check
+            const contactEls = element.shadowRoot.querySelectorAll('p');
+            expect(contactEls.length).toBe(
+                mockGraphQLLastPage.uiapi.query.Contact.edges.length
+            );
+
+            // Reset button should be enabled
+            const resetButtonEl = element.shadowRoot.querySelector('.reset');
+            expect(resetButtonEl.disabled).toBe(false);
+
+            // Validate status text
+            const statusEl = element.shadowRoot.querySelector('.status');
+            // eslint-disable-next-line @lwc/lwc/no-inner-html
+            expect(statusEl.innerHTML).toEqual('4 items • page 2 of 2');
+
+            // Next button should be disabled
+            const nextButtonEl = element.shadowRoot.querySelector('.next');
+            expect(nextButtonEl.disabled).toBe(true);
         });
     });
 
@@ -70,7 +132,7 @@ describe('c-graphql-pagination', () => {
         document.body.appendChild(element);
 
         // Emit data from @wire
-        graphql.emit(mockGraphQL);
+        graphql.emit(mockGraphQLFirstPage);
 
         // Wait for any asynchronous DOM updates
         await flushPromises();
