@@ -1,8 +1,5 @@
 <template>
-    <lightning-card
-        title="GraphqlVariables"
-        icon-name="custom:custom39"
-    >
+    <lightning-card title="GraphqlVariables" icon-name="custom:custom39">
         <div class="slds-var-m-around_medium">
             <lightning-input
                 type="search"
@@ -12,10 +9,11 @@
                 value={searchKey}
             ></lightning-input>
             <template lwc:if={contacts.data}>
-                <template for:each={contacts.data.uiapi.query.Contact.edges} for:item="contact">
-                    <p key={contact.node.Id}>
-                        {contact.node.Name.value}
-                    </p>
+                <template
+                    for:each={contacts.data.uiapi.query.Contact.edges}
+                    for:item="contact"
+                >
+                    <p key={contact.node.Id}>{contact.node.Name.value}</p>
                 </template>
             </template>
             <template lwc:elseif={contacts.errors}>
