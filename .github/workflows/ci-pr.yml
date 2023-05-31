@@ -120,6 +120,7 @@ jobs:
               uses: pmd/pmd-github-action@v1.4.0
               id: pmd
               with:
+                  version: '6.55.0'
                   sourcePath: 'force-app'
                   rulesets: 'ruleset.xml'
 
