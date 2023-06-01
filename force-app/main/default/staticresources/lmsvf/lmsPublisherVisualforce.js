@@ -12,11 +12,11 @@ function setPageConfigs(configs) {
 // Click handler to invoke sforce.one.publish to publish
 // LMS message with payload including the Id of the selected item
 function handleContactSelected(event) {
-    // Get the DOM node that has the data-id tag on it
-    const selectedIdNode = event.path.find((item) => item.dataset.id);
+    // Get the contactId from event
+    const contactId = event.currentTarget.dataset.id;
 
     // Create LMS message payload
-    const payload = { recordId: selectedIdNode.dataset.id };
+    const payload = { recordId: contactId };
 
     // sforce.one.publish passed in from page as _pageConfigs.lmsPublish
     _pageConfigs.lmsPublish(_pageConfigs.messageChannel, payload);
