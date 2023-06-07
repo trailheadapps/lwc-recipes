@@ -14,10 +14,10 @@ jobs:
             # Install Salesforce CLI
             - name: 'Install Salesforce CLI'
               run: |
-                  npm install sfdx-cli --location=global
+                  npm install @salesforce/cli --location=global
                   nodeInstallPath=$(npm config get prefix)
                   echo "$nodeInstallPath/bin" >> $GITHUB_PATH
-                  sfdx --version
+                  sf --version
 
             # Checkout the source code
             - name: 'Checkout source code'
@@ -27,7 +27,7 @@ jobs:
             - name: 'Populate auth file with DEVHUB_SFDX_URL secret'
               shell: bash
               run: |
-                  echo ${{ secrets.DEVHUB_SFDX_URL}} > ./DEVHUB_SFDX_URL.txt
+                  echo ${{ secrets.DEVHUB_SFDX_URL }} > ./DEVHUB_SFDX_URL.txt
                   secretFileSize=$(wc -c "./DEVHUB_SFDX_URL.txt" | awk '{print $1}')
                   if [ $secretFileSize == 1 ]; then
                       echo "Missing DEVHUB_SFDX_URL secret. Is this workflow running on a fork?";
@@ -36,7 +36,7 @@ jobs:
 
             # Authenticate dev hub
             - name: 'Authenticate Dev Hub'
-              run: sfdx auth:sfdxurl:store -f ./DEVHUB_SFDX_URL.txt -a devhub -d
+              run: sf org login sfdx-url -f ./DEVHUB_SFDX_URL.txt -a devhub -d
 
             # Remove auth file
             - name: 'Remove auth file'
@@ -47,14 +47,14 @@ jobs:
               id: createPackageVersion
               run: |
                   set +e
-                  json=$(sfdx force:package:version:create -p LWCRecipes -x -w 20 -f config/project-scratch-def.json --json)
+                  json=$(sf package version create -p LWCRecipes -x -w 20 -f config/project-scratch-def.json --json)
                   echo $json
                   status=$(echo $json | jq '.status')
                   if [ $status == "0" ]; then
                       packageVersionId=$(echo $json | jq -r '.result.SubscriberPackageVersionId')
                       echo "packageVersionId=$packageVersionId" >> $GITHUB_OUTPUT
                   else
-                      echo "sfdx force:package:version:create failed"
+                      echo "Failed to create package version"
                   fi
                   exit $status
 
@@ -66,13 +66,13 @@ jobs:
 
             # Create scratch org
             - name: 'Create scratch org'
-              run: sfdx force:org:create -f config/project-scratch-def.json -a scratch-org -s -d 1
+              run: sf org create scratch -f config/project-scratch-def.json -a scratch-org -d -y 1
 
             # Install new package in scratch org
             - name: 'Install new package version in scratch org'
-              run: sfdx force:package:install -p ${{ steps.createPackageVersion.outputs.packageVersionId }} -w 10 -u scratch-org -r
+              run: sf package install -p ${{ steps.createPackageVersion.outputs.packageVersionId }} -w 10 -o scratch-org -r
 
             # Housekeeping
             - name: 'Delete scratch org'
               if: always()
-              run: sfdx force:org:delete -p -u scratch-org
+              run: sf org delete scratch -p -o scratch-org

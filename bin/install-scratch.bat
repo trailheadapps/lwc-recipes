@@ -10,26 +10,26 @@ echo Installing LWC Recipes scratch org (%ORG_ALIAS%)
 
 rem Install script
 echo Cleaning previous scratch org...
-cmd.exe /c sfdx force:org:delete -p -u %ORG_ALIAS% 2>NUL
+cmd.exe /c sf org delete scratch -p -o %ORG_ALIAS% 2>NUL
 @echo:
 
 echo Creating scratch org...
-cmd.exe /c sfdx force:org:create -s -f config/project-scratch-def.json -d 30 -a %ORG_ALIAS%
+cmd.exe /c sf org create scratch -f config/project-scratch-def.json -a %ORG_ALIAS% -d -y 30
 call :checkForError
 @echo:
 
 echo Pushing source...
-cmd.exe /c sfdx force:source:push
+cmd.exe /c sf project deploy start
 call :checkForError
 @echo:
 
 echo Assigning permission sets...
-cmd.exe /c sfdx force:user:permset:assign -n recipes
+cmd.exe /c sf org assign permset -n recipes
 call :checkForError
 @echo:
 
 echo Importing sample data...
-cmd.exe /c sfdx force:data:tree:import -p data/data-plan.json
+cmd.exe /c sf data tree import -p data/data-plan.json
 call :checkForError
 @echo:
 
@@ -38,7 +38,7 @@ rem Report install success if no error
 if ["%errorlevel%"]==["0"] (
   echo Installation completed.
   @echo:
-  cmd.exe /c sfdx force:org:open -p lightning/n/Hello
+  cmd.exe /c sf org open -p lightning/n/Hello
 )
 
 :: ======== FN ======
