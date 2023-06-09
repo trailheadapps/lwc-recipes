@@ -13,12 +13,6 @@
   "sfdcLoginUrl": "https://login.salesforce.com",
   "packageAliases": {
     "LWCRecipes": "0Ho3t000000KywNCAS",
-    "LWCRecipes@53.0.0-32": "04t3t000001sOXUAA2",
-    "LWCRecipes@54.0.0-12": "04t3t000001sOaxAAE",
-    "LWCRecipes@55.0.0-9": "04t3t000002N3CAAA0",
-    "LWCRecipes@56.0.0-1": "04t3t000002wRB7AAM",
-    "LWCRecipes@56.0.0-7": "04t3t000002wSAUAA2",
-    "LWCRecipes@57.0.0-1": "04t3t000002wSNeAAM",
     "LWCRecipes@57.0.0-2": "04t3t000002wSUgAAM"
   }
 }
