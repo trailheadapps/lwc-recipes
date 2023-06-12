@@ -4,27 +4,15 @@
       "path": "force-app",
       "default": true,
       "package": "LWCRecipes",
-      "versionName": "Spring '23",
-      "versionNumber": "57.0.0.NEXT"
+      "versionName": "Summer '23",
+      "versionNumber": "58.0.0.NEXT"
     }
   ],
   "namespace": "",
-  "sourceApiVersion": "57.0",
+  "sourceApiVersion": "58.0",
   "sfdcLoginUrl": "https://login.salesforce.com",
   "packageAliases": {
     "LWCRecipes": "0Ho3t000000KywNCAS",
-    "LWCRecipes@53.0.0-32": "04t3t000001sOXUAA2",
-    "LWCRecipes@54.0.0-12": "04t3t000001sOaxAAE",
-    "LWCRecipes@55.0.0-1": "04t3t0000026ES6AAM",
-    "LWCRecipes@55.0.0-3": "04t3t0000026EXCAA2",
-    "LWCRecipes@55.0.0-6": "04t3t000002N2lcAAC",
-    "LWCRecipes@55.0.0-8": "04t3t000002N2sdAAC",
-    "LWCRecipes@55.0.0-9": "04t3t000002N3CAAA0",
-    "LWCRecipes@56.0.0-1": "04t3t000002wRB7AAM",
-    "LWCRecipes@56.0.0-4": "04t3t000002wRGDAA2",
-    "LWCRecipes@56.0.0-6": "04t3t000002wRxEAAU",
-    "LWCRecipes@56.0.0-7": "04t3t000002wSAUAA2",
-    "LWCRecipes@57.0.0-1": "04t3t000002wSNeAAM",
     "LWCRecipes@57.0.0-2": "04t3t000002wSUgAAM"
   }
 }
