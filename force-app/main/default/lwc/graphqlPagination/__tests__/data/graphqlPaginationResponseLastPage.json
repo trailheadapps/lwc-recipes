@@ -1,0 +1,24 @@
+{
+    "uiapi": {
+        "query": {
+            "Contact": {
+                "edges": [
+                    {
+                        "node": {
+                            "Id": "003xx000004WhRAAA0",
+                            "Name": {
+                                "value": "Caroline Kingsley"
+                            }
+                        }
+                    }
+                ],
+                "pageInfo": {
+                    "endCursor": "djE6Mw==",
+                    "hasNextPage": false,
+                    "hasPreviousPage": true
+                },
+                "totalCount": 4
+            }
+        }
+    }
+}
