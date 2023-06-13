@@ -22,6 +22,7 @@ jest.mock(
     { virtual: true }
 );
 
+// Mock refreshApex module
 jest.mock(
     '@salesforce/apex',
     () => {
