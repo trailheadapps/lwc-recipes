@@ -13,7 +13,7 @@ public with sharing class ContactController {
                 Picture__c
             FROM Contact
             WHERE Picture__c != NULL
-            WITH SECURITY_ENFORCED
+            WITH USER_MODE
             LIMIT 10
         ];
     }
@@ -25,7 +25,7 @@ public with sharing class ContactController {
             SELECT Id, Name, Title, Phone, Email, Picture__c
             FROM Contact
             WHERE Name LIKE :key AND Picture__c != NULL
-            WITH SECURITY_ENFORCED
+            WITH USER_MODE
             LIMIT 10
         ];
     }
@@ -35,7 +35,7 @@ public with sharing class ContactController {
         return [
             SELECT Id, Name, Title, Phone, Email, Picture__c
             FROM Contact
-            WITH SECURITY_ENFORCED
+            WITH USER_MODE
             LIMIT 1
         ];
     }

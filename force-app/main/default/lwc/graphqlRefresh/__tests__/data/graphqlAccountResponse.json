@@ -1,0 +1,21 @@
+{
+    "uiapi": {
+        "query": {
+            "Account": {
+                "edges": [
+                    {
+                        "node": {
+                            "Id": "001xx000016QpSqAAK",
+                            "Name": {
+                                "value": "Alpha Dynamics"
+                            },
+                            "NumberOfEmployees": {
+                                "value": 415256
+                            }
+                        }
+                    }
+                ]
+            }
+        }
+    }
+}
