@@ -6,7 +6,7 @@
                     for:each={contacts.data.uiapi.query.Contact.edges}
                     for:item="contact"
                 >
-                    <p key={contact.node.Id.value}>{contact.node.Name.value}</p>
+                    <p key={contact.node.Id}>{contact.node.Name.value}</p>
                 </template>
                 <div
                     class="slds-grid slds-grid_vertical-align-center slds-var-m-horizontal_x-small"
