@@ -13,4 +13,25 @@ public with sharing class AccountController {
             LIMIT 1
         ];
     }
+
+    @AuraEnabled
+    public static void randomizeAccountData(Id accountId) {
+        try {
+            Account acc = [
+                SELECT Id, NumberOfEmployees
+                FROM Account
+                WHERE Id = :accountId
+                LIMIT 1
+            ];
+            acc.NumberOfEmployees = Integer.valueof((Math.random() * 100000));
+            update acc;
+        } catch (Exception e) {
+            throw new AccountUpdateException(
+                'Couldn\'t update account with ID ' + accountId
+            );
+        }
+    }
+
+    public class AccountUpdateException extends Exception {
+    }
 }

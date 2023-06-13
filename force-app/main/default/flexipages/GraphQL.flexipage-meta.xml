@@ -7,8 +7,8 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
+                <componentName>graphqlContacts</componentName>
                 <identifier>graphqlContacts</identifier>
-<componentName>graphqlContacts</componentName>
             </componentInstance>
         </itemInstances>
         <name>region2</name>
@@ -17,8 +17,14 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
+                <componentName>graphqlVariables</componentName>
                 <identifier>graphqlVariables</identifier>
-<componentName>graphqlVariables</componentName>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentName>graphqlRefresh</componentName>
+                <identifier>c_graphqlRefresh</identifier>
             </componentInstance>
         </itemInstances>
         <name>region3</name>
@@ -27,8 +33,8 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
+                <componentName>graphqlPagination</componentName>
                 <identifier>graphqlPagination</identifier>
-<componentName>graphqlPagination</componentName>
             </componentInstance>
         </itemInstances>
         <name>region4</name>
