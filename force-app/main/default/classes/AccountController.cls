@@ -25,7 +25,7 @@ public with sharing class AccountController {
                 LIMIT 1
             ];
             acc.NumberOfEmployees = Integer.valueof((Math.random() * 100000));
-            update acc;
+            update as user acc;
         } catch (Exception e) {
             throw new AccountUpdateException(
                 'Couldn\'t update account with ID ' + accountId
