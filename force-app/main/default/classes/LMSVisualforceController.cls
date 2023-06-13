@@ -13,7 +13,7 @@ public with sharing class LMSVisualforceController {
             SELECT Id, Name, Title, Phone, Email, Picture__c
             FROM Contact
             WHERE Id = :contactId
-            WITH SECURITY_ENFORCED
+            WITH USER_MODE
             LIMIT 1
         ];
 

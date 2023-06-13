@@ -1,7 +1,7 @@
 public with sharing class AccountController {
     @AuraEnabled(cacheable=true)
     public static List<Account> getAccountList() {
-        return [SELECT Id, Name FROM Account WITH SECURITY_ENFORCED LIMIT 10];
+        return [SELECT Id, Name FROM Account WITH USER_MODE LIMIT 10];
     }
 
     @AuraEnabled(cacheable=true)
@@ -9,7 +9,7 @@ public with sharing class AccountController {
         return [
             SELECT Id, Name, Phone, Type
             FROM Account
-            WITH SECURITY_ENFORCED
+            WITH USER_MODE
             LIMIT 1
         ];
     }
@@ -21,6 +21,7 @@ public with sharing class AccountController {
                 SELECT Id, NumberOfEmployees
                 FROM Account
                 WHERE Id = :accountId
+                WITH USER_MODE
                 LIMIT 1
             ];
             acc.NumberOfEmployees = Integer.valueof((Math.random() * 100000));
