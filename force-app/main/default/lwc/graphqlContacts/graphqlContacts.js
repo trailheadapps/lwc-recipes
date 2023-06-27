@@ -7,11 +7,7 @@ export default class GraphqlContacts extends LightningElement {
             query getContacts {
                 uiapi {
                     query {
-                        Contact(
-                            where: { Picture__c: { ne: null } }
-                            first: 5
-                            orderBy: { Name: { order: ASC } }
-                        ) {
+                        Contact(first: 5, orderBy: { Name: { order: ASC } }) {
                             edges {
                                 node {
                                     Id
@@ -19,14 +15,6 @@ export default class GraphqlContacts extends LightningElement {
                                         value
                                     }
                                     Phone {
-                                        value
-                                    }
-                                    # We specify an alias for this custom field to ensure
-                                    # that we can find it in the result even if Salesforce's
-                                    # referential integrity logic updates the name. API names
-                                    # for standard fields do not change, so no aliases are
-                                    # needed for those.
-                                    Picture__c: Picture__c {
                                         value
                                     }
                                     Title {
@@ -47,7 +35,7 @@ export default class GraphqlContacts extends LightningElement {
             Id: edge.node.Id,
             Name: edge.node.Name.value,
             Phone: edge.node.Phone.value,
-            Picture__c: edge.node.Picture__c.value,
+            Picture__c: null, // Temporary workaround for a bug that prevents using custom fields in GraphQL
             Title: edge.node.Title.value
         }));
     }
