@@ -11,7 +11,7 @@
                 </template>
             </div>
         </template>
-        <template lwc:elseif={graphql.errors}>
+        <template lwc:if={graphql.errors}>
             <c-error-panel errors={graphql.errors}></c-error-panel>
         </template>
         <c-view-source source="lwc/graphqlContacts" slot="footer">

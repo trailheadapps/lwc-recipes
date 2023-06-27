@@ -1,23 +1,27 @@
 import { LightningElement, wire } from 'lwc';
 import { gql, graphql } from 'lightning/uiGraphQLApi';
 
-export default class GraphqlContacts extends LightningElement {
+export default class GraphqlMultipleObjects extends LightningElement {
     @wire(graphql, {
         query: gql`
-            query getContacts {
+            query getAccountAndContacts {
                 uiapi {
                     query {
-                        Contact(first: 5, orderBy: { Name: { order: ASC } }) {
+                        Account(first: 5) {
                             edges {
                                 node {
                                     Id
                                     Name {
                                         value
                                     }
-                                    Phone {
-                                        value
-                                    }
-                                    Title {
+                                }
+                            }
+                        }
+                        Contact(first: 5) {
+                            edges {
+                                node {
+                                    Id
+                                    Name {
                                         value
                                     }
                                 }
@@ -30,13 +34,17 @@ export default class GraphqlContacts extends LightningElement {
     })
     graphql;
 
+    get accounts() {
+        return this.graphql.data?.uiapi.query.Account.edges.map((edge) => ({
+            Id: edge.node.Id,
+            Name: edge.node.Name.value
+        }));
+    }
+
     get contacts() {
         return this.graphql.data?.uiapi.query.Contact.edges.map((edge) => ({
             Id: edge.node.Id,
-            Name: edge.node.Name.value,
-            Phone: edge.node.Phone.value,
-            Picture__c: null, // Temporary workaround for a bug that prevents using custom fields in GraphQL
-            Title: edge.node.Title.value
+            Name: edge.node.Name.value
         }));
     }
 }
