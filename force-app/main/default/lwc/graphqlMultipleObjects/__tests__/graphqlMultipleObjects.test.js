@@ -68,7 +68,6 @@ describe('c-graphql-multiple-objects', () => {
             await flushPromises();
 
             // Verify error panel is displayed
-            // Check for error panel
             const errorPanelEl =
                 element.shadowRoot.querySelector('c-error-panel');
             expect(errorPanelEl).not.toBeNull();
