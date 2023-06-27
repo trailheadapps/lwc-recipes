@@ -11,7 +11,7 @@
             <template lwc:if={errors}>
                 <c-error-panel errors={errors}></c-error-panel>
             </template>
-            <div lwc:elseif={account}>
+            <div lwc:if={account}>
                 <div class="account-info">
                     The {account.Name} account has {account.NumberOfEmployees}
                     employees.

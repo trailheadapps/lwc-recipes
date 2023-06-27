@@ -4,7 +4,7 @@ import { gql, graphql } from 'lightning/uiGraphQLApi';
 export default class GraphqlMultipleObjects extends LightningElement {
     @wire(graphql, {
         query: gql`
-            query getContacts {
+            query getAccountAndContacts {
                 uiapi {
                     query {
                         Account(first: 5) {
@@ -12,9 +12,6 @@ export default class GraphqlMultipleObjects extends LightningElement {
                                 node {
                                     Id
                                     Name {
-                                        value
-                                    }
-                                    NumberOfEmployees {
                                         value
                                     }
                                 }
@@ -25,12 +22,6 @@ export default class GraphqlMultipleObjects extends LightningElement {
                                 node {
                                     Id
                                     Name {
-                                        value
-                                    }
-                                    Phone {
-                                        value
-                                    }
-                                    Title {
                                         value
                                     }
                                 }

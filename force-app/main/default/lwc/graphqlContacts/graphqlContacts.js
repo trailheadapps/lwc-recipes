@@ -43,7 +43,7 @@ export default class GraphqlContacts extends LightningElement {
     graphql;
 
     get contacts() {
-        return this.graphql.data.uiapi.query.Contact.edges.map((edge) => ({
+        return this.graphql.data?.uiapi.query.Contact.edges.map((edge) => ({
             Id: edge.node.Id,
             Name: edge.node.Name.value,
             Phone: edge.node.Phone.value,
