@@ -1,0 +1,30 @@
+<template>
+    <lightning-card title="GraphqlMultipleObjects" icon-name="custom:custom39">
+        <template lwc:if={accounts}>
+            <div class="slds-var-m-around_medium">
+                <b>Accounts:</b>
+                <template for:each={accounts} for:item="account">
+                    <div key={account.Id} class="accounts">
+                        <p>{account.Name}</p>
+                    </div>
+                </template>
+            </div>
+        </template>
+        <template lwc:if={contacts}>
+            <div class="slds-var-m-around_medium">
+                <b>Contacts:</b>
+                <template for:each={contacts} for:item="contact">
+                    <div key={contact.Id} class="contacts">
+                        <p>{contact.Name}</p>
+                    </div>
+                </template>
+            </div>
+        </template>
+        <template lwc:if={graphql.errors}>
+            <c-error-panel errors={graphql.errors}></c-error-panel>
+        </template>
+        <c-view-source source="lwc/graphqlMultipleObjects" slot="footer">
+            Query unrelated records with a single GraphQL query and @wire.
+        </c-view-source>
+    </lightning-card>
+</template>

@@ -37,6 +37,12 @@
                 <identifier>graphqlPagination</identifier>
             </componentInstance>
         </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentName>graphqlMultipleObjects</componentName>
+                <identifier>c_graphqlMultipleObjects</identifier>
+            </componentInstance>
+        </itemInstances>
         <name>region4</name>
         <type>Region</type>
     </flexiPageRegions>

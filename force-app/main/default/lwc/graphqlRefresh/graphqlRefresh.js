@@ -54,7 +54,8 @@ export default class GraphqlRefresh extends LightningElement {
             } else {
                 this.account = accounts[0];
             }
-        } else {
+        }
+        if (errors) {
             this.errors = errors;
         }
     }
