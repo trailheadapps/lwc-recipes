@@ -3,7 +3,7 @@ public with sharing class AccountController {
     public static List<Account> getAccountList() {
         return [SELECT Id, Name FROM Account WITH USER_MODE LIMIT 10];
     }
-
+// bala test
     @AuraEnabled(cacheable=true)
     public static Account getSingleAccount() {
         return [
