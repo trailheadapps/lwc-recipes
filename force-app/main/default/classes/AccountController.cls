@@ -4,6 +4,7 @@ public with sharing class AccountController {
         return [SELECT Id, Name FROM Account WITH USER_MODE LIMIT 10];
     }
 // bala test
+//second change
     @AuraEnabled(cacheable=true)
     public static Account getSingleAccount() {
         return [
