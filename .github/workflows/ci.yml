@@ -61,7 +61,7 @@ jobs:
     scratch-org-test:
         runs-on: trailheadapps-Ubuntu
         needs: format-lint-lwc-tests
-        if: ${{ github.actor != 'dependabot[bot]' }}
+        if: github.actor != 'dependabot[bot]'
         steps:
             # Checkout the source code
             - name: 'Checkout source code'
@@ -159,7 +159,7 @@ jobs:
             # Trigger packaging workflow if needed
             - name: 'Trigger packaging workflow if needed'
               uses: peter-evans/repository-dispatch@v2
-              if: ${{ steps.checkForChanges.outputs.hasChanges == 'true' }}
+              if: steps.checkForChanges.outputs.hasChanges == 'true'
               with:
                   token: ${{ secrets.BOT_ACCESS_TOKEN }}
                   event-type: start-packaging
