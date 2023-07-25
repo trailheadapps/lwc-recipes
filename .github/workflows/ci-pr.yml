@@ -6,10 +6,11 @@ on:
     workflow_dispatch:
     pull_request:
         types: [opened, edited, synchronize, reopened]
-        branches-ignore:
-            - prerelease/spring[2-9][0-9]
-            - prerelease/summer[2-9][0-9]
-            - prerelease/winter[2-9][0-9]
+
+# Workflow environment variables
+env:
+    # Is the PR base branch a prerelease branch
+    IS_PRERELEASE: ${{ startsWith(github.event.pull_request.base.ref, 'prerelease/') }}
 
 # Jobs to be executed
 jobs:
@@ -154,7 +155,12 @@ jobs:
 
             # Create scratch org
             - name: 'Create scratch org'
+              if: !env.IS_PRERELEASE
               run: sf org create scratch -f config/project-scratch-def.json -a scratch-org -d -y 1
+
+            # Deploy source to scratch org
+            - name: 'Push source to scratch org'
+              run: sf project deploy start
 
             # Deploy source to scratch org
             - name: 'Push source to scratch org'
@@ -211,4 +217,4 @@ jobs:
               with:
                   token: ${{ secrets.BOT_ACCESS_TOKEN }}
                   event-type: start-packaging-pr
-                  client-payload: '{ "ref": "${{ github.ref }}", "sha": "${{ github.sha }}" }'
+                  client-payload: '{ "ref": "${{ github.ref }}", "sha": "${{ github.sha }}", "isPrelease": "${{ env.IS_PRERELEASE }}" }'
