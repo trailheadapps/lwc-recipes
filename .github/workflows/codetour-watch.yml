@@ -7,7 +7,7 @@ on:
 jobs:
     codetour-watch:
         runs-on: trailheadapps-Ubuntu
-        if: ${{ github.actor != 'trailheadapps-bot' && github.actor != 'dependabot[bot]' }}
+        if: github.actor != 'trailheadapps-bot' && github.actor != 'dependabot[bot]'
         steps:
             - name: 'Checkout source code'
               uses: actions/checkout@v3
@@ -16,7 +16,7 @@ jobs:
               uses: pozil/codetour-watch@v2.0.0
 
     skip-codetour-watch:
-        if: ${{ github.actor == 'trailheadapps-bot' || github.actor == 'dependabot[bot]' }}
+        if: github.actor == 'trailheadapps-bot' || github.actor == 'dependabot[bot]'
         runs-on: trailheadapps-Ubuntu
         steps:
             - name: Noop
