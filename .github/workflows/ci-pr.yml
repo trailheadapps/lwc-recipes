@@ -153,6 +153,11 @@ jobs:
             - name: 'Authenticate Dev Hub'
               run: sf org login sfdx-url -f ./DEVHUB_SFDX_URL.txt -a devhub -d
 
+            # Create prerelease scratch org
+            - name: 'Create prerelease scratch org'
+              if: env.IS_PRERELEASE
+              run: sf org create scratch -f config/project-scratch-def.json -a scratch-org -d -y 1 --release=preview
+
             # Create scratch org
             - name: 'Create scratch org'
               if: !env.IS_PRERELEASE
