@@ -15,7 +15,7 @@
         <masterLabel>Composition Walkthrough Step 1</masterLabel>
         <publishedDate>2021-06-07</publishedDate>
         <shouldDisplayActionButton>false</shouldDisplayActionButton>
-        <shouldIgnoreGlobalDelay>false</shouldIgnoreGlobalDelay>
+        <shouldIgnoreGlobalDelay>true</shouldIgnoreGlobalDelay>
         <startDate>2020-08-06</startDate>
         <stepNumber>1</stepNumber>
         <targetPageKey1>Composition</targetPageKey1>
@@ -36,7 +36,7 @@
         <isPublished>false</isPublished>
         <masterLabel>Composition Walkthrough Step 2</masterLabel>
         <shouldDisplayActionButton>false</shouldDisplayActionButton>
-        <shouldIgnoreGlobalDelay>false</shouldIgnoreGlobalDelay>
+        <shouldIgnoreGlobalDelay>true</shouldIgnoreGlobalDelay>
         <stepNumber>2</stepNumber>
         <targetPageKey1>Events</targetPageKey1>
         <targetPageType>standard__navItemPage</targetPageType>
@@ -55,7 +55,7 @@
         <isPublished>false</isPublished>
         <masterLabel>Composition Walkthrough Step 3</masterLabel>
         <shouldDisplayActionButton>false</shouldDisplayActionButton>
-        <shouldIgnoreGlobalDelay>false</shouldIgnoreGlobalDelay>
+        <shouldIgnoreGlobalDelay>true</shouldIgnoreGlobalDelay>
         <stepNumber>3</stepNumber>
         <targetPageKey1>Parent_to_Child</targetPageKey1>
         <targetPageType>standard__navItemPage</targetPageType>
@@ -73,7 +73,7 @@
         <isPublished>false</isPublished>
         <masterLabel>Composition Walkthrough Step 4</masterLabel>
         <shouldDisplayActionButton>false</shouldDisplayActionButton>
-        <shouldIgnoreGlobalDelay>false</shouldIgnoreGlobalDelay>
+        <shouldIgnoreGlobalDelay>true</shouldIgnoreGlobalDelay>
         <stepNumber>4</stepNumber>
         <targetPageKey1>Navigation</targetPageKey1>
         <targetPageType>standard__navItemPage</targetPageType>
@@ -92,7 +92,7 @@
         <isPublished>false</isPublished>
         <masterLabel>Composition Walkthrough Step 5</masterLabel>
         <shouldDisplayActionButton>false</shouldDisplayActionButton>
-        <shouldIgnoreGlobalDelay>false</shouldIgnoreGlobalDelay>
+        <shouldIgnoreGlobalDelay>true</shouldIgnoreGlobalDelay>
         <stepNumber>5</stepNumber>
         <targetPageKey1>Aura_Interoperability</targetPageKey1>
         <targetPageType>standard__navItemPage</targetPageType>
@@ -111,7 +111,7 @@
         <isPublished>false</isPublished>
         <masterLabel>Composition Walkthrough Step 6</masterLabel>
         <shouldDisplayActionButton>false</shouldDisplayActionButton>
-        <shouldIgnoreGlobalDelay>false</shouldIgnoreGlobalDelay>
+        <shouldIgnoreGlobalDelay>true</shouldIgnoreGlobalDelay>
         <stepNumber>6</stepNumber>
         <targetPageKey1>Message_Service</targetPageKey1>
         <targetPageType>standard__navItemPage</targetPageType>
@@ -132,7 +132,7 @@
         <isPublished>false</isPublished>
         <masterLabel>Composition Walkthrough Step 7</masterLabel>
         <shouldDisplayActionButton>true</shouldDisplayActionButton>
-        <shouldIgnoreGlobalDelay>false</shouldIgnoreGlobalDelay>
+        <shouldIgnoreGlobalDelay>true</shouldIgnoreGlobalDelay>
         <stepNumber>7</stepNumber>
         <targetPageKey1>Message_Service</targetPageKey1>
         <targetPageType>standard__navItemPage</targetPageType>
