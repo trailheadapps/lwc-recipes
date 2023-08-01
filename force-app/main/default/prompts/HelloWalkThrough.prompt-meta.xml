@@ -14,10 +14,10 @@
         <masterLabel>Hello Walk Through Step 1</masterLabel>
         <publishedDate>2020-08-06</publishedDate>
         <shouldDisplayActionButton>false</shouldDisplayActionButton>
-        <shouldIgnoreGlobalDelay>false</shouldIgnoreGlobalDelay>
+        <shouldIgnoreGlobalDelay>true</shouldIgnoreGlobalDelay>
         <startDate>2020-08-06</startDate>
         <stepNumber>1</stepNumber>
-        <targetAppDeveloperName>LWC_Recipes</targetAppDeveloperName>
+        <customApplication>LWC_Recipes</customApplication>
         <targetPageKey1>Hello</targetPageKey1>
         <targetPageType>standard__navItemPage</targetPageType>
         <timesToDisplay>1</timesToDisplay>
@@ -35,9 +35,9 @@
         <isPublished>false</isPublished>
         <masterLabel>Hello Walk Through Step 2</masterLabel>
         <shouldDisplayActionButton>false</shouldDisplayActionButton>
-        <shouldIgnoreGlobalDelay>false</shouldIgnoreGlobalDelay>
+        <shouldIgnoreGlobalDelay>true</shouldIgnoreGlobalDelay>
         <stepNumber>2</stepNumber>
-        <targetAppDeveloperName>LWC_Recipes</targetAppDeveloperName>
+        <customApplication>LWC_Recipes</customApplication>
         <targetPageKey1>Hello</targetPageKey1>
         <targetPageType>standard__navItemPage</targetPageType>
         <title>What are recipes?</title>
@@ -54,9 +54,9 @@
         <isPublished>false</isPublished>
         <masterLabel>Hello Walk Through Step 3</masterLabel>
         <shouldDisplayActionButton>false</shouldDisplayActionButton>
-        <shouldIgnoreGlobalDelay>false</shouldIgnoreGlobalDelay>
+        <shouldIgnoreGlobalDelay>true</shouldIgnoreGlobalDelay>
         <stepNumber>3</stepNumber>
-        <targetAppDeveloperName>LWC_Recipes</targetAppDeveloperName>
+        <customApplication>LWC_Recipes</customApplication>
         <targetPageKey1>Hello</targetPageKey1>
         <targetPageType>standard__navItemPage</targetPageType>
         <title>Recipes tabs</title>
@@ -73,9 +73,9 @@
         <isPublished>false</isPublished>
         <masterLabel>Hello Walk Through Step 4</masterLabel>
         <shouldDisplayActionButton>false</shouldDisplayActionButton>
-        <shouldIgnoreGlobalDelay>false</shouldIgnoreGlobalDelay>
+        <shouldIgnoreGlobalDelay>true</shouldIgnoreGlobalDelay>
         <stepNumber>4</stepNumber>
-        <targetAppDeveloperName>LWC_Recipes</targetAppDeveloperName>
+        <customApplication>LWC_Recipes</customApplication>
         <targetPageKey1>Composition</targetPageKey1>
         <targetPageType>standard__navItemPage</targetPageType>
         <title>Easy access to source</title>
@@ -94,9 +94,9 @@
         <isPublished>false</isPublished>
         <masterLabel>Hello Walk Through Step 5</masterLabel>
         <shouldDisplayActionButton>true</shouldDisplayActionButton>
-        <shouldIgnoreGlobalDelay>false</shouldIgnoreGlobalDelay>
+        <shouldIgnoreGlobalDelay>true</shouldIgnoreGlobalDelay>
         <stepNumber>5</stepNumber>
-        <targetAppDeveloperName>LWC_Recipes</targetAppDeveloperName>
+        <customApplication>LWC_Recipes</customApplication>
         <targetPageKey1>Hello</targetPageKey1>
         <targetPageType>standard__navItemPage</targetPageType>
         <title>So much more to see!</title>
