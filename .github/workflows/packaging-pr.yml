@@ -69,12 +69,12 @@ jobs:
 
             # Create prerelease scratch org
             - name: 'Create prerelease scratch org'
-              if: env.IS_PRERELEASE
+              if: ${{ env.IS_PRERELEASE }}
               run: sf org create scratch -f config/project-scratch-def.json -a scratch-org -d -y 1 --release=preview
 
             # Create scratch org
             - name: 'Create scratch org'
-              if: !env.IS_PRERELEASE
+              if: ${{ !env.IS_PRERELEASE }}
               run: sf org create scratch -f config/project-scratch-def.json -a scratch-org -d -y 1
 
             # Install new package in scratch org
