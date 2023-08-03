@@ -92,24 +92,14 @@ jobs:
                   branch: 'auto/release-package-version'
                   token: ${{ secrets.BOT_ACCESS_TOKEN }}
 
-            # Approve pull request
-            - name: 'Approve pull request'
-              uses: juliangruber/approve-pull-request-action@v2
-              with:
-                  github-token: ${{ secrets.GITHUB_TOKEN }}
-                  number: ${{ steps.create-pr.outputs.pull-request-number }}
-
-            # Wait for CI to be skipped on pull request
-            - name: 'Wait for CI to be skipped on pull request'
-              run: sleep 60s
-
-            # Merge pull request
-            - name: 'Merge pull request'
-              uses: juliangruber/merge-pull-request-action@v1
-              with:
-                  github-token: ${{ secrets.GITHUB_TOKEN }}
-                  number: ${{ steps.create-pr.outputs.pull-request-number }}
-                  method: squash
+            # Approve and mark PR for auto merge
+            - name: 'Approve and mark PR for auto merge'
+              run: |
+                  gh pr review --approve "$PR_NUMBER"
+                  gh pr merge --auto --squash "$PR_NUMBER"
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                  PR_NUMBER: ${{ steps.create-pr.outputs.pull-request-number }}
 
             # Housekeeping
             - name: 'Delete scratch org'
