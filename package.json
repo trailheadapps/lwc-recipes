@@ -34,7 +34,7 @@
     },
     "devDependencies": {
         "@lwc/eslint-plugin-lwc": "^1.6.3",
-        "@prettier/plugin-xml": "^2.2.0",
+        "@prettier/plugin-xml": "^3.1.1",
         "@sa11y/jest": "^5.2.0",
         "@salesforce/eslint-config-lwc": "^3.5.2",
         "@salesforce/eslint-plugin-aura": "^2.1.0",
@@ -46,11 +46,10 @@
         "husky": "^8.0.3",
         "jest-canvas-mock": "^2.5.2",
         "lint-staged": "^13.2.3",
-        "prettier": "^2.8.8",
-        "prettier-plugin-apex": "^1.13.0"
+        "prettier": "^3.0.1",
+        "prettier-plugin-apex": "^2.0.1"
     },
     "volta": {
-        "node": "16.2.0",
-        "npm": "6.14.13"
+        "node": "18.17.0"
     }
 }
