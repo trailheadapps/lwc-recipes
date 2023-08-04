@@ -2,6 +2,10 @@
     "trailingComma": "none",
     "singleQuote": true,
     "tabWidth": 4,
+    "plugins": [
+        "prettier-plugin-apex",
+        "@prettier/plugin-xml"
+    ],
     "overrides": [
         {
             "files": "**/lwc/**/*.html",
