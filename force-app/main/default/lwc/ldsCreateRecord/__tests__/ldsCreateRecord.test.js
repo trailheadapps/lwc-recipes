@@ -78,6 +78,7 @@ describe('c-lds-create-record', () => {
 
         // Wait for any asynchronous DOM updates.
         await flushPromises();
+        await flushPromises();
 
         // Select element for validation
         const displayEl = element.shadowRoot.querySelector(

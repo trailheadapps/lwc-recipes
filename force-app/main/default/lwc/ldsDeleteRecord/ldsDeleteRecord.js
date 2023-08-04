@@ -24,27 +24,27 @@ export default class LdsDeleteRecord extends LightningElement {
         }
     }
 
-    deleteAccount(event) {
+    async deleteAccount(event) {
         const recordId = event.target.dataset.recordid;
-        deleteRecord(recordId)
-            .then(() => {
-                this.dispatchEvent(
-                    new ShowToastEvent({
-                        title: 'Success',
-                        message: 'Account deleted',
-                        variant: 'success'
-                    })
-                );
-                return refreshApex(this.wiredAccountsResult);
-            })
-            .catch((error) => {
-                this.dispatchEvent(
-                    new ShowToastEvent({
-                        title: 'Error deleting record',
-                        message: reduceErrors(error).join(', '),
-                        variant: 'error'
-                    })
-                );
-            });
+
+        try {
+            await deleteRecord(recordId);
+            this.dispatchEvent(
+                new ShowToastEvent({
+                    title: 'Success',
+                    message: 'Account deleted',
+                    variant: 'success'
+                })
+            );
+            await refreshApex(this.wiredAccountsResult);
+        } catch (error) {
+            this.dispatchEvent(
+                new ShowToastEvent({
+                    title: 'Error deleting record',
+                    message: reduceErrors(error).join(', '),
+                    variant: 'error'
+                })
+            );
+        }
     }
 }

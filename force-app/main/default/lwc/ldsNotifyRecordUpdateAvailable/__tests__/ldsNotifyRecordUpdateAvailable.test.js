@@ -56,11 +56,12 @@ describe('c-lds-notify-record-update-available', () => {
         // Emit data from @wire
         await getRecord.emit(mockGetRecord);
 
-        // Return a promise to wait for any asynchronous DOM updates.
-        return Promise.resolve().then(() => {
-            expect(firstNameEl.value).toBe('Amy');
-            expect(lastNameEl.value).toBe('Taylor');
-        });
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
+
+        // Check input values
+        expect(firstNameEl.value).toBe('Amy');
+        expect(lastNameEl.value).toBe('Taylor');
     });
 
     it('should update contact and call notifyRecordUpdateAvailable', async () => {
@@ -98,25 +99,18 @@ describe('c-lds-notify-record-update-available', () => {
         // Wait for any asynchronous DOM updates
         await flushPromises();
 
-        // Return a promise to wait for any asynchronous DOM updates.
-        return Promise.resolve()
-            .then(() => {
-                //Validate updateContact has been called
-                expect(updateContact).toHaveBeenCalledTimes(1);
-                //Validate updateContact is called with correct parameters
-                expect(updateContact.mock.calls[0]).toEqual([
-                    { firstName: 'John', lastName: 'Doe' }
-                ]);
-                //Validate notifyRecordUpdateAvailable is called
-                expect(notifyRecordUpdateAvailable).toHaveBeenCalledTimes(1);
-            })
-            .then(() => {
-                //Validate success toast handler is called
-                expect(toastHandler).toHaveBeenCalledTimes(1);
-                expect(toastHandler.mock.calls[0][0].detail.variant).toBe(
-                    'success'
-                );
-            });
+        //Validate updateContact has been called
+        expect(updateContact).toHaveBeenCalledTimes(1);
+        //Validate updateContact is called with correct parameters
+        expect(updateContact.mock.calls[0]).toEqual([
+            { firstName: 'John', lastName: 'Doe' }
+        ]);
+        //Validate notifyRecordUpdateAvailable is called
+        expect(notifyRecordUpdateAvailable).toHaveBeenCalledTimes(1);
+
+        //Validate success toast handler is called
+        expect(toastHandler).toHaveBeenCalledTimes(1);
+        expect(toastHandler.mock.calls[0][0].detail.variant).toBe('success');
     });
 
     it('displays an error toast on update record error', async () => {
@@ -147,12 +141,9 @@ describe('c-lds-notify-record-update-available', () => {
         // Wait for any asynchronous DOM updates
         await flushPromises();
 
-        // Return a promise to wait for any asynchronous DOM updates.
-        return Promise.resolve().then(() => {
-            //Validate error toast handler is called
-            expect(toastHandler).toHaveBeenCalledTimes(1);
-            expect(toastHandler.mock.calls[0][0].detail.variant).toBe('error');
-        });
+        //Validate error toast handler is called
+        expect(toastHandler).toHaveBeenCalledTimes(1);
+        expect(toastHandler.mock.calls[0][0].detail.variant).toBe('error');
     });
 
     it('is accessible when data is returned', async () => {

@@ -20,7 +20,7 @@ describe('c-wire-get-picklist-values', () => {
     }
 
     describe('getPicklistValues @wire data', () => {
-        it('renders seven lightning-input fields of type checkbox', () => {
+        it('renders seven lightning-input fields of type checkbox', async () => {
             // Create element
             const element = createElement('c-wire-get-picklist-values', {
                 is: WireGetPicklistValues
@@ -30,20 +30,17 @@ describe('c-wire-get-picklist-values', () => {
             // Emit data from @wire
             getPicklistValues.emit(mockGetPicklistValues);
 
-            // Return a promise to wait for any asynchronous DOM updates. Jest
-            // will automatically wait for the Promise chain to complete before
-            // ending the test and fail the test if the promise rejects.
-            return Promise.resolve().then(() => {
-                // Select elements for validation
-                const checkboxEls =
-                    element.shadowRoot.querySelectorAll('lightning-input');
-                expect(checkboxEls.length).toBe(
-                    mockGetPicklistValues.values.length
-                );
+            // Wait for any asynchronous DOM updates
+            await flushPromises();
 
-                checkboxEls.forEach((checkboxEl) => {
-                    expect(checkboxEl.type).toBe('checkbox');
-                });
+            // Ensures that inputs are checkboxes
+            const checkboxEls =
+                element.shadowRoot.querySelectorAll('lightning-input');
+            expect(checkboxEls.length).toBe(
+                mockGetPicklistValues.values.length
+            );
+            checkboxEls.forEach((checkboxEl) => {
+                expect(checkboxEl.type).toBe('checkbox');
             });
         });
     });

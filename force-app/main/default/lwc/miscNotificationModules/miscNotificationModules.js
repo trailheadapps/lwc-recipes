@@ -29,15 +29,13 @@ export default class MiscNotificationModules extends LightningElement {
         }
     }
 
-    handlePromptClick() {
-        LightningPrompt.open({
+    async handlePromptClick() {
+        // Returned value is input text if OK clicked or null if cancel was clicked
+        this.promptValue = await LightningPrompt.open({
             message: 'Please enter a value',
             label: 'Please Respond',
             defaultValue: 'initial value',
             theme: 'shade'
-        }).then((result) => {
-            //result is input text if OK clicked and null if cancel was clicked
-            this.promptValue = result;
         });
     }
 }

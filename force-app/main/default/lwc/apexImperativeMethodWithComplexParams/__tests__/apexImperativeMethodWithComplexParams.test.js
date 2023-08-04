@@ -140,6 +140,7 @@ describe('c-apex-imperative-method-with-complex-params', () => {
 
         // Wait for any asynchronous DOM updates
         await flushPromises();
+        await flushPromises();
 
         // Select p for validating conditionally changed text content
         const detailEl = element.shadowRoot.querySelector('p');
@@ -161,6 +162,7 @@ describe('c-apex-imperative-method-with-complex-params', () => {
         buttonEl.click();
 
         // Wait for any asynchronous DOM updates
+        await flushPromises();
         await flushPromises();
 
         const errorPanelEl = element.shadowRoot.querySelector('c-error-panel');

@@ -101,6 +101,7 @@ describe('c-composition-contact-search', () => {
 
         // Wait for any asynchronous DOM updates.
         await flushPromises();
+        await flushPromises();
 
         const contactTileEl =
             element.shadowRoot.querySelector('c-contact-tile');
@@ -132,6 +133,7 @@ describe('c-composition-contact-search', () => {
         // Wait for any asynchronous DOM updates. Jest will automatically wait
         // for the Promise chain to complete before ending the test and fail
         // the test if the promise ends in the rejected state.
+        await flushPromises();
         await flushPromises();
 
         const errorPanelEl = element.shadowRoot.querySelector('c-error-panel');
