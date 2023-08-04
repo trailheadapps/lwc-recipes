@@ -47,12 +47,8 @@ describe('c-lds-notify-record-update-available', () => {
             is: LdsNotifyRecordUpdateAvailable
         });
         document.body.appendChild(element);
-        const firstNameEl = element.shadowRoot.querySelector(
-            'lightning-input[class="first-name"]'
-        );
-        const lastNameEl = element.shadowRoot.querySelector(
-            'lightning-input[class="last-name"]'
-        );
+        const firstNameEl = element.shadowRoot.querySelector('.first-name');
+        const lastNameEl = element.shadowRoot.querySelector('.last-name');
         // Emit data from @wire
         await getRecord.emit(mockGetRecord);
 
@@ -83,12 +79,8 @@ describe('c-lds-notify-record-update-available', () => {
         await flushPromises();
 
         //Assign values to be updated in the input elements
-        const firstNameEl = element.shadowRoot.querySelector(
-            'lightning-input[class="first-name"]'
-        );
-        const lastNameEl = element.shadowRoot.querySelector(
-            'lightning-input[class="last-name"]'
-        );
+        const firstNameEl = element.shadowRoot.querySelector('.first-name');
+        const lastNameEl = element.shadowRoot.querySelector('.last-name');
         firstNameEl.value = 'John';
         lastNameEl.value = 'Doe';
 

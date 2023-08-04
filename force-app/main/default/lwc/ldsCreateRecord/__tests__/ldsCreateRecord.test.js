@@ -36,7 +36,7 @@ describe('c-lds-create-record', () => {
 
         // Select input field for simulating user input
         const inputEl = element.shadowRoot.querySelector(
-            'lightning-input[class="slds-var-m-bottom_x-small"]'
+            'lightning-input[data-id="name"]'
         );
         inputEl.value = USER_INPUT;
         inputEl.dispatchEvent(new CustomEvent('change'));
@@ -67,7 +67,7 @@ describe('c-lds-create-record', () => {
 
         // Select input field for simulating user input
         const inputEl = element.shadowRoot.querySelector(
-            'lightning-input[class="slds-var-m-bottom_x-small"]'
+            'lightning-input[data-id="name"]'
         );
         inputEl.value = USER_INPUT;
         inputEl.dispatchEvent(new CustomEvent('change'));
@@ -106,7 +106,7 @@ describe('c-lds-create-record', () => {
 
         // Select input field for simulating user input
         const inputEl = element.shadowRoot.querySelector(
-            'lightning-input[class="slds-var-m-bottom_x-small"]'
+            'lightning-input[data-id="name"]'
         );
         inputEl.value = USER_INPUT;
         inputEl.dispatchEvent(new CustomEvent('change'));
@@ -142,7 +142,7 @@ describe('c-lds-create-record', () => {
 
         // Select input field for simulating user input
         const inputEl = element.shadowRoot.querySelector(
-            'lightning-input[class="slds-var-m-bottom_x-small"]'
+            'lightning-input[data-id="name"]'
         );
         inputEl.value = USER_INPUT;
         inputEl.dispatchEvent(new CustomEvent('change'));

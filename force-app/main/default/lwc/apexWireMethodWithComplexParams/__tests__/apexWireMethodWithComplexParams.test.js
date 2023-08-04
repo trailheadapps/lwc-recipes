@@ -87,23 +87,20 @@ describe('c-apex-wire-method-with-complex-params', () => {
             document.body.appendChild(element);
 
             // Select input field for simulating string user input
-            const inputStringEl = element.shadowRoot.querySelector(
-                'lightning-input[class="string-input"]'
-            );
+            const inputStringEl =
+                element.shadowRoot.querySelector('.string-input');
             inputStringEl.value = WIRE_INPUT.someString;
             inputStringEl.dispatchEvent(new CustomEvent('change'));
 
             // Select input field for simulating number user input
-            const inputNumberEl = element.shadowRoot.querySelector(
-                'lightning-input[class="number-input"]'
-            );
+            const inputNumberEl =
+                element.shadowRoot.querySelector('.number-input');
             inputNumberEl.value = WIRE_INPUT.someInteger;
             inputNumberEl.dispatchEvent(new CustomEvent('change'));
 
             // Select input field for simulating list item user input
-            const inputListItemEl = element.shadowRoot.querySelector(
-                'lightning-input[class="list-item-input"]'
-            );
+            const inputListItemEl =
+                element.shadowRoot.querySelector('.list-item-input');
             inputListItemEl.value = WIRE_INPUT.someList.length;
             inputListItemEl.dispatchEvent(new CustomEvent('change'));
 
@@ -127,23 +124,20 @@ describe('c-apex-wire-method-with-complex-params', () => {
             document.body.appendChild(element);
 
             // Select input field for simulating string user input
-            const inputStringEl = element.shadowRoot.querySelector(
-                'lightning-input[class="string-input"]'
-            );
+            const inputStringEl =
+                element.shadowRoot.querySelector('.string-input');
             inputStringEl.value = WIRE_INPUT.someString;
             inputStringEl.dispatchEvent(new CustomEvent('change'));
 
             // Select input field for simulating number user input
-            const inputNumberEl = element.shadowRoot.querySelector(
-                'lightning-input[class="number-input"]'
-            );
+            const inputNumberEl =
+                element.shadowRoot.querySelector('.number-input');
             inputNumberEl.value = WIRE_INPUT.someInteger;
             inputNumberEl.dispatchEvent(new CustomEvent('change'));
 
             // Select input field for simulating list item user input
-            const inputListItemEl = element.shadowRoot.querySelector(
-                'lightning-input[class="list-item-input"]'
-            );
+            const inputListItemEl =
+                element.shadowRoot.querySelector('.list-item-input');
             inputListItemEl.value = WIRE_INPUT.someList.length;
             inputListItemEl.dispatchEvent(new CustomEvent('change'));
 
