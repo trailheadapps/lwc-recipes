@@ -18,6 +18,12 @@ describe('c-editRecordScreenAction', () => {
         }
     });
 
+    // Helper function to wait until the microtask queue is empty. This is needed for promise
+    // timing when calling imperative Apex.
+    async function flushPromises() {
+        return Promise.resolve();
+    }
+
     it('Test populates name from getRecord wire', async () => {
         // Create initial element
         const element = createElement('c-editRecordScreenAction', {
@@ -33,11 +39,12 @@ describe('c-editRecordScreenAction', () => {
         // Emit data from @wire
         await getRecord.emit(mockGetRecord);
 
-        // Return a promise to wait for any asynchronous DOM updates.
-        return Promise.resolve().then(() => {
-            expect(firstNameEl.value).toBe('User');
-            expect(lastNameEl.value).toBe('User');
-        });
+        // Wait for any asynchronous DOM updates.
+        await flushPromises();
+
+        // Check values
+        expect(firstNameEl.value).toBe('User');
+        expect(lastNameEl.value).toBe('User');
     });
 
     it('Test update record from updateRecord wire on save', async () => {
@@ -57,26 +64,23 @@ describe('c-editRecordScreenAction', () => {
         const inputEl = element.shadowRoot.querySelectorAll('lightning-button');
         inputEl[1].click();
 
-        // Return a promise to wait for any asynchronous DOM updates.
-        return Promise.resolve()
-            .then(() => {
-                const expectedFields = {
-                    fields: {
-                        Id: RECORD_ID,
-                        FirstName: mockGetRecord.fields.FirstName.value,
-                        LastName: mockGetRecord.fields.FirstName.value
-                    }
-                };
-                expect(updateRecord).toHaveBeenCalledTimes(1);
-                expect(updateRecord).toHaveBeenCalledWith(expectedFields);
-            })
-            .then(() => {
-                // Check if toast event has been fired
-                expect(handler).toHaveBeenCalled();
-                expect(handler.mock.calls[0][0].detail.message).toBe(
-                    TOAST_MESSAGE
-                );
-            });
+        // Wait for any asynchronous DOM updates.
+        await flushPromises();
+
+        // Check for record update
+        const expectedFields = {
+            fields: {
+                Id: RECORD_ID,
+                FirstName: mockGetRecord.fields.FirstName.value,
+                LastName: mockGetRecord.fields.FirstName.value
+            }
+        };
+        expect(updateRecord).toHaveBeenCalledTimes(1);
+        expect(updateRecord).toHaveBeenCalledWith(expectedFields);
+
+        // Check if toast event has been fired
+        expect(handler).toHaveBeenCalled();
+        expect(handler.mock.calls[0][0].detail.message).toBe(TOAST_MESSAGE);
     });
 
     it('Test close screen on Cancel', async () => {

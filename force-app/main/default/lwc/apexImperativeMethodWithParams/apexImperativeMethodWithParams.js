@@ -10,15 +10,13 @@ export default class ApexImperativeMethodWithParams extends LightningElement {
         this.searchKey = event.target.value;
     }
 
-    handleSearch() {
-        findContacts({ searchKey: this.searchKey })
-            .then((result) => {
-                this.contacts = result;
-                this.error = undefined;
-            })
-            .catch((error) => {
-                this.error = error;
-                this.contacts = undefined;
-            });
+    async handleSearch() {
+        try {
+            this.contacts = await findContacts({ searchKey: this.searchKey });
+            this.error = undefined;
+        } catch (error) {
+            this.error = error;
+            this.contacts = undefined;
+        }
     }
 }
