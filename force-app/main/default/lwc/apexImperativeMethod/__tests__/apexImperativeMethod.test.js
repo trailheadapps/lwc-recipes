@@ -75,6 +75,7 @@ describe('c-apex-imperative-method', () => {
 
         // Wait for any asynchronous DOM updates
         await flushPromises();
+        await flushPromises();
 
         const detailEls = element.shadowRoot.querySelectorAll('p:not([class])');
         expect(detailEls.length).toBe(APEX_CONTACTS_SUCCESS.length);
@@ -97,6 +98,7 @@ describe('c-apex-imperative-method', () => {
         buttonEl.click();
 
         // Wait for any asynchronous DOM updates
+        await flushPromises();
         await flushPromises();
 
         const errorPanelEl = element.shadowRoot.querySelector('c-error-panel');

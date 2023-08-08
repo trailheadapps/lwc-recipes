@@ -21,7 +21,7 @@ export default class ApexImperativeMethodWithComplexParams extends LightningElem
         this.listItemValue = event.target.value;
     }
 
-    handleButtonClick() {
+    async handleButtonClick() {
         // Creating the object that represents the shape
         // of the Apex wrapper class.
         let parameterObject = {
@@ -36,14 +36,12 @@ export default class ApexImperativeMethodWithComplexParams extends LightningElem
 
         // Calling the imperative Apex method with the JSON
         // object as parameter.
-        checkApexTypes({ wrapper: parameterObject })
-            .then((result) => {
-                this.message = result;
-                this.error = undefined;
-            })
-            .catch((error) => {
-                this.message = undefined;
-                this.error = error;
-            });
+        try {
+            this.message = await checkApexTypes({ wrapper: parameterObject });
+            this.error = undefined;
+        } catch (error) {
+            this.message = undefined;
+            this.error = error;
+        }
     }
 }

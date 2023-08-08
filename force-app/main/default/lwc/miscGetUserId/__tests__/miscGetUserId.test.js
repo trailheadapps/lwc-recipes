@@ -21,7 +21,7 @@ describe('c-misc-get-user-id', () => {
 
         // Query div element that displays user id.
         const divEl = element.shadowRoot.querySelector(
-            'div[class="slds-var-m-around_medium"]'
+            'div.slds-var-m-around_medium'
         );
         expect(divEl).not.toBeNull();
         expect(divEl.textContent).toBe('User Id:' + USER_ID);

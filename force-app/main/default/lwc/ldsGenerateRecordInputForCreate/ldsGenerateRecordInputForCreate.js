@@ -41,25 +41,24 @@ export default class LdsGenerateRecordInputForCreate extends LightningElement {
             event.target.value;
     }
 
-    createAccount() {
-        createRecord(this.recordInput)
-            .then((account) => {
-                this.dispatchEvent(
-                    new ShowToastEvent({
-                        title: 'Success',
-                        message: 'Account created, with id: ' + account.id,
-                        variant: 'success'
-                    })
-                );
-            })
-            .catch((error) => {
-                this.dispatchEvent(
-                    new ShowToastEvent({
-                        title: 'Error creating record',
-                        message: reduceErrors(error).join(', '),
-                        variant: 'error'
-                    })
-                );
-            });
+    async createAccount() {
+        try {
+            const account = await createRecord(this.recordInput);
+            this.dispatchEvent(
+                new ShowToastEvent({
+                    title: 'Success',
+                    message: 'Account created, with id: ' + account.id,
+                    variant: 'success'
+                })
+            );
+        } catch (error) {
+            this.dispatchEvent(
+                new ShowToastEvent({
+                    title: 'Error creating record',
+                    message: reduceErrors(error).join(', '),
+                    variant: 'error'
+                })
+            );
+        }
     }
 }

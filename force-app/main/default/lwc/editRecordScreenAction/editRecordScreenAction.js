@@ -28,7 +28,7 @@ export default class EditRecordScreenAction extends LightningElement {
             : null;
     }
 
-    handleSave() {
+    async handleSave() {
         const fields = {};
         fields[ID_FIELD.fieldApiName] = this.recordId;
         fields[FIRSTNAME_FIELD.fieldApiName] = this.template.querySelector(
@@ -39,27 +39,25 @@ export default class EditRecordScreenAction extends LightningElement {
         ).value;
         const recordInput = { fields };
 
-        updateRecord(recordInput)
-            .then(() => {
-                this.dispatchEvent(
-                    new ShowToastEvent({
-                        title: 'Success',
-                        message: 'Contact updated',
-                        variant: 'success'
-                    })
-                );
-
-                this.dispatchEvent(new CloseActionScreenEvent());
-            })
-            .catch((error) => {
-                this.dispatchEvent(
-                    new ShowToastEvent({
-                        title: 'Error updating record, try again...',
-                        message: error.body.message,
-                        variant: 'error'
-                    })
-                );
-            });
+        try {
+            await updateRecord(recordInput);
+            this.dispatchEvent(
+                new ShowToastEvent({
+                    title: 'Success',
+                    message: 'Contact updated',
+                    variant: 'success'
+                })
+            );
+            this.dispatchEvent(new CloseActionScreenEvent());
+        } catch (error) {
+            this.dispatchEvent(
+                new ShowToastEvent({
+                    title: 'Error updating record, try again...',
+                    message: error.body.message,
+                    variant: 'error'
+                })
+            );
+        }
     }
 
     handleCancel() {
