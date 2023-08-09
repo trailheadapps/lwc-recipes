@@ -16,7 +16,7 @@ describe('c-event-simple', () => {
     }
 
     it('increments and decrements the page value by 1 on button click', async () => {
-        // Create initial element
+        // Create component
         const element = createElement('c-event-simple', {
             is: EventSimple
         });
@@ -72,9 +72,9 @@ describe('c-event-simple', () => {
         const element = createElement('c-event-simple', {
             is: EventSimple
         });
-
         document.body.appendChild(element);
 
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 });

@@ -15,7 +15,7 @@ describe('c-view-source', () => {
         const LWC_PARAMETER = 'superLwc';
         const RESULT = BASE_URL + LWC_PARAMETER;
 
-        // Create initial element
+        // Create component
         const element = createElement('c-contact-list', {
             is: ViewSource
         });
@@ -32,9 +32,9 @@ describe('c-view-source', () => {
         const element = createElement('c-view-source', {
             is: ViewSource
         });
-
         document.body.appendChild(element);
 
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 });

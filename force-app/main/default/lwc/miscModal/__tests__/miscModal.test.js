@@ -19,12 +19,13 @@ describe('c-misc-modal', () => {
     it('shows a modal', async () => {
         const MODAL_PARAMS =
             "{ size: 'small', description: 'MiscModal displays the message in a popup',header: 'The modal header',content: 'The modal content',}";
-        // Create initial element
+        // Create component
         const element = createElement('c-misc-modal', {
             is: MiscModal
         });
         document.body.appendChild(element);
 
+        // Mock open modal
         LightningModal.open = jest.fn().mockResolvedValue(MODAL_PARAMS);
 
         // Query modal component element
@@ -42,9 +43,9 @@ describe('c-misc-modal', () => {
         const element = createElement('c-misc-modal', {
             is: MiscModal
         });
-
         document.body.appendChild(element);
 
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 });

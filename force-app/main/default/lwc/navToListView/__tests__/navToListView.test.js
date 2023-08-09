@@ -56,9 +56,9 @@ describe('c-nav-to-list-view', () => {
         const element = createElement('c-nav-to-list-view', {
             is: NavToListView
         });
-
         document.body.appendChild(element);
 
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 });

@@ -29,7 +29,7 @@ describe('c-libs-d3', () => {
     }
 
     it('contains a svg element for D3', () => {
-        // Create initial element
+        // Create component
         const element = createElement('c-libs-d3', {
             is: LibsD3
         });
@@ -44,7 +44,7 @@ describe('c-libs-d3', () => {
         const D3_JS = 'd3/d3.v5.min.js';
         const D3_CSS = 'd3/style.css';
 
-        // Create initial element
+        // Create component
         const element = createElement('c-libs-d3', {
             is: LibsD3
         });
@@ -66,7 +66,7 @@ describe('c-libs-d3', () => {
 
         loadScript.mockRejectedValue(LOAD_SCRIPT_ERROR);
 
-        // Create initial element
+        // Create component
         const element = createElement('c-libs-d3', {
             is: LibsD3
         });
@@ -77,7 +77,7 @@ describe('c-libs-d3', () => {
         // Add event listener to catch toast event
         element.addEventListener(ShowToastEventName, handler);
 
-        // Wait for any asynchronous DOM updates.
+        // Wait for any asynchronous DOM updates
         await flushPromises();
 
         // Check if toast event has been fired
@@ -90,9 +90,9 @@ describe('c-libs-d3', () => {
         const element = createElement('c-libs-d3', {
             is: LibsD3
         });
-
         document.body.appendChild(element);
 
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 });

@@ -42,7 +42,7 @@ describe('c-lds-notify-record-update-available', () => {
     }
 
     it('populates name from getRecord wire', async () => {
-        // Create initial element
+        // Create component
         const element = createElement('c-lds-notify-record-update-available', {
             is: LdsNotifyRecordUpdateAvailable
         });
@@ -61,7 +61,7 @@ describe('c-lds-notify-record-update-available', () => {
     });
 
     it('should update contact and call notifyRecordUpdateAvailable', async () => {
-        // Create element
+        // Create component
         const element = createElement('c-lds-notify-record-update-available', {
             is: LdsNotifyRecordUpdateAvailable
         });
@@ -106,7 +106,7 @@ describe('c-lds-notify-record-update-available', () => {
     });
 
     it('displays an error toast on update record error', async () => {
-        // Create element
+        // Create component
         const element = createElement('c-lds-notify-record-update-available', {
             is: LdsNotifyRecordUpdateAvailable
         });
@@ -139,7 +139,7 @@ describe('c-lds-notify-record-update-available', () => {
     });
 
     it('is accessible when data is returned', async () => {
-        // Create element
+        // Create component
         const element = createElement('c-lds-notify-record-update-available', {
             is: LdsNotifyRecordUpdateAvailable
         });
@@ -151,11 +151,12 @@ describe('c-lds-notify-record-update-available', () => {
         // Wait for any asynchronous DOM updates
         await flushPromises();
 
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 
     it('is accessible when error is returned', async () => {
-        // Create element
+        // Create component
         const element = createElement('c-lds-notify-record-update-available', {
             is: LdsNotifyRecordUpdateAvailable
         });
@@ -167,6 +168,7 @@ describe('c-lds-notify-record-update-available', () => {
         // Wait for any asynchronous DOM updates
         await flushPromises();
 
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 });

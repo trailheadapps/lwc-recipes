@@ -54,9 +54,9 @@ describe('c-nav-to-new-record', () => {
         const element = createElement('c-nav-to-new-record', {
             is: NavToNewRecord
         });
-
         document.body.appendChild(element);
 
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 });

@@ -10,7 +10,7 @@ describe('c-api-method', () => {
     });
 
     it('calls the public method "refresh" on the c-clock component', async () => {
-        // Create initial element
+        // Create component
         const element = createElement('c-api-method', {
             is: ApiMethod
         });
@@ -29,12 +29,13 @@ describe('c-api-method', () => {
     });
 
     it('is accessible', async () => {
+        // Create component
         const element = createElement('c-api-method', {
             is: ApiMethod
         });
-
         document.body.appendChild(element);
 
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 });

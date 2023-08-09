@@ -23,7 +23,7 @@ describe('c-wire-get-object-info', () => {
         it('gets called with value from lightning-input field', async () => {
             const USER_INPUT = 'Account';
 
-            // Create element
+            // Create component
             const element = createElement('c-wire-get-object-info', {
                 is: WireGetObjectInfo
             });
@@ -34,7 +34,7 @@ describe('c-wire-get-object-info', () => {
             inputEl.value = USER_INPUT;
             inputEl.dispatchEvent(new CustomEvent('change'));
 
-            // Select button for simulating user interaction
+            // Click button
             const buttonEl =
                 element.shadowRoot.querySelector('lightning-button');
             buttonEl.click();
@@ -50,7 +50,7 @@ describe('c-wire-get-object-info', () => {
         it('renders the object info value in the pre tag', async () => {
             const USER_INPUT = 'Account';
 
-            // Create element
+            // Create component
             const element = createElement('c-wire-get-object-info', {
                 is: WireGetObjectInfo
             });
@@ -62,7 +62,7 @@ describe('c-wire-get-object-info', () => {
             inputEl.value = USER_INPUT;
             inputEl.dispatchEvent(new CustomEvent('change'));
 
-            // Select button for simulating user interaction
+            // Click button
             const buttonEl =
                 element.shadowRoot.querySelector('lightning-button');
             buttonEl.click();
@@ -83,7 +83,7 @@ describe('c-wire-get-object-info', () => {
 
     describe('getObjectInfo @wire error', () => {
         it('shows error panel element', async () => {
-            // Create initial element
+            // Create component
             const element = createElement('c-wire-get-object-info', {
                 is: WireGetObjectInfo
             });
@@ -95,6 +95,7 @@ describe('c-wire-get-object-info', () => {
             // Wait for any asynchronous DOM updates
             await flushPromises();
 
+            // Check for error panel
             const errorPanelEl =
                 element.shadowRoot.querySelector('c-error-panel');
             expect(errorPanelEl).not.toBeNull();
@@ -102,7 +103,7 @@ describe('c-wire-get-object-info', () => {
     });
 
     it('is accessible when object info returned', async () => {
-        // Create element
+        // Create component
         const element = createElement('c-wire-get-object-info', {
             is: WireGetObjectInfo
         });
@@ -114,11 +115,12 @@ describe('c-wire-get-object-info', () => {
         // Wait for any asynchronous DOM updates
         await flushPromises();
 
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 
     it('is accessible when error returned', async () => {
-        // Create element
+        // Create component
         const element = createElement('c-wire-get-object-info', {
             is: WireGetObjectInfo
         });
@@ -130,6 +132,7 @@ describe('c-wire-get-object-info', () => {
         // Wait for any asynchronous DOM updates
         await flushPromises();
 
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 });

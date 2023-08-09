@@ -38,10 +38,10 @@ describe('c-light-dom-query-child', () => {
         const element = createElement('c-light-dom-query-child', {
             is: LightDomQueryChild
         });
-
         document.body.appendChild(element);
 
         //Verify component is accessible
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 });

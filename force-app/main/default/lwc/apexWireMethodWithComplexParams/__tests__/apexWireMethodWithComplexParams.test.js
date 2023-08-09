@@ -58,7 +58,7 @@ describe('c-apex-wire-method-with-complex-params', () => {
 
     describe('checkApexTypes @wire data', () => {
         it('gets called with a default configuration', async () => {
-            // Create initial element
+            // Create component
             const element = createElement(
                 'c-apex-wire-method-with-complex-params',
                 {
@@ -77,7 +77,7 @@ describe('c-apex-wire-method-with-complex-params', () => {
         });
 
         it('updates the wire parameter based on user input', async () => {
-            // Create initial element
+            // Create component
             const element = createElement(
                 'c-apex-wire-method-with-complex-params',
                 {
@@ -114,7 +114,7 @@ describe('c-apex-wire-method-with-complex-params', () => {
         });
 
         it('returns a string value based on user input values', async () => {
-            // Create initial element
+            // Create component
             const element = createElement(
                 'c-apex-wire-method-with-complex-params',
                 {
@@ -155,7 +155,7 @@ describe('c-apex-wire-method-with-complex-params', () => {
 
     describe('checkApexTypes @wire error', () => {
         it('renders the error panel when the Apex method returns an error', async () => {
-            // Create initial element
+            // Create component
             const element = createElement(
                 'c-apex-imperative-method-with-params',
                 {
@@ -170,6 +170,7 @@ describe('c-apex-wire-method-with-complex-params', () => {
             // Wait for any asynchronous DOM updates
             await flushPromises();
 
+            // Check for error panel
             const errorPanelEl =
                 element.shadowRoot.querySelector('c-error-panel');
             expect(errorPanelEl).not.toBeNull();
@@ -177,7 +178,7 @@ describe('c-apex-wire-method-with-complex-params', () => {
     });
 
     it('is accessible when data returned', async () => {
-        // Create initial element
+        // Create component
         const element = createElement(
             'c-apex-wire-method-with-complex-params',
             {
@@ -192,11 +193,12 @@ describe('c-apex-wire-method-with-complex-params', () => {
         // Wait for any asynchronous DOM updates
         await flushPromises();
 
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 
     it('is accessible when error returned', async () => {
-        // Create initial element
+        // Create component
         const element = createElement(
             'c-apex-wire-method-with-complex-params',
             {
@@ -211,6 +213,7 @@ describe('c-apex-wire-method-with-complex-params', () => {
         // Wait for any asynchronous DOM updates
         await flushPromises();
 
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 });

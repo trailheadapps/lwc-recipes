@@ -66,9 +66,9 @@ describe('c-nav-to-new-record', () => {
         const element = createElement('c-nav-to-new-record-with-defaults', {
             is: NavToNewRecordWithDefaults
         });
-
         document.body.appendChild(element);
 
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 });

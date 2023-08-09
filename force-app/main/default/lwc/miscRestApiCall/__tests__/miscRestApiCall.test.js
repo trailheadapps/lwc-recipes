@@ -47,7 +47,7 @@ describe('c-misc-rest-api-call', () => {
         const USER_INPUT = 'Harry Potter';
         const QUERY_INPUT = QUERY_URL + USER_INPUT;
 
-        // Create initial element
+        // Create component
         const element = createElement('c-misc-rest-api-call', {
             is: MiscRestApiCall
         });
@@ -67,6 +67,7 @@ describe('c-misc-rest-api-call', () => {
         const buttonEl = element.shadowRoot.querySelector('lightning-button');
         buttonEl.click();
 
+        // Wait for any asynchronous DOM updates
         await flushPromises();
 
         // Validating that fetch has been called with the
@@ -76,7 +77,7 @@ describe('c-misc-rest-api-call', () => {
     });
 
     it('renders no book details on default', () => {
-        // Create initial element
+        // Create component
         const element = createElement('c-misc-rest-api-call', {
             is: MiscRestApiCall
         });
@@ -93,7 +94,7 @@ describe('c-misc-rest-api-call', () => {
             (book) => book.volumeInfo.title
         );
 
-        // Create initial element
+        // Create component
         const element = createElement('c-misc-rest-api-call', {
             is: MiscRestApiCall
         });
@@ -111,7 +112,9 @@ describe('c-misc-rest-api-call', () => {
         const buttonEl = element.shadowRoot.querySelector('lightning-button');
         buttonEl.click();
 
+        // Wait for any asynchronous DOM updates
         await flushPromises();
+
         // Validating that as many p elements are rendered as book items are
         // returned by fetch, and that they are populated with the book titles.
         const EXPECTED = Array.from(
@@ -121,7 +124,7 @@ describe('c-misc-rest-api-call', () => {
     });
 
     it('renders an error message when the API request returns an error', async () => {
-        // Create initial element
+        // Create component
         const element = createElement('c-misc-rest-api-call', {
             is: MiscRestApiCall
         });
@@ -134,15 +137,16 @@ describe('c-misc-rest-api-call', () => {
         const buttonEl = element.shadowRoot.querySelector('lightning-button');
         buttonEl.click();
 
-        // Wait for any asynchronous DOM updates.
+        // Wait for any asynchronous DOM updates
         await flushPromises();
 
+        // Check for error panel
         const errorPanelEl = element.shadowRoot.querySelector('c-error-panel');
         expect(errorPanelEl).not.toBeNull();
     });
 
     it('is accessible when data is returned', async () => {
-        // Create initial element
+        // Create component
         const element = createElement('c-misc-rest-api-call', {
             is: MiscRestApiCall
         });
@@ -158,11 +162,12 @@ describe('c-misc-rest-api-call', () => {
         // Wait for any asynchronous DOM updates
         await flushPromises();
 
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 
     it('is accessible when error is returned', async () => {
-        // Create initial element
+        // Create component
         const element = createElement('c-misc-rest-api-call', {
             is: MiscRestApiCall
         });
@@ -178,6 +183,7 @@ describe('c-misc-rest-api-call', () => {
         // Wait for any asynchronous DOM updates
         await flushPromises();
 
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 });

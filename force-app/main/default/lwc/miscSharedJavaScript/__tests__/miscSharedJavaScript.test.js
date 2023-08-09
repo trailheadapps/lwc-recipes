@@ -36,13 +36,13 @@ describe('c-misc-shared-java-script', () => {
         return Promise.resolve();
     }
     it('calculates mortgage with default values', async () => {
-        // Create initial element
+        // Create component
         const element = createElement('c-misc-shared-java-script', {
             is: MiscSharedJavaScript
         });
         document.body.appendChild(element);
 
-        // Select button for simulating user interaction
+        // Click button
         const buttonEl = element.shadowRoot.querySelector('lightning-button');
         buttonEl.click();
 
@@ -58,7 +58,7 @@ describe('c-misc-shared-java-script', () => {
     });
 
     it('calculates mortgage with custom values', async () => {
-        // Create initial element
+        // Create component
         const element = createElement('c-misc-shared-java-script', {
             is: MiscSharedJavaScript
         });
@@ -83,7 +83,7 @@ describe('c-misc-shared-java-script', () => {
         lightningComboboxEl.value = TERM_CUSTOM;
         lightningComboboxEl.dispatchEvent(new CustomEvent('change'));
 
-        // Select button for simulating user interaction
+        // Click button
         const buttonEl = element.shadowRoot.querySelector('lightning-button');
         buttonEl.click();
 
@@ -102,9 +102,9 @@ describe('c-misc-shared-java-script', () => {
         const element = createElement('c-misc-shared-java-script', {
             is: MiscSharedJavaScript
         });
-
         document.body.appendChild(element);
 
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 });

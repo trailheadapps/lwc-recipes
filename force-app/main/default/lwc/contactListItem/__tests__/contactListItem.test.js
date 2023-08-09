@@ -20,7 +20,7 @@ describe('c-contact-list-item', () => {
     });
 
     it('shows contact name and image based on public property', () => {
-        // Create initial element
+        // Create component
         const element = createElement('c-contact-list-item', {
             is: ContactListItem
         });
@@ -38,7 +38,7 @@ describe('c-contact-list-item', () => {
     it('fires select event when clicked', () => {
         const mockSelectHandler = jest.fn();
 
-        // Create initial element
+        // Create component
         const element = createElement('c-contact-list-item', {
             is: ContactListItem
         });
@@ -64,6 +64,7 @@ describe('c-contact-list-item', () => {
         element.contact = CONTACT;
         document.body.appendChild(element);
 
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 });

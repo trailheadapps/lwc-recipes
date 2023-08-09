@@ -20,7 +20,7 @@ describe('c-misc-notification-modules', () => {
     }
 
     it('shows an alert notification', async () => {
-        // Create initial element
+        // Create component
         const element = createElement('c-misc-notification-modules', {
             is: MiscNotificationModules
         });
@@ -28,7 +28,7 @@ describe('c-misc-notification-modules', () => {
 
         LightningAlert.open = jest.fn().mockResolvedValue();
 
-        // Select button for simulating user input
+        // Click button
         const alertButton = element.shadowRoot.querySelector(
             'lightning-button.alertButton'
         );
@@ -42,7 +42,7 @@ describe('c-misc-notification-modules', () => {
     });
 
     it('shows a confirm notification and text when ok', async () => {
-        // Create initial element
+        // Create component
         const element = createElement('c-misc-notification-modules', {
             is: MiscNotificationModules
         });
@@ -50,7 +50,7 @@ describe('c-misc-notification-modules', () => {
 
         LightningConfirm.open = jest.fn().mockResolvedValue(true);
 
-        // Select button for simulating user input
+        // Click button
         const confirmButton = element.shadowRoot.querySelector(
             'lightning-button.confirmButton'
         );
@@ -65,7 +65,6 @@ describe('c-misc-notification-modules', () => {
         // Check if event has been fired
         const confirmResult =
             element.shadowRoot.querySelector('p.confirmResult');
-
         expect(LightningConfirm.open).toHaveBeenCalledTimes(1);
         expect(confirmResult.textContent).toBe(
             'Confirm Status: Ok was clicked'
@@ -73,7 +72,7 @@ describe('c-misc-notification-modules', () => {
     });
 
     it('shows a confirm notification and text when cancelled', async () => {
-        // Create initial element
+        // Create component
         const element = createElement('c-misc-notification-modules', {
             is: MiscNotificationModules
         });
@@ -81,7 +80,7 @@ describe('c-misc-notification-modules', () => {
 
         LightningConfirm.open = jest.fn().mockResolvedValue(false);
 
-        // Select button for simulating user input
+        // Click button
         const confirmButton = element.shadowRoot.querySelector(
             'lightning-button.confirmButton'
         );
@@ -96,7 +95,6 @@ describe('c-misc-notification-modules', () => {
         // Check if event has been fired
         const confirmResult =
             element.shadowRoot.querySelector('p.confirmResult');
-
         expect(LightningConfirm.open).toHaveBeenCalledTimes(1);
         expect(confirmResult.textContent).toBe(
             'Confirm Status: Cancel was clicked'
@@ -106,7 +104,7 @@ describe('c-misc-notification-modules', () => {
     it('shows a prompt notification and entered text', async () => {
         const PROMPT_VALUE = 'test value';
 
-        // Create initial element
+        // Create component
         const element = createElement('c-misc-notification-modules', {
             is: MiscNotificationModules
         });
@@ -114,7 +112,7 @@ describe('c-misc-notification-modules', () => {
 
         LightningPrompt.open = jest.fn().mockResolvedValue(PROMPT_VALUE);
 
-        // Select button for simulating user input
+        // Click button
         const promptButton = element.shadowRoot.querySelector(
             'lightning-button.promptButton'
         );
@@ -128,7 +126,6 @@ describe('c-misc-notification-modules', () => {
 
         // Check if event has been fired
         const promptResult = element.shadowRoot.querySelector('p.promptResult');
-
         expect(LightningPrompt.open).toHaveBeenCalledTimes(1);
         expect(promptResult.textContent).toBe(
             'Entered value is: ' + PROMPT_VALUE
@@ -136,7 +133,7 @@ describe('c-misc-notification-modules', () => {
     });
 
     it('shows a prompt notification and text when cancelled', async () => {
-        // Create initial element
+        // Create component
         const element = createElement('c-misc-notification-modules', {
             is: MiscNotificationModules
         });
@@ -144,7 +141,7 @@ describe('c-misc-notification-modules', () => {
 
         LightningPrompt.open = jest.fn().mockResolvedValue(null);
 
-        // Select button for simulating user input
+        // Click button
         const promptButton = element.shadowRoot.querySelector(
             'lightning-button.promptButton'
         );
@@ -158,7 +155,6 @@ describe('c-misc-notification-modules', () => {
 
         // Check if event has been fired
         const promptResult = element.shadowRoot.querySelector('p.promptResult');
-
         expect(LightningPrompt.open).toHaveBeenCalledTimes(1);
         expect(promptResult.textContent).toBe('Entered value is: ');
     });
@@ -167,9 +163,9 @@ describe('c-misc-notification-modules', () => {
         const element = createElement('c-misc-notification-modules', {
             is: MiscNotificationModules
         });
-
         document.body.appendChild(element);
 
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 });

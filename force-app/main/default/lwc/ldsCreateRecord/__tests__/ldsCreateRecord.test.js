@@ -41,11 +41,11 @@ describe('c-lds-create-record', () => {
         inputEl.value = USER_INPUT;
         inputEl.dispatchEvent(new CustomEvent('change'));
 
-        // Select button for simulating user interaction
+        // Click button
         const buttonEl = element.shadowRoot.querySelector('lightning-button');
         buttonEl.click();
 
-        // Wait for any asynchronous DOM updates.
+        // Wait for any asynchronous DOM updates
         await flushPromises();
 
         // Validate createRecord call
@@ -72,11 +72,11 @@ describe('c-lds-create-record', () => {
         inputEl.value = USER_INPUT;
         inputEl.dispatchEvent(new CustomEvent('change'));
 
-        // Select button for simulating user interaction
+        // Click button
         const buttonEl = element.shadowRoot.querySelector('lightning-button');
         buttonEl.click();
 
-        // Wait for any asynchronous DOM updates.
+        // Wait for any asynchronous DOM updates
         await flushPromises();
         await flushPromises();
 
@@ -111,11 +111,11 @@ describe('c-lds-create-record', () => {
         inputEl.value = USER_INPUT;
         inputEl.dispatchEvent(new CustomEvent('change'));
 
-        // Select button for simulating user interaction
+        // Click button
         const buttonEl = element.shadowRoot.querySelector('lightning-button');
         buttonEl.click();
 
-        // Wait for any asynchronous DOM updates.
+        // Wait for any asynchronous DOM updates
         await flushPromises();
 
         // Check if toast event has been fired
@@ -147,11 +147,11 @@ describe('c-lds-create-record', () => {
         inputEl.value = USER_INPUT;
         inputEl.dispatchEvent(new CustomEvent('change'));
 
-        // Select button for simulating user interaction
+        // Click button
         const buttonEl = element.shadowRoot.querySelector('lightning-button');
         buttonEl.click();
 
-        // Wait for any asynchronous DOM updates.
+        // Wait for any asynchronous DOM updates
         await flushPromises();
 
         // Check if toast event has been fired
@@ -163,9 +163,9 @@ describe('c-lds-create-record', () => {
         const element = createElement('c-lds-create-record', {
             is: LdsCreateRecord
         });
-
         document.body.appendChild(element);
 
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 });

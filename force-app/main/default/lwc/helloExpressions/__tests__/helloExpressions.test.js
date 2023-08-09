@@ -34,7 +34,7 @@ describe('c-hello-expressions', () => {
     }
 
     it('displays first name as uppercase', async () => {
-        // Create initial element
+        // Create component
         const element = createElement('c-hello-expressions', {
             is: HelloExpressions
         });
@@ -51,7 +51,7 @@ describe('c-hello-expressions', () => {
     });
 
     it('displays last name as uppercase', async () => {
-        // Create initial element
+        // Create component
         const element = createElement('c-hello-expressions', {
             is: HelloExpressions
         });
@@ -68,7 +68,7 @@ describe('c-hello-expressions', () => {
     });
 
     it('displays first and last name as uppercase', async () => {
-        // Create initial element
+        // Create component
         const element = createElement('c-hello-expressions', {
             is: HelloExpressions
         });
@@ -88,9 +88,9 @@ describe('c-hello-expressions', () => {
         const element = createElement('c-hello-expressions', {
             is: HelloExpressions
         });
-
         document.body.appendChild(element);
 
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 });

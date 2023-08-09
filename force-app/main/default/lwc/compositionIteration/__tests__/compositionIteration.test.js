@@ -10,7 +10,7 @@ describe('c-composition-iteration', () => {
     });
 
     it('renders three contact tiles', () => {
-        // Create initial element
+        // Create component
         const element = createElement('c-composition-iteration', {
             is: CompositionIteration
         });
@@ -23,7 +23,7 @@ describe('c-composition-iteration', () => {
     });
 
     it('renders contact tiles that contain specific names as contact tile data', () => {
-        // Create initial element
+        // Create component
         const element = createElement('c-composition-basics', {
             is: CompositionIteration
         });
@@ -45,9 +45,9 @@ describe('c-composition-iteration', () => {
         const element = createElement('c-composition-iteration', {
             is: CompositionIteration
         });
-
         document.body.appendChild(element);
 
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 });

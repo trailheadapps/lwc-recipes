@@ -18,7 +18,7 @@ describe('c-hello-binding', () => {
     it('displays greeting specified by change event target', async () => {
         const EXPECTED_NAME = 'Codey';
 
-        // Create element
+        // Create component
         const element = createElement('c-hello-binding', {
             is: HelloBinding
         });
@@ -41,9 +41,9 @@ describe('c-hello-binding', () => {
         const element = createElement('c-hello-binding', {
             is: HelloBinding
         });
-
         document.body.appendChild(element);
 
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 });

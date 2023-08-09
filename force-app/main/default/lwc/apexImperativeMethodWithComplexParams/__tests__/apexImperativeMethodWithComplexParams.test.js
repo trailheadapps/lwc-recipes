@@ -54,7 +54,7 @@ describe('c-apex-imperative-method-with-complex-params', () => {
         // Assign mock value for resolved Apex promise
         checkApexTypes.mockResolvedValue(APEX_SUCCESS);
 
-        // Create initial element
+        // Create component
         const element = createElement(
             'c-apex-imperative-method-with-complex-params',
             {
@@ -79,7 +79,7 @@ describe('c-apex-imperative-method-with-complex-params', () => {
         inputListItemEl.value = APEX_PARAMETER.someList.length;
         inputListItemEl.dispatchEvent(new CustomEvent('change'));
 
-        // Select button for executing Apex call
+        // Click button
         const buttonEl = element.shadowRoot.querySelector('lightning-button');
         buttonEl.click();
 
@@ -97,7 +97,7 @@ describe('c-apex-imperative-method-with-complex-params', () => {
         // Assign mock value for resolved Apex promise
         checkApexTypes.mockResolvedValue(APEX_SUCCESS);
 
-        // Create initial element
+        // Create component
         const element = createElement(
             'c-apex-imperative-method-with-complex-params',
             {
@@ -122,7 +122,7 @@ describe('c-apex-imperative-method-with-complex-params', () => {
         inputListItemEl.value = APEX_PARAMETER.someList.length;
         inputListItemEl.dispatchEvent(new CustomEvent('change'));
 
-        // Select button for executing Apex call
+        // Click button
         const buttonEl = element.shadowRoot.querySelector('lightning-button');
         buttonEl.click();
 
@@ -139,13 +139,13 @@ describe('c-apex-imperative-method-with-complex-params', () => {
         // Assing mock value for rejected Apex promise
         checkApexTypes.mockRejectedValue(APEX_ERROR);
 
-        // Create initial element
+        // Create component
         const element = createElement('c-apex-imperative-method-with-params', {
             is: ApexImperativeMethodWithComplexParams
         });
         document.body.appendChild(element);
 
-        // Select button for executing Apex call
+        // Click button
         const buttonEl = element.shadowRoot.querySelector('lightning-button');
         buttonEl.click();
 
@@ -153,20 +153,22 @@ describe('c-apex-imperative-method-with-complex-params', () => {
         await flushPromises();
         await flushPromises();
 
+        // Check for error panel
         const errorPanelEl = element.shadowRoot.querySelector('c-error-panel');
         expect(errorPanelEl).not.toBeNull();
     });
 
     it('is accessible on initialization', async () => {
+        // Create component
         const element = createElement(
             'c-apex-imperative-method-with-complex-params',
             {
                 is: ApexImperativeMethodWithComplexParams
             }
         );
-
         document.body.appendChild(element);
 
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 
@@ -174,19 +176,20 @@ describe('c-apex-imperative-method-with-complex-params', () => {
         // Assing mock value for rejected Apex promise
         checkApexTypes.mockRejectedValue(APEX_ERROR);
 
-        // Create initial element
+        // Create component
         const element = createElement('c-apex-imperative-method-with-params', {
             is: ApexImperativeMethodWithComplexParams
         });
         document.body.appendChild(element);
 
-        // Select button for executing Apex call
+        // Click button
         const buttonEl = element.shadowRoot.querySelector('lightning-button');
         buttonEl.click();
 
         // Wait for any asynchronous DOM updates
         await flushPromises();
 
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 });

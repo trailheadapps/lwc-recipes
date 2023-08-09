@@ -28,7 +28,7 @@ describe('c-libs-full-calendar', () => {
     }
 
     it('contains a div element for FullCalendar', () => {
-        // Create initial element
+        // Create component
         const element = createElement('c-libs-full-calendar', {
             is: LibsFullCalendar
         });
@@ -43,7 +43,7 @@ describe('c-libs-full-calendar', () => {
         const FULL_CALENDAR_JS = 'fullCalendar/main.min.js';
         const FULL_CALENDAR_CSS = 'fullCalendar/main.min.css';
 
-        // Create initial element
+        // Create component
         const element = createElement('c-libs-full-calendar', {
             is: LibsFullCalendar
         });
@@ -62,16 +62,17 @@ describe('c-libs-full-calendar', () => {
     it('displays error panel if the static resource cannot be loaded', async () => {
         loadScript.mockRejectedValue(LOAD_SCRIPT_ERROR);
 
-        // Create initial element
+        // Create component
         const element = createElement('c-libs-full-calendar', {
             is: LibsFullCalendar
         });
         document.body.appendChild(element);
 
-        // Wait for any asynchronous DOM updates.
+        // Wait for any asynchronous DOM updates
         await flushPromises();
 
         // Check if error panel is displayed
+        // Check for error panel
         const errorPanelEl = element.shadowRoot.querySelector('c-error-panel');
         expect(errorPanelEl).not.toBeNull();
     });
@@ -82,12 +83,12 @@ describe('c-libs-full-calendar', () => {
         const element = createElement('c-libs-full-calendar', {
             is: LibsFullCalendar
         });
-
         document.body.appendChild(element);
 
-        // Wait for any asynchronous DOM updates.
+        // Wait for any asynchronous DOM updates
         await flushPromises();
 
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 
@@ -95,9 +96,9 @@ describe('c-libs-full-calendar', () => {
         const element = createElement('c-libs-full-calendar', {
             is: LibsFullCalendar
         });
-
         document.body.appendChild(element);
 
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 });

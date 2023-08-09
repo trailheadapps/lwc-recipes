@@ -16,7 +16,7 @@ describe('c-child', () => {
     }
 
     it('renders c-child component with the welcome message', async () => {
-        // Create initial element
+        // Create component
         const element = createElement('c-child', {
             is: Child
         });
@@ -44,14 +44,15 @@ describe('c-child', () => {
     });
 
     it('is accessible', async () => {
+        // Create component
         const element = createElement('c-child', {
             is: Child
         });
-
         element.firstName = 'Amy';
         element.lastName = 'Taylor';
         document.body.appendChild(element);
 
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 });

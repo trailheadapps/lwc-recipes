@@ -49,7 +49,7 @@ describe('c-graphql-refresh', () => {
 
     describe('graphql @wire data', () => {
         it('renders account info', async () => {
-            // Create element
+            // Create component
             const element = createElement('c-graphql-refresh', {
                 is: GraphqlRefresh
             });
@@ -72,7 +72,7 @@ describe('c-graphql-refresh', () => {
         });
 
         it('renders error when no account found', async () => {
-            // Create element
+            // Create component
             const element = createElement('c-graphql-refresh', {
                 is: GraphqlRefresh
             });
@@ -85,13 +85,14 @@ describe('c-graphql-refresh', () => {
             await flushPromises();
 
             // Verify error panel is displayed
+            // Check for error panel
             const errorPanelEl =
                 element.shadowRoot.querySelector('c-error-panel');
             expect(errorPanelEl).not.toBeNull();
         });
 
         it('is accessible when data returned', async () => {
-            // Create element
+            // Create component
             const element = createElement('c-graphql-refresh', {
                 is: GraphqlRefresh
             });
@@ -103,13 +104,14 @@ describe('c-graphql-refresh', () => {
             // Wait for any asynchronous DOM updates
             await flushPromises();
 
+            // Check accessibility
             await expect(element).toBeAccessible();
         });
     });
 
     describe('graphql @wire error', () => {
         it('shows error panel element', async () => {
-            // Create initial element
+            // Create component
             const element = createElement('c-graphql-refresh', {
                 is: GraphqlRefresh
             });
@@ -122,13 +124,14 @@ describe('c-graphql-refresh', () => {
             await flushPromises();
 
             // Verify error panel is displayed
+            // Check for error panel
             const errorPanelEl =
                 element.shadowRoot.querySelector('c-error-panel');
             expect(errorPanelEl).not.toBeNull();
         });
 
         it('is accessible when error returned', async () => {
-            // Create initial element
+            // Create component
             const element = createElement('c-graphql-refresh', {
                 is: GraphqlRefresh
             });
@@ -140,13 +143,14 @@ describe('c-graphql-refresh', () => {
             // Wait for any asynchronous DOM updates
             await flushPromises();
 
+            // Check accessibility
             await expect(element).toBeAccessible();
         });
     });
 
     describe('graphql refresh', () => {
         it('calls refreshGraphQL when refresh is clicked', async () => {
-            // Create element
+            // Create component
             const element = createElement('c-graphql-refresh', {
                 is: GraphqlRefresh
             });
@@ -170,7 +174,7 @@ describe('c-graphql-refresh', () => {
 
     describe('randomize account data', () => {
         it('calls randomizeAccountData when randomize is clicked', async () => {
-            // Create element
+            // Create component
             const element = createElement('c-graphql-refresh', {
                 is: GraphqlRefresh
             });

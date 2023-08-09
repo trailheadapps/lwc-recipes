@@ -20,7 +20,7 @@ describe('c-contact-tile', () => {
     });
 
     it('renders picture, name, title, and phone number based on public property input', () => {
-        // Create initial element
+        // Create component
         const element = createElement('c-contact-tile', {
             is: ContactTile
         });
@@ -45,7 +45,7 @@ describe('c-contact-tile', () => {
     it('renders an informational message if public property is not set', () => {
         const MESSAGE = 'No contact data available.';
 
-        // Create initial element
+        // Create component
         const element = createElement('c-contact-tile', {
             is: ContactTile
         });
@@ -64,6 +64,7 @@ describe('c-contact-tile', () => {
         element.contact = CONTACT_INPUT;
         document.body.appendChild(element);
 
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 });
