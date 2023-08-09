@@ -21,7 +21,7 @@ describe('c-todo-list', () => {
     }
 
     it('renders without any list items as default', () => {
-        // Create initial element
+        // Create component
         const element = createElement('c-todo-list', {
             is: TodoList
         });
@@ -35,7 +35,7 @@ describe('c-todo-list', () => {
     it('renders multiple list items', () => {
         const todosLength = TODOS.length;
 
-        // Create initial element
+        // Create component
         const element = createElement('c-todo-list', {
             is: TodoList
         });
@@ -49,7 +49,7 @@ describe('c-todo-list', () => {
     });
 
     it('renders the content of the first todo item', async () => {
-        // Create initial element
+        // Create component
         const element = createElement('c-todo-list', {
             is: TodoList
         });
@@ -68,7 +68,7 @@ describe('c-todo-list', () => {
     });
 
     it('is accessible when todo items added', async () => {
-        // Create initial element
+        // Create component
         const element = createElement('c-todo-list', {
             is: TodoList
         });
@@ -76,6 +76,7 @@ describe('c-todo-list', () => {
         element.todos = TODOS;
         document.body.appendChild(element);
 
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 });

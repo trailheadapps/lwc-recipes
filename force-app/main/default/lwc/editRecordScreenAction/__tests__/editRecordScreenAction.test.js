@@ -25,7 +25,7 @@ describe('c-editRecordScreenAction', () => {
     }
 
     it('Test populates name from getRecord wire', async () => {
-        // Create initial element
+        // Create component
         const element = createElement('c-editRecordScreenAction', {
             is: EditRecordScreenAction
         });
@@ -39,7 +39,7 @@ describe('c-editRecordScreenAction', () => {
         // Emit data from @wire
         await getRecord.emit(mockGetRecord);
 
-        // Wait for any asynchronous DOM updates.
+        // Wait for any asynchronous DOM updates
         await flushPromises();
 
         // Check values
@@ -48,7 +48,7 @@ describe('c-editRecordScreenAction', () => {
     });
 
     it('Test update record from updateRecord wire on save', async () => {
-        // Create initial element
+        // Create component
         const element = createElement('c-editRecordScreenAction', {
             is: EditRecordScreenAction
         });
@@ -64,7 +64,7 @@ describe('c-editRecordScreenAction', () => {
         const inputEl = element.shadowRoot.querySelectorAll('lightning-button');
         inputEl[1].click();
 
-        // Wait for any asynchronous DOM updates.
+        // Wait for any asynchronous DOM updates
         await flushPromises();
 
         // Check for record update
@@ -84,7 +84,7 @@ describe('c-editRecordScreenAction', () => {
     });
 
     it('Test close screen on Cancel', async () => {
-        // Create initial element
+        // Create component
         const element = createElement('c-editRecordScreenAction', {
             is: EditRecordScreenAction
         });

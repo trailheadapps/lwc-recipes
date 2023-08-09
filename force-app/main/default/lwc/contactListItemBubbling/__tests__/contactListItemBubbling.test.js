@@ -20,7 +20,7 @@ describe('c-contact-list-item-bubbling', () => {
     });
 
     it('shows contact name and image based on public property', () => {
-        // Create initial element
+        // Create component
         const element = createElement('c-contact-list-item-bubbling', {
             is: ContactListItemBubbling
         });
@@ -38,7 +38,7 @@ describe('c-contact-list-item-bubbling', () => {
     it('fires contactselect event when clicked', () => {
         const mockSelectHandler = jest.fn();
 
-        // Create initial element
+        // Create component
         const element = createElement('c-contact-list-item-bubbling', {
             is: ContactListItemBubbling
         });
@@ -64,6 +64,7 @@ describe('c-contact-list-item-bubbling', () => {
         element.contact = CONTACT;
         document.body.appendChild(element);
 
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 });

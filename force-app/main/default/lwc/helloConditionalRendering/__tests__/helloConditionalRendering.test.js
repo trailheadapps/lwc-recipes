@@ -16,7 +16,7 @@ describe('c-hello-conditional-rendering', () => {
     }
 
     it('does not show details by default', () => {
-        // Create element
+        // Create component
         const element = createElement('c-hello-conditional-rendering', {
             is: HelloConditionalRendering
         });
@@ -30,7 +30,7 @@ describe('c-hello-conditional-rendering', () => {
     });
 
     it('shows details when checkbox toggled', async () => {
-        // Create element
+        // Create component
         const element = createElement('c-hello-conditional-rendering', {
             is: HelloConditionalRendering
         });
@@ -55,7 +55,6 @@ describe('c-hello-conditional-rendering', () => {
         const element = createElement('c-hello-conditional-rendering', {
             is: HelloConditionalRendering
         });
-
         document.body.appendChild(element);
 
         // Toggle checkbox to show details
@@ -66,6 +65,7 @@ describe('c-hello-conditional-rendering', () => {
         // Wait for any asynchronous DOM updates
         await flushPromises();
 
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 
@@ -73,9 +73,9 @@ describe('c-hello-conditional-rendering', () => {
         const element = createElement('c-hello-conditional-rendering', {
             is: HelloConditionalRendering
         });
-
         document.body.appendChild(element);
 
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 });

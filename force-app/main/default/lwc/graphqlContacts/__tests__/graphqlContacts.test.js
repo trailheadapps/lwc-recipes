@@ -21,7 +21,7 @@ describe('c-graphql-contacts', () => {
 
     describe('graphql @wire data', () => {
         it('renders the records in contact tiles', async () => {
-            // Create element
+            // Create component
             const element = createElement('c-graphql-contacts', {
                 is: GraphqlContacts
             });
@@ -44,7 +44,7 @@ describe('c-graphql-contacts', () => {
 
     describe('graphql @wire error', () => {
         it('shows error panel element', async () => {
-            // Create initial element
+            // Create component
             const element = createElement('c-graphql-contacts', {
                 is: GraphqlContacts
             });
@@ -57,6 +57,7 @@ describe('c-graphql-contacts', () => {
             await flushPromises();
 
             // Verify error panel is displayed
+            // Check for error panel
             const errorPanelEl =
                 element.shadowRoot.querySelector('c-error-panel');
             expect(errorPanelEl).not.toBeNull();
@@ -64,7 +65,7 @@ describe('c-graphql-contacts', () => {
     });
 
     it('is accessible when data returned', async () => {
-        // Create element
+        // Create component
         const element = createElement('c-graphql-contacts', {
             is: GraphqlContacts
         });
@@ -76,11 +77,12 @@ describe('c-graphql-contacts', () => {
         // Wait for any asynchronous DOM updates
         await flushPromises();
 
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 
     it('is accessible when error returned', async () => {
-        // Create initial element
+        // Create component
         const element = createElement('c-graphql-contacts', {
             is: GraphqlContacts
         });
@@ -92,6 +94,7 @@ describe('c-graphql-contacts', () => {
         // Wait for any asynchronous DOM updates
         await flushPromises();
 
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 });

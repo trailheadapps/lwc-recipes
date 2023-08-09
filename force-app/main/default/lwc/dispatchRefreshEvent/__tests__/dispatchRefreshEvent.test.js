@@ -17,7 +17,7 @@ describe('c-dispatch-refresh-event', () => {
     }
 
     it('should dispatch refresh event on success', async () => {
-        // Create initial element
+        // Create component
         const element = createElement('c-dispatch-refresh-event', {
             is: DispatchRefreshEvent
         });
@@ -35,7 +35,7 @@ describe('c-dispatch-refresh-event', () => {
             new CustomEvent('success', { detail: { fields: {} } })
         );
 
-        // Wait for any asynchronous DOM updates.
+        // Wait for any asynchronous DOM updates
         await flushPromises();
 
         //Validate RefreshEvent is fired
@@ -46,9 +46,9 @@ describe('c-dispatch-refresh-event', () => {
         const element = createElement('c-dispatch-refresh-event', {
             is: DispatchRefreshEvent
         });
-
         document.body.appendChild(element);
 
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 });

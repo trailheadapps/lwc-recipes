@@ -16,7 +16,7 @@ describe('c-clock', () => {
     }
 
     it('sets current date/time after public function call', async () => {
-        // Create initial element
+        // Create component
         const element = createElement('c-clock', {
             is: Clock
         });
@@ -39,12 +39,13 @@ describe('c-clock', () => {
     });
 
     it('is accessible', async () => {
+        // Create component
         const element = createElement('c-clock', {
             is: Clock
         });
-
         document.body.appendChild(element);
 
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 });

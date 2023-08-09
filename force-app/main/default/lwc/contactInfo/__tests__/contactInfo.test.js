@@ -21,7 +21,7 @@ describe('c-contact-info', () => {
     it('invokes the getRecord method with the set public property value', async () => {
         const RECORD_ID_INPUT = '0031700000pJRRSAA4';
 
-        // Create initial element
+        // Create component
         const element = createElement('c-contact-info', {
             is: ContactInfo
         });
@@ -40,7 +40,7 @@ describe('c-contact-info', () => {
 
     it('renders contact details when public property is set', async () => {
         const RECORD_ID_INPUT = '0031700000pJRRSAA4';
-        // Create initial element
+        // Create component
         const element = createElement('c-contact-info', {
             is: ContactInfo
         });
@@ -52,7 +52,7 @@ describe('c-contact-info', () => {
         // Emit data from @wire
         getRecord.emit(mockGetRecord);
 
-        // Wait for any asynchronous DOM updates.
+        // Wait for any asynchronous DOM updates
         await flushPromises();
 
         // Select elements for validation
@@ -71,7 +71,7 @@ describe('c-contact-info', () => {
     });
 
     it('shows error panel element when error returned', async () => {
-        // Create initial element
+        // Create component
         const element = createElement('c-contact-info', {
             is: ContactInfo
         });
@@ -84,12 +84,13 @@ describe('c-contact-info', () => {
         await flushPromises();
 
         //Validate that the error panel is displayed
+        // Check for error panel
         const errorPanelEl = element.shadowRoot.querySelector('c-error-panel');
         expect(errorPanelEl).not.toBeNull();
     });
 
     it('is accessible when data is returned', async () => {
-        // Create initial element
+        // Create component
         const element = createElement('c-contact-info', {
             is: ContactInfo
         });
@@ -101,11 +102,12 @@ describe('c-contact-info', () => {
         // Wait for any asynchronous DOM updates
         await flushPromises();
 
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 
     it('is accessible when error is returned', async () => {
-        // Create initial element
+        // Create component
         const element = createElement('c-contact-info', {
             is: ContactInfo
         });
@@ -117,6 +119,7 @@ describe('c-contact-info', () => {
         // Wait for any asynchronous DOM updates
         await flushPromises();
 
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 });

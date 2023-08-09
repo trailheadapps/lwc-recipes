@@ -10,7 +10,7 @@ describe('c-misc-content-asset', () => {
     });
 
     it('sets img url based on content asset', () => {
-        // Create initial element
+        // Create component
         const element = createElement('c-misc-content-asset', {
             is: MiscContentAsset
         });
@@ -29,9 +29,9 @@ describe('c-misc-content-asset', () => {
         const element = createElement('c-misc-content-asset', {
             is: MiscContentAsset
         });
-
         document.body.appendChild(element);
 
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 });

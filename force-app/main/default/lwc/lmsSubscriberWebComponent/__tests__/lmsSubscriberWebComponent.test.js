@@ -23,7 +23,7 @@ describe('c-lms-subscriber-web-component', () => {
     }
 
     it('registers the LMS subscriber during the component lifecycle', () => {
-        // Create initial element
+        // Create component
         const element = createElement('c-lms-subscriber-web-component', {
             is: LmsSubscriberWebComponent
         });
@@ -35,7 +35,7 @@ describe('c-lms-subscriber-web-component', () => {
     });
 
     it('invokes getRecord with the published message payload value', async () => {
-        // Create element
+        // Create component
         const element = createElement('c-lms-subscriber-web-component', {
             is: LmsSubscriberWebComponent
         });
@@ -57,7 +57,7 @@ describe('c-lms-subscriber-web-component', () => {
 
     describe('getRecord @wire data', () => {
         it('renders contact details with picture', async () => {
-            // Create element
+            // Create component
             const element = createElement('c-lms-subscriber-web-component', {
                 is: LmsSubscriberWebComponent
             });
@@ -92,7 +92,7 @@ describe('c-lms-subscriber-web-component', () => {
         });
 
         it('renders contact details without picture', async () => {
-            // Create element
+            // Create component
             const element = createElement('c-lms-subscriber-web-component', {
                 is: LmsSubscriberWebComponent
             });
@@ -131,7 +131,7 @@ describe('c-lms-subscriber-web-component', () => {
 
     describe('getRecord @wire error', () => {
         it('displays a toast message', async () => {
-            // Create initial element
+            // Create component
             const element = createElement('c-lms-subscriber-web-component', {
                 is: LmsSubscriberWebComponent
             });
@@ -153,7 +153,7 @@ describe('c-lms-subscriber-web-component', () => {
     });
 
     it('is accessible when contacts returned with picture', async () => {
-        // Create element
+        // Create component
         const element = createElement('c-lms-subscriber-web-component', {
             is: LmsSubscriberWebComponent
         });
@@ -165,11 +165,12 @@ describe('c-lms-subscriber-web-component', () => {
         // Wait for any asynchronous DOM updates
         await flushPromises();
 
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 
     it('is accessible when contacts returned without picture', async () => {
-        // Create element
+        // Create component
         const element = createElement('c-lms-subscriber-web-component', {
             is: LmsSubscriberWebComponent
         });
@@ -181,11 +182,12 @@ describe('c-lms-subscriber-web-component', () => {
         // Wait for any asynchronous DOM updates
         await flushPromises();
 
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 
     it('is accessible when error returned', async () => {
-        // Create element
+        // Create component
         const element = createElement('c-lms-subscriber-web-component', {
             is: LmsSubscriberWebComponent
         });
@@ -197,6 +199,7 @@ describe('c-lms-subscriber-web-component', () => {
         // Wait for any asynchronous DOM updates
         await flushPromises();
 
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 });

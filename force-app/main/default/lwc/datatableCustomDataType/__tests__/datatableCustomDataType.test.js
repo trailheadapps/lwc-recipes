@@ -61,7 +61,7 @@ describe('c-datatable-inline-edit', () => {
     });
 
     it('is accessible when data is returned', async () => {
-        // Create initial element
+        // Create component
         const element = createElement('c-datatable-custom-data-type', {
             is: DatatableCustomDataType
         });
@@ -73,11 +73,12 @@ describe('c-datatable-inline-edit', () => {
         // Wait for any asynchronous DOM updates
         await flushPromises();
 
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 
     it('is accessible when error is returned', async () => {
-        // Create initial element
+        // Create component
         const element = createElement('c-datatable-custom-data-type', {
             is: DatatableCustomDataType
         });
@@ -89,6 +90,7 @@ describe('c-datatable-inline-edit', () => {
         // Wait for any asynchronous DOM updates
         await flushPromises();
 
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 });

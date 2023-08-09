@@ -29,7 +29,6 @@ describe('c-misc-permission-based-u-i', () => {
         const element = createElement('c-misc-permission-based-u-i', {
             is: MiscPermissionBasedUI
         });
-
         document.body.appendChild(element);
 
         // Wait for any asynchronous DOM updates
@@ -43,9 +42,9 @@ describe('c-misc-permission-based-u-i', () => {
         const element = createElement('c-misc-permission-based-u-i', {
             is: MiscPermissionBasedUI
         });
-
         document.body.appendChild(element);
 
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 });

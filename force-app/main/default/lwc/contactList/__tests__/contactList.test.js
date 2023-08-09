@@ -37,7 +37,7 @@ describe('c-contact-list', () => {
 
     describe('getContactList @wire', () => {
         it('renders contact data of six records when data returned', async () => {
-            // Create initial element
+            // Create component
             const element = createElement('c-contact-list', {
                 is: ContactList
             });
@@ -62,7 +62,7 @@ describe('c-contact-list', () => {
     it('sends custom event "contactselect" with contactId on click', async () => {
         const EVENT_DETAIL_PARAMETER = { contactId: '0031700000pJRRSAA4' };
 
-        // Create initial element
+        // Create component
         const element = createElement('c-contact-list', {
             is: ContactList
         });
@@ -92,7 +92,7 @@ describe('c-contact-list', () => {
     });
 
     it('is accessible when data is returned', async () => {
-        // Create initial element
+        // Create component
         const element = createElement('c-contact-list', {
             is: ContactList
         });
@@ -104,6 +104,7 @@ describe('c-contact-list', () => {
         // Wait for any asynchronous DOM updates
         await flushPromises();
 
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 });

@@ -40,10 +40,10 @@ describe('c-light-dom-query', () => {
         const element = createElement('c-light-dom-query', {
             is: LightDomQuery
         });
-
         document.body.appendChild(element);
 
         //Verify component is accessible
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 });

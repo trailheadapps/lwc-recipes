@@ -18,7 +18,7 @@ describe('c-error-panel', () => {
     it('displays a default friendly message', () => {
         const MESSAGE = 'Error retrieving data';
 
-        // Create initial element
+        // Create component
         const element = createElement('c-error-panel', {
             is: ErrorPanel
         });
@@ -31,7 +31,7 @@ describe('c-error-panel', () => {
     it('displays a custom friendly message', () => {
         const MESSAGE = 'Errors are bad';
 
-        // Create initial element
+        // Create component
         const element = createElement('c-error-panel', {
             is: ErrorPanel
         });
@@ -43,7 +43,7 @@ describe('c-error-panel', () => {
     });
 
     it('displays no error details when no errors are passed as parameters', () => {
-        // Create initial element
+        // Create component
         const element = createElement('c-error-panel', {
             is: ErrorPanel
         });
@@ -60,7 +60,7 @@ describe('c-error-panel', () => {
         ];
         const ERROR_MESSAGES_OUTPUT = ['First bad error', 'Second bad error'];
 
-        // Create initial element
+        // Create component
         const element = createElement('c-error-panel', {
             is: ErrorPanel
         });
@@ -100,6 +100,7 @@ describe('c-error-panel', () => {
         // Wait for any asynchronous DOM updates
         await flushPromises();
 
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 
@@ -123,6 +124,7 @@ describe('c-error-panel', () => {
         // Wait for any asynchronous DOM updates
         await flushPromises();
 
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 });

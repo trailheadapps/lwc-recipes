@@ -39,7 +39,7 @@ describe('c-event-with-data', () => {
 
     describe('getContactList @wire data', () => {
         it('renders two c-contact-list-item elements', async () => {
-            // Create initial element
+            // Create component
             const element = createElement('c-event-with-data', {
                 is: EventWithData
             });
@@ -59,7 +59,7 @@ describe('c-event-with-data', () => {
         });
 
         it('renders no c-contact-list-item-bubbling elements when no data', async () => {
-            // Create initial element
+            // Create component
             const element = createElement('c-event-with-data', {
                 is: EventWithData
             });
@@ -83,7 +83,7 @@ describe('c-event-with-data', () => {
 
     describe('getContactList @wire error', () => {
         it('shows error panel element', async () => {
-            // Create initial element
+            // Create component
             const element = createElement('c-event-with-data', {
                 is: EventWithData
             });
@@ -95,6 +95,7 @@ describe('c-event-with-data', () => {
             // Wait for any asynchronous DOM updates
             await flushPromises();
 
+            // Check for error panel
             const errorPanelEl =
                 element.shadowRoot.querySelector('c-error-panel');
             expect(errorPanelEl).not.toBeNull();
@@ -102,7 +103,7 @@ describe('c-event-with-data', () => {
     });
 
     it('shows selected contact data after event', async () => {
-        // Create initial element
+        // Create component
         const element = createElement('c-event-with-data', {
             is: EventWithData
         });
@@ -135,7 +136,7 @@ describe('c-event-with-data', () => {
     });
 
     it('is accessible when data is returned', async () => {
-        // Create initial element
+        // Create component
         const element = createElement('c-event-with-data', {
             is: EventWithData
         });
@@ -147,11 +148,12 @@ describe('c-event-with-data', () => {
         // Wait for any asynchronous DOM updates
         await flushPromises();
 
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 
     it('is accessible when error is returned', async () => {
-        // Create initial element
+        // Create component
         const element = createElement('c-event-with-data', {
             is: EventWithData
         });
@@ -163,11 +165,12 @@ describe('c-event-with-data', () => {
         // Wait for any asynchronous DOM updates
         await flushPromises();
 
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 
     it('is accessible when contact is selected', async () => {
-        // Create initial element
+        // Create component
         const element = createElement('c-event-with-data', {
             is: EventWithData
         });
@@ -195,6 +198,7 @@ describe('c-event-with-data', () => {
         // Wait for any asynchronous DOM updates
         await flushPromises();
 
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 });

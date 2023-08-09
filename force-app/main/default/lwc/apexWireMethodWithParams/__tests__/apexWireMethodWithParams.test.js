@@ -51,7 +51,7 @@ describe('c-apex-wire-method-with-params', () => {
             const USER_INPUT = 'Amy';
             const WIRE_PARAMETER = { searchKey: USER_INPUT };
 
-            // Create initial element
+            // Create component
             const element = createElement('c-apex-wire-method-with-params', {
                 is: ApexWireMethodWithParams
             });
@@ -75,7 +75,7 @@ describe('c-apex-wire-method-with-params', () => {
         it('renders data of one record', async () => {
             const USER_INPUT = 'Amy';
 
-            // Create initial element
+            // Create component
             const element = createElement('c-apex-wire-method-with-params', {
                 is: ApexWireMethodWithParams
             });
@@ -104,7 +104,7 @@ describe('c-apex-wire-method-with-params', () => {
 
     describe('findContacts @wire error', () => {
         it('shows error panel element', async () => {
-            // Create initial element
+            // Create component
             const element = createElement('c-apex-wire-method-with-params', {
                 is: ApexWireMethodWithParams
             });
@@ -116,6 +116,7 @@ describe('c-apex-wire-method-with-params', () => {
             // Wait for any asynchronous DOM updates
             await flushPromises();
 
+            // Check for error panel
             const errorPanelEl =
                 element.shadowRoot.querySelector('c-error-panel');
             expect(errorPanelEl).not.toBeNull();

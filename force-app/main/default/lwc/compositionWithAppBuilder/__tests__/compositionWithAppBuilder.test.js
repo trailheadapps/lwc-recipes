@@ -10,7 +10,7 @@ describe('c-composition-with-app-builder', () => {
     });
 
     it('reflects public property values', () => {
-        // Create initial element
+        // Create component
         const element = createElement('c-composition-with-app-builder', {
             is: CompositionWithAppBuilder
         });
@@ -35,6 +35,7 @@ describe('c-composition-with-app-builder', () => {
         element.numberValue = 99;
         document.body.appendChild(element);
 
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 });

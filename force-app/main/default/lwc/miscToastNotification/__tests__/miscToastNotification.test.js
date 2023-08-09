@@ -21,7 +21,7 @@ describe('c-misc-notification', () => {
         const TOAST_MESSAGE = 'The Message';
         const TOAST_VARIANT = 'warning';
 
-        // Create initial element
+        // Create component
         const element = createElement('c-misc-toast-notification', {
             is: MiscToastNotification
         });
@@ -52,7 +52,7 @@ describe('c-misc-notification', () => {
         comboboxEl.value = TOAST_VARIANT;
         comboboxEl.dispatchEvent(new CustomEvent('change'));
 
-        // Select button for simulating user interaction
+        // Click button
         const buttonEl = element.shadowRoot.querySelector('lightning-button');
         buttonEl.click();
 
@@ -70,9 +70,9 @@ describe('c-misc-notification', () => {
         const element = createElement('c-misc-toast-notification', {
             is: MiscToastNotification
         });
-
         document.body.appendChild(element);
 
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 });

@@ -110,7 +110,7 @@ describe('c-datatable-inline-edit-with-apex', () => {
     it('updates the records on Save', async () => {
         const INPUT_PARAMETERS = [{ contactsForUpdate: DRAFT_VALUES }];
 
-        // Create initial element
+        // Create component
         const element = createElement('c-datatable-inline-edit-with-apex', {
             is: DatatableInlineEditWithApex
         });
@@ -148,7 +148,7 @@ describe('c-datatable-inline-edit-with-apex', () => {
         // Assign mock value for resolved updateContacts promise
         updateContacts.mockResolvedValue(INPUT_PARAMETERS);
 
-        // Create initial element
+        // Create component
         const element = createElement('c-datatable-inline-edit-with-apex', {
             is: DatatableInlineEditWithApex
         });
@@ -187,7 +187,7 @@ describe('c-datatable-inline-edit-with-apex', () => {
     });
 
     it('displays an error toast on update record error', async () => {
-        // Create initial element
+        // Create component
         const element = createElement('c-datatable-inline-edit-with-apex', {
             is: DatatableInlineEditWithApex
         });
@@ -236,11 +236,12 @@ describe('c-datatable-inline-edit-with-apex', () => {
         // Wait for any asynchronous DOM updates
         await flushPromises();
 
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 
     it('is accessible when error is returned', async () => {
-        // Create initial element
+        // Create component
         const element = createElement('c-datatable-inline-edit-with-apex', {
             is: DatatableInlineEditWithApex
         });
@@ -252,6 +253,7 @@ describe('c-datatable-inline-edit-with-apex', () => {
         // Wait for any asynchronous DOM updates
         await flushPromises();
 
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 });

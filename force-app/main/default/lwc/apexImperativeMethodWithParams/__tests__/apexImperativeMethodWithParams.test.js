@@ -55,7 +55,7 @@ describe('c-apex-imperative-method-with-params', () => {
         // Assign mock value for resolved Apex promise
         findContacts.mockResolvedValue(APEX_CONTACTS_SUCCESS);
 
-        // Create initial element
+        // Create component
         const element = createElement('c-apex-imperative-method-with-params', {
             is: ApexImperativeMethodWithParams
         });
@@ -66,7 +66,7 @@ describe('c-apex-imperative-method-with-params', () => {
         inputEl.value = USER_INPUT;
         inputEl.dispatchEvent(new CustomEvent('change'));
 
-        // Select button for executing Apex call
+        // Click button
         const buttonEl = element.shadowRoot.querySelector('lightning-button');
         buttonEl.click();
 
@@ -83,7 +83,7 @@ describe('c-apex-imperative-method-with-params', () => {
         // Assign mock value for resolved Apex promise
         findContacts.mockResolvedValue(APEX_CONTACTS_SUCCESS);
 
-        // Create initial element
+        // Create component
         const element = createElement('c-apex-imperative-method-with-params', {
             is: ApexImperativeMethodWithParams
         });
@@ -94,7 +94,7 @@ describe('c-apex-imperative-method-with-params', () => {
         inputEl.value = USER_INPUT;
         inputEl.dispatchEvent(new CustomEvent('change'));
 
-        // Select button for executing Apex call
+        // Click button
         const buttonEl = element.shadowRoot.querySelector('lightning-button');
         buttonEl.click();
 
@@ -112,13 +112,13 @@ describe('c-apex-imperative-method-with-params', () => {
         // Assing mock value for rejected Apex promise
         findContacts.mockRejectedValue(APEX_CONTACTS_ERROR);
 
-        // Create initial element
+        // Create component
         const element = createElement('c-apex-imperative-method-with-params', {
             is: ApexImperativeMethodWithParams
         });
         document.body.appendChild(element);
 
-        // Select button for executing Apex call
+        // Click button
         const buttonEl = element.shadowRoot.querySelector('lightning-button');
         buttonEl.click();
 
@@ -126,6 +126,7 @@ describe('c-apex-imperative-method-with-params', () => {
         await flushPromises();
         await flushPromises();
 
+        // Check for error panel
         const errorPanelEl = element.shadowRoot.querySelector('c-error-panel');
         expect(errorPanelEl).not.toBeNull();
     });
@@ -134,19 +135,20 @@ describe('c-apex-imperative-method-with-params', () => {
         // Assign mock value for resolved Apex promise
         findContacts.mockResolvedValue(APEX_CONTACTS_SUCCESS);
 
-        // Create initial element
+        // Create component
         const element = createElement('c-apex-imperative-method-with-params', {
             is: ApexImperativeMethodWithParams
         });
         document.body.appendChild(element);
 
-        // Select button for executing Apex call
+        // Click button
         const buttonEl = element.shadowRoot.querySelector('lightning-button');
         buttonEl.click();
 
         // Wait for any asynchronous DOM updates
         await flushPromises();
 
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 
@@ -154,19 +156,20 @@ describe('c-apex-imperative-method-with-params', () => {
         // Assing mock value for rejected Apex promise
         findContacts.mockRejectedValue(APEX_CONTACTS_ERROR);
 
-        // Create initial element
+        // Create component
         const element = createElement('c-apex-imperative-method-with-params', {
             is: ApexImperativeMethodWithParams
         });
         document.body.appendChild(element);
 
-        // Select button for executing Apex call
+        // Click button
         const buttonEl = element.shadowRoot.querySelector('lightning-button');
         buttonEl.click();
 
         // Wait for any asynchronous DOM updates
         await flushPromises();
 
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 });

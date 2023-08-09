@@ -49,9 +49,9 @@ describe('c-nav-to-hello-tab', () => {
         const element = createElement('c-nav-to-hello-tab', {
             is: NavToHelloTab
         });
-
         document.body.appendChild(element);
 
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 });

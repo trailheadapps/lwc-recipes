@@ -13,7 +13,7 @@ describe('c-record-view-form-dynamic-contact', () => {
         const RECORD_ID_INPUT = '0031700000pJRRSAA4';
         const OBJECT_API_NAME_INPUT = 'Contact';
 
-        // Create initial element
+        // Create component
         const element = createElement('c-record-view-form-dynamic-contact', {
             is: RecordViewFormDynamicContact
         });
@@ -35,7 +35,7 @@ describe('c-record-view-form-dynamic-contact', () => {
         const RECORD_ID_INPUT = '0031700000pJRRSAA4';
         const OBJECT_API_NAME_INPUT = 'Contact';
 
-        // Create initial element
+        // Create component
         const element = createElement('c-record-view-form-dynamic-contact', {
             is: RecordViewFormDynamicContact
         });
@@ -54,9 +54,9 @@ describe('c-record-view-form-dynamic-contact', () => {
         const element = createElement('c-record-view-form-dynamic-contact', {
             is: RecordViewFormDynamicContact
         });
-
         document.body.appendChild(element);
 
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 });

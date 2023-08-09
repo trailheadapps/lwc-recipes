@@ -37,7 +37,7 @@ describe('c-lds', () => {
 
     describe('getSingleContact @wire data', () => {
         it('render UI with record', async () => {
-            // Create initial element
+            // Create component
             const element = createElement('c-lds', {
                 is: Lds
             });
@@ -59,7 +59,7 @@ describe('c-lds', () => {
             const INPUT_OBJECT = 'Contact';
             const INPUT_TYPE = 'standard__recordPage';
 
-            // Create initial element
+            // Create component
             const element = createElement('c-lds', {
                 is: Lds
             });
@@ -71,14 +71,14 @@ describe('c-lds', () => {
             // Wait for any asynchronous DOM updates
             await flushPromises();
 
-            // Select button to simulate user interaction
+            // Click button
             const buttonEl =
                 element.shadowRoot.querySelector('lightning-button');
             buttonEl.click();
 
-            const { pageReference } = getNavigateCalledWith();
             // Verify the component under test called the correct navigate event
             // type and sent the expected recordId defined above
+            const { pageReference } = getNavigateCalledWith();
             expect(pageReference.type).toBe(INPUT_TYPE);
             expect(pageReference.attributes.objectApiName).toBe(INPUT_OBJECT);
             expect(pageReference.attributes.recordId).toBe(
@@ -89,7 +89,7 @@ describe('c-lds', () => {
 
     describe('getSingleContact @wire error', () => {
         it('shows error panel element', async () => {
-            // Create initial element
+            // Create component
             const element = createElement('c-lds', {
                 is: Lds
             });
@@ -101,6 +101,7 @@ describe('c-lds', () => {
             // Wait for any asynchronous DOM updates
             await flushPromises();
 
+            // Check for error panel
             const errorPanelEl =
                 element.shadowRoot.querySelector('c-error-panel');
             expect(errorPanelEl).not.toBeNull();
@@ -111,9 +112,9 @@ describe('c-lds', () => {
         const element = createElement('c-lds', {
             is: Lds
         });
-
         document.body.appendChild(element);
 
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 });

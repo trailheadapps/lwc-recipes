@@ -94,7 +94,7 @@ describe('c-datatable-inline-edit-with-ui-api', () => {
         //Only one record should be updated
         const INPUT_PARAMETERS = { fields: DRAFT_VALUES[0] };
 
-        // Create initial element
+        // Create component
         const element = createElement('c-datatable-inline-edit-with-ui-api', {
             is: DatatableInlineEditWithUiApi
         });
@@ -116,6 +116,7 @@ describe('c-datatable-inline-edit-with-ui-api', () => {
             })
         );
 
+        // Wait for any asynchronous DOM updates
         await flushPromises();
 
         // Validate updateRecord call
@@ -135,7 +136,7 @@ describe('c-datatable-inline-edit-with-ui-api', () => {
         // Assign mock value for resolved updateRecord promise
         updateRecord.mockResolvedValue(INPUT_PARAMETERS);
 
-        // Create initial element
+        // Create component
         const element = createElement('c-datatable-inline-edit-with-ui-api', {
             is: DatatableInlineEditWithUiApi
         });
@@ -162,6 +163,7 @@ describe('c-datatable-inline-edit-with-ui-api', () => {
             })
         );
 
+        // Wait for any asynchronous DOM updates
         await flushPromises();
 
         //Validate the toast event is called with success
@@ -181,7 +183,7 @@ describe('c-datatable-inline-edit-with-ui-api', () => {
             }
         });
 
-        // Create initial element
+        // Create component
         const element = createElement('c-datatable-inline-edit-with-ui-api', {
             is: DatatableInlineEditWithUiApi
         });
@@ -208,6 +210,7 @@ describe('c-datatable-inline-edit-with-ui-api', () => {
             })
         );
 
+        // Wait for any asynchronous DOM updates
         await flushPromises();
 
         //Validate the toast event is called with error
@@ -216,7 +219,7 @@ describe('c-datatable-inline-edit-with-ui-api', () => {
     });
 
     it('is accessible when data is returned', async () => {
-        // Create initial element
+        // Create component
         const element = createElement('c-datatable-inline-edit-with-ui-api', {
             is: DatatableInlineEditWithUiApi
         });
@@ -228,11 +231,12 @@ describe('c-datatable-inline-edit-with-ui-api', () => {
         // Wait for any asynchronous DOM updates
         await flushPromises();
 
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 
     it('is accessible when error is returned', async () => {
-        // Create initial element
+        // Create component
         const element = createElement('c-datatable-inline-edit-with-ui-api', {
             is: DatatableInlineEditWithUiApi
         });
@@ -244,6 +248,7 @@ describe('c-datatable-inline-edit-with-ui-api', () => {
         // Wait for any asynchronous DOM updates
         await flushPromises();
 
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 });

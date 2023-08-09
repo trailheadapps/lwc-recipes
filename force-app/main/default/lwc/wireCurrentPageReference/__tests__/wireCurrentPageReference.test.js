@@ -20,7 +20,7 @@ describe('c-wire-current-page-reference', () => {
     }
 
     it('renders the current page reference as <pre> tag', async () => {
-        // Create element
+        // Create component
         const element = createElement('c-wire-current-page-reference', {
             is: WireCurrentPageReference
         });
@@ -45,9 +45,9 @@ describe('c-wire-current-page-reference', () => {
         const element = createElement('c-wire-current-page-reference', {
             is: WireCurrentPageReference
         });
-
         document.body.appendChild(element);
 
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 });
