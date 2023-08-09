@@ -5,11 +5,9 @@ import findContacts from '@salesforce/apex/ContactController.findContacts';
 // Mocking imperative Apex method call
 jest.mock(
     '@salesforce/apex/ContactController.findContacts',
-    () => {
-        return {
-            default: jest.fn()
-        };
-    },
+    () => ({
+        default: jest.fn()
+    }),
     { virtual: true }
 );
 
