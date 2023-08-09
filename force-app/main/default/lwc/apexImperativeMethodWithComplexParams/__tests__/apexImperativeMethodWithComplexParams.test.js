@@ -5,11 +5,9 @@ import checkApexTypes from '@salesforce/apex/ApexTypesController.checkApexTypes'
 // Mocking imperative Apex method call
 jest.mock(
     '@salesforce/apex/ApexTypesController.checkApexTypes',
-    () => {
-        return {
-            default: jest.fn()
-        };
-    },
+    () => ({
+        default: jest.fn()
+    }),
     { virtual: true }
 );
 
