@@ -86,7 +86,7 @@ A collection of easy-to-digest code examples for Lightning Web Components. Each 
 
 ## Installing the app using an Unlocked Package
 
-Follow this set of instructions if you want to deploy the app to a more permanent environment than a Scratch org or if you don't want to install the local developement tools. You can use a non source-tracked orgs such as a free [Developer Edition Org](https://developer.salesforce.com/signup) or a [Trailhead Playground](https://trailhead.salesforce.com/).
+Follow this set of instructions if you want to deploy the app to a more permanent environment than a Scratch org or if you don't want to install the local development tools. You can use a non source-tracked orgs such as a free [Developer Edition Org](https://developer.salesforce.com/signup) or a [Trailhead Playground](https://trailhead.salesforce.com/).
 
 Make sure to start from a brand-new environment to avoid conflicts with previous work you may have done.
 
@@ -114,7 +114,7 @@ Make sure to start from a brand-new environment to avoid conflicts with previous
 
 1. In **Setup**, under **Themes and Branding**, activate the **Recipes Lite** or **Recipes Blue** theme.
 
-1. In App Launcher, click **View All** then select the **LWC** app.
+1. In App Launcher, click **View All** then select the **LWC Recipes** app.
 
 ## Installing the App using a Developer Edition Org or a Trailhead Playground
 
