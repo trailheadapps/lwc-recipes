@@ -4,7 +4,7 @@
 
 ![recipes-logo](recipes-logo.png)
 
-A collection of easy-to-digest code examples for Lightning Web Components. Each recipe demonstrates how to code a specific task in the fewest lines of code possible, while following best practices. A View Source link takes you right to the code in GitHub. From Hello World to data access and third-party libraries, there is a recipe for that!
+A collection of easy-to-digest code examples for Lightning Web Components. Each recipe demonstrates how to code a specific task in the fewest lines of code possible while following best practices. A "View Source" link takes you directly to the code on GitHub. From "Hello World" to data access and third-party libraries, there's a recipe for that!
 
 <div>
     <img src="https://res.cloudinary.com/hy4kyit2a/f_auto,fl_lossy,q_70,w_50/learn/projects/quick-start-lwc-recipes-app/bb501c3216ac163958f036fb90357955_badge.png" align="left" alt="Trailhead Badge"/>
@@ -86,9 +86,9 @@ A collection of easy-to-digest code examples for Lightning Web Components. Each 
 
 ## Installing the app using an Unlocked Package
 
-Follow this set of instructions if you want to deploy the app to a more permanent environment than a Scratch org or if you don't want to install the local development tools. You can use a non source-tracked orgs such as a free [Developer Edition Org](https://developer.salesforce.com/signup) or a [Trailhead Playground](https://trailhead.salesforce.com/).
+Follow this set of instructions if you want to deploy the app to a more permanent environment than a Scratch org or if you don't want to install the local development tools. You can use non source-tracked orgs such as a free [Developer Edition Org](https://developer.salesforce.com/signup) or a [Trailhead Playground](https://trailhead.salesforce.com/).
 
-Make sure to start from a brand-new environment to avoid conflicts with previous work you may have done.
+Make sure to start from a brand-new environment to avoid conflicts with any previous work you may have done.
 
 1. Log in to your org
 
@@ -166,7 +166,7 @@ Make sure to start from a brand-new environment to avoid conflicts with previous
 
 ## Optional Installation Instructions
 
-This repository contains several files that are relevant if you want to integrate modern web development tooling to your Salesforce development processes, or to your continuous integration/continuous deployment processes.
+This repository contains several files that are relevant if you want to integrate modern web development tools into your Salesforce development processes or into your continuous integration/continuous deployment processes.
 
 ### Code formatting
 
