@@ -2,7 +2,7 @@
 <CustomTab xmlns="http://soap.sforce.com/2006/04/metadata">
     <description>Created by Lightning App Builder</description>
     <flexiPage>GraphQL</flexiPage>
-    <label>GraphQL (Beta)</label>
+    <label>GraphQL</label>
     
     <motif>Custom39: Telescope</motif>
 </CustomTab>
