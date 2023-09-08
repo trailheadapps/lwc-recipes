@@ -12,7 +12,7 @@ export default class DispatchRefreshEvent extends LightningElement {
     typeField = TYPE_FIELD;
 
     handleSuccess(event) {
-        //Show Account Created Successfully message
+        // Show Account Created Successfully message
         const evt = new ShowToastEvent({
             title: 'Account created',
             message: 'Record ID: ' + event.detail.id,
@@ -20,10 +20,10 @@ export default class DispatchRefreshEvent extends LightningElement {
         });
         this.dispatchEvent(evt);
 
-        //Dispatch the refresh event
+        // Dispatch the refresh event
         this.dispatchEvent(new RefreshEvent());
 
-        //Reset the fields to create a new record
+        // Reset the fields to create a new record
         const inputFields = this.template.querySelectorAll(
             'lightning-input-field'
         );
