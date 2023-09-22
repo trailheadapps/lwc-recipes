@@ -16,7 +16,7 @@ describe('c-navigate-to-record--headless-action', () => {
             is: NavigateToRecordHeadlessAction
         });
         document.body.appendChild(element);
-        //Call invoke()
+        // Call invoke()
         element.invoke();
         const { pageReference } = getNavigateCalledWith();
         // Assert pageReference values.

@@ -83,15 +83,15 @@ describe('c-datatable-inline-edit-with-ui-api', () => {
 
         const tableEl = element.shadowRoot.querySelector('lightning-datatable');
 
-        //Validate the datatable is populated with correct number of records
+        // Validate the datatable is populated with correct number of records
         expect(tableEl.data.length).toBe(mockGetContactList.length);
 
-        //Validate the record to have rendered with correct data
+        // Validate the record to have rendered with correct data
         expect(tableEl.data[0].FirstName).toBe(mockGetContactList[0].FirstName);
     });
 
     it('updates the records on Save', async () => {
-        //Only one record should be updated
+        // Only one record should be updated
         const INPUT_PARAMETERS = { fields: DRAFT_VALUES[0] };
 
         // Create component
@@ -106,7 +106,7 @@ describe('c-datatable-inline-edit-with-ui-api', () => {
         // Wait for any asynchronous DOM updates
         await flushPromises();
 
-        //Update multiple records with the INPUT_PARAMETERS and simulate the Save event
+        // Update multiple records with the INPUT_PARAMETERS and simulate the Save event
         const tableEl = element.shadowRoot.querySelector('lightning-datatable');
         tableEl.dispatchEvent(
             new CustomEvent('save', {
@@ -130,7 +130,7 @@ describe('c-datatable-inline-edit-with-ui-api', () => {
     });
 
     it('displays a success toast after record is updated', async () => {
-        //Only one record should be updated
+        // Only one record should be updated
         const INPUT_PARAMETERS = { fields: DRAFT_VALUES[0] };
 
         // Assign mock value for resolved updateRecord promise
@@ -153,7 +153,7 @@ describe('c-datatable-inline-edit-with-ui-api', () => {
         // Wait for any asynchronous DOM updates
         await flushPromises();
 
-        //Update multiple records with the INPUT_PARAMETERS and simulate the Save event
+        // Update multiple records with the INPUT_PARAMETERS and simulate the Save event
         const tableEl = element.shadowRoot.querySelector('lightning-datatable');
         tableEl.dispatchEvent(
             new CustomEvent('save', {
@@ -166,11 +166,11 @@ describe('c-datatable-inline-edit-with-ui-api', () => {
         // Wait for any asynchronous DOM updates
         await flushPromises();
 
-        //Validate the toast event is called with success
+        // Validate the toast event is called with success
         expect(toastHandler).toHaveBeenCalled();
         expect(toastHandler.mock.calls[0][0].detail.variant).toBe('success');
 
-        //Validate refreshApex is called and the draft values are reset
+        // Validate refreshApex is called and the draft values are reset
         expect(refreshApex).toHaveBeenCalled();
         expect(tableEl.draftValues).toEqual([]);
     });
@@ -200,7 +200,7 @@ describe('c-datatable-inline-edit-with-ui-api', () => {
         // Wait for any asynchronous DOM updates
         await flushPromises();
 
-        //Update multiple records with the INPUT_PARAMETERS and simulate the Save event
+        // Update multiple records with the INPUT_PARAMETERS and simulate the Save event
         const tableEl = element.shadowRoot.querySelector('lightning-datatable');
         tableEl.dispatchEvent(
             new CustomEvent('save', {
@@ -213,7 +213,7 @@ describe('c-datatable-inline-edit-with-ui-api', () => {
         // Wait for any asynchronous DOM updates
         await flushPromises();
 
-        //Validate the toast event is called with error
+        // Validate the toast event is called with error
         expect(toastHandler).toHaveBeenCalled();
         expect(toastHandler.mock.calls[0][0].detail.variant).toBe('error');
     });

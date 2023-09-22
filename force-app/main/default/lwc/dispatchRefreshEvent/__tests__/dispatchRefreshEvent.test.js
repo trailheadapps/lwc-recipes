@@ -38,7 +38,7 @@ describe('c-dispatch-refresh-event', () => {
         // Wait for any asynchronous DOM updates
         await flushPromises();
 
-        //Validate RefreshEvent is fired
+        // Validate RefreshEvent is fired
         expect(refreshHandler).toHaveBeenCalledTimes(1);
     });
 

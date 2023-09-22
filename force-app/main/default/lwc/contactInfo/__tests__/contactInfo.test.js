@@ -83,7 +83,7 @@ describe('c-contact-info', () => {
         // Wait for any asynchronous DOM updates
         await flushPromises();
 
-        //Validate that the error panel is displayed
+        // Validate that the error panel is displayed
         // Check for error panel
         const errorPanelEl = element.shadowRoot.querySelector('c-error-panel');
         expect(errorPanelEl).not.toBeNull();

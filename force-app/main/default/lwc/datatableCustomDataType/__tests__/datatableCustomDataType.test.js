@@ -48,13 +48,13 @@ describe('c-datatable-inline-edit', () => {
 
         const tableEl = element.shadowRoot.querySelector('c-custom-data-types');
 
-        //Validate the datatable is populated with correct number of records
+        // Validate the datatable is populated with correct number of records
         expect(tableEl.data.length).toBe(mockGetContactList.length);
 
-        //Validate the record to have rendered with correct data
+        // Validate the record to have rendered with correct data
         expect(tableEl.data[0].FirstName).toBe(mockGetContactList[0].FirstName);
 
-        //Validate if custom datatype field is populated
+        // Validate if custom datatype field is populated
         expect(tableEl.data[0].Picture__c).toBe(
             mockGetContactList[0].Picture__c
         );

@@ -22,7 +22,7 @@ jest.mock(
     { virtual: true }
 );
 
-//Mock updateContacts
+// Mock updateContacts
 jest.mock(
     '@salesforce/apex/ContactController.updateContacts',
     () => {
@@ -100,10 +100,10 @@ describe('c-datatable-inline-edit-with-apex', () => {
 
         const tableEl = element.shadowRoot.querySelector('lightning-datatable');
 
-        //Validate the datatable is populated with correct number of records
+        // Validate the datatable is populated with correct number of records
         expect(tableEl.data.length).toBe(mockGetContactList.length);
 
-        //Validate the record to have rendered with correct data
+        // Validate the record to have rendered with correct data
         expect(tableEl.data[0].FirstName).toBe(mockGetContactList[0].FirstName);
     });
 
@@ -122,7 +122,7 @@ describe('c-datatable-inline-edit-with-apex', () => {
         // Wait for any asynchronous DOM updates
         await flushPromises();
 
-        //Update multiple records with the INPUT_PARAMETERS and simulate the Save event
+        // Update multiple records with the INPUT_PARAMETERS and simulate the Save event
         const tableEl = element.shadowRoot.querySelector('lightning-datatable');
         tableEl.dispatchEvent(
             new CustomEvent('save', {
@@ -137,12 +137,12 @@ describe('c-datatable-inline-edit-with-apex', () => {
         // Validate updateContacts call
         expect(updateContacts).toHaveBeenCalled();
 
-        //Validate the update call is made with correct input parameters
+        // Validate the update call is made with correct input parameters
         expect(updateContacts.mock.calls[0]).toEqual(INPUT_PARAMETERS);
     });
 
     it('displays a success toast after record is updated', async () => {
-        //Update all the records in the Draft Values
+        // Update all the records in the Draft Values
         const INPUT_PARAMETERS = [{ contactsForUpdate: DRAFT_VALUES }];
 
         // Assign mock value for resolved updateContacts promise
@@ -165,7 +165,7 @@ describe('c-datatable-inline-edit-with-apex', () => {
         // Wait for any asynchronous DOM updates
         await flushPromises();
 
-        //Update multiple records with the INPUT_PARAMETERS and simulate the Save event
+        // Update multiple records with the INPUT_PARAMETERS and simulate the Save event
         const tableEl = element.shadowRoot.querySelector('lightning-datatable');
         tableEl.dispatchEvent(
             new CustomEvent('save', {
@@ -177,11 +177,11 @@ describe('c-datatable-inline-edit-with-apex', () => {
         // Wait for any asynchronous DOM updates
         await flushPromises();
 
-        //Validate the toast event is called with success
+        // Validate the toast event is called with success
         expect(toastHandler).toHaveBeenCalled();
         expect(toastHandler.mock.calls[0][0].detail.variant).toBe('success');
 
-        //Validate refreshApex is called and the draft values are reset
+        // Validate refreshApex is called and the draft values are reset
         expect(refreshApex).toHaveBeenCalled();
         expect(tableEl.draftValues).toEqual([]);
     });
@@ -207,7 +207,7 @@ describe('c-datatable-inline-edit-with-apex', () => {
         // Assign mock value for rejected updateContacts promise
         updateContacts.mockRejectedValue(UPDATE_CONTACTS_ERROR);
 
-        //Update multiple records with the INPUT_PARAMETERS and simulate the Save event
+        // Update multiple records with the INPUT_PARAMETERS and simulate the Save event
         const tableEl = element.shadowRoot.querySelector('lightning-datatable');
         tableEl.dispatchEvent(
             new CustomEvent('save', {
@@ -219,7 +219,7 @@ describe('c-datatable-inline-edit-with-apex', () => {
         // Wait for any asynchronous DOM updates
         await flushPromises();
 
-        //Validate the toast event is called with error
+        // Validate the toast event is called with error
         expect(toastHandler).toHaveBeenCalled();
         expect(toastHandler.mock.calls[0][0].detail.variant).toBe('error');
     });
