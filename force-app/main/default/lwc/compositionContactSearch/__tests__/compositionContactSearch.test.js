@@ -100,6 +100,7 @@ describe('c-composition-contact-search', () => {
         // Wait for any asynchronous DOM updates
         await flushPromises();
         await flushPromises();
+        await flushPromises();
 
         const contactTileEl =
             element.shadowRoot.querySelector('c-contact-tile');
