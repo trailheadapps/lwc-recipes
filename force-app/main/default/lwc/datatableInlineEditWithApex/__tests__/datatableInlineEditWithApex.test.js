@@ -22,7 +22,7 @@ jest.mock(
     { virtual: true }
 );
 
-//Mock updateContacts
+// Mock updateContacts
 jest.mock(
     '@salesforce/apex/ContactController.updateContacts',
     () => {

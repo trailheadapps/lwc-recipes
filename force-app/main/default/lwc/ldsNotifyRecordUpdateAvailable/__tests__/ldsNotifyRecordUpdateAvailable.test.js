@@ -7,7 +7,7 @@ import { ShowToastEventName } from 'lightning/platformShowToastEvent';
 // Mock realistic data
 const mockGetRecord = require('./data/getRecord.json');
 
-//Mock updateContact
+// Mock updateContact
 jest.mock(
     '@salesforce/apex/ContactController.updateContact',
     () => {
