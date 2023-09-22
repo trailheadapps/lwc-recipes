@@ -15,7 +15,7 @@ describe('c-api-spread', () => {
         return Promise.resolve();
     }
 
-    //Helper function to set values in the lightning-input elements
+    // Helper function to set values in the lightning-input elements
     function setInputElementValues(element, firstName, lastName) {
         // lightning-input doesn't mirror its properties as attributes so
         // can't use an attribute query selector.
@@ -55,7 +55,7 @@ describe('c-api-spread', () => {
         });
         document.body.appendChild(element);
 
-        //Set values in the lightning-input elements
+        // Set values in the lightning-input elements
         setInputElementValues(element, 'Jennifer', 'Wu');
 
         // Query child component

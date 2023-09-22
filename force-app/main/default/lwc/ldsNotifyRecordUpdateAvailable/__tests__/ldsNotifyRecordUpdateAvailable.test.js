@@ -78,7 +78,7 @@ describe('c-lds-notify-record-update-available', () => {
         // Wait for any asynchronous DOM updates
         await flushPromises();
 
-        //Assign values to be updated in the input elements
+        // Assign values to be updated in the input elements
         const firstNameEl = element.shadowRoot.querySelector('.first-name');
         const lastNameEl = element.shadowRoot.querySelector('.last-name');
         firstNameEl.value = 'John';
@@ -91,16 +91,16 @@ describe('c-lds-notify-record-update-available', () => {
         // Wait for any asynchronous DOM updates
         await flushPromises();
 
-        //Validate updateContact has been called
+        // Validate updateContact has been called
         expect(updateContact).toHaveBeenCalledTimes(1);
-        //Validate updateContact is called with correct parameters
+        // Validate updateContact is called with correct parameters
         expect(updateContact.mock.calls[0]).toEqual([
             { firstName: 'John', lastName: 'Doe' }
         ]);
-        //Validate notifyRecordUpdateAvailable is called
+        // Validate notifyRecordUpdateAvailable is called
         expect(notifyRecordUpdateAvailable).toHaveBeenCalledTimes(1);
 
-        //Validate success toast handler is called
+        // Validate success toast handler is called
         expect(toastHandler).toHaveBeenCalledTimes(1);
         expect(toastHandler.mock.calls[0][0].detail.variant).toBe('success');
     });
@@ -133,7 +133,7 @@ describe('c-lds-notify-record-update-available', () => {
         // Wait for any asynchronous DOM updates
         await flushPromises();
 
-        //Validate error toast handler is called
+        // Validate error toast handler is called
         expect(toastHandler).toHaveBeenCalledTimes(1);
         expect(toastHandler.mock.calls[0][0].detail.variant).toBe('error');
     });
