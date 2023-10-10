@@ -1,25 +1,31 @@
 <template>
-    <lightning-card
-        title="Record Picker Dynamic Target"
-        class="slds-card__body_inner"
-    >
-        <div>
-            <lightning-combobox
-                data-id="targetSelector"
-                options={targetObjects}
-                value={currentObjectApiName}
-                onchange={handleTargetSelection}
-            >
-            </lightning-combobox>
-            <lightning-record-picker
-                lwc:ref="recordPicker"
-                object-api-name={currentObjectApiName}
-                placeholder={placeholder}
-                label={label}
-                display-info={displayInfo}
-                matching-info={matchingInfo}
-            >
-            </lightning-record-picker>
+    <lightning-card title="Record Picker Dynamic Target sObject" class="slds-card__body_inner">
+        <div class="slds-form-element">
+            <label class="slds-form-element__label">{label}</label>
+            <div class="slds-form-element__control">
+                <div class="slds-combobox-group">
+                    <lightning-combobox
+                        data-id="targetSelector"
+                        style="min-width: 8em"
+                        label="Select a target sObject"
+                        variant="label-hidden"
+                        options={targetObjects}
+                        value={currentObjectApiName}
+                        onchange={handleTargetSelection}
+                    >
+                    </lightning-combobox>
+                    <lightning-record-picker
+                        lwc:ref="recordPicker"
+                        object-api-name={currentObjectApiName}
+                        placeholder={placeholder}
+                        label={label}
+                        variant="label-hidden"
+                        display-info={displayInfo}
+                        matching-info={matchingInfo}
+                    >
+                    </lightning-record-picker>
+                </div>
+            </div>
         </div>
     </lightning-card>
 </template>
