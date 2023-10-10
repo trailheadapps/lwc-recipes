@@ -7,16 +7,18 @@
         <div class="slds-form-element">
             <label class="slds-form-element__label">{label}</label>
             <div class="slds-form-element__control slds-combobox-group">
-                <lightning-combobox
-                    data-id="targetSelector"
-                    label="Select a target sObject"
-                    variant="label-hidden"
-                    options={targetObjects}
-                    value={currentObjectApiName}
-                    onchange={handleTargetSelection}
-                    class="slds-size_x-small"
-                >
-                </lightning-combobox>
+                <template if:true={showTargetSelector}>
+                    <lightning-combobox
+                        data-id="targetSelector"
+                        label="Select a target sObject"
+                        variant="label-hidden"
+                        options={targetObjects}
+                        value={currentObjectApiName}
+                        onchange={handleTargetSelection}
+                        class="slds-size_x-small"
+                    >
+                    </lightning-combobox>
+                </template>
                 <lightning-record-picker
                     lwc:ref="recordPicker"
                     object-api-name={currentObjectApiName}
@@ -25,6 +27,7 @@
                     variant="label-hidden"
                     display-info={displayInfo}
                     matching-info={matchingInfo}
+                    onchange={handleRecordSelect}
                     class="slds-size_full"
                 >
                 </lightning-record-picker>

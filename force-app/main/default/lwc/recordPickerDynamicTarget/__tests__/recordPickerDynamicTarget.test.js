@@ -56,4 +56,55 @@ describe('recordPickerDynamicTarget', () => {
         );
         expect(recordPickerElement.objectApiName).toBe('Case');
     });
+
+    it('hides the target selector when a record is selected', async () => {
+        const recordPickerElement = element.shadowRoot.querySelector(
+            'lightning-record-picker'
+        );
+
+        // Simulate a record selection in the record picker
+        recordPickerElement.dispatchEvent(
+            new CustomEvent('change', {
+                detail: { recordId: '0017a00002PJIloAAH' }
+            })
+        );
+
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
+
+        // Check that the target selector is not displayed anymore
+        const targetSelector = element.shadowRoot.querySelector(
+            '[data-id="targetSelector"]'
+        );
+        expect(targetSelector).toBeFalsy();
+    });
+
+    it('displays the target selector again after clearing the selected record', async () => {
+        const recordPickerElement = element.shadowRoot.querySelector(
+            'lightning-record-picker'
+        );
+        // Simulate a record selection in the record picker
+        recordPickerElement.dispatchEvent(
+            new CustomEvent('change', {
+                detail: { recordId: '0017a00002PJIloAAH' }
+            })
+        );
+
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
+
+        // Simulate clearing the selected record' in the record picker
+        recordPickerElement.dispatchEvent(
+            new CustomEvent('change', { detail: { recordId: null } })
+        );
+
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
+
+        // Check that the target selector is not displayed anymore
+        const targetSelector = element.shadowRoot.querySelector(
+            '[data-id="targetSelector"]'
+        );
+        expect(targetSelector).toBeTruthy();
+    });
 });

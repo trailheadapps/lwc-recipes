@@ -11,6 +11,7 @@ export default class RecordPickerDynamicTarget extends LightningElement {
     currentObjectApiName = 'Account';
     objectInfos = [];
     isObjectInfoLoading = true;
+    currentSelectedRecordId = null;
 
     displayInfos = {
         Account: {
@@ -55,9 +56,17 @@ export default class RecordPickerDynamicTarget extends LightningElement {
         });
     }
 
+    get showTargetSelector() {
+        return this.currentSelectedRecordId === null;
+    }
+
     handleTargetSelection(event) {
         this.currentObjectApiName = event.target.value;
         this.refs.recordPicker.clearSelection();
+    }
+
+    handleRecordSelect(event) {
+        this.currentSelectedRecordId = event.detail.recordId;
     }
 
     @wire(getObjectInfos, { objectApiNames: '$objectApiNames' })
