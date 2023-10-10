@@ -1,9 +1,12 @@
-import { wire, LightningElement } from 'lwc';
+import { wire, LightningElement, api } from 'lwc';
 import { getObjectInfos } from 'lightning/uiObjectInfoApi';
 
 export default class RecordPickerDynamicTarget extends LightningElement {
     placeholder = 'Search';
+
+    @api
     label = 'Record Picker';
+
     objectApiNames = ['Account', 'Case', 'Contact'];
     currentObjectApiName = 'Account';
     objectInfos = [];
@@ -53,7 +56,7 @@ export default class RecordPickerDynamicTarget extends LightningElement {
     }
 
     handleTargetSelection(event) {
-        this.currentObjectApiName = event.detail.value;
+        this.currentObjectApiName = event.target.value;
         this.refs.recordPicker.clearSelection();
     }
 
