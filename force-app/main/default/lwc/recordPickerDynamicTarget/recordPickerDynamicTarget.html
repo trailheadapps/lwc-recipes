@@ -1,0 +1,24 @@
+<template>
+    <lightning-card
+        title="Record Picker Multi Entities"
+        class="slds-card__body_inner"
+    >
+        <div>
+            <lightning-combobox
+                options={entities}
+                value={currentObjectApiName}
+                onchange={handleSelectEntity}
+            >
+            </lightning-combobox>
+            <lightning-record-picker
+                lwc:ref="recordPicker"
+                object-api-name={currentObjectApiName}
+                placeholder={placeholder}
+                label={label}
+                display-info={displayInfo}
+                matching-info={matchingInfo}
+            >
+            </lightning-record-picker>
+        </div>
+    </lightning-card>
+</template>
