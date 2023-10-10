@@ -1,0 +1,19 @@
+<template>
+    <lightning-card title="Record Picker Hello" class="slds-card__body_inner">
+        <template if:true={contact}>
+            <p class="selectedRecordDetails">
+                You have selected the following record: `${contact.Name}`
+            </p>
+        </template>
+        <div>
+            <lightning-record-picker
+                lwc:ref="recordPicker"
+                object-api-name={currentObjectApiName}
+                placeholder={placeholder}
+                label={label}
+                onchange={handleChange}
+            >
+            </lightning-record-picker>
+        </div>
+    </lightning-card>
+</template>
