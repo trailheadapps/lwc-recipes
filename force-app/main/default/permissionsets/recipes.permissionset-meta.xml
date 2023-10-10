@@ -232,4 +232,8 @@
         <tab>X3rd_Party_Libs</tab>
         <visibility>Visible</visibility>
     </tabSettings>
+    <tabSettings>
+        <tab>Record_Picker</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
 </PermissionSet>

@@ -40,6 +40,7 @@
     <tabs>Wire</tabs>
     <tabs>GraphQL</tabs>
     <tabs>Navigation</tabs>
+    <tabs>Record_Picker</tabs>
     <tabs>Misc_Techniques</tabs>
     <tabs>X3rd_Party_Libs</tabs>
     <uiType>Lightning</uiType>
