@@ -5,7 +5,7 @@ export default class RecordPickerDynamicTarget extends LightningElement {
     placeholder = 'Search';
 
     @api
-    label = 'Record Picker';
+    label = 'Select a record';
 
     objectApiNames = ['Account', 'Case', 'Contact'];
     currentObjectApiName = 'Account';

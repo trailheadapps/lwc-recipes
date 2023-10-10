@@ -1,30 +1,32 @@
 <template>
-    <lightning-card title="Record Picker Dynamic Target sObject" class="slds-card__body_inner">
+    <lightning-card
+        title="Record Picker Dynamic Target sObject"
+        class="slds-card__body_inner"
+    >
         <div class="slds-form-element">
             <label class="slds-form-element__label">{label}</label>
-            <div class="slds-form-element__control">
-                <div class="slds-combobox-group">
-                    <lightning-combobox
-                        data-id="targetSelector"
-                        style="min-width: 8em"
-                        label="Select a target sObject"
-                        variant="label-hidden"
-                        options={targetObjects}
-                        value={currentObjectApiName}
-                        onchange={handleTargetSelection}
-                    >
-                    </lightning-combobox>
-                    <lightning-record-picker
-                        lwc:ref="recordPicker"
-                        object-api-name={currentObjectApiName}
-                        placeholder={placeholder}
-                        label={label}
-                        variant="label-hidden"
-                        display-info={displayInfo}
-                        matching-info={matchingInfo}
-                    >
-                    </lightning-record-picker>
-                </div>
+            <div class="slds-form-element__control slds-combobox-group">
+                <lightning-combobox
+                    data-id="targetSelector"
+                    label="Select a target sObject"
+                    variant="label-hidden"
+                    options={targetObjects}
+                    value={currentObjectApiName}
+                    onchange={handleTargetSelection}
+                    class="slds-size_x-small"
+                >
+                </lightning-combobox>
+                <lightning-record-picker
+                    lwc:ref="recordPicker"
+                    object-api-name={currentObjectApiName}
+                    placeholder={placeholder}
+                    label={label}
+                    variant="label-hidden"
+                    display-info={displayInfo}
+                    matching-info={matchingInfo}
+                    class="slds-size_full"
+                >
+                </lightning-record-picker>
             </div>
         </div>
     </lightning-card>
