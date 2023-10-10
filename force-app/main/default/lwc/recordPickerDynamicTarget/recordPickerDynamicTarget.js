@@ -39,7 +39,7 @@ export default class RecordPickerDynamicTarget extends LightningElement {
             : undefined;
     }
 
-    get entities() {
+    get targetObjects() {
         if (this.isObjectInfoLoading) {
             return [];
         }
@@ -52,7 +52,7 @@ export default class RecordPickerDynamicTarget extends LightningElement {
         });
     }
 
-    handleSelectEntity(event) {
+    handleTargetSelection(event) {
         this.currentObjectApiName = event.detail.value;
         this.refs.recordPicker.clearSelection();
     }

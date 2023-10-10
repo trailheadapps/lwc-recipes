@@ -1,13 +1,13 @@
 <template>
     <lightning-card
-        title="Record Picker Multi Entities"
+        title="Record Picker Dynamic Target"
         class="slds-card__body_inner"
     >
         <div>
             <lightning-combobox
-                options={entities}
+                options={targetObjects}
                 value={currentObjectApiName}
-                onchange={handleSelectEntity}
+                onchange={handleTargetSelection}
             >
             </lightning-combobox>
             <lightning-record-picker

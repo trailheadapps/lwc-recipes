@@ -2,7 +2,7 @@ import { LightningElement, track, wire } from 'lwc';
 import { getRecord } from 'lightning/uiRecordApi';
 import CONTACT_NAME_FIELD from '@salesforce/schema/Contact.Name';
 
-export default class RpMultiValueExample extends LightningElement {
+export default class RecordPickerMultiValue extends LightningElement {
     @track contactItems = [];
     @track recordPickerFilter = {
         criteria: [
