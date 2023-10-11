@@ -57,7 +57,7 @@ describe('recordPickerHello', () => {
         // Wait for any asynchronous DOM updates
         await flushPromises();
         const selectedRecordDetails = element.shadowRoot.querySelector(
-            'p.selectedRecordDetails'
+            '.selectedRecordDetails'
         );
         await flushPromises();
 

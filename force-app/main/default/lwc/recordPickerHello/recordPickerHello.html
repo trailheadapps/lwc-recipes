@@ -1,9 +1,12 @@
 <template>
     <lightning-card title="Record Picker Hello" class="slds-card__body_inner">
         <template if:true={contact}>
-            <p class="selectedRecordDetails">
-                You have selected the following record: `${contact.Name}`
-            </p>
+            <div class="slds-var-m-around_medium selectedRecordDetails">
+                <c-contact-tile
+                    class="slds-show slds-is-relative"
+                    contact={contact}
+                ></c-contact-tile>
+            </div>
         </template>
         <div>
             <lightning-record-picker
