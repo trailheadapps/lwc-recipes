@@ -3,8 +3,7 @@ import RecordPickerHello from 'c/recordPickerHello';
 import { graphql } from 'lightning/uiGraphQLApi';
 
 // Mock realistic data
-// import mockGraphQL from '../data/graphqlContactResult.json';
-const mockGraphQL = require('../data/graphqlContactResult.json');
+const mockGraphQL = require('./data/graphqlContactResult.json');
 
 describe('recordPickerHello', () => {
     let element;
