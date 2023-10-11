@@ -5,7 +5,7 @@ import { gql, graphql } from 'lightning/uiGraphQLApi';
 export default class RecordPickerHello extends LightningElement {
     placeholder = 'Search';
 
-    label = 'Record Picker';
+    label = 'Select a record';
 
     currentObjectApiName = 'Contact';
     objectInfos = [];
