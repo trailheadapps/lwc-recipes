@@ -2,7 +2,7 @@ import { wire, LightningElement, api } from 'lwc';
 import { getObjectInfos } from 'lightning/uiObjectInfoApi';
 
 export default class RecordPickerDynamicTarget extends LightningElement {
-    placeholder = 'Search';
+    placeholder = 'Search...';
 
     @api
     label = 'Select a record';

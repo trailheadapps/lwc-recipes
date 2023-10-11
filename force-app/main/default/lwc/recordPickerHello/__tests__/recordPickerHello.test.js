@@ -43,7 +43,7 @@ describe('recordPickerHello', () => {
         expect(element).toBeAccessible();
     });
 
-    it('changes the target object of the record picker', async () => {
+    it('displays the selected record in a Contact tile', async () => {
         // set selected record
         const recordPickerElement = element.shadowRoot.querySelector(
             'lightning-record-picker'
