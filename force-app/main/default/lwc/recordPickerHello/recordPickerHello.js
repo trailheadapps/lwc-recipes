@@ -13,7 +13,7 @@ export default class RecordPickerHello extends LightningElement {
     selectedRecordId = '';
 
     handleChange(event) {
-        this.selectedRecordId = event.target.recordId;
+        this.selectedRecordId = event.detail.recordId;
     }
 
     contact = {};
@@ -45,8 +45,10 @@ export default class RecordPickerHello extends LightningElement {
                                     }
                                     Title {
                                         value
+                                    }
+                                    Picture__c {
+                                        value
                                         displayValue
-                                        label
                                     }
                                 }
                             }
@@ -67,16 +69,13 @@ export default class RecordPickerHello extends LightningElement {
             return;
         }
 
-        this.contact = data.uiapi.query.Contact.edges.map(
-            (edge) =>
-                ({
-                    Id: edge.node.Id,
-                    Name: edge.node.Name.value,
-                    Phone: edge.node.Phone.value,
-                    Picture__c: edge.node.Picture__c.value,
-                    Title: edge.node.Title.value
-                })[0]
-        );
+        this.contact = data.uiapi.query.Contact.edges.map((edge) => ({
+            Id: edge.node.Id,
+            Name: edge.node.Name.value,
+            Phone: edge.node.Phone.value,
+            Picture__c: edge.node.Picture__c.value,
+            Title: edge.node.Title.value
+        }))[0];
     }
 
     @wire(getObjectInfos, { objectApiNames: '$objectApiNames' })

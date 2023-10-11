@@ -49,7 +49,11 @@ describe('recordPickerHello', () => {
             'lightning-record-picker'
         );
         recordPickerElement.value = '003Z70000016iOUIAY';
-        recordPickerElement.dispatchEvent(new CustomEvent('change'));
+        recordPickerElement.dispatchEvent(
+            new CustomEvent('change', {
+                detail: { recordId: '003Z70000016iOUIAY' }
+            })
+        );
         // Emit data from @wire
         graphql.emit(mockGraphQL);
 
@@ -59,8 +63,6 @@ describe('recordPickerHello', () => {
             '.selectedRecordDetails'
         );
         await flushPromises();
-
-        console.log(selectedRecordDetails);
 
         expect(selectedRecordDetails).toBeTruthy();
     });
