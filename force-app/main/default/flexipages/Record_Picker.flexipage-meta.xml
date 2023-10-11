@@ -7,14 +7,20 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
-                <componentName>recordPickerDynamicTarget</componentName>
-                <identifier>c_recordPickerDynamicTarget</identifier>
+                <componentName>recordPickerHello</componentName>
+                <identifier>c_recordPickerHello</identifier>
             </componentInstance>
         </itemInstances>
         <name>region2</name>
         <type>Region</type>
     </flexiPageRegions>
     <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentName>recordPickerDynamicTarget</componentName>
+                <identifier>c_recordPickerDynamicTarget</identifier>
+            </componentInstance>
+        </itemInstances>
         <name>region3</name>
         <type>Region</type>
     </flexiPageRegions>
