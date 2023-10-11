@@ -4,6 +4,7 @@ import { graphql } from 'lightning/uiGraphQLApi';
 
 // Mock realistic data
 const mockGraphQL = require('./data/graphqlContactResult.json');
+const mockGraphQLEmptyResults = require('./data/graphqlContactEmptyResult.json');
 
 describe('recordPickerHello', () => {
     let element;
@@ -43,6 +44,13 @@ describe('recordPickerHello', () => {
         expect(element).toBeAccessible();
     });
 
+    it('hides the Contact tile when no records are selected', async () => {
+        const selectedRecordDetails = element.shadowRoot.querySelector(
+            '.selectedRecordDetails'
+        );
+        expect(selectedRecordDetails).toBeFalsy();
+    });
+
     it('displays the selected record in a Contact tile', async () => {
         // set selected record
         const recordPickerElement = element.shadowRoot.querySelector(
@@ -65,5 +73,39 @@ describe('recordPickerHello', () => {
         await flushPromises();
 
         expect(selectedRecordDetails).toBeTruthy();
+    });
+
+    it('hides the Contact tile when clearing the selected record', async () => {
+        // set selected record
+        const recordPickerElement = element.shadowRoot.querySelector(
+            'lightning-record-picker'
+        );
+        recordPickerElement.value = '003Z70000016iOUIAY';
+        recordPickerElement.dispatchEvent(
+            new CustomEvent('change', {
+                detail: { recordId: '003Z70000016iOUIAY' }
+            })
+        );
+        // Emit data from @wire
+        graphql.emit(mockGraphQL);
+
+        // clear the selected record
+        recordPickerElement.value = null;
+        recordPickerElement.dispatchEvent(
+            new CustomEvent('change', {
+                detail: { recordId: null }
+            })
+        );
+        // Emit data from @wire
+        graphql.emit(mockGraphQLEmptyResults);
+
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
+        const selectedRecordDetails = element.shadowRoot.querySelector(
+            '.selectedRecordDetails'
+        );
+        await flushPromises();
+
+        expect(selectedRecordDetails).toBeFalsy();
     });
 });
