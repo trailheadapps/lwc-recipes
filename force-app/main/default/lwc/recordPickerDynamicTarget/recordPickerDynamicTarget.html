@@ -1,6 +1,6 @@
 <template>
     <lightning-card
-        title="Record Picker Dynamic Target sObject"
+        title="RecordPickerDynamicTarget"
         class="slds-card__body_inner"
         icon-name="standard:search"
     >
@@ -33,5 +33,9 @@
                 </lightning-record-picker>
             </div>
         </div>
+
+        <c-view-source source="lwc/recordPickerDynamicTarget" slot="footer">
+            Select a target sObject. Type a search term and select a record.
+        </c-view-source>
     </lightning-card>
 </template>
