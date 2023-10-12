@@ -1,5 +1,9 @@
 import { createElement } from 'lwc';
 import RecordPickerDynamicTarget from 'c/recordPickerDynamicTarget';
+import { getObjectInfos } from 'lightning/uiObjectInfoApi';
+
+// Realistic data with object info
+const mockGetObjectInfos = require('./data/getObjectInfos.json');
 
 describe('recordPickerDynamicTarget', () => {
     let element;
@@ -55,6 +59,23 @@ describe('recordPickerDynamicTarget', () => {
             'lightning-record-picker'
         );
         expect(recordPickerElement.objectApiName).toBe('Case');
+    });
+
+    it('displays the target selector with object labels', async () => {
+        // Emit data from getObjectInfos @wire
+        getObjectInfos.emit(mockGetObjectInfos);
+
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
+
+        // Check that the target selector as the expected options
+        const targetSelector = element.shadowRoot.querySelector(
+            '[data-id="targetSelector"]'
+        );
+        expect(targetSelector.options).toStrictEqual([
+            { label: 'Contact', value: 'Contact' },
+            { label: 'Account', value: 'Account' }
+        ]);
     });
 
     it('hides the target selector when a record is selected', async () => {

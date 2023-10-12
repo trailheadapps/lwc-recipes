@@ -2,9 +2,6 @@ import { wire, LightningElement } from 'lwc';
 import { gql, graphql } from 'lightning/uiGraphQLApi';
 
 export default class RecordPickerHello extends LightningElement {
-    placeholder = 'Search...';
-    label = 'Select a record';
-    currentObjectApiName = 'Contact';
     selectedRecordId = '';
     contact;
 
@@ -71,9 +68,6 @@ export default class RecordPickerHello extends LightningElement {
             Title: edge.node.Title.value
         }));
 
-        this.contact =
-            graphqlResults && graphqlResults.length
-                ? graphqlResults[0]
-                : undefined;
+        this.contact = graphqlResults?.[0];
     }
 }

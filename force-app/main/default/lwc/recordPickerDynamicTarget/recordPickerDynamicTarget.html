@@ -13,7 +13,7 @@
                         label="Select a target sObject"
                         variant="label-hidden"
                         options={targetObjects}
-                        value={currentObjectApiName}
+                        value={selectedTarget}
                         onchange={handleTargetSelection}
                         class="slds-combobox_object-switcher slds-combobox-addon_start"
                     >
@@ -21,7 +21,7 @@
                 </template>
                 <lightning-record-picker
                     lwc:ref="recordPicker"
-                    object-api-name={currentObjectApiName}
+                    object-api-name={selectedTarget}
                     placeholder={placeholder}
                     label={label}
                     variant="label-hidden"

@@ -8,7 +8,7 @@ export default class RecordPickerDynamicTarget extends LightningElement {
     label = 'Select a record';
 
     objectApiNames = ['Account', 'Case', 'Contact'];
-    currentObjectApiName = 'Account';
+    selectedTarget = 'Account';
     objectInfos = [];
     isObjectInfoLoading = true;
     currentSelectedRecordId = null;
@@ -32,15 +32,11 @@ export default class RecordPickerDynamicTarget extends LightningElement {
     };
 
     get displayInfo() {
-        return this.displayInfos
-            ? this.displayInfos[this.currentObjectApiName]
-            : undefined;
+        return this.displayInfos?.[this.selectedTarget];
     }
 
     get matchingInfo() {
-        return this.matchingInfos
-            ? this.matchingInfos[this.currentObjectApiName]
-            : undefined;
+        return this.matchingInfos?.[this.selectedTarget];
     }
 
     get targetObjects() {
@@ -61,7 +57,7 @@ export default class RecordPickerDynamicTarget extends LightningElement {
     }
 
     handleTargetSelection(event) {
-        this.currentObjectApiName = event.target.value;
+        this.selectedTarget = event.target.value;
         this.refs.recordPicker.clearSelection();
     }
 
@@ -80,11 +76,7 @@ export default class RecordPickerDynamicTarget extends LightningElement {
             return;
         }
 
-        this.objectInfos = [];
-        data.results.forEach((result) => {
-            const objectInfo = result.result;
-            this.objectInfos.push(objectInfo);
-        });
+        this.objectInfos = data.results.map((resultItem) => resultItem.result);
         this.isObjectInfoLoading = false;
     }
 }

@@ -1,0 +1,18 @@
+{
+    "results": [
+        {
+            "result": {
+                "apiName": "Contact",
+                "label": "Contact"
+            },
+            "statusCode": 200
+        },
+        {
+            "result": {
+                "apiName": "Account",
+                "label": "Account"
+            },
+            "statusCode": 200
+        }
+    ]
+}
