@@ -108,4 +108,19 @@ describe('recordPickerHello', () => {
 
         expect(selectedRecordDetails).toBeFalsy();
     });
+
+    describe('graphql @wire error', () => {
+        it('shows error panel element', async () => {
+            // Emit error from @wire
+            graphql.emitErrors(['an error']);
+
+            // Wait for any asynchronous DOM updates
+            await flushPromises();
+
+            // Check for error panel
+            const errorPanelEl =
+                element.shadowRoot.querySelector('c-error-panel');
+            expect(errorPanelEl).not.toBeNull();
+        });
+    });
 });

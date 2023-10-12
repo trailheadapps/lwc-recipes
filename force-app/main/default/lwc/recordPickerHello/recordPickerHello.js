@@ -4,6 +4,7 @@ import { gql, graphql } from 'lightning/uiGraphQLApi';
 export default class RecordPickerHello extends LightningElement {
     selectedRecordId = '';
     contact;
+    wireError;
 
     get variables() {
         return {
@@ -51,12 +52,8 @@ export default class RecordPickerHello extends LightningElement {
         variables: '$variables'
     })
     wiredGraphQL({ data, errors }) {
-        if (errors) {
-            this.dispatchEvent(new CustomEvent('error', { error: errors }));
-            return;
-        }
-
-        if (!data) {
+        this.wireError = errors;
+        if (errors || !data) {
             return;
         }
 
