@@ -73,8 +73,8 @@ describe('recordPickerDynamicTarget', () => {
             '[data-id="targetSelector"]'
         );
         expect(targetSelector.options).toStrictEqual([
-            { label: 'Contact', value: 'Contact' },
-            { label: 'Account', value: 'Account' }
+            { label: 'Account', value: 'Account' },
+            { label: 'Contact', value: 'Contact' }
         ]);
     });
 
@@ -127,20 +127,5 @@ describe('recordPickerDynamicTarget', () => {
             '[data-id="targetSelector"]'
         );
         expect(targetSelector).toBeTruthy();
-    });
-
-    describe('getObjectInfos @wire error', () => {
-        it('shows error panel element', async () => {
-            // Emit error from @wire
-            getObjectInfos.error();
-
-            // Wait for any asynchronous DOM updates
-            await flushPromises();
-
-            // Check for error panel
-            const errorPanelEl =
-                element.shadowRoot.querySelector('c-error-panel');
-            expect(errorPanelEl).not.toBeNull();
-        });
     });
 });

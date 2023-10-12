@@ -1,12 +1,18 @@
-import { wire, LightningElement } from 'lwc';
-import { getObjectInfos } from 'lightning/uiObjectInfoApi';
+import { LightningElement } from 'lwc';
 
 export default class RecordPickerDynamicTarget extends LightningElement {
-    objectApiNames = ['Account', 'Case', 'Contact'];
+    targetObjects = [
+        {
+            label: 'Account',
+            value: 'Account'
+        },
+        {
+            label: 'Contact',
+            value: 'Contact'
+        }
+    ];
     selectedTarget = 'Account';
-    objectInfos = [];
     currentSelectedRecordId = null;
-    wireError;
 
     displayInfos = {
         Account: {
@@ -27,24 +33,11 @@ export default class RecordPickerDynamicTarget extends LightningElement {
     };
 
     get displayInfo() {
-        return this.displayInfos?.[this.selectedTarget];
+        return this.displayInfos[this.selectedTarget];
     }
 
     get matchingInfo() {
-        return this.matchingInfos?.[this.selectedTarget];
-    }
-
-    get targetObjects() {
-        if (!this.objectInfos) {
-            return [];
-        }
-
-        return this.objectInfos.map((objectInfo) => {
-            return {
-                label: objectInfo.label,
-                value: objectInfo.apiName
-            };
-        });
+        return this.matchingInfos[this.selectedTarget];
     }
 
     get showTargetSelector() {
@@ -58,14 +51,5 @@ export default class RecordPickerDynamicTarget extends LightningElement {
 
     handleRecordSelect(event) {
         this.currentSelectedRecordId = event.detail.recordId;
-    }
-
-    @wire(getObjectInfos, { objectApiNames: '$objectApiNames' })
-    wiredGetObjectInfos({ error, data }) {
-        this.wireError = error;
-        if (error || !data) {
-            return;
-        }
-        this.objectInfos = data.results.map((resultItem) => resultItem.result);
     }
 }
