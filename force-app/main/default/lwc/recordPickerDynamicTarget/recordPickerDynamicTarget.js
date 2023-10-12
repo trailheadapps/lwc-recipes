@@ -1,12 +1,7 @@
-import { wire, LightningElement, api } from 'lwc';
+import { wire, LightningElement } from 'lwc';
 import { getObjectInfos } from 'lightning/uiObjectInfoApi';
 
 export default class RecordPickerDynamicTarget extends LightningElement {
-    placeholder = 'Search...';
-
-    @api
-    label = 'Select a record';
-
     objectApiNames = ['Account', 'Case', 'Contact'];
     selectedTarget = 'Account';
     objectInfos = [];
