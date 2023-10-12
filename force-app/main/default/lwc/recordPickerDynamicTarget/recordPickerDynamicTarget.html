@@ -33,7 +33,9 @@
                 </lightning-record-picker>
             </div>
         </div>
-
+        <template lwc:if={wireError}>
+            <c-error-panel errors={wireError}></c-error-panel>
+        </template>
         <c-view-source source="lwc/recordPickerDynamicTarget" slot="footer">
             Select a target sObject. Type a search term and select a record.
         </c-view-source>

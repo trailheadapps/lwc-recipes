@@ -128,4 +128,19 @@ describe('recordPickerDynamicTarget', () => {
         );
         expect(targetSelector).toBeTruthy();
     });
+
+    describe('getObjectInfos @wire error', () => {
+        it('shows error panel element', async () => {
+            // Emit error from @wire
+            getObjectInfos.error();
+
+            // Wait for any asynchronous DOM updates
+            await flushPromises();
+
+            // Check for error panel
+            const errorPanelEl =
+                element.shadowRoot.querySelector('c-error-panel');
+            expect(errorPanelEl).not.toBeNull();
+        });
+    });
 });

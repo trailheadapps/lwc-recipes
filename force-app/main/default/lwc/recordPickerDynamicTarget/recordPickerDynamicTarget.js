@@ -5,8 +5,8 @@ export default class RecordPickerDynamicTarget extends LightningElement {
     objectApiNames = ['Account', 'Case', 'Contact'];
     selectedTarget = 'Account';
     objectInfos = [];
-    isObjectInfoLoading = true;
     currentSelectedRecordId = null;
+    wireError;
 
     displayInfos = {
         Account: {
@@ -35,7 +35,7 @@ export default class RecordPickerDynamicTarget extends LightningElement {
     }
 
     get targetObjects() {
-        if (this.isObjectInfoLoading) {
+        if (!this.objectInfos) {
             return [];
         }
 
@@ -62,16 +62,10 @@ export default class RecordPickerDynamicTarget extends LightningElement {
 
     @wire(getObjectInfos, { objectApiNames: '$objectApiNames' })
     wiredGetObjectInfos({ error, data }) {
-        if (error) {
-            this.dispatchEvent(new CustomEvent('error', { error: error }));
+        this.wireError = error;
+        if (error || !data) {
             return;
         }
-
-        if (!data) {
-            return;
-        }
-
         this.objectInfos = data.results.map((resultItem) => resultItem.result);
-        this.isObjectInfoLoading = false;
     }
 }
