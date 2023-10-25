@@ -1,5 +1,9 @@
 import { LightningElement } from 'lwc';
 
+// As of today, `lightning-record-picker` supports a single targets.
+// This sample component shows how you can turn `lightning-record-picker` into
+// a multi-target record picker, where the user can select the target object
+// before searching.
 export default class RecordPickerDynamicTarget extends LightningElement {
     targetObjects = [
         {
@@ -45,6 +49,9 @@ export default class RecordPickerDynamicTarget extends LightningElement {
     }
 
     handleTargetSelection(event) {
+        // Prevent lightning-combobox `change` event from bubbling
+        event.stopPropagation();
+
         this.selectedTarget = event.target.value;
         this.refs.recordPicker.clearSelection();
     }
