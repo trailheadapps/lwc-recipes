@@ -1,6 +1,6 @@
 import { LightningElement } from 'lwc';
 
-// As of today, `lightning-record-picker` supports a single targets.
+// As of today, `lightning-record-picker` only supports a single target.
 // This sample component shows how you can turn `lightning-record-picker` into
 // a multi-target record picker, where the user can select the target object
 // before searching.
