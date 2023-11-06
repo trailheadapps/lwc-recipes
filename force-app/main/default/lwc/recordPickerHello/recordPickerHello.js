@@ -16,6 +16,9 @@ export default class RecordPickerHello extends LightningElement {
         this.selectedRecordId = event.detail.recordId;
     }
 
+    // A GraphQL query is sent after the record picker change event has been dispatched.
+    // This is the recommended practice for fetching record fields based on
+    // the record picker change event's recordId.
     @wire(graphql, {
         query: gql`
             query searchContacts($selectedRecordId: ID) {
