@@ -35,19 +35,17 @@ describe('c-wire-get-record-static-contact', () => {
 
             // Select elements for validation
             const nameEl = element.shadowRoot.querySelector('p');
-            expect(nameEl.textContent).toBe(
-                mockGetRecord.result.fields.Name.value
-            );
+            expect(nameEl.textContent).toBe(mockGetRecord.fields.Name.value);
 
             const phoneEl = element.shadowRoot.querySelector(
                 'lightning-formatted-phone'
             );
-            expect(phoneEl.value).toBe(mockGetRecord.result.fields.Phone.value);
+            expect(phoneEl.value).toBe(mockGetRecord.fields.Phone.value);
 
             const emailEl = element.shadowRoot.querySelector(
                 'lightning-formatted-email'
             );
-            expect(emailEl.value).toBe(mockGetRecord.result.fields.Email.value);
+            expect(emailEl.value).toBe(mockGetRecord.fields.Email.value);
         });
     });
 
