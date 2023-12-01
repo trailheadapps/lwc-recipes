@@ -21,7 +21,7 @@ module.exports = {
             '<rootDir>/force-app/test/jest-mocks/lightning/messageService',
         '^lightning/actions$':
             '<rootDir>/force-app/test/jest-mocks/lightning/actions',
-        '^lightning/modal*':
+        '^lightning/modal$':
             '<rootDir>/force-app/test/jest-mocks/lightning/modal',
         '^lightning/refresh$':
             '<rootDir>/force-app/test/jest-mocks/lightning/refresh'
