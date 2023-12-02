@@ -44,7 +44,6 @@ describe('c-my-modal', () => {
         });
         document.body.appendChild(element);
 
-        console.log(element.modalFooter$('lightning-button').label);
         // Validate the modal footer to have rendered with close button
         expect(element.modalFooter$('lightning-button').label).toBe('Close');
     });
