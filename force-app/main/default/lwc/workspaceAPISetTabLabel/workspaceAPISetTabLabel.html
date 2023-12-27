@@ -1,0 +1,17 @@
+<template>
+    <lightning-card
+        title="WorkspaceAPISetTabLabel"
+        icon-name="standard:scheduling_workspace"
+    >
+        <div class="slds-m-around_medium">
+            <lightning-button
+                label="Set Focused Tab Label"
+                onclick={setTabLabel}
+            >
+            </lightning-button>
+        </div>
+        <c-view-source source="lwc/workspaceAPISetTabLabel" slot="footer">
+            Set label for a tab.
+        </c-view-source>
+    </lightning-card>
+</template>

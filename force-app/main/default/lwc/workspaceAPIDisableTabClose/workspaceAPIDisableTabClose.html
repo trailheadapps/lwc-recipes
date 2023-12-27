@@ -1,0 +1,18 @@
+<template>
+    <lightning-card
+        title="WorkspaceAPIDisableTabClose"
+        icon-name="standard:scheduling_workspace"
+    >
+        <div class="slds-m-around_medium">
+            <lightning-input
+                type="toggle"
+                label="Disable Focused Tab Close Button"
+                onchange={disableTabClose}
+            >
+            </lightning-input>
+        </div>
+        <c-view-source source="lwc/workspaceAPIDisableTabClose" slot="footer">
+            Disable close button on a tab.
+        </c-view-source>
+    </lightning-card>
+</template>
