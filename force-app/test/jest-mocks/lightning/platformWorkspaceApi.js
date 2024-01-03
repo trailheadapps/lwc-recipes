@@ -1,17 +1,22 @@
 import { createTestWireAdapter } from '@salesforce/wire-service-jest-util';
 
-export const mockCloseTab = jest.fn();
-export const mockDisableTabClose = jest.fn();
-export const mockFocusTab = jest.fn();
-export const mockGetAllTabInfo = jest.fn();
-export const mockGetFocusedTabInfo = jest.fn();
-export const mockGetTabInfo = jest.fn();
-export const mockOpenSubtab = jest.fn();
-export const mockOpenTab = jest.fn();
-export const mockRefreshTab = jest.fn();
-export const mockSetTabHighlighted = jest.fn();
-export const mockSetTabIcon = jest.fn();
-export const mockSetTabLabel = jest.fn();
+// This mock assumes two tabs are open, and the first one is focused
+export const FOCUSED_TAB = 'tab0';
+export const ENCLOSING_TAB_ID = 'tab0';
+export const closeTab = jest.fn().mockResolvedValue(true);
+export const disableTabClose = jest.fn().mockResolvedValue(true);
+export const focusTab = jest.fn().mockResolvedValue(true);
+export const getAllTabInfo = jest
+    .fn()
+    .mockResolvedValue([{ tabId: 'tab0' }, { tabId: 'tab1' }]);
+export const getFocusedTabInfo = jest.fn().mockResolvedValue({ tabId: 'tab0' });
+export const getTabInfo = jest.fn().mockResolvedValue({ tabId: 'tab0' });
+export const openSubtab = jest.fn().mockResolvedValue(true);
+export const openTab = jest.fn().mockResolvedValue(true);
+export const refreshTab = jest.fn().mockResolvedValue(true);
+export const setTabHighlighted = jest.fn().mockResolvedValue(true);
+export const setTabIcon = jest.fn().mockResolvedValue(true);
+export const setTabLabel = jest.fn().mockResolvedValue(true);
 
 export const EnclosingTabId = createTestWireAdapter(jest.fn());
 export const IsConsoleNavigation = createTestWireAdapter(jest.fn());

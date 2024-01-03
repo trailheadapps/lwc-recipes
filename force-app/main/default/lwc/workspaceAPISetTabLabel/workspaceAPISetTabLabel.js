@@ -5,6 +5,8 @@ import {
     setTabLabel
 } from 'lightning/platformWorkspaceApi';
 
+const TAB_LABEL = 'Awesome Label';
+
 export default class WorkspaceAPISetTabLabel extends LightningElement {
     @wire(IsConsoleNavigation) isConsoleNavigation;
 
@@ -12,8 +14,7 @@ export default class WorkspaceAPISetTabLabel extends LightningElement {
         if (!this.isConsoleNavigation) {
             return;
         }
-        const tabLabel = 'Awesome Label';
         const { tabId } = await getFocusedTabInfo();
-        setTabLabel(tabId, tabLabel);
+        setTabLabel(tabId, TAB_LABEL);
     }
 }

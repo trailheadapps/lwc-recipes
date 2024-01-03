@@ -5,6 +5,9 @@ import {
     setTabIcon
 } from 'lightning/platformWorkspaceApi';
 
+const TAB_ICON = 'utility:animal_and_nature';
+const TAB_ICON_ALT_TEXT = 'Animal and Nature';
+
 export default class WorkspaceAPISetTabIcon extends LightningElement {
     @wire(IsConsoleNavigation) isConsoleNavigation;
 
@@ -12,11 +15,10 @@ export default class WorkspaceAPISetTabIcon extends LightningElement {
         if (!this.isConsoleNavigation) {
             return;
         }
-        const tabIcon = 'utility:animal_and_nature';
-        const tabIconAltText = 'Animal and Nature';
+
         const { tabId } = await getFocusedTabInfo();
-        setTabIcon(tabId, tabIcon, {
-            iconAlt: tabIconAltText
+        setTabIcon(tabId, TAB_ICON, {
+            iconAlt: TAB_ICON_ALT_TEXT
         });
     }
 }
