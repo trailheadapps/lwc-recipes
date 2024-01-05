@@ -1,4 +1,4 @@
-import { LightningElement, wire } from 'lwc';
+import { LightningElement, wire, track } from 'lwc';
 import { getRecord } from 'lightning/uiRecordApi';
 // import CONTACT_NAME_FIELD from '@salesforce/schema/Contact.Name';
 
@@ -11,6 +11,9 @@ const CONTACT_NAME_FIELD = {
 
 export default class RecordPickerMultiValue extends LightningElement {
     currentSelectedRecordId;
+
+    @track
+    contactItems = [];
 
     handleContactRecordPickerChange(event) {
         this.currentSelectedRecordId = event.detail.recordId;
