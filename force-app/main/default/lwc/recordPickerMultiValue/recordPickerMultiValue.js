@@ -15,6 +15,17 @@ export default class RecordPickerMultiValue extends LightningElement {
     @track
     contactItems = [];
 
+    @track
+    recordFilter = {
+        criteria: [
+            {
+                fieldPath: 'Id',
+                operator: 'nin',
+                value: []
+            }
+        ]
+    };
+
     handleContactRecordPickerChange(event) {
         this.currentSelectedRecordId = event.detail.recordId;
     }
@@ -38,6 +49,7 @@ export default class RecordPickerMultiValue extends LightningElement {
         });
 
         this.currentSelectedRecordId = null;
+        this._addRecordToFilter(recordId);
         this.refs.recordPicker.clearSelection();
     }
 
@@ -47,5 +59,18 @@ export default class RecordPickerMultiValue extends LightningElement {
             this.contactItems.findIndex((item) => item.name === recordId),
             1
         );
+
+        this._removeRecordFromFilter(recordId);
+    }
+
+    _addRecordToFilter(recordId) {
+        this.recordFilter.criteria[0].value.push(recordId);
+    }
+
+    _removeRecordFromFilter(recordId) {
+        const filterValue = this.recordFilter.criteria[0].value;
+        const recordIndex = filterValue.findIndex((id) => id === recordId);
+
+        filterValue.splice(recordIndex, 1);
     }
 }
