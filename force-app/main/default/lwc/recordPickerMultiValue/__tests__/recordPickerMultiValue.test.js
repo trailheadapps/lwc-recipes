@@ -1,11 +1,6 @@
 import { createElement } from 'lwc';
 import { getRecord } from 'lightning/uiRecordApi';
 import RecordPickerMultiValue from 'c/recordPickerMultiValue';
-// import { graphql } from 'lightning/uiGraphQLApi';
-
-// Mock realistic data
-// const mockGraphQL = require('./data/graphqlContactResult.json');
-// const mockGraphQLEmptyResults = require('./data/graphqlContactEmptyResult.json');
 
 // Mock realistic data
 const mockGetRecord = require('./data/wireGetRecordResponse.json');
@@ -47,7 +42,7 @@ describe('recordPickerMultiValue', () => {
         expect(element).toBeAccessible();
     });
 
-    it('should display the selected record as a pill under the input component', async () => {
+    it('should display the selected record as in the pill container', async () => {
         // set selected record
         const recordPickerElement = element.shadowRoot.querySelector(
             'lightning-record-picker'
@@ -80,5 +75,37 @@ describe('recordPickerMultiValue', () => {
                 iconName: 'standard:contact'
             }
         ]);
+    });
+
+    it('should clear the input when a selection is made', async () => {
+        // set selected record
+        const recordPickerElement = element.shadowRoot.querySelector(
+            'lightning-record-picker'
+        );
+
+        // Spy on recordPickerElement.clearSelection()
+        const clearSelection = jest.spyOn(
+            recordPickerElement,
+            'clearSelection'
+        );
+
+        // Simulate a record selection in the record picker
+        recordPickerElement.value = '005xx000001X83aAAC';
+        recordPickerElement.dispatchEvent(
+            new CustomEvent('change', {
+                detail: { recordId: '005xx000001X83aAAC' }
+            })
+        );
+
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
+
+        // Emit data from @wire
+        getRecord.emit(mockGetRecord);
+
+        // Wait for any asynchronous wire call
+        await flushPromises();
+
+        expect(clearSelection).toHaveBeenCalled();
     });
 });
