@@ -40,4 +40,12 @@ export default class RecordPickerMultiValue extends LightningElement {
         this.currentSelectedRecordId = null;
         this.refs.recordPicker.clearSelection();
     }
+
+    handleItemRemove(event) {
+        const recordId = event.detail.item.name;
+        this.contactItems.splice(
+            this.contactItems.findIndex((item) => item.name === recordId),
+            1
+        );
+    }
 }

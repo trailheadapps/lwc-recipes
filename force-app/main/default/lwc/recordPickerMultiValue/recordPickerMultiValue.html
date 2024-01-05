@@ -8,5 +8,8 @@
         onchange={handleContactRecordPickerChange}
     ></lightning-record-picker>
 
-    <lightning-pill-container items={contactItems}></lightning-pill-container>
+    <lightning-pill-container
+        items={contactItems}
+        onitemremove={handleItemRemove}
+    ></lightning-pill-container>
 </template>
