@@ -26,7 +26,7 @@ export default class RecordPickerMultiValue extends LightningElement {
         ]
     };
 
-    handleContactRecordPickerChange(event) {
+    handleRecordPickerChange(event) {
         this.currentSelectedRecordId = event.detail.recordId;
     }
 
@@ -45,7 +45,8 @@ export default class RecordPickerMultiValue extends LightningElement {
 
         this.contactItems.push({
             name: recordId,
-            label: recordName
+            label: recordName,
+            iconName: 'standard:contact'
         });
 
         this.currentSelectedRecordId = null;
