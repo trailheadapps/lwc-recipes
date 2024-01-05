@@ -1,0 +1,10 @@
+<template>
+    <lightning-record-picker
+        lwc:ref="recordPicker"
+        label="Contacts"
+        placeholder="Search Contacts..."
+        object-api-name="Contact"
+        filter={recordFilter}
+        onchange={handleContactRecordPickerChange}
+    ></lightning-record-picker>
+</template>
