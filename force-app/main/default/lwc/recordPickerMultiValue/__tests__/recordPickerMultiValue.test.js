@@ -42,7 +42,7 @@ describe('recordPickerMultiValue', () => {
         expect(element).toBeAccessible();
     });
 
-    it('should display the selected record as in the pill container', async () => {
+    it('should display the selected record in the pill container', async () => {
         // set selected record
         const recordPickerElement = element.shadowRoot.querySelector(
             'lightning-record-picker'
@@ -107,5 +107,87 @@ describe('recordPickerMultiValue', () => {
         await flushPromises();
 
         expect(clearSelection).toHaveBeenCalled();
+    });
+
+    it('should filter out a record from the suggestions when it has already been selected', async () => {
+        // set selected record
+        const recordPickerElement = element.shadowRoot.querySelector(
+            'lightning-record-picker'
+        );
+
+        // Simulate a record selection in the record picker
+        recordPickerElement.value = '005xx000001X83aAAC';
+        recordPickerElement.dispatchEvent(
+            new CustomEvent('change', {
+                detail: { recordId: '005xx000001X83aAAC' }
+            })
+        );
+
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
+
+        // Emit data from @wire
+        getRecord.emit(mockGetRecord);
+
+        // Wait for any asynchronous wire call
+        await flushPromises();
+
+        expect(recordPickerElement.filter.criteria).toEqual(
+            expect.arrayContaining([
+                {
+                    fieldPath: 'Id',
+                    operator: 'nin',
+                    value: ['005xx000001X83aAAC']
+                }
+            ])
+        );
+    });
+
+    it('should not filter out anymore a record from the selecyted record has been removed', async () => {
+        // set selected record
+        const recordPickerElement = element.shadowRoot.querySelector(
+            'lightning-record-picker'
+        );
+
+        // Simulate a record selection in the record picker
+        recordPickerElement.value = '005xx000001X83aAAC';
+        recordPickerElement.dispatchEvent(
+            new CustomEvent('change', {
+                detail: { recordId: '005xx000001X83aAAC' }
+            })
+        );
+
+        // Emit data from @wire
+        getRecord.emit(mockGetRecord);
+
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
+
+        const pillContainer = element.shadowRoot.querySelector(
+            'lightning-pill-container'
+        );
+
+        // simulate pill removal
+        pillContainer.dispatchEvent(
+            new CustomEvent('itemremove', {
+                detail: {
+                    item: {
+                        name: '005xx000001X83aAAC',
+                        label: 'Bob',
+                        iconName: 'standard:contact'
+                    }
+                }
+            })
+        );
+
+        // Wait for any asynchronous wire call
+        await flushPromises();
+
+        // no more filter with the selected record id
+        expect(recordPickerElement.filter.criteria).toEqual(
+            expect.arrayContaining([
+                { fieldPath: 'Id', operator: 'nin', value: [] }
+            ])
+        );
     });
 });

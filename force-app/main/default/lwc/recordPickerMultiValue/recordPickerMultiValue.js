@@ -1,13 +1,6 @@
 import { LightningElement, wire, track } from 'lwc';
 import { getRecord } from 'lightning/uiRecordApi';
-// import CONTACT_NAME_FIELD from '@salesforce/schema/Contact.Name';
-
-const CONTACT_NAME_FIELD = {
-    default: {
-        fieldApiName: 'Name',
-        objectApiName: 'Contact'
-    }
-};
+import CONTACT_NAME_FIELD from '@salesforce/schema/Contact.Name';
 
 export default class RecordPickerMultiValue extends LightningElement {
     currentSelectedRecordId;
@@ -32,7 +25,7 @@ export default class RecordPickerMultiValue extends LightningElement {
 
     @wire(getRecord, {
         recordId: '$currentSelectedRecordId',
-        fields: [CONTACT_NAME_FIELD.default]
+        fields: [CONTACT_NAME_FIELD]
     })
     wiredGetRecord({ data, error }) {
         if (error || !data) {
@@ -40,8 +33,7 @@ export default class RecordPickerMultiValue extends LightningElement {
         }
 
         const recordId = this.currentSelectedRecordId;
-        const recordName =
-            data.fields[CONTACT_NAME_FIELD.default.fieldApiName].value;
+        const recordName = data.fields[CONTACT_NAME_FIELD.fieldApiName].value;
 
         this.contactItems.push({
             name: recordId,
