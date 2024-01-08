@@ -5,6 +5,12 @@ import RecordPickerMultiValue from 'c/recordPickerMultiValue';
 // Mock realistic data
 const mockGetRecord = require('./data/wireGetRecordResponse.json');
 
+// Helper function to wait until the microtask queue is empty. This is needed for promise
+// timing when calling imperative Apex.
+async function flushPromises() {
+    return Promise.resolve();
+}
+
 describe('recordPickerMultiValue', () => {
     let element;
     beforeEach(() => {
@@ -30,7 +36,7 @@ describe('recordPickerMultiValue', () => {
         expect(element).toBeAccessible();
     });
 
-    it('should display the selected record in the pill container', () => {
+    it('should display the selected record in the pill container', async () => {
         // Set selected record
         const recordPickerElement = element.shadowRoot.querySelector(
             'lightning-record-picker'
@@ -41,9 +47,11 @@ describe('recordPickerMultiValue', () => {
                 detail: { recordId: '005xx000001X83aAAC' }
             })
         );
+        await flushPromises();
 
         // Emit data from @wire
         getRecord.emit(mockGetRecord);
+        await flushPromises();
 
         const pillContainer = element.shadowRoot.querySelector(
             'lightning-pill-container'
@@ -58,7 +66,7 @@ describe('recordPickerMultiValue', () => {
         ]);
     });
 
-    it('should clear the input when a selection is made', () => {
+    it('should clear the input when a selection is made', async () => {
         const recordPickerElement = element.shadowRoot.querySelector(
             'lightning-record-picker'
         );
@@ -76,14 +84,16 @@ describe('recordPickerMultiValue', () => {
                 detail: { recordId: '005xx000001X83aAAC' }
             })
         );
+        await flushPromises();
 
         // Emit data from @wire
         getRecord.emit(mockGetRecord);
+        await flushPromises();
 
         expect(clearSelection).toHaveBeenCalled();
     });
 
-    it('should filter out a record from the suggestions when it has already been selected', () => {
+    it('should filter out a record from the suggestions when it has already been selected', async () => {
         // Set selected record
         const recordPickerElement = element.shadowRoot.querySelector(
             'lightning-record-picker'
@@ -94,9 +104,11 @@ describe('recordPickerMultiValue', () => {
                 detail: { recordId: '005xx000001X83aAAC' }
             })
         );
+        await flushPromises();
 
         // Emit data from @wire
         getRecord.emit(mockGetRecord);
+        await flushPromises();
 
         expect(recordPickerElement.filter.criteria).toEqual(
             expect.arrayContaining([
@@ -109,7 +121,7 @@ describe('recordPickerMultiValue', () => {
         );
     });
 
-    it('should not filter out anymore a record from the selected record has been removed', () => {
+    it('should remove the corresponding pill when selected record is removed', async () => {
         // Set selected record
         const recordPickerElement = element.shadowRoot.querySelector(
             'lightning-record-picker'
@@ -120,6 +132,9 @@ describe('recordPickerMultiValue', () => {
                 detail: { recordId: '005xx000001X83aAAC' }
             })
         );
+        // Emit data from @wire
+        getRecord.emit(mockGetRecord);
+        await flushPromises();
 
         // Simulate a selection removal
         const pillContainer = element.shadowRoot.querySelector(
@@ -136,6 +151,45 @@ describe('recordPickerMultiValue', () => {
                 }
             })
         );
+        await flushPromises();
+
+        // The pill item has been removed
+        expect(pillContainer.items).toEqual([]);
+    });
+
+    it('should remove a record from filter when it has been removed from selection', async () => {
+        // Set selected record
+        const recordPickerElement = element.shadowRoot.querySelector(
+            'lightning-record-picker'
+        );
+        recordPickerElement.value = '005xx000001X83aAAC';
+        recordPickerElement.dispatchEvent(
+            new CustomEvent('change', {
+                detail: { recordId: '005xx000001X83aAAC' }
+            })
+        );
+        await flushPromises();
+
+        // Emit data from @wire
+        getRecord.emit(mockGetRecord);
+        await flushPromises();
+
+        // Simulate a selection removal
+        const pillContainer = element.shadowRoot.querySelector(
+            'lightning-pill-container'
+        );
+        pillContainer.dispatchEvent(
+            new CustomEvent('itemremove', {
+                detail: {
+                    item: {
+                        name: '005xx000001X83aAAC',
+                        label: 'Bob',
+                        iconName: 'standard:contact'
+                    }
+                }
+            })
+        );
+        await flushPromises();
 
         // no more filter with the selected record id
         expect(recordPickerElement.filter.criteria).toEqual(

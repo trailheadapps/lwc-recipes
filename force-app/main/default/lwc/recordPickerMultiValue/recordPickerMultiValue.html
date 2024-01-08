@@ -4,12 +4,12 @@
         label="Contacts"
         placeholder="Search Contacts..."
         object-api-name="Contact"
-        filter={recordFilter}
+        filter={recordPickerFilter}
         onchange={handleRecordPickerChange}
     ></lightning-record-picker>
 
     <lightning-pill-container
-        items={contactItems}
+        items={pillItems}
         onitemremove={handleItemRemove}
     ></lightning-pill-container>
 </template>
