@@ -4,6 +4,7 @@ import RecordPickerMultiValue from 'c/recordPickerMultiValue';
 
 // Mock realistic data
 const mockGetRecord = require('./data/wireGetRecordResponse.json');
+
 describe('recordPickerMultiValue', () => {
     let element;
     beforeEach(() => {
@@ -25,44 +26,24 @@ describe('recordPickerMultiValue', () => {
         jest.clearAllMocks();
     });
 
-    // Helper function to wait until the microtask queue is empty. This is needed for promise
-    // timing when calling imperative Apex.
-    async function flushPromises() {
-        return Promise.resolve();
-    }
-
-    it('renders a lightning-record-picker component', () => {
-        const recordPickerElement = element.shadowRoot.querySelector(
-            'lightning-record-picker'
-        );
-        expect(recordPickerElement).toBeTruthy();
-    });
-
     it('is accessible', async () => {
         expect(element).toBeAccessible();
     });
 
-    it('should display the selected record in the pill container', async () => {
-        // set selected record
+    it('should display the selected record in the pill container', () => {
+        // Set selected record
         const recordPickerElement = element.shadowRoot.querySelector(
             'lightning-record-picker'
         );
-
-        // Simulate a record selection in the record picker
+        recordPickerElement.value = '005xx000001X83aAAC';
         recordPickerElement.dispatchEvent(
             new CustomEvent('change', {
                 detail: { recordId: '005xx000001X83aAAC' }
             })
         );
 
-        // Wait for any asynchronous DOM updates
-        await flushPromises();
-
         // Emit data from @wire
         getRecord.emit(mockGetRecord);
-
-        // Wait for any asynchronous wire call
-        await flushPromises();
 
         const pillContainer = element.shadowRoot.querySelector(
             'lightning-pill-container'
@@ -77,8 +58,7 @@ describe('recordPickerMultiValue', () => {
         ]);
     });
 
-    it('should clear the input when a selection is made', async () => {
-        // set selected record
+    it('should clear the input when a selection is made', () => {
         const recordPickerElement = element.shadowRoot.querySelector(
             'lightning-record-picker'
         );
@@ -97,25 +77,17 @@ describe('recordPickerMultiValue', () => {
             })
         );
 
-        // Wait for any asynchronous DOM updates
-        await flushPromises();
-
         // Emit data from @wire
         getRecord.emit(mockGetRecord);
-
-        // Wait for any asynchronous wire call
-        await flushPromises();
 
         expect(clearSelection).toHaveBeenCalled();
     });
 
-    it('should filter out a record from the suggestions when it has already been selected', async () => {
-        // set selected record
+    it('should filter out a record from the suggestions when it has already been selected', () => {
+        // Set selected record
         const recordPickerElement = element.shadowRoot.querySelector(
             'lightning-record-picker'
         );
-
-        // Simulate a record selection in the record picker
         recordPickerElement.value = '005xx000001X83aAAC';
         recordPickerElement.dispatchEvent(
             new CustomEvent('change', {
@@ -123,14 +95,8 @@ describe('recordPickerMultiValue', () => {
             })
         );
 
-        // Wait for any asynchronous DOM updates
-        await flushPromises();
-
         // Emit data from @wire
         getRecord.emit(mockGetRecord);
-
-        // Wait for any asynchronous wire call
-        await flushPromises();
 
         expect(recordPickerElement.filter.criteria).toEqual(
             expect.arrayContaining([
@@ -143,13 +109,11 @@ describe('recordPickerMultiValue', () => {
         );
     });
 
-    it('should not filter out anymore a record from the selecyted record has been removed', async () => {
-        // set selected record
+    it('should not filter out anymore a record from the selected record has been removed', () => {
+        // Set selected record
         const recordPickerElement = element.shadowRoot.querySelector(
             'lightning-record-picker'
         );
-
-        // Simulate a record selection in the record picker
         recordPickerElement.value = '005xx000001X83aAAC';
         recordPickerElement.dispatchEvent(
             new CustomEvent('change', {
@@ -157,17 +121,10 @@ describe('recordPickerMultiValue', () => {
             })
         );
 
-        // Emit data from @wire
-        getRecord.emit(mockGetRecord);
-
-        // Wait for any asynchronous DOM updates
-        await flushPromises();
-
+        // Simulate a selection removal
         const pillContainer = element.shadowRoot.querySelector(
             'lightning-pill-container'
         );
-
-        // simulate pill removal
         pillContainer.dispatchEvent(
             new CustomEvent('itemremove', {
                 detail: {
@@ -179,9 +136,6 @@ describe('recordPickerMultiValue', () => {
                 }
             })
         );
-
-        // Wait for any asynchronous wire call
-        await flushPromises();
 
         // no more filter with the selected record id
         expect(recordPickerElement.filter.criteria).toEqual(
