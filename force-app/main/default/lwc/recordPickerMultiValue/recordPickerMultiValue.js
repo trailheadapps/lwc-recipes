@@ -23,30 +23,10 @@ const toRecordPickerFilter = (ids) => ({
     ]
 });
 
-class Observable {
-    _selectedRecords;
-    constructor() {
-        this._observers = [];
-    }
-
-    addObserver(func) {
-        this._observers.push(func);
-    }
-
-    get selectedRecords() {
-        return this._selectedRecords;
-    }
-
-    set selectedRecords(value) {
-        this._selectedRecords = value;
-        this._observers.forEach((observer) => observer(value));
-    }
-}
-
 export default class RecordPickerMultiValue extends LightningElement {
-    currentSelectedRecordId;
+    lastSelectedRecordId;
 
-    state = new Observable();
+    selectedRecords = [];
 
     @track
     pillItems;
@@ -54,27 +34,12 @@ export default class RecordPickerMultiValue extends LightningElement {
     @track
     recordPickerFilter;
 
-    constructor() {
-        super();
-
-        this.state.addObserver((selectedRecords) => {
-            this.pillItems = selectedRecords.map(toContactPill);
-        });
-
-        this.state.addObserver((selectedRecords) => {
-            this.recordPickerFilter = toRecordPickerFilter(
-                selectedRecords.map((record) => record.id)
-            );
-        });
-        this.state.selectedRecords = [];
-    }
-
     handleRecordPickerChange(event) {
-        this.currentSelectedRecordId = event.detail.recordId;
+        this.lastSelectedRecordId = event.detail.recordId;
     }
 
     @wire(getRecord, {
-        recordId: '$currentSelectedRecordId',
+        recordId: '$lastSelectedRecordId',
         fields: [CONTACT_NAME_FIELD]
     })
     wiredGetRecord({ data, error }) {
@@ -82,25 +47,37 @@ export default class RecordPickerMultiValue extends LightningElement {
             return;
         }
 
-        const recordId = this.currentSelectedRecordId;
+        const recordId = this.lastSelectedRecordId;
 
-        this.state.selectedRecords = [
-            ...this.state.selectedRecords,
+        this.selectedRecords = [
+            ...this.selectedRecords,
             {
                 id: recordId,
                 name: data.fields[CONTACT_NAME_FIELD.fieldApiName].value
             }
         ];
-
-        this.currentSelectedRecordId = null;
+        this._updatePillItems();
+        this._updateRecordPickerFilter();
 
         this.refs.recordPicker.clearSelection();
     }
 
+    _updatePillItems() {
+        this.pillItems = this.selectedRecords.map(toContactPill);
+    }
+
+    _updateRecordPickerFilter() {
+        this.recordPickerFilter = toRecordPickerFilter(
+            this.selectedRecords.map((record) => record.id)
+        );
+    }
+
     handleItemRemove(event) {
         const recordId = event.detail.item.name;
-        this.state.selectedRecords = this.state.selectedRecords.filter(
+        this.selectedRecords = this.selectedRecords.filter(
             (record) => record.id !== recordId
         );
+        this._updatePillItems();
+        this._updateRecordPickerFilter();
     }
 }
