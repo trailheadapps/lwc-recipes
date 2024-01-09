@@ -10,6 +10,13 @@
 
     <lightning-pill-container
         items={pillItems}
-        onitemremove={handleItemRemove}
+        onitemremove={handlePillRemove}
     ></lightning-pill-container>
+    <template lwc:if={wireError}>
+        <c-error-panel errors={wireError}></c-error-panel>
+    </template>
+
+    <c-view-source source="lwc/recordPickerMultiValue" slot="footer">
+        Type a search terms and select records.
+    </c-view-source>
 </template>
