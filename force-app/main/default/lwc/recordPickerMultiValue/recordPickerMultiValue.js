@@ -10,7 +10,8 @@ import CONTACT_NAME_FIELD from '@salesforce/schema/Contact.Name';
 const toContactPill = (record) => ({
     name: record.id,
     label: record.name,
-    iconName: 'standard:contact'
+    iconName: 'standard:contact',
+    type: 'icon'
 });
 
 // Converts a list a IDs to lightning-record-picker filter

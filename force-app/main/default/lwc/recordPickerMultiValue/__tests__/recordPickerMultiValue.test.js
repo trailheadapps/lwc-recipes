@@ -61,7 +61,8 @@ describe('recordPickerMultiValue', () => {
             {
                 name: '005xx000001X83aAAC',
                 label: 'Bob',
-                iconName: 'standard:contact'
+                iconName: 'standard:contact',
+                type: 'icon'
             }
         ]);
     });
