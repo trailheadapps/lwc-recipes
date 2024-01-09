@@ -1,9 +1,9 @@
 import { createElement } from 'lwc';
-import { getRecord } from 'lightning/uiRecordApi';
+import { graphql } from 'lightning/uiGraphQLApi';
 import RecordPickerMultiValue from 'c/recordPickerMultiValue';
 
 // Mock realistic data
-const mockGetRecord = require('./data/wireGetRecordResponse.json');
+const mockGraphQL = require('./data/graphqlContactResult.json');
 
 // Helper function to wait until the microtask queue is empty. This is needed for promise
 // timing when calling imperative Apex.
@@ -50,7 +50,7 @@ describe('recordPickerMultiValue', () => {
         await flushPromises();
 
         // Emit data from @wire
-        getRecord.emit(mockGetRecord);
+        graphql.emit(mockGraphQL);
         await flushPromises();
 
         const pillContainer = element.shadowRoot.querySelector(
@@ -59,8 +59,8 @@ describe('recordPickerMultiValue', () => {
 
         expect(pillContainer.items).toEqual([
             {
-                name: '005xx000001X83aAAC',
-                label: 'Bob',
+                name: '005xx000016QpSqAAK',
+                label: 'Amy Taylor',
                 iconName: 'standard:contact',
                 type: 'icon'
             }
@@ -88,7 +88,7 @@ describe('recordPickerMultiValue', () => {
         await flushPromises();
 
         // Emit data from @wire
-        getRecord.emit(mockGetRecord);
+        graphql.emit(mockGraphQL);
         await flushPromises();
 
         expect(clearSelection).toHaveBeenCalled();
@@ -99,16 +99,16 @@ describe('recordPickerMultiValue', () => {
         const recordPickerElement = element.shadowRoot.querySelector(
             'lightning-record-picker'
         );
-        recordPickerElement.value = '005xx000001X83aAAC';
+        recordPickerElement.value = '005xx000016QpSqAAK';
         recordPickerElement.dispatchEvent(
             new CustomEvent('change', {
-                detail: { recordId: '005xx000001X83aAAC' }
+                detail: { recordId: '005xx000016QpSqAAK' }
             })
         );
         await flushPromises();
 
         // Emit data from @wire
-        getRecord.emit(mockGetRecord);
+        graphql.emit(mockGraphQL);
         await flushPromises();
 
         expect(recordPickerElement.filter.criteria).toEqual(
@@ -116,7 +116,7 @@ describe('recordPickerMultiValue', () => {
                 {
                     fieldPath: 'Id',
                     operator: 'nin',
-                    value: ['005xx000001X83aAAC']
+                    value: ['005xx000016QpSqAAK']
                 }
             ])
         );
@@ -134,7 +134,7 @@ describe('recordPickerMultiValue', () => {
             })
         );
         // Emit data from @wire
-        getRecord.emit(mockGetRecord);
+        graphql.emit(mockGraphQL);
         await flushPromises();
 
         // Simulate a selection removal
@@ -145,8 +145,8 @@ describe('recordPickerMultiValue', () => {
             new CustomEvent('itemremove', {
                 detail: {
                     item: {
-                        name: '005xx000001X83aAAC',
-                        label: 'Bob',
+                        name: '005xx000016QpSqAAK',
+                        label: 'Amy Taylor',
                         iconName: 'standard:contact'
                     }
                 }
@@ -172,7 +172,7 @@ describe('recordPickerMultiValue', () => {
         await flushPromises();
 
         // Emit data from @wire
-        getRecord.emit(mockGetRecord);
+        graphql.emit(mockGraphQL);
         await flushPromises();
 
         // Simulate a selection removal
@@ -183,8 +183,8 @@ describe('recordPickerMultiValue', () => {
             new CustomEvent('itemremove', {
                 detail: {
                     item: {
-                        name: '005xx000001X83aAAC',
-                        label: 'Bob',
+                        name: '005xx000016QpSqAAK',
+                        label: 'Amy Taylor',
                         iconName: 'standard:contact'
                     }
                 }

@@ -1,6 +1,5 @@
 import { LightningElement, wire } from 'lwc';
-import { getRecord } from 'lightning/uiRecordApi';
-import CONTACT_NAME_FIELD from '@salesforce/schema/Contact.Name';
+import { gql, graphql } from 'lightning/uiGraphQLApi';
 
 // As of today, `lightning-record-picker` only supports a single selection.
 // This sample component shows how you can turn `lightning-record-picker` into
@@ -27,10 +26,10 @@ const toRecordPickerFilter = (ids) => ({
 
 export default class RecordPickerMultiValue extends LightningElement {
     /**
-     * The last selected record ID.
+     * The id of the last record the user selected using the record picker.
      * Used to trigger getRecord @wire calls.
      */
-    recordId;
+    selectedRecordId;
 
     /**
      * The list of selected records (id and name).
@@ -58,30 +57,58 @@ export default class RecordPickerMultiValue extends LightningElement {
         return toRecordPickerFilter(selectedRecordIds);
     }
 
-    /**
-     * getRecord wire adapter is used here to get the name of the records
-     * that are selected in the record picker.
-     * Note: GraphQL could also be used (see recordPickerHello.js)
-     */
-    @wire(getRecord, {
-        recordId: '$recordId',
-        fields: [CONTACT_NAME_FIELD]
+    // Variables for the GraphQL query
+    get variables() {
+        return {
+            selectedRecordId: this.selectedRecordId
+        };
+    }
+
+    // A GraphQL query is sent after the record picker change event has been dispatched
+    // to get the name of the records that are selected in the record picker.
+    @wire(graphql, {
+        query: gql`
+            query searchContacts($selectedRecordId: ID) {
+                uiapi {
+                    query {
+                        Contact(
+                            where: { Id: { eq: $selectedRecordId } }
+                            first: 1
+                        ) {
+                            edges {
+                                node {
+                                    Id
+                                    Name {
+                                        value
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        `,
+        variables: '$variables'
     })
-    wiredGetRecord({ data, error }) {
-        this.wireError = error;
-        if (error || !data) {
+    wiredGraphQL({ data, errors }) {
+        this.wireError = errors;
+        if (errors || !data) {
             return;
         }
-        // Reset recordId to ensure the wire can be called a second time the same recordId
-        this.recordId = undefined;
 
-        this.selectedRecords = [
-            ...this.selectedRecords,
-            {
-                id: data.id,
-                name: data.fields[CONTACT_NAME_FIELD.fieldApiName].value
-            }
-        ];
+        const graphqlResults = data.uiapi.query.Contact.edges.map((edge) => ({
+            id: edge.node.Id,
+            name: edge.node.Name.value
+        }));
+
+        // Add to selectedRecords
+        const selectedRecord = graphqlResults[0];
+        this.selectedRecords = [...this.selectedRecords, selectedRecord];
+
+        // We want the record picker input to be cleared
+        // each time the user selects a record suggestion
+        this.refs.recordPicker.clearSelection();
+        this.selectedRecordId = undefined;
     }
 
     handlePillRemove(event) {
@@ -94,11 +121,6 @@ export default class RecordPickerMultiValue extends LightningElement {
     }
 
     handleRecordPickerChange(event) {
-        // trigger getRecord wire
-        this.recordId = event.detail.recordId;
-
-        // We want the record picker input to be cleared
-        // each time the user selects a record suggestion
-        this.refs.recordPicker.clearSelection();
+        this.selectedRecordId = event.detail.recordId;
     }
 }
