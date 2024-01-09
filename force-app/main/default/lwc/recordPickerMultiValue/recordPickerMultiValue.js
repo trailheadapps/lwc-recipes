@@ -27,7 +27,7 @@ const toRecordPickerFilter = (ids) => ({
 export default class RecordPickerMultiValue extends LightningElement {
     /**
      * The id of the last record the user selected using the record picker.
-     * Used to trigger getRecord @wire calls.
+     * Used to trigger graphql @wire calls.
      */
     selectedRecordId;
 
@@ -59,9 +59,11 @@ export default class RecordPickerMultiValue extends LightningElement {
 
     // Variables for the GraphQL query
     get variables() {
-        return {
-            selectedRecordId: this.selectedRecordId
-        };
+        return this.selectedRecordId
+            ? {
+                  selectedRecordId: this.selectedRecordId
+              }
+            : undefined;
     }
 
     // A GraphQL query is sent after the record picker change event has been dispatched
@@ -107,6 +109,10 @@ export default class RecordPickerMultiValue extends LightningElement {
 
         // We want the record picker input to be cleared
         // each time the user selects a record suggestion
+        this._clearRecordPickerSeliction();
+    }
+
+    _clearRecordPickerSeliction() {
         this.refs.recordPicker.clearSelection();
         this.selectedRecordId = undefined;
     }
