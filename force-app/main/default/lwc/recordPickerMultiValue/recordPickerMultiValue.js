@@ -72,6 +72,8 @@ export default class RecordPickerMultiValue extends LightningElement {
         if (error || !data) {
             return;
         }
+        // Reset recordId to ensure the wire can be called a second time the same recordId
+        this.recordId = undefined;
 
         this.selectedRecords = [
             ...this.selectedRecords,
@@ -92,6 +94,7 @@ export default class RecordPickerMultiValue extends LightningElement {
     }
 
     handleRecordPickerChange(event) {
+        // trigger getRecord wire
         this.recordId = event.detail.recordId;
 
         // We want the record picker input to be cleared
