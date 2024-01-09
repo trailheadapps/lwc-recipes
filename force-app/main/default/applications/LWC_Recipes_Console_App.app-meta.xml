@@ -12,7 +12,6 @@
     <label>LWC Recipes Console App</label>
     <navType>Console</navType>
     <tabs>Hello</tabs>
-    <tabs>Data_Service</tabs>
     <tabs>Datatable</tabs>
     <tabs>Apex</tabs>
     <tabs>standard-Contact</tabs>
@@ -30,7 +29,7 @@
     <tabs>Record_Picker</tabs>
     <tabs>Misc_Techniques</tabs>
     <tabs>X3rd_Party_Libs</tabs>
-    <tabs>Workspace_API</tabs>
+    <tabs>Workspace_API_Tab_Launcher</tabs>
     <uiType>Lightning</uiType>
     <utilityBar>LWC_Recipes_Console_App_UtilityBar</utilityBar>
     <workspaceConfig>
@@ -42,9 +41,6 @@
         </mappings>
         <mappings>
             <tab>Composition</tab>
-        </mappings>
-        <mappings>
-            <tab>Data_Service</tab>
         </mappings>
         <mappings>
             <tab>Datatable</tab>
@@ -86,7 +82,7 @@
             <tab>Wire</tab>
         </mappings>
         <mappings>
-            <tab>Workspace_API</tab>
+            <tab>Workspace_API_Tab_Launcher</tab>
         </mappings>
         <mappings>
             <tab>X3rd_Party_Libs</tab>

@@ -233,6 +233,10 @@
         <visibility>Visible</visibility>
     </tabSettings>
     <tabSettings>
+        <tab>Workspace_API_Tab_Launcher</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+    <tabSettings>
         <tab>GraphQL</tab>
         <visibility>Visible</visibility>
     </tabSettings>

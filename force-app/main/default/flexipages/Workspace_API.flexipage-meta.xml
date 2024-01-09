@@ -3,26 +3,10 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
-                <componentName>workspaceAPISetTabLabel</componentName>
-                <identifier>c_workspaceAPISetTabLabel</identifier>
+                <componentName>workspaceAPIOpenTab</componentName>
+                <identifier>c_workspaceAPIOpenTab</identifier>
             </componentInstance>
         </itemInstances>
-        <itemInstances>
-            <componentInstance>
-                <componentName>workspaceAPIFocusTab</componentName>
-                <identifier>c_workspaceAPIFocusTab</identifier>
-            </componentInstance>
-        </itemInstances>
-        <itemInstances>
-            <componentInstance>
-                <componentName>workspaceAPIOpenSubtab</componentName>
-                <identifier>c_workspaceAPIOpenSubtab</identifier>
-            </componentInstance>
-        </itemInstances>
-        <name>region1</name>
-        <type>Region</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
         <itemInstances>
             <componentInstance>
                 <componentName>workspaceAPISetTabIcon</componentName>
@@ -35,20 +19,36 @@
                 <identifier>c_workspaceAPIDisableTabClose</identifier>
             </componentInstance>
         </itemInstances>
-        <name>region2</name>
+        <name>region1</name>
         <type>Region</type>
     </flexiPageRegions>
     <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentName>workspaceAPIOpenSubtab</componentName>
+                <identifier>c_workspaceAPIOpenSubtab</identifier>
+            </componentInstance>
+        </itemInstances>
         <itemInstances>
             <componentInstance>
                 <componentName>workspaceAPIHighlightTab</componentName>
                 <identifier>c_workspaceAPIHighlightTab</identifier>
             </componentInstance>
         </itemInstances>
+        <name>region2</name>
+        <type>Region</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
         <itemInstances>
             <componentInstance>
-                <componentName>workspaceAPIOpenTab</componentName>
-                <identifier>c_workspaceAPIOpenTab</identifier>
+                <componentName>workspaceAPISetTabLabel</componentName>
+                <identifier>c_workspaceAPISetTabLabel</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentName>workspaceAPIFocusTab</componentName>
+                <identifier>c_workspaceAPIFocusTab</identifier>
             </componentInstance>
         </itemInstances>
         <name>region3</name>
