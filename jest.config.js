@@ -24,7 +24,9 @@ module.exports = {
         '^lightning/modal$':
             '<rootDir>/force-app/test/jest-mocks/lightning/modal',
         '^lightning/refresh$':
-            '<rootDir>/force-app/test/jest-mocks/lightning/refresh'
+            '<rootDir>/force-app/test/jest-mocks/lightning/refresh',
+        '^lightning/platformWorkspaceApi$':
+            '<rootDir>/force-app/test/jest-mocks/lightning/platformWorkspaceApi'
     },
     setupFiles: ['jest-canvas-mock'],
     setupFilesAfterEnv,

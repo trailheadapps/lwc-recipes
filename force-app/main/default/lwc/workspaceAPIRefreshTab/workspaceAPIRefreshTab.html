@@ -1,0 +1,14 @@
+<template>
+    <lightning-card
+        title="WorkspaceAPIRefreshTab"
+        icon-name="standard:scheduling_workspace"
+    >
+        <div class="slds-m-around_medium">
+            <lightning-button label="Refresh Focused Tab" onclick={refreshTab}>
+            </lightning-button>
+        </div>
+        <c-view-source source="lwc/workspaceAPIRefreshTab" slot="footer">
+            Refresh focused tab and its subtabs.
+        </c-view-source>
+    </lightning-card>
+</template>

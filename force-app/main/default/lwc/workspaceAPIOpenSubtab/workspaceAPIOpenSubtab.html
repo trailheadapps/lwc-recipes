@@ -1,0 +1,17 @@
+<template>
+    <lightning-card
+        title="WorkspaceAPIOpenSubtab"
+        icon-name="standard:scheduling_workspace"
+    >
+        <div class="slds-m-around_medium">
+            <lightning-button
+                label="Open Subtab on Enclosing Tab"
+                onclick={findEnclosingTabAndOpenSubtab}
+            >
+            </lightning-button>
+        </div>
+        <c-view-source source="lwc/workspaceAPIOpenSubtab" slot="footer">
+            Find enclosing tab and add a subtab to it.
+        </c-view-source>
+    </lightning-card>
+</template>

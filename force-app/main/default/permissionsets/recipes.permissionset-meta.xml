@@ -4,6 +4,10 @@
         <application>LWC_Recipes</application>
         <visible>true</visible>
     </applicationVisibilities>
+    <applicationVisibilities>
+        <application>LWC_Recipes_Console_App</application>
+        <visible>true</visible>
+    </applicationVisibilities>
     <classAccesses>
         <apexClass>AccountController</apexClass>
         <enabled>true</enabled>
@@ -222,6 +226,14 @@
     </tabSettings>
     <tabSettings>
         <tab>Wire</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+    <tabSettings>
+        <tab>Workspace_API</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+    <tabSettings>
+        <tab>Workspace_API_Tab_Launcher</tab>
         <visibility>Visible</visibility>
     </tabSettings>
     <tabSettings>
