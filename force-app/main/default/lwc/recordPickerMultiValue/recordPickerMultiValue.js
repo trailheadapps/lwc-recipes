@@ -109,10 +109,10 @@ export default class RecordPickerMultiValue extends LightningElement {
 
         // We want the record picker input to be cleared
         // each time the user selects a record suggestion
-        this._clearRecordPickerSeliction();
+        this._clearRecordPickerSelection();
     }
 
-    _clearRecordPickerSeliction() {
+    _clearRecordPickerSelection() {
         this.refs.recordPicker.clearSelection();
         this.selectedRecordId = undefined;
     }
