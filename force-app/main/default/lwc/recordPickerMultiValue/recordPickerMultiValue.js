@@ -1,7 +1,7 @@
 import { LightningElement, wire } from 'lwc';
 import { gql, graphql } from 'lightning/uiGraphQLApi';
 
-// As of today, `lightning-record-picker` only supports a single selection.
+// As of Winter '24, `lightning-record-picker` only supports a single selection.
 // This sample component shows how you can turn `lightning-record-picker` into
 // a multi-selection record picker.
 
