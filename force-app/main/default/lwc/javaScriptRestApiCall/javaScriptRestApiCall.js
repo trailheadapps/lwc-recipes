@@ -4,7 +4,7 @@ import { LightningElement } from 'lwc';
 const QUERY_URL =
     'https://www.googleapis.com/books/v1/volumes?langRestrict=en&q=';
 
-export default class MiscRestCall extends LightningElement {
+export default class JavaScriptRestApiCall extends LightningElement {
     searchKey = 'Harry Potter';
     books;
     error;

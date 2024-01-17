@@ -1,7 +1,7 @@
 import { LightningElement } from 'lwc';
 import { getTermOptions, calculateMonthlyPayment } from 'c/mortgage';
 
-export default class MiscSharedJavaScript extends LightningElement {
+export default class SharedJavaScript extends LightningElement {
     principal = 200000;
     term = 30;
     rate = 4;

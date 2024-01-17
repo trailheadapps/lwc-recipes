@@ -41,14 +41,14 @@
         </itemInstances>
         <itemInstances>
             <componentInstance>
-                <componentName>miscSharedJavaScript</componentName>
-                <identifier>miscSharedJavaScript</identifier>
+                <componentName>sharedJavaScript</componentName>
+                <identifier>sharedJavaScript</identifier>
             </componentInstance>
         </itemInstances>
         <itemInstances>
             <componentInstance>
-                <componentName>miscRestApiCall</componentName>
-                <identifier>miscRestApiCall</identifier>
+                <componentName>javaScriptRestApiCall</componentName>
+                <identifier>javaScriptRestApiCall</identifier>
             </componentInstance>
         </itemInstances>
         <itemInstances>

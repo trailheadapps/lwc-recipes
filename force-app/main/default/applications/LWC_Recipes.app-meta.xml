@@ -25,6 +25,7 @@
     <label>LWC Recipes</label>
     <navType>Standard</navType>
     <tabs>Hello</tabs>
+    <tabs>JavaScript</tabs>
     <tabs>Data_Service</tabs>
     <tabs>Datatable</tabs>
     <tabs>Apex</tabs>
