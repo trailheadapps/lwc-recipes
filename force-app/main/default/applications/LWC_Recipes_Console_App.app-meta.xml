@@ -11,24 +11,6 @@
     <isNavTabPersistenceDisabled>false</isNavTabPersistenceDisabled>
     <label>LWC Recipes Console App</label>
     <navType>Console</navType>
-    <tabs>Hello</tabs>
-    <tabs>Datatable</tabs>
-    <tabs>Apex</tabs>
-    <tabs>standard-Contact</tabs>
-    <tabs>Composition</tabs>
-    <tabs>Events</tabs>
-    <tabs>Parent_to_Child</tabs>
-    <tabs>Message_Service</tabs>
-    <tabs>Refresh_View</tabs>
-    <tabs>Light_DOM</tabs>
-    <tabs>Dynamic_Interactions</tabs>
-    <tabs>Aura_Interoperability</tabs>
-    <tabs>Wire</tabs>
-    <tabs>GraphQL</tabs>
-    <tabs>Navigation</tabs>
-    <tabs>Record_Picker</tabs>
-    <tabs>Misc_Techniques</tabs>
-    <tabs>X3rd_Party_Libs</tabs>
     <tabs>Workspace_API_Tab_Launcher</tabs>
     <uiType>Lightning</uiType>
     <utilityBar>LWC_Recipes_Console_App_UtilityBar</utilityBar>
