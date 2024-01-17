@@ -29,7 +29,7 @@ export default class JavaScriptDynamicComponent extends LightningElement {
     }
 
     handleChange(event) {
-        this.value = event.detail.value;
+        this.value = event.target.value;
         this.assignConstructor();
     }
 
