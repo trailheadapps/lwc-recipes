@@ -5,6 +5,11 @@ public with sharing class AccountController {
     }
 
     @AuraEnabled(cacheable=true)
+    public static Integer getTotalNumber() {
+        return [SELECT COUNT() FROM Account WITH USER_MODE];
+    }
+
+    @AuraEnabled(cacheable=true)
     public static Account getSingleAccount() {
         return [
             SELECT Id, Name, Phone, Type
