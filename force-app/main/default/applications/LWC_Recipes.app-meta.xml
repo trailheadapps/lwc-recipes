@@ -25,7 +25,6 @@
     <label>LWC Recipes</label>
     <navType>Standard</navType>
     <tabs>Hello</tabs>
-    <tabs>JavaScript</tabs>
     <tabs>Data_Service</tabs>
     <tabs>Datatable</tabs>
     <tabs>Apex</tabs>
@@ -43,6 +42,7 @@
     <tabs>Navigation</tabs>
     <tabs>Record_Picker</tabs>
     <tabs>Misc_Techniques</tabs>
+    <tabs>JavaScript</tabs>
     <tabs>X3rd_Party_Libs</tabs>
     <uiType>Lightning</uiType>
     <utilityBar>LWC_Recipes_UtilityBar</utilityBar>

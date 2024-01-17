@@ -201,6 +201,10 @@
         <visibility>Visible</visibility>
     </tabSettings>
     <tabSettings>
+        <tab>JavaScript</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+    <tabSettings>
         <tab>Light_DOM</tab>
         <visibility>Visible</visibility>
     </tabSettings>

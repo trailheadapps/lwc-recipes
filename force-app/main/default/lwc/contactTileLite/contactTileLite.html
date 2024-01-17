@@ -1,0 +1,8 @@
+<template>
+    <template lwc:if={contact}>
+        <p>{contact.Name}</p>
+        <p>{contact.Title}</p>
+        <p>{contact.Phone}</p>
+    </template>
+    <template lwc:else><p>No contact data available.</p></template>
+</template>
