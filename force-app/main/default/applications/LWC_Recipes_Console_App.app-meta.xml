@@ -16,58 +16,7 @@
     <utilityBar>LWC_Recipes_Console_App_UtilityBar</utilityBar>
     <workspaceConfig>
         <mappings>
-            <tab>Apex</tab>
-        </mappings>
-        <mappings>
-            <tab>Aura_Interoperability</tab>
-        </mappings>
-        <mappings>
-            <tab>Composition</tab>
-        </mappings>
-        <mappings>
-            <tab>Datatable</tab>
-        </mappings>
-        <mappings>
-            <tab>Dynamic_Interactions</tab>
-        </mappings>
-        <mappings>
-            <tab>Events</tab>
-        </mappings>
-        <mappings>
-            <tab>GraphQL</tab>
-        </mappings>
-        <mappings>
-            <tab>Hello</tab>
-        </mappings>
-        <mappings>
-            <tab>Light_DOM</tab>
-        </mappings>
-        <mappings>
-            <tab>Message_Service</tab>
-        </mappings>
-        <mappings>
-            <tab>Misc_Techniques</tab>
-        </mappings>
-        <mappings>
-            <tab>Navigation</tab>
-        </mappings>
-        <mappings>
-            <tab>Parent_to_Child</tab>
-        </mappings>
-        <mappings>
-            <tab>Record_Picker</tab>
-        </mappings>
-        <mappings>
-            <tab>Refresh_View</tab>
-        </mappings>
-        <mappings>
-            <tab>Wire</tab>
-        </mappings>
-        <mappings>
             <tab>Workspace_API_Tab_Launcher</tab>
-        </mappings>
-        <mappings>
-            <tab>X3rd_Party_Libs</tab>
         </mappings>
         <mappings>
             <fieldName>AccountId</fieldName>
