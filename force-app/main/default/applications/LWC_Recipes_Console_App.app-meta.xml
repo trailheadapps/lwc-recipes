@@ -18,9 +18,5 @@
         <mappings>
             <tab>Workspace_API_Tab_Launcher</tab>
         </mappings>
-        <mappings>
-            <fieldName>AccountId</fieldName>
-            <tab>standard-Contact</tab>
-        </mappings>
     </workspaceConfig>
 </CustomApplication>
