@@ -8,7 +8,7 @@ A collection of easy-to-digest code examples for Lightning Web Components. Each 
 
 <div>
     <img src="https://res.cloudinary.com/hy4kyit2a/f_auto,fl_lossy,q_70,w_50/learn/projects/quick-start-lwc-recipes-app/bb501c3216ac163958f036fb90357955_badge.png" align="left" alt="Trailhead Badge"/>
-    Learn more about this app by completing the <a href="https://trailhead.salesforce.com/content/learn/projects/quick-start-lwc-recipes-app">Quick Start: Explore the LWC Recipes Sample App</a> Trailhead project.
+    Learn more about this app by completing the <a href="https://trailhead.salesforce.com/content/learn/projects/quick-start-lwc-recipes-app">Quick Start: Explore the LWC Recipes Sample App</a> Trailhead project or by watching this <a href="https://www.youtube.com/watch?v=lK3NOZGc5fg&list=PLgIMQe2PKPSJcuCwM61dEc4jFG_jHqV2t&index=3">short presentation video</a>.
     <br/>
     <br/>
     <br/>
