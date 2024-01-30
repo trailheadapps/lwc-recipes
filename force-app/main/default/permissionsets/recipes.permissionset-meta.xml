@@ -225,6 +225,10 @@
         <visibility>Visible</visibility>
     </tabSettings>
     <tabSettings>
+        <tab>Styling</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+    <tabSettings>
         <tab>Wire</tab>
         <visibility>Visible</visibility>
     </tabSettings>
