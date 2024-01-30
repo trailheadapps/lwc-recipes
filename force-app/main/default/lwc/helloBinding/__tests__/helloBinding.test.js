@@ -16,37 +16,34 @@ describe('c-hello-binding', () => {
     }
 
     it('displays greeting specified by change event target', async () => {
-        const EXPECTED = 'Test';
+        const EXPECTED_NAME = 'Codey';
 
-        // Create element
+        // Create component
         const element = createElement('c-hello-binding', {
             is: HelloBinding
         });
         document.body.appendChild(element);
 
-        // Verify default greeting
-        let div = element.shadowRoot.querySelector('div');
-        expect(div.textContent).not.toBe(`Hello, ${EXPECTED}!`);
-
         // Trigger new greeting
         const inputEl = element.shadowRoot.querySelector('lightning-input');
-        inputEl.value = EXPECTED;
+        inputEl.value = EXPECTED_NAME;
         inputEl.dispatchEvent(new CustomEvent('change'));
 
         // Wait for any asynchronous DOM updates
         await flushPromises();
 
         // Verify displayed greeting
-        expect(div.textContent).toBe(`Hello, ${EXPECTED}!`);
+        const div = element.shadowRoot.querySelector('div');
+        expect(div.textContent).toBe(`Hello, ${EXPECTED_NAME}!`);
     });
 
     it('is accessible', async () => {
         const element = createElement('c-hello-binding', {
             is: HelloBinding
         });
-
         document.body.appendChild(element);
 
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 });

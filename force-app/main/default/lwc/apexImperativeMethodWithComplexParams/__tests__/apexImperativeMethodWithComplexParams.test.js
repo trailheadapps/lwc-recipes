@@ -5,11 +5,9 @@ import checkApexTypes from '@salesforce/apex/ApexTypesController.checkApexTypes'
 // Mocking imperative Apex method call
 jest.mock(
     '@salesforce/apex/ApexTypesController.checkApexTypes',
-    () => {
-        return {
-            default: jest.fn()
-        };
-    },
+    () => ({
+        default: jest.fn()
+    }),
     { virtual: true }
 );
 
@@ -56,7 +54,7 @@ describe('c-apex-imperative-method-with-complex-params', () => {
         // Assign mock value for resolved Apex promise
         checkApexTypes.mockResolvedValue(APEX_SUCCESS);
 
-        // Create initial element
+        // Create component
         const element = createElement(
             'c-apex-imperative-method-with-complex-params',
             {
@@ -66,27 +64,22 @@ describe('c-apex-imperative-method-with-complex-params', () => {
         document.body.appendChild(element);
 
         // Select input field for simulating string user input
-        const inputStringEl = element.shadowRoot.querySelector(
-            'lightning-input[class="string-input"]'
-        );
+        const inputStringEl = element.shadowRoot.querySelector('.string-input');
         inputStringEl.value = APEX_PARAMETER.someString;
         inputStringEl.dispatchEvent(new CustomEvent('change'));
 
         // Select input field for simulating number user input
-        const inputNumberEl = element.shadowRoot.querySelector(
-            'lightning-input[class="number-input"]'
-        );
+        const inputNumberEl = element.shadowRoot.querySelector('.number-input');
         inputNumberEl.value = APEX_PARAMETER.someInteger;
         inputNumberEl.dispatchEvent(new CustomEvent('change'));
 
         // Select input field for simulating list item user input
-        const inputListItemEl = element.shadowRoot.querySelector(
-            'lightning-input[class="list-item-input"]'
-        );
+        const inputListItemEl =
+            element.shadowRoot.querySelector('.list-item-input');
         inputListItemEl.value = APEX_PARAMETER.someList.length;
         inputListItemEl.dispatchEvent(new CustomEvent('change'));
 
-        // Select button for executing Apex call
+        // Click button
         const buttonEl = element.shadowRoot.querySelector('lightning-button');
         buttonEl.click();
 
@@ -104,7 +97,7 @@ describe('c-apex-imperative-method-with-complex-params', () => {
         // Assign mock value for resolved Apex promise
         checkApexTypes.mockResolvedValue(APEX_SUCCESS);
 
-        // Create initial element
+        // Create component
         const element = createElement(
             'c-apex-imperative-method-with-complex-params',
             {
@@ -114,31 +107,27 @@ describe('c-apex-imperative-method-with-complex-params', () => {
         document.body.appendChild(element);
 
         // Select input field for simulating string user input
-        const inputStringEl = element.shadowRoot.querySelector(
-            'lightning-input[class="string-input"]'
-        );
+        const inputStringEl = element.shadowRoot.querySelector('.string-input');
         inputStringEl.value = APEX_PARAMETER.someString;
         inputStringEl.dispatchEvent(new CustomEvent('change'));
 
         // Select input field for simulating number user input
-        const inputNumberEl = element.shadowRoot.querySelector(
-            'lightning-input[class="number-input"]'
-        );
+        const inputNumberEl = element.shadowRoot.querySelector('.number-input');
         inputNumberEl.value = APEX_PARAMETER.someInteger;
         inputNumberEl.dispatchEvent(new CustomEvent('change'));
 
         // Select input field for simulating list item user input
-        const inputListItemEl = element.shadowRoot.querySelector(
-            'lightning-input[class="list-item-input"]'
-        );
+        const inputListItemEl =
+            element.shadowRoot.querySelector('.list-item-input');
         inputListItemEl.value = APEX_PARAMETER.someList.length;
         inputListItemEl.dispatchEvent(new CustomEvent('change'));
 
-        // Select button for executing Apex call
+        // Click button
         const buttonEl = element.shadowRoot.querySelector('lightning-button');
         buttonEl.click();
 
         // Wait for any asynchronous DOM updates
+        await flushPromises();
         await flushPromises();
 
         // Select p for validating conditionally changed text content
@@ -150,33 +139,36 @@ describe('c-apex-imperative-method-with-complex-params', () => {
         // Assing mock value for rejected Apex promise
         checkApexTypes.mockRejectedValue(APEX_ERROR);
 
-        // Create initial element
+        // Create component
         const element = createElement('c-apex-imperative-method-with-params', {
             is: ApexImperativeMethodWithComplexParams
         });
         document.body.appendChild(element);
 
-        // Select button for executing Apex call
+        // Click button
         const buttonEl = element.shadowRoot.querySelector('lightning-button');
         buttonEl.click();
 
         // Wait for any asynchronous DOM updates
         await flushPromises();
+        await flushPromises();
 
+        // Check for error panel
         const errorPanelEl = element.shadowRoot.querySelector('c-error-panel');
         expect(errorPanelEl).not.toBeNull();
     });
 
     it('is accessible on initialization', async () => {
+        // Create component
         const element = createElement(
             'c-apex-imperative-method-with-complex-params',
             {
                 is: ApexImperativeMethodWithComplexParams
             }
         );
-
         document.body.appendChild(element);
 
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 
@@ -184,19 +176,20 @@ describe('c-apex-imperative-method-with-complex-params', () => {
         // Assing mock value for rejected Apex promise
         checkApexTypes.mockRejectedValue(APEX_ERROR);
 
-        // Create initial element
+        // Create component
         const element = createElement('c-apex-imperative-method-with-params', {
             is: ApexImperativeMethodWithComplexParams
         });
         document.body.appendChild(element);
 
-        // Select button for executing Apex call
+        // Click button
         const buttonEl = element.shadowRoot.querySelector('lightning-button');
         buttonEl.click();
 
         // Wait for any asynchronous DOM updates
         await flushPromises();
 
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 });

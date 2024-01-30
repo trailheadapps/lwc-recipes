@@ -36,11 +36,10 @@ describe('c-apex-wire-method-with-params-accessibility', () => {
     }
 
     it('is accessible when data is returned', async () => {
-        // Create initial element
+        // Create component
         const element = createElement('c-apex-wire-method-with-params', {
             is: ApexWireMethodWithParams
         });
-
         document.body.appendChild(element);
 
         // Emit data from @wire
@@ -49,15 +48,15 @@ describe('c-apex-wire-method-with-params-accessibility', () => {
         // Wait for any asynchronous DOM updates
         await flushPromises();
 
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 
     it('is accessible when error is returned', async () => {
-        // Create initial element
+        // Create component
         const element = createElement('c-apex-wire-method-with-params', {
             is: ApexWireMethodWithParams
         });
-
         document.body.appendChild(element);
 
         // Emit error from @wire
@@ -66,6 +65,7 @@ describe('c-apex-wire-method-with-params-accessibility', () => {
         // Wait for any asynchronous DOM updates
         await flushPromises();
 
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 });

@@ -5,15 +5,13 @@ export default class ApexImperativeMethod extends LightningElement {
     contacts;
     error;
 
-    handleLoad() {
-        getContactList()
-            .then((result) => {
-                this.contacts = result;
-                this.error = undefined;
-            })
-            .catch((error) => {
-                this.error = error;
-                this.contacts = undefined;
-            });
+    async handleLoad() {
+        try {
+            this.contacts = await getContactList();
+            this.error = undefined;
+        } catch (error) {
+            this.contacts = undefined;
+            this.error = error;
+        }
     }
 }

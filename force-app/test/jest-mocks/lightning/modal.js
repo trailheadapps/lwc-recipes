@@ -11,9 +11,11 @@ const LIGHTNING_MODAL_BODY = 'lightning-modal-body';
 const LIGHTNING_MODAL_FOOTER = 'lightning-modal-footer';
 
 function getSlotNodes(template, element) {
-    return template
-        .querySelector(element)
-        .shadowRoot.children[0].assignedNodes();
+    const child = template.querySelector(element).shadowRoot.children[0];
+    if (child) {
+        return child.assignedNodes();
+    }
+    return [];
 }
 
 function query(nodes, selectors) {

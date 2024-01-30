@@ -21,7 +21,7 @@ describe('c-wire-get-records-different-types', () => {
 
     describe('getRecords @wire data', () => {
         it('renders the records value in the pre tag', async () => {
-            // Create element
+            // Create component
             const element = createElement(
                 'c-wire-get-records-different-types',
                 {
@@ -46,7 +46,7 @@ describe('c-wire-get-records-different-types', () => {
 
     describe('getRecords @wire error', () => {
         it('shows error panel element', async () => {
-            // Create initial element
+            // Create component
             const element = createElement(
                 'c-wire-get-records-different-types',
                 {
@@ -61,6 +61,7 @@ describe('c-wire-get-records-different-types', () => {
             // Wait for any asynchronous DOM updates
             await flushPromises();
 
+            // Check for error panel
             const errorPanelEl =
                 element.shadowRoot.querySelector('c-error-panel');
             expect(errorPanelEl).not.toBeNull();
@@ -68,7 +69,7 @@ describe('c-wire-get-records-different-types', () => {
     });
 
     it('is accessible when records returned', async () => {
-        // Create element
+        // Create component
         const element = createElement('c-wire-get-records-different-types', {
             is: WireGetRecordsDifferentTypes
         });
@@ -80,11 +81,12 @@ describe('c-wire-get-records-different-types', () => {
         // Wait for any asynchronous DOM updates
         await flushPromises();
 
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 
     it('is accessible when error returned', async () => {
-        // Create element
+        // Create component
         const element = createElement('c-wire-get-records-different-types', {
             is: WireGetRecordsDifferentTypes
         });
@@ -96,6 +98,7 @@ describe('c-wire-get-records-different-types', () => {
         // Wait for any asynchronous DOM updates
         await flushPromises();
 
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 });

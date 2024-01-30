@@ -10,7 +10,7 @@ describe('c-composition-basics', () => {
     });
 
     it('renders one contact tile', () => {
-        // Create initial element
+        // Create component
         const element = createElement('c-composition-basics', {
             is: CompositionBasics
         });
@@ -26,7 +26,7 @@ describe('c-composition-basics', () => {
         const USER_RESULT = 'Amy Taylor';
         const TITLE_RESULT = 'VP of Engineering';
 
-        // Create initial element
+        // Create component
         const element = createElement('c-composition-basics', {
             is: CompositionBasics
         });
@@ -40,12 +40,13 @@ describe('c-composition-basics', () => {
     });
 
     it('is accessible', async () => {
+        // Create component
         const element = createElement('c-composition-basics', {
             is: CompositionBasics
         });
-
         document.body.appendChild(element);
 
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 });

@@ -20,7 +20,7 @@ describe('c-record-form-dynamic-contact', () => {
         const RECORD_ID_INPUT = '0031700000pJRRSAA4';
         const OBJECT_API_NAME_INPUT = 'Contact';
 
-        // Create initial element
+        // Create component
         const element = createElement('c-record-form-dynamic-contact', {
             is: RecordFormDynamicContact
         });
@@ -42,9 +42,9 @@ describe('c-record-form-dynamic-contact', () => {
         const element = createElement('c-record-form-dynamic-contact', {
             is: RecordFormDynamicContact
         });
-
         document.body.appendChild(element);
 
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 });

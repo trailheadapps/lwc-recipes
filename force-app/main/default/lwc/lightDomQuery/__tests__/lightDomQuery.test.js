@@ -2,8 +2,8 @@ import { createElement } from 'lwc';
 import LightDomQuery from 'c/lightDomQuery';
 
 describe('c-light-dom-query', () => {
-    //Enable light DOM as c-light-dom-query-child is built using lightDOM.
-    //This is a work around, and it can be removed with the next update of sfdx-lwc-jest.
+    // Enable light DOM as c-light-dom-query-child is built using lightDOM.
+    // This is a work around, and it can be removed with the next update of sfdx-lwc-jest.
     // eslint-disable-next-line no-undef
     lwcRuntimeFlags.ENABLE_LIGHT_DOM_COMPONENTS = true;
 
@@ -28,10 +28,10 @@ describe('c-light-dom-query', () => {
             element.shadowRoot.querySelectorAll('lightning-button');
         lightningButtonEls[0].click();
 
-        //Verify the lightning-button in the parent is clicked
+        // Verify the lightning-button in the parent is clicked
         expect(lightningButtonEls[0].label).toBe(BUTTON_LABEL);
 
-        //Verify light DOM child paragraph text is changed
+        // Verify light DOM child paragraph text is changed
         const pEl = element.shadowRoot.querySelector('p.lightDomParagraph');
         expect(pEl.innerText).toBe(PARAGRAPH_TEXT);
     });
@@ -40,10 +40,10 @@ describe('c-light-dom-query', () => {
         const element = createElement('c-light-dom-query', {
             is: LightDomQuery
         });
-
         document.body.appendChild(element);
 
-        //Verify component is accessible
+        // Verify component is accessible
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 });

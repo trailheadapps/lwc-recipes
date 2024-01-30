@@ -17,7 +17,7 @@ describe('c-api-setter-getter', () => {
     it('creates a new todo item', async () => {
         const TODO_DESCRIPTION = 'Some ToDo';
 
-        // Create initial element
+        // Create component
         const element = createElement('c-api-setter-getter', {
             is: ApiSetterGetter
         });
@@ -40,7 +40,7 @@ describe('c-api-setter-getter', () => {
             el.dispatchEvent(new CustomEvent('change'));
         });
 
-        // Select button for simulating click
+        // Click button
         const buttonEl = element.shadowRoot.querySelector('lightning-button');
         buttonEl.click();
 
@@ -55,12 +55,13 @@ describe('c-api-setter-getter', () => {
     });
 
     it('is accessible', async () => {
+        // Create component
         const element = createElement('c-api-setter-getter', {
             is: ApiSetterGetter
         });
-
         document.body.appendChild(element);
 
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 });

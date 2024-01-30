@@ -23,7 +23,7 @@ describe('c-lms-subscriber-web-component', () => {
     }
 
     it('registers the LMS subscriber during the component lifecycle', () => {
-        // Create initial element
+        // Create component
         const element = createElement('c-lms-subscriber-web-component', {
             is: LmsSubscriberWebComponent
         });
@@ -35,7 +35,7 @@ describe('c-lms-subscriber-web-component', () => {
     });
 
     it('invokes getRecord with the published message payload value', async () => {
-        // Create element
+        // Create component
         const element = createElement('c-lms-subscriber-web-component', {
             is: LmsSubscriberWebComponent
         });
@@ -57,7 +57,7 @@ describe('c-lms-subscriber-web-component', () => {
 
     describe('getRecord @wire data', () => {
         it('renders contact details with picture', async () => {
-            // Create element
+            // Create component
             const element = createElement('c-lms-subscriber-web-component', {
                 is: LmsSubscriberWebComponent
             });
@@ -71,28 +71,24 @@ describe('c-lms-subscriber-web-component', () => {
 
             // Select elements for validation
             const imgEl = element.shadowRoot.querySelector('img');
-            expect(imgEl.src).toBe(
-                mockGetRecord.result.fields.Picture__c.value
-            );
+            expect(imgEl.src).toBe(mockGetRecord.fields.Picture__c.value);
 
             const nameEl = element.shadowRoot.querySelector('p');
-            expect(nameEl.textContent).toBe(
-                mockGetRecord.result.fields.Name.value
-            );
+            expect(nameEl.textContent).toBe(mockGetRecord.fields.Name.value);
 
             const phoneEl = element.shadowRoot.querySelector(
                 'lightning-formatted-phone'
             );
-            expect(phoneEl.value).toBe(mockGetRecord.result.fields.Phone.value);
+            expect(phoneEl.value).toBe(mockGetRecord.fields.Phone.value);
 
             const emailEl = element.shadowRoot.querySelector(
                 'lightning-formatted-email'
             );
-            expect(emailEl.value).toBe(mockGetRecord.result.fields.Email.value);
+            expect(emailEl.value).toBe(mockGetRecord.fields.Email.value);
         });
 
         it('renders contact details without picture', async () => {
-            // Create element
+            // Create component
             const element = createElement('c-lms-subscriber-web-component', {
                 is: LmsSubscriberWebComponent
             });
@@ -110,28 +106,28 @@ describe('c-lms-subscriber-web-component', () => {
 
             const nameEl = element.shadowRoot.querySelector('p');
             expect(nameEl.textContent).toBe(
-                mockGetRecordNoPicture.result.fields.Name.value
+                mockGetRecordNoPicture.fields.Name.value
             );
 
             const phoneEl = element.shadowRoot.querySelector(
                 'lightning-formatted-phone'
             );
             expect(phoneEl.value).toBe(
-                mockGetRecordNoPicture.result.fields.Phone.value
+                mockGetRecordNoPicture.fields.Phone.value
             );
 
             const emailEl = element.shadowRoot.querySelector(
                 'lightning-formatted-email'
             );
             expect(emailEl.value).toBe(
-                mockGetRecordNoPicture.result.fields.Email.value
+                mockGetRecordNoPicture.fields.Email.value
             );
         });
     });
 
     describe('getRecord @wire error', () => {
         it('displays a toast message', async () => {
-            // Create initial element
+            // Create component
             const element = createElement('c-lms-subscriber-web-component', {
                 is: LmsSubscriberWebComponent
             });
@@ -153,7 +149,7 @@ describe('c-lms-subscriber-web-component', () => {
     });
 
     it('is accessible when contacts returned with picture', async () => {
-        // Create element
+        // Create component
         const element = createElement('c-lms-subscriber-web-component', {
             is: LmsSubscriberWebComponent
         });
@@ -165,11 +161,12 @@ describe('c-lms-subscriber-web-component', () => {
         // Wait for any asynchronous DOM updates
         await flushPromises();
 
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 
     it('is accessible when contacts returned without picture', async () => {
-        // Create element
+        // Create component
         const element = createElement('c-lms-subscriber-web-component', {
             is: LmsSubscriberWebComponent
         });
@@ -181,11 +178,12 @@ describe('c-lms-subscriber-web-component', () => {
         // Wait for any asynchronous DOM updates
         await flushPromises();
 
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 
     it('is accessible when error returned', async () => {
-        // Create element
+        // Create component
         const element = createElement('c-lms-subscriber-web-component', {
             is: LmsSubscriberWebComponent
         });
@@ -197,6 +195,7 @@ describe('c-lms-subscriber-web-component', () => {
         // Wait for any asynchronous DOM updates
         await flushPromises();
 
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 });

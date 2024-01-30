@@ -1,14 +1,14 @@
 # Lightning Web Components Recipes
 
-[![CI Workflow](https://github.com/trailheadapps/lwc-recipes/workflows/CI/badge.svg)](https://github.com/trailheadapps/lwc-recipes/actions?query=workflow%3ACI) [![Packaging Workflow](https://github.com/trailheadapps/lwc-recipes/workflows/Packaging/badge.svg)](https://github.com/trailheadapps/lwc-recipes/actions?query=workflow%3A%22Packaging%22) [![codecov](https://codecov.io/gh/trailheadapps/lwc-recipes/branch/main/graph/badge.svg)](https://codecov.io/gh/trailheadapps/lwc-recipes)
+[![CI](https://github.com/trailheadapps/lwc-recipes/actions/workflows/ci.yml/badge.svg)](https://github.com/trailheadapps/lwc-recipes/actions/workflows/ci.yml) [![Packaging](https://github.com/trailheadapps/lwc-recipes/actions/workflows/packaging.yml/badge.svg)](https://github.com/trailheadapps/lwc-recipes/actions/workflows/packaging.yml) [![codecov](https://codecov.io/gh/trailheadapps/lwc-recipes/branch/main/graph/badge.svg)](https://codecov.io/gh/trailheadapps/lwc-recipes)
 
 ![recipes-logo](recipes-logo.png)
 
-A collection of easy-to-digest code examples for Lightning Web Components. Each recipe demonstrates how to code a specific task in the fewest lines of code possible, while following best practices. A View Source link takes you right to the code in GitHub. From Hello World to data access and third-party libraries, there is a recipe for that!
+A collection of easy-to-digest code examples for Lightning Web Components. Each recipe demonstrates how to code a specific task in the fewest lines of code possible while following best practices. A "View Source" link takes you directly to the code on GitHub. From "Hello World" to data access and third-party libraries, there's a recipe for that!
 
 <div>
     <img src="https://res.cloudinary.com/hy4kyit2a/f_auto,fl_lossy,q_70,w_50/learn/projects/quick-start-lwc-recipes-app/bb501c3216ac163958f036fb90357955_badge.png" align="left" alt="Trailhead Badge"/>
-    Learn more about this app by completing the <a href="https://trailhead.salesforce.com/content/learn/projects/quick-start-lwc-recipes-app">Quick Start: Explore the LWC Recipes Sample App</a> Trailhead project.
+    Learn more about this app by completing the <a href="https://trailhead.salesforce.com/content/learn/projects/quick-start-lwc-recipes-app">Quick Start: Explore the LWC Recipes Sample App</a> Trailhead project or by watching this <a href="https://www.youtube.com/watch?v=lK3NOZGc5fg&list=PLgIMQe2PKPSJcuCwM61dEc4jFG_jHqV2t&index=3">short presentation video</a>.
     <br/>
     <br/>
     <br/>
@@ -40,7 +40,7 @@ A collection of easy-to-digest code examples for Lightning Web Components. Each 
 1. If you haven't already done so, authorize your hub org and provide it with an alias (**myhuborg** in the command below):
 
     ```
-    sfdx auth:web:login -d -a myhuborg
+    sf org login web -d -a myhuborg
     ```
 
 1. Clone the lwc-recipes repository:
@@ -53,31 +53,31 @@ A collection of easy-to-digest code examples for Lightning Web Components. Each 
 1. Create a scratch org and provide it with an alias (**lwc-recipes** in the command below):
 
     ```
-    sfdx force:org:create -s -f config/project-scratch-def.json -a lwc-recipes
+    sf org create scratch -d -f config/project-scratch-def.json -a lwc-recipes
     ```
 
 1. Push the app to your scratch org:
 
     ```
-    sfdx force:source:push
+    sf project deploy start
     ```
 
 1. Assign the **recipes** permission set to the default user:
 
     ```
-    sfdx force:user:permset:assign -n recipes
+    sf org assign permset -n recipes
     ```
 
 1. Import sample data:
 
     ```
-    sfdx force:data:tree:import -p ./data/data-plan.json
+    sf data tree import -p ./data/data-plan.json
     ```
 
 1. Open the scratch org:
 
     ```
-    sfdx force:org:open
+    sf org open
     ```
 
 1. In **Setup**, under **Themes and Branding**, activate the **Recipes Lite** or **Recipes Blue** theme.
@@ -86,13 +86,13 @@ A collection of easy-to-digest code examples for Lightning Web Components. Each 
 
 ## Installing the app using an Unlocked Package
 
-Follow this set of instructions if you want to deploy the app to a more permanent environment than a Scratch org or if you don't want to install the local developement tools. You can use a non source-tracked orgs such as a free [Developer Edition Org](https://developer.salesforce.com/signup) or a [Trailhead Playground](https://trailhead.salesforce.com/).
+Follow this set of instructions if you want to deploy the app to a more permanent environment than a Scratch org or if you don't want to install the local development tools. You can use non source-tracked orgs such as a free [Developer Edition Org](https://developer.salesforce.com/signup) or a [Trailhead Playground](https://trailhead.salesforce.com/).
 
-Make sure to start from a brand-new environment to avoid conflicts with previous work you may have done.
+Make sure to start from a brand-new environment to avoid conflicts with any previous work you may have done.
 
 1. Log in to your org
 
-1. Click [this link](https://login.salesforce.com/packaging/installPackage.apexp?p0=04t3t000002wSUgAAM) to install the Recipes unlocked package in your org.
+1. Click [this link](https://login.salesforce.com/packaging/installPackage.apexp?p0=04t3t000002YSCIAA4) to install the Recipes unlocked package in your org.
 
 1. Select **Install for All Users**
 
@@ -114,7 +114,7 @@ Make sure to start from a brand-new environment to avoid conflicts with previous
 
 1. In **Setup**, under **Themes and Branding**, activate the **Recipes Lite** or **Recipes Blue** theme.
 
-1. In App Launcher, click **View All** then select the **LWC** app.
+1. In App Launcher, click **View All** then select the **LWC Recipes** app.
 
 ## Installing the App using a Developer Edition Org or a Trailhead Playground
 
@@ -133,31 +133,31 @@ Make sure to start from a brand-new environment to avoid conflicts with previous
 1. Authorize your Trailhead Playground or Developer org and provide it with an alias (**mydevorg** in the command below):
 
     ```
-    sfdx auth:web:login -s -a mydevorg
+    sf org login web -s -a mydevorg
     ```
 
 1. Run this command in a terminal to deploy the app.
 
     ```
-    sfdx force:source:deploy -p force-app
+    sf project deploy start -d force-app
     ```
 
 1. Assign the `recipes` permission set to the default user.
 
     ```
-    sfdx force:user:permset:assign -n recipes
+    sf org assign permset -n recipes
     ```
 
 1. Import some sample data.
 
     ```
-    sfdx force:data:tree:import -p ./data/data-plan.json
+    sf data tree import -p ./data/data-plan.json
     ```
 
 1. If your org isn't already open, open it now:
 
     ```
-    sfdx force:org:open -u mydevorg
+    sf org open -o mydevorg
     ```
 
 1. In **Setup**, under **Themes and Branding**, activate the **Recipes Lite** or **Recipes Blue** theme.
@@ -166,7 +166,7 @@ Make sure to start from a brand-new environment to avoid conflicts with previous
 
 ## Optional Installation Instructions
 
-This repository contains several files that are relevant if you want to integrate modern web development tooling to your Salesforce development processes, or to your continuous integration/continuous deployment processes.
+This repository contains several files that are relevant if you want to integrate modern web development tools into your Salesforce development processes or into your continuous integration/continuous deployment processes.
 
 ### Code formatting
 

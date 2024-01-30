@@ -5,11 +5,9 @@ import getContactList from '@salesforce/apex/ContactController.getContactList';
 // Mocking imperative Apex method call
 jest.mock(
     '@salesforce/apex/ContactController.getContactList',
-    () => {
-        return {
-            default: jest.fn()
-        };
-    },
+    () => ({
+        default: jest.fn()
+    }),
     { virtual: true }
 );
 
@@ -17,21 +15,11 @@ jest.mock(
 const APEX_CONTACTS_SUCCESS = [
     {
         Id: '0031700000pJRRSAA4',
-        Name: 'Amy Taylor',
-        Title: 'VP of Engineering',
-        Phone: '4152568563',
-        Email: 'amy@demo.net',
-        Picture__c:
-            'https://s3-us-west-2.amazonaws.com/dev-or-devrl-s3-bucket/sample-apps/people/amy_taylor.jpg'
+        Name: 'Amy Taylor'
     },
     {
         Id: '0031700000pJRRTAA4',
-        Name: 'Michael Jones',
-        Title: 'VP of Sales',
-        Phone: '4158526633',
-        Email: 'michael@demo.net',
-        Picture__c:
-            'https://s3-us-west-2.amazonaws.com/dev-or-devrl-s3-bucket/sample-apps/people/michael_jones.jpg'
+        Name: 'Michael Jones'
     }
 ];
 
@@ -63,19 +51,21 @@ describe('c-apex-imperative-method', () => {
         // Assign mock value for resolved Apex promise
         getContactList.mockResolvedValue(APEX_CONTACTS_SUCCESS);
 
-        // Create initial element
+        // Create component
         const element = createElement('c-apex-imperative-method', {
             is: ApexImperativeMethod
         });
         document.body.appendChild(element);
 
-        // Select button for executing Apex call
+        // Click button
         const buttonEl = element.shadowRoot.querySelector('lightning-button');
         buttonEl.click();
 
         // Wait for any asynchronous DOM updates
         await flushPromises();
+        await flushPromises();
 
+        // Verify displayed text
         const detailEls = element.shadowRoot.querySelectorAll('p:not([class])');
         expect(detailEls.length).toBe(APEX_CONTACTS_SUCCESS.length);
         expect(detailEls[0].textContent).toBe(APEX_CONTACTS_SUCCESS[0].Name);
@@ -86,19 +76,21 @@ describe('c-apex-imperative-method', () => {
         // Assign mock value for rejected Apex promise
         getContactList.mockRejectedValue(APEX_CONTACTS_ERROR);
 
-        // Create initial element
+        // Create component
         const element = createElement('c-apex-imperative-method', {
             is: ApexImperativeMethod
         });
         document.body.appendChild(element);
 
-        // Select button for executing Apex call
+        // Click button
         const buttonEl = element.shadowRoot.querySelector('lightning-button');
         buttonEl.click();
 
         // Wait for any asynchronous DOM updates
         await flushPromises();
+        await flushPromises();
 
+        // Check for error panel
         const errorPanelEl = element.shadowRoot.querySelector('c-error-panel');
         expect(errorPanelEl).not.toBeNull();
     });
@@ -107,19 +99,20 @@ describe('c-apex-imperative-method', () => {
         // Assign mock value for resolved Apex promise
         getContactList.mockResolvedValue(APEX_CONTACTS_SUCCESS);
 
-        // Create initial element
+        // Create component
         const element = createElement('c-apex-imperative-method', {
             is: ApexImperativeMethod
         });
         document.body.appendChild(element);
 
-        // Select button for executing Apex call
+        // Click button
         const buttonEl = element.shadowRoot.querySelector('lightning-button');
         buttonEl.click();
 
         // Wait for any asynchronous DOM updates
         await flushPromises();
 
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 
@@ -127,19 +120,20 @@ describe('c-apex-imperative-method', () => {
         // Assign mock value for rejected Apex promise
         getContactList.mockRejectedValue(APEX_CONTACTS_ERROR);
 
-        // Create initial element
+        // Create component
         const element = createElement('c-apex-imperative-method', {
             is: ApexImperativeMethod
         });
         document.body.appendChild(element);
 
-        // Select button for executing Apex call
+        // Click button
         const buttonEl = element.shadowRoot.querySelector('lightning-button');
         buttonEl.click();
 
         // Wait for any asynchronous DOM updates
         await flushPromises();
 
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 });

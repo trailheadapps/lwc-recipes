@@ -1,0 +1,42 @@
+<template>
+    <lightning-card title="GraphqlRefresh" icon-name="custom:custom39">
+        <div class="slds-var-m-around_medium">
+            <lightning-spinner
+                lwc:if={isLoading}
+                alternative-text="Loading"
+                size="small"
+                variant="brand"
+            ></lightning-spinner>
+
+            <template lwc:if={errors}>
+                <c-error-panel errors={errors}></c-error-panel>
+            </template>
+            <div lwc:if={account}>
+                <div class="account-info">
+                    The {account.Name} account has {account.NumberOfEmployees}
+                    employees.
+                </div>
+                <div class="slds-var-m-top_small slds-align_absolute-center">
+                    <lightning-button
+                        label="Randomize record data"
+                        title="Randomize record data"
+                        onclick={handleRandomizeClick}
+                        class="randomize slds-m-right_x-small"
+                    ></lightning-button>
+                    <lightning-button
+                        label="Refresh GraphQL query"
+                        title="Refresh GraphQL query"
+                        onclick={handleRefreshClick}
+                        class="refresh slds-m-left_x-small"
+                    ></lightning-button>
+                </div>
+            </div>
+        </div>
+
+        <c-view-source source="lwc/graphqlRefresh" slot="footer">
+            Refresh a GraphQL query @wire result. Click Randomize to update the
+            record (this doesn't update the view) then, click Refresh to reload
+            the data in the UI.
+        </c-view-source>
+    </lightning-card>
+</template>

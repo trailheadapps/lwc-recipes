@@ -1,0 +1,41 @@
+<template>
+    <lightning-card
+        title="RecordPickerDynamicTarget"
+        class="slds-card__body_inner"
+        icon-name="standard:search"
+    >
+        <div class="slds-form-element">
+            <label class="slds-form-element__label">Select a record</label>
+            <div class="slds-form-element__control slds-combobox-group">
+                <template if:true={showTargetSelector}>
+                    <!-- Target selector -->
+                    <lightning-combobox
+                        data-id="targetSelector"
+                        label="Select a target sObject"
+                        variant="label-hidden"
+                        options={targetObjects}
+                        value={selectedTarget}
+                        onchange={handleTargetSelection}
+                        class="slds-combobox_object-switcher slds-combobox-addon_start"
+                    >
+                    </lightning-combobox>
+                </template>
+                <lightning-record-picker
+                    lwc:ref="recordPicker"
+                    object-api-name={selectedTarget}
+                    placeholder="Search..."
+                    label="Select a record"
+                    variant="label-hidden"
+                    display-info={displayInfo}
+                    matching-info={matchingInfo}
+                    onchange={handleRecordSelect}
+                    class="slds-size_full slds-combobox-addon_end"
+                >
+                </lightning-record-picker>
+            </div>
+        </div>
+        <c-view-source source="lwc/recordPickerDynamicTarget" slot="footer">
+            Select a target sObject. Type a search term and select a record.
+        </c-view-source>
+    </lightning-card>
+</template>

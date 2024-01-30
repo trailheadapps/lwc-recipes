@@ -11,12 +11,12 @@ describe('c-navigate-to-record--headless-action', () => {
         jest.clearAllMocks();
     });
     it('Test Navigation', () => {
-        // Create initial element
+        // Create component
         const element = createElement('c-navigate-to-record-action', {
             is: NavigateToRecordHeadlessAction
         });
         document.body.appendChild(element);
-        //Call invoke()
+        // Call invoke()
         element.invoke();
         const { pageReference } = getNavigateCalledWith();
         // Assert pageReference values.

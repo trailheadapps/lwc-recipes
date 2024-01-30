@@ -21,16 +21,12 @@ module.exports = {
             '<rootDir>/force-app/test/jest-mocks/lightning/messageService',
         '^lightning/actions$':
             '<rootDir>/force-app/test/jest-mocks/lightning/actions',
-        '^lightning/alert$':
-            '<rootDir>/force-app/test/jest-mocks/lightning/alert',
-        '^lightning/confirm$':
-            '<rootDir>/force-app/test/jest-mocks/lightning/confirm',
-        '^lightning/prompt$':
-            '<rootDir>/force-app/test/jest-mocks/lightning/prompt',
-        '^lightning/modal*':
+        '^lightning/modal$':
             '<rootDir>/force-app/test/jest-mocks/lightning/modal',
         '^lightning/refresh$':
-            '<rootDir>/force-app/test/jest-mocks/lightning/refresh'
+            '<rootDir>/force-app/test/jest-mocks/lightning/refresh',
+        '^lightning/platformWorkspaceApi$':
+            '<rootDir>/force-app/test/jest-mocks/lightning/platformWorkspaceApi'
     },
     setupFiles: ['jest-canvas-mock'],
     setupFilesAfterEnv,

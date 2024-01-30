@@ -26,7 +26,7 @@ describe('c-misc-multiple-templates', () => {
     }
 
     it('displays templateOne on initial render', () => {
-        // Create initial element
+        // Create component
         const element = createElement('c-misc-multiple-templates', {
             is: MiscMultipleTemplates
         });
@@ -43,7 +43,7 @@ describe('c-misc-multiple-templates', () => {
     });
 
     it('displays templateTwo on click', async () => {
-        // Create initial element
+        // Create component
         const element = createElement('c-misc-multiple-templates', {
             is: MiscMultipleTemplates
         });
@@ -68,7 +68,7 @@ describe('c-misc-multiple-templates', () => {
     });
 
     it('displays templateOne after two clicks', async () => {
-        // Create initial element
+        // Create component
         const element = createElement('c-misc-multiple-templates', {
             is: MiscMultipleTemplates
         });
@@ -97,9 +97,9 @@ describe('c-misc-multiple-templates', () => {
         const element = createElement('c-misc-multiple-templates', {
             is: MiscMultipleTemplates
         });
-
         document.body.appendChild(element);
 
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 
@@ -107,7 +107,6 @@ describe('c-misc-multiple-templates', () => {
         const element = createElement('c-misc-multiple-templates', {
             is: MiscMultipleTemplates
         });
-
         document.body.appendChild(element);
 
         // Simulate user click
@@ -117,6 +116,7 @@ describe('c-misc-multiple-templates', () => {
         // Wait for any asynchronous DOM updates
         await flushPromises();
 
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 });

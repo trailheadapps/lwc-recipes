@@ -40,7 +40,7 @@ describe('c-lds-delete-record', () => {
 
     describe('getAccountList @wire data', () => {
         it('renders seven records with name and lightning-button-icon', async () => {
-            // Create initial element
+            // Create component
             const element = createElement('c-lds-delete-record', {
                 is: LdsDeleteRecord
             });
@@ -68,7 +68,7 @@ describe('c-lds-delete-record', () => {
         });
 
         it('renders no buttons when no record exists', async () => {
-            // Create initial element
+            // Create component
             const element = createElement('c-lds-delete-record', {
                 is: LdsDeleteRecord
             });
@@ -95,7 +95,7 @@ describe('c-lds-delete-record', () => {
 
     describe('getAccountList @wire error', () => {
         it('shows error panel element', async () => {
-            // Create initial element
+            // Create component
             const element = createElement('c-apex-wire-method-to-function', {
                 is: LdsDeleteRecord
             });
@@ -107,6 +107,7 @@ describe('c-lds-delete-record', () => {
             // Wait for any asynchronous DOM updates
             await flushPromises();
 
+            // Check for error panel
             const errorPanelEl =
                 element.shadowRoot.querySelector('c-error-panel');
             expect(errorPanelEl).not.toBeNull();
@@ -114,7 +115,7 @@ describe('c-lds-delete-record', () => {
     });
 
     it('deletes the first entry of the account list on button click', async () => {
-        // Create initial element
+        // Create component
         const element = createElement('c-lds-delete-record', {
             is: LdsDeleteRecord
         });
@@ -126,7 +127,7 @@ describe('c-lds-delete-record', () => {
         // Wait for any asynchronous DOM updates
         await flushPromises();
 
-        // Select button for simulating user interaction
+        // Click button
         const buttonEl = element.shadowRoot.querySelector(
             'lightning-button-icon'
         );
@@ -141,7 +142,7 @@ describe('c-lds-delete-record', () => {
     });
 
     it('is accessible when data is returned', async () => {
-        // Create initial element
+        // Create component
         const element = createElement('c-lds-delete-record', {
             is: LdsDeleteRecord
         });
@@ -150,13 +151,15 @@ describe('c-lds-delete-record', () => {
         // Emit data from @wire
         getAccountList.emit(mockGetAccountList);
 
-        // Wait for any asynchronous DOM updates and test acccessibility
+        // Wait for any asynchronous DOM updates
         await flushPromises();
+
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 
     it('is accessible when error is returned', async () => {
-        // Create initial element
+        // Create component
         const element = createElement('c-lds-delete-record', {
             is: LdsDeleteRecord
         });
@@ -165,8 +168,10 @@ describe('c-lds-delete-record', () => {
         // Emit error from @wire
         getAccountList.error();
 
-        // Wait for any asynchronous DOM updates and test acccessibility
+        // Wait for any asynchronous DOM updates
         await flushPromises();
+
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 });

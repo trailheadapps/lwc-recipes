@@ -26,32 +26,31 @@ export default class LdsNotifyRecordUpdateAvailable extends LightningElement {
         return getFieldValue(this.contact.data, LASTNAME_FIELD);
     }
 
-    handleContactUpdate() {
-        //Here we are using an imperative apex call for a simple update only to show the usage of notifyRecordUpdateAvailable
-        //It is preferred to use updateRecord from the UI API for a simple update.
-        updateContact({
-            recordId: this.recordId,
-            firstName: this.refs.firstName.value,
-            lastName: this.refs.lastName.value
-        })
-            .then(() => {
-                this.dispatchEvent(
-                    new ShowToastEvent({
-                        title: 'Success',
-                        message: 'Contact updated',
-                        variant: 'success'
-                    })
-                );
-                notifyRecordUpdateAvailable([{ recordId: this.recordId }]);
-            })
-            .catch((error) => {
-                this.dispatchEvent(
-                    new ShowToastEvent({
-                        title: 'Error updating record',
-                        message: error.body.message,
-                        variant: 'error'
-                    })
-                );
+    async handleContactUpdate() {
+        try {
+            // Here we are using an imperative apex call for a simple update only to show the usage of notifyRecordUpdateAvailable
+            // It is preferred to use updateRecord from the UI API for a simple update.
+            await updateContact({
+                recordId: this.recordId,
+                firstName: this.refs.firstName.value,
+                lastName: this.refs.lastName.value
             });
+            this.dispatchEvent(
+                new ShowToastEvent({
+                    title: 'Success',
+                    message: 'Contact updated',
+                    variant: 'success'
+                })
+            );
+            notifyRecordUpdateAvailable([{ recordId: this.recordId }]);
+        } catch (error) {
+            this.dispatchEvent(
+                new ShowToastEvent({
+                    title: 'Error updating record',
+                    message: error.body.message,
+                    variant: 'error'
+                })
+            );
+        }
     }
 }

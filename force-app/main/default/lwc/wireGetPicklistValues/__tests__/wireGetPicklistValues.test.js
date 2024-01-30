@@ -20,8 +20,8 @@ describe('c-wire-get-picklist-values', () => {
     }
 
     describe('getPicklistValues @wire data', () => {
-        it('renders seven lightning-input fields of type checkbox', () => {
-            // Create element
+        it('renders seven lightning-input fields of type checkbox', async () => {
+            // Create component
             const element = createElement('c-wire-get-picklist-values', {
                 is: WireGetPicklistValues
             });
@@ -30,27 +30,24 @@ describe('c-wire-get-picklist-values', () => {
             // Emit data from @wire
             getPicklistValues.emit(mockGetPicklistValues);
 
-            // Return a promise to wait for any asynchronous DOM updates. Jest
-            // will automatically wait for the Promise chain to complete before
-            // ending the test and fail the test if the promise rejects.
-            return Promise.resolve().then(() => {
-                // Select elements for validation
-                const checkboxEls =
-                    element.shadowRoot.querySelectorAll('lightning-input');
-                expect(checkboxEls.length).toBe(
-                    mockGetPicklistValues.values.length
-                );
+            // Wait for any asynchronous DOM updates
+            await flushPromises();
 
-                checkboxEls.forEach((checkboxEl) => {
-                    expect(checkboxEl.type).toBe('checkbox');
-                });
+            // Ensures that inputs are checkboxes
+            const checkboxEls =
+                element.shadowRoot.querySelectorAll('lightning-input');
+            expect(checkboxEls.length).toBe(
+                mockGetPicklistValues.values.length
+            );
+            checkboxEls.forEach((checkboxEl) => {
+                expect(checkboxEl.type).toBe('checkbox');
             });
         });
     });
 
     describe('getObjectInfo @wire error', () => {
         it('shows error panel element', async () => {
-            // Create initial element
+            // Create component
             const element = createElement('c-wire-get-picklist-values', {
                 is: WireGetPicklistValues
             });
@@ -62,6 +59,7 @@ describe('c-wire-get-picklist-values', () => {
             // Wait for any asynchronous DOM updates
             await flushPromises();
 
+            // Check for error panel
             const errorPanelEl =
                 element.shadowRoot.querySelector('c-error-panel');
             expect(errorPanelEl).not.toBeNull();
@@ -69,7 +67,7 @@ describe('c-wire-get-picklist-values', () => {
     });
 
     it('is accessible when picklist values are returned', async () => {
-        // Create element
+        // Create component
         const element = createElement('c-wire-get-picklist-values', {
             is: WireGetPicklistValues
         });
@@ -81,11 +79,12 @@ describe('c-wire-get-picklist-values', () => {
         // Wait for any asynchronous DOM updates
         await flushPromises();
 
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 
     it('is accessible when error is returned', async () => {
-        // Create element
+        // Create component
         const element = createElement('c-wire-get-picklist-values', {
             is: WireGetPicklistValues
         });
@@ -97,6 +96,7 @@ describe('c-wire-get-picklist-values', () => {
         // Wait for any asynchronous DOM updates
         await flushPromises();
 
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 });

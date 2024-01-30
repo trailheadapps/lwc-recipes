@@ -28,7 +28,7 @@ describe('c-libs-chartjs', () => {
     }
 
     it('contains a canvas element for ChartJs', () => {
-        // Create initial element
+        // Create component
         const element = createElement('c-libs-chartjs', {
             is: LibsChartjs
         });
@@ -42,7 +42,7 @@ describe('c-libs-chartjs', () => {
     it('loads the ChartJS javascript and css static resources', () => {
         const CHARTJS_JS = 'chartJs';
 
-        // Create initial element
+        // Create component
         const element = createElement('c-libs-chartjs', {
             is: LibsChartjs
         });
@@ -57,15 +57,16 @@ describe('c-libs-chartjs', () => {
     it('shows the error panel element on static resource load error', async () => {
         loadScript.mockRejectedValue(LOAD_SCRIPT_ERROR);
 
-        // Create initial element
+        // Create component
         const element = createElement('c-libs-chartjs', {
             is: LibsChartjs
         });
         document.body.appendChild(element);
 
-        // Wait for any asynchronous DOM updates.
+        // Wait for any asynchronous DOM updates
         await flushPromises();
 
+        // Check for error panel
         const errorPanelEl = element.shadowRoot.querySelector('c-error-panel');
         return expect(errorPanelEl).not.toBeNull();
     });
@@ -74,9 +75,9 @@ describe('c-libs-chartjs', () => {
         const element = createElement('c-libs-chartjs', {
             is: LibsChartjs
         });
-
         document.body.appendChild(element);
 
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 
@@ -86,9 +87,9 @@ describe('c-libs-chartjs', () => {
         const element = createElement('c-libs-chartjs', {
             is: LibsChartjs
         });
-
         document.body.appendChild(element);
 
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 });

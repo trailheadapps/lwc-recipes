@@ -1,0 +1,94 @@
+{
+    "uiapi": {
+        "query": {
+            "Account": {
+                "edges": [
+                    {
+                        "node": {
+                            "Id": "003xx000004WhR6AA1",
+                            "Name": {
+                                "value": "GenePoint"
+                            }
+                        }
+                    },
+                    {
+                        "node": {
+                            "Id": "003xx000004WhR9AA2",
+                            "Name": {
+                                "value": "Anup GuptaEdge Communications"
+                            }
+                        }
+                    },
+                    {
+                        "node": {
+                            "Id": "003xx000004WhRAAA3",
+                            "Name": {
+                                "value": "Burlington Textiles Corp of America"
+                            }
+                        }
+                    },
+                    {
+                        "node": {
+                            "Id": "003xx000004WhR8AA4",
+                            "Name": {
+                                "value": "Pyramid Construction Inc."
+                            }
+                        }
+                    },
+                    {
+                        "node": {
+                            "Id": "003xx000004WhRBAA5",
+                            "Name": {
+                                "value": "Dickenson plc"
+                            }
+                        }
+                    }
+                ]
+            },
+            "Contact": {
+                "edges": [
+                    {
+                        "node": {
+                            "Id": "003xx000004WhR6AAK",
+                            "Name": {
+                                "value": "Amy Taylor"
+                            }
+                        }
+                    },
+                    {
+                        "node": {
+                            "Id": "003xx000004WhR9AAK",
+                            "Name": {
+                                "value": "Anup Gupta"
+                            }
+                        }
+                    },
+                    {
+                        "node": {
+                            "Id": "003xx000004WhRAAA0",
+                            "Name": {
+                                "value": "Caroline Kingsley"
+                            }
+                        }
+                    },
+                    {
+                        "node": {
+                            "Id": "003xx000004WhR8AAK",
+                            "Name": {
+                                "value": "Jennifer Wu"
+                            }
+                        }
+                    },
+                    {
+                        "node": {
+                            "Id": "003xx000004WhRBAA0",
+                            "Name": {
+                                "value": "Jonathan Bradley"
+                            }
+                        }
+                    }
+                ]
+            }
+        }
+    }
+}

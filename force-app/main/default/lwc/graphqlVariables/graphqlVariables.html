@@ -1,0 +1,28 @@
+<template>
+    <lightning-card title="GraphqlVariables" icon-name="custom:custom39">
+        <div class="slds-var-m-around_medium">
+            <lightning-input
+                type="search"
+                onchange={handleKeyChange}
+                class="slds-var-m-bottom_small"
+                label="Search"
+                value={searchKey}
+            ></lightning-input>
+            <template lwc:if={contacts.data}>
+                <template
+                    for:each={contacts.data.uiapi.query.Contact.edges}
+                    for:item="contact"
+                >
+                    <p key={contact.node.Id}>{contact.node.Name.value}</p>
+                </template>
+            </template>
+            <template lwc:if={contacts.errors}>
+                <c-error-panel errors={contacts.errors}></c-error-panel>
+            </template>
+        </div>
+
+        <c-view-source source="lwc/graphqlVariables" slot="footer">
+            Run a GraphQL query with a variable using @wire.
+        </c-view-source>
+    </lightning-card>
+</template>

@@ -48,20 +48,20 @@ describe('c-datatable-inline-edit', () => {
 
         const tableEl = element.shadowRoot.querySelector('c-custom-data-types');
 
-        //Validate the datatable is populated with correct number of records
+        // Validate the datatable is populated with correct number of records
         expect(tableEl.data.length).toBe(mockGetContactList.length);
 
-        //Validate the record to have rendered with correct data
+        // Validate the record to have rendered with correct data
         expect(tableEl.data[0].FirstName).toBe(mockGetContactList[0].FirstName);
 
-        //Validate if custom datatype field is populated
+        // Validate if custom datatype field is populated
         expect(tableEl.data[0].Picture__c).toBe(
             mockGetContactList[0].Picture__c
         );
     });
 
     it('is accessible when data is returned', async () => {
-        // Create initial element
+        // Create component
         const element = createElement('c-datatable-custom-data-type', {
             is: DatatableCustomDataType
         });
@@ -73,11 +73,12 @@ describe('c-datatable-inline-edit', () => {
         // Wait for any asynchronous DOM updates
         await flushPromises();
 
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 
     it('is accessible when error is returned', async () => {
-        // Create initial element
+        // Create component
         const element = createElement('c-datatable-custom-data-type', {
             is: DatatableCustomDataType
         });
@@ -89,6 +90,7 @@ describe('c-datatable-inline-edit', () => {
         // Wait for any asynchronous DOM updates
         await flushPromises();
 
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 });

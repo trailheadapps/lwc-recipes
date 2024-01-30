@@ -2,7 +2,7 @@ import { createElement } from 'lwc';
 import LightDomQueryChild from 'c/lightDomQueryChild';
 
 describe('c-light-dom-query-child', () => {
-    //Enable light DOM. This is a work around, and it can be removed with the next update of sfdx-lwc-jest.
+    // Enable light DOM. This is a work around, and it can be removed with the next update of sfdx-lwc-jest.
     // eslint-disable-next-line no-undef
     lwcRuntimeFlags.ENABLE_LIGHT_DOM_COMPONENTS = true;
 
@@ -26,10 +26,10 @@ describe('c-light-dom-query-child', () => {
         const lightningButtonEl = element.querySelector('lightning-button');
         lightningButtonEl.click();
 
-        //Verify the 'Change Text' button is clicked
+        // Verify the 'Change Text' button is clicked
         expect(lightningButtonEl.label).toBe(BUTTON_LABEL);
 
-        //Verify light DOM paragraph text is changed
+        // Verify light DOM paragraph text is changed
         const pEl = element.querySelector('p.lightDomParagraph');
         expect(pEl.innerText).toBe(PARAGRAPH_TEXT);
     });
@@ -38,10 +38,10 @@ describe('c-light-dom-query-child', () => {
         const element = createElement('c-light-dom-query-child', {
             is: LightDomQueryChild
         });
-
         document.body.appendChild(element);
 
-        //Verify component is accessible
+        // Verify component is accessible
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 });

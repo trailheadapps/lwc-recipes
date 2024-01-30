@@ -5,11 +5,9 @@ import findContacts from '@salesforce/apex/ContactController.findContacts';
 // Mocking imperative Apex method call
 jest.mock(
     '@salesforce/apex/ContactController.findContacts',
-    () => {
-        return {
-            default: jest.fn()
-        };
-    },
+    () => ({
+        default: jest.fn()
+    }),
     { virtual: true }
 );
 
@@ -66,7 +64,7 @@ describe('c-composition-contact-search', () => {
     }
 
     it('does not render contact tiles by default', () => {
-        // Create initial element
+        // Create component
         const element = createElement('c-composition-contact-search', {
             is: CompositionContactSearch
         });
@@ -84,7 +82,7 @@ describe('c-composition-contact-search', () => {
         // Assign mock value for resolved Apex promise
         findContacts.mockResolvedValue(APEX_CONTACTS_SUCCESS);
 
-        // Create initial element
+        // Create component
         const element = createElement('c-composition-contact-search', {
             is: CompositionContactSearch
         });
@@ -99,7 +97,9 @@ describe('c-composition-contact-search', () => {
         // Run all fake timers.
         jest.runAllTimers();
 
-        // Wait for any asynchronous DOM updates.
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
+        await flushPromises();
         await flushPromises();
 
         const contactTileEl =
@@ -114,7 +114,7 @@ describe('c-composition-contact-search', () => {
         // Assign mock value for rejected Apex promise
         findContacts.mockRejectedValue(APEX_CONTACTS_ERROR);
 
-        // Create initial element
+        // Create component
         const element = createElement('c-composition-contact-search', {
             is: CompositionContactSearch
         });
@@ -129,11 +129,13 @@ describe('c-composition-contact-search', () => {
         // Run all fake timers.
         jest.runAllTimers();
 
-        // Wait for any asynchronous DOM updates. Jest will automatically wait
+        // Wait for any asynchronous DOM updates Jest will automatically wait
         // for the Promise chain to complete before ending the test and fail
         // the test if the promise ends in the rejected state.
         await flushPromises();
+        await flushPromises();
 
+        // Check for error panel
         const errorPanelEl = element.shadowRoot.querySelector('c-error-panel');
         expect(errorPanelEl).not.toBeNull();
     });
@@ -146,7 +148,7 @@ describe('c-composition-contact-search', () => {
         // Assign mock value for resolved Apex promise
         findContacts.mockResolvedValue(APEX_CONTACTS_SUCCESS);
 
-        // Create initial element
+        // Create component
         const element = createElement('c-composition-contact-search', {
             is: CompositionContactSearch
         });
@@ -161,6 +163,7 @@ describe('c-composition-contact-search', () => {
         // Wait for component update
         await wait(400);
 
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 
@@ -172,7 +175,7 @@ describe('c-composition-contact-search', () => {
         // Assign mock value for rejected Apex promise
         findContacts.mockRejectedValue(APEX_CONTACTS_ERROR);
 
-        // Create initial element
+        // Create component
         const element = createElement('c-composition-contact-search', {
             is: CompositionContactSearch
         });
@@ -187,6 +190,7 @@ describe('c-composition-contact-search', () => {
         // Wait for component update
         await wait(400);
 
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 });

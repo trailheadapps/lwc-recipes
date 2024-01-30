@@ -16,7 +16,7 @@ describe('c-misc-dom-query', () => {
     }
 
     it('renders lightning-input checkbox fields unchecked', () => {
-        // Create initial element
+        // Create component
         const element = createElement('c-misc-dom-query', {
             is: MiscDomQuery
         });
@@ -31,7 +31,7 @@ describe('c-misc-dom-query', () => {
     });
 
     it('displays labels of checked lightning-input fields as checked items', async () => {
-        // Create initial element
+        // Create component
         const element = createElement('c-misc-dom-query', {
             is: MiscDomQuery
         });
@@ -76,9 +76,9 @@ describe('c-misc-dom-query', () => {
         const element = createElement('c-misc-dom-query', {
             is: MiscDomQuery
         });
-
         document.body.appendChild(element);
 
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 });

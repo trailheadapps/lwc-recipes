@@ -1,0 +1,51 @@
+<template>
+    <lightning-card title="GraphqlPagination" icon-name="custom:custom39">
+        <div class="slds-var-m-around_medium">
+            <template lwc:if={contacts.data}>
+                <template
+                    for:each={contacts.data.uiapi.query.Contact.edges}
+                    for:item="contact"
+                >
+                    <p key={contact.node.Id}>{contact.node.Name.value}</p>
+                </template>
+                <div
+                    class="slds-grid slds-grid_vertical-align-center slds-var-m-horizontal_x-small"
+                >
+                    <div class="slds-col slds-size_2-of-12">
+                        <lightning-button-icon
+                            disabled={isFirstPage}
+                            class="reset"
+                            icon-name="utility:skip_back"
+                            onclick={handleReset}
+                            ><label>Restart</label></lightning-button-icon
+                        >
+                    </div>
+                    <div
+                        class="slds-col slds-size_8-of-12 slds-text-align_center status"
+                    >
+                        {totalCount} items • page {currentPageNumber} of
+                        {totalPages}
+                    </div>
+                    <div
+                        class="slds-col slds-size_2-of-12 slds-text-align_right"
+                    >
+                        <lightning-button-icon
+                            disabled={isLastPage}
+                            class="next"
+                            icon-name="utility:chevronright"
+                            onclick={handleNext}
+                            ><label>Next</label></lightning-button-icon
+                        >
+                    </div>
+                </div>
+            </template>
+            <template lwc:if={contacts.errors}>
+                <c-error-panel errors={contacts.errors}></c-error-panel>
+            </template>
+        </div>
+
+        <c-view-source source="lwc/graphqlPagination" slot="footer">
+            Run a GraphQL query that uses pagination using @wire.
+        </c-view-source>
+    </lightning-card>
+</template>

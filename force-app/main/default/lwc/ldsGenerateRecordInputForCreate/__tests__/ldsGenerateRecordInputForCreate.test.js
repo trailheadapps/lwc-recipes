@@ -54,7 +54,7 @@ describe('c-lds-generate-record-input-for-create', () => {
 
     describe('getRecordCreateDefaults @wire data', () => {
         it('renders data correctly when field is visible with default value', async () => {
-            // Create element
+            // Create component
             const element = createElement(
                 'c-lds-generate-record-input-for-create',
                 {
@@ -65,7 +65,7 @@ describe('c-lds-generate-record-input-for-create', () => {
 
             generateMockRecordInput();
 
-            // Wait for any asynchronous DOM updates.
+            // Wait for any asynchronous DOM updates
             await flushPromises();
 
             const inputEls =
@@ -81,7 +81,7 @@ describe('c-lds-generate-record-input-for-create', () => {
         });
 
         it('renders data correctly when field is not visible', async () => {
-            // Create element
+            // Create component
             const element = createElement(
                 'c-lds-generate-record-input-for-create',
                 {
@@ -93,7 +93,7 @@ describe('c-lds-generate-record-input-for-create', () => {
             delete mockGenerateRecordInputForCreate.AreaNumber__c;
             generateMockRecordInput();
 
-            // Wait for any asynchronous DOM updates.
+            // Wait for any asynchronous DOM updates
             await flushPromises();
 
             const inputEls =
@@ -111,7 +111,7 @@ describe('c-lds-generate-record-input-for-create', () => {
 
     describe('getRecordCreateDefaults @wire error', () => {
         it('shows error panel element', async () => {
-            // Create element
+            // Create component
             const element = createElement(
                 'c-lds-generate-record-input-for-create',
                 {
@@ -123,7 +123,7 @@ describe('c-lds-generate-record-input-for-create', () => {
             // Emit error from @wire
             getRecordCreateDefaults.error();
 
-            // Wait for any asynchronous DOM updates.
+            // Wait for any asynchronous DOM updates
             await flushPromises();
 
             const inputEls =
@@ -141,7 +141,7 @@ describe('c-lds-generate-record-input-for-create', () => {
             // Assign mock value for resolved createRecord promise
             createRecord.mockResolvedValue(mockCreateRecord);
 
-            // Create initial element
+            // Create component
             const element = createElement(
                 'c-lds-generate-record-input-for-create',
                 {
@@ -152,7 +152,7 @@ describe('c-lds-generate-record-input-for-create', () => {
 
             generateMockRecordInput();
 
-            // Wait for any asynchronous DOM updates.
+            // Wait for any asynchronous DOM updates
             await flushPromises();
 
             const USER_INPUT_NAME = 'Gomez Inc.';
@@ -169,12 +169,12 @@ describe('c-lds-generate-record-input-for-create', () => {
                 USER_INPUT_AREANUMBER
             );
 
-            // Select button for simulating user interaction
+            // Click button
             const buttonEl =
                 element.shadowRoot.querySelector('lightning-button');
             buttonEl.click();
 
-            // Wait for any asynchronous DOM updates.
+            // Wait for any asynchronous DOM updates
             await flushPromises();
 
             // Validate parameters of mocked LDS call
@@ -192,7 +192,7 @@ describe('c-lds-generate-record-input-for-create', () => {
             // Assign mock value for resolved createRecord promise
             createRecord.mockResolvedValue(mockCreateRecord);
 
-            // Create initial element
+            // Create component
             const element = createElement(
                 'c-lds-generate-record-input-for-create',
                 {
@@ -207,16 +207,17 @@ describe('c-lds-generate-record-input-for-create', () => {
             const handler = jest.fn();
             element.addEventListener(ShowToastEventName, handler);
 
-            // Wait for any asynchronous DOM updates.
+            // Wait for any asynchronous DOM updates
             await flushPromises();
 
             simulateUserInput(element, NAME_FIELD.fieldApiName, 'Gomez Inc.');
 
-            // Select button for simulating user interaction
+            // Click button
             const buttonEl =
                 element.shadowRoot.querySelector('lightning-button');
             buttonEl.click();
 
+            // Wait for any asynchronous DOM updates
             await flushPromises();
 
             // Check if toast event has been fired
@@ -228,7 +229,7 @@ describe('c-lds-generate-record-input-for-create', () => {
             // Assign mock value for rejected createRecord promise
             createRecord.mockRejectedValue(new Error('Account creation error'));
 
-            // Create initial element
+            // Create component
             const element = createElement(
                 'c-lds-generate-record-input-for-create',
                 {
@@ -243,17 +244,17 @@ describe('c-lds-generate-record-input-for-create', () => {
             const handler = jest.fn();
             element.addEventListener(ShowToastEventName, handler);
 
-            // Wait for any asynchronous DOM updates.
+            // Wait for any asynchronous DOM updates
             await flushPromises();
 
             simulateUserInput(element, NAME_FIELD.fieldApiName, 'invalid');
 
-            // Select button for simulating user interaction
+            // Click button
             const buttonEl =
                 element.shadowRoot.querySelector('lightning-button');
             buttonEl.click();
 
-            // Wait for any asynchronous DOM updates.
+            // Wait for any asynchronous DOM updates
             await flushPromises();
 
             // Check if toast event has been fired
@@ -263,14 +264,13 @@ describe('c-lds-generate-record-input-for-create', () => {
     });
 
     it('is accessible when data is returned', async () => {
-        // Create element
+        // Create component
         const element = createElement(
             'c-lds-generate-record-input-for-create',
             {
                 is: LdsGenerateRecordInputForCreate
             }
         );
-
         document.body.appendChild(element);
 
         generateMockRecordInput();
@@ -278,18 +278,18 @@ describe('c-lds-generate-record-input-for-create', () => {
         // Wait for any asynchronous DOM updates
         await flushPromises();
 
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 
     it('is accessible when error is returned', async () => {
-        // Create element
+        // Create component
         const element = createElement(
             'c-lds-generate-record-input-for-create',
             {
                 is: LdsGenerateRecordInputForCreate
             }
         );
-
         document.body.appendChild(element);
 
         // Emit error from @wire
@@ -298,6 +298,7 @@ describe('c-lds-generate-record-input-for-create', () => {
         // Wait for any asynchronous DOM updates
         await flushPromises();
 
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 });

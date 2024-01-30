@@ -16,7 +16,7 @@ describe('c-hello-iterator', () => {
             'Jennifer Wu, CEO'
         ];
 
-        // Create initial element
+        // Create component
         const element = createElement('c-hello-iterator', {
             is: HelloIterator
         });
@@ -30,7 +30,7 @@ describe('c-hello-iterator', () => {
     });
 
     it('displays div in first and last contacts', () => {
-        // Create initial element
+        // Create component
         const element = createElement('c-hello-iterator', {
             is: HelloIterator
         });
@@ -54,9 +54,9 @@ describe('c-hello-iterator', () => {
         const element = createElement('c-hello-iterator', {
             is: HelloIterator
         });
-
         document.body.appendChild(element);
 
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 });

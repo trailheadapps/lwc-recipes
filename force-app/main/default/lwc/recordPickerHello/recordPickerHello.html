@@ -1,0 +1,33 @@
+<template>
+    <lightning-card
+        title="RecordPickerHello"
+        class="slds-card__body_inner"
+        icon-name="standard:search"
+    >
+        <div>
+            <lightning-record-picker
+                lwc:ref="recordPicker"
+                object-api-name="Contact"
+                placeholder="Search..."
+                label="Select a record"
+                onchange={handleChange}
+            >
+            </lightning-record-picker>
+        </div>
+
+        <template if:true={contact}>
+            <div class="slds-var-m-around_medium selectedRecordDetails">
+                <c-contact-tile
+                    class="slds-show slds-is-relative"
+                    contact={contact}
+                ></c-contact-tile>
+            </div>
+        </template>
+        <template lwc:if={wireError}>
+            <c-error-panel errors={wireError}></c-error-panel>
+        </template>
+        <c-view-source source="lwc/recordPickerHello" slot="footer">
+            Type a search term and select a record to see its details.
+        </c-view-source>
+    </lightning-card>
+</template>

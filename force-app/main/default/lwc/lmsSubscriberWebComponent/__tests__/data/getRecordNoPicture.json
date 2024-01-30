@@ -1,31 +1,28 @@
 {
-    "status": 0,
-    "result": {
-        "apiName": "Contact",
-        "childRelationships": {},
-        "eTag": "846fdcd21a53214d447e578adbe263c6",
-        "fields": {
-            "Email": {
-                "displayValue": null,
-                "value": "amy@demo.net"
-            },
-            "Name": {
-                "displayValue": null,
-                "value": "Amy Taylor"
-            },
-            "Phone": {
-                "displayValue": null,
-                "value": "4152568563"
-            },
-            "Title": {
-                "displayValue": null,
-                "value": "VP of Engineering"
-            }
+    "apiName": "Contact",
+    "childRelationships": {},
+    "eTag": "846fdcd21a53214d447e578adbe263c6",
+    "fields": {
+        "Email": {
+            "displayValue": null,
+            "value": "amy@demo.net"
         },
-        "id": "0031700000pHcf8AAC",
-        "lastModifiedById": "00517000002fESIAA2",
-        "lastModifiedDate": "2019-02-15T10:33:07.000Z",
-        "recordTypeInfo": null,
-        "systemModstamp": "2019-02-15T10:33:07.000Z"
-    }
+        "Name": {
+            "displayValue": null,
+            "value": "Amy Taylor"
+        },
+        "Phone": {
+            "displayValue": null,
+            "value": "4152568563"
+        },
+        "Title": {
+            "displayValue": null,
+            "value": "VP of Engineering"
+        }
+    },
+    "id": "0031700000pHcf8AAC",
+    "lastModifiedById": "00517000002fESIAA2",
+    "lastModifiedDate": "2019-02-15T10:33:07.000Z",
+    "recordTypeInfo": null,
+    "systemModstamp": "2019-02-15T10:33:07.000Z"
 }

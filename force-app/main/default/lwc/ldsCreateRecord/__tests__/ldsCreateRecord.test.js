@@ -36,16 +36,16 @@ describe('c-lds-create-record', () => {
 
         // Select input field for simulating user input
         const inputEl = element.shadowRoot.querySelector(
-            'lightning-input[class="slds-var-m-bottom_x-small"]'
+            'lightning-input[data-id="name"]'
         );
         inputEl.value = USER_INPUT;
         inputEl.dispatchEvent(new CustomEvent('change'));
 
-        // Select button for simulating user interaction
+        // Click button
         const buttonEl = element.shadowRoot.querySelector('lightning-button');
         buttonEl.click();
 
-        // Wait for any asynchronous DOM updates.
+        // Wait for any asynchronous DOM updates
         await flushPromises();
 
         // Validate createRecord call
@@ -67,16 +67,18 @@ describe('c-lds-create-record', () => {
 
         // Select input field for simulating user input
         const inputEl = element.shadowRoot.querySelector(
-            'lightning-input[class="slds-var-m-bottom_x-small"]'
+            'lightning-input[data-id="name"]'
         );
         inputEl.value = USER_INPUT;
         inputEl.dispatchEvent(new CustomEvent('change'));
 
-        // Select button for simulating user interaction
+        // Click button
         const buttonEl = element.shadowRoot.querySelector('lightning-button');
         buttonEl.click();
 
-        // Wait for any asynchronous DOM updates.
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
+        await flushPromises();
         await flushPromises();
 
         // Select element for validation
@@ -105,16 +107,16 @@ describe('c-lds-create-record', () => {
 
         // Select input field for simulating user input
         const inputEl = element.shadowRoot.querySelector(
-            'lightning-input[class="slds-var-m-bottom_x-small"]'
+            'lightning-input[data-id="name"]'
         );
         inputEl.value = USER_INPUT;
         inputEl.dispatchEvent(new CustomEvent('change'));
 
-        // Select button for simulating user interaction
+        // Click button
         const buttonEl = element.shadowRoot.querySelector('lightning-button');
         buttonEl.click();
 
-        // Wait for any asynchronous DOM updates.
+        // Wait for any asynchronous DOM updates
         await flushPromises();
 
         // Check if toast event has been fired
@@ -141,16 +143,16 @@ describe('c-lds-create-record', () => {
 
         // Select input field for simulating user input
         const inputEl = element.shadowRoot.querySelector(
-            'lightning-input[class="slds-var-m-bottom_x-small"]'
+            'lightning-input[data-id="name"]'
         );
         inputEl.value = USER_INPUT;
         inputEl.dispatchEvent(new CustomEvent('change'));
 
-        // Select button for simulating user interaction
+        // Click button
         const buttonEl = element.shadowRoot.querySelector('lightning-button');
         buttonEl.click();
 
-        // Wait for any asynchronous DOM updates.
+        // Wait for any asynchronous DOM updates
         await flushPromises();
 
         // Check if toast event has been fired
@@ -162,9 +164,9 @@ describe('c-lds-create-record', () => {
         const element = createElement('c-lds-create-record', {
             is: LdsCreateRecord
         });
-
         document.body.appendChild(element);
 
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 });

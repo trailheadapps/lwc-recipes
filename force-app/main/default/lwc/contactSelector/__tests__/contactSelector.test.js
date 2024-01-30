@@ -38,7 +38,7 @@ describe('c-contact-selector', () => {
         const PAYLOAD = { recordId: SELECTED_INPUT };
         const mockSelectHandler = jest.fn();
 
-        // Create initial element
+        // Create component
         const element = createElement('c-contact-selector', {
             is: ContactSelector
         });
@@ -67,7 +67,7 @@ describe('c-contact-selector', () => {
     });
 
     it('shows error panel element when error returned', async () => {
-        // Create initial element
+        // Create component
         const element = createElement('c-contact-selector', {
             is: ContactSelector
         });
@@ -79,13 +79,14 @@ describe('c-contact-selector', () => {
         // Wait for any asynchronous DOM updates
         await flushPromises();
 
-        //Validate that the error panel is displayed
+        // Validate that the error panel is displayed
+        // Check for error panel
         const errorPanelEl = element.shadowRoot.querySelector('c-error-panel');
         expect(errorPanelEl).not.toBeNull();
     });
 
     it('is accessible when data is returned', async () => {
-        // Create initial element
+        // Create component
         const element = createElement('c-contact-selector', {
             is: ContactSelector
         });
@@ -97,11 +98,12 @@ describe('c-contact-selector', () => {
         // Wait for any asynchronous DOM updates
         await flushPromises();
 
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 
     it('is accessible when error is returned', async () => {
-        // Create initial element
+        // Create component
         const element = createElement('c-contact-selector', {
             is: ContactSelector
         });
@@ -113,6 +115,7 @@ describe('c-contact-selector', () => {
         // Wait for any asynchronous DOM updates
         await flushPromises();
 
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 });

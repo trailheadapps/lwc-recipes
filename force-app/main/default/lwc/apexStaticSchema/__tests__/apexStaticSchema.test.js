@@ -37,7 +37,7 @@ describe('c-apex-static-schema', () => {
 
     describe('getSingleContact @wire', () => {
         it('renders single record when data returned', async () => {
-            // Create initial element
+            // Create component
             const element = createElement('c-apex-static-schema', {
                 is: ApexStaticSchema
             });
@@ -61,7 +61,7 @@ describe('c-apex-static-schema', () => {
         });
 
         it('shows error panel element when error returned', async () => {
-            // Create initial element
+            // Create component
             const element = createElement('c-apex-static-schema', {
                 is: ApexStaticSchema
             });
@@ -73,6 +73,7 @@ describe('c-apex-static-schema', () => {
             // Wait for any asynchronous DOM updates
             await flushPromises();
 
+            // Check for error panel
             const errorPanelEl =
                 element.shadowRoot.querySelector('c-error-panel');
             expect(errorPanelEl).not.toBeNull();
@@ -80,7 +81,7 @@ describe('c-apex-static-schema', () => {
     });
 
     it('is accessible when data is returned', async () => {
-        // Create initial element
+        // Create component
         const element = createElement('c-apex-static-schema', {
             is: ApexStaticSchema
         });
@@ -92,11 +93,12 @@ describe('c-apex-static-schema', () => {
         // Wait for any asynchronous DOM updates
         await flushPromises();
 
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 
     it('is accessible when error is returned', async () => {
-        // Create initial element
+        // Create component
         const element = createElement('c-apex-static-schema', {
             is: ApexStaticSchema
         });
@@ -108,6 +110,7 @@ describe('c-apex-static-schema', () => {
         // Wait for any asynchronous DOM updates
         await flushPromises();
 
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 });

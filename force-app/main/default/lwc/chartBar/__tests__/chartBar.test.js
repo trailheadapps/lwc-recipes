@@ -16,7 +16,7 @@ describe('c-chart-bar', () => {
     }
 
     it('renders a lightning-layout with two lightning-layout-items', () => {
-        // Create initial element
+        // Create component
         const element = createElement('c-chart-bar', {
             is: ChartBar
         });
@@ -35,7 +35,7 @@ describe('c-chart-bar', () => {
     });
 
     it('renders a div with the percentage value as style attribute', async () => {
-        // Create initial element
+        // Create component
         const element = createElement('c-chart-bar', {
             is: ChartBar
         });
@@ -60,13 +60,14 @@ describe('c-chart-bar', () => {
     });
 
     it('is accessible', async () => {
+        // Create component
         const element = createElement('c-chart-bar', {
             is: ChartBar
         });
-
         element.percentage = 40;
         document.body.appendChild(element);
 
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 });

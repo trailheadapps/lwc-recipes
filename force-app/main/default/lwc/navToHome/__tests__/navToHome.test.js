@@ -49,9 +49,9 @@ describe('c-nav-to-home', () => {
         const element = createElement('c-nav-to-home', {
             is: NavToHome
         });
-
         document.body.appendChild(element);
 
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 });

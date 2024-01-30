@@ -21,7 +21,7 @@ describe('c-wire-get-record-static-contact', () => {
 
     describe('getRecord @wire data', () => {
         it('renders contact details', async () => {
-            // Create element
+            // Create component
             const element = createElement('c-wire-get-record-dynamic-contact', {
                 is: WireGetRecordStaticContact
             });
@@ -30,30 +30,28 @@ describe('c-wire-get-record-static-contact', () => {
             // Emit data from @wire
             getRecord.emit(mockGetRecord);
 
-            // Wait for any asynchronous DOM updates.
+            // Wait for any asynchronous DOM updates
             await flushPromises();
 
             // Select elements for validation
             const nameEl = element.shadowRoot.querySelector('p');
-            expect(nameEl.textContent).toBe(
-                mockGetRecord.result.fields.Name.value
-            );
+            expect(nameEl.textContent).toBe(mockGetRecord.fields.Name.value);
 
             const phoneEl = element.shadowRoot.querySelector(
                 'lightning-formatted-phone'
             );
-            expect(phoneEl.value).toBe(mockGetRecord.result.fields.Phone.value);
+            expect(phoneEl.value).toBe(mockGetRecord.fields.Phone.value);
 
             const emailEl = element.shadowRoot.querySelector(
                 'lightning-formatted-email'
             );
-            expect(emailEl.value).toBe(mockGetRecord.result.fields.Email.value);
+            expect(emailEl.value).toBe(mockGetRecord.fields.Email.value);
         });
     });
 
     describe('getRecord @wire error', () => {
         it('shows error panel element', async () => {
-            // Create initial element
+            // Create component
             const element = createElement('c-wire-get-record-static-contact', {
                 is: WireGetRecordStaticContact
             });
@@ -62,9 +60,10 @@ describe('c-wire-get-record-static-contact', () => {
             // Emit error from @wire
             getRecord.error();
 
-            // Wait for any asynchronous DOM updates.
+            // Wait for any asynchronous DOM updates
             await flushPromises();
 
+            // Check for error panel
             const errorPanelEl =
                 element.shadowRoot.querySelector('c-error-panel');
             expect(errorPanelEl).not.toBeNull();
@@ -72,7 +71,7 @@ describe('c-wire-get-record-static-contact', () => {
     });
 
     it('is accessible when data is returned', async () => {
-        // Create element
+        // Create component
         const element = createElement('c-wire-get-record-dynamic-contact', {
             is: WireGetRecordStaticContact
         });
@@ -84,11 +83,12 @@ describe('c-wire-get-record-static-contact', () => {
         // Wait for any asynchronous DOM updates
         await flushPromises();
 
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 
     it('is accessible when error is returned', async () => {
-        // Create element
+        // Create component
         const element = createElement('c-wire-get-record-dynamic-contact', {
             is: WireGetRecordStaticContact
         });
@@ -100,6 +100,7 @@ describe('c-wire-get-record-static-contact', () => {
         // Wait for any asynchronous DOM updates
         await flushPromises();
 
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 });

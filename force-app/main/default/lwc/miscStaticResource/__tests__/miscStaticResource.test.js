@@ -10,7 +10,7 @@ describe('c-misc-static-resource', () => {
     });
 
     it('sets img urls based on static resources', () => {
-        // Create initial element
+        // Create component
         const element = createElement('c-misc-static-resource', {
             is: MiscStaticResource
         });
@@ -39,9 +39,9 @@ describe('c-misc-static-resource', () => {
         const element = createElement('c-misc-static-resource', {
             is: MiscStaticResource
         });
-
         document.body.appendChild(element);
 
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 });

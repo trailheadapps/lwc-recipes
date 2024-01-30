@@ -22,28 +22,27 @@ export default class LibsD3 extends LightningElement {
 
     d3Initialized = false;
 
-    renderedCallback() {
+    async renderedCallback() {
         if (this.d3Initialized) {
             return;
         }
         this.d3Initialized = true;
 
-        Promise.all([
-            loadScript(this, D3 + '/d3.v5.min.js'),
-            loadStyle(this, D3 + '/style.css')
-        ])
-            .then(() => {
-                this.initializeD3();
-            })
-            .catch((error) => {
-                this.dispatchEvent(
-                    new ShowToastEvent({
-                        title: 'Error loading D3',
-                        message: error.message,
-                        variant: 'error'
-                    })
-                );
-            });
+        try {
+            await Promise.all([
+                loadScript(this, D3 + '/d3.v5.min.js'),
+                loadStyle(this, D3 + '/style.css')
+            ]);
+            this.initializeD3();
+        } catch (error) {
+            this.dispatchEvent(
+                new ShowToastEvent({
+                    title: 'Error loading D3',
+                    message: error.message,
+                    variant: 'error'
+                })
+            );
+        }
     }
 
     initializeD3() {

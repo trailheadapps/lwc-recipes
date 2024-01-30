@@ -21,7 +21,7 @@ describe('c-contact-info', () => {
     it('invokes the getRecord method with the set public property value', async () => {
         const RECORD_ID_INPUT = '0031700000pJRRSAA4';
 
-        // Create initial element
+        // Create component
         const element = createElement('c-contact-info', {
             is: ContactInfo
         });
@@ -40,7 +40,7 @@ describe('c-contact-info', () => {
 
     it('renders contact details when public property is set', async () => {
         const RECORD_ID_INPUT = '0031700000pJRRSAA4';
-        // Create initial element
+        // Create component
         const element = createElement('c-contact-info', {
             is: ContactInfo
         });
@@ -52,26 +52,26 @@ describe('c-contact-info', () => {
         // Emit data from @wire
         getRecord.emit(mockGetRecord);
 
-        // Wait for any asynchronous DOM updates.
+        // Wait for any asynchronous DOM updates
         await flushPromises();
 
         // Select elements for validation
         const nameEl = element.shadowRoot.querySelector('p');
-        expect(nameEl.textContent).toBe(mockGetRecord.result.fields.Name.value);
+        expect(nameEl.textContent).toBe(mockGetRecord.fields.Name.value);
 
         const phoneEl = element.shadowRoot.querySelector(
             'lightning-formatted-phone'
         );
-        expect(phoneEl.value).toBe(mockGetRecord.result.fields.Phone.value);
+        expect(phoneEl.value).toBe(mockGetRecord.fields.Phone.value);
 
         const emailEl = element.shadowRoot.querySelector(
             'lightning-formatted-email'
         );
-        expect(emailEl.value).toBe(mockGetRecord.result.fields.Email.value);
+        expect(emailEl.value).toBe(mockGetRecord.fields.Email.value);
     });
 
     it('shows error panel element when error returned', async () => {
-        // Create initial element
+        // Create component
         const element = createElement('c-contact-info', {
             is: ContactInfo
         });
@@ -83,13 +83,14 @@ describe('c-contact-info', () => {
         // Wait for any asynchronous DOM updates
         await flushPromises();
 
-        //Validate that the error panel is displayed
+        // Validate that the error panel is displayed
+        // Check for error panel
         const errorPanelEl = element.shadowRoot.querySelector('c-error-panel');
         expect(errorPanelEl).not.toBeNull();
     });
 
     it('is accessible when data is returned', async () => {
-        // Create initial element
+        // Create component
         const element = createElement('c-contact-info', {
             is: ContactInfo
         });
@@ -101,11 +102,12 @@ describe('c-contact-info', () => {
         // Wait for any asynchronous DOM updates
         await flushPromises();
 
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 
     it('is accessible when error is returned', async () => {
-        // Create initial element
+        // Create component
         const element = createElement('c-contact-info', {
             is: ContactInfo
         });
@@ -117,6 +119,7 @@ describe('c-contact-info', () => {
         // Wait for any asynchronous DOM updates
         await flushPromises();
 
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 });

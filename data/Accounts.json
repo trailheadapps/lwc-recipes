@@ -7,7 +7,8 @@
             },
             "Name": "Alpha Dynamics",
             "Type": "Technology Partner",
-            "Phone": "3362227000"
+            "Phone": "3362227000",
+            "NumberOfEmployees": 12345
         },
         {
             "attributes": {

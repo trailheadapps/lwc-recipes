@@ -50,9 +50,9 @@ describe('c-nav-to-chatter-home', () => {
         const element = createElement('c-nav-to-chatter-home', {
             is: NavToChatterHome
         });
-
         document.body.appendChild(element);
 
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 });

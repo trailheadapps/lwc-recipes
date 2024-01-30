@@ -1,0 +1,30 @@
+{
+    "uiapi": {
+        "query": {
+            "Contact": {
+                "edges": [
+                    {
+                        "node": {
+                            "Id": "001xx000016QpSqAAK",
+                            "Name": {
+                                "value": "Amy Taylor"
+                            },
+                            "Title": {
+                                "value": "VP of Engineering"
+                            },
+                            "Phone": {
+                                "value": "4152568563"
+                            },
+                            "Email": {
+                                "value": "amy@demo.net"
+                            },
+                            "Picture__c": {
+                                "value": "https://s3-us-west-2.amazonaws.com/dev-or-devrl-s3-bucket/sample-apps/people/amy_taylor.jpg"
+                            }
+                        }
+                    }
+                ]
+            }
+        }
+    }
+}

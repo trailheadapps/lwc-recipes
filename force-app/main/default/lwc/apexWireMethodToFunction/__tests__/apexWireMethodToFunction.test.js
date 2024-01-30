@@ -37,7 +37,7 @@ describe('c-apex-wire-method-to-function', () => {
 
     describe('getContactList @wire', () => {
         it('renders six records when data returned', async () => {
-            // Create initial element
+            // Create component
             const element = createElement('c-apex-wire-method-to-function', {
                 is: ApexWireMethodToFunction
             });
@@ -55,7 +55,7 @@ describe('c-apex-wire-method-to-function', () => {
             expect(detailEls[0].textContent).toBe(mockGetContactList[0].Name);
         });
         it('shows error panel element when error returned', async () => {
-            // Create initial element
+            // Create component
             const element = createElement('c-apex-wire-method-to-function', {
                 is: ApexWireMethodToFunction
             });
@@ -67,6 +67,7 @@ describe('c-apex-wire-method-to-function', () => {
             // Wait for any asynchronous DOM updates
             await flushPromises();
 
+            // Check for error panel
             const errorPanelEl =
                 element.shadowRoot.querySelector('c-error-panel');
             expect(errorPanelEl).not.toBeNull();
@@ -74,7 +75,7 @@ describe('c-apex-wire-method-to-function', () => {
     });
 
     it('is accessible when data is returned', async () => {
-        // Create initial element
+        // Create component
         const element = createElement('c-apex-wire-method-to-function', {
             is: ApexWireMethodToFunction
         });
@@ -86,11 +87,12 @@ describe('c-apex-wire-method-to-function', () => {
         // Wait for any asynchronous DOM updates
         await flushPromises();
 
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 
     it('is accessible when error is returned', async () => {
-        // Create initial element
+        // Create component
         const element = createElement('c-apex-wire-method-to-function', {
             is: ApexWireMethodToFunction
         });
@@ -102,6 +104,7 @@ describe('c-apex-wire-method-to-function', () => {
         // Wait for any asynchronous DOM updates
         await flushPromises();
 
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 });

@@ -21,7 +21,7 @@ describe('c-wire-get-record', () => {
 
     describe('getRecord @wire data', () => {
         it('renders the record value in the pre tag', async () => {
-            // Create element
+            // Create component
             const element = createElement('c-wire-get-record', {
                 is: WireGetRecord
             });
@@ -43,7 +43,7 @@ describe('c-wire-get-record', () => {
 
     describe('getRecord @wire error', () => {
         it('shows error panel element', async () => {
-            // Create initial element
+            // Create component
             const element = createElement('c-wire-get-record', {
                 is: WireGetRecord
             });
@@ -55,6 +55,7 @@ describe('c-wire-get-record', () => {
             // Wait for any asynchronous DOM updates
             await flushPromises();
 
+            // Check for error panel
             const errorPanelEl =
                 element.shadowRoot.querySelector('c-error-panel');
             expect(errorPanelEl).not.toBeNull();
@@ -62,7 +63,7 @@ describe('c-wire-get-record', () => {
     });
 
     it('is accessible when record returned', async () => {
-        // Create element
+        // Create component
         const element = createElement('c-wire-get-record', {
             is: WireGetRecord
         });
@@ -74,11 +75,12 @@ describe('c-wire-get-record', () => {
         // Wait for any asynchronous DOM updates
         await flushPromises();
 
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 
     it('is accessible when error returned', async () => {
-        // Create element
+        // Create component
         const element = createElement('c-wire-get-record', {
             is: WireGetRecord
         });
@@ -90,6 +92,7 @@ describe('c-wire-get-record', () => {
         // Wait for any asynchronous DOM updates
         await flushPromises();
 
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 });

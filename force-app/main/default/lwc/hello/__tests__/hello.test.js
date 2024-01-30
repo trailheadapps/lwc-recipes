@@ -10,7 +10,7 @@ describe('c-hello', () => {
     });
 
     it('displays greeting', () => {
-        // Create element
+        // Create component
         const element = createElement('c-hello', {
             is: Hello
         });
@@ -25,9 +25,9 @@ describe('c-hello', () => {
         const element = createElement('c-hello', {
             is: Hello
         });
-
         document.body.appendChild(element);
 
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 });

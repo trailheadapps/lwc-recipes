@@ -1,0 +1,9 @@
+{
+    "uiapi": {
+        "query": {
+            "Contact": {
+                "edges": []
+            }
+        }
+    }
+}

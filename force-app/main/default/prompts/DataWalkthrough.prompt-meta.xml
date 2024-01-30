@@ -14,10 +14,10 @@
         <masterLabel>Data Walkthrough Step 1</masterLabel>
         <publishedDate>2020-08-06</publishedDate>
         <shouldDisplayActionButton>false</shouldDisplayActionButton>
-        <shouldIgnoreGlobalDelay>false</shouldIgnoreGlobalDelay>
+        <shouldIgnoreGlobalDelay>true</shouldIgnoreGlobalDelay>
         <startDate>2020-08-06</startDate>
         <stepNumber>1</stepNumber>
-        <targetAppDeveloperName>LWC_Recipes</targetAppDeveloperName>
+        <customApplication>LWC_Recipes</customApplication>
         <targetPageKey1>Data_Service</targetPageKey1>
         <targetPageType>standard__navItemPage</targetPageType>
         <timesToDisplay>1</timesToDisplay>
@@ -35,9 +35,9 @@
         <isPublished>false</isPublished>
         <masterLabel>Data Walkthrough Step 2</masterLabel>
         <shouldDisplayActionButton>false</shouldDisplayActionButton>
-        <shouldIgnoreGlobalDelay>false</shouldIgnoreGlobalDelay>
+        <shouldIgnoreGlobalDelay>true</shouldIgnoreGlobalDelay>
         <stepNumber>2</stepNumber>
-        <targetAppDeveloperName>LWC_Recipes</targetAppDeveloperName>
+        <customApplication>LWC_Recipes</customApplication>
         <targetPageKey1>Contact</targetPageKey1>
         <targetPageKey2>view</targetPageKey2>
         <targetPageType>standard__recordPage</targetPageType>
@@ -55,9 +55,9 @@
         <isPublished>false</isPublished>
         <masterLabel>Data Walkthrough Step 3</masterLabel>
         <shouldDisplayActionButton>false</shouldDisplayActionButton>
-        <shouldIgnoreGlobalDelay>false</shouldIgnoreGlobalDelay>
+        <shouldIgnoreGlobalDelay>true</shouldIgnoreGlobalDelay>
         <stepNumber>3</stepNumber>
-        <targetAppDeveloperName>LWC_Recipes</targetAppDeveloperName>
+        <customApplication>LWC_Recipes</customApplication>
         <targetPageKey1>Apex</targetPageKey1>
         <targetPageType>standard__navItemPage</targetPageType>
         <title>Data Through Apex</title>
@@ -74,9 +74,9 @@
         <isPublished>false</isPublished>
         <masterLabel>Data Walkthrough Step 4</masterLabel>
         <shouldDisplayActionButton>false</shouldDisplayActionButton>
-        <shouldIgnoreGlobalDelay>false</shouldIgnoreGlobalDelay>
+        <shouldIgnoreGlobalDelay>true</shouldIgnoreGlobalDelay>
         <stepNumber>4</stepNumber>
-        <targetAppDeveloperName>LWC_Recipes</targetAppDeveloperName>
+        <customApplication>LWC_Recipes</customApplication>
         <targetPageKey1>Wire</targetPageKey1>
         <targetPageType>standard__navItemPage</targetPageType>
         <title>Wiring It Up</title>
@@ -95,9 +95,9 @@
         <isPublished>false</isPublished>
         <masterLabel>Data Walkthrough Step 5</masterLabel>
         <shouldDisplayActionButton>true</shouldDisplayActionButton>
-        <shouldIgnoreGlobalDelay>false</shouldIgnoreGlobalDelay>
+        <shouldIgnoreGlobalDelay>true</shouldIgnoreGlobalDelay>
         <stepNumber>5</stepNumber>
-        <targetAppDeveloperName>LWC_Recipes</targetAppDeveloperName>
+        <customApplication>LWC_Recipes</customApplication>
         <targetPageKey1>Wire</targetPageKey1>
         <targetPageType>standard__navItemPage</targetPageType>
         <title>Data Service, Apex, and Wire Service</title>

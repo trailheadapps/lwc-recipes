@@ -11,7 +11,7 @@ describe('c-dispatchEventHeadlessAction', () => {
         }
     });
     it('Test Toast message', async () => {
-        // Create initial element
+        // Create component
         const element = createElement('c-dispatchEventHeadlessAction', {
             is: DispatchEventHeadlessAction
         });

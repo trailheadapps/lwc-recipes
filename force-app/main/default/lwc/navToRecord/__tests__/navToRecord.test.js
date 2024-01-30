@@ -127,6 +127,7 @@ describe('c-nav-to-record', () => {
         // Wait for any asynchronous DOM updates
         await flushPromises();
 
+        // Check for error panel
         const errorPanelEl = element.shadowRoot.querySelector('c-error-panel');
         expect(errorPanelEl).not.toBeNull();
     });
@@ -144,6 +145,7 @@ describe('c-nav-to-record', () => {
         // Wait for any asynchronous DOM updates
         await flushPromises();
 
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 
@@ -160,6 +162,7 @@ describe('c-nav-to-record', () => {
         // Wait for any asynchronous DOM updates
         await flushPromises();
 
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 });

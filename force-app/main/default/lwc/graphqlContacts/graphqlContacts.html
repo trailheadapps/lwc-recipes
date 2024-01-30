@@ -1,0 +1,21 @@
+<template>
+    <lightning-card title="GraphqlContacts" icon-name="custom:custom39">
+        <template lwc:if={graphql.data}>
+            <div class="slds-var-m-around_medium">
+                <template for:each={contacts} for:item="contact">
+                    <c-contact-tile
+                        class="slds-show slds-is-relative"
+                        key={contact.Id}
+                        contact={contact}
+                    ></c-contact-tile>
+                </template>
+            </div>
+        </template>
+        <template lwc:if={graphql.errors}>
+            <c-error-panel errors={graphql.errors}></c-error-panel>
+        </template>
+        <c-view-source source="lwc/graphqlContacts" slot="footer">
+            Get records using a GraphQL query and @wire.
+        </c-view-source>
+    </lightning-card>
+</template>

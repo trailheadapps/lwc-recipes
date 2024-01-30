@@ -39,7 +39,7 @@ describe('c-event-bubbling', () => {
 
     describe('getContactList @wire data', () => {
         it('renders two c-contact-list-item-bubbling elements', async () => {
-            // Create initial element
+            // Create component
             const element = createElement('c-event-bubbling', {
                 is: EventBubbling
             });
@@ -59,7 +59,7 @@ describe('c-event-bubbling', () => {
         });
 
         it('renders no c-contact-list-item-bubbling elements when no data', async () => {
-            // Create initial element
+            // Create component
             const element = createElement('c-event-bubbling', {
                 is: EventBubbling
             });
@@ -83,7 +83,7 @@ describe('c-event-bubbling', () => {
 
     describe('getContactList @wire error', () => {
         it('shows error panel element', async () => {
-            // Create initial element
+            // Create component
             const element = createElement('c-event-bubbling', {
                 is: EventBubbling
             });
@@ -95,6 +95,7 @@ describe('c-event-bubbling', () => {
             // Wait for any asynchronous DOM updates
             await flushPromises();
 
+            // Check for error panel
             const errorPanelEl =
                 element.shadowRoot.querySelector('c-error-panel');
             expect(errorPanelEl).not.toBeNull();
@@ -112,7 +113,7 @@ describe('c-event-bubbling', () => {
                 'https://s3-us-west-2.amazonaws.com/dev-or-devrl-s3-bucket/sample-apps/people/amy_taylor.jpg'
         };
 
-        // Create initial element
+        // Create component
         const element = createElement('c-event-bubbling', {
             is: EventBubbling
         });
@@ -147,7 +148,7 @@ describe('c-event-bubbling', () => {
     });
 
     it('is accessible when data is returned', async () => {
-        // Create initial element
+        // Create component
         const element = createElement('c-event-bubbling', {
             is: EventBubbling
         });
@@ -156,13 +157,15 @@ describe('c-event-bubbling', () => {
         // Emit data from @wire
         getContactList.emit(mockGetContactList);
 
-        // Wait for any asynchronous DOM updates and test acccessibility
+        // Wait for any asynchronous DOM updates
         await flushPromises();
+
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 
     it('is accessible when error is returned', async () => {
-        // Create initial element
+        // Create component
         const element = createElement('c-event-bubbling', {
             is: EventBubbling
         });
@@ -171,8 +174,10 @@ describe('c-event-bubbling', () => {
         // Emit error from @wire
         getContactList.error();
 
-        // Wait for any asynchronous DOM updates and test acccessibility
+        // Wait for any asynchronous DOM updates
         await flushPromises();
+
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 
@@ -187,7 +192,7 @@ describe('c-event-bubbling', () => {
                 'https://s3-us-west-2.amazonaws.com/dev-or-devrl-s3-bucket/sample-apps/people/amy_taylor.jpg'
         };
 
-        // Create initial element
+        // Create component
         const element = createElement('c-event-bubbling', {
             is: EventBubbling
         });
@@ -213,8 +218,10 @@ describe('c-event-bubbling', () => {
             })
         );
 
-        // Wait for any asynchronous DOM updates and test acccessibility
+        // Wait for any asynchronous DOM updates
         await flushPromises();
+
+        // Check accessibility
         await expect(element).toBeAccessible();
     });
 });
