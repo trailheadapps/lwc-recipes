@@ -43,6 +43,7 @@
     <tabs>Record_Picker</tabs>
     <tabs>Misc_Techniques</tabs>
     <tabs>X3rd_Party_Libs</tabs>
+    <tabs>Styling</tabs>
     <uiType>Lightning</uiType>
     <utilityBar>LWC_Recipes_UtilityBar</utilityBar>
 </CustomApplication>
