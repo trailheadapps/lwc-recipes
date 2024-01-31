@@ -1,6 +1,6 @@
 # Lightning Web Components Recipes
 
-[![CI Workflow](https://github.com/trailheadapps/lwc-recipes/workflows/CI/badge.svg)](https://github.com/trailheadapps/lwc-recipes/actions?query=workflow%3ACI) [![Packaging Workflow](https://github.com/trailheadapps/lwc-recipes/workflows/Packaging/badge.svg)](https://github.com/trailheadapps/lwc-recipes/actions?query=workflow%3A%22Packaging%22) [![codecov](https://codecov.io/gh/trailheadapps/lwc-recipes/branch/main/graph/badge.svg)](https://codecov.io/gh/trailheadapps/lwc-recipes)
+[![CI](https://github.com/trailheadapps/lwc-recipes/actions/workflows/ci.yml/badge.svg)](https://github.com/trailheadapps/lwc-recipes/actions/workflows/ci.yml) [![Packaging](https://github.com/trailheadapps/lwc-recipes/actions/workflows/packaging.yml/badge.svg)](https://github.com/trailheadapps/lwc-recipes/actions/workflows/packaging.yml) [![codecov](https://codecov.io/gh/trailheadapps/lwc-recipes/branch/main/graph/badge.svg)](https://codecov.io/gh/trailheadapps/lwc-recipes)
 
 ![recipes-logo](recipes-logo.png)
 
@@ -8,7 +8,7 @@ A collection of easy-to-digest code examples for Lightning Web Components. Each 
 
 <div>
     <img src="https://res.cloudinary.com/hy4kyit2a/f_auto,fl_lossy,q_70,w_50/learn/projects/quick-start-lwc-recipes-app/bb501c3216ac163958f036fb90357955_badge.png" align="left" alt="Trailhead Badge"/>
-    Learn more about this app by completing the <a href="https://trailhead.salesforce.com/content/learn/projects/quick-start-lwc-recipes-app">Quick Start: Explore the LWC Recipes Sample App</a> Trailhead project.
+    Learn more about this app by completing the <a href="https://trailhead.salesforce.com/content/learn/projects/quick-start-lwc-recipes-app">Quick Start: Explore the LWC Recipes Sample App</a> Trailhead project or by watching this <a href="https://www.youtube.com/watch?v=lK3NOZGc5fg&list=PLgIMQe2PKPSJcuCwM61dEc4jFG_jHqV2t&index=3">short presentation video</a>.
     <br/>
     <br/>
     <br/>
@@ -92,7 +92,7 @@ Make sure to start from a brand-new environment to avoid conflicts with any prev
 
 1. Log in to your org
 
-1. Click [this link](https://login.salesforce.com/packaging/installPackage.apexp?p0=04t3t000002YSBPAA4) to install the Recipes unlocked package in your org.
+1. Click [this link](https://login.salesforce.com/packaging/installPackage.apexp?p0=04t3t000002YSBZAA4) to install the Recipes unlocked package in your org.
 
 1. Select **Install for All Users**
 

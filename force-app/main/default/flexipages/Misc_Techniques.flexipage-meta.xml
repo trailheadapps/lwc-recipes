@@ -63,12 +63,6 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
-                <componentName>miscStylingHooks</componentName>
-                <identifier>c_miscStylingHooks1</identifier>
-            </componentInstance>
-        </itemInstances>
-        <itemInstances>
-            <componentInstance>
                 <componentName>miscStaticResource</componentName>
                 <identifier>miscStaticResource</identifier>
             </componentInstance>

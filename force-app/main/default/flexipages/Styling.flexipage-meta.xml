@@ -7,8 +7,8 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
-                <componentName>recordPickerHello</componentName>
-                <identifier>c_recordPickerHello</identifier>
+                <componentName>stylesheets</componentName>
+                <identifier>c_stylesheets</identifier>
             </componentInstance>
         </itemInstances>
         <name>region2</name>
@@ -17,24 +17,18 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
-                <componentName>recordPickerDynamicTarget</componentName>
-                <identifier>c_recordPickerDynamicTarget</identifier>
+                <componentName>stylingHooks</componentName>
+                <identifier>c_stylingHooks</identifier>
             </componentInstance>
         </itemInstances>
         <name>region3</name>
         <type>Region</type>
     </flexiPageRegions>
     <flexiPageRegions>
-        <itemInstances>
-            <componentInstance>
-                <componentName>recordPickerMultiValue</componentName>
-                <identifier>c_recordPickerMultiValue</identifier>
-            </componentInstance>
-        </itemInstances>
         <name>region4</name>
         <type>Region</type>
     </flexiPageRegions>
-    <masterLabel>Record Picker</masterLabel>
+    <masterLabel>Styling</masterLabel>
     <template>
         <name>flexipage:appHomeTemplateHeaderThreeColumns</name>
     </template>

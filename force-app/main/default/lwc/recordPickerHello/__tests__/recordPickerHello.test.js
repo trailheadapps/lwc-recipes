@@ -62,15 +62,13 @@ describe('recordPickerHello', () => {
                 detail: { recordId: '003Z70000016iOUIAY' }
             })
         );
-        // Emit data from @wire
+        // Emit data from @wire and wait for any asynchronous DOM updates
         graphql.emit(mockGraphQL);
-
-        // Wait for any asynchronous DOM updates
         await flushPromises();
+
         const selectedRecordDetails = element.shadowRoot.querySelector(
             '.selectedRecordDetails'
         );
-        await flushPromises();
 
         expect(selectedRecordDetails).toBeTruthy();
     });
@@ -96,25 +94,21 @@ describe('recordPickerHello', () => {
                 detail: { recordId: null }
             })
         );
-        // Emit data from @wire
+        // Emit data from @wire and wait for any asynchronous DOM updates
         graphql.emit(mockGraphQLEmptyResults);
-
-        // Wait for any asynchronous DOM updates
         await flushPromises();
+
         const selectedRecordDetails = element.shadowRoot.querySelector(
             '.selectedRecordDetails'
         );
-        await flushPromises();
 
         expect(selectedRecordDetails).toBeFalsy();
     });
 
     describe('graphql @wire error', () => {
         it('shows error panel element', async () => {
-            // Emit error from @wire
+            // Emit error from @wire and wait for any asynchronous DOM updates
             graphql.emitErrors(['an error']);
-
-            // Wait for any asynchronous DOM updates
             await flushPromises();
 
             // Check for error panel

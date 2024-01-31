@@ -1,0 +1,32 @@
+<template>
+    <lightning-card
+        title="RecordPickerMultiValue"
+        class="slds-card__body_inner"
+        icon-name="standard:search"
+    >
+        <div>
+            <lightning-record-picker
+                lwc:ref="recordPicker"
+                label="Contacts"
+                placeholder="Search Contacts..."
+                object-api-name="Contact"
+                filter={recordPickerFilter}
+                onchange={handleRecordPickerChange}
+            ></lightning-record-picker>
+        </div>
+
+        <lightning-pill-container
+            items={pillItems}
+            onitemremove={handlePillRemove}
+        ></lightning-pill-container>
+        <template lwc:if={wireError}>
+            <c-error-panel errors={wireError}></c-error-panel>
+        </template>
+
+        <c-view-source source="lwc/recordPickerMultiValue" slot="footer">
+            As of Winter '24, `lightning-record-picker` only supports a single
+            selection. This sample component shows how you can turn
+            `lightning-record-picker` into a multi-selection record picker.
+        </c-view-source>
+    </lightning-card>
+</template>
