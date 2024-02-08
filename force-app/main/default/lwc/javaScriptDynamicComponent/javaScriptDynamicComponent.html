@@ -1,0 +1,28 @@
+<template>
+    <lightning-card
+        title="JavaScriptDynamicComponent"
+        icon-name="custom:custom63"
+    >
+        <div class="slds-var-m-around_medium">
+            <lightning-combobox
+                name="mode"
+                label="Mode"
+                value={value}
+                placeholder="Select mode"
+                options={options}
+                onchange={handleChange}
+            >
+            </lightning-combobox>
+            <div class="slds-var-m-around_medium">
+                <lwc:component
+                    lwc:is={componentConstructor}
+                    contact={contact}
+                ></lwc:component>
+            </div>
+        </div>
+        <c-view-source source="lwc/javaScriptDynamicComponent" slot="footer">
+            Render component dynamically on runtime according to supplied
+            component name.
+        </c-view-source>
+    </lightning-card>
+</template>

@@ -1,5 +1,5 @@
 import { createElement } from 'lwc';
-import MiscRestApiCall from 'c/miscRestApiCall';
+import javaScriptRestApiCall from 'c/javaScriptRestApiCall';
 
 // Query URL for connecting to Google API
 const QUERY_URL =
@@ -9,7 +9,7 @@ const FETCH_DATA = require('./data/fetch.json');
 // Realistic test data for an unsuccessful fetch request.
 const FETCH_ERROR = require('./data/fetchError.json');
 
-describe('c-misc-rest-api-call', () => {
+describe('c-java-script-rest-api-call', () => {
     afterEach(() => {
         // The jsdom instance is shared across test cases in a single file so reset the DOM
         while (document.body.firstChild) {
@@ -49,7 +49,7 @@ describe('c-misc-rest-api-call', () => {
 
         // Create component
         const element = createElement('c-misc-rest-api-call', {
-            is: MiscRestApiCall
+            is: javaScriptRestApiCall
         });
         document.body.appendChild(element);
 
@@ -79,7 +79,7 @@ describe('c-misc-rest-api-call', () => {
     it('renders no book details on default', () => {
         // Create component
         const element = createElement('c-misc-rest-api-call', {
-            is: MiscRestApiCall
+            is: javaScriptRestApiCall
         });
         document.body.appendChild(element);
 
@@ -96,7 +96,7 @@ describe('c-misc-rest-api-call', () => {
 
         // Create component
         const element = createElement('c-misc-rest-api-call', {
-            is: MiscRestApiCall
+            is: javaScriptRestApiCall
         });
         document.body.appendChild(element);
 
@@ -126,7 +126,7 @@ describe('c-misc-rest-api-call', () => {
     it('renders an error message when the API request returns an error', async () => {
         // Create component
         const element = createElement('c-misc-rest-api-call', {
-            is: MiscRestApiCall
+            is: javaScriptRestApiCall
         });
         document.body.appendChild(element);
 
@@ -148,7 +148,7 @@ describe('c-misc-rest-api-call', () => {
     it('is accessible when data is returned', async () => {
         // Create component
         const element = createElement('c-misc-rest-api-call', {
-            is: MiscRestApiCall
+            is: javaScriptRestApiCall
         });
         document.body.appendChild(element);
 
@@ -169,7 +169,7 @@ describe('c-misc-rest-api-call', () => {
     it('is accessible when error is returned', async () => {
         // Create component
         const element = createElement('c-misc-rest-api-call', {
-            is: MiscRestApiCall
+            is: javaScriptRestApiCall
         });
         document.body.appendChild(element);
 

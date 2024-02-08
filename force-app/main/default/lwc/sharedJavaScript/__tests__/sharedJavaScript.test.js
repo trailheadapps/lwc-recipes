@@ -1,5 +1,5 @@
 import { createElement } from 'lwc';
-import MiscSharedJavaScript from 'c/miscSharedJavaScript';
+import SharedJavaScript from 'c/sharedJavaScript';
 import { calculateMonthlyPayment } from 'c/mortgage';
 
 // Mocking mortgage module
@@ -20,7 +20,7 @@ const PRINCIPAL_CUSTOM = 100000;
 const TERM_CUSTOM = 15;
 const RATE_CUSTOM = 2;
 
-describe('c-misc-shared-java-script', () => {
+describe('c-shared-java-script', () => {
     afterEach(() => {
         // The jsdom instance is shared across test cases in a single file so reset the DOM
         while (document.body.firstChild) {
@@ -37,8 +37,8 @@ describe('c-misc-shared-java-script', () => {
     }
     it('calculates mortgage with default values', async () => {
         // Create component
-        const element = createElement('c-misc-shared-java-script', {
-            is: MiscSharedJavaScript
+        const element = createElement('c-shared-java-script', {
+            is: SharedJavaScript
         });
         document.body.appendChild(element);
 
@@ -59,8 +59,8 @@ describe('c-misc-shared-java-script', () => {
 
     it('calculates mortgage with custom values', async () => {
         // Create component
-        const element = createElement('c-misc-shared-java-script', {
-            is: MiscSharedJavaScript
+        const element = createElement('c-shared-java-script', {
+            is: SharedJavaScript
         });
         document.body.appendChild(element);
 
@@ -99,8 +99,8 @@ describe('c-misc-shared-java-script', () => {
     });
 
     it('is accessible', async () => {
-        const element = createElement('c-misc-shared-java-script', {
-            is: MiscSharedJavaScript
+        const element = createElement('c-shared-java-script', {
+            is: SharedJavaScript
         });
         document.body.appendChild(element);
 
