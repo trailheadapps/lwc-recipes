@@ -2,7 +2,9 @@
     <lightning-card title="ViewToRefresh" icon-name="standard:account">
         <div class="slds-var-m-around_medium">
             <template lwc:if={numOfAccounts.data}>
-                Number of accounts: {numOfAccounts.data}
+                <div class="account-number">
+                    Number of accounts: {numOfAccounts.data}
+                </div>
             </template>
             <template lwc:elseif={numOfAccounts.error}>
                 <c-error-panel errors={numOfAccounts.error}></c-error-panel>
