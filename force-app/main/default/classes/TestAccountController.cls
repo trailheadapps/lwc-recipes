@@ -23,6 +23,17 @@ public class TestAccountController {
     }
 
     @isTest
+    static void getTotalNumber_returnsCount() {
+        TestAccountController.createAccounts(10);
+
+        Test.startTest();
+        Integer accountNumber = AccountController.getTotalNumber();
+        Test.stopTest();
+
+        Assert.areEqual(10, accountNumber);
+    }
+
+    @isTest
     static void getSingleAccount() {
         TestAccountController.createAccounts(1);
 

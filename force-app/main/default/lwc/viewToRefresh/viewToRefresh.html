@@ -1,0 +1,18 @@
+<template>
+    <lightning-card title="ViewToRefresh" icon-name="standard:account">
+        <div class="slds-var-m-around_medium">
+            <template lwc:if={numOfAccounts.data}>
+                <div class="account-number">
+                    Number of accounts: {numOfAccounts.data}
+                </div>
+            </template>
+            <template lwc:elseif={numOfAccounts.error}>
+                <c-error-panel errors={numOfAccounts.error}></c-error-panel>
+            </template>
+        </div>
+
+        <c-view-source source="lwc/viewToRefresh" slot="footer">
+            Refresh a custom component when a Refresh View event is listened.
+        </c-view-source>
+    </lightning-card>
+</template>
