@@ -4,6 +4,7 @@
 
 # Salesforce dev
 .sfdx/
+.sf/
 .localdevserver/
 
 # LWC VSCode autocomplete
