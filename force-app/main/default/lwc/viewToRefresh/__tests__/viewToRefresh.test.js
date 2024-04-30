@@ -1,8 +1,12 @@
 import { createElement } from 'lwc';
-import ViewToRefresh from 'c/ViewToRefresh';
+import ViewToRefresh from 'c/viewToRefresh';
 import getTotalNumber from '@salesforce/apex/AccountController.getTotalNumber';
-import { registerRefreshHandler, RefreshEvent } from 'lightning/refresh';
-// import { refreshApex } from '@salesforce/apex';
+import {
+    registerRefreshHandler,
+    unregisterRefreshHandler,
+    RefreshEvent
+} from 'lightning/refresh';
+import { refreshApex } from '@salesforce/apex';
 
 // Mock Apex wire adapter
 jest.mock(
@@ -55,7 +59,6 @@ describe('c-view-to-refresh', () => {
 
         // Validate if pubsub got registered after connected to the DOM
         expect(registerRefreshHandler).toHaveBeenCalled();
-        console.log(registerRefreshHandler.mock.calls[0][1]);
     });
 
     it('invokes getTotalNumber onload', async () => {
@@ -77,21 +80,37 @@ describe('c-view-to-refresh', () => {
     });
 
     it('invokes refreshApex when RefreshEvent is listened', async () => {
-        // Emit data from @wire
-        getTotalNumber.emit(10);
-
         // Create component
         const element = createElement('c-view-to-refresh', {
             is: ViewToRefresh
         });
         document.body.appendChild(element);
 
+        // Emit data from @wire
+        getTotalNumber.emit(10);
+
         // Fire a RefreshEvent
         element.dispatchEvent(new RefreshEvent());
 
+        // Wait for any asynchronous DOM updates
+        await flushPromises();
+        await flushPromises();
+
         // Check refreshApex has been called
-        // expect(refreshApex).toHaveBeenCalled();
-        expect(1).toBe(1);
+        expect(refreshApex).toHaveBeenCalled();
+    });
+
+    it('unregisters itself as refresh handler on disconnected callback', () => {
+        // Create component
+        const element = createElement('c-view-to-refresh', {
+            is: ViewToRefresh
+        });
+        document.body.appendChild(element);
+
+        document.body.removeChild(element);
+
+        // Validate if pubsub got registered after connected to the DOM
+        expect(unregisterRefreshHandler).toHaveBeenCalled();
     });
 
     it('is accessible', async () => {

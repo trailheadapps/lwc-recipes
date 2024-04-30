@@ -1,11 +1,14 @@
 /**
  * Refresh Event base class
  */
-export const RefreshEventName = 'lightning__refreshevent';
-
+export const RefreshEventName = 'lightning__refresh';
 export class RefreshEvent extends CustomEvent {
     constructor() {
-        super(RefreshEventName, { bubbles: true, composed: true });
+        super(RefreshEventName, {
+            composed: true,
+            cancelable: true,
+            bubbles: true
+        });
     }
 }
 
@@ -14,9 +17,15 @@ let elementToRefresh;
 export const registerRefreshHandler = jest.fn((element, handler) => {
     elementToRefresh = element;
     eventHandler = handler;
-    elementToRefresh.addEventListener(RefreshEvent, eventHandler);
+    window.addEventListener(
+        RefreshEventName,
+        eventHandler.bind(elementToRefresh)
+    );
 });
 
 export const unregisterRefreshHandler = jest.fn((id) => {
-    elementToRefresh.removeEventListener(RefreshEvent, eventHandler);
+    window.removeEventListener(
+        RefreshEventName,
+        eventHandler.bind(elementToRefresh)
+    );
 });
