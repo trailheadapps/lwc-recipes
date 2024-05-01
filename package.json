@@ -47,7 +47,7 @@
         "jest-canvas-mock": "^2.5.2",
         "lint-staged": "^15.2.2",
         "prettier": "^3.2.5",
-        "prettier-plugin-apex": "^2.1.0"
+        "prettier-plugin-apex": "^2.1.3"
     },
     "volta": {
         "node": "18.17.0"
