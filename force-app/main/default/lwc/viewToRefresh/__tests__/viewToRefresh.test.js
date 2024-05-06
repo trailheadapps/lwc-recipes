@@ -94,7 +94,6 @@ describe('c-view-to-refresh', () => {
 
         // Wait for any asynchronous DOM updates
         await flushPromises();
-        await flushPromises();
 
         // Check refreshApex has been called
         expect(refreshApex).toHaveBeenCalled();
