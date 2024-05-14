@@ -35,7 +35,7 @@ jobs:
         steps:
             # Checkout the source code
             - name: 'Checkout source code'
-              uses: actions/checkout@v3
+              uses: actions/checkout@v4
 
             # Install Volta to enforce proper node and package manager versions
             - name: 'Install Volta'
@@ -44,7 +44,7 @@ jobs:
             # Cache node_modules to speed up the process
             - name: 'Restore node_modules cache'
               id: cache-npm
-              uses: actions/cache@v3
+              uses: actions/cache@v4
               with:
                   path: node_modules
                   key: npm-${{ hashFiles('**/package-lock.json') }}
@@ -71,8 +71,9 @@ jobs:
 
             # Upload code coverage data
             - name: 'Upload code coverage for LWC to Codecov.io'
-              uses: codecov/codecov-action@v3
+              uses: codecov/codecov-action@v4
               with:
+                  token: ${{ secrets.CODECOV_TOKEN }}
                   flags: LWC
 
     # Auto merge Dependabot PRs for:
@@ -89,7 +90,7 @@ jobs:
         steps:
             - name: 'Fetch Dependabot metadata'
               id: dependabot
-              uses: dependabot/fetch-metadata@v1
+              uses: dependabot/fetch-metadata@v2
 
             - name: 'Check auto merge conditions'
               id: auto-merge
@@ -119,11 +120,11 @@ jobs:
         steps:
             # Checkout the source code
             - name: 'Checkout source code'
-              uses: actions/checkout@v3
+              uses: actions/checkout@v4
 
             # Run PMD scan
             - name: 'Run PMD scan'
-              uses: pmd/pmd-github-action@v1.4.0
+              uses: pmd/pmd-github-action@v2.0.0
               id: pmd
               with:
                   version: '6.55.0'
@@ -190,8 +191,9 @@ jobs:
 
             # Upload code coverage data
             - name: 'Upload code coverage for Apex to Codecov.io'
-              uses: codecov/codecov-action@v3
+              uses: codecov/codecov-action@v4
               with:
+                  token: ${{ secrets.CODECOV_TOKEN }}
                   flags: Apex
 
             # Housekeeping
@@ -205,7 +207,7 @@ jobs:
         steps:
             # Checkout the source code
             - name: 'Checkout source code'
-              uses: actions/checkout@v3
+              uses: actions/checkout@v4
 
             # Check for package changes using git diff
             - name: 'Check for package changes'
@@ -222,7 +224,7 @@ jobs:
 
             # Trigger packaging PR workflow
             - name: 'Trigger packaging PR workflow if needed'
-              uses: peter-evans/repository-dispatch@v2
+              uses: peter-evans/repository-dispatch@v3
               if: steps.checkForChanges.outputs.hasChanges == 'true'
               with:
                   token: ${{ secrets.BOT_ACCESS_TOKEN }}
