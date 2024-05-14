@@ -10,10 +10,10 @@ jobs:
         if: github.actor != 'trailheadapps-bot' && github.actor != 'dependabot[bot]'
         steps:
             - name: 'Checkout source code'
-              uses: actions/checkout@v3
+              uses: actions/checkout@v4
 
             - name: 'Watch CodeTour changes'
-              uses: pozil/codetour-watch@v2.0.0
+              uses: pozil/codetour-watch@v3.0.0
 
     skip-codetour-watch:
         if: github.actor == 'trailheadapps-bot' || github.actor == 'dependabot[bot]'
