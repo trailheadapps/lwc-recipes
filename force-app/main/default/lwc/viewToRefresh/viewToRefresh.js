@@ -23,7 +23,7 @@ export default class ViewToRefresh extends LightningElement {
         unregisterRefreshHandler(this.refreshHandlerID);
     }
 
-    refreshHandler() {
-        refreshApex(this.numOfAccounts);
+    async refreshHandler() {
+        await refreshApex(this.numOfAccounts);
     }
 }
