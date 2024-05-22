@@ -3,7 +3,7 @@ import {
     disableTabClose,
     IsConsoleNavigation,
     getFocusedTabInfo,
-    FOCUSED_TAB
+    FOCUSED_TAB_ID
 } from 'lightning/platformWorkspaceApi';
 
 import WorkspaceAPIDisableTabClose from 'c/workspaceAPIDisableTabClose';
@@ -40,9 +40,12 @@ describe('c-workspace-api-disable-tab-close', () => {
 
         await flushPromises();
 
-        // Compare if related platformWorkspaceApi functions have been called
+        // Check that related platformWorkspaceApi functions have been called
         expect(getFocusedTabInfo).toHaveBeenCalled();
-        expect(disableTabClose).toHaveBeenCalledWith(FOCUSED_TAB, toggleValue);
+        expect(disableTabClose).toHaveBeenCalledWith(
+            FOCUSED_TAB_ID,
+            toggleValue
+        );
     });
 
     it('is accessible', async () => {

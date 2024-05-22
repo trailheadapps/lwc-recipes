@@ -1,9 +1,10 @@
 import { LightningElement, wire } from 'lwc';
 import { NavigationMixin } from 'lightning/navigation';
-import getSingleContact from '@salesforce/apex/ContactController.getSingleContact';
+import { IsConsoleNavigation } from 'lightning/platformWorkspaceApi';
 
-export default class Lds extends NavigationMixin(LightningElement) {
-    @wire(getSingleContact) contact;
+export default class WorkspaceApi extends NavigationMixin(LightningElement) {
+    @wire(IsConsoleNavigation)
+    isConsoleNavigation;
 
     navigateToWorkspaceAPIExamples() {
         this[NavigationMixin.Navigate]({

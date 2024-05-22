@@ -3,7 +3,7 @@ import {
     IsConsoleNavigation,
     getFocusedTabInfo,
     closeTab,
-    FOCUSED_TAB
+    FOCUSED_TAB_ID
 } from 'lightning/platformWorkspaceApi';
 import WorkspaceAPICloseTab from 'c/workspaceAPICloseTab';
 
@@ -36,9 +36,9 @@ describe('c-workspace-api-close-tab', () => {
 
         await flushPromises();
 
-        // Compare if related platformWorkspaceApi functions have been called
+        // Check that related platformWorkspaceApi functions have been called
         expect(getFocusedTabInfo).toHaveBeenCalled();
-        expect(closeTab).toHaveBeenCalledWith(FOCUSED_TAB);
+        expect(closeTab).toHaveBeenCalledWith(FOCUSED_TAB_ID);
     });
 
     it('is accessible', async () => {

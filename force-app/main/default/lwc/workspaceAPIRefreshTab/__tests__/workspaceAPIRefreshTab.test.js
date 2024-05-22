@@ -3,7 +3,7 @@ import {
     IsConsoleNavigation,
     getFocusedTabInfo,
     refreshTab,
-    FOCUSED_TAB
+    FOCUSED_TAB_ID
 } from 'lightning/platformWorkspaceApi';
 import WorkspaceAPIRefreshTab from 'c/workspaceAPIRefreshTab';
 
@@ -28,6 +28,7 @@ describe('c-workspace-api-refresh-tab', () => {
         });
         document.body.appendChild(element);
 
+        // Simulate console navigation
         IsConsoleNavigation.emit(true);
 
         // Query lightning-button component element
@@ -36,9 +37,9 @@ describe('c-workspace-api-refresh-tab', () => {
 
         await flushPromises();
 
-        // Compare if related platformWorkspaceApi functions have been called
+        // Check that related platformWorkspaceApi functions have been called
         expect(getFocusedTabInfo).toHaveBeenCalled();
-        expect(refreshTab).toHaveBeenCalledWith(FOCUSED_TAB, {
+        expect(refreshTab).toHaveBeenCalledWith(FOCUSED_TAB_ID, {
             includeAllSubtabs: true
         });
     });
