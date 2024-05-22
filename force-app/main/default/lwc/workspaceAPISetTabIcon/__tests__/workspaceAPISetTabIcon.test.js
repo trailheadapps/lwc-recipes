@@ -4,7 +4,7 @@ import {
     IsConsoleNavigation,
     getFocusedTabInfo,
     setTabIcon,
-    FOCUSED_TAB
+    FOCUSED_TAB_ID
 } from 'lightning/platformWorkspaceApi';
 
 describe('c-workspace-api-set-tab-icon', () => {
@@ -38,9 +38,9 @@ describe('c-workspace-api-set-tab-icon', () => {
 
         await flushPromises();
 
-        // Compare if related platformWorkspaceApi functions have been called
+        // Check that related platformWorkspaceApi functions have been called
         expect(getFocusedTabInfo).toHaveBeenCalled();
-        expect(setTabIcon).toHaveBeenCalledWith(FOCUSED_TAB, TAB_ICON, {
+        expect(setTabIcon).toHaveBeenCalledWith(FOCUSED_TAB_ID, TAB_ICON, {
             iconAlt: TAB_ICON_ALT_TEXT
         });
     });

@@ -4,7 +4,7 @@ import {
     IsConsoleNavigation,
     getFocusedTabInfo,
     setTabHighlighted,
-    FOCUSED_TAB
+    FOCUSED_TAB_ID
 } from 'lightning/platformWorkspaceApi';
 
 describe('c-workspace-api-highlight-tab', () => {
@@ -38,9 +38,9 @@ describe('c-workspace-api-highlight-tab', () => {
 
         await flushPromises();
 
-        // Compare if related platformWorkspaceApi functions have been called
+        // Check that related platformWorkspaceApi functions have been called
         expect(getFocusedTabInfo).toHaveBeenCalled();
-        expect(setTabHighlighted).toHaveBeenCalledWith(FOCUSED_TAB, true, {
+        expect(setTabHighlighted).toHaveBeenCalledWith(FOCUSED_TAB_ID, true, {
             pulse: true,
             state: 'success'
         });

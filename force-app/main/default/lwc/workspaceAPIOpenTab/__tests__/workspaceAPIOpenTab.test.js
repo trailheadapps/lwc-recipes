@@ -31,7 +31,7 @@ describe('c-workspace-api-open-tab', () => {
 
         await flushPromises();
 
-        // Compare if related platformWorkspaceApi functions have been called
+        // Check that related platformWorkspaceApi functions have been called
         expect(openTab).toHaveBeenCalledWith({
             pageReference: {
                 type: 'standard__objectPage',

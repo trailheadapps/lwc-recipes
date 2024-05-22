@@ -4,7 +4,7 @@ import {
     IsConsoleNavigation,
     getFocusedTabInfo,
     setTabLabel,
-    FOCUSED_TAB
+    FOCUSED_TAB_ID
 } from 'lightning/platformWorkspaceApi';
 
 describe('c-workspace-api-set-tab-label', () => {
@@ -37,9 +37,9 @@ describe('c-workspace-api-set-tab-label', () => {
 
         await flushPromises();
 
-        // Compare if related platformWorkspaceApi functions have been called
+        // Check that related platformWorkspaceApi functions have been called
         expect(getFocusedTabInfo).toHaveBeenCalled();
-        expect(setTabLabel).toHaveBeenCalledWith(FOCUSED_TAB, TAB_LABEL);
+        expect(setTabLabel).toHaveBeenCalledWith(FOCUSED_TAB_ID, TAB_LABEL);
     });
 
     it('is accessible', async () => {
