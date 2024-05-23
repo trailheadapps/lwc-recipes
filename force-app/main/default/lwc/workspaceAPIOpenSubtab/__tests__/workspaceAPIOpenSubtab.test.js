@@ -28,13 +28,15 @@ describe('c-workspace-api-open-subtab', () => {
         });
         document.body.appendChild(element);
 
+        // Simulate console navigation
         IsConsoleNavigation.emit(true);
         EnclosingTabId.emit(ENCLOSING_TAB_ID);
 
-        // Query lightning-button component element
+        // Find and click button
         const buttonEl = element.shadowRoot.querySelector('lightning-button');
         buttonEl.click();
 
+        // Wait for async event
         await flushPromises();
 
         // Check that related platformWorkspaceApi functions have been called

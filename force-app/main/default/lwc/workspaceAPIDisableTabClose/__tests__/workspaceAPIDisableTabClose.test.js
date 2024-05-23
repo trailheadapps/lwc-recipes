@@ -29,15 +29,18 @@ describe('c-workspace-api-disable-tab-close', () => {
         });
         document.body.appendChild(element);
 
+        // Simulate console navigation
         IsConsoleNavigation.emit(true);
+        await flushPromises();
 
-        // Query lightning-input component element
+        // Find and toggle input
         const inputEl = element.shadowRoot.querySelector('lightning-input');
         const toggleValue = true;
         inputEl.dispatchEvent(
             new CustomEvent('change', { detail: { checked: toggleValue } })
         );
 
+        // Wait for async event
         await flushPromises();
 
         // Check that related platformWorkspaceApi functions have been called

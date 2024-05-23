@@ -7,6 +7,9 @@ import {
     FOCUSED_TAB_ID
 } from 'lightning/platformWorkspaceApi';
 
+const UPDATED_TAB_ICON = 'utility:animal_and_nature';
+const UPDATED_TAB_ICON_ALT_TEXT = 'Animal and Nature';
+
 describe('c-workspace-api-set-tab-icon', () => {
     afterEach(() => {
         // The jsdom instance is shared across test cases in a single file so reset the DOM
@@ -28,21 +31,25 @@ describe('c-workspace-api-set-tab-icon', () => {
         });
         document.body.appendChild(element);
 
-        const TAB_ICON = 'utility:animal_and_nature';
-        const TAB_ICON_ALT_TEXT = 'Animal and Nature';
+        // Simulate console navigation
         IsConsoleNavigation.emit(true);
 
-        // Query lightning-button component element
+        // Find and click button
         const buttonEl = element.shadowRoot.querySelector('lightning-button');
         buttonEl.click();
 
+        // Wait for async event
         await flushPromises();
 
         // Check that related platformWorkspaceApi functions have been called
         expect(getFocusedTabInfo).toHaveBeenCalled();
-        expect(setTabIcon).toHaveBeenCalledWith(FOCUSED_TAB_ID, TAB_ICON, {
-            iconAlt: TAB_ICON_ALT_TEXT
-        });
+        expect(setTabIcon).toHaveBeenCalledWith(
+            FOCUSED_TAB_ID,
+            UPDATED_TAB_ICON,
+            {
+                iconAlt: UPDATED_TAB_ICON_ALT_TEXT
+            }
+        );
     });
 
     it('is accessible', async () => {

@@ -29,12 +29,14 @@ describe('c-workspace-api-focus-tab', () => {
         });
         document.body.appendChild(element);
 
+        // Simulate console navigation
         IsConsoleNavigation.emit(true);
 
-        // Query lightning-button component element
+        // Find and click button
         const buttonEl = element.shadowRoot.querySelector('lightning-button');
         buttonEl.click();
 
+        // Wait for async event
         await flushPromises();
 
         // Check that related platformWorkspaceApi functions have been called

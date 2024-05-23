@@ -28,14 +28,16 @@ describe('c-workspace-api-highlight-tab', () => {
         });
         document.body.appendChild(element);
 
+        // Simulate console navigation
         IsConsoleNavigation.emit(true);
 
-        // Query lightning-input component element
+        // Find and toggle input
         const inputEl = element.shadowRoot.querySelector('lightning-input');
         inputEl.dispatchEvent(
             new CustomEvent('change', { detail: { checked: true } })
         );
 
+        // Wait for async event
         await flushPromises();
 
         // Check that related platformWorkspaceApi functions have been called

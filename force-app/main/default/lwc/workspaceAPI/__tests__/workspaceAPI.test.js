@@ -33,7 +33,7 @@ describe('c-workspace-api', () => {
         IsConsoleNavigation.emit(true);
         await flushPromises();
 
-        // Click button
+        // Find and click button
         const buttonEl = element.shadowRoot.querySelector('lightning-button');
         buttonEl.click();
 
