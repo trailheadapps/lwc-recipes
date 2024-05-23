@@ -10,9 +10,12 @@ export default class WorkspaceAPIOpenSubtab extends LightningElement {
     @wire(EnclosingTabId) enclosingTabId;
 
     findEnclosingTabAndOpenSubtab() {
+        // Ensure that we're in a console app and that we have a tab open
         if (!this.isConsoleNavigation || !this.enclosingTabId) {
             return;
         }
+
+        // Open sub tab
         openSubtab(this.enclosingTabId, {
             pageReference: {
                 type: 'standard__objectPage',
