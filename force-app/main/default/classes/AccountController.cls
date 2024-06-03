@@ -1,3 +1,14 @@
+/**
+ * @description       : 
+ * @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+ * @group             : 
+ * @last modified on  : 06-03-2024
+ * @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+**/
+// rl8226 test code functionality
+// Testing only
+// This is apex class and logic was written by rl8226
+
 public with sharing class AccountController {
     @AuraEnabled(cacheable=true)
     public static List<Account> getAccountList() {
