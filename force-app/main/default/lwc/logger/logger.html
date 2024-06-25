@@ -1,0 +1,24 @@
+<template>
+    <lightning-card title="Logger" icon-name="custom:custom63">
+        <div class="slds-var-m-around_medium">
+            <p class="slds-var-m-bottom_small">
+                <lightning-button
+                label="Log a message in the console"
+                onclick={logMessageConsole}
+                ></lightning-button>
+            </p>
+        </div>
+        <div class="slds-var-m-around_medium">
+            <p class="slds-var-m-bottom_small">
+                <lightning-button
+                label="Log a message in the console and in Event Monitoring"
+                onclick={logMessageEventMonitoring}
+                ></lightning-button>
+            </p>
+        </div>
+        
+        <c-view-source source="lwc/logger" slot="footer">
+            Send log events to the Event Monitoring.
+        </c-view-source>
+    </lightning-card>
+</template>
