@@ -1,0 +1,31 @@
+<template>
+    <lightning-card title="MiscI18n" icon-name="custom:custom19">
+        <div class="slds-var-m-around_medium">
+            <p>User's locale:<b> {userLocale}</b></p>
+            <p>
+                Today's date formatted with {userLocale}:<b>
+                    {dateUserLocale}</b
+                >
+            </p>
+            <p>
+                100 {userCurrency} formatted with {userLocale}:<b>
+                    {currencyUserLocale}</b
+                >
+            </p>
+            <p>
+                Today's date formatted with {japanLocale}:<b>
+                    {dateJapanLocale}</b
+                >
+            </p>
+            <p>
+                100 {japanCurrency} formatted with {japanLocale}:<b>
+                    {currencyJapanLocale}</b
+                >
+            </p>
+        </div>
+        <c-view-source source="lwc/miscI18n" slot="footer">
+            Use the standard JS Intl class to format dates and numbers with
+            different locales and currencies.
+        </c-view-source>
+    </lightning-card>
+</template>

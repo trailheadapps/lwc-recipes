@@ -29,6 +29,12 @@
                 <identifier>miscModal</identifier>
             </componentInstance>
         </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentName>miscI18n</componentName>
+                <identifier>c_miscI18n</identifier>
+            </componentInstance>
+        </itemInstances>
         <name>region2</name>
         <type>Region</type>
     </flexiPageRegions>

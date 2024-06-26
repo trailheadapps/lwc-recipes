@@ -2,20 +2,23 @@ import { LightningElement } from 'lwc';
 import USER_LOCALE from '@salesforce/i18n/locale';
 import USER_CURRENCY from '@salesforce/i18n/currency';
 
-export default class Egei18n extends LightningElement {
-    anotherLocale = 'ja-JP';
+export default class I18n extends LightningElement {
+    userLocale = USER_LOCALE;
+    userCurrency = USER_CURRENCY;
+    japanLocale = 'ja-JP';
+    japanCurrency = 'JPY';
 
-    get today() {
+    get dateUserLocale() {
         const date = new Date();
         return new Intl.DateTimeFormat(USER_LOCALE).format(date);
     }
 
-    get todayOtherUser() {
+    get dateJapanLocale() {
         const date = new Date();
-        return new Intl.DateTimeFormat(this.anotherLocale).format(date);
+        return new Intl.DateTimeFormat(this.japanLocale).format(date);
     }
 
-    get hundredLocaleCurrency() {
+    get currencyUserLocale() {
         return new Intl.NumberFormat(USER_LOCALE, {
             style: 'currency',
             currency: USER_CURRENCY,
@@ -23,10 +26,10 @@ export default class Egei18n extends LightningElement {
         }).format(100);
     }
 
-    get hundredOtherUserCurrency() {
-        return new Intl.NumberFormat(this.anotherLocale, {
+    get currencyJapanLocale() {
+        return new Intl.NumberFormat(this.japanLocale, {
             style: 'currency',
-            currency: USER_CURRENCY,
+            currency: this.japanCurrency,
             currencyDisplay: 'symbol'
         }).format(100);
     }
