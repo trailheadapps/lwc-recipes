@@ -1,13 +1,9 @@
-import { LightningElement } from "lwc";
-import USER_LOCALE from "@salesforce/i18n/locale";
-import USER_CURRENCY from "@salesforce/i18n/currency";
-
+import { LightningElement } from 'lwc';
+import USER_LOCALE from '@salesforce/i18n/locale';
+import USER_CURRENCY from '@salesforce/i18n/currency';
 
 export default class Egei18n extends LightningElement {
-    anotherLocale = "ja-JP"
-    get userLocale() {
-        return userLocale;
-    }
+    anotherLocale = 'ja-JP';
 
     get today() {
         const date = new Date();
@@ -21,17 +17,17 @@ export default class Egei18n extends LightningElement {
 
     get hundredLocaleCurrency() {
         return new Intl.NumberFormat(USER_LOCALE, {
-            style: "currency",
+            style: 'currency',
             currency: USER_CURRENCY,
-            currencyDisplay: "symbol"
+            currencyDisplay: 'symbol'
         }).format(100);
     }
 
     get hundredOtherUserCurrency() {
         return new Intl.NumberFormat(this.anotherLocale, {
-            style: "currency",
+            style: 'currency',
             currency: USER_CURRENCY,
-            currencyDisplay: "symbol"
+            currencyDisplay: 'symbol'
         }).format(100);
     }
 }

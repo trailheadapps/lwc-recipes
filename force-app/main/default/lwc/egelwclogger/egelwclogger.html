@@ -3,22 +3,23 @@
         <div class="slds-var-m-around_medium">
             <p class="slds-var-m-bottom_small">
                 <lightning-button
-                label="Log a message in the console"
-                onclick={logMessageConsole}
+                    label="Log a message in the console"
+                    onclick={logMessageConsole}
                 ></lightning-button>
             </p>
         </div>
         <div class="slds-var-m-around_medium">
             <p class="slds-var-m-bottom_small">
                 <lightning-button
-                label="Log a message in the console and in Event Monitoring"
-                onclick={logMessageEventMonitoring}
+                    label="Log a message in the console and in Event Monitoring"
+                    onclick={logMessageEventMonitoring}
                 ></lightning-button>
             </p>
         </div>
-        
+
         <c-view-source source="lwc/apexImperativeMethod" slot="footer">
-            This recipe is not included in the current LWC Recipes, but it is offered to understand the logger mechanism.
+            This recipe is not included in the current LWC Recipes, but it is
+            offered to understand the logger mechanism.
         </c-view-source>
     </lightning-card>
 </template>
