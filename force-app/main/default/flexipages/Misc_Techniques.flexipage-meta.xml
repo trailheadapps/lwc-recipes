@@ -35,6 +35,12 @@
                 <identifier>c_miscI18n</identifier>
             </componentInstance>
         </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentName>miscLogger</componentName>
+                <identifier>c_misLogger</identifier>
+            </componentInstance>
+        </itemInstances>
         <name>region2</name>
         <type>Region</type>
     </flexiPageRegions>
