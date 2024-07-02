@@ -12,7 +12,7 @@
         "test:unit:coverage": "sfdx-lwc-jest --coverage --skipApiVersionCheck",
         "prettier": "prettier --write \"**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,xml,yaml,yml}\"",
         "prettier:verify": "prettier --check \"**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,xml,yaml,yml}\"",
-        "postinstall": "husky install",
+        "prepare": "husky || true",
         "precommit": "lint-staged"
     },
     "lint-staged": {
@@ -42,8 +42,8 @@
         "@salesforce/sfdx-lwc-jest": "^5.1.0",
         "eslint": "^8.57.0",
         "eslint-plugin-import": "^2.29.1",
-        "eslint-plugin-jest": "^27.9.0",
-        "husky": "^8.0.3",
+        "eslint-plugin-jest": "^28.6.0",
+        "husky": "^9.0.11",
         "jest-canvas-mock": "^2.5.2",
         "lint-staged": "^15.2.7",
         "prettier": "^3.3.2",
