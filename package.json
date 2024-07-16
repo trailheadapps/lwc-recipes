@@ -35,7 +35,7 @@
     "devDependencies": {
         "@lwc/eslint-plugin-lwc": "^1.8.2",
         "@prettier/plugin-xml": "^3.4.1",
-        "@sa11y/jest": "^6.9.5",
+        "@sa11y/jest": "^6.10.1",
         "@salesforce/eslint-config-lwc": "^3.6.0",
         "@salesforce/eslint-plugin-aura": "^2.1.0",
         "@salesforce/eslint-plugin-lightning": "^1.0.0",
@@ -46,7 +46,7 @@
         "husky": "^9.0.11",
         "jest-canvas-mock": "^2.5.2",
         "lint-staged": "^15.2.7",
-        "prettier": "^3.3.2",
+        "prettier": "^3.3.3",
         "prettier-plugin-apex": "^2.1.4"
     },
     "volta": {
