@@ -6,10 +6,10 @@
     "scripts": {
         "lint": "eslint **/{lwc,aura}/**/*.js",
         "test": "npm run test:unit",
-        "test:unit": "sfdx-lwc-jest --skipApiVersionCheck",
-        "test:unit:watch": "sfdx-lwc-jest --watch --skipApiVersionCheck",
-        "test:unit:debug": "sfdx-lwc-jest --debug --skipApiVersionCheck",
-        "test:unit:coverage": "sfdx-lwc-jest --coverage --skipApiVersionCheck",
+        "test:unit": "sfdx-lwc-jest",
+        "test:unit:watch": "sfdx-lwc-jest --watch",
+        "test:unit:debug": "sfdx-lwc-jest --debug",
+        "test:unit:coverage": "sfdx-lwc-jest --coverage",
         "prettier": "prettier --write \"**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,xml,yaml,yml}\"",
         "prettier:verify": "prettier --check \"**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,xml,yaml,yml}\"",
         "prepare": "husky || true",
@@ -23,7 +23,7 @@
             "eslint"
         ],
         "**/lwc/**": [
-            "sfdx-lwc-jest --skipApiVersionCheck -- --bail --findRelatedTests --passWithNoTests"
+            "sfdx-lwc-jest -- --bail --findRelatedTests --passWithNoTests"
         ]
     },
     "author": "salesforce.com",
@@ -43,13 +43,13 @@
         "eslint": "^8.57.0",
         "eslint-plugin-import": "^2.29.1",
         "eslint-plugin-jest": "^28.6.0",
-        "husky": "^9.0.11",
+        "husky": "^9.1.0",
         "jest-canvas-mock": "^2.5.2",
         "lint-staged": "^15.2.7",
         "prettier": "^3.3.3",
         "prettier-plugin-apex": "^2.1.4"
     },
     "volta": {
-        "node": "20.13.1"
+        "node": "20.15.0"
     }
 }
