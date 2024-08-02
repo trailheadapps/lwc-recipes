@@ -18,5 +18,9 @@ package.xml
 # LWC Jest
 **/__tests__/**
 
+# TS configuration files
+**/tsconfig.json
+**/*.ts
+
 # For the pubsub README
 **/pubsub
