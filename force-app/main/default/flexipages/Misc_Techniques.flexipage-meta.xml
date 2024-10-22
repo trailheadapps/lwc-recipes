@@ -63,6 +63,12 @@
                 <identifier>miscDomQuery</identifier>
             </componentInstance>
         </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentName>miscLogger</componentName>
+                <identifier>c_miscLogger</identifier>
+            </componentInstance>
+        </itemInstances>
         <name>region3</name>
         <type>Region</type>
     </flexiPageRegions>
