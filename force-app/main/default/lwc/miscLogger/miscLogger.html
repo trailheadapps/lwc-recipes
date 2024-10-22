@@ -1,0 +1,27 @@
+<template>
+    <lightning-card title="MiscLogger" icon-name="custom:custom63">
+        <div class="slds-var-m-around_medium">
+            <p class="slds-var-m-bottom_small">
+                <lightning-button
+                    label="Log a message to the console"
+                    onclick={logMessageConsole}
+                ></lightning-button>
+            </p>
+        </div>
+        <div class="slds-var-m-around_medium event-monitoring">
+            <p class="slds-var-m-bottom_small">
+                <lightning-button
+                    label="Log a message to the console and Event Monitoring"
+                    onclick={logMessageEventMonitoring}
+                ></lightning-button>
+            </p>
+        </div>
+
+        <c-view-source source="lwc/misclogger" slot="footer">
+            Log custom messages to Event Monitoring, adding observability to
+            your LWCs. To use this feature, enable Lightning Logger Events from
+            Setup, under Event Monitoring Settings. View the logger output in
+            the console by launching the developer tools.
+        </c-view-source>
+    </lightning-card>
+</template>
