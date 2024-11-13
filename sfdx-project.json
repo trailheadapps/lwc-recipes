@@ -5,11 +5,11 @@
       "default": true,
       "package": "LWCRecipes",
       "versionName": "Spring '24",
-      "versionNumber": "61.0.0.NEXT"
+      "versionNumber": "62.0.0.NEXT"
     }
   ],
   "namespace": "",
-  "sourceApiVersion": "61.0",
+  "sourceApiVersion": "62.0",
   "sfdcLoginUrl": "https://login.salesforce.com",
   "packageAliases": {
     "LWCRecipes": "0Ho3t000000KywNCAS",
