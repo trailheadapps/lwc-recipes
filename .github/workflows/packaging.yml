@@ -94,6 +94,7 @@ jobs:
 
             # Approve and mark PR for auto merge
             - name: 'Approve and mark PR for auto merge'
+              continue-on-error: true
               run: |
                   gh pr review --approve "$PR_NUMBER"
                   gh pr merge --auto --squash "$PR_NUMBER"
