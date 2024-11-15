@@ -173,10 +173,6 @@ jobs:
             - name: 'Push source to scratch org'
               run: sf project deploy start
 
-            # Deploy source to scratch org
-            - name: 'Push source to scratch org'
-              run: sf project deploy start
-
             # Assign permissionset
             - name: 'Assign permissionset to default user'
               run: sf org assign permset -n recipes
