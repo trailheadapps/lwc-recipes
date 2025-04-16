@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import { createElement } from 'lwc';
 import NavToNewRecordWithDefaults from 'c/navToNewRecordWithDefaults';
 import { getNavigateCalledWith } from 'lightning/navigation';

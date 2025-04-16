@@ -19,28 +19,28 @@ Agreement. You can do so by going to https://cla.salesforce.com/sign-cla.
 
 ## Branches
 
--   We work in `main`.
--   Our released (aka. _production_) branch is `main`.
--   Our work happens in _topic_ branches (feature and/or bug-fix).
-    -   feature as well as bug-fix branches are based on `main`
-    -   branches _should_ be kept up-to-date using `rebase`
-    -   see below for further merge instructions
+- We work in `main`.
+- Our released (aka. _production_) branch is `main`.
+- Our work happens in _topic_ branches (feature and/or bug-fix).
+    - feature as well as bug-fix branches are based on `main`
+    - branches _should_ be kept up-to-date using `rebase`
+    - see below for further merge instructions
 
 ### Merging between branches
 
--   We try to limit merge commits as much as possible.
+- We try to limit merge commits as much as possible.
 
--   _Topic_ branches are:
+- _Topic_ branches are:
 
     1. based on `main` and will be
     1. squash-merged into `main`.
 
 ## Pull Requests
 
--   Develop features and bug fixes in _topic_ branches.
--   _Topic_ branches can live in forks (external contributors) or within this repository (committers).
-    \*\* When creating _topic_ branches in this repository please prefix with `<developer-name>/`.
+- Develop features and bug fixes in _topic_ branches.
+- _Topic_ branches can live in forks (external contributors) or within this repository (committers).
+  \*\* When creating _topic_ branches in this repository please prefix with `<developer-name>/`.
 
 ### Merging Pull Requests
 
--   Pull request merging is restricted to squash & merge only.
+- Pull request merging is restricted to squash & merge only.
