@@ -35,7 +35,6 @@ export default class LibsFullCalendar extends LightningElement {
 
     initializeCalendar() {
         const calendarEl = this.template.querySelector('.calendar');
-        // eslint-disable-next-line no-undef
         if (typeof FullCalendar === 'undefined') {
             throw new Error(
                 'Could not load FullCalendar. Make sure that Lightning Web Security is enabled for your org. See link below.'
