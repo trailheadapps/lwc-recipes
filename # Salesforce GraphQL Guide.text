@@ -1,0 +1,371 @@
+# Salesforce GraphQL Guide
+
+## Key Concepts
+Salesforce’s GraphQL API allows for flexible and powerful queries on Salesforce data. It integrates seamlessly with Lightning Web Components (LWC) and supports advanced filtering, sorting, and pagination capabilities. Below is a comprehensive guide on its usage, focusing on operators, filtering, and advanced use cases.
+
+---
+
+## Basic Query Structure
+GraphQL queries in Salesforce typically follow this structure:
+
+```graphql
+query ExampleQuery {
+    uiapi {
+        query {
+            ObjectName {
+                edges {
+                    node {
+                        Field1 {
+                            value
+                        }
+                        Field2 {
+                            value
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+```
+
+- **`ObjectName`**: The name of the Salesforce object (e.g., `Account`, `Contact`).
+- **`edges`**: Represents the list of records retrieved.
+- **`node`**: Contains individual field data for each record.
+- **`value`**: The actual value of the field.
+
+---
+
+## Common Operators in GraphQL
+
+### 1. `eq` (Equal to)
+Filters records where the field matches a specific value.
+
+#### Example: Fetch Accounts where `Industry` is “Technology”
+```graphql
+query getAccounts {
+    uiapi {
+        query {
+            Account(
+                filter: { Industry: { eq: "Technology" } }
+            ) {
+                edges {
+                    node {
+                        Id
+                        Name {
+                            value
+                        }
+                        Industry {
+                            value
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+```
+
+---
+
+### 2. `ne` (Not Equal to)
+Filters records where the field does not match a specific value.
+
+#### Example: Fetch Accounts where `Industry` is not “Technology”
+```graphql
+query getAccountsNotTechnology {
+    uiapi {
+        query {
+            Account(
+                filter: { Industry: { ne: "Technology" } }
+            ) {
+                edges {
+                    node {
+                        Id
+                        Name {
+                            value
+                        }
+                        Industry {
+                            value
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+```
+
+---
+
+### 3. `in` (In List)
+Filters records where the field matches any value in a list.
+
+#### Example: Fetch Contacts in specific Industries
+```graphql
+query getContactsByIndustry {
+    uiapi {
+        query {
+            Contact(
+                filter: { Industry: { in: ["Technology", "Finance"] } }
+            ) {
+                edges {
+                    node {
+                        Id
+                        Name {
+                            value
+                        }
+                        Industry {
+                            value
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+```
+
+---
+
+### 4. `notIn` (Not in List)
+Filters records where the field does not match any value in a list.
+
+#### Example: Fetch Accounts not in certain Industries
+```graphql
+query getAccountsNotInIndustry {
+    uiapi {
+        query {
+            Account(
+                filter: { Industry: { notIn: ["Technology", "Finance"] } }
+            ) {
+                edges {
+                    node {
+                        Id
+                        Name {
+                            value
+                        }
+                        Industry {
+                            value
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+```
+
+---
+
+### 5. `like` (Pattern Matching)
+Filters records where the field matches a specific pattern.
+
+#### Example: Fetch Accounts where Name contains “Corp”
+```graphql
+query getAccountsByName {
+    uiapi {
+        query {
+            Account(
+                filter: { Name: { like: "%Corp%" } }
+            ) {
+                edges {
+                    node {
+                        Id
+                        Name {
+                            value
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+```
+
+---
+
+### 6. Logical Operators: `AND` and `OR`
+
+#### Combine Filters with `AND`
+Filters records where all conditions are met.
+
+**Example: Fetch Contacts where `Industry` is “Technology” AND `BillingCountry` is “United States”**
+```graphql
+query getContacts {
+    uiapi {
+        query {
+            Contact(
+                filter: {
+                    AND: [
+                        { Industry: { eq: "Technology" } },
+                        { BillingCountry: { eq: "United States" } }
+                    ]
+                }
+            ) {
+                edges {
+                    node {
+                        Id
+                        Name {
+                            value
+                        }
+                        Industry {
+                            value
+                        }
+                        BillingCountry {
+                            value
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+```
+
+#### Combine Filters with `OR`
+Filters records where at least one condition is met.
+
+**Example: Fetch Accounts where Name contains “Corp” OR `Industry` is “Technology”**
+```graphql
+query getAccountsByNameOrIndustry {
+    uiapi {
+        query {
+            Account(
+                filter: {
+                    OR: [
+                        { Name: { like: "%Corp%" } },
+                        { Industry: { eq: "Technology" } }
+                    ]
+                }
+            ) {
+                edges {
+                    node {
+                        Id
+                        Name {
+                            value
+                        }
+                        Industry {
+                            value
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+```
+
+---
+
+### 7. Combining `AND` and `OR`
+Filters records with complex combinations of conditions.
+
+#### Example: Fetch Contacts where `Industry` is “Technology” AND (`Name` contains “Inc” OR “Corp”)
+```graphql
+query getComplexContacts {
+    uiapi {
+        query {
+            Contact(
+                filter: {
+                    AND: [
+                        { Industry: { eq: "Technology" } },
+                        { OR: [
+                            { Name: { like: "%Inc%" } },
+                            { Name: { like: "%Corp%" } }
+                        ]}
+                    ]
+                }
+            ) {
+                edges {
+                    node {
+                        Id
+                        Name {
+                            value
+                        }
+                        Industry {
+                            value
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+```
+
+---
+
+## Pagination
+GraphQL supports pagination using `first` and `offset` arguments.
+
+#### Example: Fetch the first 5 Accounts
+```graphql
+query getFirstFiveAccounts {
+    uiapi {
+        query {
+            Account(
+                first: 5
+            ) {
+                edges {
+                    node {
+                        Id
+                        Name {
+                            value
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+```
+
+---
+
+## Sorting
+You can sort records using the `orderBy` argument.
+
+#### Example: Sort Accounts by Name in Ascending Order
+```graphql
+query getAccountsSortedByName {
+    uiapi {
+        query {
+            Account(
+                orderBy: { Name: { order: ASC } }
+            ) {
+                edges {
+                    node {
+                        Id
+                        Name {
+                            value
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+```
+
+---
+
+## Negation Operators
+
+### `ne` (Not Equal)
+Filters records where the field does not match a specific value.
+
+### `notIn` (Not in List)
+Filters records where the field does not match any value in a list.
+
+---
+
+## Key Notes
+- **Field Access**: Ensure users have the necessary permissions for the fields queried.
+- **Performance**: Test queries for large datasets and complex filters to avoid governor limits.
+- **Case Insensitivity**: String comparisons are case-insensitive.
+
+---
+
+This guide provides the foundational knowledge to effectively use GraphQL in Salesforce. By leveraging its powerful operators and flexible filtering options, you can create highly customized data queries.
+

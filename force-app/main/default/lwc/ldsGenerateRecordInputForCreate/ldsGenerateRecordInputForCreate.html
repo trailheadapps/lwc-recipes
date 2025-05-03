@@ -1,30 +1,15 @@
 <template>
-    <lightning-card
-        title="LdsGenerateRecordInputForCreate"
-        icon-name="standard:record"
-    >
+    <lightning-card title="LdsGenerateRecordInputForCreate" icon-name="standard:record">
         <div class="slds-var-m-around_medium">
             <template lwc:if={recordInput}>
-                <lightning-input
-                    label="Name"
-                    onchange={handleFieldChange}
-                    data-field-name={nameField}
-                ></lightning-input>
+                <lightning-input label="Name" onchange={handleFieldChange}
+                    data-field-name={nameField}></lightning-input>
                 <template lwc:if={areaNumberCreateable}>
-                    <lightning-input
-                        type="number"
-                        label="Area Number"
-                        onchange={handleFieldChange}
-                        data-field-name={areaNumberField}
-                        value={areaNumber}
-                    ></lightning-input>
+                    <lightning-input type="number" label="Area Number" onchange={handleFieldChange}
+                        data-field-name={areaNumberField} value={areaNumber}></lightning-input>
                 </template>
                 <div class="slds-var-m-top_x-small">
-                    <lightning-button
-                        label="Create Account"
-                        variant="brand"
-                        onclick={createAccount}
-                    ></lightning-button>
+                    <lightning-button label="Create Account" variant="brand" onclick={createAccount}></lightning-button>
                 </div>
             </template>
             <template lwc:elseif={error}>
@@ -32,10 +17,7 @@
             </template>
         </div>
 
-        <c-view-source
-            source="lwc/ldsGenerateRecordInputForCreate"
-            slot="footer"
-        >
+        <c-view-source source="lwc/ldsGenerateRecordInputForCreate" slot="footer">
             Create a custom form with default values and enforcing field
             security using getRecordCreateDefaults and
             generateRecordInputForCreate. Always consider lightning-record-form
