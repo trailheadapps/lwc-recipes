@@ -1,12 +1,7 @@
 import { LightningElement, api, wire } from 'lwc';
 import updateContact from '@salesforce/apex/ContactController.updateContact';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
-import {
-    getRecord,
-    getFieldValue,
-    notifyRecordUpdateAvailable
-} from 'lightning/uiRecordApi';
-
+import {getRecord,getFieldValue,notifyRecordUpdateAvailable} from 'lightning/uiRecordApi';
 import FIRSTNAME_FIELD from '@salesforce/schema/Contact.FirstName';
 import LASTNAME_FIELD from '@salesforce/schema/Contact.LastName';
 

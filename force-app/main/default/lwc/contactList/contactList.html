@@ -1,12 +1,7 @@
 <template>
     <template lwc:if={contacts.data}>
         <template for:each={contacts.data} for:item="contact">
-            <a
-                href="#"
-                key={contact.Id}
-                data-contact-id={contact.Id}
-                onclick={handleSelect}
-            >
+            <a href="#" key={contact.Id} data-contact-id={contact.Id} onclick={handleSelect}>
                 <lightning-layout>
                     <lightning-layout-item>
                         <img src={contact.Picture__c} alt="Profile photo" />

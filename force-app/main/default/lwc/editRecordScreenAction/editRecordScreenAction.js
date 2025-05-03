@@ -31,12 +31,8 @@ export default class EditRecordScreenAction extends LightningElement {
     async handleSave() {
         const fields = {};
         fields[ID_FIELD.fieldApiName] = this.recordId;
-        fields[FIRSTNAME_FIELD.fieldApiName] = this.template.querySelector(
-            "[data-field='FirstName']"
-        ).value;
-        fields[LASTNAME_FIELD.fieldApiName] = this.template.querySelector(
-            "[data-field='LastName']"
-        ).value;
+        fields[FIRSTNAME_FIELD.fieldApiName] = this.template.querySelector("[data-field='FirstName']").value;
+        fields[LASTNAME_FIELD.fieldApiName] = this.template.querySelector("[data-field='LastName']").value;
         const recordInput = { fields };
 
         try {
