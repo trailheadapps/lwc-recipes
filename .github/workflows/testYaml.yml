@@ -1,0 +1,23 @@
+name: testing yaml 
+on: workflow_dispatch
+jobs:
+  test_yaml:
+    runs-on: ubuntu-latest
+    steps:
+        - name: Hello world
+          run: echo "Hello world" 
+        - name: Check YAML syntax
+          uses: actions/github-script@v6
+          with:
+            script: |
+              const yaml = require('js-yaml');
+              const fs = require('fs');
+              const filePath = 'test.yaml';
+              try {
+                const fileContents = fs.readFileSync(filePath, 'utf8');
+                yaml.load(fileContents);
+                console.log('YAML syntax is valid.');
+              } catch (e) {
+                console.error('YAML syntax is invalid:', e);
+                process.exit(1);
+              }
