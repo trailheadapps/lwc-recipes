@@ -44,9 +44,36 @@ jobs:
             - name: 'Code formatting verification with Prettier'
               run: npm run prettier:verify
 
-            # Lint LWC / Aura
-            - name: 'Lint Lightning Web Components / Aura Components'
-              run: npm run lint
+            # Install Salesforce CLI
+            - name: 'Install Salesforce CLI'
+              run: |
+                  npm install @salesforce/cli --location=global
+                  nodeInstallPath=$(npm config get prefix)
+                  echo "$nodeInstallPath/bin" >> $GITHUB_PATH
+                  cd "$nodeInstallPath/bin"
+                  ./sf --version
+
+            # Install Salesforce CLI Code Analyzer plugin
+            - name: 'Install Salesforce CLI Code Analyzer plugin'
+              run: sf plugins install code-analyzer
+
+            # Run Code Analyzer
+            - name: 'Run Code Analyzer'
+              id: run-code-analyzer
+              uses: forcedotcom/run-code-analyzer@v2
+              with:
+                  run-arguments: --workspace "force-app/**" --view detail --output-file "sca-results.csv" --config-file "code-analyzer.yml"
+                  results-artifact-name: code-analyzer-results
+
+            # Check for Code Analyzer critical or high severity violations
+            - name: 'Check for Code Analyzer critical or high severity violations'
+              if: |
+                  steps.run-code-analyzer.outputs.exit-code > 0 ||
+                  steps.run-code-analyzer.outputs.num-sev1-violations > 0 ||
+                  steps.run-code-analyzer.outputs.num-sev2-violations > 0
+              run: |
+                  echo One of more Code Analyzer critical or high severity violations found
+                  exit 1
 
             # LWC unit tests
             - name: 'Unit test Lightning Web Components'
@@ -67,20 +94,6 @@ jobs:
             # Checkout the source code
             - name: 'Checkout source code'
               uses: actions/checkout@v4
-
-            # Run PMD scan
-            - name: 'Run PMD scan'
-              uses: pmd/pmd-github-action@v2.0.0
-              id: pmd
-              with:
-                  version: '6.55.0'
-                  sourcePath: 'force-app'
-                  rulesets: 'ruleset.xml'
-
-            # Check for PMD violations
-            - name: 'Check for PMD violations'
-              if: steps.pmd.outputs.violations != 0
-              run: exit 1
 
             # Install Salesforce CLI
             - name: 'Install Salesforce CLI'

@@ -40,6 +40,10 @@ $RECYCLE.BIN/
 .vscode/*
 !.vscode/extensions.json
 
+# Salesforce Code Analyzer results
+sca-results.csv
+sfca_results.json
+
 # Local environment variables/config
 .env
 .config
