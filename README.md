@@ -92,7 +92,7 @@ Make sure to start from a brand-new environment to avoid conflicts with any prev
 
 1. Log in to your org
 
-1. Click [this link](https://login.salesforce.com/packaging/installPackage.apexp?p0=04tKi000000LP9OIAW) to install the Recipes unlocked package in your org.
+1. Click [this link](https://login.salesforce.com/packaging/installPackage.apexp?p0=04tKi000000LPE5IAO) to install the Recipes unlocked package in your org.
 
 1. Select **Install for All Users**
 
