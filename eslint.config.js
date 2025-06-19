@@ -3,10 +3,28 @@
 const { defineConfig } = require('eslint/config');
 const eslintJs = require('@eslint/js');
 const jestPlugin = require('eslint-plugin-jest');
+const auraConfig = require('@salesforce/eslint-plugin-aura');
 const salesforceLwcConfig = require('@salesforce/eslint-config-lwc/recommended');
 const globals = require('globals');
 
 module.exports = defineConfig([
+    // Global ignores
+    {
+        ignores: [
+            'force-app/main/default/staticresources/**', // Ignore third party libraries
+            'force-app/test/jest-mocks/lightning/modal.js' // Ignore modal mock as it contains decorators (unsupported by ESLint)
+        ]
+    },
+
+    // Aura configuration
+    {
+        files: ['force-app/main/default/aura/**/*.js'],
+        extends: [
+            ...auraConfig.configs.recommended,
+            ...auraConfig.configs.locker
+        ]
+    },
+
     // LWC configuration for force-app/main/default/lwc
     {
         files: ['force-app/main/default/lwc/**/*.js'],
@@ -36,7 +54,9 @@ module.exports = defineConfig([
             globals: {
                 ...globals.node,
                 ...globals.es2021,
-                ...jestPlugin.environments.globals.globals
+                ...jestPlugin.environments.globals.globals,
+                CustomEvent: 'readonly',
+                window: 'readonly'
             }
         },
         plugins: {

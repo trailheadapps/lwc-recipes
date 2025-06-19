@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-expressions
 ({
     handleMessage: function (component, message) {
         var recordId;
