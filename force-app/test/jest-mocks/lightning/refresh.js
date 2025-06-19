@@ -23,7 +23,7 @@ export const registerRefreshHandler = jest.fn((element, handler) => {
     );
 });
 
-export const unregisterRefreshHandler = jest.fn((id) => {
+export const unregisterRefreshHandler = jest.fn(() => {
     window.removeEventListener(
         RefreshEventName,
         eventHandler.bind(elementToRefresh)

@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-expressions
 ({
     doInit: function (component) {
         var action = component.get('c.getContactList');
