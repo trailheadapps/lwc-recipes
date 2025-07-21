@@ -1,5 +1,5 @@
 {
-    "name": "lwc-recipes",
+    "name": "@salesforce/lwc-recipes",
     "private": true,
     "version": "0.1.0",
     "description": "Lightning Web Components Recipes",
