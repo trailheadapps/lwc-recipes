@@ -1,5 +1,5 @@
 import { wire, LightningElement } from 'lwc';
-import { gql, graphql } from 'lightning/uiGraphQLApi';
+import { gql, graphql } from 'lightning/graphql';
 
 export default class RecordPickerHello extends LightningElement {
     selectedRecordId = '';

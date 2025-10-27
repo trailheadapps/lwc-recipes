@@ -1,5 +1,5 @@
 import { LightningElement, wire } from 'lwc';
-import { gql, graphql } from 'lightning/uiGraphQLApi';
+import { gql, graphql } from 'lightning/graphql';
 
 /** The delay used when debouncing event handlers before invoking Apex. */
 const DELAY = 300;

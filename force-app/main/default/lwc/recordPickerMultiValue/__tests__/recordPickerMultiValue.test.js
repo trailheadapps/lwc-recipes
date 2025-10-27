@@ -1,5 +1,5 @@
 import { createElement } from 'lwc';
-import { graphql } from 'lightning/uiGraphQLApi';
+import { graphql } from 'lightning/graphql';
 import RecordPickerMultiValue from 'c/recordPickerMultiValue';
 
 // Mock realistic data

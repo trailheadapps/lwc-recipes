@@ -1,6 +1,6 @@
 import { createElement } from 'lwc';
 import GraphqlPagination from 'c/graphqlPagination';
-import { graphql } from 'lightning/uiGraphQLApi';
+import { graphql } from 'lightning/graphql';
 
 // Mock realistic data
 const mockGraphQLFirstPage = require('./data/graphqlPaginationResponseFirstPage.json');

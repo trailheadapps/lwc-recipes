@@ -1,6 +1,6 @@
 import { createElement } from 'lwc';
 import GraphqlMultipleObjects from 'c/graphqlMultipleObjects';
-import { graphql } from 'lightning/uiGraphQLApi';
+import { graphql } from 'lightning/graphql';
 
 // Mock realistic data
 const mockGraphQL = require('./data/graphqlMultipleObjectsResponse.json');

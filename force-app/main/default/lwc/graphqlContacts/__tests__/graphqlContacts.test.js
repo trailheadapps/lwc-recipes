@@ -1,6 +1,6 @@
 import { createElement } from 'lwc';
 import GraphqlContacts from 'c/graphqlContacts';
-import { graphql } from 'lightning/uiGraphQLApi';
+import { graphql } from 'lightning/graphql';
 
 // Mock realistic data
 const mockGraphQL = require('./data/graphqlContactsResponse.json');

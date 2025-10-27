@@ -1,5 +1,5 @@
 import { LightningElement, wire } from 'lwc';
-import { gql, graphql } from 'lightning/uiGraphQLApi';
+import { gql, graphql } from 'lightning/graphql';
 
 // As of Winter '24, `lightning-record-picker` only supports a single selection.
 // This sample component shows how you can turn `lightning-record-picker` into
