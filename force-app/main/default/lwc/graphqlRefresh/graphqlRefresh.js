@@ -1,4 +1,4 @@
-import { LightningElement, wire, api } from 'lwc';
+import { LightningElement, wire } from 'lwc';
 import { gql, graphql } from 'lightning/graphql';
 import randomizeAccountData from '@salesforce/apex/AccountController.randomizeAccountData';
 
@@ -7,7 +7,7 @@ export default class GraphqlRefresh extends LightningElement {
     account;
     errors;
     isLoading = true;
-    @api refreshGraphQL;
+    refreshGraphQL;
 
     @wire(graphql, {
         query: gql`
