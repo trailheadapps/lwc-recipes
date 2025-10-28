@@ -144,8 +144,9 @@ describe('c-graphql-refresh', () => {
             });
             document.body.appendChild(element);
 
+            const refreshGraphQL = jest.fn().mockResolvedValue();
             // Emit data from @wire
-            graphql.emit(mockGraphQL); // TODO: call with graphql.emit(mockGraphql, () => true, jest.fn() => Promise.resolve() )
+            graphql.emit(mockGraphQL, () => true, refreshGraphQL);
 
             // Wait for any asynchronous DOM updates
             await flushPromises();
@@ -156,7 +157,7 @@ describe('c-graphql-refresh', () => {
                 .click();
 
             // Check that refreshGraphQL was called
-            expect(element.refreshGraphQL).toHaveBeenCalled(); // TODO: update the mock.
+            expect(refreshGraphQL).toHaveBeenCalled();
         });
     });
 
