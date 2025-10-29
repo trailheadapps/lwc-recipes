@@ -1,4 +1,4 @@
-import { createElement } from 'lwc';
+import { createElement } from '@lwc/engine-dom';
 import RecordPickerHello from 'c/recordPickerHello';
 import { graphql } from 'lightning/graphql';
 

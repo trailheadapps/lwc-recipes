@@ -1,4 +1,4 @@
-import { createElement } from 'lwc';
+import { createElement } from '@lwc/engine-dom';
 import NavigateToRecordHeadlessAction from '../navigateToRecordHeadlessAction';
 import { getNavigateCalledWith } from 'lightning/navigation';
 

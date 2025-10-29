@@ -1,4 +1,4 @@
-import { createElement } from 'lwc';
+import { createElement } from '@lwc/engine-dom';
 import ApiSpread from 'c/apiSpread';
 
 describe('c-api-spread', () => {

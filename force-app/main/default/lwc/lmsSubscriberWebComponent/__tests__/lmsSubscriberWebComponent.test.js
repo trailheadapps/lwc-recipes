@@ -1,4 +1,4 @@
-import { createElement } from 'lwc';
+import { createElement } from '@lwc/engine-dom';
 import LmsSubscriberWebComponent from 'c/lmsSubscriberWebComponent';
 import { ShowToastEventName } from 'lightning/platformShowToastEvent';
 import { getRecord } from 'lightning/uiRecordApi';

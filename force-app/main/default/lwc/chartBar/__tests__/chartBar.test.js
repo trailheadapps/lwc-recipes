@@ -1,4 +1,4 @@
-import { createElement } from 'lwc';
+import { createElement } from '@lwc/engine-dom';
 import ChartBar from 'c/chartBar';
 
 describe('c-chart-bar', () => {

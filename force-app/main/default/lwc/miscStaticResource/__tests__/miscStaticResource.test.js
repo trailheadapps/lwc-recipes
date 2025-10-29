@@ -1,4 +1,4 @@
-import { createElement } from 'lwc';
+import { createElement } from '@lwc/engine-dom';
 import MiscStaticResource from 'c/miscStaticResource';
 
 describe('c-misc-static-resource', () => {

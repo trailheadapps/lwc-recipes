@@ -1,4 +1,4 @@
-import { createElement } from 'lwc';
+import { createElement } from '@lwc/engine-dom';
 import MiscModal from 'c/miscModal';
 import LightningModal from 'lightning/modal';
 

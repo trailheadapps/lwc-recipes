@@ -1,4 +1,4 @@
-import { createElement } from 'lwc';
+import { createElement } from '@lwc/engine-dom';
 import MiscRestApiCall from 'c/miscRestApiCall';
 
 // Query URL for connecting to Google API

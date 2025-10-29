@@ -1,4 +1,4 @@
-import { createElement } from 'lwc';
+import { createElement } from '@lwc/engine-dom';
 import LightDomQuery from 'c/lightDomQuery';
 
 describe('c-light-dom-query', () => {

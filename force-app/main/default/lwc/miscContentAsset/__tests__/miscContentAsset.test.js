@@ -1,4 +1,4 @@
-import { createElement } from 'lwc';
+import { createElement } from '@lwc/engine-dom';
 import MiscContentAsset from 'c/miscContentAsset';
 
 describe('c-misc-content-asset', () => {

@@ -1,4 +1,4 @@
-import { createElement } from 'lwc';
+import { createElement } from '@lwc/engine-dom';
 import RecordEditFormDynamicContact from 'c/recordEditFormDynamicContact';
 
 describe('c-record-edit-form-dynamic-contact', () => {

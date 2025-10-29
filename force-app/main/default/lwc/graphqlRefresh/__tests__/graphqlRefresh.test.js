@@ -1,4 +1,4 @@
-import { createElement } from 'lwc';
+import { createElement } from '@lwc/engine-dom';
 import GraphqlRefresh from 'c/graphqlRefresh';
 import { graphql } from 'lightning/graphql';
 import randomizeAccountData from '@salesforce/apex/AccountController.randomizeAccountData';

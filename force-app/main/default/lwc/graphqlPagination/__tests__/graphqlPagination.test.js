@@ -1,4 +1,4 @@
-import { createElement } from 'lwc';
+import { createElement } from '@lwc/engine-dom';
 import GraphqlPagination from 'c/graphqlPagination';
 import { graphql } from 'lightning/graphql';
 

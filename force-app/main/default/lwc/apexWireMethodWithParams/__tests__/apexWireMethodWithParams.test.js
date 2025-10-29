@@ -4,7 +4,7 @@
  * because of which fake timers leak into all the tests in the same file,
  * while Axe doen't work when using fake timers.
  **/
-import { createElement } from 'lwc';
+import { createElement } from '@lwc/engine-dom';
 import ApexWireMethodWithParams from 'c/apexWireMethodWithParams';
 import findContacts from '@salesforce/apex/ContactController.findContacts';
 

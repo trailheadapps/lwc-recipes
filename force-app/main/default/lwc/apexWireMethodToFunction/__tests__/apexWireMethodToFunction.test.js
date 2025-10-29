@@ -1,4 +1,4 @@
-import { createElement } from 'lwc';
+import { createElement } from '@lwc/engine-dom';
 import ApexWireMethodToFunction from 'c/apexWireMethodToFunction';
 import getContactList from '@salesforce/apex/ContactController.getContactList';
 

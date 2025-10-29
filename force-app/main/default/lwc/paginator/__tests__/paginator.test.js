@@ -1,4 +1,4 @@
-import { createElement } from 'lwc';
+import { createElement } from '@lwc/engine-dom';
 import Paginator from 'c/paginator';
 
 describe('c-paginator', () => {

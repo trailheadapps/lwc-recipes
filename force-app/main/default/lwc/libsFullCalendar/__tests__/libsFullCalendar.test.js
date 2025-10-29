@@ -1,4 +1,4 @@
-import { createElement } from 'lwc';
+import { createElement } from '@lwc/engine-dom';
 import LibsFullCalendar from 'c/libsFullCalendar';
 import { loadScript, loadStyle } from 'lightning/platformResourceLoader';
 

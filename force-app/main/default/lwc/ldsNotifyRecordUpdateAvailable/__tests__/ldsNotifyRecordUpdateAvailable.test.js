@@ -1,4 +1,4 @@
-import { createElement } from 'lwc';
+import { createElement } from '@lwc/engine-dom';
 import LdsNotifyRecordUpdateAvailable from 'c/ldsNotifyRecordUpdateAvailable';
 import { getRecord, notifyRecordUpdateAvailable } from 'lightning/uiRecordApi';
 import updateContact from '@salesforce/apex/ContactController.updateContact';

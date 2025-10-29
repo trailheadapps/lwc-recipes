@@ -1,4 +1,4 @@
-import { createElement } from 'lwc';
+import { createElement } from '@lwc/engine-dom';
 import NavToChatterHome from 'c/navToChatterHome';
 import { getNavigateCalledWith } from 'lightning/navigation';
 // This test uses a mocked navigation plugin.

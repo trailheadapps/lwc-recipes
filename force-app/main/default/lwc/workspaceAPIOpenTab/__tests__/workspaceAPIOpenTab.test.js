@@ -1,4 +1,4 @@
-import { createElement } from 'lwc';
+import { createElement } from '@lwc/engine-dom';
 import WorkspaceAPIOpenTab from 'c/workspaceAPIOpenTab';
 import { IsConsoleNavigation, openTab } from 'lightning/platformWorkspaceApi';
 

@@ -1,4 +1,4 @@
-import { createElement } from 'lwc';
+import { createElement } from '@lwc/engine-dom';
 import DispatchRefreshEvent from 'c/dispatchRefreshEvent';
 import { RefreshEventName } from 'lightning/refresh';
 

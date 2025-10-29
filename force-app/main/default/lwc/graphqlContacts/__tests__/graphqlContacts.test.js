@@ -1,4 +1,4 @@
-import { createElement } from 'lwc';
+import { createElement } from '@lwc/engine-dom';
 import GraphqlContacts from 'c/graphqlContacts';
 import { graphql } from 'lightning/graphql';
 

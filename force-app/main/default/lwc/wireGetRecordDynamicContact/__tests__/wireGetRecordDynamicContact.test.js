@@ -1,4 +1,4 @@
-import { createElement } from 'lwc';
+import { createElement } from '@lwc/engine-dom';
 import WireGetRecordDynamicContact from 'c/wireGetRecordDynamicContact';
 import { getRecord } from 'lightning/uiRecordApi';
 

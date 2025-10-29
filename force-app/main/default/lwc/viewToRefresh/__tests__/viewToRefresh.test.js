@@ -1,4 +1,4 @@
-import { createElement } from 'lwc';
+import { createElement } from '@lwc/engine-dom';
 import ViewToRefresh from 'c/viewToRefresh';
 import getTotalNumber from '@salesforce/apex/AccountController.getTotalNumber';
 import {

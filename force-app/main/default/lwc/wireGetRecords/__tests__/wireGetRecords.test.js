@@ -1,4 +1,4 @@
-import { createElement } from 'lwc';
+import { createElement } from '@lwc/engine-dom';
 import WireGetRecords from 'c/wireGetRecords';
 import { getRecords } from 'lightning/uiRecordApi';
 

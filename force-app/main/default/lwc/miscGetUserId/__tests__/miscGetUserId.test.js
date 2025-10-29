@@ -1,4 +1,4 @@
-import { createElement } from 'lwc';
+import { createElement } from '@lwc/engine-dom';
 import MiscGetUserId from 'c/miscGetUserId';
 
 // sfdx-lwc-jest automocks @salesforce/user/Id to this const value.

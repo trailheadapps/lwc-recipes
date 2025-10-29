@@ -1,4 +1,4 @@
-import { createElement } from 'lwc';
+import { createElement } from '@lwc/engine-dom';
 import MiscSharedJavaScript from 'c/miscSharedJavaScript';
 import { calculateMonthlyPayment } from 'c/mortgage';
 

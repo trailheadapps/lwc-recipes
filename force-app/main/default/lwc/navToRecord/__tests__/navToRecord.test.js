@@ -1,4 +1,4 @@
-import { createElement } from 'lwc';
+import { createElement } from '@lwc/engine-dom';
 import NavToRecord from 'c/navToRecord';
 import { getNavigateCalledWith } from 'lightning/navigation';
 import getSingleContact from '@salesforce/apex/ContactController.getSingleContact';

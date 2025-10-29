@@ -1,4 +1,4 @@
-import { createElement } from 'lwc';
+import { createElement } from '@lwc/engine-dom';
 import MiscLogger from 'c/miscLogger';
 import { log } from 'lightning/logger';
 

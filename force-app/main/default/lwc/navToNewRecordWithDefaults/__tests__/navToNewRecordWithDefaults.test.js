@@ -1,4 +1,4 @@
-import { createElement } from 'lwc';
+import { createElement } from '@lwc/engine-dom';
 import NavToNewRecordWithDefaults from 'c/navToNewRecordWithDefaults';
 import { getNavigateCalledWith } from 'lightning/navigation';
 import { encodeDefaultFieldValues } from 'lightning/pageReferenceUtils';

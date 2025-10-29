@@ -1,4 +1,4 @@
-import { createElement } from 'lwc';
+import { createElement } from '@lwc/engine-dom';
 import { CloseScreenEventName } from 'lightning/actions';
 import EditRecordScreenAction from '../editRecordScreenAction';
 import { ShowToastEventName } from 'lightning/platformShowToastEvent';

@@ -1,4 +1,4 @@
-import { createElement } from 'lwc';
+import { createElement } from '@lwc/engine-dom';
 import WireGetPicklistValues from 'c/wireGetPicklistValues';
 import { getPicklistValues } from 'lightning/uiObjectInfoApi';
 

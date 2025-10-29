@@ -1,4 +1,4 @@
-import { createElement } from 'lwc';
+import { createElement } from '@lwc/engine-dom';
 import LdsCreateRecord from 'c/ldsCreateRecord';
 import { ShowToastEventName } from 'lightning/platformShowToastEvent';
 import { createRecord } from 'lightning/uiRecordApi';

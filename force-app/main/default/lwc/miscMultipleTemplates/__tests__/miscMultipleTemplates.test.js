@@ -1,4 +1,4 @@
-import { createElement } from 'lwc';
+import { createElement } from '@lwc/engine-dom';
 import MiscMultipleTemplates from 'c/miscMultipleTemplates';
 
 // Same template resources imported into module for testing

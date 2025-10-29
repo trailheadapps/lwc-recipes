@@ -1,4 +1,4 @@
-import { createElement } from 'lwc';
+import { createElement } from '@lwc/engine-dom';
 import EventWithData from 'c/eventWithData';
 import getContactList from '@salesforce/apex/ContactController.getContactList';
 

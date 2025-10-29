@@ -1,4 +1,4 @@
-import { createElement } from 'lwc';
+import { createElement } from '@lwc/engine-dom';
 import WorkspaceAPI from 'c/workspaceAPI';
 import { getNavigateCalledWith } from 'lightning/navigation';
 import { IsConsoleNavigation } from 'lightning/platformWorkspaceApi';
