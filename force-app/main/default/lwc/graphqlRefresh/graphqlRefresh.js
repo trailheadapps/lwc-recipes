@@ -1,5 +1,5 @@
 import { LightningElement, wire } from 'lwc';
-import { gql, graphql, refreshGraphQL } from 'lightning/uiGraphQLApi';
+import { gql, graphql } from 'lightning/graphql';
 import randomizeAccountData from '@salesforce/apex/AccountController.randomizeAccountData';
 
 export default class GraphqlRefresh extends LightningElement {
@@ -7,6 +7,7 @@ export default class GraphqlRefresh extends LightningElement {
     account;
     errors;
     isLoading = true;
+    refreshGraphQL;
 
     @wire(graphql, {
         query: gql`
@@ -39,10 +40,11 @@ export default class GraphqlRefresh extends LightningElement {
         this.account = undefined;
         this.errors = undefined;
 
-        // We hold a direct reference to the graphQL query result
-        // so that we can refresh it with refreshGraphQL
-        this.graphqlQueryResult = result;
-        const { errors, data } = result;
+        const { errors, data, refresh } = result;
+        // We hold a reference to the refresh function on the graphQL query result so we can call it later.
+        if (refresh) {
+            this.refreshGraphQL = refresh;
+        }
         if (data) {
             const accounts = data.uiapi.query.Account.edges.map((edge) => ({
                 Id: edge.node.Id,
@@ -74,7 +76,7 @@ export default class GraphqlRefresh extends LightningElement {
     async handleRefreshClick() {
         this.isLoading = true;
         try {
-            await refreshGraphQL(this.graphqlQueryResult);
+            await this.refreshGraphQL?.();
         } catch (e) {
             this.errors = e;
         } finally {

@@ -1,5 +1,5 @@
 import { LightningElement, wire } from 'lwc';
-import { gql, graphql } from 'lightning/uiGraphQLApi';
+import { gql, graphql } from 'lightning/graphql';
 
 const pageSize = 3;
 
