@@ -31,7 +31,6 @@ Agreement. You can do so by going to https://cla.salesforce.com/sign-cla.
 - We try to limit merge commits as much as possible.
 
 - _Topic_ branches are:
-
     1. based on `main` and will be
     1. squash-merged into `main`.
 
