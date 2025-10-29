@@ -79,7 +79,7 @@ jobs:
               id: run-code-analyzer
               uses: forcedotcom/run-code-analyzer@v2
               with:
-                  run-arguments: --workspace "force-app/**" --view detail --output-file "sca-results.csv" --config-file "code-analyzer.yml"
+                  run-arguments: --workspace "force-app" --view detail --output-file "sca-results.csv" --config-file "code-analyzer.yml"
                   results-artifact-name: code-analyzer-results
 
             # Check for Code Analyzer critical or high severity violations
