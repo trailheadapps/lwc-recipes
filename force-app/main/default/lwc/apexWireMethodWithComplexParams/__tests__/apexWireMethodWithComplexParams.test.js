@@ -1,4 +1,4 @@
-import { createElement } from 'lwc';
+import { createElement } from '@lwc/engine-dom';
 import ApexWireMethodWithComplexParams from 'c/apexWireMethodWithComplexParams';
 import checkApexTypes from '@salesforce/apex/ApexTypesController.checkApexTypes';
 

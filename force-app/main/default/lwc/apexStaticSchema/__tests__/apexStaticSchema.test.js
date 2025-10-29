@@ -1,4 +1,4 @@
-import { createElement } from 'lwc';
+import { createElement } from '@lwc/engine-dom';
 import ApexStaticSchema from 'c/apexStaticSchema';
 import getSingleContact from '@salesforce/apex/ContactController.getSingleContact';
 

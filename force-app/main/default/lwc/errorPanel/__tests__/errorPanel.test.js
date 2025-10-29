@@ -1,4 +1,4 @@
-import { createElement } from 'lwc';
+import { createElement } from '@lwc/engine-dom';
 import ErrorPanel from 'c/errorPanel';
 
 describe('c-error-panel', () => {

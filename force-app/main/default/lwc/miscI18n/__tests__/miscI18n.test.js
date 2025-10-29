@@ -1,4 +1,4 @@
-import { createElement } from 'lwc';
+import { createElement } from '@lwc/engine-dom';
 import MiscI18n from 'c/miscI18n';
 import USER_LOCALE from '@salesforce/i18n/locale';
 import USER_CURRENCY from '@salesforce/i18n/currency';

@@ -1,4 +1,4 @@
-import { createElement } from 'lwc';
+import { createElement } from '@lwc/engine-dom';
 import WireCurrentPageReference from 'c/wireCurrentPageReference';
 import { CurrentPageReference } from 'lightning/navigation';
 

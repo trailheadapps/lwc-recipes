@@ -1,4 +1,4 @@
-import { createElement } from 'lwc';
+import { createElement } from '@lwc/engine-dom';
 import CompositionWithAppBuilder from 'c/compositionWithAppBuilder';
 
 describe('c-composition-with-app-builder', () => {

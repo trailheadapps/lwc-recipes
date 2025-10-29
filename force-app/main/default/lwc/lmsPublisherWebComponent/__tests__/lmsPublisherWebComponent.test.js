@@ -1,4 +1,4 @@
-import { createElement } from 'lwc';
+import { createElement } from '@lwc/engine-dom';
 import LmsPublisherWebComponent from 'c/lmsPublisherWebComponent';
 import { publish } from 'lightning/messageService';
 import RECORD_SELECTED_CHANNEL from '@salesforce/messageChannel/Record_Selected__c';

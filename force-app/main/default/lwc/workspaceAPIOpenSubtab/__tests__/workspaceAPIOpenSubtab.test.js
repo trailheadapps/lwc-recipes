@@ -1,4 +1,4 @@
-import { createElement } from 'lwc';
+import { createElement } from '@lwc/engine-dom';
 import WorkspaceAPIOpenSubtab from 'c/workspaceAPIOpenSubtab';
 import {
     IsConsoleNavigation,

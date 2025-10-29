@@ -1,4 +1,4 @@
-import { createElement } from 'lwc';
+import { createElement } from '@lwc/engine-dom';
 import GraphqlMultipleObjects from 'c/graphqlMultipleObjects';
 import { graphql } from 'lightning/uiGraphQLApi';
 

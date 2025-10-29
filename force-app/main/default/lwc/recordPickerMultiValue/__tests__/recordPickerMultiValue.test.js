@@ -1,4 +1,4 @@
-import { createElement } from 'lwc';
+import { createElement } from '@lwc/engine-dom';
 import { graphql } from 'lightning/uiGraphQLApi';
 import RecordPickerMultiValue from 'c/recordPickerMultiValue';
 

@@ -1,4 +1,4 @@
-import { createElement } from 'lwc';
+import { createElement } from '@lwc/engine-dom';
 import { ShowToastEventName } from 'lightning/platformShowToastEvent';
 import DispatchEventHeadlessAction from '../dispatchEventHeadlessAction';
 

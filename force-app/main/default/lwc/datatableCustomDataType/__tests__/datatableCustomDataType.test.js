@@ -1,4 +1,4 @@
-import { createElement } from 'lwc';
+import { createElement } from '@lwc/engine-dom';
 import DatatableCustomDataType from 'c/datatableCustomDataType';
 import getContacts from '@salesforce/apex/ContactController.getContactList';
 

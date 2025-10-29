@@ -1,4 +1,4 @@
-import { createElement } from 'lwc';
+import { createElement } from '@lwc/engine-dom';
 import DatatableInlineEditWithApex from 'c/datatableInlineEditWithApex';
 import getContacts from '@salesforce/apex/ContactController.getContactList';
 import updateContacts from '@salesforce/apex/ContactController.updateContacts';

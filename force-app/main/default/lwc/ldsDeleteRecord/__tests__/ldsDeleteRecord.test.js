@@ -1,4 +1,4 @@
-import { createElement } from 'lwc';
+import { createElement } from '@lwc/engine-dom';
 import LdsDeleteRecord from 'c/ldsDeleteRecord';
 import { deleteRecord } from 'lightning/uiRecordApi';
 import getAccountList from '@salesforce/apex/AccountController.getAccountList';

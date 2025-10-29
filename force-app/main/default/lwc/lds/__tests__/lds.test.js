@@ -1,4 +1,4 @@
-import { createElement } from 'lwc';
+import { createElement } from '@lwc/engine-dom';
 import Lds from 'c/lds';
 import { getNavigateCalledWith } from 'lightning/navigation';
 import getSingleContact from '@salesforce/apex/ContactController.getSingleContact';

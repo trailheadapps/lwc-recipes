@@ -1,4 +1,4 @@
-import { createElement } from 'lwc';
+import { createElement } from '@lwc/engine-dom';
 import HelloConditionalRendering from 'c/helloConditionalRendering';
 
 describe('c-hello-conditional-rendering', () => {

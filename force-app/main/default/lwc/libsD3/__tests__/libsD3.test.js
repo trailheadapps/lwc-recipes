@@ -1,4 +1,4 @@
-import { createElement } from 'lwc';
+import { createElement } from '@lwc/engine-dom';
 import LibsD3 from 'c/libsD3';
 import { ShowToastEventName } from 'lightning/platformShowToastEvent';
 import { loadScript, loadStyle } from 'lightning/platformResourceLoader';

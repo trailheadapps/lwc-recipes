@@ -1,4 +1,4 @@
-import { createElement } from 'lwc';
+import { createElement } from '@lwc/engine-dom';
 import ContactInfo from 'c/contactInfo';
 import { getRecord } from 'lightning/uiRecordApi';
 

@@ -1,4 +1,4 @@
-import { createElement } from 'lwc';
+import { createElement } from '@lwc/engine-dom';
 import EventSimple from 'c/eventSimple';
 
 describe('c-event-simple', () => {

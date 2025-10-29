@@ -1,4 +1,4 @@
-import { createElement } from 'lwc';
+import { createElement } from '@lwc/engine-dom';
 import ApiMethod from 'c/apiMethod';
 
 describe('c-api-method', () => {

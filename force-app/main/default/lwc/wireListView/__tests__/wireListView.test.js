@@ -1,4 +1,4 @@
-import { createElement } from 'lwc';
+import { createElement } from '@lwc/engine-dom';
 import WireListView from 'c/wireListView';
 import { getListUi } from 'lightning/uiListApi';
 

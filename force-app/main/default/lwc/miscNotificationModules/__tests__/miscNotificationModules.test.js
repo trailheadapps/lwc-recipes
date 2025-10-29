@@ -1,4 +1,4 @@
-import { createElement } from 'lwc';
+import { createElement } from '@lwc/engine-dom';
 import LightningAlert from 'lightning/alert';
 import LightningConfirm from 'lightning/confirm';
 import LightningPrompt from 'lightning/prompt';

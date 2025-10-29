@@ -1,4 +1,4 @@
-import { createElement } from 'lwc';
+import { createElement } from '@lwc/engine-dom';
 import HelloIterator from 'c/helloIterator';
 
 describe('c-hello-iterator', () => {

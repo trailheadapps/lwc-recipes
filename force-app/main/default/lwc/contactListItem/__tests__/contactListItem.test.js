@@ -1,4 +1,4 @@
-import { createElement } from 'lwc';
+import { createElement } from '@lwc/engine-dom';
 import ContactListItem from 'c/contactListItem';
 
 const CONTACT = {

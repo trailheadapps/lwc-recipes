@@ -1,4 +1,4 @@
-import { createElement } from 'lwc';
+import { createElement } from '@lwc/engine-dom';
 import DatatableInlineEditWithUiApi from 'c/datatableInlineEditWithUiApi';
 import getContacts from '@salesforce/apex/ContactController.getContactList';
 import { updateRecord } from 'lightning/uiRecordApi';

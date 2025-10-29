@@ -1,4 +1,4 @@
-import { createElement } from 'lwc';
+import { createElement } from '@lwc/engine-dom';
 import LibsChartjs from 'c/libsChartjs';
 import { loadScript } from 'lightning/platformResourceLoader';
 

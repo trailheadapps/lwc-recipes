@@ -1,4 +1,4 @@
-import { createElement } from 'lwc';
+import { createElement } from '@lwc/engine-dom';
 import HelloExpressions from 'c/helloExpressions';
 
 const PREFIX = 'Uppercased Full Name:';

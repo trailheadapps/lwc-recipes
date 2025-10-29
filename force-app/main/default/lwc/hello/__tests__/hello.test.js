@@ -1,4 +1,4 @@
-import { createElement } from 'lwc';
+import { createElement } from '@lwc/engine-dom';
 import Hello from 'c/hello';
 
 describe('c-hello', () => {

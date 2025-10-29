@@ -1,4 +1,4 @@
-import { createElement } from 'lwc';
+import { createElement } from '@lwc/engine-dom';
 import RecordEditFormStaticContact from 'c/recordEditFormStaticContact';
 
 describe('c-record-edit-form-static-contact', () => {

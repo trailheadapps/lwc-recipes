@@ -1,4 +1,4 @@
-import { createElement } from 'lwc';
+import { createElement } from '@lwc/engine-dom';
 import NavToHelloTab from 'c/navToHelloTab';
 import { getNavigateCalledWith } from 'lightning/navigation';
 // this test uses a mocked navigation plugin.

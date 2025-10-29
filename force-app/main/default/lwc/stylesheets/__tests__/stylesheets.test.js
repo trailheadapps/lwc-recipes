@@ -1,4 +1,4 @@
-import { createElement } from 'lwc';
+import { createElement } from '@lwc/engine-dom';
 import Stylesheets from 'c/stylesheets';
 
 describe('c-misc-stylesheets', () => {

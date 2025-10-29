@@ -1,4 +1,4 @@
-import { createElement } from 'lwc';
+import { createElement } from '@lwc/engine-dom';
 import ApiSetterGetter from 'c/apiSetterGetter';
 
 describe('c-api-setter-getter', () => {

@@ -1,4 +1,4 @@
-import { createElement } from 'lwc';
+import { createElement } from '@lwc/engine-dom';
 import ApexWireMethodWithParams from 'c/apexWireMethodWithParams';
 import findContacts from '@salesforce/apex/ContactController.findContacts';
 

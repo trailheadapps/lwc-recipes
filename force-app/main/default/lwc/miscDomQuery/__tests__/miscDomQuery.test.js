@@ -1,4 +1,4 @@
-import { createElement } from 'lwc';
+import { createElement } from '@lwc/engine-dom';
 import MiscDomQuery from 'c/miscDomQuery';
 
 describe('c-misc-dom-query', () => {

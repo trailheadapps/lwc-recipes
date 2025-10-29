@@ -1,4 +1,4 @@
-import { createElement } from 'lwc';
+import { createElement } from '@lwc/engine-dom';
 import WireGetObjectInfo from 'c/wireGetObjectInfo';
 import { getObjectInfo } from 'lightning/uiObjectInfoApi';
 

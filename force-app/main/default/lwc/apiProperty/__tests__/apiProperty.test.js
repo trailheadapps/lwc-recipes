@@ -1,4 +1,4 @@
-import { createElement } from 'lwc';
+import { createElement } from '@lwc/engine-dom';
 import ApiProperty from 'c/apiProperty';
 
 const PERCENTAGE_DEFAULT = 50;

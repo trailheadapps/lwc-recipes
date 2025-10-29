@@ -1,4 +1,4 @@
-import { createElement } from 'lwc';
+import { createElement } from '@lwc/engine-dom';
 import HelloBinding from 'c/helloBinding';
 
 describe('c-hello-binding', () => {

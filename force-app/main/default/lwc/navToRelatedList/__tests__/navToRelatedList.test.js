@@ -1,4 +1,4 @@
-import { createElement } from 'lwc';
+import { createElement } from '@lwc/engine-dom';
 import NavToRelatedList from 'c/navToRelatedList';
 import { getNavigateCalledWith } from 'lightning/navigation';
 import getSingleAccount from '@salesforce/apex/AccountController.getSingleAccount';

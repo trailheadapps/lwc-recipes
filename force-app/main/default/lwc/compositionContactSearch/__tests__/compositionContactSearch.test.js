@@ -1,4 +1,4 @@
-import { createElement } from 'lwc';
+import { createElement } from '@lwc/engine-dom';
 import CompositionContactSearch from 'c/compositionContactSearch';
 import findContacts from '@salesforce/apex/ContactController.findContacts';
 
