@@ -42,7 +42,7 @@ export default class GraphqlRefresh extends LightningElement {
 
         const { errors, data, refresh } = result;
         // We hold a reference to the refresh function on the graphQL query result so we can call it later.
-        if(refresh){
+        if (refresh) {
             this.refreshGraphQL = refresh;
         }
         if (data) {
