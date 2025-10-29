@@ -8,7 +8,7 @@ c-chart-bar {
 
 c-chart-bar:before {
     content: 'c-chart-bar';
-    color: rgb(221, 219, 218);
+    color: var(--slds-g-color-neutral-base-90, #dddbda);
     position: absolute;
     top: -10px;
     left: var(--lwc-varSpacingXxSmall, 4px);
