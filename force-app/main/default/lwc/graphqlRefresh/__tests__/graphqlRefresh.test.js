@@ -1,6 +1,6 @@
 import { createElement } from '@lwc/engine-dom';
 import GraphqlRefresh from 'c/graphqlRefresh';
-import { graphql, refreshGraphQL } from 'lightning/uiGraphQLApi';
+import { graphql } from 'lightning/graphql';
 import randomizeAccountData from '@salesforce/apex/AccountController.randomizeAccountData';
 
 // Mock realistic data
@@ -16,18 +16,6 @@ jest.mock(
         } = require('@salesforce/sfdx-lwc-jest');
         return {
             default: createApexTestWireAdapter(jest.fn())
-        };
-    },
-    { virtual: true }
-);
-
-// Mock uiGraphQLApi module
-jest.mock(
-    '@salesforce/uiGraphQLApi',
-    () => {
-        // Inject a refreshGraphQL mock
-        return {
-            refreshGraphQL: jest.fn(() => Promise.resolve())
         };
     },
     { virtual: true }
@@ -149,15 +137,16 @@ describe('c-graphql-refresh', () => {
     });
 
     describe('graphql refresh', () => {
-        it('calls refreshGraphQL when refresh is clicked', async () => {
+        it('calls this.refreshGraphQL when refresh is clicked', async () => {
             // Create component
             const element = createElement('c-graphql-refresh', {
                 is: GraphqlRefresh
             });
             document.body.appendChild(element);
 
+            const refreshGraphQL = jest.fn().mockResolvedValue();
             // Emit data from @wire
-            graphql.emit(mockGraphQL);
+            graphql.emit(mockGraphQL, () => true, refreshGraphQL);
 
             // Wait for any asynchronous DOM updates
             await flushPromises();

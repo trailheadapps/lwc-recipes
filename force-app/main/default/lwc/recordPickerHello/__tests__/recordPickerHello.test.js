@@ -1,6 +1,6 @@
 import { createElement } from '@lwc/engine-dom';
 import RecordPickerHello from 'c/recordPickerHello';
-import { graphql } from 'lightning/uiGraphQLApi';
+import { graphql } from 'lightning/graphql';
 
 // Mock realistic data
 const mockGraphQL = require('./data/graphqlContactResult.json');
