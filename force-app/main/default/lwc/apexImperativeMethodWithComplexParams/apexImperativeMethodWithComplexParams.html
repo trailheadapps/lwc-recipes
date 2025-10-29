@@ -36,7 +36,7 @@
                 onclick={handleButtonClick}
             ></lightning-button>
             <template lwc:if={message}>
-                <p class="slds-m-top_medium">{message}</p>
+                <p class="slds-var-m-top_medium">{message}</p>
             </template>
             <template lwc:elseif={error}>
                 <c-error-panel errors={error}></c-error-panel>
