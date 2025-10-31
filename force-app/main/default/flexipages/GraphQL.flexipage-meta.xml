@@ -49,12 +49,6 @@
                 <identifier>c_graphqlMultipleObjects</identifier>
             </componentInstance>
         </itemInstances>
-        <itemInstances>
-            <componentInstance>
-                <componentName>graphqlMutations</componentName>
-                <identifier>graphqlMutations</identifier>
-            </componentInstance>
-        </itemInstances>
         <name>region4</name>
         <type>Region</type>
     </flexiPageRegions>
