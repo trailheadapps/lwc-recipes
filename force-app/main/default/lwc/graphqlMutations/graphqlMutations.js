@@ -161,7 +161,7 @@ export default class GraphqlMutations extends LightningElement {
         // eslint-disable-next-line guard-for-in
         for(let index in params){
             header+=`$Id${index}: IdOrRef!, $FirstName${index}: String, $LastName${index}: String, $Phone${index}: PhoneNumber, $Title${index}: String, $Email${index}: Email, `;
-            let queryBlock = `query${index}: ContactUpdate(input: {
+            let queryBlock = ` query${index}: ContactUpdate(input: {
                 Contact: {
                     FirstName: $FirstName${index}
                     LastName: $LastName${index}
@@ -176,7 +176,7 @@ export default class GraphqlMutations extends LightningElement {
                 }`;
             body += queryBlock;
         }
-        query+=`${header.slice(0, -2)}){uiapi (input: { allOrNone: false }) { ${body} } }`
+        query+=`${header.slice(0, -2)}){uiapi (input: { allOrNone: false }) {${body} } }`
         return query.trim();
     }
 }
