@@ -133,7 +133,6 @@ export default class GraphqlMutations extends LightningElement {
                 await this.refreshGraphQL?.();
             }
         } catch (error) {
-            console.log("HERHERER")
             this.dispatchEvent(
                 new ShowToastEvent({
                     title: 'Error while updating or refreshing records',
