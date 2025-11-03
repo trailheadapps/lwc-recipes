@@ -109,8 +109,7 @@ export default class GraphqlMutations extends LightningElement {
         this.draftValues = [];
 
         const variables = this.buildVariables(params);
-        const queryRaw = this.buildQuery(params);
-        const query = gql`${queryRaw}`;
+        const query = this.buildQuery(params);
         try {
             const result = await executeMutation({ query, variables });
             if (result.errors) {
@@ -147,9 +146,15 @@ export default class GraphqlMutations extends LightningElement {
         // eslint-disable-next-line guard-for-in
         for(let index in params){
             const fields = params[index].fields;
+            let input = {Contact: {}};
             for(let field of Object.keys(fields)){
-                variables[field + index] = fields[field];
+                if(field === 'Id'){
+                    input.Id = fields[field];
+                } else {
+                    input.Contact[field] = fields[field];
+                }
             }
+            variables[`input${index}`] = input;
         }
         return variables;
     }
@@ -160,23 +165,14 @@ export default class GraphqlMutations extends LightningElement {
         let query = 'mutation ContactUpdateExample(';
         // eslint-disable-next-line guard-for-in
         for(let index in params){
-            header+=`$Id${index}: IdOrRef!, $FirstName${index}: String, $LastName${index}: String, $Phone${index}: PhoneNumber, $Title${index}: String, $Email${index}: Email, `;
-            let queryBlock = ` query${index}: ContactUpdate(input: {
-                Contact: {
-                    FirstName: $FirstName${index}
-                    LastName: $LastName${index}
-                    Phone: $Phone${index}
-                    Title: $Title${index}
-                    Email: $Email${index}
-                }
-                Id: $Id${index}
-                })
+            header+=`$input${index}: ContactUpdateInput!, `;
+            let queryBlock = ` query${index}: ContactUpdate(input: $input${index})
                 {
                     success
                 }`;
             body += queryBlock;
         }
         query+=`${header.slice(0, -2)}){uiapi (input: { allOrNone: false }) {${body} } }`
-        return query.trim();
+        return gql`${query.trim()}`;
     }
 }
