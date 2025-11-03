@@ -21,7 +21,7 @@
         </aura:set>
 
         <div
-            class="slds-m-around_medium"
+            class="slds-var-m-around_medium"
             oncontactselect="{!c.handleContactSelect}"
         >
             <aura:if isTrue="{!v.contacts}">
