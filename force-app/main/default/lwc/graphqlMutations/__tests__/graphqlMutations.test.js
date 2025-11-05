@@ -131,28 +131,10 @@ describe('c-graphql-mutations', () => {
             await flushPromises();
 
             const calledQuery = executeMutation.mock.calls[0][0].query;
-            expect(calledQuery).toBe(`mutation ContactUpdateExample($Id0: IdOrRef!, $FirstName0: String, $LastName0: String, $Phone0: PhoneNumber, $Title0: String, $Email0: Email, $Id1: IdOrRef!, $FirstName1: String, $LastName1: String, $Phone1: PhoneNumber, $Title1: String, $Email1: Email){uiapi (input: { allOrNone: false }) { query0: ContactUpdate(input: {
-                Contact: {
-                    FirstName: $FirstName0
-                    LastName: $LastName0
-                    Phone: $Phone0
-                    Title: $Title0
-                    Email: $Email0
-                }
-                Id: $Id0
-                })
+            expect(calledQuery).toBe(`mutation ContactUpdateExample($input0: ContactUpdateInput!, $input1: ContactUpdateInput!){uiapi (input: { allOrNone: false }) { query0: ContactUpdate(input: $input0)
                 {
                     success
-                } query1: ContactUpdate(input: {
-                Contact: {
-                    FirstName: $FirstName1
-                    LastName: $LastName1
-                    Phone: $Phone1
-                    Title: $Title1
-                    Email: $Email1
-                }
-                Id: $Id1
-                })
+                } query1: ContactUpdate(input: $input1)
                 {
                     success
                 } } }`);
