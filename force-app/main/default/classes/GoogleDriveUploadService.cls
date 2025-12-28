@@ -7,6 +7,7 @@ public with sharing class GoogleDriveUploadService {
         // Deserialize JSON into your wrapper
         ContactDriveWrapper w = (ContactDriveWrapper) JSON.deserialize(jsonWrapperList[0], ContactDriveWrapper.class);
 
+        // Enqueue the Queueable job
         System.enqueueJob(new ContactDriveQueueable(JSON.serialize(w)));
     }
 }
