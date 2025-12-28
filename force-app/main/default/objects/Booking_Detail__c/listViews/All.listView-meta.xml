@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All</fullName>
+    <columns>Booking_Number__c</columns>
+    <columns>NAME</columns>
+    <columns>Check_In_Date_Time__c</columns>
+    <columns>Check_Out_Date_Time__c</columns>
+    <columns>CREATEDBY_USER</columns>
+    <columns>CREATED_DATE</columns>
+    <columns>Customer_Name__c</columns>
+    <columns>UPDATEDBY_USER</columns>
+    <columns>LAST_UPDATE</columns>
+    <columns>Number_of_Guests__c</columns>
+    <columns>Room_Number__c</columns>
+    <columns>Room_Type__c</columns>
+    <columns>Sepcial_Requests_Notes__c</columns>
+    <columns>Service_Type__c</columns>
+    <filterScope>Everything</filterScope>
+    <label>All</label>
+</ListView>
