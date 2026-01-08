@@ -15,7 +15,7 @@ sf org delete scratch -p -o $ORG_ALIAS &> /dev/null
 echo ""
 
 echo "Creating scratch org..." && \
-sf org create scratch -f config/project-scratch-def.json -a $ORG_ALIAS -d -y 30 && \
+sf org create scratch -f config/project-scratch-def.json -a $ORG_ALIAS -d -y 30 --release=preview && \
 echo "" && \
 
 echo "Pushing source..." && \
