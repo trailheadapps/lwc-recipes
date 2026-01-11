@@ -1,0 +1,85 @@
+.interactive-box {
+    min-height: var(--lwc-squareIconLargeBoundaryAlt, 5rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.box-message {
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.box-hint {
+    font-size: 0.85rem;
+    color: #706e6b;
+    font-style: italic;
+}
+
+/* Click Mode Styles */
+.click-mode {
+    cursor: pointer;
+    border: var(--lwc-borderWidthThick, 2px) solid #0176d3;
+    background-color: #f3f3f3;
+    animation: pulse-click 2s infinite;
+}
+
+.click-mode:hover {
+    background-color: #e5f2fc;
+    transform: scale(1.02);
+}
+
+.click-mode:active {
+    transform: scale(0.98);
+}
+
+@keyframes pulse-click {
+    0% {
+        box-shadow: 0 0 0 0 rgba(1, 118, 211, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(1, 118, 211, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(1, 118, 211, 0);
+    }
+}
+
+/* Hover Mode Styles */
+.hover-mode {
+    cursor: default;
+    border: var(--lwc-borderWidthThick, 2px) dashed #9050e9;
+    background-color: #faf9fb;
+    position: relative;
+}
+
+.hover-mode::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    border: var(--lwc-borderWidthThick, 2px) dashed #9050e9;
+    border-radius: inherit;
+    animation: dash-march 1s linear infinite;
+    pointer-events: none;
+}
+
+.hover-mode:hover {
+    background-color: #f3e8ff;
+    border-color: #7526c3;
+}
+
+.hover-mode:hover::before {
+    border-color: #7526c3;
+}
+
+@keyframes dash-march {
+    to {
+        stroke-dashoffset: -20;
+    }
+}
