@@ -1,32 +1,20 @@
 <template>
     <lightning-card title="DynamicEventListener" icon-name="standard:logging">
-        <!-- Mode Toggle -->
-        <div class="slds-var-p-around_medium">
-            <lightning-button-group>
-                <lightning-button
-                    label="Click Mode"
-                    onclick={setClickMode}
-                    variant={clickVariant}
-                >
-                </lightning-button>
-                <lightning-button
-                    label="Hover Mode"
-                    onclick={setHoverMode}
-                    variant={hoverVariant}
-                >
-                </lightning-button>
-            </lightning-button-group>
-        </div>
+        <div class="slds-var-m-horizontal_medium">
+            <lightning-radio-group
+                label="Event Mode"
+                type="button"
+                options={modeOptions}
+                value={eventMode}
+                onchange={handleModeChange}
+                class="slds-var-m-bottom_large"
+            >
+            </lightning-radio-group>
 
-        <div class="slds-var-p-around_medium">
             <div class={boxClass} lwc:on={boxEventHandlers}>
                 <div class="box-message">{message}</div>
                 <div class="box-hint">{hintText}</div>
             </div>
-        </div>
-
-        <div class="slds-var-p-around_medium slds-text-color_weak">
-            Current mode: <strong>{eventMode}</strong>
         </div>
 
         <c-view-source source="lwc/dynamicEventListener" slot="footer">

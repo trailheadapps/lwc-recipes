@@ -36,53 +36,27 @@ describe('c-dynamic-event-listener', () => {
 
         // Verify hint text for click mode
         expect(boxHint.textContent).toBe('👆 Click here');
+    });
 
-        // Verify default mode is displayed
-        const modeDisplay = element.shadowRoot.querySelector(
-            '.slds-text-color_weak strong'
+    it('switches to hover mode when hover mode button is clicked', async () => {
+        // Create component
+        const element = createElement('c-dynamic-event-listener', {
+            is: DynamicEventListener
+        });
+        document.body.appendChild(element);
+
+        // Switch to hover mode
+        const radioMode = element.shadowRoot.querySelector(
+            'lightning-radio-group'
         );
-        expect(modeDisplay.textContent).toBe('click');
-    });
-
-    it('displays correct button variants based on mode', () => {
-        // Create component
-        const element = createElement('c-dynamic-event-listener', {
-            is: DynamicEventListener
-        });
-        document.body.appendChild(element);
-
-        // Query buttons
-        const buttons = element.shadowRoot.querySelectorAll('lightning-button');
-        const clickButton = buttons[0];
-        const hoverButton = buttons[1];
-
-        // In default click mode, Click button should be 'brand' and Hover should be 'neutral'
-        expect(clickButton.variant).toBe('brand');
-        expect(hoverButton.variant).toBe('neutral');
-    });
-
-    it('switches to hover mode when Hover Mode button is clicked', async () => {
-        // Create component
-        const element = createElement('c-dynamic-event-listener', {
-            is: DynamicEventListener
-        });
-        document.body.appendChild(element);
-
-        // Query buttons
-        const buttons = element.shadowRoot.querySelectorAll('lightning-button');
-        const hoverButton = buttons[1];
-
-        // Click the Hover Mode button
-        hoverButton.click();
+        radioMode.dispatchEvent(
+            new CustomEvent('change', {
+                detail: { value: 'hover' }
+            })
+        );
 
         // Wait for any asynchronous DOM updates
         await flushPromises();
-
-        // Verify mode changed
-        const modeDisplay = element.shadowRoot.querySelector(
-            '.slds-text-color_weak strong'
-        );
-        expect(modeDisplay.textContent).toBe('hover');
 
         // Verify message updated
         const boxMessage = element.shadowRoot.querySelector('.box-message');
@@ -97,56 +71,6 @@ describe('c-dynamic-event-listener', () => {
         // Verify hint text for hover mode
         const boxHint = element.shadowRoot.querySelector('.box-hint');
         expect(boxHint.textContent).toBe('🖐️ Hover over me');
-
-        // Verify button variants switched
-        const clickButton = buttons[0];
-        expect(clickButton.variant).toBe('neutral');
-        expect(hoverButton.variant).toBe('brand');
-    });
-
-    it('switches back to click mode when Click Mode button is clicked', async () => {
-        // Create component
-        const element = createElement('c-dynamic-event-listener', {
-            is: DynamicEventListener
-        });
-        document.body.appendChild(element);
-
-        // Query buttons
-        const buttons = element.shadowRoot.querySelectorAll('lightning-button');
-        const clickButton = buttons[0];
-        const hoverButton = buttons[1];
-
-        // First switch to hover mode
-        hoverButton.click();
-        await flushPromises();
-
-        // Then switch back to click mode
-        clickButton.click();
-        await flushPromises();
-
-        // Verify mode changed back
-        const modeDisplay = element.shadowRoot.querySelector(
-            '.slds-text-color_weak strong'
-        );
-        expect(modeDisplay.textContent).toBe('click');
-
-        // Verify message updated
-        const boxMessage = element.shadowRoot.querySelector('.box-message');
-        expect(boxMessage.textContent).toBe('Now using CLICK mode');
-
-        // Verify box class changed back to click-mode
-        const interactiveBox =
-            element.shadowRoot.querySelector('.interactive-box');
-        expect(interactiveBox.classList.contains('click-mode')).toBe(true);
-        expect(interactiveBox.classList.contains('hover-mode')).toBe(false);
-
-        // Verify hint text for click mode
-        const boxHint = element.shadowRoot.querySelector('.box-hint');
-        expect(boxHint.textContent).toBe('👆 Click here');
-
-        // Verify button variants switched back
-        expect(clickButton.variant).toBe('brand');
-        expect(hoverButton.variant).toBe('neutral');
     });
 
     it('handles click event on interactive box in click mode', async () => {
@@ -178,10 +102,17 @@ describe('c-dynamic-event-listener', () => {
         });
         document.body.appendChild(element);
 
-        // Switch to hover mode first
-        const buttons = element.shadowRoot.querySelectorAll('lightning-button');
-        const hoverButton = buttons[1];
-        hoverButton.click();
+        // Switch to hover mode
+        const radioMode = element.shadowRoot.querySelector(
+            'lightning-radio-group'
+        );
+        radioMode.dispatchEvent(
+            new CustomEvent('change', {
+                detail: { value: 'hover' }
+            })
+        );
+
+        // Wait for any asynchronous DOM updates
         await flushPromises();
 
         // Query the interactive box
@@ -202,35 +133,6 @@ describe('c-dynamic-event-listener', () => {
 
         // Verify message updated after mouseleave
         expect(boxMessage.textContent).toBe('👋 Mouse left!');
-    });
-
-    it('displays correct hint text based on mode', async () => {
-        // Create component
-        const element = createElement('c-dynamic-event-listener', {
-            is: DynamicEventListener
-        });
-        document.body.appendChild(element);
-
-        // Verify initial hint text for click mode
-        const boxHint = element.shadowRoot.querySelector('.box-hint');
-        expect(boxHint.textContent).toBe('👆 Click here');
-
-        // Switch to hover mode
-        const buttons = element.shadowRoot.querySelectorAll('lightning-button');
-        const hoverButton = buttons[1];
-        hoverButton.click();
-        await flushPromises();
-
-        // Verify hint text changed for hover mode
-        expect(boxHint.textContent).toBe('🖐️ Hover over me');
-
-        // Switch back to click mode
-        const clickButton = buttons[0];
-        clickButton.click();
-        await flushPromises();
-
-        // Verify hint text returned to click mode
-        expect(boxHint.textContent).toBe('👆 Click here');
     });
 
     it('is accessible', async () => {
