@@ -23,6 +23,8 @@ const { executeMutation } = require('lightning/graphql');
 
 // Mock realistic data
 const mockCreateAccountResponse = require('./data/createAccountResponse.json');
+const MOCK_ACCOUNT_ID =
+    mockCreateAccountResponse.data.uiapi.AccountCreate.Record.Id;
 
 describe('c-graphql-mutation-create', () => {
     afterEach(() => {
@@ -105,14 +107,13 @@ describe('c-graphql-mutation-create', () => {
             buttonEl.click();
 
             await flushPromises();
-            await flushPromises();
 
             // Check success message
             const successBox = element.shadowRoot.querySelector(
                 '.slds-theme_success'
             );
             expect(successBox).not.toBeNull();
-            expect(successBox.textContent).toContain('001xx000003NGSFAA4');
+            expect(successBox.textContent).toContain(MOCK_ACCOUNT_ID);
         });
 
         it('shows error when account name is empty', async () => {
