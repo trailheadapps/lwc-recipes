@@ -1,0 +1,34 @@
+{
+    "uiapi": {
+        "query": {
+            "Contact": {
+                "edges": [
+                    {
+                        "node": {
+                            "Id": "003xx000004WhGYAA0",
+                            "Name": {
+                                "value": "Amy Taylor"
+                            }
+                        }
+                    },
+                    {
+                        "node": {
+                            "Id": "003xx000004WhGZAA0",
+                            "Name": {
+                                "value": "Bob Smith"
+                            }
+                        }
+                    },
+                    {
+                        "node": {
+                            "Id": "003xx000004WhGaAAK",
+                            "Name": {
+                                "value": "Carol Johnson"
+                            }
+                        }
+                    }
+                ]
+            }
+        }
+    }
+}
