@@ -27,6 +27,12 @@
                 <identifier>c_graphqlRefresh</identifier>
             </componentInstance>
         </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentName>graphqlMutationCreate</componentName>
+                <identifier>c_graphqlMutationCreate</identifier>
+            </componentInstance>
+        </itemInstances>
         <name>region3</name>
         <type>Region</type>
     </flexiPageRegions>
@@ -41,6 +47,18 @@
             <componentInstance>
                 <componentName>graphqlMultipleObjects</componentName>
                 <identifier>c_graphqlMultipleObjects</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentName>graphqlMutationUpdate</componentName>
+                <identifier>c_graphqlMutationUpdate</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentName>graphqlMutationDelete</componentName>
+                <identifier>c_graphqlMutationDelete</identifier>
             </componentInstance>
         </itemInstances>
         <name>region4</name>
