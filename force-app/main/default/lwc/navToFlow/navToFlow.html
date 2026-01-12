@@ -1,0 +1,36 @@
+<template>
+    <lightning-card title="NavToFlow" icon-name="standard:flow">
+        <div class="slds-var-m-around_medium">
+            <div class="slds-var-m-bottom_small">
+                <lightning-button
+                    label="Launch Flow"
+                    variant="brand"
+                    onclick={navigateToFlow}
+                    class="slds-var-m-right_small"
+                >
+                </lightning-button>
+                <lightning-button
+                    label="Launch Flow with Input"
+                    variant="neutral"
+                    onclick={navigateToFlowWithInput}
+                >
+                </lightning-button>
+            </div>
+
+            <div>
+                <lightning-button
+                    label="Generate Flow URL"
+                    variant="neutral"
+                    onclick={generateFlowUrl}
+                >
+                </lightning-button>
+            </div>
+        </div>
+
+        <c-view-source source="lwc/navToFlow" slot="footer">
+            Navigate to a screen flow. Uses the standard__flow PageReference
+            type with devName attribute. Input variables are passed via state
+            with flow__ prefix.
+        </c-view-source>
+    </lightning-card>
+</template>
