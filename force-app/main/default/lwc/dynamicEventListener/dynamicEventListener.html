@@ -1,0 +1,26 @@
+<template>
+    <lightning-card title="DynamicEventListener" icon-name="standard:logging">
+        <div class="slds-var-m-horizontal_medium">
+            <lightning-radio-group
+                label="Event Mode"
+                type="button"
+                options={modeOptions}
+                value={eventMode}
+                onchange={handleModeChange}
+                class="slds-var-m-bottom_large"
+            >
+            </lightning-radio-group>
+
+            <div class={boxClass} lwc:on={boxEventHandlers}>
+                <div class="box-message">{message}</div>
+                <div class="box-hint">{hintText}</div>
+            </div>
+        </div>
+
+        <c-view-source source="lwc/dynamicEventListener" slot="footer">
+            Demonstrates the lwc:on directive for dynamic event listener
+            assignment. Toggle between click and hover modes to see how event
+            handlers can be swapped dynamically.
+        </c-view-source>
+    </lightning-card>
+</template>
