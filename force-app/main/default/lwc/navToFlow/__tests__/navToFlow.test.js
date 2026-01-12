@@ -10,6 +10,9 @@ import LightningAlert from 'lightning/alert';
 // See force-app/test/jest-mocks/lightning/navigation.js for the mock
 // and see jest.config.js for jest config to use the mock
 
+const NAV_TYPE = 'standard__flow';
+const FLOW_DEV_NAME = 'SimpleGreetingFlow';
+
 describe('c-nav-to-flow', () => {
     afterEach(() => {
         // The jsdom instance is shared across test cases in a single file so reset the DOM
@@ -26,10 +29,6 @@ describe('c-nav-to-flow', () => {
     }
 
     it('navigates to flow when Launch Flow button is clicked', async () => {
-        // Nav param values to test
-        const NAV_TYPE = 'standard__flow';
-        const FLOW_DEV_NAME = 'SimpleGreetingFlow';
-
         // Create initial lwc element and attach to virtual DOM
         const element = createElement('c-nav-to-flow', {
             is: NavToFlow
@@ -54,8 +53,6 @@ describe('c-nav-to-flow', () => {
 
     it('navigates to flow with input variables when Launch Flow with Input button is clicked', async () => {
         // Nav param values to test
-        const NAV_TYPE = 'standard__flow';
-        const FLOW_DEV_NAME = 'SimpleGreetingFlow';
         const EXPECTED_USER_NAME = 'Trailblazer';
 
         // Create initial lwc element and attach to virtual DOM
@@ -82,8 +79,6 @@ describe('c-nav-to-flow', () => {
 
     it('generates flow URL when Generate Flow URL button is clicked', async () => {
         // Nav param values to test
-        const NAV_TYPE = 'standard__flow';
-        const FLOW_DEV_NAME = 'SimpleGreetingFlow';
         const EXPECTED_URL = 'https://www.example.com';
 
         // Mock LightningAlert.open
