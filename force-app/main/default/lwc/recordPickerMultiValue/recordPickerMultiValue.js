@@ -93,6 +93,11 @@ export default class RecordPickerMultiValue extends LightningElement {
         variables: '$variables'
     })
     wiredGraphQL({ data, errors }) {
+        // Ignore graphql query results if the variables are undefined
+        if (this.variables === undefined) {
+            return;
+        }
+
         this.wireError = errors;
         if (errors || !data) {
             return;
@@ -127,6 +132,7 @@ export default class RecordPickerMultiValue extends LightningElement {
     }
 
     handleRecordPickerChange(event) {
+        console.log('handleRecordPickerChange', event.detail.recordId);
         this.selectedRecordId = event.detail.recordId;
     }
 }
