@@ -132,7 +132,6 @@ export default class RecordPickerMultiValue extends LightningElement {
     }
 
     handleRecordPickerChange(event) {
-        console.log('handleRecordPickerChange', event.detail.recordId);
         this.selectedRecordId = event.detail.recordId;
     }
 }
