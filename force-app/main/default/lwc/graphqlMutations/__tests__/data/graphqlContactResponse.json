@@ -1,0 +1,71 @@
+{
+    "uiapi": {
+        "query": {
+            "Contact": {
+                "edges": [
+                    {
+                        "node": {
+                            "Id": "0031700000pJRRSAA4",
+                            "FirstName": {
+                                "value": "Amy"
+                            },
+                            "LastName": {
+                                "value": "Taylor"
+                            },
+                            "Title": {
+                                "value": "VP of Engineering"
+                            },
+                            "Phone": {
+                                "value": "4152568563"
+                            },
+                            "Email": {
+                                "value": "amy@demo.net"
+                            }
+                        }
+                    },
+                    {
+                        "node": {
+                            "Id": "0031700000pJRRTAA4",
+                            "FirstName": {
+                                "value": "Michael"
+                            },
+                            "LastName": {
+                                "value": "Jones"
+                            },
+                            "Title": {
+                                "value": "VP of Sales"
+                            },
+                            "Phone": {
+                                "value": "4158526633"
+                            },
+                            "Email": {
+                                "value": "michael@demo.net"
+                            }
+                        }
+                    },
+                    {
+                        "node": {
+                            "Id": "0031700000pJRRUAA4",
+                            "FirstName": {
+                                "value": "Jennifer"
+                            },
+                            "LastName": {
+                                "value": "Wu"
+                            },
+                            "Title": {
+                                "value": "CEO"
+                            },
+                            "Phone": {
+                                "value": "4158521463"
+                            },
+                            "Email": {
+                                "value": "jennifer@demo.net"
+                            }
+                        }
+                    }
+                ]
+            }
+        }
+    }
+}
+
