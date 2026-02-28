@@ -33,7 +33,7 @@
         "url": "git+https://github.com/trailheadapps/lwc-recipes"
     },
     "devDependencies": {
-        "@lwc/eslint-plugin-lwc": "^3.3.0",
+        "@lwc/eslint-plugin-lwc": "^3.4.0",
         "@prettier/plugin-xml": "^3.4.2",
         "@sa11y/jest": "^8.0.27",
         "@salesforce/eslint-config-lwc": "^4.1.2",
