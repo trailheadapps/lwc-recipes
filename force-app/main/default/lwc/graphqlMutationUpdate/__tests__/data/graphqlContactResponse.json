@@ -1,0 +1,24 @@
+{
+    "uiapi": {
+        "query": {
+            "Contact": {
+                "edges": [
+                    {
+                        "node": {
+                            "Id": "003xx000004WhGYAA0",
+                            "FirstName": {
+                                "value": "Amy"
+                            },
+                            "LastName": {
+                                "value": "Taylor"
+                            },
+                            "Email": {
+                                "value": "amy.taylor@example.com"
+                            }
+                        }
+                    }
+                ]
+            }
+        }
+    }
+}

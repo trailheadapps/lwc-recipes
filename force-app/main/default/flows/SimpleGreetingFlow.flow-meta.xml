@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>66.0</apiVersion>
+    <description
+    >A simple greeting flow for demonstrating flow navigation from LWC</description>
+    <interviewLabel
+    >Simple Greeting Flow {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Simple Greeting Flow</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>Flow</processType>
+    <screens>
+        <name>Greeting_Screen</name>
+        <label>Greeting Screen</label>
+        <locationX>176</locationX>
+        <locationY>158</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <connector>
+            <targetReference>Thank_You_Screen</targetReference>
+        </connector>
+        <fields>
+            <name>Welcome_Message</name>
+            <fieldText
+            >&lt;p&gt;&lt;b style="font-size: 18px;"&gt;👋 Welcome to the Flow Navigation Demo!&lt;/b&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;This flow was launched from a Lightning Web Component using the new &lt;b&gt;standard__flow&lt;/b&gt; PageReference type.&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <fields>
+            <name>User_Name_Input</name>
+            <dataType>String</dataType>
+            <defaultValue>
+                <elementReference>userName</elementReference>
+            </defaultValue>
+            <fieldText>What is your name?</fieldText>
+            <fieldType>InputField</fieldType>
+            <isRequired>false</isRequired>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <name>Thank_You_Screen</name>
+        <label>Thank You Screen</label>
+        <locationX>176</locationX>
+        <locationY>278</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <fields>
+            <name>Thank_You_Message</name>
+            <fieldText
+            >&lt;p&gt;&lt;b style="font-size: 18px;"&gt;🎉 Thank you{!User_Name_Display}!&lt;/b&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;You have successfully navigated to and completed this flow from a Lightning Web Component.&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <formulas>
+        <name>User_Name_Display</name>
+        <dataType>String</dataType>
+        <expression
+        >IF(ISBLANK({!User_Name_Input}), "", ", " &amp; {!User_Name_Input})</expression>
+    </formulas>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Greeting_Screen</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+    <variables>
+        <name>userName</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>
