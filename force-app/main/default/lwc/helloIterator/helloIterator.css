@@ -1,9 +1,9 @@
 .list-first {
-    border-top: var(--lwc-borderWidthThin, 1px) solid #706e6b;
+    border-top: var(--slds-g-sizing-border-1) solid #706e6b;
     padding-top: 5px;
 }
 
 .list-last {
-    border-bottom: var(--lwc-borderWidthThin, 1px) solid #706e6b;
+    border-bottom: var(--slds-g-sizing-border-1) solid #706e6b;
     padding-bottom: 5px;
 }

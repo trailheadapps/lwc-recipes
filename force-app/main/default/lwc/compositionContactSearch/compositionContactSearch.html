@@ -4,19 +4,24 @@
         icon-name="custom:custom57"
     >
         <div class="slds-var-m-around_medium">
-            <lightning-input
-                type="search"
-                onchange={handleKeyChange}
-                class="slds-show slds-is-relative slds-var-m-bottom_small"
-                label="Search"
-            ></lightning-input>
+            <fieldset class="slds-var-p-around_x-small">
+                <legend>lightning-input</legend>
+                <lightning-input
+                    type="search"
+                    onchange={handleKeyChange}
+                    class="slds-show slds-is-relative"
+                    label="Search"
+                ></lightning-input>
+            </fieldset>
             <template lwc:if={contacts}>
                 <template for:each={contacts} for:item="contact">
-                    <c-contact-tile
-                        class="slds-show slds-is-relative"
+                    <fieldset
                         key={contact.Id}
-                        contact={contact}
-                    ></c-contact-tile>
+                        class="slds-var-p-horizontal_x-small"
+                    >
+                        <legend>c-contact-tile</legend>
+                        <c-contact-tile contact={contact}></c-contact-tile>
+                    </fieldset>
                 </template>
             </template>
             <template lwc:elseif={error}>
