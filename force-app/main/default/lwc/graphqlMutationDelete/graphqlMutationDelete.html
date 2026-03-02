@@ -1,0 +1,63 @@
+<template>
+    <lightning-card title="GraphqlMutationDelete" icon-name="custom:custom39">
+        <div class="slds-var-m-around_medium">
+            <lightning-spinner
+                lwc:if={isLoading}
+                alternative-text="Loading"
+                size="small"
+                variant="brand"
+            ></lightning-spinner>
+
+            <template lwc:if={errors}>
+                <c-error-panel errors={errors}></c-error-panel>
+            </template>
+
+            <template lwc:if={successMessage}>
+                <div
+                    class="slds-box slds-theme_success slds-var-m-bottom_small"
+                >
+                    <p>
+                        <lightning-icon
+                            icon-name="utility:success"
+                            size="x-small"
+                            variant="inverse"
+                            class="slds-var-m-right_x-small"
+                        ></lightning-icon>
+                        {successMessage}
+                    </p>
+                </div>
+            </template>
+
+            <template lwc:if={contacts}>
+                <template for:each={contacts} for:item="contact">
+                    <lightning-layout
+                        key={contact.Id}
+                        class="slds-var-m-vertical_x-small"
+                    >
+                        <lightning-layout-item flexibility="grow">
+                            {contact.Name}
+                        </lightning-layout-item>
+                        <lightning-layout-item>
+                            <!-- sldsValidatorIgnoreNextLine -->
+                            <lightning-button-icon
+                                icon-name="utility:delete"
+                                alternative-text="Delete"
+                                onclick={handleDeleteContact}
+                                data-id={contact.Id}
+                                data-name={contact.Name}
+                            ></lightning-button-icon>
+                        </lightning-layout-item>
+                    </lightning-layout>
+                </template>
+            </template>
+
+            <template lwc:if={noContacts}>
+                <p class="slds-text-color_weak">No contacts found.</p>
+            </template>
+        </div>
+
+        <c-view-source source="lwc/graphqlMutationDelete" slot="footer">
+            Delete a record using GraphQL executeMutation.
+        </c-view-source>
+    </lightning-card>
+</template>
