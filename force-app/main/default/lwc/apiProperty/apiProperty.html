@@ -9,10 +9,10 @@
                 value={percentage}
                 onchange={handlePercentageChange}
             ></lightning-input>
-            <c-chart-bar
-                class="slds-show slds-is-relative"
-                percentage={percentage}
-            ></c-chart-bar>
+            <fieldset class="slds-var-p-around_x-small">
+                <legend>c-chart-bar</legend>
+                <c-chart-bar percentage={percentage}></c-chart-bar>
+            </fieldset>
         </div>
 
         <c-view-source source="lwc/apiProperty" slot="footer">

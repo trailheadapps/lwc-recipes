@@ -4,7 +4,7 @@
 }
 
 .bar {
-    margin-left: 4px;
+    margin-left: var(--slds-g-spacing-1, 4px);
     height: 36px;
     background-color: #f5b041;
 }

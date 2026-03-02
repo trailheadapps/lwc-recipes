@@ -8,11 +8,16 @@
                     oncontactselect={handleContactSelect}
                 >
                     <template for:each={contacts.data} for:item="contact">
-                        <c-contact-list-item-bubbling
-                            class="slds-show slds-is-relative"
+                        <fieldset
                             key={contact.Id}
-                            contact={contact}
-                        ></c-contact-list-item-bubbling>
+                            class="slds-var-p-horizontal_x-small"
+                        >
+                            <legend>c-contact-list-item-bubbling</legend>
+                            <c-contact-list-item-bubbling
+                                class="slds-show slds-is-relative"
+                                contact={contact}
+                            ></c-contact-list-item-bubbling>
+                        </fieldset>
                     </template>
                 </lightning-layout-item>
                 <lightning-layout-item class="slds-var-m-left_medium">

@@ -1,18 +1,5 @@
-c-child {
-    position: relative;
-    border: solid 1px #ecebea;
-    border-radius: 4px;
-    display: block;
-    padding: 14px 8px 8px 8px;
-    margin-top: 16px;
-}
-
-c-child:before {
-    content: 'c-child';
-    color: #dddbda;
-    position: absolute;
-    top: -16px;
-    left: 4px;
-    background-color: #ffffff;
-    padding: 0 4px;
+fieldset {
+    border: solid var(--slds-g-sizing-border-1)
+        var(--slds-g-color-neutral-base-80);
+    border-radius: var(--slds-g-radius-border-2);
 }

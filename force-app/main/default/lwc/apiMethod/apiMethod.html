@@ -5,7 +5,10 @@
                 label="Refresh Time"
                 onclick={handleRefresh}
             ></lightning-button>
-            <c-clock class="slds-show slds-is-relative"></c-clock>
+            <fieldset class="slds-var-p-around_x-small">
+                <legend>c-clock</legend>
+                <c-clock></c-clock>
+            </fieldset>
         </div>
 
         <c-view-source source="lwc/apiMethod" slot="footer">

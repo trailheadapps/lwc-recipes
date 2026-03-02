@@ -6,11 +6,14 @@
             >
                 Page {page}
             </p>
-            <c-paginator
-                class="slds-show slds-is-relative"
-                onprevious={handlePrevious}
-                onnext={handleNext}
-            ></c-paginator>
+            <fieldset class="slds-var-p-around_x-small">
+                <legend>c-paginator</legend>
+                <c-paginator
+                    class="slds-show slds-is-relative"
+                    onprevious={handlePrevious}
+                    onnext={handleNext}
+                ></c-paginator>
+            </fieldset>
         </div>
 
         <c-view-source source="lwc/eventSimple" slot="footer">

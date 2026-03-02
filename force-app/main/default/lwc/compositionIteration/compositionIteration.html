@@ -2,11 +2,13 @@
     <lightning-card title="CompositionIteration" icon-name="custom:custom57">
         <div class="slds-var-m-around_medium">
             <template for:each={contacts} for:item="contact">
-                <c-contact-tile
-                    class="slds-show slds-is-relative"
+                <fieldset
                     key={contact.Id}
-                    contact={contact}
-                ></c-contact-tile>
+                    class="slds-var-p-horizontal_x-small"
+                >
+                    <legend>c-contact-tile</legend>
+                    <c-contact-tile contact={contact}></c-contact-tile>
+                </fieldset>
             </template>
         </div>
 

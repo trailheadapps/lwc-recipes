@@ -4,10 +4,6 @@ setupFilesAfterEnv.push('<rootDir>/jest-sa11y-setup.js');
 module.exports = {
     ...jestConfig,
     moduleNameMapper: {
-        /* CSS library import fix in test context. See:
-        https://github.com/salesforce/sfdx-lwc-jest/issues/288) */
-        '^c/cssLibrary$':
-            '<rootDir>/force-app/main/default/lwc/cssLibrary/cssLibrary.css',
         // Jest mocks
         '^@salesforce/apex$': '<rootDir>/force-app/test/jest-mocks/apex',
         '^@salesforce/schema$': '<rootDir>/force-app/test/jest-mocks/schema',
