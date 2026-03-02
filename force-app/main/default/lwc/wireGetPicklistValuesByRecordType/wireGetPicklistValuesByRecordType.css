@@ -1,6 +1,7 @@
 .scroller {
     height: 200px;
     overflow: auto;
-    padding: var(--lwc-varSpacingXSmall, 8px);
-    border: solid var(--lwc-borderWidthThin, 1px) #eee;
+    padding: var(--slds-g-spacing-var-2);
+    border: solid var(--slds-g-sizing-border-1)
+        var(--slds-g-color-neutral-base-80);
 }

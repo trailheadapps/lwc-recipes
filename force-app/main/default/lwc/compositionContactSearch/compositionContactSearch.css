@@ -1,28 +1,5 @@
-lightning-input,
-c-contact-tile {
-    border: solid var(--lwc-borderWidthThin, 1px) #ecebea;
-    border-radius: var(--lwc-borderRadiusMedium, 4px);
-    padding: var(--lwc-varSpacingXxxSmall, 2px);
-}
-
-c-contact-tile {
-    margin: var(--lwc-borderWidthThin, 1px) 0;
-}
-
-lightning-input:before,
-c-contact-tile:before {
-    color: rgb(221, 219, 218);
-    position: absolute;
-    top: -9px;
-    left: var(--lwc-varSpacingXxSmall, 4px);
-    background-color: var(--lwc-colorBackgroundAlt, #ffffff);
-    padding: 0 var(--lwc-varSpacingXxSmall, 4px);
-}
-
-lightning-input:before {
-    content: 'lightning-input';
-}
-
-c-contact-tile:before {
-    content: 'c-contact-tile';
+fieldset {
+    border: solid var(--slds-g-sizing-border-1)
+        var(--slds-g-color-neutral-base-80);
+    border-radius: var(--slds-g-radius-border-2);
 }

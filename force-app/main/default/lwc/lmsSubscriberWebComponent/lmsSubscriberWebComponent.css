@@ -1,6 +1,6 @@
 img {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    margin-bottom: 8px;
+    width: var(--slds-g-sizing-12, 80px);
+    height: var(--slds-g-sizing-12, 80px);
+    border-radius: var(--slds-g-radius-border-circle);
+    margin-bottom: var(--slds-g-spacing-2, 8px);
 }

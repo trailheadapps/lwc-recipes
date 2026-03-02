@@ -22,9 +22,10 @@
                     onclick={handleSave}
                 ></lightning-button>
             </div>
-            <div class="todo-list slds-is-relative">
+            <fieldset class="slds-var-p-around_x-small">
+                <legend>c-todo-list</legend>
                 <c-todo-list todos={todos}></c-todo-list>
-            </div>
+            </fieldset>
         </div>
 
         <c-view-source source="lwc/apiSetterGetter" slot="footer">

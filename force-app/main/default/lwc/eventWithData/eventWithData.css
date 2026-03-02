@@ -1,24 +1,12 @@
+fieldset {
+    border: solid var(--slds-g-sizing-border-1)
+        var(--slds-g-color-neutral-base-80);
+    border-radius: var(--slds-g-radius-border-2);
+}
+
 img {
-    width: var(--lwc-squareIconLargeBoundaryAlt, 80px);
-    height: var(--lwc-squareIconLargeBoundaryAlt, 80px);
-    border-radius: var(--lwc-borderRadiusCircle, 50%);
-    margin-bottom: var(--lwc-varSpacingXSmall, 8px);
-}
-
-c-contact-list-item {
-    border: solid var(--lwc-borderWidthThin, 1px) #ecebea;
-    border-radius: var(--lwc-borderRadiusMedium, 4px);
-    margin: var(--lwc-borderWidthThin, 1px) 0;
-    padding: 3px var(--lwc-varSpacingXxxSmall, 2px) 0
-        var(--lwc-varSpacingXxxSmall, 2px);
-}
-
-c-contact-list-item:before {
-    content: 'c-contact-list-item';
-    color: rgb(221, 219, 218);
-    position: absolute;
-    top: -9px;
-    left: var(--lwc-varSpacingXxSmall, 4px);
-    background-color: var(--lwc-colorBackgroundAlt, #ffffff);
-    padding: 0 var(--lwc-varSpacingXxSmall, 4px);
+    width: var(--slds-g-sizing-12);
+    height: var(--slds-g-sizing-12);
+    border-radius: var(--slds-g-radius-border-circle);
+    margin-bottom: var(--slds-g-spacing-var-2);
 }

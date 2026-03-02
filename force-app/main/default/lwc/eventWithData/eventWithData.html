@@ -5,12 +5,17 @@
                 <lightning-layout-item>
                     <!-- c-contact-list-item emits a non-bubbling event so each element must have a listener-->
                     <template for:each={contacts.data} for:item="contact">
-                        <c-contact-list-item
-                            class="slds-show slds-is-relative"
+                        <fieldset
                             key={contact.Id}
-                            contact={contact}
-                            onselect={handleSelect}
-                        ></c-contact-list-item>
+                            class="slds-var-p-horizontal_x-small"
+                        >
+                            <legend>c-contact-list-item</legend>
+                            <c-contact-list-item
+                                class="slds-show slds-is-relative"
+                                contact={contact}
+                                onselect={handleSelect}
+                            ></c-contact-list-item>
+                        </fieldset>
                     </template>
                 </lightning-layout-item>
                 <lightning-layout-item class="slds-var-m-left_medium">
