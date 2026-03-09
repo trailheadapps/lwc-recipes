@@ -5,8 +5,7 @@ import { gql, graphql } from 'lightning/graphql';
 export default class Opportunities extends LightningElement {
     state = opportunitiesStateManager();
 
-    // result from most recent GraphQL query
-    data;
+    // errors from most recent GraphQL query
     errors;
 
     // filter for GraphQL query
@@ -26,15 +25,8 @@ export default class Opportunities extends LightningElement {
                                     }
                                     Amount {
                                         value
-                                        displayValue
                                     }
                                     StageName {
-                                        value
-                                    }
-                                    IsClosed {
-                                        value
-                                    }
-                                    OwnerId {
                                         value
                                     }
                                 }
@@ -47,17 +39,14 @@ export default class Opportunities extends LightningElement {
         variables: '$queryVariables'
     })
     wiredOpportunities({ data, errors }) {
-        this.data = data;
         this.errors = errors;
 
-        if (data) {
-            this.state.value.setOpportunities(
-                data.uiapi.query.Opportunity.edges.map((edge) => edge.node)
-            );
-        } else if (errors) {
-            // TODO - better error handling
-            console.error('Error fetching opportunities:', errors);
-        }
+        // update the state manager with any Opportunity data we received
+        this.state.value.setOpportunities(
+            (data?.uiapi?.query?.Opportunity?.edges || []).map(
+                (edge) => edge.node
+            )
+        );
     }
 
     get queryVariables() {
