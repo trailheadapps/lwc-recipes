@@ -1,0 +1,16 @@
+<template>
+    <lightning-card title="Opportunities Summary">
+        <div class="slds-var-m-around_medium">
+            <p>Opportunity count: {count}</p>
+            <p>
+                Total amount of opportunities:&nbsp;
+                <lightning-formatted-number
+                    value={stateManager.value.totalAmount}
+                    format-style="currency"
+                    currency-code={orgCurrency}
+                >
+                </lightning-formatted-number>
+            </p>
+        </div>
+    </lightning-card>
+</template>

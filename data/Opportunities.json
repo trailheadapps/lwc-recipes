@@ -1,0 +1,224 @@
+{
+    "records": [
+        {
+            "attributes": {
+                "type": "Opportunity",
+                "referenceId": "OpportunityRef1"
+            },
+            "AccountId": "@AccountRef1",
+            "Name": "Cloud Platform Expansion",
+            "Amount": 125000,
+            "CloseDate": "2025-06-30",
+            "StageName": "Proposal/Price Quote"
+        },
+        {
+            "attributes": {
+                "type": "Opportunity",
+                "referenceId": "OpportunityRef2"
+            },
+            "AccountId": "@AccountRef2",
+            "Name": "Enterprise License Renewal",
+            "Amount": 87500,
+            "CloseDate": "2025-05-15",
+            "StageName": "Negotiation/Review"
+        },
+        {
+            "attributes": {
+                "type": "Opportunity",
+                "referenceId": "OpportunityRef3"
+            },
+            "AccountId": "@AccountRef3",
+            "Name": "Digital Transformation Initiative",
+            "Amount": 342000,
+            "CloseDate": "2025-09-20",
+            "StageName": "Qualification"
+        },
+        {
+            "attributes": {
+                "type": "Opportunity",
+                "referenceId": "OpportunityRef4"
+            },
+            "AccountId": "@AccountRef4",
+            "Name": "API Integration Project",
+            "Amount": 28500,
+            "CloseDate": "2025-01-15",
+            "StageName": "Closed Won"
+        },
+        {
+            "attributes": {
+                "type": "Opportunity",
+                "referenceId": "OpportunityRef5"
+            },
+            "AccountId": "@AccountRef5",
+            "Name": "Office Furniture Refresh",
+            "Amount": 67000,
+            "CloseDate": "2025-07-31",
+            "StageName": "Needs Analysis"
+        },
+        {
+            "attributes": {
+                "type": "Opportunity",
+                "referenceId": "OpportunityRef6"
+            },
+            "AccountId": "@AccountRef6",
+            "Name": "Logistics Automation Suite",
+            "Amount": 198000,
+            "CloseDate": "2025-08-15",
+            "StageName": "Value Proposition"
+        },
+        {
+            "attributes": {
+                "type": "Opportunity",
+                "referenceId": "OpportunityRef7"
+            },
+            "AccountId": "@AccountRef7",
+            "Name": "Portfolio Management Upgrade",
+            "Amount": 52000,
+            "CloseDate": "2025-12-01",
+            "StageName": "Prospecting"
+        },
+        {
+            "attributes": {
+                "type": "Opportunity",
+                "referenceId": "OpportunityRef8"
+            },
+            "AccountId": "@AccountRef8",
+            "Name": "Travel Booking Platform",
+            "Amount": 156000,
+            "CloseDate": "2025-06-15",
+            "StageName": "Id. Decision Makers"
+        },
+        {
+            "attributes": {
+                "type": "Opportunity",
+                "referenceId": "OpportunityRef9"
+            },
+            "AccountId": "@AccountRef9",
+            "Name": "Video Production Package",
+            "Amount": 43500,
+            "CloseDate": "2025-05-30",
+            "StageName": "Perception Analysis"
+        },
+        {
+            "attributes": {
+                "type": "Opportunity",
+                "referenceId": "OpportunityRef10"
+            },
+            "AccountId": "@AccountRef10",
+            "Name": "Unified Communications Deal",
+            "Amount": 278000,
+            "CloseDate": "2024-11-20",
+            "StageName": "Closed Lost"
+        },
+        {
+            "attributes": {
+                "type": "Opportunity",
+                "referenceId": "OpportunityRef11"
+            },
+            "AccountId": "@AccountRef1",
+            "Name": "Security Assessment Engagement",
+            "Amount": 42000,
+            "CloseDate": "2025-10-01",
+            "StageName": "Qualification"
+        },
+        {
+            "attributes": {
+                "type": "Opportunity",
+                "referenceId": "OpportunityRef12"
+            },
+            "AccountId": "@AccountRef3",
+            "Name": "Supply Chain Optimization",
+            "Amount": 189000,
+            "CloseDate": "2025-04-20",
+            "StageName": "Negotiation/Review"
+        },
+        {
+            "attributes": {
+                "type": "Opportunity",
+                "referenceId": "OpportunityRef13"
+            },
+            "AccountId": "@AccountRef5",
+            "Name": "Collaboration Tools Rollout",
+            "Amount": 31500,
+            "CloseDate": "2025-07-15",
+            "StageName": "Proposal/Price Quote"
+        },
+        {
+            "attributes": {
+                "type": "Opportunity",
+                "referenceId": "OpportunityRef14"
+            },
+            "AccountId": "@AccountRef2",
+            "Name": "Data Analytics Platform",
+            "Amount": 245000,
+            "CloseDate": "2025-09-01",
+            "StageName": "Needs Analysis"
+        },
+        {
+            "attributes": {
+                "type": "Opportunity",
+                "referenceId": "OpportunityRef15"
+            },
+            "AccountId": "@AccountRef7",
+            "Name": "Compliance Audit Services",
+            "Amount": 78000,
+            "CloseDate": "2025-02-28",
+            "StageName": "Closed Won"
+        },
+        {
+            "attributes": {
+                "type": "Opportunity",
+                "referenceId": "OpportunityRef16"
+            },
+            "AccountId": "@AccountRef4",
+            "Name": "Genomics Research License",
+            "Amount": 112000,
+            "CloseDate": "2025-08-30",
+            "StageName": "Value Proposition"
+        },
+        {
+            "attributes": {
+                "type": "Opportunity",
+                "referenceId": "OpportunityRef17"
+            },
+            "AccountId": "@AccountRef8",
+            "Name": "Loyalty Program Redesign",
+            "Amount": 93500,
+            "CloseDate": "2025-06-01",
+            "StageName": "Id. Decision Makers"
+        },
+        {
+            "attributes": {
+                "type": "Opportunity",
+                "referenceId": "OpportunityRef18"
+            },
+            "AccountId": "@AccountRef6",
+            "Name": "Fleet Tracking Solution",
+            "Amount": 167000,
+            "CloseDate": "2025-11-15",
+            "StageName": "Prospecting"
+        },
+        {
+            "attributes": {
+                "type": "Opportunity",
+                "referenceId": "OpportunityRef19"
+            },
+            "AccountId": "@AccountRef9",
+            "Name": "Streaming Infrastructure Deal",
+            "Amount": 398000,
+            "CloseDate": "2025-07-01",
+            "StageName": "Perception Analysis"
+        },
+        {
+            "attributes": {
+                "type": "Opportunity",
+                "referenceId": "OpportunityRef20"
+            },
+            "AccountId": "@AccountRef10",
+            "Name": "Customer Support Platform",
+            "Amount": 72500,
+            "CloseDate": "2025-10-15",
+            "StageName": "Qualification"
+        }
+    ]
+}

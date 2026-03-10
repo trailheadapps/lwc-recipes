@@ -1,0 +1,231 @@
+{
+    "uiapi": {
+        "query": {
+            "Opportunity": {
+                "edges": [
+                    {
+                        "node": {
+                            "Id": "006xx000001a2q8AAA",
+                            "Name": {
+                                "value": "Edge SLA"
+                            },
+                            "Amount": {
+                                "value": 60000.0
+                            },
+                            "StageName": {
+                                "value": "Closed Won"
+                            },
+                            "IsClosed": {
+                                "value": true
+                            },
+                            "OwnerId": {
+                                "value": "005xx000001X80LAAS"
+                            }
+                        }
+                    },
+                    {
+                        "node": {
+                            "Id": "006xx000001a2q9AAA",
+                            "Name": {
+                                "value": "Grand Hotels Kitchen Generator"
+                            },
+                            "Amount": {
+                                "value": 15000.0
+                            },
+                            "StageName": {
+                                "value": "Id. Decision Makers"
+                            },
+                            "IsClosed": {
+                                "value": false
+                            },
+                            "OwnerId": {
+                                "value": "005xx000001X80LAAS"
+                            }
+                        }
+                    },
+                    {
+                        "node": {
+                            "Id": "006xx000001a2qAAAQ",
+                            "Name": {
+                                "value": "Grand Hotels SLA"
+                            },
+                            "Amount": {
+                                "value": 90000.0
+                            },
+                            "StageName": {
+                                "value": "Closed Won"
+                            },
+                            "IsClosed": {
+                                "value": true
+                            },
+                            "OwnerId": {
+                                "value": "005xx000001X80LAAS"
+                            }
+                        }
+                    },
+                    {
+                        "node": {
+                            "Id": "006xx000001a2qBAAQ",
+                            "Name": {
+                                "value": "Express Logistics Portable Truck Generators"
+                            },
+                            "Amount": {
+                                "value": 80000.0
+                            },
+                            "StageName": {
+                                "value": "Value Proposition"
+                            },
+                            "IsClosed": {
+                                "value": false
+                            },
+                            "OwnerId": {
+                                "value": "005xx000001X80LAAS"
+                            }
+                        }
+                    },
+                    {
+                        "node": {
+                            "Id": "006xx000001a2qCAAQ",
+                            "Name": {
+                                "value": "Express Logistics SLA"
+                            },
+                            "Amount": {
+                                "value": 120000.0
+                            },
+                            "StageName": {
+                                "value": "Perception Analysis"
+                            },
+                            "IsClosed": {
+                                "value": false
+                            },
+                            "OwnerId": {
+                                "value": "005xx000001X80LAAS"
+                            }
+                        }
+                    },
+                    {
+                        "node": {
+                            "Id": "006xx000001a2qDAAQ",
+                            "Name": {
+                                "value": "Express Logistics Standby Generator"
+                            },
+                            "Amount": {
+                                "value": 220000.0
+                            },
+                            "StageName": {
+                                "value": "Closed Won"
+                            },
+                            "IsClosed": {
+                                "value": true
+                            },
+                            "OwnerId": {
+                                "value": "005xx000001X80LAAS"
+                            }
+                        }
+                    },
+                    {
+                        "node": {
+                            "Id": "006xx000001a2qEAAQ",
+                            "Name": {
+                                "value": "University of AZ Installations"
+                            },
+                            "Amount": {
+                                "value": 100000.0
+                            },
+                            "StageName": {
+                                "value": "Proposal/Price Quote"
+                            },
+                            "IsClosed": {
+                                "value": false
+                            },
+                            "OwnerId": {
+                                "value": "005xx000001X80LAAS"
+                            }
+                        }
+                    },
+                    {
+                        "node": {
+                            "Id": "006xx000001a2qFAAQ",
+                            "Name": {
+                                "value": "University of AZ Portable Generators"
+                            },
+                            "Amount": {
+                                "value": 50000.0
+                            },
+                            "StageName": {
+                                "value": "Closed Won"
+                            },
+                            "IsClosed": {
+                                "value": true
+                            },
+                            "OwnerId": {
+                                "value": "005xx000001X80LAAS"
+                            }
+                        }
+                    },
+                    {
+                        "node": {
+                            "Id": "006xx000001a2qGAAQ",
+                            "Name": {
+                                "value": "University of AZ SLA"
+                            },
+                            "Amount": {
+                                "value": 90000.0
+                            },
+                            "StageName": {
+                                "value": "Closed Won"
+                            },
+                            "IsClosed": {
+                                "value": true
+                            },
+                            "OwnerId": {
+                                "value": "005xx000001X80LAAS"
+                            }
+                        }
+                    },
+                    {
+                        "node": {
+                            "Id": "006xx000001a2qHAAQ",
+                            "Name": {
+                                "value": "United Oil Emergency Generators"
+                            },
+                            "Amount": {
+                                "value": 440000.0
+                            },
+                            "StageName": {
+                                "value": "Closed Won"
+                            },
+                            "IsClosed": {
+                                "value": true
+                            },
+                            "OwnerId": {
+                                "value": "005xx000001X80LAAS"
+                            }
+                        }
+                    },
+                    {
+                        "node": {
+                            "Id": "006xx000001a2qIAAQ",
+                            "Name": {
+                                "value": "United Oil Installations"
+                            },
+                            "Amount": {
+                                "value": 270000.0,
+                                "displayValue": "$270,000.00"
+                            },
+                            "StageName": {
+                                "value": "Closed Won"
+                            },
+                            "IsClosed": {
+                                "value": true
+                            },
+                            "OwnerId": {
+                                "value": "005xx000001X80LAAS"
+                            }
+                        }
+                    }
+                ]
+            }
+        }
+    }
+}

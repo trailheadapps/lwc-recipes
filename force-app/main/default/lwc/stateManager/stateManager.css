@@ -1,0 +1,5 @@
+fieldset {
+    border: solid var(--slds-g-sizing-border-1)
+        var(--slds-g-color-neutral-base-80);
+    border-radius: var(--slds-g-radius-border-2);
+}
