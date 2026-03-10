@@ -1,8 +1,5 @@
 <template>
-    <lightning-card
-        title="Opportunities via State Manager"
-        icon-name="standard:shift_pattern"
-    >
+    <lightning-card title="State Manager" icon-name="standard:shift_pattern">
         <lightning-layout multiple-rows="true">
             <lightning-layout-item size="6" padding="around-medium">
                 <lightning-combobox
@@ -42,9 +39,26 @@
             </lightning-layout-item>
         </lightning-layout>
 
-        <c-view-source source="lwc/opportunities" slot="footer">
-            Fetch opportunities using a state manager and display in multiple
-            components.
-        </c-view-source>
+        <div slot="footer">
+            <c-view-source
+                source="lwc/stateManager"
+                class="slds-show slds-var-m-bottom_small"
+            >
+                The
+                <pre class="slds-show_inline slds-var-m-horizontal_x-small">
+stateManager</pre
+                >
+                component fetches opportunities using a state manager and
+                display them in multiple components.
+            </c-view-source>
+            <c-view-source source="lwc/opportunitiesStateManager">
+                The
+                <pre class="slds-show_inline slds-var-m-horizontal_x-small">
+opportunitiesStateManager</pre
+                >
+                component (not visible) is a state manager that manages the
+                state of opportunities.
+            </c-view-source>
+        </div>
     </lightning-card>
 </template>

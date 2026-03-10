@@ -3,8 +3,8 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
-                <componentName>opportunities</componentName>
-                <identifier>c_opportunities</identifier>
+                <componentName>stateManager</componentName>
+                <identifier>c_stateManager</identifier>
             </componentInstance>
         </itemInstances>
         <name>main</name>

@@ -2,7 +2,7 @@ import { default as opportunitiesStateManager } from 'c/opportunitiesStateManage
 import { LightningElement, wire } from 'lwc';
 import { gql, graphql } from 'lightning/graphql';
 
-export default class Opportunities extends LightningElement {
+export default class StateManager extends LightningElement {
     state = opportunitiesStateManager();
 
     // errors from most recent GraphQL query

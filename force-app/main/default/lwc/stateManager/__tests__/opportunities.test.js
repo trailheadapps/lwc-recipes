@@ -2,7 +2,7 @@ import { createElement } from '@lwc/engine-dom';
 import { fromContext } from '@lwc/state';
 import { stateManagerInstanceMock } from '@lwc/state-test-utils';
 import opportunitiesStateManager from 'c/opportunitiesStateManager';
-import Opportunities from 'c/opportunities';
+import StateManager from 'c/stateManager';
 import { graphql } from 'lightning/graphql';
 
 jest.mock('@lwc/state', () => {
@@ -28,7 +28,7 @@ async function flushPromises() {
     return Promise.resolve();
 }
 
-describe('c-opportunities', () => {
+describe('c-stateManager', () => {
     let stateManager;
 
     beforeEach(() => {
@@ -54,8 +54,8 @@ describe('c-opportunities', () => {
     });
 
     it('runs an initial GraphQL query to fetch opportunities', async () => {
-        const element = createElement('c-opportunities', {
-            is: Opportunities
+        const element = createElement('c-stateManager', {
+            is: StateManager
         });
         document.body.appendChild(element);
 
@@ -74,8 +74,8 @@ describe('c-opportunities', () => {
     });
 
     it('updates the state manager when GraphQL data is received', async () => {
-        const element = createElement('c-opportunities', {
-            is: Opportunities
+        const element = createElement('c-stateManager', {
+            is: StateManager
         });
         document.body.appendChild(element);
 
@@ -90,8 +90,8 @@ describe('c-opportunities', () => {
     });
 
     it('handles GraphQL errors', async () => {
-        const element = createElement('c-opportunities', {
-            is: Opportunities
+        const element = createElement('c-stateManager', {
+            is: StateManager
         });
         document.body.appendChild(element);
 
@@ -115,8 +115,8 @@ describe('c-opportunities', () => {
     });
 
     it('updates the GraphQL query filter when the filter is changed', async () => {
-        const element = createElement('c-opportunities', {
-            is: Opportunities
+        const element = createElement('c-stateManager', {
+            is: StateManager
         });
         document.body.appendChild(element);
 
@@ -140,8 +140,8 @@ describe('c-opportunities', () => {
 
     it('is accessible', async () => {
         // Arrange
-        const element = createElement('c-opportunities', {
-            is: Opportunities
+        const element = createElement('c-stateManager', {
+            is: StateManager
         });
 
         // Act
