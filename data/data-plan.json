@@ -10,5 +10,11 @@
         "saveRefs": true,
         "resolveRefs": true,
         "files": ["Contacts.json"]
+    },
+    {
+        "sobject": "Opportunity",
+        "saveRefs": true,
+        "resolveRefs": true,
+        "files": ["Opportunities.json"]
     }
 ]
