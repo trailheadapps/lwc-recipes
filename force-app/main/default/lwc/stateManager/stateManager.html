@@ -1,0 +1,64 @@
+<template>
+    <lightning-card title="State Manager" icon-name="standard:shift_pattern">
+        <lightning-layout multiple-rows="true">
+            <lightning-layout-item size="6" padding="around-medium">
+                <lightning-combobox
+                    name="opportunityFilter"
+                    label="Opportunity Filter"
+                    options={filters}
+                    value={filter}
+                    onchange={handleFilterChange}
+                >
+                </lightning-combobox>
+            </lightning-layout-item>
+
+            <lightning-layout-item
+                lwc:if={errors}
+                size="12"
+                padding="around-medium"
+            >
+                <c-error-panel errors={errors}></c-error-panel>
+            </lightning-layout-item>
+
+            <lightning-layout-item size="12" padding="around-medium">
+                <lightning-layout horizontal-align="spread">
+                    <lightning-layout-item size="4" padding="around-medium">
+                        <fieldset class="slds-var-p-horizontal_x-small">
+                            <legend>c-opportunities-summary</legend>
+                            <c-opportunities-summary></c-opportunities-summary>
+                        </fieldset>
+                    </lightning-layout-item>
+
+                    <lightning-layout-item size="8" padding="around-medium">
+                        <fieldset class="slds-var-p-horizontal_x-small">
+                            <legend>c-opportunities-list</legend>
+                            <c-opportunities-list></c-opportunities-list>
+                        </fieldset>
+                    </lightning-layout-item>
+                </lightning-layout>
+            </lightning-layout-item>
+        </lightning-layout>
+
+        <div slot="footer">
+            <c-view-source
+                source="lwc/stateManager"
+                class="slds-show slds-var-m-bottom_small"
+            >
+                The
+                <pre class="slds-show_inline slds-var-m-horizontal_x-small">
+stateManager</pre
+                >
+                component fetches opportunities using a state manager and
+                display them in multiple components.
+            </c-view-source>
+            <c-view-source source="lwc/opportunitiesStateManager">
+                The
+                <pre class="slds-show_inline slds-var-m-horizontal_x-small">
+opportunitiesStateManager</pre
+                >
+                component (not visible) is a state manager that manages the
+                state of opportunities.
+            </c-view-source>
+        </div>
+    </lightning-card>
+</template>

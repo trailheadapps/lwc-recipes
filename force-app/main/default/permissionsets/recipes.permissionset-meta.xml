@@ -252,4 +252,8 @@
         <tab>Record_Picker</tab>
         <visibility>Visible</visibility>
     </tabSettings>
+    <tabSettings>
+        <tab>State_Managers</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
 </PermissionSet>

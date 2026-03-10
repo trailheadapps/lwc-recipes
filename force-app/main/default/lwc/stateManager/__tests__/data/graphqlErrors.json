@@ -1,0 +1,10 @@
+[
+    {
+        "extensions": {
+            "ErrorType": "ValidationError"
+        },
+        "locations": [],
+        "message": "The variables input contains a field name 'broken' that is not defined for input object type 'Opportunity_Filter' ",
+        "paths": []
+    }
+]
