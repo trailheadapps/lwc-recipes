@@ -1,0 +1,46 @@
+<template>
+    <lightning-card title="GraphqlMutationCreate" icon-name="custom:custom39">
+        <div class="slds-var-m-around_medium">
+            <template lwc:if={accountId}>
+                <div
+                    class="slds-box slds-theme_success slds-var-m-bottom_small"
+                >
+                    <p>
+                        <lightning-icon
+                            icon-name="utility:success"
+                            size="x-small"
+                            variant="inverse"
+                            class="slds-var-m-right_x-small"
+                        ></lightning-icon>
+                        Account created with Id: {accountId}
+                    </p>
+                </div>
+            </template>
+            <template lwc:if={errors}>
+                <c-error-panel errors={errors}></c-error-panel>
+            </template>
+            <lightning-input
+                label="Account Name"
+                value={accountName}
+                onchange={handleNameChange}
+                class="slds-var-m-bottom_small"
+            ></lightning-input>
+            <lightning-button
+                label="Create Account"
+                variant="brand"
+                onclick={handleCreateAccount}
+                disabled={isLoading}
+            ></lightning-button>
+            <lightning-spinner
+                lwc:if={isLoading}
+                alternative-text="Creating..."
+                size="small"
+                class="slds-var-m-left_medium"
+            ></lightning-spinner>
+        </div>
+
+        <c-view-source source="lwc/graphqlMutationCreate" slot="footer">
+            Create a record using GraphQL executeMutation.
+        </c-view-source>
+    </lightning-card>
+</template>

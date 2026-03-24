@@ -1,0 +1,14 @@
+{
+    "data": {
+        "uiapi": {
+            "AccountCreate": {
+                "Record": {
+                    "Id": "001xx000003NGSFAA4",
+                    "Name": {
+                        "value": "Test Account"
+                    }
+                }
+            }
+        }
+    }
+}

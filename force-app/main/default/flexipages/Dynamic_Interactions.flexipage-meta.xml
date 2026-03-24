@@ -38,6 +38,12 @@
                 <identifier>c_contactInfo1</identifier>
             </componentInstance>
         </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentName>dynamicEventListener</componentName>
+                <identifier>c_dynamicEventListener1</identifier>
+            </componentInstance>
+        </itemInstances>
         <name>column2</name>
         <type>Region</type>
     </flexiPageRegions>

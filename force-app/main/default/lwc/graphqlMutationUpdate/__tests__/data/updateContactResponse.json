@@ -1,0 +1,20 @@
+{
+    "data": {
+        "uiapi": {
+            "ContactUpdate": {
+                "Record": {
+                    "Id": "003xx000004WhGYAA0",
+                    "FirstName": {
+                        "value": "Amy Updated"
+                    },
+                    "LastName": {
+                        "value": "Taylor"
+                    },
+                    "Email": {
+                        "value": "amy.updated@example.com"
+                    }
+                }
+            }
+        }
+    }
+}
