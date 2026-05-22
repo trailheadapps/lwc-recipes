@@ -1,5 +1,5 @@
 # Lightning Web Components Recipes
-
+//Added Recipies
 [![CI](https://github.com/trailheadapps/lwc-recipes/actions/workflows/ci.yml/badge.svg)](https://github.com/trailheadapps/lwc-recipes/actions/workflows/ci.yml) [![Packaging](https://github.com/trailheadapps/lwc-recipes/actions/workflows/packaging.yml/badge.svg)](https://github.com/trailheadapps/lwc-recipes/actions/workflows/packaging.yml) [![codecov](https://codecov.io/gh/trailheadapps/lwc-recipes/branch/main/graph/badge.svg)](https://codecov.io/gh/trailheadapps/lwc-recipes)
 
 ![recipes-logo](recipes-logo.png)
