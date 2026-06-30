@@ -24,6 +24,8 @@ A collection of easy-to-digest code examples for Lightning Web Components. Each 
 
 - [Installing the app using a Developer Edition Org or a Trailhead Playground](#installing-the-app-using-a-developer-edition-org-or-a-trailhead-playground): Useful when tackling Trailhead Badges or if you want the app deployed to a more permanent environment than a Scratch org.
 
+- [Useful Salesforce CLI org commands](#useful-salesforce-cli-org-commands)
+
 - [Optional installation instructions](#optional-installation-instructions)
 
 - [Code tours](#code-tours)
@@ -160,6 +162,51 @@ Make sure to start from a brand-new environment to avoid conflicts with previous
 1. In **Setup**, under **Themes and Branding**, activate the **Recipes Lite** or **Recipes Blue** theme.
 
 1. In App Launcher, select the **LWC** app.
+
+## Useful Salesforce CLI org commands
+
+Use an org alias from `sf org list` to target an org that is already authorized.
+
+Open an authorized org in a browser:
+
+```
+sf org open --target-org <alias>
+```
+
+Target an authorized org for a single command, such as a deployment:
+
+```
+sf project deploy start --target-org <alias>
+```
+
+Set an authorized org as the default for the current project:
+
+```
+sf config set target-org=<alias>
+```
+
+Reauthorize an org by using its My Domain URL:
+
+```
+sf org login web \
+    --instance-url https://your-domain.my.salesforce.com \
+    --alias my-org \
+    --set-default
+```
+
+For a sandbox, use its sandbox My Domain URL:
+
+```
+sf org login web \
+    --instance-url https://your-domain--sandbox-name.sandbox.my.salesforce.com \
+    --alias my-sandbox
+```
+
+Display information about an authorized org, including its instance URL:
+
+```
+sf org display --target-org <alias>
+```
 
 ## Optional Installation Instructions
 
