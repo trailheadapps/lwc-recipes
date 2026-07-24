@@ -46,7 +46,7 @@ export default class GraphqlMutations extends LightningElement {
             query getContacts {
                 uiapi {
                     query {
-                        Contact{
+                        Contact {
                             edges {
                                 node {
                                     Id
@@ -73,7 +73,7 @@ export default class GraphqlMutations extends LightningElement {
             }
         `
     })
-   wiredValues(result) {
+    wiredValues(result) {
         this.isLoading = false;
         this.account = undefined;
         this.errors = undefined;
@@ -121,7 +121,7 @@ export default class GraphqlMutations extends LightningElement {
                     })
                 );
             } else {
-               this.dispatchEvent(
+                this.dispatchEvent(
                     new ShowToastEvent({
                         title: 'Success',
                         message: 'Contacts updated',
@@ -141,14 +141,14 @@ export default class GraphqlMutations extends LightningElement {
             );
         }
     }
-    buildVariables(params){
-        const variables = {}
+    buildVariables(params) {
+        const variables = {};
         // eslint-disable-next-line guard-for-in
-        for(let index in params){
+        for (let index in params) {
             const fields = params[index].fields;
-            let input = {Contact: {}};
-            for(let field of Object.keys(fields)){
-                if(field === 'Id'){
+            let input = { Contact: {} };
+            for (let field of Object.keys(fields)) {
+                if (field === 'Id') {
                     input.Id = fields[field];
                 } else {
                     input.Contact[field] = fields[field];
@@ -159,20 +159,22 @@ export default class GraphqlMutations extends LightningElement {
         return variables;
     }
 
-    buildQuery(params){
+    buildQuery(params) {
         let header = '';
         let body = '';
         let query = 'mutation ContactUpdateExample(';
         // eslint-disable-next-line guard-for-in
-        for(let index in params){
-            header+=`$input${index}: ContactUpdateInput!, `;
+        for (let index in params) {
+            header += `$input${index}: ContactUpdateInput!, `;
             let queryBlock = ` query${index}: ContactUpdate(input: $input${index})
                 {
                     success
                 }`;
             body += queryBlock;
         }
-        query+=`${header.slice(0, -2)}){uiapi (input: { allOrNone: false }) {${body} } }`
-        return gql`${query.trim()}`;
+        query += `${header.slice(0, -2)}){uiapi (input: { allOrNone: false }) {${body} } }`;
+        return gql`
+            ${query.trim()}
+        `;
     }
 }
