@@ -14,7 +14,8 @@ jest.mock('lightning/graphql', () => {
         executeMutation: jest.fn(),
         gql: jest.fn((strings, ...values) =>
             strings.reduce(
-                (acc, str, i) => acc + str + (i < values.length ? values[i] : ''),
+                (acc, str, i) =>
+                    acc + str + (i < values.length ? values[i] : ''),
                 ''
             )
         )
@@ -69,7 +70,9 @@ describe('c-graphql-mutations', () => {
             // Wait for any asynchronous DOM updates
             await flushPromises();
 
-            const tableEl = element.shadowRoot.querySelector('lightning-datatable');
+            const tableEl = element.shadowRoot.querySelector(
+                'lightning-datatable'
+            );
 
             // Validate the datatable is populated with correct number of records
             expect(tableEl.data.length).toBe(3);
@@ -97,7 +100,6 @@ describe('c-graphql-mutations', () => {
         });
     });
 
-
     describe('save handler with executeMutation', () => {
         it('calls executeMutation when save is triggered', async () => {
             // Mock executeMutation to return success
@@ -112,13 +114,19 @@ describe('c-graphql-mutations', () => {
 
             const refreshGraphQL = jest.fn().mockResolvedValue();
             // Emit data from @wire
-            graphql.emit(mockGraphQLContactResponse, () => true, refreshGraphQL);
+            graphql.emit(
+                mockGraphQLContactResponse,
+                () => true,
+                refreshGraphQL
+            );
 
             // Wait for any asynchronous DOM updates
             await flushPromises();
 
             // Simulate save event on datatable
-            const tableEl = element.shadowRoot.querySelector('lightning-datatable');
+            const tableEl = element.shadowRoot.querySelector(
+                'lightning-datatable'
+            );
             tableEl.dispatchEvent(
                 new CustomEvent('save', {
                     detail: {
@@ -131,7 +139,8 @@ describe('c-graphql-mutations', () => {
             await flushPromises();
 
             const calledQuery = executeMutation.mock.calls[0][0].query;
-            expect(calledQuery).toBe(`mutation ContactUpdateExample($input0: ContactUpdateInput!, $input1: ContactUpdateInput!){uiapi (input: { allOrNone: false }) { query0: ContactUpdate(input: $input0)
+            expect(calledQuery.trim())
+                .toBe(`mutation ContactUpdateExample($input0: ContactUpdateInput!, $input1: ContactUpdateInput!){uiapi (input: { allOrNone: false }) { query0: ContactUpdate(input: $input0)
                 {
                     success
                 } query1: ContactUpdate(input: $input1)
@@ -157,13 +166,19 @@ describe('c-graphql-mutations', () => {
 
             const refreshGraphQL = jest.fn().mockResolvedValue();
             // Emit data from @wire
-            graphql.emit(mockGraphQLContactResponse, () => true, refreshGraphQL);
+            graphql.emit(
+                mockGraphQLContactResponse,
+                () => true,
+                refreshGraphQL
+            );
 
             // Wait for any asynchronous DOM updates
             await flushPromises();
 
             // Simulate save event on datatable
-            const tableEl = element.shadowRoot.querySelector('lightning-datatable');
+            const tableEl = element.shadowRoot.querySelector(
+                'lightning-datatable'
+            );
             tableEl.dispatchEvent(
                 new CustomEvent('save', {
                     detail: {
@@ -177,7 +192,9 @@ describe('c-graphql-mutations', () => {
 
             // Validate the toast event is called with success
             expect(toastHandler).toHaveBeenCalled();
-            expect(toastHandler.mock.calls[0][0].detail.variant).toBe('success');
+            expect(toastHandler.mock.calls[0][0].detail.variant).toBe(
+                'success'
+            );
             expect(toastHandler.mock.calls[0][0].detail.title).toBe('Success');
 
             // Validate refreshGraphQL is called and the draft values are reset
@@ -202,13 +219,19 @@ describe('c-graphql-mutations', () => {
 
             const refreshGraphQL = jest.fn().mockResolvedValue();
             // Emit data from @wire
-            graphql.emit(mockGraphQLContactResponse, () => true, refreshGraphQL);
+            graphql.emit(
+                mockGraphQLContactResponse,
+                () => true,
+                refreshGraphQL
+            );
 
             // Wait for any asynchronous DOM updates
             await flushPromises();
 
             // Simulate save event on datatable
-            const tableEl = element.shadowRoot.querySelector('lightning-datatable');
+            const tableEl = element.shadowRoot.querySelector(
+                'lightning-datatable'
+            );
             tableEl.dispatchEvent(
                 new CustomEvent('save', {
                     detail: {
@@ -223,7 +246,9 @@ describe('c-graphql-mutations', () => {
             // Validate the toast event is called with error
             expect(toastHandler).toHaveBeenCalled();
             expect(toastHandler.mock.calls[0][0].detail.variant).toBe('error');
-            expect(toastHandler.mock.calls[0][0].detail.title).toBe('GraphQl Error');
+            expect(toastHandler.mock.calls[0][0].detail.title).toBe(
+                'GraphQl Error'
+            );
 
             // Validate refreshGraphQL is NOT called when there's an error
             expect(refreshGraphQL).not.toHaveBeenCalled();
@@ -248,13 +273,19 @@ describe('c-graphql-mutations', () => {
 
             const refreshGraphQL = jest.fn().mockResolvedValue();
             // Emit data from @wire
-            graphql.emit(mockGraphQLContactResponse, () => true, refreshGraphQL);
+            graphql.emit(
+                mockGraphQLContactResponse,
+                () => true,
+                refreshGraphQL
+            );
 
             // Wait for any asynchronous DOM updates
             await flushPromises();
 
             // Simulate save event on datatable
-            const tableEl = element.shadowRoot.querySelector('lightning-datatable');
+            const tableEl = element.shadowRoot.querySelector(
+                'lightning-datatable'
+            );
             tableEl.dispatchEvent(
                 new CustomEvent('save', {
                     detail: {
@@ -275,4 +306,3 @@ describe('c-graphql-mutations', () => {
         });
     });
 });
-
