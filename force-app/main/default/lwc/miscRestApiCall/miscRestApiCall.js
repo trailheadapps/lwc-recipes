@@ -17,7 +17,9 @@ export default class MiscRestCall extends LightningElement {
     async handleSearchClick() {
         try {
             this.isLoading = true;
-            const response = await fetch(QUERY_URL + this.searchKey);
+            const response = await fetch(
+                QUERY_URL + encodeURIComponent(this.searchKey)
+            );
             // fetch isn't throwing an error if the request fails.
             // Therefore we have to check the ok property.
             // The thrown error will be caught on the catch() method
