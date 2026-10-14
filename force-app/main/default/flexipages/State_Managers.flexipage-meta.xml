@@ -6,6 +6,10 @@
                 <componentName>stateManager</componentName>
                 <identifier>c_stateManager</identifier>
             </componentInstance>
+            <componentInstance>
+                <componentName>graphqlStateManager</componentName>
+                <identifier>c_graphqlStateManager</identifier>
+            </componentInstance>
         </itemInstances>
         <name>main</name>
         <type>Region</type>

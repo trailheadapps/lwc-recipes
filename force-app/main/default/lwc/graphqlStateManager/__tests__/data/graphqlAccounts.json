@@ -1,0 +1,43 @@
+{
+    "uiapi": {
+        "query": {
+            "Account": {
+                "edges": [
+                    {
+                        "node": {
+                            "Id": "001xx000003DGb1AAG",
+                            "Name": {
+                                "value": "Acme Corporation"
+                            },
+                            "Industry": {
+                                "value": "Manufacturing"
+                            }
+                        }
+                    },
+                    {
+                        "node": {
+                            "Id": "001xx000003DGb2AAG",
+                            "Name": {
+                                "value": "Global Media"
+                            },
+                            "Industry": {
+                                "value": "Media"
+                            }
+                        }
+                    },
+                    {
+                        "node": {
+                            "Id": "001xx000003DGb3AAG",
+                            "Name": {
+                                "value": "Salesforce"
+                            },
+                            "Industry": {
+                                "value": "Technology"
+                            }
+                        }
+                    }
+                ]
+            }
+        }
+    }
+}
