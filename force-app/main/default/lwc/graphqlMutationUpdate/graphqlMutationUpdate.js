@@ -1,6 +1,28 @@
 import { LightningElement, wire } from 'lwc';
 import { gql, graphql, executeMutation } from 'lightning/graphql';
 
+// User input is passed as a variable, never concatenated into the mutation
+const UPDATE_CONTACT = gql`
+    mutation UpdateContact($input: ContactUpdateInput!) {
+        uiapi {
+            ContactUpdate(input: $input) {
+                Record {
+                    Id
+                    FirstName {
+                        value
+                    }
+                    LastName {
+                        value
+                    }
+                    Email {
+                        value
+                    }
+                }
+            }
+        }
+    }
+`;
+
 export default class GraphqlMutationUpdate extends LightningElement {
     contact;
     firstName = '';
@@ -86,36 +108,6 @@ export default class GraphqlMutationUpdate extends LightningElement {
         this.successMessage = undefined;
     }
 
-    getUpdateQuery(contactId, firstName, lastName, email) {
-        return gql`
-            mutation UpdateContact {
-                uiapi {
-                    ContactUpdate(input: {
-                        Id: "${contactId}",
-                        Contact: {
-                            FirstName: "${firstName}",
-                            LastName: "${lastName}",
-                            Email: "${email}"
-                        }
-                    }) {
-                        Record {
-                            Id
-                            FirstName {
-                                value
-                            }
-                            LastName {
-                                value
-                            }
-                            Email {
-                                value
-                            }
-                        }
-                    }
-                }
-            }
-        `;
-    }
-
     async handleUpdateContact() {
         if (!this.lastName) {
             this.errors = ['Last Name is required'];
@@ -128,12 +120,17 @@ export default class GraphqlMutationUpdate extends LightningElement {
 
         try {
             const result = await executeMutation({
-                query: this.getUpdateQuery(
-                    this.contact.Id,
-                    this.firstName,
-                    this.lastName,
-                    this.email
-                )
+                query: UPDATE_CONTACT,
+                variables: {
+                    input: {
+                        Id: this.contact.Id,
+                        Contact: {
+                            FirstName: this.firstName,
+                            LastName: this.lastName,
+                            Email: this.email
+                        }
+                    }
+                }
             });
 
             if (result.errors) {
