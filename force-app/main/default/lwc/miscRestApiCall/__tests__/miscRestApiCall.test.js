@@ -45,7 +45,7 @@ describe('c-misc-rest-api-call', () => {
 
     it('calls the Google Books API based on user input', async () => {
         const USER_INPUT = 'Harry Potter';
-        const QUERY_INPUT = QUERY_URL + USER_INPUT;
+        const QUERY_INPUT = QUERY_URL + encodeURIComponent(USER_INPUT);
 
         // Create component
         const element = createElement('c-misc-rest-api-call', {
@@ -75,6 +75,47 @@ describe('c-misc-rest-api-call', () => {
         expect(fetch).toHaveBeenCalledTimes(1);
         expect(fetch.mock.calls[0][0]).toBe(QUERY_INPUT);
     });
+
+    // Characters that are meaningful in a URL's query string. If the search
+    // term isn't encoded before being appended to QUERY_URL, these can be
+    // misinterpreted as introducing new query parameters or a fragment
+    // instead of remaining part of the search term.
+    const URL_DELIMITER_PAYLOADS = [
+        'Harry Potter&maxResults=1',
+        'foo#fragment',
+        'foo?bar=baz',
+        'foo=bar&orderBy=newest'
+    ];
+
+    test.each(URL_DELIMITER_PAYLOADS)(
+        'keeps "%s" within the q parameter',
+        async (payload) => {
+            // Create component
+            const element = createElement('c-misc-rest-api-call', {
+                is: MiscRestApiCall
+            });
+            document.body.appendChild(element);
+
+            const fetch = (global.fetch = mockFetch({ items: [] }));
+
+            const inputEl = element.shadowRoot.querySelector('lightning-input');
+            inputEl.value = payload;
+            inputEl.dispatchEvent(new CustomEvent('change'));
+
+            const buttonEl =
+                element.shadowRoot.querySelector('lightning-button');
+            buttonEl.click();
+
+            await flushPromises();
+
+            const calledUrl = new URL(fetch.mock.calls[0][0]);
+            expect(calledUrl.searchParams.get('q')).toBe(payload);
+            expect(calledUrl.searchParams.get('maxResults')).toBeNull();
+            expect(calledUrl.searchParams.get('orderBy')).toBeNull();
+            expect(calledUrl.searchParams.get('bar')).toBeNull();
+            expect(calledUrl.hash).toBe('');
+        }
+    );
 
     it('renders no book details on default', () => {
         // Create component
