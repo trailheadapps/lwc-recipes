@@ -1,6 +1,17 @@
 import { LightningElement, wire } from 'lwc';
 import { gql, graphql, executeMutation } from 'lightning/graphql';
 
+// The record id is passed as a variable, never concatenated into the mutation
+const DELETE_CONTACT = gql`
+    mutation DeleteContact($input: RecordDeleteInput!) {
+        uiapi {
+            ContactDelete(input: $input) {
+                Id
+            }
+        }
+    }
+`;
+
 export default class GraphqlMutationDelete extends LightningElement {
     contacts;
     errors;
@@ -55,18 +66,6 @@ export default class GraphqlMutationDelete extends LightningElement {
         return !this.contacts || this.contacts.length === 0;
     }
 
-    getDeleteQuery(contactId) {
-        return gql`
-            mutation DeleteContact {
-                uiapi {
-                    ContactDelete(input: { Id: "${contactId}" }) {
-                        Id
-                    }
-                }
-            }
-        `;
-    }
-
     async handleDeleteContact(event) {
         const contactId = event.target.dataset.id;
         const contactName = event.target.dataset.name;
@@ -77,7 +76,8 @@ export default class GraphqlMutationDelete extends LightningElement {
 
         try {
             const result = await executeMutation({
-                query: this.getDeleteQuery(contactId)
+                query: DELETE_CONTACT,
+                variables: { input: { Id: contactId } }
             });
 
             if (result.errors) {

@@ -1,9 +1,19 @@
 import { createElement } from '@lwc/engine-dom';
 import GraphqlMutationUpdate from 'c/graphqlMutationUpdate';
-import { graphql } from 'lightning/graphql';
+import { graphql, executeMutation } from 'lightning/graphql';
 
 // Mock realistic data
 const mockGraphQLContact = require('./data/graphqlContactResponse.json');
+const mockUpdateContactResponse = require('./data/updateContactResponse.json');
+
+// Mock executeMutation and keep the graphql wire adapter
+jest.mock('lightning/graphql', () => {
+    const actual = jest.requireActual('lightning/graphql');
+    return {
+        ...actual,
+        executeMutation: jest.fn()
+    };
+});
 
 describe('c-graphql-mutation-update', () => {
     afterEach(() => {
@@ -59,6 +69,51 @@ describe('c-graphql-mutation-update', () => {
                 element.shadowRoot.querySelector('lightning-button');
             expect(buttonEl).not.toBeNull();
             expect(buttonEl.label).toBe('Update Contact');
+        });
+    });
+
+    describe('update contact mutation', () => {
+        it('passes the contact fields as variables', async () => {
+            const FIRST_NAME = 'Amy "AT"';
+
+            executeMutation.mockResolvedValue(mockUpdateContactResponse);
+
+            const element = createElement('c-graphql-mutation-update', {
+                is: GraphqlMutationUpdate
+            });
+            document.body.appendChild(element);
+
+            // Emit data from @wire
+            graphql.emit(mockGraphQLContact);
+
+            await flushPromises();
+
+            // Change first name
+            const firstNameInput = Array.from(
+                element.shadowRoot.querySelectorAll('lightning-input')
+            ).find((input) => input.label === 'First Name');
+            firstNameInput.value = FIRST_NAME;
+            firstNameInput.dispatchEvent(new CustomEvent('change'));
+
+            // Click update button
+            const buttonEl =
+                element.shadowRoot.querySelector('lightning-button');
+            buttonEl.click();
+
+            await flushPromises();
+
+            const { node } = mockGraphQLContact.uiapi.query.Contact.edges[0];
+            const callArgs = executeMutation.mock.calls[0][0];
+            expect(callArgs.variables).toEqual({
+                input: {
+                    Id: node.Id,
+                    Contact: {
+                        FirstName: FIRST_NAME,
+                        LastName: node.LastName.value,
+                        Email: node.Email.value
+                    }
+                }
+            });
         });
     });
 

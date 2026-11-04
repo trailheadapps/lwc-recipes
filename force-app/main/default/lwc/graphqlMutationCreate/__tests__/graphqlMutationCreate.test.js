@@ -59,7 +59,7 @@ describe('c-graphql-mutation-create', () => {
         });
 
         it('calls executeMutation with correct parameters when create is clicked', async () => {
-            const ACCOUNT_NAME = 'Test Account';
+            const ACCOUNT_NAME = 'Joe "The Bike" Shop';
 
             executeMutation.mockResolvedValue(mockCreateAccountResponse);
 
@@ -82,8 +82,11 @@ describe('c-graphql-mutation-create', () => {
 
             expect(executeMutation).toHaveBeenCalled();
             const callArgs = executeMutation.mock.calls[0][0];
-            // The account name is embedded in the query string, not passed as variables
-            expect(callArgs.query).toContain(ACCOUNT_NAME);
+            // The account name is passed as a variable, not embedded in the query string
+            expect(callArgs.variables).toEqual({
+                input: { Account: { Name: ACCOUNT_NAME } }
+            });
+            expect(callArgs.query).not.toContain(ACCOUNT_NAME);
         });
 
         it('displays account id after successful creation', async () => {

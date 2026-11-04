@@ -1,28 +1,27 @@
 import { LightningElement } from 'lwc';
 import { gql, executeMutation } from 'lightning/graphql';
 
+// User input is passed as a variable, never concatenated into the mutation
+const CREATE_ACCOUNT = gql`
+    mutation CreateAccount($input: AccountCreateInput!) {
+        uiapi {
+            AccountCreate(input: $input) {
+                Record {
+                    Id
+                    Name {
+                        value
+                    }
+                }
+            }
+        }
+    }
+`;
+
 export default class GraphqlMutationCreate extends LightningElement {
     accountName = '';
     accountId;
     errors;
     isLoading = false;
-
-    getCreateQuery(name) {
-        return gql`
-            mutation CreateAccount {
-                uiapi {
-                    AccountCreate(input: { Account: { Name: "${name}" } }) {
-                        Record {
-                            Id
-                            Name {
-                                value
-                            }
-                        }
-                    }
-                }
-            }
-        `;
-    }
 
     handleNameChange(event) {
         this.accountName = event.target.value;
@@ -42,7 +41,10 @@ export default class GraphqlMutationCreate extends LightningElement {
 
         try {
             const result = await executeMutation({
-                query: this.getCreateQuery(this.accountName)
+                query: CREATE_ACCOUNT,
+                variables: {
+                    input: { Account: { Name: this.accountName } }
+                }
             });
 
             if (result.errors) {
