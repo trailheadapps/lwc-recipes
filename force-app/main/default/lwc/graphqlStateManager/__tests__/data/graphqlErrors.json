@@ -1,0 +1,10 @@
+[
+    {
+        "extensions": {
+            "ErrorType": "ValidationError"
+        },
+        "locations": [],
+        "message": "The variables input contains a field name 'searchKey' that is not defined for input object type 'Account_Filter' ",
+        "paths": []
+    }
+]
